@@ -8387,3 +8387,23 @@ python3 -P docs/data/c2nav33_weights.py context     # accuracy, NOT a result
 python3 -P docs/data/c2nav33_weights.py verdict     # (B)
 python3 -P docs/data/c2nav33_extra.py               # the halved pose rate
 ```
+
+
+## 2026-09-09 — C2-NAV.33 independent Codex review
+
+Review-only delivery in the assigned Codex worktree, based on d44041a.
+See `docs/agents/CODEX_REVIEW.md` for installed-library hashes, independent
+branch/ABI inspection, reproducible PF counterexamples, disagreements and
+exact validation commands/results. Interval 2 exposes alternate normalized
+weights but misses resampling-update weights and changes historical behavior.
+Flat weights do not uniquely identify a resampling event; the current phase
+gate accepts nonalternating fixtures. No new instrumentation or live experiment.
+
+Measured offline: C2-NAV.33 selftest 62/62, .31 48/48, .32 43/43, .29 21/21;
+gazebo_models 41 passed. Targeted static checks and diagnostic C++ builds pass.
+C2-NAV.28 retains five historical schema/scope failures; .30 retains one
+historical allow-list failure. These were observed before documentation edits.
+The full interval-1 weight sequence and capture-on/off equivalence remain
+unverified. Next: review the separate pre-resampling snapshot plan; no simulation
+is justified as a historical-weighting test with the current interval-2 path.
+Exact next command from this worktree: `cat docs/agents/CODEX_REVIEW.md`.

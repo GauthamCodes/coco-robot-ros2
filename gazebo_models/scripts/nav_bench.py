@@ -493,7 +493,7 @@ def cloud_summary(x, y, yaw, w):
 class NavBench(Node):
     """Records every stage of the command chain across a tour of legs."""
 
-    def __init__(self):
+    def __init__(self, odom_gt_capture=None):
         # use_sim_time as an OVERRIDE, not a later set_parameters: rclpy's
         # TimeSource binds the clock when the node is constructed, and a
         # node that reports wall time while everything else reports sim
@@ -506,6 +506,7 @@ class NavBench(Node):
         self._sim_ok = False
 
         self.gt = Series()          # (x, y, yaw, v, w) world frame
+        self._odom_gt_capture = odom_gt_capture
         self.amcl = Series()        # (x, y, yaw) map frame
         self.cloud = Series()       # C2-NAV.30 cloud_summary() dicts
         self.nav = Series()         # /cmd_vel_nav      (v, w)
@@ -651,6 +652,8 @@ class NavBench(Node):
         with self._lock:
             self._sim_ok = True
             self.gt.add(ts, tw, (p.x, p.y, yaw_of(o), t.linear.x, t.angular.z))
+            if self._odom_gt_capture is not None:
+                self._odom_gt_capture.add(m, ts, tw)
 
     def _amcl_cb(self, m):
         ts, tw = self.now()
@@ -1667,10 +1670,22 @@ def main(argv=None):
                          "scenario's own goal as part of ONE continuous "
                          'NavigateThroughPoses request, world coords; '
                          'repeatable per scenario. Default: none.')
+    ap.add_argument('--odom-gt-jsonl', default=None,
+                    help='opt-in acquisition-stamped GT sidecar; exclusive new file')
     args, rest = ap.parse_known_args(argv if argv is not None else sys.argv[1:])
 
+    odom_gt_capture = None
+    if args.odom_gt_jsonl:
+        # Explicit sibling loading also works with Python -P / installed scripts.
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            'odom_capture', os.path.join(os.path.dirname(__file__), 'odom_capture.py'))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        odom_gt_capture = module.GroundTruthCapture(args.odom_gt_jsonl)
+
     rclpy.init(args=rest)
-    node = NavBench()
+    node = NavBench(odom_gt_capture=odom_gt_capture)
     ex = MultiThreadedExecutor(num_threads=4)
     ex.add_node(node)
     th = threading.Thread(target=ex.spin, daemon=True)
@@ -1955,6 +1970,8 @@ def main(argv=None):
     print(f'[nav_bench] wrote {out}')
 
     ex.shutdown()
+    if odom_gt_capture is not None:
+        odom_gt_capture.close()
     node.destroy_node()
     rclpy.shutdown()
     return 0

@@ -35,3 +35,6 @@ log/
 # legitimately tracks. Ignoring the whole directory would hide them
 # silently. Only the generated worktrees are ignored.
 .claude/worktrees/
+
+# Generated C2-NAV.35 pinned source, isolated builds and offline test logs.
+.navbench/c2nav35/

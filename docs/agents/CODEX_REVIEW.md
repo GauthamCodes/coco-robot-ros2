@@ -1,4 +1,138 @@
-# C2-NAV.35 — independent resolution of the C2-NAV.34 odometry disagreement
+# C2-NAV.35 — instrumentation implementation (2026-09-11)
+
+**FACT:** implemented and verified offline in the existing Codex worktree, based
+on `eff6dd5`. No ROS initialization, node execution, simulator, navigation mission
+or live data collection was performed by this implementation session. The
+odometry hypothesis remains **UNKNOWN**.
+
+## Implementation and observation boundary
+
+`diagnostics/c2nav35/prepare.py` extracts checksum-pinned Nav2 1.3.11 AMCL source
+into an isolated generated overlay and applies exact-site, conditional hooks.
+`capture.hpp` / `capture.cpp` supply a bounded asynchronous JSONL sink.
+`probe.cpp`, `contract.cpp` and `test_capture.py` validate it without ROS runtime.
+The complete reproduction instructions and schema are in
+`diagnostics/c2nav35/README.md`.
+
+**FACT:** the hook surrounds the existing `getOdomPose` result and existing motion
+call in `amcl_node.cpp`; it copies existing decomposition locals directly in
+`differential_motion_model.cpp`, before sampling. It records no second lookup and
+does not reconstruct the headline motion fields. Captured data comprises:
+
+- Original scan stamp/frame; actual normalized source/target; lookup outcome,
+  returned stamp, full returned pose/quaternion and consumed planar pose.
+- Actual planar anchor, anchor scan/time reference, actual pose/delta arguments,
+  threshold-only eligibility before force override, original force flag, scanner
+  identity, prediction sequence, particle count and current-set index.
+- Actual `delta_rot1`, `delta_trans`, `delta_rot2` locals; separate prediction
+  begin/end, initialization/anchor advancement, sensor outcome and callback-end
+  records. The full anchor transform is resolved through its prior lookup event.
+
+**FACT:** disabled preprocessing leaves the two execution sources equivalent to
+upstream; the public `AmclNode` header/layout remains byte-identical. A separately
+built enabled motion library was exercised directly and compared with the
+installed library and compiled-out build. All produced identical particle poses,
+weights and next RNG value in the tested sequence (pivot, forward, reverse, turn).
+This validates the tested motion path, not every lifecycle/sensor path or live
+scheduling behavior.
+
+## Default-disabled and trace/GT contract
+
+**FACT:** `C2NAV35_CAPTURE` defaults OFF in CMake; hooks and the sink library are
+absent from that executable path. The enabled build additionally requires
+`C2NAV35_TRACE=NEW_FILE`; without it no diagnostic writer or output is created.
+Files are created exclusively, never overwritten. The process-local sink assumes
+one AMCL instance and a stable callback thread. It uses a preallocated 4096-record
+queue and try-lock; diagnostic contention/overflow increments a loss counter.
+The worker handles serialization and disk I/O. Output failure or missing footer
+invalidates complete-capture claims. **UNKNOWN:** live scheduling perturbation;
+enabled capture necessarily has overhead, as explicitly accepted in planning.
+
+**FACT:** the legacy 58-column `write_trace` function is AST-identical to `eff6dd5`.
+There are **zero appended legacy columns**: exact events live in a separate
+versioned JSONL stream, retaining every recorded prediction instead of selecting
+one per receipt bucket. Nulls represent unavailable numeric values/timestamps;
+flags use -1 for not reached. No per-event forward fill occurs.
+
+`gazebo_models/scripts/nav_bench.py --odom-gt-jsonl NEW_FILE` optionally loads
+`odom_capture.py`. Its existing GT callback retains the original `self.gt` tuple
+and receipt clocks unchanged, while the sidecar additionally stores acquisition
+stamp, full pose and frame IDs. No GT enters AMCL. CMake installs the helper beside
+the recorder; normal recording does not import it or create its output.
+
+`diagnostics/c2nav35/join.py` pairs GT at both actual anchor and scan times, using
+an explicitly supplied, evidenced model-to-base extrinsic. It preserves bracket
+sample IDs/gaps, rejects extrapolation, epoch/frame changes, missing anchors,
+incomplete predictions and returned-TF/scan timestamp mismatch. It compares
+relative body motion and retains exact model decomposition and sensor outcome.
+Default maximum GT bracket width is 50 ms, a sampling constraint rather than a
+physical error bound. Overlapping anchor intervals after sensor failure remain
+separate observations and must not be summed as disjoint travel.
+
+## Verification performed
+
+| Offline check | Result |
+| --- | --- |
+| Dedicated instrumentation suite | **12/12 pass** |
+| Installed / compiled-out / compiled-in disabled / enabled motion comparison | Identical tested particles, weights and RNG progression |
+| Synthetic exact timestamps, missing TF, unknown anchors, threshold rejection, unchanged anchor after sensor failure | PASS |
+| Forced overflow, absent footer, duplicate identities and missing GT | Loss/unobservable paths exercised; no false clean verdict |
+| Disabled output and symbol check; disabled source equivalence; public header identity | PASS |
+| Enabled and disabled AMCL package builds | PASS with `-Wall -Wextra -Wpedantic -Werror`, `BUILD_TESTING=OFF`; no executable launched |
+| Enabled overlay installation | PASS into worktree-local prefix; system install untouched |
+| `gazebo_models` isolated configure/build/install | PASS; integration tests disabled; installed GT helper matches source |
+| `gazebo_models` simulator-free baseline | **41 passed** |
+| New Python E/F/W lint (excluding line length/arithmetic spacing), existing recorder fatal-error lint, AST syntax | PASS |
+| C2-NAV.29 / .31 / .32 / .33 / .34 selftests | **21/21, 48/48, 43/43, 62/62, 18/18** |
+| C2-NAV.28 / .30 historical selftests | Five / one historical schema/byte-identity/scope failures; not claimed green or rewritten |
+| Behavioral/data paths versus `eff6dd5`; legacy trace writer | No differences; trace writer unchanged |
+| `git diff --check` | PASS |
+
+The .28/.30 failures already existed in the reviewed baseline; their historical
+scope checks also see this task's intentional instrumentation/install/ignore-file
+changes. Analysis code and frozen data are byte-identical to the starting commit.
+Full plugin-inclusive flake8 additionally reports docstring/79-column style
+issues; the narrower checks above are the ones claimed passing.
+
+Investigation failures were resolved before final verification: the preparer's
+first namespace match was ambiguous; an attempted MessageFilter failure callback
+does not exist in installed Jazzy; the first oracle build omitted the flat include
+root. No unavailable API or fabricated filter-drop event remains in the patch.
+
+Build provenance (this session's isolated installed artifacts):
+
+- Instrumentation fingerprint: `5473431abbc8bc5d66967c5b2869bea70d3988f6280064bb9864f8b47b22a712`.
+- `libamcl_core.so`: `a628d2618469e23871edde5a25e9379a5c72b9012692f51567b7320cdeb3a249`.
+- `libmotions_lib.so`: `ebbd086ab9e315675f0d504d5a077c541fa22d0a5ed9c5d662e18e12a7f77b18`.
+- `libc2nav35_capture.so`: `23024e1a908f1637be141ac909d803bb6be0c40b4197c5bc88c062740b5d6092`.
+
+## Limitations, publication status and next live measurement
+
+**FACT:** installed MessageFilter lacks `registerFailureCallback`; drops before
+`laserReceived` are not counted by this hook. Missing callback delivery cannot be
+inferred as zero, but actual recorded prediction-call inputs are directly captured.
+No runtime/lifecycle smoke test was executed because this task prohibits ROS.
+The source-tag build is not asserted byte-identical to Debian AMCL. No per-particle
+noise, weight or resampling-ancestry trace is collected. GT origin equivalence,
+timestamp error and enabled timing overhead remain to be bounded for live claims.
+
+**FACT — concurrent remote advancement:** during this work, the requested remote
+branch advanced from `eff6dd5` to `efde9a0`, adding another implementation
+(`coco_nav_diag`, `ef5f50c`) and a pre-flight fix. This local work has not been
+integrated with that independent implementation or pushed over it. The accepted
+plan says to stop if remote advancement prevents a normal push; the user also
+prohibits merges/rebases. The implementation is preserved as a local reviewable
+commit pending publication direction. Neither remote work nor main was changed.
+
+**Exactly one next live action, after publication/instrumentation selection and
+separate approval:** collect one unchanged baseline `open_space -> wall_adjacent`
+traversal with the chosen exact-input capture and GT acquisition running before
+the first relevant anchor; compare the captured prediction inputs against GT.
+Do not run both alternative AMCL implementations or change resampling/parameters.
+
+---
+
+# Historical C2-NAV.35 — independent resolution of the C2-NAV.34 odometry disagreement
 
 2026-09-11. **Disposition: existing evidence does not prove an error in AMCL's exact odometry input.** The +0.00616 m statistic is an output/GT **PROXY**, not an input measurement. The claimed >=2.96% odometry lower bound is rejected. An along-track odometry contribution remains a **HYPOTHESIS**. Minimum sufficient evidence is a record of actual prediction-call inputs and anchors, paired with acquisition-stamped GT at those same times. No hook was implemented and no ROS runtime or simulator was run.
 

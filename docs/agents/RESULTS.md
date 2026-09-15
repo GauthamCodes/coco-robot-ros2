@@ -34,3 +34,10 @@ separate `coco_nav_diag` implementation and pre-flight fix. This result is commi
 locally for review, not merged/rebased or pushed over that work. Publication and
 selection of the diagnostic implementation need direction before the separately
 approved single baseline approach/wall traversal.
+
+## 2026-09-16 implementation sprint
+
+Implementation, build and actual simulation outcomes superseding the offline-only
+status above are recorded in [IMPLEMENTATION_SPRINT.md](IMPLEMENTATION_SPRINT.md).
+The final tour completed, but capture loss and component shutdown failures remain
+explicit blockers to claiming valid live diagnostic correlation or timing neutrality.

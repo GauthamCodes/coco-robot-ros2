@@ -8650,3 +8650,31 @@ to Claude's handoff, analysis or bundle; disagreements are in CODEX_REVIEW.
 Exactly one next action: implement and validate the offline hook/recorder plan
 in the review before any live experiment. Exact next command to inspect that
 specification: `sed -n '/## 8. INSTRUMENTATION PLAN/,/## 9. IMPLEMENTATION/p' docs/agents/CODEX_REVIEW.md`.
+
+## 2026-09-16 — Implementation sprint: capture integrity and reproducible simulation
+
+Implemented in the Codex worktree only. Added counted integrity footers, strict
+TF/time/frame/anchor validation, installed-library deterministic motion oracle,
+full-transform regression tests and bounded experiment tooling. Applied accepted
+local inflation 65 and NavigateThroughPoses BT defaults. No safety weakening,
+changed tour goal or rejected workaround; no merge or main-checkout edits.
+
+Measured: four selected packages built; enabled/disabled AMCL compiled with
+warnings as errors. Final diagnostic suite 20/20, gazebo_models pytest 43/43,
+colcon 44 entries without errors/failures/skips, upstream AMCL CTest 4/4.
+Actual fresh simulation tours: control 2/2 in 33.02 simulated seconds; first
+instrumented tour 1/2; final instrumented tour 2/2 in 55.00 seconds. Final minimum
+benchmark clearance 0.383 m, zero observed safety-stop episodes, seven physical
+low-speed stops. Full metrics and startup failures are retained.
+
+The AMCL cleanup hook fixed missing-footer behavior after the scan executor
+joined. Final live footer: attempted 2698, successful 2697, dropped 1, malformed 0,
+completion incomplete. Strict loader correctly rejects it. Live motion
+correlation, loss-free recording and timing neutrality remain unverified.
+Container/launch shutdown still errors; no owned simulator processes survived.
+
+See docs/agents/IMPLEMENTATION_SPRINT.md and the compressed raw evidence/hash
+manifest under docs/data/implementation_sprint/. Local scratch builds remain in
+.navbench/sprint. Recommended integration starts with the independent accepted
+config commit; normal instrumentation remains disabled. Exact next review command
+from this worktree: `git log --oneline cf6b389..HEAD`.

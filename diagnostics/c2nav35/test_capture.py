@@ -69,6 +69,16 @@ class CaptureTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
 
+    def test_tf_frame_and_full_transform_mismatch(self):
+        data = events()
+        data[-1]['target'] = 'other_odom'
+        with self.assertRaises(ValueError):
+            joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
+        data = events()
+        data[-1]['tf'] = [2, 0, 0, 0, 0, 0, 1]
+        row = joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)[0]
+        self.assertEqual(row['status'], 'unobservable')
+
     def test_current_tf_and_end_required(self):
         for index in (3, 4):
             data = events()

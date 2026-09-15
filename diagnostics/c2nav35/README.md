@@ -152,3 +152,63 @@ active before the initial relevant anchor. Retain source/build hashes, actual
 loaded paths, unchanged parameter readback and verified GT/base extrinsics.
 Compare exact prediction inputs against synchronized GT. Do not tune anything,
 change resampling, or claim the odometry hypothesis is proven by this instrument.
+
+## Implementation sprint: strict completion and reproducible runs
+
+New captures require footer `attempted`, `successful`, `dropped`, `malformed`,
+`write_failed` and `completion`. Successful counts exclude malformed or dropped
+records. Only nonempty, lossless captures with exact body/count agreement and
+`completion: complete` are accepted. Earlier schema-1 files without these counters
+are intentionally rejected; they cannot prove capture completeness.
+
+The join rejects repeated event identities before building lookup dictionaries,
+backward acquisition/receipt time, nonzero clock epochs, changed frames, and
+missing or inconsistent current/anchor TF. Motion and end events must match the
+prediction identity, timestamps, frames and arguments. It never sorts away a
+clock reversal. The existing 50 ms GT bracket limit remains enforced.
+
+Build the zero-noise oracle against the installed motion library:
+
+```bash
+python3 -P diagnostics/c2nav35/build_oracle.py .navbench/sprint/motion_oracle
+C2NAV35_BUILD_ROOT=.navbench/sprint python3 -P diagnostics/c2nav35/test_capture.py
+```
+
+`C2NAV35_BUILD_ROOT` selects a fresh `prepared`, `build-enabled`, `build-disabled`
+set built with the preparation commands above. The checksum-pinned archive remains
+at `.navbench/c2nav35/navigation2-1.3.11.tar.gz`. The oracle builder retains source,
+executable, shared-library hashes and installed package version in a manifest.
+Use `--motion-oracle .navbench/sprint/motion_oracle --gt-model-frame FRAME` in
+addition to the join arguments above. `FRAME` must be the actual GT child frame,
+and the extrinsic must map it to `--base-frame` (default `base_footprint`).
+Do not substitute an unverified identity transform. CLI joins use installed AMCL
+with zero noise for predicted motion; no replacement motion equations are used.
+The body residual is named longitudinal/lateral/yaw; `world_residual` rotates its
+translation by the GT anchor heading. This is a deterministic motion-input
+residual, not an attribution of stochastic filter or laser correction error.
+
+After building/installing `gazebo_models`, a bounded fresh tour can be run with:
+
+```bash
+python3 -P gazebo_models/scripts/run_experiment.py \
+  --run-id trial --params "$PWD/gazebo_models/config/nav2_params.yaml" \
+  --result "$PWD/.navbench/sprint/trial.json" \
+  --output "$PWD/.navbench/sprint/trial-run.json" --timeout 260 -- \
+  ros2 launch gazebo_models benchmark.launch.py run_id:=trial \
+  out:="$PWD/.navbench/sprint" \
+  params_file:="$PWD/gazebo_models/config/nav2_params.yaml"
+```
+
+Run on a clean graph with one simulator. The wrapper owns and terminates only its
+child process group. It reserves a new output file, records Git SHA/dirty state,
+tracked-diff hash, parameter path/hash, exact command and UTC/wall duration. It
+records failures even when no benchmark JSON appears. `--baseline` accepts a
+previous nav_bench JSON; `--diagnostic-result` accepts a strict join result.
+Missing telemetry stays null. Navigation completion and process success are
+separate fields. Safety-stop episodes are separate from physical low-speed stops.
+`gt_capture:=NEW_PATH` enables the GT sidecar in the launch; it defaults off.
+
+The benchmark waits up to 60 wall seconds for `/bt_navigator/get_state` to report
+active before goals. Action discovery alone does not prove lifecycle readiness.
+The world path is shell-quoted for Gazebo so checkout names with spaces or
+parentheses work. No safety threshold, polygon, goal or critic was weakened.

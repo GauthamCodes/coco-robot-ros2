@@ -3,7 +3,9 @@
 import argparse
 import bisect
 import json
+import hashlib
 import math
+import subprocess
 from pathlib import Path
 
 
@@ -38,6 +40,8 @@ def interpolate(a, b, fraction):
 
 
 def base_pose(pose, extrinsic):
+    if len(pose) != 7 or not all(math.isfinite(v) for v in pose):
+        raise ValueError('malformed pose')
     q = unit(pose[3:])
     e = unit(extrinsic[3:])
     rotated = product(product(q, extrinsic[:3] + [0]), [-q[0], -q[1], -q[2], q[3]])
@@ -55,11 +59,21 @@ def relative(a, b):
 
 def read(path):
     with open(path) as stream:
-        rows = [json.loads(line) for line in stream]
+        rows = [json.loads(line, parse_constant=lambda value: (_ for _ in ()).throw(
+            ValueError('nonfinite JSON constant: ' + value))) for line in stream]
     if not rows or rows[0].get('stage') != 'manifest':
         raise ValueError('missing manifest')
     if rows[-1].get('stage') != 'footer':
         raise ValueError('missing footer: capture incomplete')
+    footer = rows[-1]
+    body = rows[1:-1]
+    if not body or any(r.get('stage') in ('manifest', 'footer') for r in body):
+        raise ValueError('empty or concatenated capture')
+    if (footer.get('completion') != 'complete' or
+            footer.get('successful') != len(body) or
+            footer.get('attempted') != len(body) or
+            footer.get('malformed') != 0):
+        raise ValueError('incomplete capture or inconsistent integrity counters')
     if rows[-1]['dropped'] or rows[-1]['write_failed']:
         raise ValueError('capture reports loss/write failure')
     if any(row.get('schema') != 1 for row in rows):
@@ -70,9 +84,48 @@ def read(path):
     return rows
 
 
+def validate_stream(rows, kind):
+    """Reject ambiguity before constructing lookup dictionaries or sorting."""
+    seen = set()
+    last_stamp = last_receipt = None
+    frames = set()
+    for r in rows:
+        stage = r.get("stage")
+        if stage in ("manifest", "footer"):
+            continue
+        if r.get("epoch", 0) != 0:
+            raise ValueError("clock discontinuity: nonzero epoch")
+        if kind == "gt":
+            key = r["id"]
+            stamp, receipt = r["stamp_ns"], r.get("receipt_sim")
+            frames.add((r["frame"], r["child"]))
+        else:
+            key = (stage, r.get("prediction_id") if stage in
+                   ("prediction_begin", "prediction_end", "motion_decomposition")
+                   else r.get("scan_id"))
+            stamp, receipt = r.get("scan_ns"), r.get("receipt_ns")
+            if stage == "tf_success":
+                frames.add((r["source"], r["target"]))
+        if key in seen:
+            raise ValueError("duplicate record identity")
+        seen.add(key)
+        if stamp is not None:
+            if last_stamp is not None and (stamp < last_stamp or
+                                          (kind == "gt" and stamp == last_stamp)):
+                raise ValueError("nonmonotonic acquisition time")
+            last_stamp = stamp
+        if receipt is not None:
+            if last_receipt is not None and receipt < last_receipt:
+                raise ValueError("clock discontinuity: receipt time reversed")
+            last_receipt = receipt
+    if len(frames) != 1 or any(not x for frame in frames for x in frame):
+        raise ValueError("missing records or frame continuity failure")
+
+
 def gt_at(rows, stamp, epoch, max_gap_ns, extrinsic):
     samples = [r for r in rows if r.get('stage') == 'gt' and r['epoch'] == epoch]
-    samples.sort(key=lambda r: r['stamp_ns'])
+    if any(a['stamp_ns'] >= b['stamp_ns'] for a, b in zip(samples, samples[1:])):
+        raise ValueError('GT acquisition ordering invalid')
     times = [r['stamp_ns'] for r in samples]
     if len(set(times)) != len(times):
         raise ValueError('duplicate GT acquisition stamp')
@@ -93,7 +146,12 @@ def gt_at(rows, stamp, epoch, max_gap_ns, extrinsic):
     return base_pose(pose, extrinsic), [a['id'], b['id']], gap
 
 
-def join(events, gt, extrinsic, max_gap_ns):
+def join(events, gt, extrinsic, max_gap_ns, motion_oracle=None):
+    validate_stream(events, "amcl")
+    validate_stream(gt, "gt")
+    if max_gap_ns <= 0:
+        raise ValueError("positive interpolation bound required")
+    unit(extrinsic[3:])
     poses = {(r['epoch'], r['scan_id']): r for r in events
              if r.get('stage') == 'tf_success'}
     frames = {(r['frame'], r['child']) for r in gt if r.get('stage') == 'gt'}
@@ -101,7 +159,7 @@ def join(events, gt, extrinsic, max_gap_ns):
         raise ValueError('GT absent or frames changed')
     decompositions = {r['prediction_id']: r for r in events
                       if r.get('stage') == 'motion_decomposition'}
-    ends = {r['prediction_id'] for r in events if r.get('stage') == 'prediction_end'}
+    ends = {r['prediction_id']: r for r in events if r.get('stage') == 'prediction_end'}
     sensor = {r['scan_id']: r['stage'] for r in events
               if r.get('stage') in ('sensor_success', 'sensor_failure')}
     output = []
@@ -117,8 +175,15 @@ def join(events, gt, extrinsic, max_gap_ns):
             seen.add(identity)
             if r['truncated'] or r['tf_ok'] != 1 or identity not in ends:
                 raise ValueError('incomplete prediction')
+            current = poses.get((r['epoch'], r['scan_id']))
+            if current is None or current.get('tf_ok') != 1:
+                raise ValueError('missing successful current TF')
+            for field in ('scan_ns', 'tf_ns', 'pose', 'source', 'target'):
+                if current[field] != r[field]:
+                    raise ValueError('current TF mismatch: ' + field)
             anchor = poses.get((r['epoch'], r['anchor_id']))
-            if anchor is None or anchor['scan_ns'] != r['anchor_ns']:
+            if (anchor is None or anchor.get('tf_ok') != 1 or
+                    anchor['scan_ns'] != r['anchor_ns']):
                 raise ValueError('anchor missing or crosses epoch')
             if r['tf_ns'] != r['scan_ns'] or anchor['tf_ns'] != anchor['scan_ns']:
                 raise ValueError('returned TF time differs from scan time; no scan-time GT pairing')
@@ -130,9 +195,22 @@ def join(events, gt, extrinsic, max_gap_ns):
                 raise ValueError('scan precedes anchor')
             if identity not in decompositions:
                 raise ValueError('no differential-model decomposition')
+            for event in (decompositions[identity], ends[identity]):
+                for field in ('scan_id', 'epoch', 'scan_ns', 'anchor_id', 'anchor_ns',
+                              'pose', 'anchor', 'delta', 'source', 'target'):
+                    if event.get(field) != r.get(field):
+                        raise ValueError('prediction event mismatch: ' + field)
+            for vector in (r['pose'], r['anchor'], decompositions[identity]['motion']):
+                if len(vector) != 3 or not all(math.isfinite(v) for v in vector):
+                    raise ValueError('malformed motion vector')
             current_gt, ids, gap = gt_at(gt, r['scan_ns'], r['epoch'], max_gap_ns, extrinsic)
             anchor_gt, aids, agap = gt_at(gt, r['anchor_ns'], r['epoch'], max_gap_ns, extrinsic)
             odom_delta = relative(r['anchor'], r['pose'])
+            if motion_oracle is not None:
+                predicted = json.loads(subprocess.check_output(
+                    [str(motion_oracle), *map(str, r['pose'] + r['delta'] + anchor_gt)],
+                    text=True, timeout=5))
+                odom_delta = relative(anchor_gt, predicted)
             gt_delta = relative(anchor_gt, current_gt)
             residual = [a-b for a, b in zip(odom_delta, gt_delta)]
             residual[2] = math.atan2(math.sin(residual[2]), math.cos(residual[2]))
@@ -141,7 +219,13 @@ def join(events, gt, extrinsic, max_gap_ns):
                        gt_sample_ids=ids, gt_anchor_sample_ids=aids,
                        gt_gap_ns=gap, gt_anchor_gap_ns=agap,
                        odom_body_delta=odom_delta, gt_body_delta=gt_delta,
-                       residual=residual)
+                       residual=residual, longitudinal=residual[0],
+                       lateral=residual[1], yaw=residual[2],
+                       world_frame=next(iter(frames))[0],
+                       world_residual=[math.cos(anchor_gt[2])*residual[0] -
+                                       math.sin(anchor_gt[2])*residual[1],
+                                       math.sin(anchor_gt[2])*residual[0] +
+                                       math.cos(anchor_gt[2])*residual[1]])
         except (ValueError, TypeError) as error:
             row['error'] = str(error)
         output.append(row)
@@ -160,16 +244,32 @@ def main():
                         help='verified pose of base_footprint in GT model frame')
     parser.add_argument('--extrinsic-evidence', required=True,
                         help='reference proving the supplied rigid transform')
+    parser.add_argument('--motion-oracle', type=Path, required=True,
+                        help='zero-noise oracle linked against installed Nav2')
+    parser.add_argument('--gt-model-frame', required=True)
+    parser.add_argument('--base-frame', default='base_footprint')
     parser.add_argument('--max-gap-ms', type=float, default=50)
     args = parser.parse_args()
     if args.max_gap_ms <= 0 or not all(math.isfinite(x) for x in args.gt_to_base):
         parser.error('finite extrinsic and positive interpolation bound required')
-    rows = join(read(args.amcl), read(args.gt), args.gt_to_base,
-                int(args.max_gap_ms*1e6))
+    events, gt = read(args.amcl), read(args.gt)
+    if not args.extrinsic_evidence.strip():
+        parser.error('nonempty extrinsic evidence required')
+    if any(r['child'] != args.gt_model_frame for r in gt if r.get('stage') == 'gt'):
+        parser.error('GT model frame does not match extrinsic source')
+    if any(r['source'] != args.base_frame for r in events if r.get('stage') == 'tf_success'):
+        parser.error('TF base frame does not match extrinsic target')
+    rows = join(events, gt, args.gt_to_base,
+                int(args.max_gap_ms*1e6), args.motion_oracle.resolve())
     with args.output.open('x') as stream:
-        json.dump({'schema': 1, 'extrinsic': args.gt_to_base,
+        json.dump({'schema': 1, 'motion_oracle': str(args.motion_oracle.resolve()),
+                   'motion_oracle_sha256': hashlib.sha256(args.motion_oracle.read_bytes()).hexdigest(),
+                   'extrinsic': args.gt_to_base,
                    'extrinsic_evidence': args.extrinsic_evidence,
-                   'max_gap_ms': args.max_gap_ms, 'predictions': rows}, stream,
+                   'max_gap_ms': args.max_gap_ms,
+                   'status': 'OK' if all(r['status'] == 'paired' for r in rows) else 'UNOBSERVABLE',
+                   'gt_model_frame': args.gt_model_frame, 'base_frame': args.base_frame,
+                   'predictions': rows}, stream,
                   indent=2, allow_nan=False)
 
 

@@ -36,18 +36,92 @@ def gt(stamp, x, identity=1):
 
 def events():
     anchor = dict(stage='tf_success', epoch=0, scan_id=1, scan_ns=10, tf_ns=10,
-                  pose=[0, 0, 0], source='base_footprint', target='odom')
+                  tf_ok=1, pose=[0, 0, 0], source='base_footprint', target='odom')
     prediction = dict(stage='prediction_begin', epoch=0, scan_id=2,
                       scan_ns=20, tf_ns=20, prediction_id=1, anchor_id=1, anchor_ns=10,
-                      pose=[1.08, 0, 0], anchor=[0, 0, 0],
+                      pose=[1.08, 0, 0], anchor=[0, 0, 0], delta=[1.08, 0, 0],
                       source='base_footprint', target='odom',
                       tf_ok=1, truncated=False)
+    current = dict(prediction, stage='tf_success')
+    current['pose'] = prediction['pose']
     return [anchor, prediction,
-            dict(stage='motion_decomposition', prediction_id=1, motion=[0, 1.08, 0]),
-            dict(stage='prediction_end', prediction_id=1)]
+            dict(prediction, stage='motion_decomposition', motion=[0, 1.08, 0]),
+            dict(prediction, stage='prediction_end'), current]
 
 
 class CaptureTests(unittest.TestCase):
+
+    def test_installed_oracle_lateral_and_world(self):
+        oracle = ROOT / os.environ.get('C2NAV35_BUILD_ROOT', '.navbench/c2nav35') / 'motion_oracle'
+        # Odom displacement has lateral motion, projected from a 90-degree GT anchor.
+        output = subprocess.check_output([str(oracle), '1', '.25', '.1',
+                                          '1', '.25', '.1', '0', '0', str(math.pi/2)],
+                                         text=True)
+        x, y, yaw = json.loads(output)
+        self.assertAlmostEqual(x, -.25)
+        self.assertAlmostEqual(y, 1)
+        self.assertAlmostEqual(yaw, math.pi/2+.1)
+
+    def test_mismatched_prediction_event(self):
+        data = events()
+        data[2]['scan_ns'] = 21
+        with self.assertRaises(ValueError):
+            joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
+
+    def test_current_tf_and_end_required(self):
+        for index in (3, 4):
+            data = events()
+            data.pop(index)
+            rows = joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
+            self.assertEqual(rows[0]['status'], 'unobservable')
+
+    def test_frame_duplicate_and_clock_rejected(self):
+        for change in ('frame', 'duplicate', 'epoch', 'ordering'):
+            data = [gt(10, 0), gt(20, 1, 2)]
+            if change == 'frame':
+                data[1]['child'] = 'other'
+            elif change == 'duplicate':
+                data[1]['id'] = 1
+            elif change == 'epoch':
+                data[1]['epoch'] = 1
+            else:
+                data.reverse()
+            with self.assertRaises(ValueError):
+                joiner.join(events(), data, [0, 0, 0, 0, 0, 0, 1], 20)
+
+    def test_no_tf_records(self):
+        with self.assertRaises(ValueError):
+            joiner.join([r for r in events() if r['stage'] != 'tf_success'],
+                        [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
+
+    def test_lateral_world_projection(self):
+        data = events()
+        data[1]['pose'][1] = .25
+        samples = [gt(10, 0), gt(20, 0, 2)]
+        for r in samples:
+            r['pose'][5:] = [math.sin(math.pi/4), math.cos(math.pi/4)]
+        samples[1]['pose'][1] = 1
+        row = joiner.join(data, samples, [0, 0, 0, 0, 0, 0, 1], 20)[0]
+        self.assertAlmostEqual(row['longitudinal'], .08)
+        self.assertAlmostEqual(row['lateral'], .25)
+        self.assertAlmostEqual(row['world_residual'][0], -.25)
+        self.assertAlmostEqual(row['world_residual'][1], .08)
+
+    def test_integrity_count_and_empty_capture(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'data'
+            body = dict(schema=1, stage='gt')
+            footer = dict(schema=1, stage='footer', attempted=1, successful=1,
+                          malformed=0, dropped=0, write_failed=False, completion='complete')
+            for rows, valid in (([body], True), ([], False), ([body, body], False)):
+                path.write_text(''.join(json.dumps(r)+'\n' for r in
+                                       [dict(schema=1, stage='manifest'), *rows, footer]))
+                if valid:
+                    self.assertEqual(len(joiner.read(path)), 3)
+                else:
+                    with self.assertRaises(ValueError):
+                        joiner.read(path)
+
     def test_gt_acquisition_and_receipt_preserved(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'gt.jsonl'
@@ -88,8 +162,12 @@ class CaptureTests(unittest.TestCase):
                 data.append(copy.deepcopy(data[1]))
             else:
                 data[1]['tf_ns'] = 25
-            rows = joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
-            self.assertEqual(rows[-1]['status'], 'unobservable')
+            if mutate == 'duplicate':
+                with self.assertRaises(ValueError):
+                    joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
+            else:
+                rows = joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
+                self.assertEqual(rows[-1]['status'], 'unobservable')
 
     def test_gt_no_extrapolation_or_epoch_crossing(self):
         for stamp, epoch, gap in ((5, 0, 20), (15, 1, 20), (15, 0, 1)):
@@ -171,12 +249,12 @@ class CaptureTests(unittest.TestCase):
                 joiner.read(env['C2NAV35_TRACE'])
 
     def test_off_library_has_no_diagnostic_symbols(self):
-        binary = ROOT / '.navbench/c2nav35/build-disabled/libamcl_core.so'
+        binary = ROOT / os.environ.get('C2NAV35_BUILD_ROOT', '.navbench/c2nav35') / 'build-disabled/libamcl_core.so'
         symbols = subprocess.check_output(['nm', '-D', '-C', str(binary)], text=True)
         self.assertNotIn('c2nav35', symbols)
 
     def test_source_off_is_upstream_and_public_header_unchanged(self):
-        root = ROOT / '.navbench/c2nav35/prepared/src/nav2_amcl'
+        root = ROOT / os.environ.get('C2NAV35_BUILD_ROOT', '.navbench/c2nav35') / 'prepared/src/nav2_amcl'
         archive = ROOT / '.navbench/c2nav35/navigation2-1.3.11.tar.gz'
         with tarfile.open(archive) as tar:
             originals = {name: tar.extractfile('navigation2-1.3.11/nav2_amcl/'+name).read()
@@ -205,7 +283,7 @@ class CaptureTests(unittest.TestCase):
 
     def test_real_library_equivalence(self):
         # Required build artifacts: fail visibly instead of silently skipping.
-        scratch = ROOT / '.navbench/c2nav35'
+        scratch = ROOT / os.environ.get('C2NAV35_BUILD_ROOT', '.navbench/c2nav35')
         on = scratch / 'build-enabled'
         off = scratch / 'build-disabled'
         source = scratch / 'prepared/src/nav2_amcl'

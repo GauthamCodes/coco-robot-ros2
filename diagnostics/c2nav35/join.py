@@ -105,7 +105,7 @@ def validate_stream(rows, kind):
                    else r.get("scan_id"))
             stamp, receipt = r.get("scan_ns"), r.get("receipt_ns")
             if stage == "tf_success":
-                frames.add((r["source"], r["target"]))
+                frames.add((r["source"], r["target"], r.get("scan_frame", "")))
         if key in seen:
             raise ValueError("duplicate record identity")
         seen.add(key)
@@ -185,6 +185,11 @@ def join(events, gt, extrinsic, max_gap_ns, motion_oracle=None):
             if (anchor is None or anchor.get('tf_ok') != 1 or
                     anchor['scan_ns'] != r['anchor_ns']):
                 raise ValueError('anchor missing or crosses epoch')
+            for tf_record in (current, anchor):
+                tf_pose = base_pose(tf_record['tf'], [0, 0, 0, 0, 0, 0, 1])
+                mismatch = relative(tf_pose, tf_record['pose'])
+                if any(abs(value) > 1e-9 for value in mismatch):
+                    raise ValueError('TF transform and consumed pose mismatch')
             if r['tf_ns'] != r['scan_ns'] or anchor['tf_ns'] != anchor['scan_ns']:
                 raise ValueError('returned TF time differs from scan time; no scan-time GT pairing')
             if (r['source'], r['target']) != (anchor['source'], anchor['target']):
@@ -197,7 +202,8 @@ def join(events, gt, extrinsic, max_gap_ns, motion_oracle=None):
                 raise ValueError('no differential-model decomposition')
             for event in (decompositions[identity], ends[identity]):
                 for field in ('scan_id', 'epoch', 'scan_ns', 'anchor_id', 'anchor_ns',
-                              'pose', 'anchor', 'delta', 'source', 'target'):
+                              'pose', 'anchor', 'delta', 'source', 'target', 'scan_frame',
+                              'tf_ok', 'tf_ns', 'tf'):
                     if event.get(field) != r.get(field):
                         raise ValueError('prediction event mismatch: ' + field)
             for vector in (r['pose'], r['anchor'], decompositions[identity]['motion']):

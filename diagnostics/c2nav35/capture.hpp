@@ -5,9 +5,11 @@
 #include <limits>
 #include <string>
 
-namespace c2nav35 {
+namespace c2nav35
+{
 constexpr double missing = std::numeric_limits<double>::quiet_NaN();
-struct Record {
+struct Record
+{
   const char * stage = "scan";
   uint64_t scan_id = 0, prediction_id = 0, anchor_id = 0, epoch = 0;
   int64_t scan_ns = 0, tf_ns = 0, anchor_ns = 0, receipt_ns = 0;
@@ -21,7 +23,8 @@ struct Record {
   double delta[3] = {missing, missing, missing};
   double motion[3] = {missing, missing, missing};
 };
-struct State {
+struct State
+{
   uint64_t scan_id = 0, prediction_id = 0, anchor_id = 0, epoch = 0;
   int64_t anchor_ns = 0, last_receipt_ns = 0;
 };
@@ -30,7 +33,8 @@ bool enabled();
 void emit(const Record & record) noexcept;
 void close();
 extern thread_local Record * current;
-inline void frame(char (&out)[256], const std::string & in, Record & r) {
+inline void frame(char (& out)[256], const std::string & in, Record & r)
+{
   const auto n = std::min(in.size(), sizeof(out) - 1);
   std::copy_n(in.data(), n, out);
   out[n] = 0;
@@ -40,9 +44,11 @@ class Context {
 public:
   Record record;
   Record * previous;
-  explicit Context(State & s, int64_t stamp, int64_t receipt,
+  explicit Context(
+    State & s, int64_t stamp, int64_t receipt,
     const std::string & scan, const std::string & source, const std::string & target)
-  : previous(current) {
+  : previous(current)
+  {
     if (!enabled()) {return;}
     if (receipt < s.last_receipt_ns) {++s.epoch;}
     s.last_receipt_ns = receipt;
@@ -61,18 +67,21 @@ public:
   ~Context() {if (current == &record) {event("callback_end");} current = previous;}
   Context(const Context &) = delete;
   Context & operator=(const Context &) = delete;
-  void event(const char * stage) {
+  void event(const char * stage)
+  {
     if (current != &record) {return;}
     record.stage = stage;
     emit(record);
   }
-  void anchor(State & s) {
+  void anchor(State & s)
+  {
     s.anchor_id = record.scan_id;
     s.anchor_ns = record.scan_ns;
     event("anchor_set");
   }
 };
-inline void decomposition(double r1, double trans, double r2) {
+inline void decomposition(double r1, double trans, double r2)
+{
   if (!current) {return;}
   current->motion[0] = r1;
   current->motion[1] = trans;

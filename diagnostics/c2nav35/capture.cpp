@@ -17,27 +17,30 @@
 #define C2NAV35_FINGERPRINT "standalone-test"
 #endif
 
-namespace c2nav35 {
+namespace c2nav35
+{
 thread_local Record * current = nullptr;
-namespace {
-std::string quote(const char * s) {
+namespace
+{
+std::string quote(const char * s)
+{
   std::ostringstream out;
   out << '"';
   for (; *s; ++s) {
     const unsigned char c = *s;
-    if (c == '"' || c == '\\') {out << '\\' << c;}
-    else if (c < 32) {out << "\\u" << std::hex << std::setw(4) << std::setfill('0') << int(c);}
-    else {out << c;}
+    if (c == '"' || c == '\\') {out << '\\' << c;} else if (c < 32) {
+      out << "\\u" << std::hex << std::setw(4) << std::setfill('0') << int(c);
+    } else {out << c;}
   }
   out << '"';
   return out.str();
 }
-template<size_t N> void array(std::ostream & out, const double (&v)[N]) {
+template<size_t N> void array(std::ostream & out, const double (& v)[N])
+{
   out << '[';
   for (size_t i = 0; i < N; ++i) {
     if (i) {out << ',';}
-    if (std::isfinite(v[i])) {out << std::setprecision(17) << v[i];}
-    else {out << "null";}
+    if (std::isfinite(v[i])) {out << std::setprecision(17) << v[i];} else {out << "null";}
   }
   out << ']';
 }
@@ -51,14 +54,18 @@ class Sink {
   std::thread worker_;
   FILE * file_ = nullptr;
   bool failed_ = false;
-  void write(const std::string & s) {
+  void write(const std::string & s)
+  {
     if (std::fwrite(s.data(), 1, s.size(), file_) != s.size() || std::fflush(file_)) {
-      if (!failed_) {std::fputs("C2NAV35: diagnostic write failed; capture UNOBSERVABLE\n", stderr);}
+      if (!failed_) {
+        std::fputs("C2NAV35: diagnostic write failed; capture UNOBSERVABLE\n", stderr);
+      }
       failed_ = true;
     }
   }
-  void drain() {
-    for (;;) {
+  void drain()
+  {
+    for (;; ) {
       Record r;
       bool have = false;
       {
@@ -102,8 +109,10 @@ class Sink {
       std::to_string(dropped_.load()) + ",\"write_failed\":" +
       (failed_ ? "true" : "false") + "}\n");
   }
+
 public:
-  Sink() {
+  Sink()
+  {
     const char * path = std::getenv("C2NAV35_TRACE");
     if (!path || !*path) {return;}
     const int fd = ::open(path, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC, 0600);
@@ -117,14 +126,16 @@ public:
   }
   ~Sink() {finish();}
   bool enabled() const {return file_ != nullptr && !stop_;}
-  void push(const Record & r) noexcept {
+  void push(const Record & r) noexcept
+  {
     if (!enabled()) {return;}
     ++attempted_;
     std::unique_lock<std::mutex> lock(mutex_, std::try_to_lock);
     if (!lock.owns_lock() || size_ == queue_.size()) {++dropped_; return;}
     queue_[head_] = r; head_ = (head_ + 1) % queue_.size(); ++size_;
   }
-  void finish() {
+  void finish()
+  {
     stop_ = true;
     if (worker_.joinable()) {worker_.join();}
     if (file_) {std::fclose(file_); file_ = nullptr;}

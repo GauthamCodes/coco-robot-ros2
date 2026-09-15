@@ -212,3 +212,8 @@ The benchmark waits up to 60 wall seconds for `/bt_navigator/get_state` to repor
 active before goals. Action discovery alone does not prove lifecycle readiness.
 The world path is shell-quoted for Gazebo so checkout names with spaces or
 parentheses work. No safety threshold, polygon, goal or critic was weakened.
+
+The recorder closes during AMCL cleanup **after its scan executor has joined**,
+so component-container shutdown does not rely on static library destruction to
+flush the footer. A capture covers one configured lifecycle; use a fresh process
+and new capture file for another run. Compile-time OFF removes this cleanup hook.

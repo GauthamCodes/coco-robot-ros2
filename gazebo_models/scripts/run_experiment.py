@@ -62,6 +62,9 @@ def main():
                   git_sha=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                   git_status=subprocess.check_output(['git', 'status', '--porcelain'], text=True),
                   config=artifact(args.params), status='running',
+                  environment={key: os.environ.get(key) for key in
+                               ('RMW_IMPLEMENTATION', 'ROS_DOMAIN_ID', 'GZ_VERSION',
+                                'AMENT_PREFIX_PATH', 'LD_LIBRARY_PATH', 'C2NAV35_TRACE')},
                   tracked_diff_sha256=hashlib.sha256(subprocess.check_output(
                       ['git', 'diff', 'HEAD', '--'])).hexdigest())
     # Exclusive creation reserves the ID and leaves evidence even after a hard crash.

@@ -113,8 +113,11 @@ endif()''')
     d.forced = force_update_;
     if (pf_init_) {std::copy_n(pf_odom_pose_.v, 3, d.anchor);}
   }''') + site)
+    # Cleanup joins the scan executor before closing the sink. No producer remains.
+    site = '  executor_thread_.reset();'
+    replace(node, site, site + guarded('  c2nav35::close();'))
     site = '    pf_odom_pose_ = pose;'
-    replace(node, site, site + guarded('  diagnostic.anchor(diagnostic_state);'))
+    replace(node, site, site + guarded('    diagnostic.anchor(diagnostic_state);'))
     # Eligibility is read at its existing calculation, not recomputed.
     site = '  update = update || force_update_;'
     replace(node, site, guarded('''  if (c2nav35::current) {

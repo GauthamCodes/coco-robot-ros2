@@ -36,12 +36,13 @@ def gt(stamp, x, identity=1):
 
 def events():
     anchor = dict(stage='tf_success', epoch=0, scan_id=1, scan_ns=10, tf_ns=10,
-                  tf_ok=1, pose=[0, 0, 0], source='base_footprint', target='odom')
+                  tf_ok=1, scan_frame='scan', tf=[0, 0, 0, 0, 0, 0, 1],
+                  pose=[0, 0, 0], source='base_footprint', target='odom')
     prediction = dict(stage='prediction_begin', epoch=0, scan_id=2,
                       scan_ns=20, tf_ns=20, prediction_id=1, anchor_id=1, anchor_ns=10,
                       pose=[1.08, 0, 0], anchor=[0, 0, 0], delta=[1.08, 0, 0],
                       source='base_footprint', target='odom',
-                      tf_ok=1, truncated=False)
+                      tf_ok=1, truncated=False, scan_frame='scan', tf=[1.08, 0, 0, 0, 0, 0, 1])
     current = dict(prediction, stage='tf_success')
     current['pose'] = prediction['pose']
     return [anchor, prediction,
@@ -97,6 +98,7 @@ class CaptureTests(unittest.TestCase):
     def test_lateral_world_projection(self):
         data = events()
         data[1]['pose'][1] = .25
+        data[1]['tf'][1] = .25
         samples = [gt(10, 0), gt(20, 0, 2)]
         for r in samples:
             r['pose'][5:] = [math.sin(math.pi/4), math.cos(math.pi/4)]
@@ -145,6 +147,7 @@ class CaptureTests(unittest.TestCase):
         for x in (1, 1.08):
             data = events()
             data[1]['pose'][0] = x
+            data[1]['tf'][0] = x
             rows = joiner.join(data, [gt(10, 0), gt(20, 1, 2)], [0, 0, 0, 0, 0, 0, 1], 20)
             self.assertEqual(rows[0]['status'], 'paired')
             self.assertAlmostEqual(rows[0]['residual'][0], x-1)

@@ -28,7 +28,9 @@ def metrics(legs):
                 if legs else None,
                 navigation_complete=bool(legs) and all(r.get('status') == 'SUCCEEDED'
                                                       for r in legs),
-                completion_sim_s=complete_sum('duration_sim_s'),
+                observed_duration_sim_s=complete_sum('duration_sim_s'),
+                completion_sim_s=complete_sum('duration_sim_s') if legs and
+                all(r.get('status') == 'SUCCEEDED' for r in legs) else None,
                 minimum_clearance_m=min(clearances) if clearances and
                 all(v is not None for v in clearances) else None,
                 safety_stop_count=complete_sum('safety_stop_count'),

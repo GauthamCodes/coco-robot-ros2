@@ -17,6 +17,9 @@ def test_missing_telemetry_is_not_zero():
     assert data['physical_stop_count'] == 3
     assert data['minimum_clearance_m'] is None
     assert experiment.metrics([])['success_rate'] is None
+    failed = experiment.metrics([{'status': 'TIMEOUT', 'duration_sim_s': 75}])
+    assert failed['completion_sim_s'] is None
+    assert failed['observed_duration_sim_s'] == 75
 
 
 def test_failure_leaves_machine_readable_outcome(tmp_path):

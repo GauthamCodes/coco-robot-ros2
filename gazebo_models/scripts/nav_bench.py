@@ -1227,8 +1227,12 @@ def summarise(node, name, probe, goal_w, status, t0, t1, occupied):
         r['cm_gated_frac'] = round(
             sum(s for k, s in held.items() if k != 0) / span, 3)
         r['cm_msgs'] = len(cm_v)
+        r['safety_stop_count'] = sum(
+            1 for i, v in enumerate(cm_v)
+            if v[0] == 1 and (i == 0 or cm_v[i-1][0] != 1))
     else:
         r['cm_action_frac'] = None
+        r['safety_stop_count'] = None
 
     # --- DWB critic evidence ----------------------------------------
     if ev_v:
@@ -1620,6 +1624,28 @@ def write_trace(node, path, t0, t1):
             t += 0.1
 
 
+def wait_navigation_active(node, timeout_s=60):
+    """Action discovery precedes lifecycle activation; wait before sending goals."""
+    from lifecycle_msgs.srv import GetState
+    client = node.create_client(GetState, '/bt_navigator/get_state')
+    deadline = time.monotonic() + timeout_s
+    try:
+        while time.monotonic() < deadline:
+            if not client.wait_for_service(timeout_sec=min(1, max(0, deadline-time.monotonic()))):
+                continue
+            future = client.call_async(GetState.Request())
+            request_deadline = min(deadline, time.monotonic()+2)
+            while not future.done() and time.monotonic() < request_deadline:
+                time.sleep(.05)
+            if future.done() and future.result().current_state.id == 3:
+                return True
+            future.cancel()
+            time.sleep(.1)
+        return False
+    finally:
+        node.destroy_client(client)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--tag', default='run', help='label for this batch')
@@ -1690,6 +1716,15 @@ def main(argv=None):
     ex.add_node(node)
     th = threading.Thread(target=ex.spin, daemon=True)
     th.start()
+
+    if not wait_navigation_active(node):
+        print('[nav_bench] navigation lifecycle activation timed out', flush=True)
+        ex.shutdown()
+        if odom_gt_capture is not None:
+            odom_gt_capture.close()
+        node.destroy_node()
+        rclpy.shutdown()
+        return 2
 
     os.makedirs(args.out, exist_ok=True)
     tracedir = os.path.join(args.out, f'{args.tag}_traces')

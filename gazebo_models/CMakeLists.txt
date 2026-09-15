@@ -19,6 +19,7 @@ install(
     scripts/map_drive.py
     scripts/nav_bench.py
     scripts/odom_capture.py
+    scripts/run_experiment.py
     scripts/nav_round_trip.py
     scripts/pitch_probe.py
     scripts/plan_compare.py

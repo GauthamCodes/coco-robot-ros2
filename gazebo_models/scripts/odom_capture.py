@@ -13,6 +13,8 @@ class GroundTruthCapture:
         self.file = open(path, 'x', encoding='utf-8')
         self.queue = queue.Queue(capacity)
         self.dropped = 0
+        self.successful = 0
+        self.malformed = 0
         self.failed = None
         self.epoch = 0
         self.last_receipt = None
@@ -53,8 +55,14 @@ class GroundTruthCapture:
                     record = self.queue.get(timeout=0.02)
                 except queue.Empty:
                     continue
-                self.file.write(json.dumps(record, allow_nan=False) + '\n')
+                try:
+                    encoded = json.dumps(record, allow_nan=False)
+                except (ValueError, TypeError):
+                    self.malformed += 1
+                    continue
+                self.file.write(encoded + '\n')
                 self.file.flush()
+                self.successful += 1
         except (OSError, ValueError) as error:
             self.failed = str(error)
 
@@ -67,7 +75,11 @@ class GroundTruthCapture:
         try:
             footer = {'schema': 1, 'stage': 'footer', 'dropped': self.dropped,
                       'write_failed': self.failed is not None,
-                      'error': self.failed}
+                      'error': self.failed, 'attempted': self.sequence,
+                      'successful': self.successful, 'malformed': self.malformed,
+                      'completion': ('complete' if not self.failed and not self.dropped
+                                     and not self.malformed and
+                                     self.sequence == self.successful else 'incomplete')}
             self.file.write(json.dumps(footer) + '\n')
         finally:
             self.file.close()

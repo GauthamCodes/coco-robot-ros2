@@ -46,7 +46,8 @@ class Sink {
   size_t head_ = 0, tail_ = 0, size_ = 0;
   std::mutex mutex_;
   std::atomic<bool> stop_{false};
-  std::atomic<uint64_t> dropped_{0};
+  std::atomic<uint64_t> dropped_{0}, attempted_{0};
+  uint64_t successful_ = 0, malformed_ = 0;
   std::thread worker_;
   FILE * file_ = nullptr;
   bool failed_ = false;
@@ -69,6 +70,7 @@ class Sink {
         std::this_thread::sleep_for(std::chrono::milliseconds(2));
         continue;
       }
+      if (r.truncated) {++malformed_; continue;}
       std::ostringstream o;
       o << "{\"schema\":1,\"stage\":" << quote(r.stage)
         << ",\"scan_id\":" << r.scan_id << ",\"prediction_id\":" << r.prediction_id
@@ -89,8 +91,14 @@ class Sink {
       o << ",\"motion\":"; array(o, r.motion);
       o << "}\n";
       write(o.str());
+      if (!failed_) {++successful_;}
     }
-    write("{\"schema\":1,\"stage\":\"footer\",\"dropped\":" +
+    write("{\"schema\":1,\"stage\":\"footer\",\"attempted\":" +
+      std::to_string(attempted_.load()) + ",\"successful\":" +
+      std::to_string(successful_) + ",\"malformed\":" +
+      std::to_string(malformed_) + ",\"completion\":\"" +
+      ((!failed_ && !dropped_ && !malformed_ && attempted_ == successful_) ?
+      "complete" : "incomplete") + "\",\"dropped\":" +
       std::to_string(dropped_.load()) + ",\"write_failed\":" +
       (failed_ ? "true" : "false") + "}\n");
   }
@@ -111,6 +119,7 @@ public:
   bool enabled() const {return file_ != nullptr && !stop_;}
   void push(const Record & r) noexcept {
     if (!enabled()) {return;}
+    ++attempted_;
     std::unique_lock<std::mutex> lock(mutex_, std::try_to_lock);
     if (!lock.owns_lock() || size_ == queue_.size()) {++dropped_; return;}
     queue_[head_] = r; head_ = (head_ + 1) % queue_.size(); ++size_;

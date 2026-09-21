@@ -1,0 +1,60 @@
+............................F..F.                                        [100%]
+=================================== FAILURES ===================================
+________________ test_binary_input_requires_a_byte_buffer[None] ________________
+
+value = None
+
+    @pytest.mark.parametrize('value', [None, 128, {}, 'COCO'])
+    def test_binary_input_requires_a_byte_buffer(value):
+        """An integer must never be interpreted as an allocation size."""
+        with pytest.raises(binary.BinaryFrameError):
+>           binary.decode_frame(value)
+
+test/test_binary_hardening.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+blob = None
+
+    def decode_frame(blob):
+        """
+        Parse one binary frame into ``(stream, header, payload)``.
+    
+        Ships beside the encoder so the format has a reference reader: every
+        malformed shape below is a test, and a format whose failure modes are
+        untested is a format that fails in a browser console instead.
+        """
+>       data = bytes(blob)
+E       TypeError: cannot convert 'NoneType' object to bytes
+
+coco_web/binary.py:240: TypeError
+________________ test_binary_input_requires_a_byte_buffer[COCO] ________________
+
+value = 'COCO'
+
+    @pytest.mark.parametrize('value', [None, 128, {}, 'COCO'])
+    def test_binary_input_requires_a_byte_buffer(value):
+        """An integer must never be interpreted as an allocation size."""
+        with pytest.raises(binary.BinaryFrameError):
+>           binary.decode_frame(value)
+
+test/test_binary_hardening.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+blob = 'COCO'
+
+    def decode_frame(blob):
+        """
+        Parse one binary frame into ``(stream, header, payload)``.
+    
+        Ships beside the encoder so the format has a reference reader: every
+        malformed shape below is a test, and a format whose failure modes are
+        untested is a format that fails in a browser console instead.
+        """
+>       data = bytes(blob)
+E       TypeError: string argument without an encoding
+
+coco_web/binary.py:240: TypeError
+=========================== short test summary info ============================
+FAILED test/test_binary_hardening.py::test_binary_input_requires_a_byte_buffer[None]
+FAILED test/test_binary_hardening.py::test_binary_input_requires_a_byte_buffer[COCO]
+2 failed, 31 passed in 0.12s

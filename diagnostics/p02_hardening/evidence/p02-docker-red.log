@@ -1,0 +1,50 @@
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+____________ test_launch_pid_is_a_child_the_entrypoint_can_wait_for ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-gautham/pytest-3/test_launch_pid_is_a_child_the0')
+
+    def test_launch_pid_is_a_child_the_entrypoint_can_wait_for(tmp_path):
+        """A launched process must remain a direct child of the waiting shell."""
+        fake_ros = tmp_path / 'ros2'
+        fake_ros.write_text('#!/bin/sh\nexit 7\n')
+        fake_ros.chmod(0o755)
+        text = ENTRYPOINT.read_text()
+        start = text.index('launch_bg() {')
+        function = text[start:text.index('\n}', start) + 2]
+        script = (function + '\nlaunch_bg "$1" fixture\n'
+                  'wait "$LAUNCHED_PID"\n')
+        result = subprocess.run(
+            ['bash', '-c', script, 'entrypoint-test', str(tmp_path / 'launch.log')],
+            env={**os.environ, 'PATH': str(tmp_path) + ':' + os.environ['PATH']},
+            capture_output=True, text=True, timeout=5)
+>       assert result.returncode == 7, result.stdout + result.stderr
+E       AssertionError: 28825
+E         entrypoint-test: line 7: wait: `': not a pid or valid job spec
+E         
+E       assert 1 == 7
+E        +  where 1 = CompletedProcess(args=['bash', '-c', 'launch_bg() {\n  local logfile="$1"; shift\n  setsid ros2 launch "$@" > "$logfil...aunch.log'], returncode=1, stdout='28825\n', stderr="entrypoint-test: line 7: wait: `': not a pid or valid job spec\n").returncode
+
+test/test_entrypoint_children.py:39: AssertionError
+______ test_launch_callers_do_not_create_a_command_substitution_subshell _______
+
+    def test_launch_callers_do_not_create_a_command_substitution_subshell():
+        """Capturing stdout moves process ownership into a short-lived subshell."""
+        text = ENTRYPOINT.read_text()
+>       assert '$(launch_bg' not in text
+E       assert '$(launch_bg' not in '#!/usr/bin/..." ;;\nesac\n'
+E         '$(launch_bg' is contained here:
+E             SIM_PID=$(launch_bg /tmp/coco_sim.log gazebo_models \
+E         ?           +++++++++++
+E                         full_world_robo.launch.py "gui:=${GUI}" traverse:=true)
+E           
+E             # Both odometry sources, for the reason verify_all.sh gives: the gz
+E             # plugin's /model/coco/odometry appears well before ros2_control...
+E         
+E         ...Full output truncated (55 lines hidden), use '-vv' to show
+
+test/test_entrypoint_children.py:46: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_entrypoint_children.py::test_launch_pid_is_a_child_the_entrypoint_can_wait_for
+FAILED test/test_entrypoint_children.py::test_launch_callers_do_not_create_a_command_substitution_subshell
+2 failed, 1 passed in 0.06s

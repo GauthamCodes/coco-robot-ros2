@@ -1,0 +1,476 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFF                                             [100%]
+=================================== FAILURES ===================================
+__________________ test_bad_metadata_is_refused[stream-depth] __________________
+
+key = 'stream', value = 'depth'
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+_____________________ test_bad_metadata_is_refused[seq--1] _____________________
+
+key = 'seq', value = -1
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+____________________ test_bad_metadata_is_refused[seq-True] ____________________
+
+key = 'seq', value = True
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+____________________ test_bad_metadata_is_refused[seq-1.5] _____________________
+
+key = 'seq', value = 1.5
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+_____________________ test_bad_metadata_is_refused[t-nan] ______________________
+
+key = 't', value = nan
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+_____________________ test_bad_metadata_is_refused[t-inf] ______________________
+
+key = 't', value = inf
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+_____________________ test_bad_metadata_is_refused[t-now] ______________________
+
+key = 't', value = 'now'
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+______________________ test_bad_metadata_is_refused[w-0] _______________________
+
+key = 'w', value = 0
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+______________________ test_bad_metadata_is_refused[h--1] ______________________
+
+key = 'h', value = -1
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+_____________________ test_bad_metadata_is_refused[w-True] _____________________
+
+key = 'w', value = True
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+____________________ test_bad_metadata_is_refused[enc-cdr] _____________________
+
+key = 'enc', value = 'cdr'
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+________________ test_bad_metadata_is_refused[payload_bytes-3] _________________
+
+key = 'payload_bytes', value = 3
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+________________ test_bad_metadata_is_refused[payload_bytes--1] ________________
+
+key = 'payload_bytes', value = -1
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+_______________ test_bad_metadata_is_refused[payload_bytes-True] _______________
+
+key = 'payload_bytes', value = True
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+___________________ test_bad_metadata_is_refused[dropped--2] ___________________
+
+key = 'dropped', value = -2
+
+    @pytest.mark.parametrize('key,value', [
+        ('stream', 'depth'), ('seq', -1), ('seq', True), ('seq', 1.5),
+        ('t', math.nan), ('t', math.inf), ('t', 'now'), ('w', 0),
+        ('h', -1), ('w', True), ('enc', 'cdr'), ('payload_bytes', 3),
+        ('payload_bytes', -1), ('payload_bytes', True), ('dropped', -2),
+    ])
+    def test_bad_metadata_is_refused(key, value):
+        """Plausible JSON can still be an impossible sensor frame."""
+        header = camera_header()
+        header[key] = value
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:49: Failed
+___________________ test_required_metadata_is_required[seq] ____________________
+
+key = 'seq'
+
+    @pytest.mark.parametrize('key', ['seq', 't', 'w', 'h', 'enc', 'stream'])
+    def test_required_metadata_is_required(key):
+        """The decoder must be able to describe the payload independently."""
+        header = camera_header()
+        del header[key]
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:58: Failed
+____________________ test_required_metadata_is_required[t] _____________________
+
+key = 't'
+
+    @pytest.mark.parametrize('key', ['seq', 't', 'w', 'h', 'enc', 'stream'])
+    def test_required_metadata_is_required(key):
+        """The decoder must be able to describe the payload independently."""
+        header = camera_header()
+        del header[key]
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:58: Failed
+____________________ test_required_metadata_is_required[w] _____________________
+
+key = 'w'
+
+    @pytest.mark.parametrize('key', ['seq', 't', 'w', 'h', 'enc', 'stream'])
+    def test_required_metadata_is_required(key):
+        """The decoder must be able to describe the payload independently."""
+        header = camera_header()
+        del header[key]
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:58: Failed
+____________________ test_required_metadata_is_required[h] _____________________
+
+key = 'h'
+
+    @pytest.mark.parametrize('key', ['seq', 't', 'w', 'h', 'enc', 'stream'])
+    def test_required_metadata_is_required(key):
+        """The decoder must be able to describe the payload independently."""
+        header = camera_header()
+        del header[key]
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:58: Failed
+___________________ test_required_metadata_is_required[enc] ____________________
+
+key = 'enc'
+
+    @pytest.mark.parametrize('key', ['seq', 't', 'w', 'h', 'enc', 'stream'])
+    def test_required_metadata_is_required(key):
+        """The decoder must be able to describe the payload independently."""
+        header = camera_header()
+        del header[key]
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:58: Failed
+__________________ test_required_metadata_is_required[stream] __________________
+
+key = 'stream'
+
+    @pytest.mark.parametrize('key', ['seq', 't', 'w', 'h', 'enc', 'stream'])
+    def test_required_metadata_is_required(key):
+        """The decoder must be able to describe the payload independently."""
+        header = camera_header()
+        del header[key]
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:58: Failed
+___________________ test_sensor_payload_length_is_exact[-1] ____________________
+
+delta = -1
+
+    @pytest.mark.parametrize('delta', [-1, 1])
+    def test_sensor_payload_length_is_exact(delta):
+        """Both truncation and appended garbage invalidate a sized payload."""
+        blob = binary.image_frame('camera', 1, 2, 320, 240, b'jpeg')
+        bad = blob[:delta] if delta < 0 else blob + b'x'
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:67: Failed
+____________________ test_sensor_payload_length_is_exact[1] ____________________
+
+delta = 1
+
+    @pytest.mark.parametrize('delta', [-1, 1])
+    def test_sensor_payload_length_is_exact(delta):
+        """Both truncation and appended garbage invalidate a sized payload."""
+        blob = binary.image_frame('camera', 1, 2, 320, 240, b'jpeg')
+        bad = blob[:delta] if delta < 0 else blob + b'x'
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:67: Failed
+___________ test_lidar_payload_count_is_exact_even_for_legacy_frames ___________
+
+    def test_lidar_payload_count_is_exact_even_for_legacy_frames():
+        """The ray count bounds every uint16 read in the browser."""
+        blob = binary.lidar_frame(7, 2.5, {'ranges': [1.0] * 480})
+        stream, header, payload = binary.decode_frame(blob)
+        assert len(payload) == 960
+        assert header['seq'] == 7 and header['t'] == 2.5
+        header.pop('payload_bytes', None)
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:78: Failed
+________ test_invalid_lidar_returns_do_not_crash_or_draw_near_obstacles ________
+
+    def test_invalid_lidar_returns_do_not_crash_or_draw_near_obstacles():
+        """NaN, infinity, negatives and absent returns all encode as zero."""
+>       blob = binary.lidar_frame(1, 2, {
+            'ranges': [None, math.nan, math.inf, -math.inf, -1.0, 0.0, 1.25]})
+
+test/test_binary_hardening.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+seq = 1, stamp = 2, scan = {'ranges': [None, nan, inf, -inf, -1.0, 0.0, ...]}
+dropped = 0
+
+    def lidar_frame(seq, stamp, scan, dropped=0):
+        """
+        Build a LiDAR frame from a downsampled scan payload.
+    
+        ``scan`` is ``telemetry.downsample_scan``'s output, so the reduction
+        still happens once at the source rather than per client. The ranges
+        become uint16 millimetres: 240 points is 480 bytes against roughly
+        two kilobytes of JSON, and a millimetre is finer than the sensor's
+        own 0.01 m range resolution, so nothing observable is lost.
+        """
+        ranges = (scan or {}).get('ranges') or []
+        packed = bytearray()
+        for value in ranges:
+            if value is None:
+                packed += struct.pack('>H', LIDAR_NO_RETURN)
+                continue
+>           millimetres = int(round(float(value) * LIDAR_SCALE_MM))
+E           ValueError: cannot convert float NaN to integer
+
+coco_web/binary.py:216: ValueError
+_____________________ test_depth_range_cannot_be_inverted ______________________
+
+    def test_depth_range_cannot_be_inverted():
+        """A false metric legend must be refused."""
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:93: Failed
+______________ test_extra_metadata_cannot_override_image_identity ______________
+
+    def test_extra_metadata_cannot_override_image_identity():
+        """Depth additions cannot silently replace sequence or encoding."""
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:100: Failed
+_____________________ test_metadata_cannot_name_ros_access _____________________
+
+    def test_metadata_cannot_name_ros_access():
+        """A generic envelope is not an escape hatch for ROS serialization."""
+>       with pytest.raises(binary.BinaryFrameError):
+E       Failed: DID NOT RAISE <class 'coco_web.binary.BinaryFrameError'>
+
+test/test_binary_hardening.py:107: Failed
+=========================== short test summary info ============================
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[stream-depth]
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[seq--1] - ...
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[seq-True]
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[seq-1.5]
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[t-nan] - F...
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[t-inf] - F...
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[t-now] - F...
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[w-0] - Fai...
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[h--1] - Fa...
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[w-True] - ...
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[enc-cdr]
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[payload_bytes-3]
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[payload_bytes--1]
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[payload_bytes-True]
+FAILED test/test_binary_hardening.py::test_bad_metadata_is_refused[dropped--2]
+FAILED test/test_binary_hardening.py::test_required_metadata_is_required[seq]
+FAILED test/test_binary_hardening.py::test_required_metadata_is_required[t]
+FAILED test/test_binary_hardening.py::test_required_metadata_is_required[w]
+FAILED test/test_binary_hardening.py::test_required_metadata_is_required[h]
+FAILED test/test_binary_hardening.py::test_required_metadata_is_required[enc]
+FAILED test/test_binary_hardening.py::test_required_metadata_is_required[stream]
+FAILED test/test_binary_hardening.py::test_sensor_payload_length_is_exact[-1]
+FAILED test/test_binary_hardening.py::test_sensor_payload_length_is_exact[1]
+FAILED test/test_binary_hardening.py::test_lidar_payload_count_is_exact_even_for_legacy_frames
+FAILED test/test_binary_hardening.py::test_invalid_lidar_returns_do_not_crash_or_draw_near_obstacles
+FAILED test/test_binary_hardening.py::test_depth_range_cannot_be_inverted - F...
+FAILED test/test_binary_hardening.py::test_extra_metadata_cannot_override_image_identity
+FAILED test/test_binary_hardening.py::test_metadata_cannot_name_ros_access - ...
+28 failed in 0.21s

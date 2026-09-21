@@ -1,0 +1,6 @@
+{
+  "new_session_fail_result": "CREATED",
+  "ready_session_fail_result": "READY",
+  "health_status": "ready",
+  "all_required_down_after_ready": "CREATED"
+}

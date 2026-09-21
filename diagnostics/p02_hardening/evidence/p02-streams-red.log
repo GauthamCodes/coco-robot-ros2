@@ -1,0 +1,331 @@
+FFFFFFFFFFFFFFFFF.F                                                      [100%]
+=================================== FAILURES ===================================
+_______________ test_invalid_update_is_atomic[subscribe-names0] ________________
+
+names = ['camera', 'unknown'], operation = 'subscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:31: Failed
+_______________ test_invalid_update_is_atomic[subscribe-names1] ________________
+
+names = ['/scan'], operation = 'subscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:31: Failed
+_______________ test_invalid_update_is_atomic[subscribe-names2] ________________
+
+names = ['depth', []], operation = 'subscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+        with pytest.raises(ValueError):
+>           getattr(sub, operation)(names)
+
+test/test_streams_hardening.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <coco_web.streams.Subscription object at 0x74978f591220>
+names = ['depth', []]
+
+    def subscribe(self, names):
+        """Add streams. Returns the resulting set, sorted."""
+>       self.streams.update(names)
+E       TypeError: unhashable type: 'list'
+
+coco_web/streams.py:238: TypeError
+_______________ test_invalid_update_is_atomic[subscribe-camera] ________________
+
+names = 'camera', operation = 'subscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:31: Failed
+________________ test_invalid_update_is_atomic[subscribe-None] _________________
+
+names = None, operation = 'subscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+        with pytest.raises(ValueError):
+>           getattr(sub, operation)(names)
+
+test/test_streams_hardening.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <coco_web.streams.Subscription object at 0x74978f3b68a0>, names = None
+
+    def subscribe(self, names):
+        """Add streams. Returns the resulting set, sorted."""
+>       self.streams.update(names)
+E       TypeError: 'NoneType' object is not iterable
+
+coco_web/streams.py:238: TypeError
+______________ test_invalid_update_is_atomic[unsubscribe-names0] _______________
+
+names = ['camera', 'unknown'], operation = 'unsubscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:31: Failed
+______________ test_invalid_update_is_atomic[unsubscribe-names1] _______________
+
+names = ['/scan'], operation = 'unsubscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:31: Failed
+______________ test_invalid_update_is_atomic[unsubscribe-names2] _______________
+
+names = ['depth', []], operation = 'unsubscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+        with pytest.raises(ValueError):
+>           getattr(sub, operation)(names)
+
+test/test_streams_hardening.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <coco_web.streams.Subscription object at 0x7497905526c0>
+names = ['depth', []]
+
+    def unsubscribe(self, names):
+        """
+        Drop streams. Returns the resulting set, sorted.
+    
+        ``telemetry`` cannot be dropped: it carries the session state and
+        the readiness the UI needs to tell a user why nothing is
+        happening, and a client with no telemetry has no way to find out
+        that it is broken.
+        """
+>       self.streams.difference_update(set(names) - {'telemetry'})
+E       TypeError: unhashable type: 'list'
+
+coco_web/streams.py:250: TypeError
+______________ test_invalid_update_is_atomic[unsubscribe-camera] _______________
+
+names = 'camera', operation = 'unsubscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:31: Failed
+_______________ test_invalid_update_is_atomic[unsubscribe-None] ________________
+
+names = None, operation = 'unsubscribe'
+
+    @pytest.mark.parametrize('names', [['camera', 'unknown'], ['/scan'],
+                                      ['depth', []], 'camera', None])
+    @pytest.mark.parametrize('operation', ['subscribe', 'unsubscribe'])
+    def test_invalid_update_is_atomic(names, operation):
+        """An invalid request must leave the client completely unchanged."""
+        sub = st.Subscription(binary=True)
+        before = sub.as_dict()
+        with pytest.raises(ValueError):
+>           getattr(sub, operation)(names)
+
+test/test_streams_hardening.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <coco_web.streams.Subscription object at 0x74978f3b65d0>, names = None
+
+    def unsubscribe(self, names):
+        """
+        Drop streams. Returns the resulting set, sorted.
+    
+        ``telemetry`` cannot be dropped: it carries the session state and
+        the readiness the UI needs to tell a user why nothing is
+        happening, and a client with no telemetry has no way to find out
+        that it is broken.
+        """
+>       self.streams.difference_update(set(names) - {'telemetry'})
+E       TypeError: 'NoneType' object is not iterable
+
+coco_web/streams.py:250: TypeError
+___________________ test_constructor_validates_names[names0] ___________________
+
+names = ['unknown']
+
+    @pytest.mark.parametrize('names', [['unknown'], ['camera', {}], 'camera'])
+    def test_constructor_validates_names(names):
+        """The pure class has the same vocabulary as the wire boundary."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:39: Failed
+___________________ test_constructor_validates_names[names1] ___________________
+
+names = ['camera', {}]
+
+    @pytest.mark.parametrize('names', [['unknown'], ['camera', {}], 'camera'])
+    def test_constructor_validates_names(names):
+        """The pure class has the same vocabulary as the wire boundary."""
+        with pytest.raises(ValueError):
+>           st.Subscription(streams=names)
+
+test/test_streams_hardening.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <coco_web.streams.Subscription object at 0x74978f3b4080>
+streams = ['camera', {}], binary = False
+
+    def __init__(self, streams=None, binary=False):
+        """Start from the default set unless the client named others."""
+>       self.streams = set(DEFAULT_STREAMS if streams is None else streams)
+E       TypeError: unhashable type: 'dict'
+
+coco_web/streams.py:190: TypeError
+___________________ test_constructor_validates_names[camera] ___________________
+
+names = 'camera'
+
+    @pytest.mark.parametrize('names', [['unknown'], ['camera', {}], 'camera'])
+    def test_constructor_validates_names(names):
+        """The pure class has the same vocabulary as the wire boundary."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:39: Failed
+________________ test_duplicate_membership_and_client_isolation ________________
+
+    def test_duplicate_membership_and_client_isolation():
+        """Repeated requests are idempotent and only affect their own client."""
+        left, right = st.Subscription(binary=True), st.Subscription(binary=True)
+        left.subscribe(['camera', 'camera'])
+>       assert left.should_send('camera')
+E       AttributeError: 'Subscription' object has no attribute 'should_send'
+
+test/test_streams_hardening.py:47: AttributeError
+_________________ test_unknown_configuration_cannot_grow_state _________________
+
+    def test_unknown_configuration_cannot_grow_state():
+        """Arbitrary stream keys cannot allocate an unbounded config map."""
+        sub = st.Subscription()
+        before = sub.as_dict()
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+test/test_streams_hardening.py:58: Failed
+_____________ test_disconnect_is_terminal_and_releases_references ______________
+
+    def test_disconnect_is_terminal_and_releases_references():
+        """A retained handler cannot deliver frames after close."""
+        sub = st.Subscription(binary=True)
+        pending = Future()
+        sub.subscribe(['camera'])
+        sub.mark_sent('camera', pending)
+>       sub.close()
+E       AttributeError: 'Subscription' object has no attribute 'close'
+
+test/test_streams_hardening.py:69: AttributeError
+______________ test_slow_client_has_one_pending_write_per_stream _______________
+
+    def test_slow_client_has_one_pending_write_per_stream():
+        """Ten thousand candidate frames cannot add more retained futures."""
+        slow, fast = st.Subscription(binary=True), st.Subscription(binary=True)
+        pending = Future()
+        slow.mark_sent('camera', pending, now=1)
+        for _ in range(10000):
+            assert not slow.ready('camera')
+            slow.mark_dropped('camera')
+>       assert slow.queue_depth('camera') == 1
+E       AttributeError: 'Subscription' object has no attribute 'queue_depth'
+
+test/test_streams_hardening.py:87: AttributeError
+_________________ test_exact_buffer_limit_refuses_a_new_frame __________________
+
+    def test_exact_buffer_limit_refuses_a_new_frame():
+        """A full transport buffer has no space for another sensor frame."""
+>       assert not st.Subscription().ready('lidar', st.MAX_BUFFERED_BYTES)
+E       AssertionError: assert not True
+E        +  where True = <bound method Subscription.ready of <coco_web.streams.Subscription object at 0x74978f3b6db0>>('lidar', 1048576)
+E        +    where <bound method Subscription.ready of <coco_web.streams.Subscription object at 0x74978f3b6db0>> = <coco_web.streams.Subscription object at 0x74978f3b6db0>.ready
+E        +      where <coco_web.streams.Subscription object at 0x74978f3b6db0> = <class 'coco_web.streams.Subscription'>()
+E        +        where <class 'coco_web.streams.Subscription'> = st.Subscription
+E        +    and   1048576 = st.MAX_BUFFERED_BYTES
+
+test/test_streams_hardening.py:110: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[subscribe-names0]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[subscribe-names1]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[subscribe-names2]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[subscribe-camera]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[subscribe-None]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[unsubscribe-names0]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[unsubscribe-names1]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[unsubscribe-names2]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[unsubscribe-camera]
+FAILED test/test_streams_hardening.py::test_invalid_update_is_atomic[unsubscribe-None]
+FAILED test/test_streams_hardening.py::test_constructor_validates_names[names0]
+FAILED test/test_streams_hardening.py::test_constructor_validates_names[names1]
+FAILED test/test_streams_hardening.py::test_constructor_validates_names[camera]
+FAILED test/test_streams_hardening.py::test_duplicate_membership_and_client_isolation
+FAILED test/test_streams_hardening.py::test_unknown_configuration_cannot_grow_state
+FAILED test/test_streams_hardening.py::test_disconnect_is_terminal_and_releases_references
+FAILED test/test_streams_hardening.py::test_slow_client_has_one_pending_write_per_stream
+FAILED test/test_streams_hardening.py::test_exact_buffer_limit_refuses_a_new_frame
+18 failed, 1 passed in 0.22s

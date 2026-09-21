@@ -1,0 +1,578 @@
+FFFFF.FFFFF.FFFFFFFFFFFF                                                 [100%]
+=================================== FAILURES ===================================
+_______________ test_bad_dimensions_raise_image_error[False-0-8] _______________
+
+width = 0, height = 8, depth = False
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+width = 0, height = 8, encoding = 'rgb8'
+data = b'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+quality = 60, scale = 1.0
+
+    def colour_jpeg(width, height, encoding, data, quality=60, scale=1.0):
+        """
+        Encode a colour camera frame as JPEG. Returns ``(jpeg, w, h)``.
+    
+        The encoding is honoured rather than assumed: rgb8 is converted, bgr8
+        is already what cv2 wants. Getting this backwards does not raise --
+        it silently swaps red and blue, which on a colour-selected fetch
+        means a confident picture of the wrong cylinder.
+        """
+        frame = _array(width, height, encoding, data)
+        if encoding == 'rgb8':
+>           frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+E           cv2.error: OpenCV(4.6.0) ./modules/imgproc/src/color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+coco_web/imaging.py:126: error
+______________ test_bad_dimensions_raise_image_error[False--1-8] _______________
+
+width = -1, height = 8, depth = False
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+coco_web/imaging.py:124: in colour_jpeg
+    frame = _array(width, height, encoding, data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+width = -1, height = 8, encoding = 'rgb8'
+data = b'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+    def _array(width, height, encoding, data):
+        """Reshape a raw ROS image buffer into a numpy array, checking size."""
+        channels = CHANNELS.get(encoding)
+        if channels is None:
+            raise ImageError(
+                'unknown_encoding',
+                f'{encoding!r} is not an encoding this build decodes; '
+                f'known: {", ".join(sorted(CHANNELS))}')
+        expected = width * height * channels
+        if len(data) < expected:
+            raise ImageError(
+                'short_buffer',
+                f'{encoding} {width}x{height} needs {expected} bytes, '
+                f'got {len(data)}')
+        frame = np.frombuffer(data[:expected], dtype=np.uint8)
+>       return frame.reshape((height, width, channels))
+E       ValueError: cannot reshape array of size 1000 into shape (8,newaxis,3)
+
+coco_web/imaging.py:92: ValueError
+_______________ test_bad_dimensions_raise_image_error[False-8-0] _______________
+
+width = 8, height = 0, depth = False
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+width = 8, height = 0, encoding = 'rgb8'
+data = b'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+quality = 60, scale = 1.0
+
+    def colour_jpeg(width, height, encoding, data, quality=60, scale=1.0):
+        """
+        Encode a colour camera frame as JPEG. Returns ``(jpeg, w, h)``.
+    
+        The encoding is honoured rather than assumed: rgb8 is converted, bgr8
+        is already what cv2 wants. Getting this backwards does not raise --
+        it silently swaps red and blue, which on a colour-selected fetch
+        means a confident picture of the wrong cylinder.
+        """
+        frame = _array(width, height, encoding, data)
+        if encoding == 'rgb8':
+>           frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+E           cv2.error: OpenCV(4.6.0) ./modules/imgproc/src/color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+coco_web/imaging.py:126: error
+_____________ test_bad_dimensions_raise_image_error[False-True-8] ______________
+
+width = True, height = 8, depth = False
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+coco_web/imaging.py:124: in colour_jpeg
+    frame = _array(width, height, encoding, data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+width = True, height = 8, encoding = 'rgb8'
+data = b'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+    def _array(width, height, encoding, data):
+        """Reshape a raw ROS image buffer into a numpy array, checking size."""
+        channels = CHANNELS.get(encoding)
+        if channels is None:
+            raise ImageError(
+                'unknown_encoding',
+                f'{encoding!r} is not an encoding this build decodes; '
+                f'known: {", ".join(sorted(CHANNELS))}')
+        expected = width * height * channels
+        if len(data) < expected:
+            raise ImageError(
+                'short_buffer',
+                f'{encoding} {width}x{height} needs {expected} bytes, '
+                f'got {len(data)}')
+        frame = np.frombuffer(data[:expected], dtype=np.uint8)
+>       return frame.reshape((height, width, channels))
+E       TypeError: an integer is required
+
+coco_web/imaging.py:92: TypeError
+______________ test_bad_dimensions_raise_image_error[False-8.5-8] ______________
+
+width = 8.5, height = 8, depth = False
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+coco_web/imaging.py:124: in colour_jpeg
+    frame = _array(width, height, encoding, data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+width = 8.5, height = 8, encoding = 'rgb8'
+data = b'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+    def _array(width, height, encoding, data):
+        """Reshape a raw ROS image buffer into a numpy array, checking size."""
+        channels = CHANNELS.get(encoding)
+        if channels is None:
+            raise ImageError(
+                'unknown_encoding',
+                f'{encoding!r} is not an encoding this build decodes; '
+                f'known: {", ".join(sorted(CHANNELS))}')
+        expected = width * height * channels
+        if len(data) < expected:
+            raise ImageError(
+                'short_buffer',
+                f'{encoding} {width}x{height} needs {expected} bytes, '
+                f'got {len(data)}')
+>       frame = np.frombuffer(data[:expected], dtype=np.uint8)
+E       TypeError: slice indices must be integers or None or have an __index__ method
+
+coco_web/imaging.py:91: TypeError
+_______________ test_bad_dimensions_raise_image_error[True-0-8] ________________
+
+width = 0, height = 8, depth = True
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+coco_web/imaging.py:181: in depth_jpeg
+    return (_jpeg(shades, quality), shades.shape[1], shades.shape[0],
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frame = array([], shape=(8, 0), dtype=uint8), quality = 60
+
+    def _jpeg(frame, quality):
+        """Encode a BGR or greyscale array as JPEG bytes."""
+>       ok, buffer = cv2.imencode(
+            '.jpg', frame, [int(cv2.IMWRITE_JPEG_QUALITY), int(quality)])
+E       cv2.error: OpenCV(4.6.0) ./modules/imgcodecs/src/loadsave.cpp:976: error: (-215:Assertion failed) !image.empty() in function 'imencode'
+
+coco_web/imaging.py:108: error
+_______________ test_bad_dimensions_raise_image_error[True--1-8] _______________
+
+width = -1, height = 8, depth = True
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+>       with pytest.raises(imaging.ImageError):
+E       Failed: DID NOT RAISE <class 'coco_web.imaging.ImageError'>
+
+test/test_imaging_hardening.py:30: Failed
+_______________ test_bad_dimensions_raise_image_error[True-8-0] ________________
+
+width = 8, height = 0, depth = True
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+coco_web/imaging.py:181: in depth_jpeg
+    return (_jpeg(shades, quality), shades.shape[1], shades.shape[0],
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frame = array([], shape=(0, 8), dtype=uint8), quality = 60
+
+    def _jpeg(frame, quality):
+        """Encode a BGR or greyscale array as JPEG bytes."""
+>       ok, buffer = cv2.imencode(
+            '.jpg', frame, [int(cv2.IMWRITE_JPEG_QUALITY), int(quality)])
+E       cv2.error: OpenCV(4.6.0) ./modules/imgcodecs/src/loadsave.cpp:976: error: (-215:Assertion failed) !image.empty() in function 'imencode'
+
+coco_web/imaging.py:108: error
+______________ test_bad_dimensions_raise_image_error[True-True-8] ______________
+
+width = True, height = 8, depth = True
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+width = True, height = 8, encoding = '32FC1'
+data = b'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+quality = 60, scale = 1.0, clip = None
+
+    def depth_jpeg(width, height, encoding, data, quality=60, scale=1.0,
+                   clip=None):
+        """
+        Render a depth frame as a greyscale JPEG. Returns ``(jpeg, w, h, lo, hi)``.
+    
+        Near is bright and far is dark, which is the reading people expect
+        from a depth picture. ``lo``/``hi`` are the metre bounds the ramp
+        actually spans and go into the frame header, so the client can say
+        what the shades mean instead of showing an unlabelled gradient.
+    
+        Non-finite pixels -- the depth camera's "no return" -- are rendered
+        black and excluded from the range, so one NaN cannot flatten the
+        whole picture to a single shade.
+        """
+        if encoding not in DEPTH_ENCODINGS:
+            raise ImageError(
+                'unknown_encoding',
+                f'{encoding!r} is not a depth encoding; known: '
+                f'{", ".join(DEPTH_ENCODINGS)}')
+        expected = width * height * 4
+        if len(data) < expected:
+            raise ImageError(
+                'short_buffer',
+                f'{encoding} {width}x{height} needs {expected} bytes, '
+                f'got {len(data)}')
+        metres = np.frombuffer(
+>           data[:expected], dtype=np.float32).reshape((height, width))
+E       TypeError: an integer is required
+
+coco_web/imaging.py:159: TypeError
+______________ test_bad_dimensions_raise_image_error[True-8.5-8] _______________
+
+width = 8.5, height = 8, depth = True
+
+    @pytest.mark.parametrize('width,height', [(0, 8), (-1, 8), (8, 0),
+                                             (True, 8), (8.5, 8), (9000, 1)])
+    @pytest.mark.parametrize('depth', [False, True])
+    def test_bad_dimensions_raise_image_error(width, height, depth):
+        """No malformed shape should escape as an OpenCV or reshape exception."""
+        call = imaging.depth_jpeg if depth else imaging.colour_jpeg
+        with pytest.raises(imaging.ImageError):
+>           call(width, height, '32FC1' if depth else 'rgb8', b'x' * 1024)
+
+test/test_imaging_hardening.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+width = 8.5, height = 8, encoding = '32FC1'
+data = b'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+quality = 60, scale = 1.0, clip = None
+
+    def depth_jpeg(width, height, encoding, data, quality=60, scale=1.0,
+                   clip=None):
+        """
+        Render a depth frame as a greyscale JPEG. Returns ``(jpeg, w, h, lo, hi)``.
+    
+        Near is bright and far is dark, which is the reading people expect
+        from a depth picture. ``lo``/``hi`` are the metre bounds the ramp
+        actually spans and go into the frame header, so the client can say
+        what the shades mean instead of showing an unlabelled gradient.
+    
+        Non-finite pixels -- the depth camera's "no return" -- are rendered
+        black and excluded from the range, so one NaN cannot flatten the
+        whole picture to a single shade.
+        """
+        if encoding not in DEPTH_ENCODINGS:
+            raise ImageError(
+                'unknown_encoding',
+                f'{encoding!r} is not a depth encoding; known: '
+                f'{", ".join(DEPTH_ENCODINGS)}')
+        expected = width * height * 4
+        if len(data) < expected:
+            raise ImageError(
+                'short_buffer',
+                f'{encoding} {width}x{height} needs {expected} bytes, '
+                f'got {len(data)}')
+        metres = np.frombuffer(
+>           data[:expected], dtype=np.float32).reshape((height, width))
+E       TypeError: slice indices must be integers or None or have an __index__ method
+
+coco_web/imaging.py:159: TypeError
+________________________ test_bad_scale_is_refused[nan] ________________________
+
+value = nan
+
+    @pytest.mark.parametrize('value', [float('nan'), float('inf'), -1, 0, 'tiny'])
+    def test_bad_scale_is_refused(value):
+        """Negotiated metadata must not cause an uncaught resize error."""
+        with pytest.raises(imaging.ImageError):
+>           imaging.colour_jpeg(8, 8, 'rgb8', b'x' * 192, scale=value)
+
+test/test_imaging_hardening.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+coco_web/imaging.py:129: in colour_jpeg
+    frame = _scaled(frame, scale)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frame = array([[[120, 120, 120],
+        [120, 120, 120],
+        [120, 120, 120],
+        [120, 120, 120],
+        [120, 120,...20],
+        [120, 120, 120],
+        [120, 120, 120],
+        [120, 120, 120],
+        [120, 120, 120]]], dtype=uint8)
+scale = nan
+
+    def _scaled(frame, scale):
+        """Resize by `scale`, never up, and never below one pixel."""
+        if scale is None or scale >= 0.999:
+            return frame
+        height, width = frame.shape[:2]
+        return cv2.resize(
+            frame,
+>           (max(1, int(width * scale)), max(1, int(height * scale))),
+            interpolation=cv2.INTER_AREA)
+E       ValueError: cannot convert float NaN to integer
+
+coco_web/imaging.py:102: ValueError
+________________________ test_bad_scale_is_refused[inf] ________________________
+
+value = inf
+
+    @pytest.mark.parametrize('value', [float('nan'), float('inf'), -1, 0, 'tiny'])
+    def test_bad_scale_is_refused(value):
+        """Negotiated metadata must not cause an uncaught resize error."""
+>       with pytest.raises(imaging.ImageError):
+E       Failed: DID NOT RAISE <class 'coco_web.imaging.ImageError'>
+
+test/test_imaging_hardening.py:37: Failed
+________________________ test_bad_scale_is_refused[-1] _________________________
+
+value = -1
+
+    @pytest.mark.parametrize('value', [float('nan'), float('inf'), -1, 0, 'tiny'])
+    def test_bad_scale_is_refused(value):
+        """Negotiated metadata must not cause an uncaught resize error."""
+>       with pytest.raises(imaging.ImageError):
+E       Failed: DID NOT RAISE <class 'coco_web.imaging.ImageError'>
+
+test/test_imaging_hardening.py:37: Failed
+_________________________ test_bad_scale_is_refused[0] _________________________
+
+value = 0
+
+    @pytest.mark.parametrize('value', [float('nan'), float('inf'), -1, 0, 'tiny'])
+    def test_bad_scale_is_refused(value):
+        """Negotiated metadata must not cause an uncaught resize error."""
+>       with pytest.raises(imaging.ImageError):
+E       Failed: DID NOT RAISE <class 'coco_web.imaging.ImageError'>
+
+test/test_imaging_hardening.py:37: Failed
+_______________________ test_bad_scale_is_refused[tiny] ________________________
+
+value = 'tiny'
+
+    @pytest.mark.parametrize('value', [float('nan'), float('inf'), -1, 0, 'tiny'])
+    def test_bad_scale_is_refused(value):
+        """Negotiated metadata must not cause an uncaught resize error."""
+        with pytest.raises(imaging.ImageError):
+>           imaging.colour_jpeg(8, 8, 'rgb8', b'x' * 192, scale=value)
+
+test/test_imaging_hardening.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+coco_web/imaging.py:129: in colour_jpeg
+    frame = _scaled(frame, scale)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frame = array([[[120, 120, 120],
+        [120, 120, 120],
+        [120, 120, 120],
+        [120, 120, 120],
+        [120, 120,...20],
+        [120, 120, 120],
+        [120, 120, 120],
+        [120, 120, 120],
+        [120, 120, 120]]], dtype=uint8)
+scale = 'tiny'
+
+    def _scaled(frame, scale):
+        """Resize by `scale`, never up, and never below one pixel."""
+>       if scale is None or scale >= 0.999:
+E       TypeError: '>=' not supported between instances of 'str' and 'float'
+
+coco_web/imaging.py:97: TypeError
+______________ test_rgb_row_padding_is_not_interpreted_as_pixels _______________
+
+    def test_rgb_row_padding_is_not_interpreted_as_pixels():
+        """Each row starts at Image.step, including non-pixel padding bytes."""
+        pixels = bytes([255, 0, 0]) * 8
+        packed = pixels * 8
+        padded = (pixels + b'padding!') * 8
+        expected = imaging.colour_jpeg(8, 8, 'rgb8', packed)
+>       assert imaging.colour_jpeg(8, 8, 'rgb8', padded, step=32) == expected
+E       TypeError: colour_jpeg() got an unexpected keyword argument 'step'
+
+test/test_imaging_hardening.py:47: TypeError
+________________ test_depth_endianness_and_padding_are_honoured ________________
+
+    def test_depth_endianness_and_padding_are_honoured():
+        """Opposite endian buffers describing the same metres render identically."""
+        pixels = np.linspace(0.2, 7.8, 64).reshape(8, 8)
+        little = pixels.astype('<f4').tobytes()
+        big = b''.join(row.astype('>f4').tobytes() + b'pad!'
+                       for row in pixels)
+>       expected = imaging.depth_jpeg(8, 8, '32FC1', little,
+                                      clip=(0.1, 8), is_bigendian=False)
+E       TypeError: depth_jpeg() got an unexpected keyword argument 'is_bigendian'
+
+test/test_imaging_hardening.py:56: TypeError
+____________________ test_invalid_row_stride_is_refused[1] _____________________
+
+step = 1
+
+    @pytest.mark.parametrize('step', [1, -1, True, 23, 24.5])
+    def test_invalid_row_stride_is_refused(step):
+        """A stride smaller than a row cannot be used to index the next row."""
+        with pytest.raises(imaging.ImageError):
+>           imaging.colour_jpeg(8, 8, 'rgb8', b'x' * 256, step=step)
+E           TypeError: colour_jpeg() got an unexpected keyword argument 'step'
+
+test/test_imaging_hardening.py:67: TypeError
+____________________ test_invalid_row_stride_is_refused[-1] ____________________
+
+step = -1
+
+    @pytest.mark.parametrize('step', [1, -1, True, 23, 24.5])
+    def test_invalid_row_stride_is_refused(step):
+        """A stride smaller than a row cannot be used to index the next row."""
+        with pytest.raises(imaging.ImageError):
+>           imaging.colour_jpeg(8, 8, 'rgb8', b'x' * 256, step=step)
+E           TypeError: colour_jpeg() got an unexpected keyword argument 'step'
+
+test/test_imaging_hardening.py:67: TypeError
+___________________ test_invalid_row_stride_is_refused[True] ___________________
+
+step = True
+
+    @pytest.mark.parametrize('step', [1, -1, True, 23, 24.5])
+    def test_invalid_row_stride_is_refused(step):
+        """A stride smaller than a row cannot be used to index the next row."""
+        with pytest.raises(imaging.ImageError):
+>           imaging.colour_jpeg(8, 8, 'rgb8', b'x' * 256, step=step)
+E           TypeError: colour_jpeg() got an unexpected keyword argument 'step'
+
+test/test_imaging_hardening.py:67: TypeError
+____________________ test_invalid_row_stride_is_refused[23] ____________________
+
+step = 23
+
+    @pytest.mark.parametrize('step', [1, -1, True, 23, 24.5])
+    def test_invalid_row_stride_is_refused(step):
+        """A stride smaller than a row cannot be used to index the next row."""
+        with pytest.raises(imaging.ImageError):
+>           imaging.colour_jpeg(8, 8, 'rgb8', b'x' * 256, step=step)
+E           TypeError: colour_jpeg() got an unexpected keyword argument 'step'
+
+test/test_imaging_hardening.py:67: TypeError
+___________________ test_invalid_row_stride_is_refused[24.5] ___________________
+
+step = 24.5
+
+    @pytest.mark.parametrize('step', [1, -1, True, 23, 24.5])
+    def test_invalid_row_stride_is_refused(step):
+        """A stride smaller than a row cannot be used to index the next row."""
+        with pytest.raises(imaging.ImageError):
+>           imaging.colour_jpeg(8, 8, 'rgb8', b'x' * 256, step=step)
+E           TypeError: colour_jpeg() got an unexpected keyword argument 'step'
+
+test/test_imaging_hardening.py:67: TypeError
+=========================== short test summary info ============================
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[False-0-8]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[False--1-8]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[False-8-0]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[False-True-8]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[False-8.5-8]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[True-0-8]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[True--1-8]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[True-8-0]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[True-True-8]
+FAILED test/test_imaging_hardening.py::test_bad_dimensions_raise_image_error[True-8.5-8]
+FAILED test/test_imaging_hardening.py::test_bad_scale_is_refused[nan] - Value...
+FAILED test/test_imaging_hardening.py::test_bad_scale_is_refused[inf] - Faile...
+FAILED test/test_imaging_hardening.py::test_bad_scale_is_refused[-1] - Failed...
+FAILED test/test_imaging_hardening.py::test_bad_scale_is_refused[0] - Failed:...
+FAILED test/test_imaging_hardening.py::test_bad_scale_is_refused[tiny] - Type...
+FAILED test/test_imaging_hardening.py::test_rgb_row_padding_is_not_interpreted_as_pixels
+FAILED test/test_imaging_hardening.py::test_depth_endianness_and_padding_are_honoured
+FAILED test/test_imaging_hardening.py::test_invalid_row_stride_is_refused[1]
+FAILED test/test_imaging_hardening.py::test_invalid_row_stride_is_refused[-1]
+FAILED test/test_imaging_hardening.py::test_invalid_row_stride_is_refused[True]
+FAILED test/test_imaging_hardening.py::test_invalid_row_stride_is_refused[23]
+FAILED test/test_imaging_hardening.py::test_invalid_row_stride_is_refused[24.5]
+22 failed, 2 passed in 0.73s

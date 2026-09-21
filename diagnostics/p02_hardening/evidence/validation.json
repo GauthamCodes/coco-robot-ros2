@@ -1,0 +1,73 @@
+{
+  "base_commit": "921f6d0bef1aaac4a890df3fb14efe04608dee02",
+  "implementation_commit": "980f7dbda8db267bdfd245484aecaba094f32ca4",
+  "scope": "per-package unit/integration suites; gazebo launch tests excluded",
+  "packages": {
+    "coco_config": {
+      "tests": 70,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "coco_mission": {
+      "tests": 315,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "coco_moveit_config": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "coco_perception": {
+      "tests": 139,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "coco_rl": {
+      "tests": 193,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "coco_sim": {
+      "tests": 55,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "coco_web": {
+      "tests": 470,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "custom_teleop": {
+      "tests": 75,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "gazebo_models": {
+      "tests": 181,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "totals": {
+    "tests": 1510,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "focused_baseline": {
+    "coco_web_passed": 297
+  },
+  "build": "9 packages succeeded; final coco_web rebuild recorded separately",
+  "live": "real ROS/Tornado with synthetic sensors; no Gazebo or hardware",
+  "docker": "static and fake-child-process checks only; runtime not tested"
+}

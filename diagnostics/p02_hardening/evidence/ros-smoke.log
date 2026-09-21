@@ -1,0 +1,35 @@
+[WARN] [1790019713.993226805] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[WARN] [1790019713.993279732] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[INFO] [1790019714.185062230] [coco_web_platform]: COCO platform on http://0.0.0.0:8080 (protocol coco.v1); drive -> /cmd_vel_teleop (arbiter input)
+The websocket_ping_timeout (30.0) cannot be longer than the websocket_ping_interval (10.0).
+Setting websocket_ping_timeout=10.0
+[INFO] [1790019714.410865839] [coco_web_platform]: camera: subscribed to /camera/image_raw
+[INFO] [1790019714.412503289] [coco_web_platform]: depth: subscribed to /camera/depth/image_raw
+[INFO] [1790019714.660706079] [coco_web_platform]: camera: no viewers, unsubscribed
+[INFO] [1790019714.661800375] [coco_web_platform]: depth: no viewers, unsubscribed
+{
+  "source": "synthetic ROS sensors; no simulator or hardware",
+  "ros_domain_id": "98",
+  "default_opt_in": true,
+  "camera_and_depth_received": true,
+  "unsubscribe_stopped_delivery_and_ros_subscriptions": true,
+  "stop_observed_after_nonzero_drive": true,
+  "disconnect_stop_observed_after_nonzero_drive": true,
+  "frames": {
+    "welcome": 1,
+    "ack": 6,
+    "telemetry": 14,
+    "lidar": 14,
+    "subscription": 2,
+    "camera": 1,
+    "depth": 1
+  },
+  "teleop_samples": [
+    0.05,
+    0.0,
+    0.05,
+    0.0
+  ],
+  "publisher_qos": "BEST_EFFORT sensor data profile",
+  "result": "PASS"
+}

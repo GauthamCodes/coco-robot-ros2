@@ -1,0 +1,148 @@
+FFFFFF....................                                               [100%]
+=================================== FAILURES ===================================
+_ test_ambiguous_or_unrepresentable_json_is_refused[{"type":"stop","type":"drive"}] _
+
+raw = '{"type":"stop","type":"drive"}'
+
+    @pytest.mark.parametrize('raw', [
+        '{"type":"stop","type":"drive"}',
+        '{"type":"ping","t":NaN}',
+        '{"type":"ping","t":Infinity}',
+        '{"type":"ping","t":1e999}',
+        '{"type":"stop","id":true}',
+        '{"type":"drive","linear":' + '9' * 400 + '}',
+        '[' * 1100 + '0' + ']' * 1100,
+    ])
+    def test_ambiguous_or_unrepresentable_json_is_refused(raw):
+        """No parser ambiguity or float conversion overflow crosses the boundary."""
+>       with pytest.raises(protocol.ProtocolError):
+E       Failed: DID NOT RAISE <class 'coco_web.protocol.ProtocolError'>
+
+test/test_protocol_hardening.py:32: Failed
+__ test_ambiguous_or_unrepresentable_json_is_refused[{"type":"ping","t":NaN}] __
+
+raw = '{"type":"ping","t":NaN}'
+
+    @pytest.mark.parametrize('raw', [
+        '{"type":"stop","type":"drive"}',
+        '{"type":"ping","t":NaN}',
+        '{"type":"ping","t":Infinity}',
+        '{"type":"ping","t":1e999}',
+        '{"type":"stop","id":true}',
+        '{"type":"drive","linear":' + '9' * 400 + '}',
+        '[' * 1100 + '0' + ']' * 1100,
+    ])
+    def test_ambiguous_or_unrepresentable_json_is_refused(raw):
+        """No parser ambiguity or float conversion overflow crosses the boundary."""
+>       with pytest.raises(protocol.ProtocolError):
+E       Failed: DID NOT RAISE <class 'coco_web.protocol.ProtocolError'>
+
+test/test_protocol_hardening.py:32: Failed
+_ test_ambiguous_or_unrepresentable_json_is_refused[{"type":"ping","t":Infinity}] _
+
+raw = '{"type":"ping","t":Infinity}'
+
+    @pytest.mark.parametrize('raw', [
+        '{"type":"stop","type":"drive"}',
+        '{"type":"ping","t":NaN}',
+        '{"type":"ping","t":Infinity}',
+        '{"type":"ping","t":1e999}',
+        '{"type":"stop","id":true}',
+        '{"type":"drive","linear":' + '9' * 400 + '}',
+        '[' * 1100 + '0' + ']' * 1100,
+    ])
+    def test_ambiguous_or_unrepresentable_json_is_refused(raw):
+        """No parser ambiguity or float conversion overflow crosses the boundary."""
+>       with pytest.raises(protocol.ProtocolError):
+E       Failed: DID NOT RAISE <class 'coco_web.protocol.ProtocolError'>
+
+test/test_protocol_hardening.py:32: Failed
+_ test_ambiguous_or_unrepresentable_json_is_refused[{"type":"ping","t":1e999}] _
+
+raw = '{"type":"ping","t":1e999}'
+
+    @pytest.mark.parametrize('raw', [
+        '{"type":"stop","type":"drive"}',
+        '{"type":"ping","t":NaN}',
+        '{"type":"ping","t":Infinity}',
+        '{"type":"ping","t":1e999}',
+        '{"type":"stop","id":true}',
+        '{"type":"drive","linear":' + '9' * 400 + '}',
+        '[' * 1100 + '0' + ']' * 1100,
+    ])
+    def test_ambiguous_or_unrepresentable_json_is_refused(raw):
+        """No parser ambiguity or float conversion overflow crosses the boundary."""
+>       with pytest.raises(protocol.ProtocolError):
+E       Failed: DID NOT RAISE <class 'coco_web.protocol.ProtocolError'>
+
+test/test_protocol_hardening.py:32: Failed
+_ test_ambiguous_or_unrepresentable_json_is_refused[{"type":"stop","id":true}] _
+
+raw = '{"type":"stop","id":true}'
+
+    @pytest.mark.parametrize('raw', [
+        '{"type":"stop","type":"drive"}',
+        '{"type":"ping","t":NaN}',
+        '{"type":"ping","t":Infinity}',
+        '{"type":"ping","t":1e999}',
+        '{"type":"stop","id":true}',
+        '{"type":"drive","linear":' + '9' * 400 + '}',
+        '[' * 1100 + '0' + ']' * 1100,
+    ])
+    def test_ambiguous_or_unrepresentable_json_is_refused(raw):
+        """No parser ambiguity or float conversion overflow crosses the boundary."""
+>       with pytest.raises(protocol.ProtocolError):
+E       Failed: DID NOT RAISE <class 'coco_web.protocol.ProtocolError'>
+
+test/test_protocol_hardening.py:32: Failed
+_ test_ambiguous_or_unrepresentable_json_is_refused[{"type":"drive","linear":9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999}] _
+
+raw = '{"type":"drive","linear":99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999...999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999}'
+
+    @pytest.mark.parametrize('raw', [
+        '{"type":"stop","type":"drive"}',
+        '{"type":"ping","t":NaN}',
+        '{"type":"ping","t":Infinity}',
+        '{"type":"ping","t":1e999}',
+        '{"type":"stop","id":true}',
+        '{"type":"drive","linear":' + '9' * 400 + '}',
+        '[' * 1100 + '0' + ']' * 1100,
+    ])
+    def test_ambiguous_or_unrepresentable_json_is_refused(raw):
+        """No parser ambiguity or float conversion overflow crosses the boundary."""
+        with pytest.raises(protocol.ProtocolError):
+>           protocol.decode(raw)
+
+test/test_protocol_hardening.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+coco_web/protocol.py:180: in decode
+    out = _VALIDATORS[kind](frame, colours, frame_id)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+frame = {'linear': 999999999999999999...9999999999999999999, 'type': 'drive'}
+_colours = ('red', 'green', 'blue', 'yellow'), frame_id = None
+
+    def _v_drive(frame, _colours, frame_id):
+        """
+        Validate a drive frame and clamp it to the panel's velocity limits.
+    
+        Clamping happens here, at the boundary, rather than in the publisher:
+        every path that produces a velocity goes through decode(), so there is
+        exactly one place where an out-of-range request can enter.
+        """
+        for key in ('linear', 'angular'):
+            value = frame.get(key, 0.0)
+            if isinstance(value, bool) or not isinstance(value, (int, float)):
+                raise ProtocolError('bad_velocity', f'{key} must be a number', frame_id)
+>           if math.isnan(value) or math.isinf(value):
+E           OverflowError: int too large to convert to float
+
+coco_web/protocol.py:231: OverflowError
+=========================== short test summary info ============================
+FAILED test/test_protocol_hardening.py::test_ambiguous_or_unrepresentable_json_is_refused[{"type":"stop","type":"drive"}]
+FAILED test/test_protocol_hardening.py::test_ambiguous_or_unrepresentable_json_is_refused[{"type":"ping","t":NaN}]
+FAILED test/test_protocol_hardening.py::test_ambiguous_or_unrepresentable_json_is_refused[{"type":"ping","t":Infinity}]
+FAILED test/test_protocol_hardening.py::test_ambiguous_or_unrepresentable_json_is_refused[{"type":"ping","t":1e999}]
+FAILED test/test_protocol_hardening.py::test_ambiguous_or_unrepresentable_json_is_refused[{"type":"stop","id":true}]
+FAILED test/test_protocol_hardening.py::test_ambiguous_or_unrepresentable_json_is_refused[{"type":"drive","linear":9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999}]
+6 failed, 20 passed in 0.09s

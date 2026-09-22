@@ -69,5 +69,8 @@
   },
   "build": "9 packages succeeded; final coco_web rebuild recorded separately",
   "live": "real ROS/Tornado with synthetic sensors; no Gazebo or hardware",
-  "docker": "static and fake-child-process checks only; runtime not tested"
+  "docker": "static and fake-child-process checks only; runtime not tested",
+  "packaging_commit": "c0d2f11",
+  "final_live_revision": "fcefc1b7e8717bbb5f6c8ba7721a2c0ef55c00bc",
+  "final_live_log": "ros-smoke-final.log"
 }

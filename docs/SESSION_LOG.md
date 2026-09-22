@@ -3944,3 +3944,34 @@ command rather than reading it.
 **Verified after the fixes:** `./scripts/run_platform.sh --native`
 launches the simulator, waits 15 s, launches the mission stack, reports
 `drivable` at `/healthz` 200 and then waits for `map -> odom`.
+
+
+## 2026-09-22 — Codex P0.2 isolated hardening handoff
+
+**Built:** on codex/p02-hardening from user-approved 921f6d0: strict protocol
+inputs, atomic subscription state/metrics, binary metadata and length checks,
+bounded image layouts, mission numeric normalization, policy-driven
+lifecycle/health validation, isolated frontend transport, real WebSocket
+tests, and a Docker entrypoint child-ownership fix. Product UI, session.py,
+platform_server.py, launch, Nav2 and command-path ownership remain with Claude.
+
+**Measured:** 1510 passed, 0 failed/errors, 0 skipped across nine package
+suites; initial nine-package private build and final coco_web rebuild passed.
+Final real ROS/Tornado smoke on isolated domain 98 used synthetic sensors:
+telemetry/LiDAR arrived, camera/depth required opt-in, unsubscribe removed
+delivery/subscriptions, and STOP/disconnect each produced a recorded zero
+after a positive nonzero teleop observation. Docker static/fake-process
+checks: 29 passed. Evidence is in diagnostics/p02_hardening/evidence.
+
+**Unverified/open:** Docker runtime, actual simulation mission and browser
+rendering. Session/health contract, global JSON/control backpressure,
+per-client dropped headers, image-layout argument plumbing and MJPEG public
+topic exposure require Claude integration. CODEX_P02_HANDOFF.md gives commit
+order, exact APIs, source evidence, limitations and all results.
+
+**Exact next verification command** (after sourcing the private overlay and
+selecting an unused ROS domain):
+
+```bash
+ROS_DOMAIN_ID=97 bash diagnostics/p02_hardening/run_checks.sh /tmp/coco-p02-review-tests
+```

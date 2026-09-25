@@ -33,7 +33,7 @@ measured from received messages' simulation timestamps, not wall time.
   these are not exclusive-machine performance benchmarks.
 
 Exact evidence: `launch.log`, `observer.log`, `ros_peer.log`, `rviz.log`,
-`process_exit.json`, `resources.txt`, `gpu.json`, `rviz.png`, and `sim/` under
+`process_exit.json`, `resources.txt`, `gpu.json`, `capture_error.txt`, and `sim/` under
 that run. `result.json` includes topic/type inventory, publisher endpoint QoS,
 sensor samples and scan arrays, TF edges, motion phases and assertions.
 `sim/episode.json`, `scene.json`, `robot.urdf` and normal-close marker record
@@ -80,8 +80,10 @@ The fixture's off-axis landmark and its map come from one definition.
 Successful goals with it do not isolate why the original bare room failed.
 
 Visual proof: `nav03_landmark/rviz.png` shows robot, scan, RGB, depth and
-odometry; RobotModel/TF statuses are OK. `smoke07_shutdown/rviz.png` is another
-owned-window capture. XWD captures only the owned RViz window. The initial
+odometry; RobotModel/TF statuses are OK. The final raw run screenshot
+capture failed with an unsupported XWD pixel layout (`capture_error.txt`);
+its ROS-visible acceptance does not depend on a screenshot. Successful
+XWD captures contain only the owned RViz window. The initial
 `nav02/rviz.png` root crop is excluded from Git because it included pixels
 beyond that window; it was not deleted.
 

@@ -174,6 +174,13 @@ is the template).
 
 ## 5. Isaac Sim on this machine — what was measured
 
+> **Historical assessment, superseded.** The later compatibility investigation
+> (`isaac-compat-4x@20a9619`, `docs/data/isaac_compat/README.md`) identified
+> startup ordering, first-run shaders and DDS configuration as the blockers.
+> The implemented 4.5 backend and its current evidence are described in
+> [ISAAC_BACKEND.md](ISAAC_BACKEND.md). The account below is retained as history.
+
+
 Full record: `docs/data/isaac_foundation/README.md`. Summary:
 
 - NVIDIA's current minimum ([requirements](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/requirements.html),

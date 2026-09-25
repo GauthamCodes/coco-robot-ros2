@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "error": "RuntimeError('Nav2 rejected goal')",
+  "counts": {},
+  "nonzero": {},
+  "elapsed_wall_s": 2.738089487000252,
+  "clean_shutdown": true
+}

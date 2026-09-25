@@ -1,0 +1,42 @@
+[setup_env] note: no overlay at /home/gautham/coco_isaac_ws/install — run colcon build
+[build_overlay] /home/gautham/coco-isaac-backend -> /home/gautham/coco_isaac_ws
+Starting >>> coco_config
+--- stderr: coco_config
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_config [2.36s]
+Starting >>> custom_teleop
+Starting >>> coco_sim
+--- stderr: custom_teleop
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< custom_teleop [2.58s]
+Starting >>> gazebo_models
+--- stderr: coco_sim
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_sim [2.60s]
+Finished <<< gazebo_models [2.76s]
+Starting >>> coco_moveit_config
+Finished <<< coco_moveit_config [2.09s]
+Starting >>> coco_perception
+--- stderr: coco_perception
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_perception [2.12s]
+Starting >>> coco_mission
+[12.498s] ERROR:colcon.colcon_cmake.task.cmake.build:Failed to find the following files:
+- /home/gautham/coco_isaac_ws/install/coco_rl/share/coco_rl/package.sh
+- /home/gautham/coco_isaac_ws/install/coco_web/share/coco_web/package.sh
+Check that the following packages have been built:
+- coco_rl
+- coco_web
+Failed   <<< coco_mission [0.01s, exited with code 1]
+
+Summary: 6 packages finished [12.3s]
+  1 package failed: coco_mission
+  4 packages had stderr output: coco_config coco_perception coco_sim custom_teleop

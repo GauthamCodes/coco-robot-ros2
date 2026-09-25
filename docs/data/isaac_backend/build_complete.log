@@ -1,0 +1,46 @@
+[build_overlay] /home/gautham/coco-isaac-backend -> /home/gautham/coco_isaac_ws
+Starting >>> coco_config
+--- stderr: coco_config
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_config [2.40s]
+Starting >>> custom_teleop
+Starting >>> coco_rl
+Starting >>> coco_sim
+--- stderr: coco_sim
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_sim [3.20s]
+--- stderr: custom_teleop
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< custom_teleop [3.31s]
+Starting >>> gazebo_models
+Starting >>> coco_web
+--- stderr: coco_rl
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_rl [3.33s]
+Finished <<< gazebo_models [0.49s]
+Starting >>> coco_moveit_config
+Finished <<< coco_moveit_config [0.15s]
+Starting >>> coco_perception
+--- stderr: coco_web
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_web [2.56s]
+--- stderr: coco_perception
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_perception [2.46s]
+Starting >>> coco_mission
+Finished <<< coco_mission [2.32s]
+
+Summary: 9 packages finished [11.5s]
+  6 packages had stderr output: coco_config coco_perception coco_rl coco_sim coco_web custom_teleop

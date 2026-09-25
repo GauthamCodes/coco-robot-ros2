@@ -1,0 +1,23 @@
+	Command being timed: "bash /home/gautham/coco-isaac-backend/scripts/isaac_sim_coco.sh --output /home/gautham/coco-isaac-backend/docs/data/isaac_backend/smoke04_gui/sim --gui"
+	User time (seconds): 180.68
+	System time (seconds): 55.17
+	Percent of CPU this job got: 422%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:55.80
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 5468856
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 159
+	Minor (reclaiming a frame) page faults: 1003283
+	Voluntary context switches: 1048437
+	Involuntary context switches: 6023724
+	Swaps: 0
+	File system inputs: 507688
+	File system outputs: 3720
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

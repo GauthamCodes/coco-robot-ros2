@@ -1,0 +1,3 @@
+# Earlier root-window crop included pixels beyond the owned RViz window.
+# Keep local, do not publish; later XWD captures contain only the owned window.
+nav02/rviz.png

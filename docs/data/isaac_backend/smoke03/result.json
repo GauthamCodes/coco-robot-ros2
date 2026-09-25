@@ -1,0 +1,526 @@
+{
+  "checks": {
+    "full_angle_scan": true,
+    "lidar_known_east_wall": true,
+    "depth_geometry": true,
+    "rgb_red_wall": true,
+    "optical_frames": true,
+    "forward_motion": true,
+    "forward_twist": true,
+    "positive_yaw": true,
+    "command_dropout_stops": true,
+    "tf_tree": true,
+    "no_localization_tf": true,
+    "single_owners": true,
+    "simulation_timestamps": true,
+    "sensor_streams_continue": true
+  },
+  "errors": [],
+  "counts": {
+    "odom": 539,
+    "clock": 540,
+    "joints": 539,
+    "tf": 540,
+    "info": 269,
+    "rgb": 268,
+    "scan": 179,
+    "depth": 268
+  },
+  "initial": {
+    "odom": {
+      "x": -0.0025067432726051386,
+      "y": -8.122645760567134e-08,
+      "z": -5.395582316455351e-05,
+      "yaw": -6.833888057626697e-06,
+      "vx": -0.00018594415609076608,
+      "wz": -0.0002532698785939003,
+      "frame": "odom",
+      "child": "base_footprint",
+      "time_sim_s": 3.791666864
+    },
+    "clock": {
+      "time_sim_s": 3.825000199
+    },
+    "joints": {
+      "names": [
+        "wheel1_joint",
+        "wheel2_joint",
+        "wheel3_joint",
+        "wheel4_joint"
+      ],
+      "velocities": [
+        0.0004055353347212076,
+        -0.0009515682468190789,
+        0.0035027482081204653,
+        0.0001517947530373931
+      ]
+    },
+    "info": {
+      "width": 320,
+      "height": 240,
+      "k": [
+        221.76499938964844,
+        0.0,
+        160.0,
+        0.0,
+        221.76499938964844,
+        120.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "frame": "camera_optical_frame"
+    },
+    "rgb": {
+      "width": 320,
+      "height": 240,
+      "encoding": "rgb8",
+      "frame": "camera_optical_frame",
+      "bytes": 230400,
+      "time_sim_s": 3.791666864,
+      "centre_rgb": [
+        190.15166666666667,
+        117.63395833333334,
+        117.62416666666667
+      ],
+      "nonzero": 177702
+    },
+    "scan": {
+      "beams": 480,
+      "angle_min": -3.1415927410125732,
+      "angle_max": 3.128502368927002,
+      "angle_increment": 0.013089969754219055,
+      "finite": 480,
+      "min_m": 2.8575363159179688,
+      "forward_m": 7.042463779449463,
+      "frame": "lidar_link",
+      "time_sim_s": 3.758333529
+    },
+    "depth": {
+      "width": 320,
+      "height": 240,
+      "encoding": "32FC1",
+      "frame": "camera_optical_frame",
+      "bytes": 307200,
+      "time_sim_s": 3.791666864,
+      "finite": 59040,
+      "centre_m": 6.827505588531494
+    }
+  },
+  "final": {
+    "odom": {
+      "x": 4.107292640994091,
+      "y": 0.21135267405405767,
+      "z": -8.881014446928542e-05,
+      "yaw": 0.7274057183005008,
+      "vx": 0.0014385131249391534,
+      "wz": -0.00017350142232603577,
+      "frame": "odom",
+      "child": "base_footprint",
+      "time_sim_s": 19.791667698
+    },
+    "clock": {
+      "time_sim_s": 19.825001033
+    },
+    "joints": {
+      "names": [
+        "wheel1_joint",
+        "wheel2_joint",
+        "wheel3_joint",
+        "wheel4_joint"
+      ],
+      "velocities": [
+        0.01579435169696808,
+        0.016349606215953827,
+        0.018730362877249718,
+        0.014700513333082199
+      ]
+    },
+    "info": {
+      "width": 320,
+      "height": 240,
+      "k": [
+        221.76499938964844,
+        0.0,
+        160.0,
+        0.0,
+        221.76499938964844,
+        120.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "frame": "camera_optical_frame"
+    },
+    "rgb": {
+      "width": 320,
+      "height": 240,
+      "encoding": "rgb8",
+      "frame": "camera_optical_frame",
+      "bytes": 230400,
+      "time_sim_s": 19.725001028,
+      "centre_rgb": [
+        180.35458333333332,
+        111.61895833333334,
+        111.63625
+      ],
+      "nonzero": 226586
+    },
+    "scan": {
+      "beams": 480,
+      "angle_min": -3.1415927410125732,
+      "angle_max": 3.128502368927002,
+      "angle_increment": 0.013089969754219055,
+      "finite": 480,
+      "min_m": 2.97637939453125,
+      "forward_m": 3.9849066734313965,
+      "frame": "lidar_link",
+      "time_sim_s": 19.758334363
+    },
+    "depth": {
+      "width": 320,
+      "height": 240,
+      "encoding": "32FC1",
+      "frame": "camera_optical_frame",
+      "bytes": 307200,
+      "time_sim_s": 19.725001028,
+      "finite": 75437,
+      "centre_m": 3.6156463623046875
+    },
+    "topic_endpoints": {
+      "/diff_drive_controller/cmd_vel": [
+        {
+          "node": "cmd_vel_arbiter",
+          "reliability": "1",
+          "durability": "2"
+        }
+      ],
+      "/diff_drive_controller/odom": [
+        {
+          "node": "_NODE_NAME_UNKNOWN_",
+          "reliability": "1",
+          "durability": "2"
+        }
+      ],
+      "/clock": [
+        {
+          "node": "_NODE_NAME_UNKNOWN_",
+          "reliability": "1",
+          "durability": "2"
+        }
+      ],
+      "/camera/image_raw": [
+        {
+          "node": "_NODE_NAME_UNKNOWN_",
+          "reliability": "1",
+          "durability": "2"
+        }
+      ],
+      "/camera/depth/image_raw": [
+        {
+          "node": "_NODE_NAME_UNKNOWN_",
+          "reliability": "1",
+          "durability": "2"
+        }
+      ],
+      "/camera/camera_info": [
+        {
+          "node": "_NODE_NAME_UNKNOWN_",
+          "reliability": "1",
+          "durability": "2"
+        }
+      ],
+      "/scan": [
+        {
+          "node": "_NODE_NAME_UNKNOWN_",
+          "reliability": "1",
+          "durability": "2"
+        }
+      ],
+      "/joint_states": [
+        {
+          "node": "_NODE_NAME_UNKNOWN_",
+          "reliability": "1",
+          "durability": "2"
+        }
+      ]
+    }
+  },
+  "phases": {
+    "forward": {
+      "start": {
+        "x": -0.0025067432726051386,
+        "y": -8.122645760567134e-08,
+        "z": -5.395582316455351e-05,
+        "yaw": -6.833888057626697e-06,
+        "vx": -0.00018594415609076608,
+        "wz": -0.0002532698785939003,
+        "frame": "odom",
+        "child": "base_footprint",
+        "time_sim_s": 3.791666864
+      },
+      "end": {
+        "x": 3.8605114489756995,
+        "y": -0.001730934796928588,
+        "z": 0.0001358678738922689,
+        "yaw": -0.0016027306307741652,
+        "vx": 0.49640302273001374,
+        "wz": -0.05032327374483275,
+        "frame": "odom",
+        "child": "base_footprint",
+        "time_sim_s": 11.791667281
+      },
+      "duration_sim_s": 8.000000417
+    },
+    "angular": {
+      "start": {
+        "x": 3.9504759020714686,
+        "y": -0.0018743407132128258,
+        "z": -2.6402784376898525e-05,
+        "yaw": -0.0018127083967313553,
+        "vx": 0.00047982776002493296,
+        "wz": -0.000781037783522271,
+        "frame": "odom",
+        "child": "base_footprint",
+        "time_sim_s": 12.791667333
+      },
+      "end": {
+        "x": 3.9174960888930874,
+        "y": 0.03959720511438654,
+        "z": -2.2483439583742895e-05,
+        "yaw": 0.698575810016504,
+        "vx": -0.028922739137262576,
+        "wz": 0.24070824486241207,
+        "frame": "odom",
+        "child": "base_footprint",
+        "time_sim_s": 15.79166749
+      },
+      "duration_sim_s": 3.0000001570000006
+    },
+    "dropout_command": {
+      "start": {
+        "x": 3.9155194966835536,
+        "y": 0.040626183098732845,
+        "z": -2.1277054018565764e-05,
+        "yaw": 0.7272986959843363,
+        "vx": -4.853730112796479e-05,
+        "wz": 0.0009281616821346325,
+        "frame": "odom",
+        "child": "base_footprint",
+        "time_sim_s": 16.791667542
+      },
+      "end": {
+        "x": 4.0476325895852705,
+        "y": 0.15823147541080226,
+        "z": -8.186984590731645e-05,
+        "yaw": 0.7273731178491891,
+        "vx": 0.19546109362825778,
+        "wz": 0.011949594082720935,
+        "frame": "odom",
+        "child": "base_footprint",
+        "time_sim_s": 17.791667594
+      },
+      "duration_sim_s": 1.0000000520000007
+    },
+    "dropout": {
+      "start": {
+        "x": 4.0476325895852705,
+        "y": 0.15823147541080226,
+        "z": -8.186984590731645e-05,
+        "yaw": 0.7273731178491891,
+        "vx": 0.19546109362825778,
+        "wz": 0.011949594082720935,
+        "frame": "odom",
+        "child": "base_footprint",
+        "time_sim_s": 17.791667594
+      },
+      "end": {
+        "x": 4.107292640994091,
+        "y": 0.21135267405405767,
+        "z": -8.881014446928542e-05,
+        "yaw": 0.7274057183005008,
+        "vx": 0.0014385131249391534,
+        "wz": -0.00017350142232603577,
+        "frame": "odom",
+        "child": "base_footprint",
+        "time_sim_s": 19.791667698
+      },
+      "duration_sim_s": 2.000000103999998
+    }
+  },
+  "tf_edges": [
+    [
+      "base_footprint",
+      "base_link"
+    ],
+    [
+      "base_link",
+      "camera_link"
+    ],
+    [
+      "base_link",
+      "lidar_link"
+    ],
+    [
+      "base_link",
+      "wheel1"
+    ],
+    [
+      "base_link",
+      "wheel2"
+    ],
+    [
+      "base_link",
+      "wheel3"
+    ],
+    [
+      "base_link",
+      "wheel4"
+    ],
+    [
+      "camera_link",
+      "camera_optical_frame"
+    ],
+    [
+      "odom",
+      "base_footprint"
+    ]
+  ],
+  "graph": [
+    [
+      "/camera/camera_info",
+      [
+        "sensor_msgs/msg/CameraInfo"
+      ]
+    ],
+    [
+      "/camera/depth/image_raw",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/camera/depth/image_raw/nitros_bridge",
+      [
+        "isaac_ros_nitros_bridge_interfaces/msg/NitrosBridgeImage"
+      ]
+    ],
+    [
+      "/camera/image_raw",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/camera/image_raw/nitros_bridge",
+      [
+        "isaac_ros_nitros_bridge_interfaces/msg/NitrosBridgeImage"
+      ]
+    ],
+    [
+      "/clock",
+      [
+        "rosgraph_msgs/msg/Clock"
+      ]
+    ],
+    [
+      "/cmd_vel",
+      [
+        "geometry_msgs/msg/Twist"
+      ]
+    ],
+    [
+      "/cmd_vel_approach",
+      [
+        "geometry_msgs/msg/TwistStamped"
+      ]
+    ],
+    [
+      "/cmd_vel_arbiter/status",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/cmd_vel_gated",
+      [
+        "geometry_msgs/msg/TwistStamped"
+      ]
+    ],
+    [
+      "/cmd_vel_rl",
+      [
+        "geometry_msgs/msg/TwistStamped"
+      ]
+    ],
+    [
+      "/cmd_vel_teleop",
+      [
+        "geometry_msgs/msg/TwistStamped"
+      ]
+    ],
+    [
+      "/diff_drive_controller/cmd_vel",
+      [
+        "geometry_msgs/msg/TwistStamped"
+      ]
+    ],
+    [
+      "/diff_drive_controller/odom",
+      [
+        "nav_msgs/msg/Odometry"
+      ]
+    ],
+    [
+      "/joint_states",
+      [
+        "sensor_msgs/msg/JointState"
+      ]
+    ],
+    [
+      "/mission/mode",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/parameter_events",
+      [
+        "rcl_interfaces/msg/ParameterEvent"
+      ]
+    ],
+    [
+      "/robot_description",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/rosout",
+      [
+        "rcl_interfaces/msg/Log"
+      ]
+    ],
+    [
+      "/scan",
+      [
+        "sensor_msgs/msg/LaserScan"
+      ]
+    ],
+    [
+      "/tf",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ],
+    [
+      "/tf_static",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ]
+  ],
+  "elapsed_wall_s": 18.46151861999897,
+  "passed": true,
+  "clean_shutdown": true
+}

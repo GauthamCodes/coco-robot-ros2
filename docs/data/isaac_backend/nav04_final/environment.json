@@ -1,0 +1,6 @@
+{
+  "observation": "Processes had already exited before /proc environment capture; no live environment snapshot was obtained.",
+  "configured_isaac_environment": "scripts/isaac_sim_coco.sh",
+  "configured_jazzy_environment": "COCO_WS=/home/gautham/coco_isaac_ws; source setup_env.sh; harness ROS_DOMAIN_ID=78",
+  "middleware_evidence": "launch.log and ros_peer.log identify rmw_cyclonedds_cpp"
+}

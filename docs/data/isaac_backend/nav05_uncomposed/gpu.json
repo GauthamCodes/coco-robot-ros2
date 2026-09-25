@@ -1,0 +1,210 @@
+[
+  {
+    "elapsed_wall_s": 15.456003762000023,
+    "total_gpu_used_mib": "1096"
+  },
+  {
+    "elapsed_wall_s": 16.51741410600016,
+    "total_gpu_used_mib": "1174"
+  },
+  {
+    "elapsed_wall_s": 17.610610192999957,
+    "total_gpu_used_mib": "1269"
+  },
+  {
+    "elapsed_wall_s": 18.660200668000016,
+    "total_gpu_used_mib": "1268"
+  },
+  {
+    "elapsed_wall_s": 19.70291820400007,
+    "total_gpu_used_mib": "1268"
+  },
+  {
+    "elapsed_wall_s": 20.799994320999986,
+    "total_gpu_used_mib": "1267"
+  },
+  {
+    "elapsed_wall_s": 21.835806095999942,
+    "total_gpu_used_mib": "2459"
+  },
+  {
+    "elapsed_wall_s": 22.872309394000013,
+    "total_gpu_used_mib": "2455"
+  },
+  {
+    "elapsed_wall_s": 24.073063464000143,
+    "total_gpu_used_mib": "2457"
+  },
+  {
+    "elapsed_wall_s": 25.104687384000044,
+    "total_gpu_used_mib": "2455"
+  },
+  {
+    "elapsed_wall_s": 26.141585661000136,
+    "total_gpu_used_mib": "2455"
+  },
+  {
+    "elapsed_wall_s": 27.177857012000004,
+    "total_gpu_used_mib": "2455"
+  },
+  {
+    "elapsed_wall_s": 28.214003162000154,
+    "total_gpu_used_mib": "2453"
+  },
+  {
+    "elapsed_wall_s": 29.370384362000095,
+    "total_gpu_used_mib": "2456"
+  },
+  {
+    "elapsed_wall_s": 30.40635821900014,
+    "total_gpu_used_mib": "2448"
+  },
+  {
+    "elapsed_wall_s": 31.43826746600007,
+    "total_gpu_used_mib": "2456"
+  },
+  {
+    "elapsed_wall_s": 32.47550980200003,
+    "total_gpu_used_mib": "2454"
+  },
+  {
+    "elapsed_wall_s": 33.511107146000086,
+    "total_gpu_used_mib": "2448"
+  },
+  {
+    "elapsed_wall_s": 34.673377598000116,
+    "total_gpu_used_mib": "2448"
+  },
+  {
+    "elapsed_wall_s": 35.711052103000156,
+    "total_gpu_used_mib": "2456"
+  },
+  {
+    "elapsed_wall_s": 36.744447960000116,
+    "total_gpu_used_mib": "2477"
+  },
+  {
+    "elapsed_wall_s": 37.781793464999964,
+    "total_gpu_used_mib": "2477"
+  },
+  {
+    "elapsed_wall_s": 38.82066926000016,
+    "total_gpu_used_mib": "2477"
+  },
+  {
+    "elapsed_wall_s": 39.99730080400013,
+    "total_gpu_used_mib": "2477"
+  },
+  {
+    "elapsed_wall_s": 41.038822812000035,
+    "total_gpu_used_mib": "2475"
+  },
+  {
+    "elapsed_wall_s": 42.07244510700002,
+    "total_gpu_used_mib": "2483"
+  },
+  {
+    "elapsed_wall_s": 43.10658193900008,
+    "total_gpu_used_mib": "2480"
+  },
+  {
+    "elapsed_wall_s": 44.138563358000056,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 45.27690181799994,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 46.30974162000007,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 47.34475168800009,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 48.380029612000044,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 49.41539023500013,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 50.56500838200009,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 51.60298246000002,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 52.64038404600001,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 53.673316986000145,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 54.70852409200006,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 55.859121981000044,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 56.893884110000045,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 57.92655849700009,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 58.957711449000044,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 59.99271976700015,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 61.13909276000004,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 62.172801400000026,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 63.208372472000065,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 64.2439608090001,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 65.28089352500001,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 66.44734615200014,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 67.48107299499998,
+    "total_gpu_used_mib": "2470"
+  },
+  {
+    "elapsed_wall_s": 68.5166510030001,
+    "total_gpu_used_mib": "2472"
+  },
+  {
+    "elapsed_wall_s": 69.55122618400014,
+    "total_gpu_used_mib": "2470"
+  }
+]

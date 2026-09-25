@@ -4200,3 +4200,43 @@ defaults to today's layout:
 ```bash
 cd coco_sim && python3 -c "from coco_sim.episode import generate_episode as g; print(g(seed=1827).to_json())"
 ```
+
+
+## 2026-09-25 — P0.3 Isaac Sim 4.5 backend foundation
+
+**Built:** Dedicated `p03-isaac-backend` worktree at `~/coco-isaac-backend`,
+from verified local/remote episode baseline b3c65985. Optional coco_sim Isaac
+backend, source-derived four-wheel robot, scene-before-bridge launcher,
+CycloneDDS transport, existing-arbiter command adapter, odometry/TF/clock,
+320×240 reliable RGB/depth, full-angle 480-beam PhysX LiDAR, RViz mode,
+raw/Nav2 observers and evidence harness. Operations: `docs/ISAAC_BACKEND.md`.
+No shared robotics runtime, Gazebo launch/configuration, episode constraints,
+P0.2 branch, installation, driver, shell profile or original user work changed.
+
+**Measured:** 1172 package tests passed (latest separate package runs),
+including seven new backend tests; final coco_sim repeat 135 passed.
+Existing Gazebo integration: three live assertions plus one post-shutdown
+assertion passed, after the unrelated simulator exited independently.
+Raw final smoke: all 19 checks and all process exits passed; forward 3.8634 m
+for 0.5 m/s × 8 sim s; positive yaw 0.6836 rad for 0.5 rad/s × 3 sim s.
+Peak Isaac RSS ~4.73 GiB, sampled total GPU 2292 MiB in that run.
+Two Nav2 goals succeeded (0.0852 m and 0.0445 m final map error), but composed
+container shutdown failed. Noncomposed map-only override fixed startup;
+latest goal aborted on compute_path_to_pose acknowledgement timeout and
+RViz teardown threw Ogre vertex-buffer allocation error. Isaac and Nav2
+children exited normally. Nav2 overall PARTIAL, raw interfaces PASS.
+Full evidence and development failures: `docs/data/isaac_backend/README.md`.
+
+**Unverified:** Full mission, perception execution, manipulation/MoveIt,
+full episode-to-Isaac fetch world, cold-cache/long-duration reliability,
+calibrated skid-steer dynamics and cross-simulator parity. Unsupported host
+configuration remains experimentally validated, not officially supported.
+
+**Open:** Nav2 action timeout/composed teardown and intermittent RViz teardown
+need isolated diagnosis before calling navigation reliable. Ground-truth
+odometry and approximate fixed payload inertia are deliberate limitations.
+No future phase started; unrelated running apps were not terminated.
+
+**Next:** After sourcing Jazzy and `COCO_WS=~/coco_isaac_ws` via setup_env.sh,
+reproduce the documented blocker using a new output directory:
+`python3 scripts/isaac_smoke.py /tmp/coco-nav-recheck-001 --nav --rviz --raw-evidence docs/data/isaac_backend/smoke07_shutdown/result.json`.

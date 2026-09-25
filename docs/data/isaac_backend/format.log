@@ -1,0 +1,12 @@
+reformatted scripts/isaac_ros.py
+reformatted coco_sim/test/test_isaac.py
+reformatted /home/gautham/coco-isaac-backend/coco_sim/coco_sim/isaac/config.py
+reformatted scripts/isaac_fixture_map.py
+reformatted scripts/isaac_smoke.py
+reformatted scripts/isaac_nav_observer.py
+reformatted /home/gautham/coco-isaac-backend/coco_sim/coco_sim/isaac/model.py
+reformatted scripts/isaac_smoke_observer.py
+reformatted /home/gautham/coco-isaac-backend/coco_sim/coco_sim/isaac/runtime.py
+
+All done! ✨ 🍰 ✨
+9 files reformatted, 1 file left unchanged.

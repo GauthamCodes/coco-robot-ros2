@@ -1,0 +1,10 @@
+[build_overlay] /home/gautham/coco-isaac-backend -> /home/gautham/coco_isaac_ws
+Starting >>> coco_sim
+--- stderr: coco_sim
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_sim [4.32s]
+
+Summary: 1 package finished [5.11s]
+  1 package had stderr output: coco_sim

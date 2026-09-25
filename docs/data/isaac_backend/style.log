@@ -1,0 +1,258 @@
+coco_sim/coco_sim/isaac/config.py:69:1: D107 Missing docstring in __init__
+coco_sim/coco_sim/isaac/model.py:23:1: I201 Missing newline between import groups. 'from .config import FIXTURES, wheel_layout' is identified as Application Relative and 'from coco_config import robot' is identified as Third Party.
+coco_sim/coco_sim/isaac/model.py:103:55: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:103:63: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:103:65: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:104:27: E128 continuation line under-indented for visual indent
+coco_sim/coco_sim/isaac/model.py:104:47: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:105:27: E128 continuation line under-indented for visual indent
+coco_sim/coco_sim/isaac/model.py:105:54: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:105:62: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:105:64: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:107:67: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:108:25: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:108:40: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:108:62: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:122:35: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/model.py:179:33: E128 continuation line under-indented for visual indent
+coco_sim/coco_sim/isaac/runtime.py:21:1: I100 Import statements are in the wrong order. 'import signal' should be before 'from pathlib import Path'
+coco_sim/coco_sim/isaac/runtime.py:25:1: I201 Missing newline between import groups. 'from coco_sim.episode import generate_episode' is identified as Third Party and 'from coco_config import robot' is identified as Third Party.
+coco_sim/coco_sim/isaac/runtime.py:26:1: I201 Missing newline between import groups. 'from .config import DriveCommand, FRAMES, PHYSICS_DT, RENDER_DT, TOPICS, wheel_layout' is identified as Application Relative and 'from coco_sim.episode import generate_episode' is identified as Third Party.
+coco_sim/coco_sim/isaac/runtime.py:141:9: F841 local variable 'render_product' is assigned to but never used
+coco_sim/coco_sim/isaac/runtime.py:169:9: F841 local variable 'subscription' is assigned to but never used
+coco_sim/coco_sim/isaac/runtime.py:216:24: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:216:32: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:216:45: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:216:53: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:217:28: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:217:36: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:219:31: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:219:35: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:219:43: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:219:54: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:219:58: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:219:66: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:31: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:33: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:37: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:40: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:43: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:50: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:54: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:57: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:60: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:67: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:71: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:74: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:223:77: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:31: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:35: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:38: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:41: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:48: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:50: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:54: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:57: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:60: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:67: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:71: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:74: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:224:77: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:31: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:35: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:38: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:41: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:48: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:52: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:55: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:58: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:65: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:67: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:71: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:74: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:225:77: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:245:39: E127 continuation line over-indented for visual indent
+coco_sim/coco_sim/isaac/runtime.py:245:50: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:245:68: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:251:76: E226 missing whitespace around arithmetic operator
+coco_sim/coco_sim/isaac/runtime.py:258:1: B902 blind except Exception: statement
+coco_sim/test/test_isaac.py:18:1: I100 Import statements are in the wrong order. 'import xml.etree.ElementTree' should be before 'from pathlib import Path'
+coco_sim/test/test_isaac.py:22:1: I100 Import statements are in the wrong order. 'from coco_config import robot' should be before 'import pytest' and in a different group.
+coco_sim/test/test_isaac.py:23:1: I201 Missing newline between import groups. 'from coco_sim.isaac.config import DriveCommand, wheel_layout, wheel_speeds' is identified as Third Party and 'from coco_config import robot' is identified as Third Party.
+coco_sim/test/test_isaac.py:27:1: D103 Missing docstring in public function
+coco_sim/test/test_isaac.py:37:1: D103 Missing docstring in public function
+coco_sim/test/test_isaac.py:38:70: E226 missing whitespace around arithmetic operator
+coco_sim/test/test_isaac.py:45:1: D103 Missing docstring in public function
+coco_sim/test/test_isaac.py:49:43: E226 missing whitespace around arithmetic operator
+coco_sim/test/test_isaac.py:51:40: E226 missing whitespace around arithmetic operator
+coco_sim/test/test_isaac.py:54:1: D103 Missing docstring in public function
+coco_sim/test/test_isaac.py:58:65: E226 missing whitespace around arithmetic operator
+coco_sim/test/test_isaac.py:58:89: E226 missing whitespace around arithmetic operator
+coco_sim/test/test_isaac.py:63:1: D103 Missing docstring in public function
+coco_sim/test/test_isaac.py:69:96: E226 missing whitespace around arithmetic operator
+coco_sim/test/test_isaac.py:69:111: E226 missing whitespace around arithmetic operator
+coco_sim/test/test_isaac.py:73:1: D103 Missing docstring in public function
+coco_sim/test/test_isaac.py:81:1: D103 Missing docstring in public function
+scripts/isaac_fixture_map.py:19:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'from pathlib import Path' is identified as Stdlib.
+scripts/isaac_fixture_map.py:20:1: I201 Missing newline between import groups. 'import yaml' is identified as Third Party and 'import numpy' is identified as Third Party.
+scripts/isaac_fixture_map.py:21:1: I100 Import statements are in the wrong order. 'from coco_config import robot' should be before 'import yaml' and in a different group.
+scripts/isaac_fixture_map.py:21:1: I201 Missing newline between import groups. 'from coco_config import robot' is identified as Third Party and 'import yaml' is identified as Third Party.
+scripts/isaac_fixture_map.py:22:1: I201 Missing newline between import groups. 'from coco_sim.isaac.config import FIXTURES' is identified as Third Party and 'from coco_config import robot' is identified as Third Party.
+scripts/isaac_fixture_map.py:25:1: D103 Missing docstring in public function
+scripts/isaac_fixture_map.py:30:50: E226 missing whitespace around arithmetic operator
+scripts/isaac_fixture_map.py:31:51: E226 missing whitespace around arithmetic operator
+scripts/isaac_fixture_map.py:34:46: E226 missing whitespace around arithmetic operator
+scripts/isaac_fixture_map.py:34:82: E226 missing whitespace around arithmetic operator
+scripts/isaac_fixture_map.py:36:12: E226 missing whitespace around arithmetic operator
+scripts/isaac_fixture_map.py:37:12: E226 missing whitespace around arithmetic operator
+scripts/isaac_fixture_map.py:37:55: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_fixture_map.py:39:32: E226 missing whitespace around arithmetic operator
+scripts/isaac_fixture_map.py:39:63: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:19:1: I100 Import statements are in the wrong order. 'import json' should be before 'from collections import Counter'
+scripts/isaac_nav_observer.py:22:1: I100 Import statements are in the wrong order. 'import time' should be before 'from pathlib import Path'
+scripts/isaac_nav_observer.py:28:1: I100 Import statements are in the wrong order. 'from geometry_msgs.msg import TwistStamped' should be before 'from rclpy.time import Time' and in a different group.
+scripts/isaac_nav_observer.py:28:1: I201 Missing newline between import groups. 'from geometry_msgs.msg import TwistStamped' is identified as Third Party and 'from rclpy.time import Time' is identified as Third Party.
+scripts/isaac_nav_observer.py:29:1: I201 Missing newline between import groups. 'from nav_msgs.msg import Odometry' is identified as Third Party and 'from geometry_msgs.msg import TwistStamped' is identified as Third Party.
+scripts/isaac_nav_observer.py:30:1: I100 Import statements are in the wrong order. 'from nav2_msgs.action import NavigateToPose' should be before 'from nav_msgs.msg import Odometry' and in a different group.
+scripts/isaac_nav_observer.py:30:1: I201 Missing newline between import groups. 'from nav2_msgs.action import NavigateToPose' is identified as Third Party and 'from nav_msgs.msg import Odometry' is identified as Third Party.
+scripts/isaac_nav_observer.py:31:1: I100 Import statements are in the wrong order. 'from lifecycle_msgs.srv import GetState' should be before 'from nav2_msgs.action import NavigateToPose' and in a different group.
+scripts/isaac_nav_observer.py:31:1: I201 Missing newline between import groups. 'from lifecycle_msgs.srv import GetState' is identified as Third Party and 'from nav2_msgs.action import NavigateToPose' is identified as Third Party.
+scripts/isaac_nav_observer.py:32:1: I201 Missing newline between import groups. 'from tf2_ros import Buffer, TransformListener' is identified as Third Party and 'from lifecycle_msgs.srv import GetState' is identified as Third Party.
+scripts/isaac_nav_observer.py:35:1: D103 Missing docstring in public function
+scripts/isaac_nav_observer.py:42:5: F841 local variable 'listener' is assigned to but never used
+scripts/isaac_nav_observer.py:58:13: E128 continuation line under-indented for visual indent
+scripts/isaac_nav_observer.py:59:5: E306 expected 1 blank line before a nested definition, found 0
+scripts/isaac_nav_observer.py:61:60: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:64:32: E231 missing whitespace after ':'
+scripts/isaac_nav_observer.py:64:45: E231 missing whitespace after ':'
+scripts/isaac_nav_observer.py:65:34: E231 missing whitespace after ':'
+scripts/isaac_nav_observer.py:65:47: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:65:52: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:65:56: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:65:60: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:65:65: E231 missing whitespace after ','
+scripts/isaac_nav_observer.py:65:67: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:65:69: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:65:74: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:65:78: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:65:82: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:69:67: E231 missing whitespace after ','
+scripts/isaac_nav_observer.py:70:60: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:70:65: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:70:69: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:70:73: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:70:78: E231 missing whitespace after ','
+scripts/isaac_nav_observer.py:70:80: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:70:82: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:70:87: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:70:91: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:70:95: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:71:1: B902 blind except Exception: statement
+scripts/isaac_nav_observer.py:80:40: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:122:86: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:122:104: E226 missing whitespace around arithmetic operator
+scripts/isaac_nav_observer.py:126:1: B902 blind except Exception: statement
+scripts/isaac_nav_observer.py:130:54: E226 missing whitespace around arithmetic operator
+scripts/isaac_ros.py:24:1: I100 Import statements are in the wrong order. 'from geometry_msgs.msg import Twist, TwistStamped' should be before 'from rclpy.node import Node' and in a different group.
+scripts/isaac_ros.py:24:1: I201 Missing newline between import groups. 'from geometry_msgs.msg import Twist, TwistStamped' is identified as Third Party and 'from rclpy.node import Node' is identified as Third Party.
+scripts/isaac_ros.py:25:1: I100 Import statements are in the wrong order. 'from custom_teleop.cmd_vel_arbiter import CmdVelArbiter' should be before 'from geometry_msgs.msg import Twist, TwistStamped' and in a different group.
+scripts/isaac_ros.py:25:1: I201 Missing newline between import groups. 'from custom_teleop.cmd_vel_arbiter import CmdVelArbiter' is identified as Third Party and 'from geometry_msgs.msg import Twist, TwistStamped' is identified as Third Party.
+scripts/isaac_ros.py:31:1: D107 Missing docstring in __init__
+scripts/isaac_ros.py:39:1: D102 Missing docstring in public method
+scripts/isaac_ros.py:47:1: D103 Missing docstring in public function
+scripts/isaac_smoke.py:21:1: I100 Import statements are in the wrong order. 'import signal' should be before 'from pathlib import Path'
+scripts/isaac_smoke.py:26:1: D103 Missing docstring in public function
+scripts/isaac_smoke.py:70:13: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke.py:77:9: F841 local variable 'peer' is assigned to but never used
+scripts/isaac_smoke.py:78:34: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke.py:79:34: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke.py:82:28: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke.py:83:28: E126 continuation line over-indented for hanging indent
+scripts/isaac_smoke.py:88:27: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke.py:91:38: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke.py:116:52: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke.py:118:67: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke.py:121:68: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke.py:125:1: B902 blind except Exception: statement
+scripts/isaac_smoke.py:131:59: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:19:1: I100 Import statements are in the wrong order. 'import json' should be before 'from collections import Counter'
+scripts/isaac_smoke_observer.py:22:1: I100 Import statements are in the wrong order. 'import time' should be before 'from pathlib import Path'
+scripts/isaac_smoke_observer.py:25:1: I201 Missing newline between import groups. 'import rclpy' is identified as Third Party and 'import numpy' is identified as Third Party.
+scripts/isaac_smoke_observer.py:27:1: I101 Imported names are in the wrong order. Should be DurabilityPolicy, QoSProfile
+scripts/isaac_smoke_observer.py:28:1: I100 Import statements are in the wrong order. 'from geometry_msgs.msg import Twist' should be before 'from rclpy.qos import QoSProfile, DurabilityPolicy' and in a different group.
+scripts/isaac_smoke_observer.py:28:1: I201 Missing newline between import groups. 'from geometry_msgs.msg import Twist' is identified as Third Party and 'from rclpy.qos import QoSProfile, DurabilityPolicy' is identified as Third Party.
+scripts/isaac_smoke_observer.py:29:1: I201 Missing newline between import groups. 'from nav_msgs.msg import Odometry' is identified as Third Party and 'from geometry_msgs.msg import Twist' is identified as Third Party.
+scripts/isaac_smoke_observer.py:30:1: I201 Missing newline between import groups. 'from rosgraph_msgs.msg import Clock' is identified as Third Party and 'from nav_msgs.msg import Odometry' is identified as Third Party.
+scripts/isaac_smoke_observer.py:31:1: I201 Missing newline between import groups. 'from sensor_msgs.msg import CameraInfo, Image, JointState, LaserScan' is identified as Third Party and 'from rosgraph_msgs.msg import Clock' is identified as Third Party.
+scripts/isaac_smoke_observer.py:32:1: I201 Missing newline between import groups. 'from tf2_msgs.msg import TFMessage' is identified as Third Party and 'from sensor_msgs.msg import CameraInfo, Image, JointState, LaserScan' is identified as Third Party.
+scripts/isaac_smoke_observer.py:33:1: I101 Imported names are in the wrong order. Should be FIXTURES, TOPICS
+scripts/isaac_smoke_observer.py:33:1: I100 Import statements are in the wrong order. 'from coco_sim.isaac.config import TOPICS, FIXTURES' should be before 'from tf2_msgs.msg import TFMessage' and in a different group.
+scripts/isaac_smoke_observer.py:33:1: I201 Missing newline between import groups. 'from coco_sim.isaac.config import TOPICS, FIXTURES' is identified as Third Party and 'from tf2_msgs.msg import TFMessage' is identified as Third Party.
+scripts/isaac_smoke_observer.py:34:1: I100 Import statements are in the wrong order. 'from coco_config import robot' should be before 'from coco_sim.isaac.config import TOPICS, FIXTURES' and in a different group.
+scripts/isaac_smoke_observer.py:34:1: I201 Missing newline between import groups. 'from coco_config import robot' is identified as Third Party and 'from coco_sim.isaac.config import TOPICS, FIXTURES' is identified as Third Party.
+scripts/isaac_smoke_observer.py:37:1: D103 Missing docstring in public function
+scripts/isaac_smoke_observer.py:64:28: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:65:49: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:65:54: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:65:58: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:65:62: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:65:70: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:65:72: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:65:77: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:65:81: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:65:85: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:72:28: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:77:75: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:82:22: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:85:121: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:89:72: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:94:28: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:97:28: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:99:28: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:106:13: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:114:9: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:129:55: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:139:16: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:149:13: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:150:44: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:150:52: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:151:65: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:157:68: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:157:82: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:158:69: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:158:82: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:159:52: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:164:60: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:165:61: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:166:26: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:166:34: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:166:51: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:166:59: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:170:44: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:171:13: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:176:13: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:181:13: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:182:32: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:182:62: E226 missing whitespace around arithmetic operator
+scripts/isaac_smoke_observer.py:184:39: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:202:29: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:203:29: E128 continuation line under-indented for visual indent
+scripts/isaac_smoke_observer.py:211:13: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:214:1: B902 blind except Exception: statement
+scripts/isaac_smoke_observer.py:219:18: C408 Unnecessary dict call - rewrite as a literal.
+scripts/isaac_smoke_observer.py:222:54: E226 missing whitespace around arithmetic operator
+5     B902 blind except Exception: statement
+11    C408 Unnecessary dict call - rewrite as a literal.
+1     D102 Missing docstring in public method
+12    D103 Missing docstring in public function
+2     D107 Missing docstring in __init__
+1     E126 continuation line over-indented for hanging indent
+1     E127 continuation line over-indented for visual indent
+19    E128 continuation line under-indented for visual indent
+138   E226 missing whitespace around arithmetic operator
+6     E231 missing whitespace after ':'
+1     E306 expected 1 blank line before a nested definition, found 0
+4     F841 local variable 'render_product' is assigned to but never used
+17    I100 Import statements are in the wrong order. 'import signal' should be before 'from pathlib import Path'
+2     I101 Imported names are in the wrong order. Should be DurabilityPolicy, QoSProfile
+23    I201 Missing newline between import groups. 'from .config import FIXTURES, wheel_layout' is identified as Application Relative and 'from coco_config import robot' is identified as Third Party.

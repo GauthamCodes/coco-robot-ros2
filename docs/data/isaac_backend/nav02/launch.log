@@ -1,0 +1,1149 @@
+[Warning] [simulation_app.simulation_app] Modules: ['omni.kit_app'] were loaded before SimulationApp was started and might not be loaded correctly.
+[Warning] [simulation_app.simulation_app] Please check to make sure no extra omniverse or pxr modules are imported before the call to SimulationApp(...)
+[Info] [carb] Logging to file: /home/gautham/isaac-sim/venv/lib/python3.10/site-packages/omni/logs/Kit/Isaac-Sim Python/4.5/kit_20260924_230503.log
+2026-09-24 17:35:03 [0ms] [Warning] [omni.kit.app.plugin] No crash reporter present, dumps uploading isn't available.
+[0.088s] [ext: omni.kit.async_engine-0.0.1] startup
+[0.362s] [ext: omni.metrics.core-0.0.1] startup
+[0.363s] [ext: omni.client.lib-1.0.0] startup
+[0.408s] [ext: omni.blobkey-1.1.2] startup
+[0.409s] [ext: omni.stats-1.0.1] startup
+[0.410s] [ext: omni.datastore-0.0.0] startup
+[0.421s] [ext: omni.client-1.2.2] startup
+[0.430s] [ext: omni.ujitso.default-1.0.0] startup
+[0.432s] [ext: omni.hsscclient-1.1.1] startup
+2026-09-24 17:35:04 [408ms] [Warning] [omni.datastore] OmniHub is inaccessible
+[0.439s] [ext: omni.gpu_foundation.shadercache.vulkan-1.0.0] startup
+[0.443s] [ext: omni.assets.plugins-0.0.0] startup
+[0.445s] [ext: omni.gpu_foundation-0.0.0] startup
+[0.457s] [ext: carb.windowing.plugins-1.0.0] startup
+[0.492s] [ext: omni.kit.renderer.init-0.0.0] startup
+2026-09-24 17:35:04 [919ms] [Warning] [gpu.foundation.plugin] Skipping unsupported non-NVIDIA GPU: Intel(R) Graphics (RPL-P)
+2026-09-24 17:35:04 [919ms] [Warning] [gpu.foundation.plugin] Skipping unsupported non-NVIDIA GPU: Intel(R) Graphics (RPL-P)
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.173.02    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 4050 Laptop.. | Yes: 0 |     | 6141    MB | 10de      | 0          |
+|     |                                  |        |     |            | 28a1      | 02e278e3.. |
+|     |                                  |        |     |            | 1         |            |
+|---------------------------------------------------------------------------------------------|
+| 1   | Intel(R) Graphics (RPL-P)        |        |     | 11772   MB | 8086      | 0          |
+|     |                                  |        |     |            | a7a8      | 8680a8a7.. |
+|     |                                  |        |     |            | 0         |            |
+|=============================================================================================|
+| OS: 24.04.4 LTS (Noble Numbat) ubuntu, Version: 24.04.4, Kernel: 6.8.0-139-generic
+| XServer Vendor: The X.Org Foundation, XServer Version: 12101011 (1.21.1.11)
+| Processor: 13th Gen Intel(R) Core(TM) i5-13420H
+| Bare Metal Cores: 8 | Bare Metal Logical Cores: 16
+| Available Cores:  12 
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 15696 | Free Memory: 9584
+| Total Page/Swap (MB): 4095 | Free Page/Swap: 4081
+|---------------------------------------------------------------------------------------------|
+2026-09-24 17:35:05 [1,404ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-09-24 17:35:05 [1,404ms] [Warning] [gpu.foundation.plugin] Detected IOMMU is enabled. Running CUDA peer-to-peer bandwidth and latency validation.
+Unidirectional P2P=Enabled Bandwidth (P2P Writes) Matrix (GB/s)
+   D\D     0 
+     0 147.02 
+P2P=Enabled Latency (P2P Writes) Matrix (us)
+   GPU     0 
+     0   1.46 
+
+   CPU     0 
+     0   4.00 
+[1.669s] [ext: omni.kit.pipapi-0.0.0] startup
+[1.671s] [ext: omni.kit.pip_archive-0.0.0] startup
+[1.672s] [ext: omni.pip.compute-1.4.5] startup
+[1.672s] [ext: omni.materialx.libs-1.0.6] startup
+[1.686s] [ext: omni.kit.telemetry-0.5.1] startup
+[1.718s] [ext: omni.kit.loop-isaac-1.2.1] startup
+[1.721s] [ext: omni.kit.test-1.1.2] startup
+[1.814s] [ext: omni.usd.config-1.0.5] startup
+[1.820s] [ext: omni.gpucompute.plugins-0.0.0] startup
+[1.821s] [ext: omni.usd.libs-1.0.1] startup
+[2.007s] [ext: omni.mdl-55.0.1] startup
+[2.046s] [ext: omni.iray.libs-0.0.0] startup
+[2.056s] [ext: omni.mdl.neuraylib-0.2.10] startup
+[2.060s] [ext: omni.kit.usd.mdl-1.0.7] startup
+[2.255s] [ext: omni.appwindow-1.1.9] startup
+[2.259s] [ext: omni.kit.renderer.core-1.0.2] startup
+[2.292s] [ext: omni.kit.renderer.capture-0.0.0] startup
+[2.296s] [ext: omni.kit.renderer.imgui-1.0.2] startup
+[2.433s] [ext: omni.ui-2.26.5] startup
+[2.451s] [ext: omni.kit.mainwindow-1.0.3] startup
+[2.453s] [ext: carb.audio-0.1.0] startup
+[2.458s] [ext: omni.uiaudio-1.0.0] startup
+[2.460s] [ext: omni.kit.uiapp-0.0.0] startup
+[2.460s] [ext: omni.usd.schema.metrics.assembler-106.5.0] startup
+[2.478s] [ext: omni.usd.schema.audio-0.0.0] startup
+[2.485s] [ext: omni.usd.schema.omnigraph-1.0.0] startup
+[2.498s] [ext: omni.usd.schema.geospatial-0.0.0] startup
+[2.504s] [ext: omni.usd.schema.semantics-0.0.0] startup
+[2.509s] [ext: omni.usd.schema.anim-0.0.0] startup
+[2.550s] [ext: usdrt.scenegraph-7.5.1] startup
+[2.628s] [ext: omni.activity.core-1.0.1] startup
+[2.630s] [ext: omni.kit.actions.core-1.0.0] startup
+[2.634s] [ext: omni.usd_resolver-1.0.0] startup
+[2.642s] [ext: omni.kit.commands-1.4.9] startup
+[2.649s] [ext: omni.usd.core-1.4.2] startup
+[2.655s] [ext: omni.resourcemonitor-107.0.0] startup
+[2.659s] [ext: omni.kit.audiodeviceenum-1.0.1] startup
+[2.662s] [ext: omni.hydra.usdrt_delegate-7.5.1] startup
+[2.684s] [ext: omni.kit.usd_undo-0.1.8] startup
+[2.685s] [ext: omni.kit.window.popup_dialog-2.0.24] startup
+[2.692s] [ext: omni.graph.exec-0.9.4] startup
+[2.693s] [ext: omni.timeline-1.0.11] startup
+[2.697s] [ext: omni.kit.widget.nucleus_connector-1.1.10] startup
+[2.700s] [ext: omni.kit.exec.core-0.13.4] startup
+[2.705s] [ext: omni.hydra.scene_delegate-0.3.3] startup
+[2.715s] [ext: omni.usd-1.12.4] startup
+[2.797s] [ext: omni.inspect-1.0.1] startup
+[2.799s] [ext: omni.kit.notification_manager-1.0.9] startup
+[2.802s] [ext: omni.graph.core-2.181.8] startup
+[2.808s] [ext: isaacsim.core.deprecation_manager-0.2.2] startup
+[2.810s] [ext: omni.kit.asset_converter-2.8.9] startup
+[2.833s] [ext: omni.usd.schema.omniscripting-1.0.0] startup
+[2.844s] [ext: omni.usd.schema.physx-106.5.7] startup
+[2.898s] [ext: omni.usd.schema.forcefield-106.5.7] startup
+[2.909s] [ext: isaacsim.robot.schema-3.1.2] startup
+[2.926s] [ext: omni.pip.cloud-1.1.7] startup
+[2.932s] [ext: omni.usd.schema.isaac-3.0.2] startup
+[2.932s] [ext: omni.kit.menu.core-1.1.2] startup
+[2.933s] [ext: omni.kit.widget.context_menu-1.2.4] startup
+[2.936s] [ext: omni.kit.usd.layers-2.2.0] startup
+[2.951s] [ext: omni.index.libs-380600.1777.0] startup
+[2.951s] [ext: omni.kit.context_menu-1.8.3] startup
+[2.955s] [ext: omni.kit.clipboard-1.0.5] startup
+[2.957s] [ext: omni.index-1.0.1] startup
+[2.958s] [ext: omni.kit.helper.file_utils-0.1.9] startup
+[2.962s] [ext: omni.kit.widget.options_menu-1.1.6] startup
+[2.968s] [ext: omni.kit.widget.path_field-2.0.11] startup
+[2.969s] [ext: omni.kit.widget.filebrowser-2.10.52] startup
+[2.978s] [ext: omni.ui.scene-1.11.2] startup
+[2.987s] [ext: omni.kit.widget.options_button-1.0.3] startup
+[2.988s] [ext: omni.kit.widget.browser_bar-2.0.10] startup
+[2.990s] [ext: omni.hydra.rtx.shadercache.vulkan-1.0.0] startup
+[2.992s] [ext: omni.ujitso.processor.texture-1.0.0] startup
+[2.994s] [ext: omni.kit.window.filepicker-2.11.7] startup
+[3.018s] [ext: omni.volume-0.5.0] startup
+[3.030s] [ext: omni.ujitso.client-0.0.0] startup
+[3.031s] [ext: omni.graph.tools-1.79.1] startup
+[3.071s] [ext: omni.graph.image.core-0.6.0] startup
+[3.073s] [ext: omni.hydra.rtx-1.0.0] startup
+2026-09-24 17:35:06 [3,064ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+[3.121s] [ext: omni.kit.window.file_importer-1.1.14] startup
+[3.125s] [ext: omni.kit.menu.utils-1.7.7] startup
+[3.138s] [ext: omni.graph.image.nodes-1.3.0] startup
+[3.144s] [ext: omni.kit.widget.searchable_combobox-1.0.6] startup
+[3.145s] [ext: omni.kit.hydra_texture-1.4.0] startup
+[3.153s] [ext: omni.kit.material.library-1.5.15] startup
+[3.161s] [ext: omni.hydra.engine.stats-1.0.3] startup
+[3.167s] [ext: omni.kit.viewport.scene_camera_model-1.0.5] startup
+[3.179s] [ext: omni.kit.widget.settings-1.2.2] startup
+[3.182s] [ext: omni.kit.viewport.legacy_gizmos-1.0.16] startup
+[3.188s] [ext: omni.kit.widget.viewport-107.0.7] startup
+[3.195s] [ext: omni.kit.viewport.registry-104.0.6] startup
+[3.196s] [ext: omni.kit.raycast.query-1.0.5] startup
+[3.208s] [ext: omni.graph.action_core-1.1.7] startup
+[3.214s] [ext: omni.kit.window.drop_support-1.0.4] startup
+[3.215s] [ext: omni.graph-1.140.2] startup
+[3.425s] [ext: omni.kit.viewport.window-107.0.8] startup
+[3.458s] [ext: omni.kit.window.preferences-1.7.0] startup
+[3.468s] [ext: omni.kvdb-106.5.7] startup
+[3.471s] [ext: omni.graph.action_nodes-1.40.1] startup
+[3.480s] [ext: omni.kit.viewport.utility-1.0.18] startup
+[3.484s] [ext: omni.kit.viewport.menubar.core-107.1.2] startup
+[3.520s] [ext: isaacsim.core.version-2.0.2] startup
+[3.525s] [ext: omni.kit.menu.create-1.0.17] startup
+[3.531s] [ext: omni.graph.action-1.120.0] startup
+[3.533s] [ext: omni.syntheticdata-0.6.10] startup
+[3.592s] [ext: omni.localcache-106.5.7] startup
+[3.624s] [ext: omni.convexdecomposition-106.5.7] startup
+[3.648s] [ext: isaacsim.storage.native-1.0.6] startup
+[3.652s] [ext: omni.usdphysics-106.5.7] startup
+[3.661s] [ext: omni.physx.foundation-106.5.7] startup
+[3.679s] [ext: omni.physics.tensors-106.5.7] startup
+[3.697s] [ext: omni.kit.manipulator.viewport-107.0.1] startup
+[3.700s] [ext: omni.physx.cooking-106.5.7] startup
+[3.719s] [ext: omni.kit.hotkeys.core-1.3.10] startup
+[3.722s] [ext: omni.kit.property.adapter.core-1.0.2] startup
+[3.727s] [ext: omni.physx-106.5.7] startup
+[3.755s] [ext: omni.kit.widget.searchfield-1.1.8] startup
+[3.759s] [ext: omni.kit.widget.filter-1.1.4] startup
+[3.761s] [ext: omni.kit.property.adapter.fabric-1.0.3] startup
+[3.765s] [ext: omni.physx.stageupdate-106.5.7] startup
+[3.770s] [ext: omni.kit.window.file_exporter-1.0.31] startup
+[3.774s] [ext: omni.kit.numpy.common-0.1.2] startup
+[3.778s] [ext: omni.kit.widget.stage-2.11.6] startup
+[3.798s] [ext: omni.kit.property.adapter.usd-1.0.2] startup
+[3.801s] [ext: omni.warp.core-1.5.0] startup
+[4.069s] [ext: omni.isaac.dynamic_control-1.3.15] startup
+2026-09-24 17:35:07 [4,054ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+[4.081s] [ext: omni.kit.stage_template.core-1.1.22] startup
+[4.085s] [ext: omni.kit.widget.highlight_label-1.0.3] startup
+[4.087s] [ext: omni.kit.window.file-1.3.57] startup
+[4.094s] [ext: omni.kit.window.content_browser_registry-0.0.6] startup
+[4.097s] [ext: omni.kit.widget.zoombar-1.0.5] startup
+[4.099s] [ext: omni.kit.window.property-1.11.5] startup
+[4.104s] [ext: omni.kit.window.content_browser-2.10.3] startup
+[4.132s] [ext: omni.kit.browser.core-2.3.11] startup
+[4.141s] [ext: omni.kit.property.usd-4.2.16] startup
+[4.161s] [ext: isaacsim.core.utils-2.2.8] startup
+[4.169s] [ext: omni.physx.tensors-106.5.7] startup
+[4.183s] [ext: omni.graph.visualization.nodes-2.1.1] startup
+[4.192s] [ext: omni.kit.browser.folder.core-1.10.1] startup
+[4.206s] [ext: omni.kit.scripting-106.5.2] startup
+[4.220s] [ext: omni.kit.primitive.mesh-1.0.17] startup
+[4.237s] [ext: isaacsim.core.simulation_manager-0.3.3] startup
+[6.687s] [ext: omni.kit.widget.stage_icons-1.0.6] startup
+[6.692s] [ext: omni.kit.widget.prompt-1.0.7] startup
+[6.694s] [ext: omni.kit.usd.collect-2.2.22] startup
+[6.699s] [ext: omni.kit.window.stage-2.5.11] startup
+[6.707s] [ext: omni.ui_query-1.1.7] startup
+[6.710s] [ext: omni.kit.tool.collect-2.2.16] startup
+[6.715s] [ext: omni.kit.menu.stage-1.2.5] startup
+[6.718s] [ext: omni.kit.widget.text_editor-1.0.2] startup
+[6.723s] [ext: omni.kit.ui_test-1.3.3] startup
+[6.726s] [ext: isaacsim.examples.browser-0.1.8] startup
+[6.731s] [ext: isaacsim.replicator.behavior-1.0.8] startup
+[6.734s] [ext: omni.kit.stage_templates-1.2.6] startup
+[6.740s] [ext: isaacsim.core.prims-0.3.7] startup
+[6.778s] [ext: omni.kit.window.extensions-1.4.25] startup
+[6.790s] [ext: omni.kit.widget.graph-1.12.17] startup
+[6.800s] [ext: omni.kit.graph.usd.commands-1.3.1] startup
+[6.803s] [ext: isaacsim.core.api-4.2.16] startup
+[6.822s] [ext: omni.kit.tool.asset_importer-2.12.6] startup
+[6.844s] [ext: isaacsim.gui.components-1.0.9] startup
+[6.852s] [ext: omni.kit.graph.delegate.default-1.2.3] startup
+[6.856s] [ext: omni.graph.nodes-1.162.1] startup
+[6.879s] [ext: omni.kit.widget.material_preview-1.0.16] startup
+[6.884s] [ext: omni.kit.graph.editor.core-1.5.3] startup
+[6.890s] [ext: omni.warp-1.5.0] startup
+[6.899s] [ext: omni.kit.window.material_graph-1.9.1] startup
+[6.921s] [ext: omni.graph.scriptnode-1.40.1] startup
+[6.931s] [ext: isaacsim.core.cloner-1.3.4] startup
+[6.935s] [ext: omni.replicator.core-1.11.35] startup
+2026-09-24 17:35:10 [7,211ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+[7.245s] [ext: omni.isaac.cloner-1.0.2] startup
+2026-09-24 17:35:10 [7,223ms] [Warning] [omni.isaac.cloner] omni.isaac.cloner has been deprecated in favor of isaacsim.core.cloner. Please update your code accordingly.
+[7.249s] [ext: isaacsim.core.nodes-2.1.4] startup
+[7.267s] [ext: isaacsim.asset.importer.urdf-2.3.14] startup
+[7.546s] [ext: omni.isaac.core-4.0.3] startup
+2026-09-24 17:35:11 [7,534ms] [Warning] [omni.isaac.core.physics_context.physics_context] omni.isaac.core.physics_context.physics_context has been deprecated in favor of isaacsim.core.api.physics_context.physics_context. Please update your code accordingly.
+2026-09-24 17:35:11 [7,537ms] [Warning] [omni.isaac.core.simulation_context.simulation_context] omni.isaac.core.simulation_context.simulation_context has been deprecated in favor of isaacsim.core.api.simulation_context.simulation_context. Please update your code accordingly.
+2026-09-24 17:35:11 [7,543ms] [Warning] [omni.isaac.core.world.world] omni.isaac.core.world.world has been deprecated in favor of isaacsim.core.api.world.world. Please update your code accordingly.
+2026-09-24 17:35:11 [7,543ms] [Warning] [omni.isaac.core] omni.isaac.core has been deprecated in favor of isaacsim.core.api. Please update your code accordingly.
+[7.570s] [ext: omni.isaac.core_nodes-2.0.2] startup
+2026-09-24 17:35:11 [7,566ms] [Warning] [omni.isaac.core_nodes] omni.isaac.core_nodes has been deprecated in favor of isaacsim.core.nodes. Please update your code accordingly.
+[7.592s] [ext: omni.anim.curve.core-1.2.0] startup
+[7.624s] [ext: isaacsim.robot_motion.lula-4.0.4] startup
+[7.642s] [ext: isaacsim.asset.importer.mjcf-2.3.7] startup
+[7.663s] [ext: isaacsim.robot_motion.motion_generation-8.0.6] startup
+[7.692s] [ext: isaacsim.asset.browser-1.3.4] startup
+[7.856s] [ext: isaacsim.robot.surface_gripper-2.0.6] startup
+[7.862s] [ext: omni.kit.selection-0.1.5] startup
+[7.867s] [ext: isaacsim.robot_motion.lula_test_widget-1.0.5] startup
+[7.874s] [ext: omni.isaac.assets_check-0.3.9] startup
+2026-09-24 17:35:11 [7,852ms] [Warning] [omni.isaac.assets_check] omni.isaac.assets_check has been deprecated in favor of isaacsim.asset.browser. Please update your code accordingly.
+[7.879s] [ext: isaacsim.robot.manipulators-3.0.4] startup
+[7.892s] [ext: isaacsim.sensors.physics-0.3.5] startup
+[7.916s] [ext: isaacsim.gui.menu-2.0.9] startup
+[7.955s] [ext: omni.isaac.lula_test_widget-1.0.2] startup
+2026-09-24 17:35:11 [7,934ms] [Warning] [omni.isaac.lula_test_widget] omni.isaac.lula_test_widget has been deprecated in favor of isaacsim.robot_motion.lula_test_widget. Please update your code accordingly.
+[7.961s] [ext: omni.sensors.nv.common-2.5.0-coreapi] startup
+[7.986s] [ext: omni.isaac.manipulators-3.0.3] startup
+2026-09-24 17:35:11 [7,962ms] [Warning] [omni.isaac.manipulators] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,963ms] [Warning] [omni.isaac.manipulators.controllers] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,963ms] [Warning] [omni.isaac.manipulators.controllers.pick_place_controller] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,964ms] [Warning] [omni.isaac.manipulators.controllers.stacking_controller] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,964ms] [Warning] [omni.isaac.manipulators.grippers] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,964ms] [Warning] [omni.isaac.manipulators.grippers.gripper] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,964ms] [Warning] [omni.isaac.manipulators.grippers.parallel_gripper] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,964ms] [Warning] [omni.isaac.manipulators.grippers.surface_gripper] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,964ms] [Warning] [omni.isaac.manipulators.manipulators] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+2026-09-24 17:35:11 [7,965ms] [Warning] [omni.isaac.manipulators.manipulators.single_manipulator] omni.isaac.manipulators has been deprecated in favor of isaacsim.robot.manipulators. Please update your code accordingly.
+[7.991s] [ext: isaacsim.robot.policy.examples-4.0.3] startup
+[7.997s] [ext: omni.isaac.menu-1.0.2] startup
+2026-09-24 17:35:11 [7,974ms] [Warning] [omni.isaac.menu] omni.isaac.menu has been deprecated in favor of isaacsim.gui.menu. Please update your code accordingly.
+[8.001s] [ext: omni.isaac.motion_generation-8.0.2] startup
+2026-09-24 17:35:11 [7,979ms] [Warning] [omni.isaac.motion_generation] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,979ms] [Warning] [omni.isaac.motion_generation.articulation_kinematics_solver] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,982ms] [Warning] [omni.isaac.motion_generation.articulation_motion_policy] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,983ms] [Warning] [omni.isaac.motion_generation.articulation_trajectory] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,983ms] [Warning] [omni.isaac.motion_generation.kinematics_interface] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,984ms] [Warning] [omni.isaac.motion_generation.lula] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,984ms] [Warning] [omni.isaac.motion_generation.lula.kinematics] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,984ms] [Warning] [omni.isaac.motion_generation.lula.motion_policies] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,984ms] [Warning] [omni.isaac.motion_generation.lula.path_planners] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,984ms] [Warning] [omni.isaac.motion_generation.lula.trajectory_generator] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,984ms] [Warning] [omni.isaac.motion_generation.motion_policy_controller] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,984ms] [Warning] [omni.isaac.motion_generation.motion_policy_interface] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,985ms] [Warning] [omni.isaac.motion_generation.path_planner_visualizer] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,985ms] [Warning] [omni.isaac.motion_generation.path_planning_interface] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,985ms] [Warning] [omni.isaac.motion_generation.trajectory] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+2026-09-24 17:35:11 [7,985ms] [Warning] [omni.isaac.motion_generation.world_interface] omni.isaac.motion_generation has been deprecated in favor of isaacsim.robot_motion.motion_generation. Please update your code accordingly.
+[8.011s] [ext: omni.sensors.nv.materials-1.4.0-coreapi] startup
+[8.018s] [ext: omni.isaac.nucleus-1.0.3] startup
+2026-09-24 17:35:11 [7,994ms] [Warning] [omni.isaac.nucleus] omni.isaac.nucleus has been deprecated in favor of isaacsim.storage.native. Please update your code accordingly.
+2026-09-24 17:35:11 [7,994ms] [Warning] [omni.isaac.nucleus.nucleus] omni.isaac.nucleus.nucleus has been deprecated in favor of isaacsim.storage.native. Please update your code accordingly.
+[8.021s] [ext: omni.isaac.quadruped-3.0.2] startup
+2026-09-24 17:35:11 [7,996ms] [Warning] [omni.isaac.quadruped] omni.isaac.quadruped has been deprecated in favor of isaacsim.robot.policy.examples. Please update your code accordingly.
+[8.023s] [ext: omni.kit.manipulator.selector-1.1.1] startup
+[8.028s] [ext: omni.sensors.nv.wpm-2.4.0-coreapi] startup
+[8.033s] [ext: omni.sensors.nv.lidar-2.6.3-coreapi] startup
+[8.048s] [ext: omni.sensors.nv.ids-1.4.0-coreapi] startup
+[8.060s] [ext: isaacsim.robot.manipulators.examples-1.0.3] startup
+[8.063s] [ext: isaacsim.util.debug_draw-2.0.2] startup
+[8.074s] [ext: omni.sensors.tiled-0.0.6] startup
+[8.079s] [ext: omni.sensors.nv.radar-2.6.1-coreapi] startup
+[8.095s] [ext: omni.kit.widget.toolbar-1.7.3] startup
+[8.110s] [ext: omni.kit.manipulator.transform-106.0.1] startup
+[8.119s] [ext: isaacsim.sensors.physx-2.2.4] startup
+[8.134s] [ext: isaacsim.sensors.rtx-13.6.3] startup
+[8.151s] [ext: isaacsim.sensors.camera-0.2.9] startup
+[8.172s] [ext: isaacsim.cortex.framework-1.0.2] startup
+[8.177s] [ext: omni.kit.manipulator.tool.snap-1.5.12] startup
+[8.212s] [ext: omni.isaac.range_sensor-4.0.2] startup
+[8.216s] [ext: omni.isaac.surface_gripper-2.0.2] startup
+2026-09-24 17:35:11 [8,192ms] [Warning] [omni.isaac.surface_gripper] omni.isaac.surface_gripper has been deprecated in favor of isaacsim.robot.surface_gripper. Please update your code accordingly.
+[8.219s] [ext: omni.isaac.sensor-13.0.3] startup
+2026-09-24 17:35:11 [8,197ms] [Warning] [omni.isaac.sensor] omni.isaac.sensor has been deprecated in favor of isaacsim.sensors.camera, isaacsim.sensors.physics, isaacsim.sensors.physx, and isaacsim.sensors.rtx. Please update your code accordingly.
+2026-09-24 17:35:11 [8,198ms] [Warning] [omni.isaac.sensor.camera] omni.isaac.sensor.camera has been deprecated in favor of isaacsim.sensors.camera.camera. Please update your code accordingly.
+2026-09-24 17:35:11 [8,198ms] [Warning] [omni.isaac.sensor.camera_view] omni.isaac.sensor.camera_view has been deprecated in favor of isaacsim.sensors.camera.camera_view. Please update your code accordingly.
+2026-09-24 17:35:11 [8,198ms] [Warning] [omni.isaac.sensor.commands] omni.isaac.sensor.commands has been deprecated in favor of isaacsim.sensors.physics.commands, isaacsim.sensors.physx.commands, and isaacsim.sensors.rtx.commands. Please update your code accordingly.
+2026-09-24 17:35:11 [8,199ms] [Warning] [omni.isaac.sensor.contact_sensor] omni.isaac.sensor.contact_sensor has been deprecated in favor of isaacsim.sensors.physics.contact_sensor. Please update your code accordingly.
+2026-09-24 17:35:11 [8,199ms] [Warning] [omni.isaac.sensor.imu_sensor] omni.isaac.sensor.imu_sensor has been deprecated in favor of isaacsim.sensors.physics.imu_sensor. Please update your code accordingly.
+2026-09-24 17:35:11 [8,199ms] [Warning] [omni.isaac.sensor.lidar_rtx] omni.isaac.sensor.lidar_rtx has been deprecated in favor of isaacsim.sensors.rtx.lidar_rtx. Please update your code accordingly.
+2026-09-24 17:35:11 [8,199ms] [Warning] [omni.isaac.sensor.rotating_lidar_physX] omni.isaac.sensor.imu_sensor has been deprecated in favor of isaacsim.sensors.physix.rotating_lidar_physX. Please update your code accordingly.
+2026-09-24 17:35:11 [8,200ms] [Warning] [omni.isaac.sensor.scripts.samples.contact_sensor] omni.isaac.sensor.scripts.samples.contact_sensor has been deprecated in favor of isaacsim.sensors.physics.scripts.samples.contact_sensor. Please update your code accordingly.
+2026-09-24 17:35:11 [8,200ms] [Warning] [omni.isaac.sensor.scripts.samples.imu_sensor] omni.isaac.sensor.scripts.samples.imu_sensor has been deprecated in favor of isaacsim.sensors.physics.scripts.samples.imu_sensor. Please update your code accordingly.
+2026-09-24 17:35:11 [8,200ms] [Warning] [omni.isaac.sensor.scripts.samples.lightbeam_sensor] omni.isaac.sensor.scripts.samples.lightbeam_sensor has been deprecated in favor of isaacsim.sensors.physx.scripts.samples.lightbeam_sensor. Please update your code accordingly.
+[8.227s] [ext: omni.isaac.cortex-1.0.2] startup
+2026-09-24 17:35:11 [8,206ms] [Warning] [omni.isaac.cortex] omni.isaac.cortex has been deprecated in favor of isaacsim.cortex.framework. Please update your code accordingly.
+[8.239s] [ext: omni.kit.viewport.manipulator.transform-107.0.4] startup
+[8.249s] [ext: omni.debugdraw-0.1.3] startup
+[8.258s] [ext: omni.isaac.universal_robots-1.0.2] startup
+2026-09-24 17:35:11 [8,234ms] [Warning] [omni.isaac.universal_robots] omni.isaac.universal_robots has been deprecated in favor of isaacsim.robot.manipulators.examples.universal_robots. Please update your code accordingly.
+2026-09-24 17:35:11 [8,235ms] [Warning] [omni.isaac.universal_robots.kinematics_solver] omni.isaac.franka has been deprecated in favor of isaacsim.robot.manipulators.examples.universal_robots. Please update your code accordingly.
+2026-09-24 17:35:11 [8,235ms] [Warning] [omni.isaac.universal_robots.ur10] omni.isaac.franka has been deprecated in favor of isaacsim.robot.manipulators.examples.universal_robots. Please update your code accordingly.
+[8.262s] [ext: omni.isaac.utils-2.0.2] startup
+[8.267s] [ext: omni.kit.manipulator.prim.core-107.0.7] startup
+[8.280s] [ext: omni.fabric.commands-1.1.5] startup
+[8.287s] [ext: omni.kit.manipulator.selection-106.0.1] startup
+[8.292s] [ext: omni.kit.viewport.actions-107.0.0] startup
+[8.300s] [ext: omni.kit.manipulator.prim.usd-107.0.3] startup
+[8.303s] [ext: omni.kit.manipulator.prim.fabric-107.0.4] startup
+[8.307s] [ext: isaacsim.cortex.behaviors-2.0.3] startup
+[8.310s] [ext: omni.kit.widget.layers-1.8.2] startup
+[8.338s] [ext: omni.kit.viewport.menubar.display-107.0.3] startup
+[8.342s] [ext: omni.kit.manipulator.prim-107.0.0] startup
+[8.344s] [ext: omni.isaac.cortex.sample_behaviors-2.0.2] startup
+2026-09-24 17:35:11 [8,319ms] [Warning] [omni.isaac.cortex.sample_behaviors] omni.isaac.cortex.sample_behaviors has been deprecated in favor of isaacsim.cortex.behaviors. Please update your code accordingly.
+[8.345s] [ext: omni.graph.ui_nodes-1.40.1] startup
+[8.357s] [ext: omni.usdphysics.ui-106.5.7] startup
+[8.425s] [ext: omni.physx.commands-106.5.7] startup
+[8.433s] [ext: omni.kit.property.camera-1.0.9] startup
+[8.436s] [ext: omni.hydra.scene_api-0.1.2] startup
+[8.449s] [ext: omni.kit.property.geometry-1.3.3] startup
+[8.457s] [ext: omni.kit.property.light-1.0.11] startup
+[8.461s] [ext: omni.physx.ui-106.5.7] startup
+[8.522s] [ext: omni.kit.property.material-1.10.17] startup
+[8.535s] [ext: omni.kit.property.render-1.1.3] startup
+[8.539s] [ext: omni.kit.property.transform-1.5.10] startup
+[8.546s] [ext: omni.kit.property.audio-1.0.16] startup
+[8.550s] [ext: isaacsim.gui.property-1.0.4] startup
+[8.555s] [ext: omni.physx.demos-106.5.7] startup
+[8.590s] [ext: omni.kit.property.physx-106.5.7] startup
+[8.675s] [ext: omni.isaac.lula-4.0.2] startup
+2026-09-24 17:35:12 [8,652ms] [Warning] [omni.isaac.lula] omni.isaac.lula has been deprecated in favor of isaacsim.robot_motion.lula. Please update your code accordingly.
+[8.678s] [ext: omni.kit.property.bundle-1.3.2] startup
+[8.682s] [ext: omni.kit.property.isaac-1.0.2] startup
+2026-09-24 17:35:12 [8,658ms] [Warning] [omni.kit.property.isaac] omni.kit.property.isaac has been deprecated in favor of isaacsim.gui.property. Please update your code accordingly.
+2026-09-24 17:35:12 [8,658ms] [Warning] [omni.kit.property.isaac.widgets] omni.kit.property.isaac.widgets has been deprecated in favor of isaacsim.gui.property.widgets. Please update your code accordingly.
+[8.685s] [ext: omni.physx.vehicle-106.5.7] startup
+[8.724s] [ext: omni.kit.viewport.menubar.camera-107.0.2] startup
+[8.737s] [ext: omni.kit.viewport.menubar.lighting-106.0.2] startup
+[8.743s] [ext: omni.kit.viewport.menubar.render-107.0.8] startup
+[8.749s] [ext: omni.kit.viewport.menubar.settings-107.0.3] startup
+[8.757s] [ext: omni.kit.window.console-0.2.14] startup
+[8.777s] [ext: omni.physx.camera-106.5.7] startup
+[8.802s] [ext: omni.kit.window.toolbar-1.6.2] startup
+[8.810s] [ext: omni.isaac.version-2.0.2] startup
+2026-09-24 17:35:12 [8,786ms] [Warning] [omni.isaac.version] omni.isaac.version has been deprecated in favor of isaacsim.core.version. Please update your code accordingly.
+[8.812s] [ext: isaacsim.robot.wheeled_robots-4.0.3] startup
+[8.823s] [ext: omni.physx.cct-106.5.7] startup
+[8.857s] [ext: omni.physx.graph-106.5.7] startup
+[8.909s] [ext: isaacsim.replicator.writers-1.0.1] startup
+[8.984s] [ext: omni.physx.supportui-106.5.7] startup
+[9.042s] [ext: omni.physx.telemetry-106.5.7] startup
+[9.063s] [ext: omni.isaac.wheeled_robots-3.0.3] startup
+2026-09-24 17:35:12 [9,038ms] [Warning] [omni.isaac.wheeled_robots] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,039ms] [Warning] [omni.isaac.wheeled_robots.controllers] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,039ms] [Warning] [omni.isaac.wheeled_robots.controllers.ackermann_controller] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,039ms] [Warning] [omni.isaac.wheeled_robots.controllers.differential_controller] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,039ms] [Warning] [omni.isaac.wheeled_robots.controllers.holonomic_controller] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,040ms] [Warning] [omni.isaac.wheeled_robots.controllers.quintic_path_planner] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,040ms] [Warning] [omni.isaac.wheeled_robots.controllers.stanley_control] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,040ms] [Warning] [omni.isaac.wheeled_robots.controllers.wheel_base_pose_controller] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,040ms] [Warning] [omni.isaac.wheeled_robots.impl] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,040ms] [Warning] [omni.isaac.wheeled_robots.robots] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,040ms] [Warning] [omni.isaac.wheeled_robots.robots.holonomic_robot_usd_setup] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+2026-09-24 17:35:12 [9,041ms] [Warning] [omni.isaac.wheeled_robots.robots.wheeled_robot] omni.isaac.wheeled_robots has been deprecated in favor of isaacsim.robot.wheeled_robots. Please update your code accordingly.
+[9.067s] [ext: omni.isaac.franka-1.0.2] startup
+2026-09-24 17:35:12 [9,045ms] [Warning] [omni.isaac.franka] omni.isaac.franka has been deprecated in favor of isaacsim.robot.manipulators.examples.franka. Please update your code accordingly.
+2026-09-24 17:35:12 [9,045ms] [Warning] [omni.isaac.franka.franka] omni.isaac.franka has been deprecated in favor of isaacsim.robot.manipulators.examples.franka. Please update your code accordingly.
+2026-09-24 17:35:12 [9,047ms] [Warning] [omni.isaac.franka.kinematics_solver] omni.isaac.franka has been deprecated in favor of isaacsim.robot.manipulators.examples.franka. Please update your code accordingly.
+[9.073s] [ext: isaacsim.replicator.domain_randomization-1.0.2] startup
+[9.079s] [ext: isaacsim.replicator.examples-1.1.2] startup
+[9.087s] [ext: omni.kit.window.status_bar-0.1.7] startup
+[9.108s] [ext: omni.rtx.window.settings-0.6.17] startup
+[9.140s] [ext: omni.usd.metrics.assembler-106.5.0] startup
+[9.162s] [ext: omni.physx.bundle-106.5.7] startup
+[9.163s] [ext: isaacsim.app.about-2.0.7] startup
+[9.165s] [ext: omni.replicator.isaac-2.0.3] startup
+2026-09-24 17:35:12 [9,141ms] [Warning] [omni.replicator.isaac] omni.replicator.isaac has been deprecated in favor of isaacsim.replicator.domain_randomization, isaacsim.replicator.examples, isaacsim.replicator.writers. Please update your code accordingly.
+[9.167s] [ext: omni.replicator.replicator_yaml-2.0.10] startup
+[9.199s] [ext: omni.rtx.settings.core-0.6.3] startup
+[9.213s] [ext: omni.usd.metrics.assembler.ui-106.5.0] startup
+[9.227s] [ext: isaacsim.simulation_app-2.4.2] startup
+[9.229s] [ext: omni.isaac.window.about-2.0.2] startup
+2026-09-24 17:35:12 [9,205ms] [Warning] [omni.isaac.window.about] omni.isaac.window.about has been deprecated in favor of isaacsim.app.about. Please update your code accordingly.
+2026-09-24 17:35:12 [9,205ms] [Warning] [omni.isaac.window.about.about] omni.isaac.window.about.about has been deprecated in favor of isaacsim.app.about.about. Please update your code accordingly.
+[9.231s] [ext: semantics.schema.editor-0.3.10] startup
+[9.237s] [ext: omni.kit.ui.actions-1.0.2] startup
+[9.240s] [ext: semantics.schema.property-1.0.5] startup
+[9.244s] [ext: omni.kit.manipulator.camera-106.0.3] startup
+[9.253s] [ext: omni.isaac.kit-2.0.3] startup
+2026-09-24 17:35:12 [9,227ms] [Warning] [omni.isaac.kit] omni.isaac.kit has been deprecated in favor of isaacsim.simulation_app. Please update your code accordingly.
+[9.253s] [ext: omni.isaac.asset_browser-1.0.2] startup
+2026-09-24 17:35:12 [9,228ms] [Warning] [omni.isaac.asset_browser] omni.isaac.asset_browser has been deprecated in favor of isaacsim.asset.browser. Please update your code accordingly.
+[9.254s] [ext: isaacsim.core.throttling-2.0.2] startup
+[9.259s] [ext: omni.kit.menu.common-1.1.9] startup
+[9.263s] [ext: isaacsim.exp.base-4.5.0] startup
+[9.264s] [ext: isaacsim.exp.base.python-4.5.0] startup
+[9.267s] Simulation App Starting
+[9.498s] app ready
+Starting kit application with the following args:  ['/home/gautham/isaac-sim/venv/lib/python3.10/site-packages/isaacsim/exts/isaacsim.simulation_app/isaacsim/simulation_app/simulation_app.py', '/home/gautham/isaac-sim/venv/lib/python3.10/site-packages/isaacsim/apps/isaacsim.exp.base.python.kit', '--/app/tokens/exe-path=/home/gautham/isaac-sim/venv/lib/python3.10/site-packages/omni', '--/persistent/app/viewport/displayOptions=3094', '--/rtx/materialDb/syncLoads=True', '--/rtx/hydra/materialSyncLoads=True', '--/omni.kit.plugin/syncUsdLoads=True', '--/app/renderer/resolution/width=640', '--/app/renderer/resolution/height=480', '--/app/window/width=1440', '--/app/window/height=900', '--/renderer/multiGpu/enabled=False', '--/app/fastShutdown=True', '--/app/installSignalHandlers=0', '--ext-folder', '/home/gautham/isaac-sim/venv/lib/python3.10/site-packages/isaacsim/exts', '--ext-folder', '/home/gautham/isaac-sim/venv/lib/python3.10/site-packages/isaacsim/apps', '--/physics/cudaDevice=0', '--portable', '--no-window', '--/app/window/hideUi=1']
+Passing the following args to the base kit application:  ['--output', '/home/gautham/coco-isaac-backend/docs/data/isaac_backend/nav02/sim']
+Warp 1.5.0 initialized:
+   CUDA Toolkit 11.8, Driver 13.0
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA GeForce RTX 4050 Laptop GPU" (6 GiB, sm_89, mempool enabled)
+   Kernel cache:
+     /home/gautham/.cache/warp/1.5.0
+{"event": "scene_created", "elapsed_wall_s": 11.377351925999392}
+{"event": "bridge_enabled", "elapsed_wall_s": 13.148179781999715}
+{"event": "ready", "elapsed_wall_s": 15.007570582998596, "joints": ["wheel1_joint", "wheel2_joint", "wheel3_joint", "wheel4_joint"]}
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+{"event": "state", "elapsed_wall_s": 19.208393654998872, "time_sim_s": 0.058333336375653744, "position_odom_m": [-4.0167424941728314e-11, 4.3861428239321286e-12, 0.030924947351217272], "yaw_rad": 5.029501075708724e-13, "measured_wheels_rad_s": [3.729084573143686e-15, 3.3772450863043786e-15, -2.1760196793865934e-14, 1.1107647021949257e-15], "command_m_s_rad_s": [0.0, 0.0], "command_age_sim_s": 1000000000.0583333}
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+{"event": "state", "elapsed_wall_s": 22.0346910069984, "time_sim_s": 2.058333440683782, "position_odom_m": [-0.000951281289046868, -1.1242504533590042e-07, -7.672816512054384e-06], "yaw_rad": -3.22549887595782e-06, "measured_wheels_rad_s": [0.0003285012790001929, 0.00014759902842342854, 0.0001070709404302761, 0.00031681242398917675], "command_m_s_rad_s": [0.0, 0.0], "command_age_sim_s": 1000000002.0583334}
+{"event": "state", "elapsed_wall_s": 24.11059082399879, "time_sim_s": 4.0583335449919105, "position_odom_m": [0.31733804745937677, 0.008087805575358396, 0.0001502250338139919], "yaw_rad": 0.04816471149500018, "measured_wheels_rad_s": [5.430615425109863, 5.449984550476074, 3.728180170059204, 3.731823444366455], "command_m_s_rad_s": [0.2684210526315789, 0.3333333333333335], "command_age_sim_s": 0.06666667099191059}
+{"event": "state", "elapsed_wall_s": 26.178561663999062, "time_sim_s": 6.058333649300039, "position_odom_m": [0.8981927007098345, 0.09603480914785212, -3.611604179846149e-05], "yaw_rad": 0.22790436702141736, "measured_wheels_rad_s": [6.357217311859131, 6.387106895446777, 3.8684027194976807, 3.890894651412964], "command_m_s_rad_s": [0.29999999999999993, 0.4871794871794873], "command_age_sim_s": 0.06666667030003914}
+{"event": "state", "elapsed_wall_s": 28.254461632999664, "time_sim_s": 8.058333753608167, "position_odom_m": [1.3952375000565218, 0.27564876389038745, 2.9432940802312166e-05], "yaw_rad": 0.48547767493110733, "measured_wheels_rad_s": [4.663075923919678, 4.673839092254639, 1.1390222311019897, 1.2165433168411255], "command_m_s_rad_s": [0.17368421052631575, 0.6615384615384619], "command_age_sim_s": 0.06666667060816689}
+{"event": "state", "elapsed_wall_s": 30.395191922998492, "time_sim_s": 10.058333857916296, "position_odom_m": [1.5088199292759357, 0.4049875020689024, 0.00025707665582819055], "yaw_rad": 0.9785832360200579, "measured_wheels_rad_s": [2.463242530822754, 2.2688024044036865, -0.8559943437576294, -0.8413519859313965], "command_m_s_rad_s": [0.04736842105263158, 0.6410256410256412], "command_age_sim_s": 0.06666667091629463}
+{"event": "state", "elapsed_wall_s": 32.47873755099863, "time_sim_s": 12.058333962224424, "position_odom_m": [1.5266723701553615, 0.43366443078916306, -8.246517732311484e-05], "yaw_rad": 0.9871314004163745, "measured_wheels_rad_s": [-1.1953856945037842, -2.808659076690674, 2.5135958194732666, 1.1840605735778809], "command_m_s_rad_s": [0.0, -0.7435897435897434], "command_age_sim_s": 0.1000000052244232}
+{"event": "state", "elapsed_wall_s": 34.53400479499942, "time_sim_s": 14.058334066532552, "position_odom_m": [1.5463600731737865, 0.4645333377814105, 3.632554381336091e-05], "yaw_rad": 1.1808702016428723, "measured_wheels_rad_s": [2.30145525932312, 2.3276209831237793, -1.2476222515106201, -1.2157789468765259], "command_m_s_rad_s": [0.031578947368421054, 0.6923076923076925], "command_age_sim_s": 0.10000000553255184}
+{"event": "state", "elapsed_wall_s": 36.586509597998884, "time_sim_s": 16.05833417084068, "position_odom_m": [1.5789547150292151, 0.460436668941509, 0.0004345237113232408], "yaw_rad": 0.7546338961905276, "measured_wheels_rad_s": [1.6922247409820557, 1.6940221786499023, -0.0742536261677742, -0.033603768795728683], "command_m_s_rad_s": [0.04736842105263158, 0.343589743589744], "command_age_sim_s": 0.10000000584068047}
+{"event": "state", "elapsed_wall_s": 38.66516067399971, "time_sim_s": 18.05833427514881, "position_odom_m": [1.5996337545983697, 0.4891832663313267, 0.00039643733384064385], "yaw_rad": 0.8742929502161418, "measured_wheels_rad_s": [1.199725866317749, 1.1825401782989502, -0.6258638501167297, -0.5308247208595276], "command_m_s_rad_s": [0.015789473684210527, 0.34974358974359004], "command_age_sim_s": 0.066666670148809}
+{"event": "state", "elapsed_wall_s": 40.724465322999094, "time_sim_s": 20.058334379456937, "position_odom_m": [1.6144085822316765, 0.5048241810040694, 0.00035024743986244826], "yaw_rad": 0.8592530221664418, "measured_wheels_rad_s": [0.8957280516624451, 0.8214530944824219, -0.8781712055206299, -0.8895566463470459], "command_m_s_rad_s": [0.0, 0.34769230769230797], "command_age_sim_s": 0.06666667045693586}
+{"event": "state", "elapsed_wall_s": 42.76286513499872, "time_sim_s": 22.058334483765066, "position_odom_m": [1.60311663403492, 0.5037117752677073, -5.169094718525738e-06], "yaw_rad": 1.0782384482563157, "measured_wheels_rad_s": [1.0643507242202759, 1.0061739683151245, -0.4992385506629944, -0.5153939127922058], "command_m_s_rad_s": [0.015789473684210527, 0.30256410256410277], "command_age_sim_s": 0.06666667076506627}
+{"event": "state", "elapsed_wall_s": 44.822695799999565, "time_sim_s": 24.058334588073194, "position_odom_m": [1.6028686975013695, 0.5358731055271839, -1.7269614710508502e-05], "yaw_rad": 1.337989748470473, "measured_wheels_rad_s": [0.2200384885072708, -0.06027640402317047, 0.11108321696519852, -0.12011368572711945], "command_m_s_rad_s": [0.0, 0.09333333333333324], "command_age_sim_s": 0.06666667107319313}
+{"event": "state", "elapsed_wall_s": 46.87704653699984, "time_sim_s": 26.058334692381322, "position_odom_m": [1.5538505605342705, 0.5442773407061695, -1.8544656889258812e-05], "yaw_rad": 2.0722138180914937, "measured_wheels_rad_s": [1.2430849075317383, 1.2656240463256836, -0.19489417970180511, -0.09539829939603806], "command_m_s_rad_s": [0.031578947368421054, 0.2820512820512822], "command_age_sim_s": 0.06666667038132346}
+{"event": "state", "elapsed_wall_s": 48.93351198699929, "time_sim_s": 28.05833479668945, "position_odom_m": [1.546601190188416, 0.5877727578939634, -5.5732050205618486e-05], "yaw_rad": 2.124131464818689, "measured_wheels_rad_s": [2.514268636703491, 2.511591672897339, -0.8801509737968445, -0.884739339351654], "command_m_s_rad_s": [0.04736842105263158, 0.6615384615384619], "command_age_sim_s": 0.10000000568945211}
+{"event": "state", "elapsed_wall_s": 51.00549544899877, "time_sim_s": 30.05833490099758, "position_odom_m": [1.5229036312833912, 0.6079953542739797, 2.7157421793880948e-05], "yaw_rad": 2.3475562377551276, "measured_wheels_rad_s": [-2.5459773540496826, -2.5798189640045166, 2.5774717330932617, 2.613107442855835], "command_m_s_rad_s": [0.0, -1.0], "command_age_sim_s": 0.06666667099758072}
+{"event": "state", "elapsed_wall_s": 53.071650402998785, "time_sim_s": 32.05833500530571, "position_odom_m": [1.522819365067915, 0.6334963831297278, -7.245781667353582e-05], "yaw_rad": 2.269806712884214, "measured_wheels_rad_s": [2.6473336219787598, 2.525099277496338, -1.7769100666046143, -1.6605145931243896], "command_m_s_rad_s": [0.031578947368421054, 0.8461538461538465], "command_age_sim_s": 0.0666666703057075}
+{"event": "state", "elapsed_wall_s": 55.145423639, "time_sim_s": 34.058335109613836, "position_odom_m": [1.4277569762868252, 0.644063860243562, 0.00030254101505326585], "yaw_rad": 2.890047081059291, "measured_wheels_rad_s": [2.0644266605377197, 2.045504570007324, -0.41485318541526794, -0.4431751072406769], "command_m_s_rad_s": [0.04736842105263158, 0.4871794871794873], "command_age_sim_s": 0.06666667061383436}
+{"event": "state", "elapsed_wall_s": 57.20198103599978, "time_sim_s": 36.058335213921964, "position_odom_m": [1.4273774792109444, 0.6866344839993784, 5.6111923546703704e-05], "yaw_rad": 2.3746794152152857, "measured_wheels_rad_s": [0.5977978110313416, 0.6559491157531738, -0.6676537990570068, -0.6197253465652466], "command_m_s_rad_s": [0.0, 0.25333333333333347], "command_age_sim_s": 0.06666667092196121}
+{"event": "state", "elapsed_wall_s": 59.2573669229987, "time_sim_s": 38.05833531823009, "position_odom_m": [1.402424955499659, 0.6576294788726339, 2.127760825225075e-05], "yaw_rad": 2.880723144441157, "measured_wheels_rad_s": [-2.384860038757324, -2.902745008468628, 2.806325912475586, 2.1078341007232666], "command_m_s_rad_s": [0.0, -1.0], "command_age_sim_s": 0.06666667023009154}
+{"event": "state", "elapsed_wall_s": 61.312438637000014, "time_sim_s": 40.05833542253822, "position_odom_m": [1.4371265876614192, 0.7436474984585463, -9.660265278884327e-05], "yaw_rad": 1.94452752412269, "measured_wheels_rad_s": [2.031203508377075, 2.019376516342163, 0.6754788756370544, 0.7714179754257202], "command_m_s_rad_s": [0.07894736842105263, 0.25333333333333347], "command_age_sim_s": 0.0666666705382184}
+{"event": "state", "elapsed_wall_s": 63.37492928199936, "time_sim_s": 42.05833552684635, "position_odom_m": [1.3474338303499014, 0.8058435321417255, 2.6868230005328356e-05], "yaw_rad": 2.5049988915386026, "measured_wheels_rad_s": [2.437333583831787, 2.1656997203826904, 0.08599060773849487, 0.19981059432029724], "command_m_s_rad_s": [0.07894736842105263, 0.435897435897436], "command_age_sim_s": 0.06666667084635236}
+{"event": "state", "elapsed_wall_s": 65.42897291499867, "time_sim_s": 44.05833563115448, "position_odom_m": [1.1967614544611498, 0.8544514325095081, 2.1702351601916164e-05], "yaw_rad": 2.8291608989898904, "measured_wheels_rad_s": [1.6470235586166382, 1.8415783643722534, 1.0061063766479492, 1.061991572380066], "command_m_s_rad_s": [0.07894736842105263, 0.12820512820512842], "command_age_sim_s": 0.10000000615448101}
+{"event": "state", "elapsed_wall_s": 67.51684642799955, "time_sim_s": 46.058335735462606, "position_odom_m": [1.1199576156631856, 0.8619370810864163, 0.00023931679506543346], "yaw_rad": 2.9972028488277527, "measured_wheels_rad_s": [1.1042375564575195, 1.1288248300552368, -0.0993415117263794, 0.12879544496536255], "command_m_s_rad_s": [0.031578947368421054, 0.23076923076923095], "command_age_sim_s": 0.06666667046260244}
+{"event": "state", "elapsed_wall_s": 69.58748130399908, "time_sim_s": 48.058335839770734, "position_odom_m": [1.0927942853644668, 0.8862870901814078, 0.00035559972433293896], "yaw_rad": 2.6947494009104935, "measured_wheels_rad_s": [-2.564873695373535, -2.64559268951416, 2.5742835998535156, 2.3963916301727295], "command_m_s_rad_s": [0.0, -1.0], "command_age_sim_s": 0.03333333577073461}
+{"event": "state", "elapsed_wall_s": 71.68534508399898, "time_sim_s": 50.05833594407886, "position_odom_m": [1.1428480818431672, 0.9553846203974513, 0.00017698687009790916], "yaw_rad": 1.5943720503621936, "measured_wheels_rad_s": [-2.5765984058380127, -2.58427095413208, 2.544553279876709, 2.5786542892456055], "command_m_s_rad_s": [0.0, -1.0], "command_age_sim_s": 0.10000000607886506}
+{"event": "state", "elapsed_wall_s": 73.70452117399873, "time_sim_s": 52.05833604838699, "position_odom_m": [1.1999297977696164, 1.015686885602768, -8.552348123294293e-06], "yaw_rad": 1.1003625143108424, "measured_wheels_rad_s": [0.42831429839134216, 0.6030245423316956, 1.0627473592758179, 1.151671051979065], "command_m_s_rad_s": [0.04736842105263158, -0.12820512820512797], "command_age_sim_s": 0.06666667038699359}
+{"event": "state", "elapsed_wall_s": 75.81231056199977, "time_sim_s": 54.05833615269512, "position_odom_m": [1.2510485145605341, 1.0524588414437948, -8.491918206867538e-06], "yaw_rad": 0.8804801003569646, "measured_wheels_rad_s": [3.5142290592193604, 3.480947256088257, -0.7902928590774536, -0.8144880533218384], "command_m_s_rad_s": [0.07894736842105263, 0.8400000000000004], "command_age_sim_s": 0.06666667069512044}
+{"event": "state", "elapsed_wall_s": 77.9306303229987, "time_sim_s": 56.05833625700325, "position_odom_m": [1.2443662974977905, 1.1607783695999347, 0.0003902238403006332], "yaw_rad": 1.7447154145396004, "measured_wheels_rad_s": [1.780809760093689, 1.8164228200912476, -1.824605941772461, -1.7642241716384888], "command_m_s_rad_s": [0.0, 0.7066666666666671], "command_age_sim_s": 0.1000000060032491}
+{"event": "state", "elapsed_wall_s": 80.00113483899986, "time_sim_s": 58.058336361311376, "position_odom_m": [1.2423742858248707, 1.1522540215514254, 4.9453626338232665e-06], "yaw_rad": 1.8073775199953341, "measured_wheels_rad_s": [0.12316255271434784, -0.06600751727819443, -0.02710246853530407, -0.04157397896051407], "command_m_s_rad_s": [0.0, 0.02564102564102587], "command_age_sim_s": 0.10000000531137943}
+{"event": "state", "elapsed_wall_s": 82.11404952299927, "time_sim_s": 60.058336465619504, "position_odom_m": [1.242932077635778, 1.151502468092585, -1.9340204846823167e-05], "yaw_rad": 1.8010008350661233, "measured_wheels_rad_s": [0.05284219607710838, 0.03343047946691513, -0.009915295988321304, -0.041255008429288864], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.10000000561950628}
+{"event": "state", "elapsed_wall_s": 84.18681267799911, "time_sim_s": 62.05833656992763, "position_odom_m": [1.242829259951391, 1.1519395417367329, -2.5919024112402295e-05], "yaw_rad": 1.8008413840353008, "measured_wheels_rad_s": [-0.04565643146634102, -0.03234457969665527, 0.018363798037171364, 0.05220698565244675], "command_m_s_rad_s": [0.0, 0.02564102564102587], "command_age_sim_s": 0.10000000592763314}
+{"event": "state", "elapsed_wall_s": 86.26380638299997, "time_sim_s": 64.05833667423576, "position_odom_m": [1.2428547911417118, 1.1518108640278961, -2.3680156587343668e-05], "yaw_rad": 1.800880956865099, "measured_wheels_rad_s": [0.03990929573774338, 0.022633520886301994, -0.01415057759732008, -0.04481446370482445], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.10000000523576347}
+{"event": "state", "elapsed_wall_s": 88.31672951099972, "time_sim_s": 66.05833677854389, "position_odom_m": [1.2428655811076206, 1.1517637553276907, -2.2648259950805785e-05], "yaw_rad": 1.8008920186527821, "measured_wheels_rad_s": [-0.00852313730865717, -0.007767077535390854, -0.004595585633069277, -0.002022304804995656], "command_m_s_rad_s": [0.0, 0.0], "command_age_sim_s": 0.10000000554389032}
+{"event": "state", "elapsed_wall_s": 90.3758262299998, "time_sim_s": 68.05833688285202, "position_odom_m": [1.242863545607742, 1.1517726257679055, -2.273021836630626e-05], "yaw_rad": 1.8008828407621986, "measured_wheels_rad_s": [0.03929639235138893, 0.024117782711982727, -0.014318695291876793, -0.049305424094200134], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.10000000585202429}
+{"event": "state", "elapsed_wall_s": 92.44276877899938, "time_sim_s": 70.05833698716015, "position_odom_m": [1.2428625855502773, 1.151777147016533, -2.2856876555751512e-05], "yaw_rad": 1.8008827982709121, "measured_wheels_rad_s": [0.038687609136104584, 0.025807159021496773, -0.013472880236804485, -0.046130843460559845], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.10000000616014404}
+{"event": "state", "elapsed_wall_s": 94.51912278799864, "time_sim_s": 72.05833709146827, "position_odom_m": [1.242862045504031, 1.1517795152482007, -2.2901578297072206e-05], "yaw_rad": 1.8008830060587064, "measured_wheels_rad_s": [0.04027897119522095, 0.025365132838487625, -0.017262376844882965, -0.04852459952235222], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667046827968}
+{"event": "state", "elapsed_wall_s": 96.61363789200004, "time_sim_s": 74.0583371957764, "position_odom_m": [1.2428608455378656, 1.1517841609890251, -2.3087841242091373e-05], "yaw_rad": 1.8008828411242657, "measured_wheels_rad_s": [0.03963238745927811, 0.024324070662260056, -0.014681647531688213, -0.046963080763816833], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667077639943}
+{"event": "state", "elapsed_wall_s": 98.67576366299909, "time_sim_s": 76.05833730008453, "position_odom_m": [1.2428610830668831, 1.1517842779272793, -2.302451099309849e-05], "yaw_rad": 1.800882862454475, "measured_wheels_rad_s": [0.04016464203596115, 0.02406313642859459, -0.014909458346664906, -0.046962935477495193], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667108453339}
+{"event": "state", "elapsed_wall_s": 100.73247242999969, "time_sim_s": 78.05833740439266, "position_odom_m": [1.2428609685845358, 1.1517839321727668, -2.300588619066901e-05], "yaw_rad": 1.8008828623164725, "measured_wheels_rad_s": [0.03986404836177826, 0.02390347607433796, -0.01464065071195364, -0.04717126116156578], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.10000000539265841}
+{"event": "state", "elapsed_wall_s": 102.78253952699924, "time_sim_s": 80.05833750870079, "position_odom_m": [1.2428589877238383, 1.1517928585405854, -2.3266653135152818e-05], "yaw_rad": 1.8008832138563815, "measured_wheels_rad_s": [0.03884093835949898, 0.025171201676130295, -0.01602507196366787, -0.0476386584341526], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.10000000570079237}
+{"event": "state", "elapsed_wall_s": 104.87282528499964, "time_sim_s": 82.05833761300892, "position_odom_m": [1.2428561706946981, 1.1518043088229037, -2.3575850028208917e-05], "yaw_rad": 1.800882862561069, "measured_wheels_rad_s": [0.04305647686123848, 0.023925185203552246, -0.01863899640738964, -0.04791272059082985], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667100891743}
+{"event": "state", "elapsed_wall_s": 106.92372918000001, "time_sim_s": 84.05833771731704, "position_odom_m": [1.242853829950662, 1.1518139560106833, -2.3803089340081532e-05], "yaw_rad": 1.8008830490521839, "measured_wheels_rad_s": [0.039077889174222946, 0.02540419064462185, -0.01569056697189808, -0.047360386699438095], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667031704776}
+{"event": "state", "elapsed_wall_s": 108.97410006599966, "time_sim_s": 86.05833782162517, "position_odom_m": [1.242852270871267, 1.1518209823383987, -2.3996802315321905e-05], "yaw_rad": 1.8008831928806994, "measured_wheels_rad_s": [0.041299544274806976, 0.020201480016112328, -0.016665268689393997, -0.046573396772146225], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667062516751}
+{"event": "state", "elapsed_wall_s": 111.02263218499866, "time_sim_s": 88.0583379259333, "position_odom_m": [1.2428500495562718, 1.1518318158841367, -2.4276195263739364e-05], "yaw_rad": 1.80088263416782, "measured_wheels_rad_s": [0.041874680668115616, 0.024096202105283737, -0.014888343401253223, -0.04721527174115181], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667093330148}
+{"event": "state", "elapsed_wall_s": 113.08925918399837, "time_sim_s": 90.05833803024143, "position_odom_m": [1.2428860355771798, 1.151662504671385, -2.889534814094763e-06], "yaw_rad": 1.8009035065592236, "measured_wheels_rad_s": [0.0843355804681778, -0.04604076221585274, -0.022423140704631805, -0.03638666495680809], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.10000000524142649}
+{"event": "state", "elapsed_wall_s": 115.1472259789989, "time_sim_s": 92.05833813454956, "position_odom_m": [1.2429044463014893, 1.1515832561719805, -1.5492070811522207e-05], "yaw_rad": 1.8008876010042256, "measured_wheels_rad_s": [0.04151860252022743, 0.026079703122377396, -0.01625983603298664, -0.04816099628806114], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667054955155}
+{"event": "state", "elapsed_wall_s": 117.217910501, "time_sim_s": 94.05833823885769, "position_odom_m": [1.2429063187735656, 1.151575879249725, -1.5194051488963758e-05], "yaw_rad": 1.8008870205460237, "measured_wheels_rad_s": [0.041008103638887405, 0.025471147149801254, -0.01482514850795269, -0.046588245779275894], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.06666667085768552}
+{"event": "state", "elapsed_wall_s": 119.27770479099854, "time_sim_s": 96.05833834316581, "position_odom_m": [1.242906981069337, 1.1515721875287135, -1.5048766204903488e-05], "yaw_rad": 1.8008870204908134, "measured_wheels_rad_s": [0.040425777435302734, 0.021137697622179985, -0.01146302092820406, -0.04638442397117615], "command_m_s_rad_s": [0.0, -0.02564102564102541], "command_age_sim_s": 0.10000000616581417}
+{"event": "state", "elapsed_wall_s": 121.33692020699891, "time_sim_s": 98.05833844747394, "position_odom_m": [1.209738178134086, 1.1224709914370699, -5.718233872551402e-05], "yaw_rad": 2.590052354883148, "measured_wheels_rad_s": [2.5758168697357178, 2.5963804721832275, -2.5158348083496094, -2.580280303955078], "command_m_s_rad_s": [0.0, 1.0], "command_age_sim_s": 0.1000000054739445}
+{"event": "state", "elapsed_wall_s": 123.61379956399833, "time_sim_s": 100.05833855178207, "position_odom_m": [1.195846559069594, 1.0556600266443308, 1.7357643263833655e-05], "yaw_rad": -2.881630422486906, "measured_wheels_rad_s": [0.9865350127220154, 1.5870383977890015, 3.602032423019409, 4.764962196350098], "command_m_s_rad_s": [0.15789473684210523, -0.5333333333333332], "command_age_sim_s": 0.06666667078206956}
+{"event": "state", "elapsed_wall_s": 125.7791171029985, "time_sim_s": 102.0583386560902, "position_odom_m": [1.0065611491091635, 1.0429418946511937, -5.753540641794015e-05], "yaw_rad": -2.929311971714693, "measured_wheels_rad_s": [2.2057712078094482, 2.20525860786438, 0.04712410643696785, -0.0694897472858429], "command_m_s_rad_s": [0.06315789473684211, 0.435897435897436], "command_age_sim_s": 0.06666667109020352}
+{"event": "state", "elapsed_wall_s": 127.83037177099868, "time_sim_s": 104.05833876039833, "position_odom_m": [0.9186419027689676, 1.0096535428798774, 7.954832405232537e-06], "yaw_rad": -2.825088573852754, "measured_wheels_rad_s": [0.681843638420105, 0.3550953269004822, 0.7464808225631714, 0.4510096311569214], "command_m_s_rad_s": [0.031578947368421054, -0.07692307692307669], "command_age_sim_s": 0.10000000539832854}
+{"event": "state", "elapsed_wall_s": 129.87012879699978, "time_sim_s": 106.05833886470646, "position_odom_m": [0.9038004844361707, 0.973026455921789, 3.4824916516802695e-05], "yaw_rad": -2.4504068615643395, "measured_wheels_rad_s": [1.7075916528701782, 1.6439948081970215, -1.6818139553070068, -1.706061601638794], "command_m_s_rad_s": [0.0, 0.6615384615384619], "command_age_sim_s": 0.0666666707064536}
+{"event": "state", "elapsed_wall_s": 132.21953811299863, "time_sim_s": 108.05833896901459, "position_odom_m": [0.9681974880168978, 0.9459562565644083, -0.00010709369356057263], "yaw_rad": -1.3981771547169166, "measured_wheels_rad_s": [3.165557384490967, 1.0774023532867432, -2.596726655960083, -3.5193939208984375], "command_m_s_rad_s": [0.0, 1.0000000000000004], "command_age_sim_s": 0.06666667101458756}
+{"event": "state", "elapsed_wall_s": 134.2615595110001, "time_sim_s": 110.05833907332271, "position_odom_m": [0.9813325833010846, 0.9037778637114596, -2.9073043268835683e-05], "yaw_rad": -1.6495453270017693, "measured_wheels_rad_s": [-4.409073829650879, 0.20638573169708252, 0.8997690677642822, 4.544179916381836], "command_m_s_rad_s": [0.0, -1.0], "command_age_sim_s": 0.06666667032271789}
+{"event": "state", "elapsed_wall_s": 136.29936793599882, "time_sim_s": 112.05833917763084, "position_odom_m": [0.9240707796588992, 0.9084593079671907, 6.31799530757364e-05], "yaw_rad": -2.455126449758307, "measured_wheels_rad_s": [-1.998053789138794, -2.037747621536255, 3.1160683631896973, 3.1135337352752686], "command_m_s_rad_s": [0.031578947368421054, -1.0], "command_age_sim_s": 0.06666667063083764}
+{"event": "state", "elapsed_wall_s": 138.3422515229995, "time_sim_s": 114.05833928193897, "position_odom_m": [0.7984885521971223, 0.976027484464812, 6.982440966847754e-05], "yaw_rad": 2.7844071280301277, "measured_wheels_rad_s": [3.7404251098632812, 3.7155115604400635, 5.9367594718933105, 5.994319438934326], "command_m_s_rad_s": [0.2842105263157894, -0.43589743589743557], "command_age_sim_s": 0.033333335938976916}
+{"event": "state", "elapsed_wall_s": 140.39723941099874, "time_sim_s": 116.0583393862471, "position_odom_m": [0.5607094070199767, 1.144608186467173, 6.55766978460981e-05], "yaw_rad": 2.2591074971950587, "measured_wheels_rad_s": [0.3630799949169159, 0.39426320791244507, 3.9346282482147217, 3.9462497234344482], "command_m_s_rad_s": [0.1263157894736842, -0.6923076923076921], "command_age_sim_s": 0.06666667024710193}
+{"event": "state", "elapsed_wall_s": 142.52519969899913, "time_sim_s": 118.05833949055523, "position_odom_m": [0.4935207990589676, 1.4322172753763087, -6.170473268255275e-05], "yaw_rad": 1.8435834678648026, "measured_wheels_rad_s": [2.792390823364258, 2.5792253017425537, 2.017099380493164, 2.08209490776062], "command_m_s_rad_s": [0.1421052631578947, 0.12820512820512842], "command_age_sim_s": 0.06666667055522169}
+{"event": "state", "elapsed_wall_s": 144.62209154399898, "time_sim_s": 120.05833959486336, "position_odom_m": [0.5542694590575339, 1.4634562897311474, -2.3355254643248405e-05], "yaw_rad": 0.8662461667856342, "measured_wheels_rad_s": [-1.8884133100509644, -1.8785924911499023, 1.8630168437957764, 1.895558476448059], "command_m_s_rad_s": [0.0, -0.7333333333333334], "command_age_sim_s": 0.06666667086335565}
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+{"event": "state", "elapsed_wall_s": 146.67561589599973, "time_sim_s": 122.05833969917148, "position_odom_m": [0.5577194984414648, 1.4626267912860023, 1.2656961053117075e-05], "yaw_rad": 0.8282823355421712, "measured_wheels_rad_s": [-0.0027468656189739704, -0.003826913656666875, 0.004296882078051567, 0.004156948067247868], "command_m_s_rad_s": [0.0, 0.0], "command_age_sim_s": 0.1000000061714843}
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'string data is not null-terminated, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+with this new error message:
+
+  'invalid data size, at /workspace/humble_ws/src/rmw_cyclonedds_cpp/src/serdata.cpp:384'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+{"event": "state", "elapsed_wall_s": 148.80617648599946, "time_sim_s": 124.05833980347961, "position_odom_m": [0.5587774848664651, 1.4637793829866224, -6.907959882655572e-05], "yaw_rad": 0.8283120219797168, "measured_wheels_rad_s": [0.0021021850407123566, 0.0022823542822152376, -0.004383339546620846, -0.0014288186794146895], "command_m_s_rad_s": [0.0, 0.0], "command_age_sim_s": 1.4666667434796068}
+{"event": "stopping", "elapsed_wall_s": 149.3525604229999, "time_sim_s": 124.59167316462845}
+2026-09-24 17:35:13 [9,646ms] [Warning] [rtx.scenedb.plugin] SceneDbContext : TLAS limit buffer size 7508933632
+2026-09-24 17:35:13 [9,646ms] [Warning] [rtx.scenedb.plugin] SceneDbContext : TLAS limit : valid false, within: false
+2026-09-24 17:35:13 [9,646ms] [Warning] [rtx.scenedb.plugin] SceneDbContext : TLAS limit : decrement: 167690, decrement size: 7433845248
+2026-09-24 17:35:13 [9,646ms] [Warning] [rtx.scenedb.plugin] SceneDbContext : New limit 9574251 (slope: 447, intercept: 13179904)
+2026-09-24 17:35:13 [9,646ms] [Warning] [rtx.scenedb.plugin] SceneDbContext : TLAS limit buffer size 4287216384
+2026-09-24 17:35:13 [9,646ms] [Warning] [rtx.scenedb.plugin] SceneDbContext : TLAS limit : valid true, within: true
+2026-09-24 17:35:13 [9,920ms] [Warning] [omni.usd-abi.plugin] No setting was found for '/rtx-defaults-transient/meshlights/forceDisable'
+2026-09-24 17:35:13 [10,026ms] [Warning] [omni.usd-abi.plugin] No setting was found for '/rtx-defaults/post/dlss/execMode'
+[10.344s] Simulation App Startup Complete
+[11.350s] [ext: isaacsim.ros2.bridge-4.1.15] startup
+[11.610s] Attempting to load system rclpy
+[11.610s] Could not import system rclpy: No module named 'rclpy'
+[11.610s] Attempting to load internal rclpy
+[11.718s] rclpy loaded
+2026-09-24 17:35:16 [13,085ms] [Warning] [omni.timeline.plugin] Deprecated: direct use of ITimeline callbacks is deprecated. Use ITimeline::getTimeline (Python: omni.timeline.get_timeline_interface) instead.
+2026-09-24 17:35:16 [13,261ms] [Warning] [omni.timeline.plugin] Deprecated: direct use of ITimeline callbacks is deprecated. Use ITimeline::getTimeline (Python: omni.timeline.get_timeline_interface) instead.
+2026-09-24 17:35:18 [14,589ms] [Warning] [isaacsim.core.api.simulation_context.simulation_context] Deprecation warning: ``initialize_physics`` is not needed anymore.
+2026-09-24 17:35:22 [19,385ms] [Warning] [rtx.postprocessing.plugin] DLSS increasing input dimensions: Render resolution of (320, 240) is below minimal input resolution of 300.
+2026-09-24 17:37:37 [153,451ms] [Warning] [carb] Plugin interface for a client: omni.hydratexture.plugin was already released.
+[153.644s] Simulation App Shutting Down

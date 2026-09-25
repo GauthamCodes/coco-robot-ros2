@@ -1,0 +1,32 @@
+{
+  "passed": false,
+  "lifecycle_active": {
+    "0": true,
+    "1": true,
+    "2": true,
+    "3": true
+  },
+  "status": 6,
+  "error_code": 103,
+  "final_error_map_m": 2.8177049149493336,
+  "displacement_odom_m": 1.564394911841905,
+  "wheel_publishers": [
+    "cmd_vel_arbiter"
+  ],
+  "counts": {
+    "/cmd_vel_nav": 1223,
+    "/cmd_vel_smoothed": 2443,
+    "/cmd_vel": 2443,
+    "/cmd_vel_gated": 2443,
+    "/diff_drive_controller/cmd_vel": 2443
+  },
+  "nonzero": {
+    "/cmd_vel_nav": 1212,
+    "/cmd_vel_smoothed": 2428,
+    "/cmd_vel": 2428,
+    "/cmd_vel_gated": 2428,
+    "/diff_drive_controller/cmd_vel": 2428
+  },
+  "elapsed_wall_s": 126.28768786999899,
+  "clean_shutdown": true
+}

@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+# Copyright 2026 Gautham Anil
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""Summarize P03D Gazebo evidence without inferring successful runs."""
+
+import json
+from pathlib import Path
+import re
+import sys
+
+
+def summarize(path):
+    manifest_path = path / 'manifest.json'
+    if not manifest_path.exists():
+        return None
+    manifest = json.loads(manifest_path.read_text())
+    requested = manifest['requested_colour']
+    actual = next(t['region_id'] for t in manifest['targets']
+                  if t['colour'] == requested)
+    mission = (path / 'mission.log').read_text(errors='replace') if (
+        path / 'mission.log').exists() else ''
+    result = json.loads((path / 'result.json').read_text()) if (
+        path / 'result.json').exists() else {}
+    acquired = re.findall(r'TARGET_ACQUIRED\]:?[^\n]*', mission)
+    region = None
+    if acquired:
+        match = re.search(r'(lane_\d+)', acquired[-1])
+        if match:
+            region = match.group(1)
+    # Fixed mode uses the old SEARCH_TARGET status gate, without an
+    # explicit TARGET_ACQUIRED event. It is reported separately below.
+    perception = 'acquired' if region else ('fixed_gate' if
+                   manifest['level'] == 'fixed' and
+                   'SEARCH_TARGET -> STOW_ARM' in mission else 'none')
+    grasp = 'held' if 'VERIFY_GRASP -> DESCEND' in mission else 'not_held'
+    recovery = len(re.findall(r' -> RECOVERY \[', mission))
+    return {
+        'run': path.name,
+        'mode': manifest['level'],
+        'seed': manifest['seed'],
+        'requested': requested,
+        'actual_region': actual,
+        'acquired_region': region or '--',
+        'detection': perception,
+        'grasp': grasp,
+        'mission': result.get('outcome', 'unrecorded'),
+        'failure_reason': result.get('failure_reason', '--'),
+        'recoveries': recovery,
+        'wall_s': result.get('timings', {}).get('mission_wall_s', '--'),
+        'sim_s': result.get('timings', {}).get('mission_sim_s', '--'),
+    }
+
+
+def main():
+    root = Path(sys.argv[1])
+    rows = [row for path in sorted(root.iterdir())
+            if path.is_dir() and (row := summarize(path))]
+    print(json.dumps(rows, indent=2))
+
+
+if __name__ == '__main__':
+    main()

@@ -13,18 +13,18 @@
 # limitations under the License.
 
 """
-Stage C, the mission side: requested colour -> episode region -> lane.
+Fixed compatibility and P03D's autonomous-search input boundary.
 
-The mission is not rewritten. It gains one input — an episode's
-colour -> region NAME map — and uses it where it used to call
-``lane_for_colour``. These tests pin three things:
+The fixed mission retains Stage C's optional colour -> region name map.
+Randomized missions receive no map and search independently of colour.
+These tests pin three things:
 
 1. **Fixed is unchanged.** No map (the default) gives exactly the frozen
    lanes, through the plan, the executive and the launch file.
-2. **The map is honoured everywhere a lane is chosen**: the pre-ramp
-   goal, the colour-change path, the ALIGN/CLIMB checks' datum.
-3. **Only names cross the boundary.** The launch file reduces an episode
-   to a colour and a region map; no node parameter carries a coordinate.
+2. **The compatibility map still works** where fixed callers use it.
+3. **Randomized input reveals no location.** The launch file reduces an
+   episode to requested colour and search mode; no node receives a target
+   coordinate or colour -> region assignment.
 """
 
 import importlib.util
@@ -186,13 +186,15 @@ def test_the_launch_file_changes_nothing_by_default():
     assert context.launch_configurations['target_colour'] == 'blue'
 
 
-def test_the_launch_file_hands_the_mission_names_for_an_episode():
+def test_randomized_launch_hides_the_region_assignment():
     context, _ = _resolve(episode_level='colours', episode_seed='1827',
                           target_colour='red')
     spec = generate_episode(seed=1827, level='colours',
                             requested_colour='red')
     region_map = context.launch_configurations['coco_episode_region_map']
-    assert region_map == compat_mission_inputs(spec)['region_map']
+    assert region_map == ''
+    assert context.launch_configurations['coco_autonomous_search'] == 'true'
+    assert context.launch_configurations['target_source'] == 'target_pose'
     assert context.launch_configurations['target_colour'] == 'red'
     for t in spec.targets:
         assert repr(t.x) not in region_map and repr(t.y) not in region_map
@@ -205,8 +207,25 @@ def test_a_manifest_sets_the_requested_colour(tmp_path):
     path.write_text(spec.to_json())
     context, _ = _resolve(episode_manifest=path, target_colour='blue')
     assert context.launch_configurations['target_colour'] == 'yellow'
-    assert (context.launch_configurations['coco_episode_region_map']
-            == format_region_map(spec.region_map()))
+    assert context.launch_configurations['coco_episode_region_map'] == ''
+    assert context.launch_configurations['coco_autonomous_search'] == 'true'
+
+
+def test_randomized_robot_inputs_do_not_change_with_target_region():
+    first, _ = _resolve(episode_level='colours', episode_seed='1',
+                        target_colour='red')
+    fourth, _ = _resolve(episode_level='colours', episode_seed='2',
+                         target_colour='red')
+    assert (generate_episode(seed=1, level='colours',
+                             requested_colour='red').region_map()['red']
+            != generate_episode(seed=2, level='colours',
+                                requested_colour='red').region_map()['red'])
+    robot_keys = ('target_colour', 'coco_episode_region_map',
+                  'coco_autonomous_search', 'target_source')
+    assert tuple(first.launch_configurations[k] for k in robot_keys) == (
+        'red', '', 'true', 'target_pose')
+    assert tuple(fourth.launch_configurations[k] for k in robot_keys) == (
+        'red', '', 'true', 'target_pose')
 
 
 def test_only_the_executive_and_ramp_driver_are_given_the_map():

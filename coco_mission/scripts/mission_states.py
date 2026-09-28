@@ -93,6 +93,8 @@ from coco_config.robot import (
     RAMP_FOOT_X,
     RAMP_SUMMIT_X,
     resolve_lane,
+    TARGET_REGIONS,
+    lane_for_region,
     SPAWN_XY,
 )
 
@@ -109,6 +111,7 @@ APPROACH_TARGET = 'APPROACH_TARGET'
 GRASP = 'GRASP'
 VERIFY_GRASP = 'VERIFY_GRASP'
 DESCEND = 'DESCEND'
+BYPASS_RAMP = 'BYPASS_RAMP'
 RETURN_HOME = 'RETURN_HOME'
 PLACE = 'PLACE'
 VERIFY_PLACEMENT = 'VERIFY_PLACEMENT'
@@ -150,6 +153,11 @@ CLIMB_POSE_UNVERIFIED = 'CLIMB_POSE_UNVERIFIED'
 CLIMB_OFF_LANE = 'CLIMB_OFF_LANE'
 CLIMB_VERIFY_TIMEOUT = 'CLIMB_VERIFY_TIMEOUT'
 TARGET_NOT_FOUND = 'TARGET_NOT_FOUND'
+SEARCH_FAILED = 'SEARCH_FAILED'
+SEARCH_PERCEPTION_UNAVAILABLE = 'SEARCH_PERCEPTION_UNAVAILABLE'
+SEARCH_REJECTED_DEPTH = 'SEARCH_REJECTED_DEPTH'
+SEARCH_REJECTED_GEOMETRY = 'SEARCH_REJECTED_GEOMETRY'
+BYPASS_POSE_OUT_OF_REGION = 'BYPASS_POSE_OUT_OF_REGION'
 TARGET_COLOUR_MISMATCH = 'TARGET_COLOUR_MISMATCH'
 STOW_FAILED = 'STOW_FAILED'
 STOW_TIMEOUT = 'STOW_TIMEOUT'
@@ -208,6 +216,12 @@ CLIMB_END_X = RAMP_SUMMIT_X - CLIMB_GOAL_MARGIN
 # goal adds WORLD_TO_MAP_X. Lifted unchanged from traverse_demo.
 PRE_RAMP_X = 0.5
 HOME = (SPAWN_XY[0], SPAWN_XY[1])
+# Fixed-red Gazebo return passed (4.7464, -2.0630). The map gives this
+# south-side point 0.60 m to the nearest occupied cell, beyond Nav2's
+# 0.25 m local radius. Autonomous returns use it to keep Nav2 on the
+# demonstrated route instead of letting the lane_2 return choose the
+# north side, where AMCL's start became occupied in the adversarial run.
+SOUTH_BYPASS = (4.75, -2.06)
 WORLD_TO_MAP_X = -SPAWN_XY[0]
 
 # Half the lane spacing (coco_config puts the four targets 0.5 m apart).
@@ -396,7 +410,7 @@ class Observation:
         'ros_now', 'wall_now', 'started', 'abort_requested', 'colour',
         'pose', 'pose_stamp', 'localized', 'ramp', 'approach', 'grasp',
         'perception', 'arbiter', 'localization', 'request_token',
-        'request_status',
+        'request_status', 'target_pose', 'target_stamp', 'pose_status',
     )
 
     def __init__(self, ros_now, wall_now=None, started=False,
@@ -404,7 +418,8 @@ class Observation:
                  pose_stamp=None, localized=False, ramp=None, approach=None,
                  grasp=None, perception=None, arbiter=None,
                  localization=None, request_token=None,
-                 request_status=None):
+                 request_status=None, target_pose=None, target_stamp=None,
+                 pose_status=None):
         self.ros_now = ros_now
         self.wall_now = ros_now if wall_now is None else wall_now
         self.started = started
@@ -434,6 +449,9 @@ class Observation:
         # a late reply from a cancelled attempt satisfying the retry.
         self.request_token = request_token
         self.request_status = request_status
+        self.target_pose = target_pose
+        self.target_stamp = target_stamp
+        self.pose_status = pose_status or WorkerView()
 
 
 # Request kinds the node knows how to perform.
@@ -624,6 +642,10 @@ CONTRACTS = {
     DESCEND: StateContract(
         DESCEND, 'rl', 'ramp_driver', 180.0,
         note='no retry, for the same reason as CLIMB'),
+    BYPASS_RAMP: StateContract(
+        BYPASS_RAMP, 'nav', 'nav2', 240.0, max_retries=2,
+        note='autonomous search takes the measured clear south-side route '
+             'around the ramp before RETURN_HOME'),
     RETURN_HOME: StateContract(
         RETURN_HOME, 'nav', 'nav2', 240.0,
         max_retries=2,
@@ -673,6 +695,7 @@ NOMINAL_NEXT = {
     GRASP: VERIFY_GRASP,
     VERIFY_GRASP: DESCEND,
     DESCEND: RETURN_HOME,
+    BYPASS_RAMP: RETURN_HOME,
     RETURN_HOME: PLACE,
     PLACE: VERIFY_PLACEMENT,
     VERIFY_PLACEMENT: COMPLETE,
@@ -711,22 +734,28 @@ class MissionPlan:
                  lane_tolerance=LANE_TOLERANCE,
                  climb_end_x=CLIMB_END_X,
                  localization_recovery=True,
-                 region_map=None):
+                 region_map=None, autonomous_search=False):
         self.colour = colour
-        # Stage C. `region_map` is an episode's colour -> region NAME
-        # assignment (coco_config.robot.parse_region_map); the lane comes
-        # from the static region table, so the plan never holds a target
-        # coordinate. Empty or None is exactly lane_for_colour, i.e. the
-        # frozen P0.2 table, which is what every caller that passes
-        # nothing gets. An explicit `lane` still wins over both.
+        # Fixed-mode compatibility accepts the old colour -> region map.
+        # Autonomous search traverses the static candidate region table;
+        # neither path holds an episode target coordinate.
         self.region_map = dict(region_map or {})
-        self.region = self.region_map.get(colour)
+        self.autonomous_search = bool(autonomous_search)
+        self.search_regions = tuple(r.region_id for r in TARGET_REGIONS)
+        self.search_half_spacing = min(
+            abs(a.lane_y - b.lane_y)
+            for a, b in zip(TARGET_REGIONS, TARGET_REGIONS[1:])) / 2.0
+        self.region = (self.search_regions[0] if self.autonomous_search
+                       else self.region_map.get(colour))
         resolved = (lane if lane is not None
-                    else resolve_lane(colour, self.region_map))
+                    else (lane_for_region(self.region)
+                          if self.autonomous_search else
+                          resolve_lane(colour, self.region_map)))
         self.lane = 0.0 if resolved is None else resolved
         self.do_grasp = do_grasp
         self.pre_ramp_x = pre_ramp_x
         self.home = home
+        self.bypass_ramp = SOUTH_BYPASS
         self.xy_tolerance = xy_tolerance
         # Never tighter than the tolerance it bounds: a consistency band
         # narrower than the clean-arrival window would reject poses the
@@ -785,6 +814,12 @@ class MissionMachine:
         # Reported, not just gated on — see GOAL_XY_CONSISTENCY.
         self.arrival_error = {}       # state -> metres, last arrival
         self.arrival_discrepancy = {}  # state -> metres, tolerance < e <= band
+        self.search_index = 0
+        self.search_exhausted = False
+        self.search_transit_pending = False
+        self.acquired = None
+        self.search_rejections = []
+        self.last_search_rejection = None
 
         self._seq = 0
         self._token = None
@@ -886,6 +921,10 @@ class MissionMachine:
     def _transition(self, state, now, reason=None, detail=''):
         self.previous = self.state
         self.state = state
+        if state == SEARCH_TARGET:
+            self.last_search_rejection = None
+            if self.plan.autonomous_search:
+                self.acquired = None
         self.entered_at = now
         self.detail = detail
         self._seq += 1
@@ -917,6 +956,15 @@ class MissionMachine:
             return
 
         nxt = NOMINAL_NEXT[self.state]
+        if (self.plan.autonomous_search and self.plan.do_grasp
+                and self.state == DESCEND):
+            nxt = BYPASS_RAMP
+            if not self.search_exhausted and self.acquired is None:
+                # The direct far-side -> pre-ramp Nav2 route cut the
+                # southwest ramp corner and stalled in the first live
+                # run. BYPASS_RAMP and RETURN_HOME take the measured
+                # south route; then we select the next candidate.
+                self.search_transit_pending = True
 
         if self.state == IDLE:
             self._started_at = now
@@ -941,6 +989,16 @@ class MissionMachine:
                 self._transition(COMPLETE, now, detail='traverse complete')
             return
 
+        if self.state == RETURN_HOME and self.search_transit_pending:
+            self.search_transit_pending = False
+            self.search_index += 1
+            self.plan.region = self.plan.search_regions[self.search_index]
+            self.plan.lane = lane_for_region(self.plan.region)
+            self._transition(NAVIGATE_TO_RAMP, now,
+                             reason='SEARCH_NEXT_REGION',
+                             detail=f'candidate {self.plan.region}')
+            return
+
         if nxt == COMPLETE:
             self.result = 'fetch'
 
@@ -963,6 +1021,17 @@ class MissionMachine:
         failed = self.failed_state
         contract = self.contracts[failed] if failed else self.contract
         used = self.attempts.get(failed, 0)
+        if failed == SEARCH_TARGET and self.plan.autonomous_search:
+            self.search_rejections.append((self.plan.region, self.reason))
+            self.search_exhausted = (self.search_index + 1 >=
+                                     len(self.plan.search_regions))
+            if self.search_exhausted:
+                self.degraded_reason = SEARCH_FAILED
+            self._transition(DESCEND, now,
+                             reason=('SEARCH_FAILED' if self.search_exhausted
+                                     else 'SEARCH_NEXT_REGION'),
+                             detail=f'{self.plan.region}: {self.reason}')
+            return
 
         # C2-M5.1. A localization failure spends the RELOCALIZE budget,
         # not the interrupted leg's.
@@ -1022,6 +1091,9 @@ class MissionMachine:
                          detail=f'{failed} exhausted its retries')
 
     def _timeout_reason(self, obs):
+        if self.state == SEARCH_TARGET and self.plan.autonomous_search:
+            return (self.last_search_rejection or
+                    SEARCH_PERCEPTION_UNAVAILABLE)
         if self.state == LOCALIZE:
             # Name the input that never arrived. "LOCALIZE_TIMEOUT" would
             # send whoever reads the log to the wrong subsystem three
@@ -1035,6 +1107,7 @@ class MissionMachine:
             return NO_LOCALIZATION
         return {
             NAVIGATE_TO_RAMP: NAVIGATION_TIMEOUT,
+            BYPASS_RAMP: NAVIGATION_TIMEOUT,
             ALIGN_FOR_CLIMB: ALIGN_TIMEOUT,
             CLIMB: CLIMB_TIMEOUT,
             VERIFY_CLIMB: CLIMB_VERIFY_TIMEOUT,
@@ -1110,6 +1183,10 @@ class MissionMachine:
         return self._check_nav_leg(
             obs, self.plan.home, HOME_POSE_OUT_OF_REGION,
             failed=RETURN_FAILED)
+
+    def _check_bypass_ramp(self, obs):
+        return self._check_nav_leg(
+            obs, self.plan.bypass_ramp, BYPASS_POSE_OUT_OF_REGION)
 
     def _check_nav_leg(self, obs, goal, region_reason,
                        failed=NAVIGATION_FAILED):
@@ -1269,6 +1346,8 @@ class MissionMachine:
         return SUCCESS
 
     def _check_search_target(self, obs):
+        if self.plan.autonomous_search:
+            return self._check_autonomous_search(obs)
         if not obs.perception.newer_than(self.entered_at):
             return RUNNING
         selected = obs.perception.get('sel')
@@ -1280,6 +1359,56 @@ class MissionMachine:
         if obs.perception.get('found') == '1':
             return SUCCESS
         return RUNNING
+
+    def _check_autonomous_search(self, obs):
+        status = obs.pose_status
+        if not status.newer_than(self.entered_at):
+            return RUNNING
+        raw_stamp = status.get('stamp_ns')
+        if missing(raw_stamp):
+            return RUNNING
+        try:
+            frame_time = int(raw_stamp) * 1e-9
+        except (TypeError, ValueError):
+            return RUNNING
+        if frame_time <= self.entered_at:
+            return RUNNING
+        if status.get('sel') != self.plan.colour:
+            return (FAILURE, TARGET_COLOUR_MISMATCH,
+                    f'pose selected {status.get("sel")}, requested '
+                    f'{self.plan.colour}')
+        validity = status.get('validity')
+        if validity != 'VALID':
+            self.last_search_rejection = (
+                TARGET_NOT_FOUND if validity == 'NOT_DETECTED' else
+                SEARCH_REJECTED_DEPTH if validity == 'DEPTH_INVALID' else
+                SEARCH_REJECTED_GEOMETRY)
+            return RUNNING
+        if (status.get('frame') != 'base_footprint' or
+                status.get('reach_appr') not in
+                ('REACHABLE', 'OFF_ARM_PLANE')):
+            self.last_search_rejection = SEARCH_REJECTED_GEOMETRY
+            return RUNNING
+        if (obs.target_pose is None or obs.target_stamp is None or
+                obs.target_stamp <= self.entered_at or
+                obs.target_stamp + 1e-6 < frame_time):
+            return RUNNING
+        x, y, z = obs.target_pose
+        if not all(math.isfinite(v) for v in (x, y, z)):
+            return RUNNING
+        if x <= 0.0 or abs(y) >= self.plan.search_half_spacing:
+            self.last_search_rejection = SEARCH_REJECTED_GEOMETRY
+            return RUNNING
+        self.reason = None
+        self.last_search_rejection = None
+        self.acquired = (self.plan.region, obs.target_pose,
+                         obs.target_stamp)
+        self._pending_events.append(Event(
+            obs.ros_now, SEARCH_TARGET, SEARCH_TARGET,
+            reason='TARGET_ACQUIRED',
+            detail=f'{self.plan.region} {self.plan.colour} '
+                   f'base_footprint=({x:.4f},{y:.4f},{z:.4f})'))
+        return SUCCESS
 
     def _check_verify_grasp(self, obs):
         if not obs.grasp.newer_than(self.entered_at):

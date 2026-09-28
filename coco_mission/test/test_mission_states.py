@@ -46,6 +46,7 @@ IDLE_LINES = {
                 'travel=0.000 colour=blue outcome=--',
     'grasp': 'phase=idle colour=blue x=-- y=-- lifted=0 outcome=--',
     'perception': 'sel=blue found=0 u=-- v=-- area=0 seen=-- age=0.05',
+    'pose_status': 'sel=blue validity=NOT_DETECTED stamp_ns=--',
     'arbiter': 'mode=idle active=none teleop=-- nav=-- rl=-- approach=--',
     # C2-M5.1. The monitor present and reporting a healthy robot, which
     # is what it reports for the whole of a nominal mission — so every
@@ -84,6 +85,8 @@ class Harness:
         self.transitions = []
         self.requests = []
         self.freeze_ros = False
+        self.target_pose = None
+        self.target_stamp = None
 
     # ── the world ────────────────────────────────────────────────────────
     def publish(self, key, line):
@@ -102,6 +105,7 @@ class Harness:
             colour=self.colour, pose=self.pose, pose_stamp=self.now,
             localized=self.localized,
             request_token=self.token, request_status=self.status,
+            target_pose=self.target_pose, target_stamp=self.target_stamp,
             **self.views())
 
     # ── the loop ─────────────────────────────────────────────────────────

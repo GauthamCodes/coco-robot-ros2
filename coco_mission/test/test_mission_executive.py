@@ -132,7 +132,8 @@ class TestCmdVelInvariant:
         topics = sorted(publisher.topic_name
                         for publisher in node.publishers
                         if publisher.topic_name not in builtin)
-        assert topics == ['/initialpose', '/mission/mode', '/mission/state',
+        assert topics == ['/initialpose', '/mission/mode',
+                          '/mission/search_region', '/mission/state',
                           '/mission/target_colour']
 
     def test_the_pose_seed_is_not_on_any_velocity_topic(self, node):

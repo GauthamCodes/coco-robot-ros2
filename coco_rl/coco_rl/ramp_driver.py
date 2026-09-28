@@ -85,7 +85,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from std_srvs.srv import Trigger
 
-from coco_config.robot import parse_region_map, resolve_lane
+from coco_config.robot import lane_for_region, parse_region_map, resolve_lane
 
 from coco_rl.ramp_env import CocoRampEnv, MAX_ANG, quat_to_rp
 
@@ -264,6 +264,7 @@ class RampDriver(Node):
         # of the lane the mission sent the robot up. Empty: the frozen
         # table, as before.
         self.declare_parameter('region_map', '')
+        self.declare_parameter('autonomous_search', False)
         self.declare_parameter('odom_topic', '/model/coco/odometry')
         self.declare_parameter('colour_topic', '/mission/target_colour')
 
@@ -298,12 +299,17 @@ class RampDriver(Node):
         # than hold the climb against the wrong line.
         self._region_map = parse_region_map(
             str(self.get_parameter('region_map').value or ''))
+        self._autonomous_search = bool(
+            self.get_parameter('autonomous_search').value)
         self.create_subscription(
             Odometry, self.get_parameter('odom_topic').value,
             self._on_odom, 10)
         self.create_subscription(
             String, self.get_parameter('colour_topic').value,
             self._on_colour, 10)
+        if self._autonomous_search:
+            self.create_subscription(
+                String, '/mission/search_region', self._on_region, 10)
 
         self._status_pub = self.create_publisher(
             String, self.get_parameter('status_topic').value, 10)
@@ -323,20 +329,23 @@ class RampDriver(Node):
         self._world_y = msg.pose.pose.position.y
 
     def _on_colour(self, msg):
-        """Take the target lane from the mission's chosen colour.
-
-        Resolved exactly as the mission executive resolves it —
-        ``coco_config.robot.resolve_lane`` with the same region map — so
-        the lane the robot is sent up and the lane its climb is held to
-        cannot disagree. With no map that is the frozen colour->lane
-        table; deriving the lane any other way is how two drift apart.
-        """
+        """Use the fixed-mode colour lane; search mode uses region IDs."""
+        if self._autonomous_search:
+            return
         lane = resolve_lane((msg.data or '').strip().lower(),
                             self._region_map)
         if lane is not None and lane != self._lane_y:
             self.get_logger().info(
                 f'cross-track datum -> lane {lane:+.2f} ({msg.data.strip()})')
             self._lane_y = lane
+
+    def _on_region(self, msg):
+        lane = lane_for_region(msg.data)
+        if lane is not None and lane != self._lane_y:
+            self._lane_y = lane
+            self.get_logger().info(
+                f'cross-track datum -> search region {msg.data} '
+                f'lane {lane:+.2f}')
 
     def cross_track(self):
         """Signed distance from the target lane centreline, or None.

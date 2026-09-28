@@ -124,6 +124,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 #: declared argument: it is DERIVED from the episode arguments, never
 #: typed, so there is one way to set it and it always matches a manifest.
 REGION_MAP = 'coco_episode_region_map'
+SEARCH_MODE = 'coco_autonomous_search'
 
 
 def resolve_mission_episode(context):
@@ -151,16 +152,22 @@ def resolve_mission_episode(context):
         level=level,
         seed=LaunchConfiguration('episode_seed').perform(context),
         requested_colour=colour, manifest_path=manifest)
-    inputs = compat_mission_inputs(spec)
-    requested = inputs['target_colour']
+    requested = spec.task_view()['requested_colour']
+    autonomous = spec.level != 'fixed'
+    region_map = ('' if autonomous else
+                  compat_mission_inputs(spec)['region_map'])
     actions = [
         SetLaunchConfiguration('target_colour', requested),
-        SetLaunchConfiguration(REGION_MAP, inputs['region_map']),
+        SetLaunchConfiguration(REGION_MAP, region_map),
+        SetLaunchConfiguration(SEARCH_MODE,
+                               'true' if autonomous else 'false'),
         LogInfo(msg=(
             f'[episode] {spec.episode_id} level={spec.level} '
             f'seed={spec.seed} requested={requested} '
-            f'region_map={inputs["region_map"]}')),
+            f'autonomous_search={autonomous}')),
     ]
+    if autonomous:
+        actions.append(SetLaunchConfiguration('target_source', 'target_pose'))
     if requested != colour:
         actions.append(LogInfo(msg=(
             f'[episode] target_colour {colour} overridden by the '
@@ -307,8 +314,7 @@ def generate_launch_description():
             choices=['fixed', 'colours', 'positions'],
             description='fixed (default): the frozen colour->lane table, '
                         'exactly as before episodes. colours/positions: '
-                        'the mission climbs the lane of the region the '
-                        'episode put target_colour in.'),
+                        'search all candidate regions with RGB-D.'),
         DeclareLaunchArgument(
             'episode_seed', default_value='0',
             description='Integer seed; must match the world launch.'),
@@ -391,6 +397,8 @@ def generate_launch_description():
                 'region_map': ParameterValue(
                     LaunchConfiguration(REGION_MAP, default=''),
                     value_type=str),
+                'autonomous_search': LaunchConfiguration(
+                    SEARCH_MODE, default='false'),
             }],
         ),
         Node(
@@ -421,6 +429,8 @@ def generate_launch_description():
                 'region_map': ParameterValue(
                     LaunchConfiguration(REGION_MAP, default=''),
                     value_type=str),
+                'autonomous_search': LaunchConfiguration(
+                    SEARCH_MODE, default='false'),
             }],
             condition=IfCondition(LaunchConfiguration('executive')),
         ),

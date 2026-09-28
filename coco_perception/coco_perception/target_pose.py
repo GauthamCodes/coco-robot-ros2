@@ -169,7 +169,7 @@ REACHABILITIES = (REACHABLE, OUT_OF_WORKSPACE, OFF_ARM_PLANE,
 # key=value, the convention already used by /perception/status,
 # /mission/state and grasp_server, so the existing panel splitter works.
 # No value may contain a space.
-STATUS_KEYS = ('sel', 'validity', 'u', 'v', 'area', 'w',
+STATUS_KEYS = ('sel', 'validity', 'stamp_ns', 'u', 'v', 'area', 'w',
                'range', 'x', 'y', 'z', 'gx', 'gy', 'gz',
                'qual', 'spread', 'cand', 'seen', 'frame', 'tf_age',
                'reach', 'reach_appr', 'drive', 'lateral')
@@ -588,6 +588,7 @@ def status_for(observation):
     return format_status(
         sel=observation.colour,
         validity=observation.validity,
+        stamp_ns=observation.stamp_ns,
         u=None if blob is None else round(blob[1]),
         v=None if blob is None else round(blob[2]),
         area=None if blob is None else blob[0],

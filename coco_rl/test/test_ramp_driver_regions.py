@@ -46,7 +46,8 @@ class _Log:
 
 
 def _stub(region_map):
-    return SimpleNamespace(_region_map=region_map, _lane_y=None,
+    return SimpleNamespace(_region_map=region_map,
+                           _autonomous_search=False, _lane_y=None,
                            get_logger=lambda: _Log())
 
 
@@ -79,6 +80,17 @@ def test_an_unknown_colour_leaves_the_datum_alone():
     _say(stub, 'blue')
     _say(stub, 'purple')
     assert stub._lane_y == lane_for_region('lane_4')
+
+
+def test_autonomous_datum_follows_region_and_ignores_colour():
+    stub = _stub({})
+    stub._autonomous_search = True
+    _say(stub, 'red')
+    assert stub._lane_y is None
+    driver.RampDriver._on_region(stub, SimpleNamespace(data='lane_3'))
+    assert stub._lane_y == lane_for_region('lane_3')
+    _say(stub, 'yellow')
+    assert stub._lane_y == lane_for_region('lane_3')
 
 
 def test_ramp_driver_declares_the_region_map_parameter():

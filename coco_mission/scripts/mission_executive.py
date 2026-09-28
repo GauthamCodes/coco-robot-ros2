@@ -96,7 +96,7 @@ from action_msgs.msg import GoalStatus
 
 from coco_config.robot import parse_region_map, TARGET_COLOURS
 
-from geometry_msgs.msg import PoseWithCovarianceStamped
+from geometry_msgs.msg import PointStamped, PoseWithCovarianceStamped
 
 import mission_states as ms
 
@@ -148,6 +148,7 @@ STATUS_TOPICS = (
     ('approach', '/approach/status'),
     ('grasp', '/grasp/status'),
     ('perception', '/perception/status'),
+    ('pose_status', '/perception/target_pose/status'),
     ('arbiter', '/cmd_vel_arbiter/status'),
     # C2-M5.1. localization_monitor publishes the same key=value shape as
     # every other status topic here, which is why it needed no new
@@ -212,13 +213,10 @@ class MissionExecutive(Node):
         # That is the C2-M5.1 false-positive experiment, and it is also
         # how a pre-C2-M5.1 mission is reproduced exactly.
         self.declare_parameter('localization_recovery', True)
-        # Stage C, the compatibility channel. An episode's colour -> region
-        # NAME assignment ("blue=lane_1,green=lane_4,..."), set by
-        # mission.launch.py from the episode manifest. Empty — the default
-        # — is the frozen colour->lane table, exactly as before episodes.
-        # Region names only: the lane comes from coco_config's static
-        # region table, and no target coordinate reaches this node.
+        # Fixed-mode compatibility channel. Autonomous search receives an
+        # empty map and visits candidate regions independently of colour.
         self.declare_parameter('region_map', '')
+        self.declare_parameter('autonomous_search', False)
 
         # The CLI wins over the parameter, because `ros2 run ... --colour
         # blue` is the headless form and the parameter is the launch-file
@@ -257,7 +255,9 @@ class MissionExecutive(Node):
                 self.get_parameter('lane_tolerance').value),
             localization_recovery=bool(
                 self.get_parameter('localization_recovery').value),
-            region_map=self.region_map)
+            region_map=self.region_map,
+            autonomous_search=bool(
+                self.get_parameter('autonomous_search').value))
         self.machine = ms.MissionMachine(
             self.plan,
             stall_limit=float(self.get_parameter('stall_limit').value))
@@ -270,6 +270,8 @@ class MissionExecutive(Node):
         self._pose = None
         self._pose_stamp = None
         self._localized = False
+        self._target_pose = None
+        self._target_stamp = None
         self._views = {key: ms.WorkerView() for key, _ in STATUS_TOPICS}
 
         self.create_subscription(
@@ -280,6 +282,8 @@ class MissionExecutive(Node):
                 (lambda msg, k=key: self._on_status(k, msg)), 10)
         self.create_subscription(
             String, '/mission/target_colour', self._on_colour, 10)
+        self.create_subscription(
+            PointStamped, '/perception/target', self._on_target, 10)
         # AMCL latches its pose TRANSIENT_LOCAL and, with update_min_a
         # 0.2 rad, a stationary robot produces no new one. A VOLATILE
         # subscriber started after AMCL would therefore never see a pose
@@ -297,6 +301,8 @@ class MissionExecutive(Node):
         self._state_pub = self.create_publisher(String, '/mission/state', 10)
         self._colour_pub = self.create_publisher(
             String, '/mission/target_colour', 10)
+        self._region_pub = self.create_publisher(
+            String, '/mission/search_region', 10)
 
         # ── the subsystems ───────────────────────────────────────────────
         self._nav = ActionClient(self, NavigateToPose, 'navigate_to_pose')
@@ -385,6 +391,13 @@ class MissionExecutive(Node):
     def _on_status(self, key, msg):
         self._views[key] = ms.WorkerView.from_line(msg.data, self.now())
 
+    def _on_target(self, msg):
+        if msg.header.frame_id != 'base_footprint':
+            return
+        self._target_pose = (msg.point.x, msg.point.y, msg.point.z)
+        self._target_stamp = (msg.header.stamp.sec +
+                              msg.header.stamp.nanosec * 1e-9)
+
     def _on_amcl(self, msg):
         # Presence only. Whether the estimate is any GOOD is C2-M5's
         # question and its threshold has never been calibrated; asserting
@@ -406,7 +419,8 @@ class MissionExecutive(Node):
             xy_tolerance=self.plan.xy_tolerance,
             yaw_tolerance=self.plan.yaw_tolerance,
             lane_tolerance=self.plan.lane_tolerance,
-            region_map=self.region_map)
+            region_map=self.region_map,
+            autonomous_search=self.plan.autonomous_search)
         self.machine.plan = self.plan
         self.get_logger().info(
             f'target colour {colour}, lane {self.plan.lane:+.2f}'
@@ -455,6 +469,9 @@ class MissionExecutive(Node):
             approach=self._views['approach'],
             grasp=self._views['grasp'],
             perception=self._views['perception'],
+            pose_status=self._views['pose_status'],
+            target_pose=self._target_pose,
+            target_stamp=self._target_stamp,
             arbiter=self._views['arbiter'],
             localization=self._views['localization'],
             request_token=self._token,
@@ -822,6 +839,9 @@ class MissionExecutive(Node):
         self._last_published = line
         if self.announce and self.colour:
             self._colour_pub.publish(String(data=self.colour))
+        if self.plan.autonomous_search and self.machine.state not in (
+                ms.IDLE, ms.COMPLETE, ms.ABORT):
+            self._region_pub.publish(String(data=self.plan.region))
 
     # ── shutdown ─────────────────────────────────────────────────────────
     def should_exit(self):

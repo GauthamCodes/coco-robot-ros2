@@ -93,6 +93,24 @@ def test_autonomous_datum_follows_region_and_ignores_colour():
     assert stub._lane_y == lane_for_region('lane_3')
 
 
+def test_autonomous_climb_corrects_toward_region_centre():
+    stub = _stub({})
+    stub._autonomous_search = True
+    stub._lane_y = lane_for_region('lane_1')
+    stub._world_y = stub._lane_y - 0.06
+    assert driver.RampDriver.control_lateral_error(stub, 0.0) == pytest.approx(
+        -0.06)
+    stub._world_y = None
+    assert driver.RampDriver.control_lateral_error(stub, 0.02) == 0.02
+
+
+def test_fixed_climb_keeps_its_existing_segment_datum():
+    stub = _stub({})
+    stub._lane_y = lane_for_region('lane_1')
+    stub._world_y = stub._lane_y - 0.06
+    assert driver.RampDriver.control_lateral_error(stub, 0.02) == 0.02
+
+
 def test_ramp_driver_declares_the_region_map_parameter():
     """Static guard: the launch file sets it, so the node must read it."""
     import inspect

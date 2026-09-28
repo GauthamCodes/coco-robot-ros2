@@ -358,6 +358,14 @@ class RampDriver(Node):
             return None
         return self._world_y - self._lane_y
 
+    def control_lateral_error(self, segment_error):
+        """Hold the selected region centre during autonomous climbs."""
+        if self._autonomous_search:
+            region_error = RampDriver.cross_track(self)
+            if region_error is not None:
+                return region_error
+        return float(segment_error)
+
     def live_pitch(self):
         """Body pitch if a segment is sampling it, else None.
 
@@ -446,12 +454,11 @@ class RampDriver(Node):
                 while not self._abort.is_set():
                     action, _ = self._model.predict(obs, deterministic=True)
                     if self._lateral_hold:
-                        # obs[1] is drift from the lane this segment started
-                        # in: reset() rebases _y0 on the CURRENT pose, so it
-                        # is zero at the first step by construction and the
-                        # lane the sequencer navigated to is the datum.
+                        # Fixed mode retains the original segment-start
+                        # datum. Autonomous search holds the selected
+                        # region centre even when Nav2 arrives off-centre.
                         held = lateral_hold(
-                            action, y_err=float(obs[1]),
+                            action, y_err=self.control_lateral_error(obs[1]),
                             yaw=math.atan2(float(obs[2]), float(obs[3])),
                             gain=gain, heading_gain=heading_gain,
                             clamp=clamp)

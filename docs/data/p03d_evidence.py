@@ -19,6 +19,33 @@ import json
 from pathlib import Path
 import re
 import sys
+from collections import Counter
+
+
+def observed_regions(path):
+    """Collapse repeated live topic samples into a traversal sequence."""
+    topic = path / 'search_regions.txt'
+    if not topic.exists():
+        return []
+    regions = re.findall(r'^lane_\d+$', topic.read_text(), re.MULTILINE)
+    return [region for i, region in enumerate(regions)
+            if i == 0 or region != regions[i - 1]]
+
+
+def perception_counts(path):
+    """Count actual RGB-D verdicts recorded from the ROS status topic."""
+    topic = path / 'target_pose_status.txt'
+    if not topic.exists():
+        return {}
+    return dict(sorted(Counter(re.findall(
+        r'\bvalidity=([A-Z_]+)', topic.read_text())).items()))
+
+
+def point_samples(path):
+    """Count PointStamped samples expressed in the manipulation frame."""
+    topic = path / 'target_points.txt'
+    return (topic.read_text().count('frame_id: base_footprint')
+            if topic.exists() else 0)
 
 
 def summarize(path):
@@ -35,10 +62,15 @@ def summarize(path):
         path / 'result.json').exists() else {}
     acquired = re.findall(r'TARGET_ACQUIRED\]:?[^\n]*', mission)
     region = None
+    acquired_pose = None
     if acquired:
         match = re.search(r'(lane_\d+)', acquired[-1])
         if match:
             region = match.group(1)
+        match = re.search(r'base_footprint=\(([^)]+)\)', acquired[-1])
+        if match:
+            acquired_pose = [float(value) for value in
+                             match.group(1).split(',')]
     # Fixed mode uses the old SEARCH_TARGET status gate, without an
     # explicit TARGET_ACQUIRED event. It is reported separately below.
     if region:
@@ -57,6 +89,12 @@ def summarize(path):
         'requested': requested,
         'actual_region': actual,
         'acquired_region': region or '--',
+        'acquired_pose_base_footprint': acquired_pose,
+        'search_sequence': observed_regions(path),
+        'perception_validity_counts': perception_counts(path),
+        'point_samples': point_samples(path),
+        'nav_goals_world': re.findall(
+            r'NavigateToPose -> world \(([^)]+)\)', mission),
         'detection': perception,
         'grasp': grasp,
         'mission': result.get('outcome', 'unrecorded'),
@@ -64,6 +102,8 @@ def summarize(path):
         'recoveries': recovery,
         'wall_s': result.get('timings', {}).get('mission_wall_s', '--'),
         'sim_s': result.get('timings', {}).get('mission_sim_s', '--'),
+        'runner_checks_pass': result.get('measurements', {}).get(
+            'runner_checks_pass'),
     }
 
 

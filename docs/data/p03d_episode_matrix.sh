@@ -10,7 +10,7 @@ mkdir -p "$ROOT"
 # episode puts red in lane_2. Other seeds exercise farther regions.
 RUNS=(
     'fixed_red fixed 0 red'
-    'colours_s1_red colours 1 red'
+    'colours_s1_red_v5 colours 1 red'
     'positions_s1_red positions 1 red'
     'fixed_green fixed 0 green'
     'colours_s2_red colours 2 red'

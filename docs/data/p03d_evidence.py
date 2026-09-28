@@ -41,9 +41,13 @@ def summarize(path):
             region = match.group(1)
     # Fixed mode uses the old SEARCH_TARGET status gate, without an
     # explicit TARGET_ACQUIRED event. It is reported separately below.
-    perception = 'acquired' if region else ('fixed_gate' if
-                   manifest['level'] == 'fixed' and
-                   'SEARCH_TARGET -> STOW_ARM' in mission else 'none')
+    if region:
+        perception = 'acquired'
+    elif (manifest['level'] == 'fixed' and
+          'SEARCH_TARGET -> STOW_ARM' in mission):
+        perception = 'fixed_gate'
+    else:
+        perception = 'none'
     grasp = 'held' if 'VERIFY_GRASP -> DESCEND' in mission else 'not_held'
     recovery = len(re.findall(r' -> RECOVERY \[', mission))
     return {

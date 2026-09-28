@@ -98,8 +98,8 @@ def test_old_frame_and_point_from_different_frames_are_rejected():
     assert harness.state == ms.SEARCH_TARGET
 
 
-@pytest.mark.parametrize('point', [(0.8, 0.26, 0.079),
-                                    (-0.1, 0.0, 0.079)])
+@pytest.mark.parametrize(
+    'point', [(0.8, 0.26, 0.079), (-0.1, 0.0, 0.079)])
 def test_pose_outside_candidate_corridor_is_rejected(point):
     harness = search_harness()
     answer(harness, 'VALID', point=point, reach='OFF_ARM_PLANE')
@@ -115,8 +115,8 @@ def test_absent_first_region_descends_and_reaches_second():
     assert harness.state == ms.RECOVERY
     harness.recover()
     assert harness.state == ms.DESCEND
-    assert harness.machine.search_rejections == [('lane_1',
-                                                   ms.TARGET_NOT_FOUND)]
+    expected = [('lane_1', ms.TARGET_NOT_FOUND)]
+    assert harness.machine.search_rejections == expected
     harness.dt = 0.1
     harness.worker('ramp', 'segment', 'descend', 'goal')
     assert harness.state == ms.BYPASS_RAMP

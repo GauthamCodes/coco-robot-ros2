@@ -89,6 +89,7 @@ APPROACH_TARGET = 'APPROACH_TARGET'
 GRASP = 'GRASP'
 VERIFY_GRASP = 'VERIFY_GRASP'
 DESCEND = 'DESCEND'
+BYPASS_RAMP = 'BYPASS_RAMP'
 RETURN_HOME = 'RETURN_HOME'
 PLACE = 'PLACE'
 VERIFY_PLACEMENT = 'VERIFY_PLACEMENT'
@@ -97,11 +98,12 @@ RECOVERY = 'RECOVERY'
 RELOCALIZE = 'RELOCALIZE'
 ABORT = 'ABORT'
 
-#: Every state the executive can report. Nineteen.
+#: Every state the executive can report. Twenty.
 STATES = (
     IDLE, LOCALIZE, NAVIGATE_TO_RAMP, ALIGN_FOR_CLIMB, CLIMB,
     VERIFY_CLIMB, SEARCH_TARGET, STOW_ARM, APPROACH_TARGET, GRASP,
-    VERIFY_GRASP, DESCEND, RETURN_HOME, PLACE, VERIFY_PLACEMENT,
+    VERIFY_GRASP, DESCEND, BYPASS_RAMP, RETURN_HOME, PLACE,
+    VERIFY_PLACEMENT,
     COMPLETE, RECOVERY, RELOCALIZE, ABORT,
 )
 
@@ -117,7 +119,7 @@ NOMINAL_ORDER = (
     COMPLETE,
 )
 
-#: Every structured failure reason the executive can report. Forty-eight.
+#: Every structured failure reason the executive can report. Fifty-three.
 #: Carried so an unknown code is reported AS unknown rather than printed
 #: to an operator as though it were a diagnosis.
 REASONS = (
@@ -129,7 +131,9 @@ REASONS = (
     'ALIGN_NOT_ON_FLAT', 'ALIGN_TIMEOUT', 'SERVICE_UNAVAILABLE',
     'SERVICE_REFUSED', 'CLIMB_FAILED', 'CLIMB_TIPPED',
     'CLIMB_TIMEOUT', 'CLIMB_POSE_UNVERIFIED', 'CLIMB_OFF_LANE',
-    'CLIMB_VERIFY_TIMEOUT', 'TARGET_NOT_FOUND',
+    'CLIMB_VERIFY_TIMEOUT', 'TARGET_NOT_FOUND', 'SEARCH_FAILED',
+    'SEARCH_PERCEPTION_UNAVAILABLE', 'SEARCH_REJECTED_DEPTH',
+    'SEARCH_REJECTED_GEOMETRY', 'BYPASS_POSE_OUT_OF_REGION',
     'TARGET_COLOUR_MISMATCH', 'STOW_FAILED', 'STOW_TIMEOUT',
     'APPROACH_FAILED', 'APPROACH_TIMEOUT', 'GRASP_FAILED',
     'GRASP_TIMEOUT', 'GRASP_UNVERIFIED', 'GRASP_VERIFY_TIMEOUT',
@@ -171,6 +175,7 @@ PHASE_OF = {
     GRASP: 'GRASPING',
     VERIFY_GRASP: 'GRASPING',
     DESCEND: 'RETURNING',
+    BYPASS_RAMP: 'RETURNING',
     RETURN_HOME: 'RETURNING',
     PLACE: 'RETURNING',
     VERIFY_PLACEMENT: 'RETURNING',
@@ -192,6 +197,7 @@ WORDS = {
     GRASP: 'Grasping',
     VERIFY_GRASP: 'Checking the grip',
     DESCEND: 'Coming back down',
+    BYPASS_RAMP: 'Driving around the ramp',
     RETURN_HOME: 'Heading home',
     PLACE: 'Putting the cylinder down',
     VERIFY_PLACEMENT: 'Checking the placement',
@@ -209,6 +215,11 @@ REASON_WORDS = {
     'NO_TARGET_COLOUR': 'No colour was chosen',
     'OPERATOR_ABORT': 'Stopped on request',
     'TARGET_NOT_FOUND': 'Could not see the cylinder',
+    'SEARCH_FAILED': 'Could not find the requested cylinder',
+    'SEARCH_PERCEPTION_UNAVAILABLE': 'The target camera is unavailable',
+    'SEARCH_REJECTED_DEPTH': 'The target depth was unusable',
+    'SEARCH_REJECTED_GEOMETRY':
+        'The target observation was outside the search area',
     'TARGET_COLOUR_MISMATCH': 'Saw a different colour than the one asked for',
     'NAVIGATION_TIMEOUT': 'Navigation ran out of time',
     'NAVIGATION_FAILED': 'Navigation gave up',

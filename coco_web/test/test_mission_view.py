@@ -125,12 +125,12 @@ def test_the_executive_module_is_where_we_think_it_is():
 
 
 def test_every_state_name_matches_the_executive():
-    """All nineteen states, spelled exactly as the executive spells them."""
+    """All twenty states, spelled exactly as the executive spells them."""
     constants = _executive_constants()
     for state in mv.STATES:
         assert constants.get(state) == state, (
             f'{state} is not a state constant in mission_states.py')
-    assert len(mv.STATES) == 19
+    assert len(mv.STATES) == 20
 
 
 def test_terminal_states_match_the_executive():
@@ -156,12 +156,12 @@ def test_nominal_order_matches_the_executive_chain():
 
 
 def test_every_reason_matches_the_executive():
-    """All forty-eight failure reasons exist, spelled identically."""
+    """All fifty-three failure reasons exist, spelled identically."""
     constants = _executive_constants()
     for reason in mv.REASONS:
         assert constants.get(reason) == reason, (
             f'{reason} is not a reason constant in mission_states.py')
-    assert len(mv.REASONS) == 48
+    assert len(mv.REASONS) == 53
 
 
 def test_no_executive_reason_is_missing_from_our_copy():

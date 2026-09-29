@@ -91,7 +91,9 @@ import math
 
 from coco_config.robot import (
     RAMP_FOOT_X,
+    RAMP_RUN,
     RAMP_SUMMIT_X,
+    PLATFORM_LEN,
     resolve_lane,
     TARGET_REGIONS,
     lane_for_region,
@@ -216,6 +218,10 @@ CLIMB_END_X = RAMP_SUMMIT_X - CLIMB_GOAL_MARGIN
 # goal adds WORLD_TO_MAP_X. Lifted unchanged from traverse_demo.
 PRE_RAMP_X = 0.5
 HOME = (SPAWN_XY[0], SPAWN_XY[1])
+# The verified descent stops at 6.65 m: far foot 3.0 + 1.5 + 2.0,
+# plus the driver's 0.15 m arrival margin. This is a known ramp exit,
+# not an episode target pose.
+SEARCH_EXIT_X = RAMP_SUMMIT_X + PLATFORM_LEN + RAMP_RUN + 0.15
 # Fixed-red Gazebo return passed (4.7464, -2.0630). The map gives this
 # south-side point 0.60 m to the nearest occupied cell, beyond Nav2's
 # 0.25 m local radius. Autonomous returns use it to keep Nav2 on the
@@ -773,6 +779,11 @@ class MissionPlan:
     def pre_ramp(self):
         """The pre-ramp goal in world coordinates."""
         return (self.pre_ramp_x, self.lane)
+
+    @property
+    def search_exit(self):
+        """The known flat-ground exit of this candidate region."""
+        return (SEARCH_EXIT_X, self.lane)
 
 
 class MissionMachine:

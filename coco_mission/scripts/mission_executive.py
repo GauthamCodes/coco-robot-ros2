@@ -270,6 +270,10 @@ class MissionExecutive(Node):
         self._pose = None
         self._pose_stamp = None
         self._localized = False
+        self._amcl_xy = None
+        self._amcl_seen_at = None
+        self._exit_seed_token = None
+        self._exit_seed_at = None
         self._target_pose = None
         self._target_stamp = None
         self._views = {key: ms.WorkerView() for key, _ in STATUS_TOPICS}
@@ -403,6 +407,9 @@ class MissionExecutive(Node):
         # question and its threshold has never been calibrated; asserting
         # one here would be inventing a number.
         self._localized = True
+        self._amcl_xy = (msg.pose.pose.position.x,
+                         msg.pose.pose.position.y)
+        self._amcl_seen_at = self.wall()
 
     def _on_colour(self, msg):
         colour = (msg.data or '').strip().lower()
@@ -572,6 +579,30 @@ class MissionExecutive(Node):
                 or self._status != ms.PENDING):
             return
         request = self._request
+        if (request.kind == ms.NAV_GOAL and
+                self.machine.state == ms.BYPASS_RAMP and
+                self.plan.autonomous_search):
+            if self._exit_seed_token != request.token:
+                self._exit_seed_token = request.token
+                self._exit_seed_at = None
+                if not self._amcl_near_search_exit():
+                    self._initialpose.publish(self._search_exit_seed())
+                    self._exit_seed_at = self.wall()
+                    self.get_logger().warn(
+                        'AMCL is outside the verified search-region exit; '
+                        f'seeding near {self.plan.search_exit} before Nav2')
+                    return
+            if self._exit_seed_at is not None:
+                ready_pose = (self._amcl_seen_at is not None and
+                              self._amcl_seen_at > self._exit_seed_at and
+                              self._amcl_near_search_exit())
+                if not ready_pose:
+                    if self.wall() > self._deadline:
+                        self._status = ms.UNAVAILABLE
+                        self.get_logger().error(
+                            'AMCL did not localize at the verified '
+                            'search-region exit; withholding Nav2 goal')
+                    return
         if request.kind == ms.NAV_GOAL:
             ready = self._nav.server_is_ready()
         elif request.kind == ms.RELOCALIZE_GOAL:
@@ -598,6 +629,30 @@ class MissionExecutive(Node):
             self._call(request, request.payload)
         else:
             self._stop_all(request)
+
+    def _amcl_near_search_exit(self):
+        """Check the map estimate against the verified ramp exit area."""
+        if self._amcl_xy is None:
+            return False
+        wx, wy = self.plan.search_exit
+        expected = (wx + ms.WORLD_TO_MAP_X, wy)
+        return math.dist(self._amcl_xy, expected) <= self.plan.xy_consistency
+
+    def _search_exit_seed(self):
+        """Build an AMCL seed from known region structure after descent."""
+        wx, wy = self.plan.search_exit
+        msg = PoseWithCovarianceStamped()
+        msg.header.frame_id = 'map'
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.pose.pose.position.x = wx + ms.WORLD_TO_MAP_X
+        msg.pose.pose.position.y = wy
+        msg.pose.pose.orientation.w = 1.0
+        sigma = self.plan.xy_consistency
+        covariance = [0.0] * 36
+        covariance[0] = covariance[7] = sigma ** 2
+        covariance[35] = AMCL_SEED_YAW_SIGMA ** 2
+        msg.pose.covariance = covariance
+        return msg
 
     def _finish(self, token, status):
         """Record a reply, unless the state that asked has moved on."""

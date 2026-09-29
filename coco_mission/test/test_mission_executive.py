@@ -79,6 +79,21 @@ class TestItConstructs:
         assert node.colour == 'blue'
         assert node.plan.lane == pytest.approx(0.25)
 
+    def test_autonomous_exit_seed_uses_region_geometry_only(self, node):
+        node.plan = ms.MissionPlan('red', autonomous_search=True)
+        node._target_pose = (99.0, 98.0, 97.0)
+        seed = node._search_exit_seed()
+        assert seed.header.frame_id == 'map'
+        assert seed.pose.pose.position.x == pytest.approx(
+            ms.SEARCH_EXIT_X + ms.WORLD_TO_MAP_X)
+        assert seed.pose.pose.position.y == ms.lane_for_region('lane_1')
+        node._amcl_xy = (seed.pose.pose.position.x + 2.0,
+                         seed.pose.pose.position.y)
+        assert not node._amcl_near_search_exit()
+        node._amcl_xy = (seed.pose.pose.position.x,
+                         seed.pose.pose.position.y)
+        assert node._amcl_near_search_exit()
+
     def test_it_starts_without_a_colour_and_says_so(self, context):
         executive = mx.MissionExecutive()
         try:

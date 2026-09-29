@@ -114,6 +114,7 @@ from rclpy.qos import QoSReliabilityPolicy
 
 from std_msgs.msg import String
 from std_srvs.srv import Empty, Trigger
+import tf2_ros
 
 # How often the executive looks at the world and decides. 10 Hz is the
 # rate the status topics it reads are published at or above (5 Hz for the
@@ -274,6 +275,7 @@ class MissionExecutive(Node):
         self._amcl_seen_at = None
         self._exit_seed_token = None
         self._exit_seed_at = None
+        self._nav_tf_ready = False
         self._target_pose = None
         self._target_stamp = None
         self._views = {key: ms.WorkerView() for key, _ in STATUS_TOPICS}
@@ -299,6 +301,8 @@ class MissionExecutive(Node):
             durability=QoSDurabilityPolicy.TRANSIENT_LOCAL)
         self.create_subscription(
             PoseWithCovarianceStamped, '/amcl_pose', self._on_amcl, latched)
+        self._tf_buffer = tf2_ros.Buffer()
+        self._tf_listener = tf2_ros.TransformListener(self._tf_buffer, self)
 
         # ── outputs ──────────────────────────────────────────────────────
         self._mode_pub = self.create_publisher(String, '/mission/mode', 10)
@@ -585,6 +589,7 @@ class MissionExecutive(Node):
             if self._exit_seed_token != request.token:
                 self._exit_seed_token = request.token
                 self._exit_seed_at = None
+                self._nav_tf_ready = False
                 if not self._amcl_near_search_exit():
                     self._initialpose.publish(self._search_exit_seed())
                     self._exit_seed_at = self.wall()
@@ -595,7 +600,8 @@ class MissionExecutive(Node):
             if self._exit_seed_at is not None:
                 ready_pose = (self._amcl_seen_at is not None and
                               self._amcl_seen_at > self._exit_seed_at and
-                              self._amcl_near_search_exit())
+                              self._amcl_near_search_exit() and
+                              self._nav_tf_near_search_exit())
                 if not ready_pose:
                     if self.wall() > self._deadline:
                         self._status = ms.UNAVAILABLE
@@ -603,6 +609,11 @@ class MissionExecutive(Node):
                             'AMCL did not localize at the verified '
                             'search-region exit; withholding Nav2 goal')
                     return
+                if not self._nav_tf_ready:
+                    self._nav_tf_ready = True
+                    self.get_logger().info(
+                        'AMCL and map-to-base transform agree at the '
+                        'verified search-region exit; releasing Nav2')
         if request.kind == ms.NAV_GOAL:
             ready = self._nav.server_is_ready()
         elif request.kind == ms.RELOCALIZE_GOAL:
@@ -637,6 +648,18 @@ class MissionExecutive(Node):
         wx, wy = self.plan.search_exit
         expected = (wx + ms.WORLD_TO_MAP_X, wy)
         return math.dist(self._amcl_xy, expected) <= self.plan.xy_consistency
+
+    def _nav_tf_near_search_exit(self):
+        """Wait for the transform Nav2 will use, not just AMCL's pose topic."""
+        try:
+            tf = self._tf_buffer.lookup_transform(
+                'map', 'base_footprint', rclpy.time.Time())
+        except Exception:
+            return False
+        wx, wy = self.plan.search_exit
+        expected = (wx + ms.WORLD_TO_MAP_X, wy)
+        actual = (tf.transform.translation.x, tf.transform.translation.y)
+        return math.dist(actual, expected) <= self.plan.xy_consistency
 
     def _search_exit_seed(self):
         """Build an AMCL seed from known region structure after descent."""

@@ -93,6 +93,16 @@ class TestItConstructs:
         node._amcl_xy = (seed.pose.pose.position.x,
                          seed.pose.pose.position.y)
         assert node._amcl_near_search_exit()
+        # AMCL can publish a corrected estimate before the map->odom
+        # transform Nav2 actually plans against has propagated.
+        from geometry_msgs.msg import TransformStamped
+        tf = TransformStamped()
+        tf.transform.translation.x = seed.pose.pose.position.x + 2.0
+        tf.transform.translation.y = seed.pose.pose.position.y
+        node._tf_buffer.lookup_transform = lambda *_: tf
+        assert not node._nav_tf_near_search_exit()
+        tf.transform.translation.x = seed.pose.pose.position.x
+        assert node._nav_tf_near_search_exit()
 
     def test_it_starts_without_a_colour_and_says_so(self, context):
         executive = mx.MissionExecutive()

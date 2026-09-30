@@ -107,6 +107,27 @@ def test_pose_outside_candidate_corridor_is_rejected(point):
     assert harness.machine.last_search_rejection == ms.SEARCH_REJECTED_GEOMETRY
 
 
+def test_region_corridor_uses_world_lateral_pose_after_off_centre_climb():
+    harness = search_harness()
+    # Live position seed 6: the lane_4 climb was +0.235 m off centre,
+    # making the valid red point -0.272 m in base_footprint. Its WORLD
+    # lateral coordinate still lies near the selected region centre.
+    harness.pose = (ms.CLIMB_END_X, harness.machine.plan.lane + 0.235, 0.0)
+    answer(harness, 'VALID', point=(0.9057, -0.272, 0.0808),
+           reach='OFF_ARM_PLANE')
+    assert harness.state == ms.STOW_ARM
+    assert harness.machine.acquired[1] == (0.9057, -0.272, 0.0808)
+
+
+def test_neighbouring_lane_is_rejected_even_if_point_is_robot_centred():
+    harness = search_harness()
+    harness.pose = (ms.CLIMB_END_X, harness.machine.plan.lane + 0.235, 0.0)
+    answer(harness, 'VALID', point=(0.9057, 0.10, 0.0808),
+           reach='OFF_ARM_PLANE')
+    assert harness.state == ms.SEARCH_TARGET
+    assert harness.machine.last_search_rejection == ms.SEARCH_REJECTED_GEOMETRY
+
+
 def test_absent_first_region_descends_and_reaches_second():
     harness = search_harness()
     answer(harness, 'NOT_DETECTED')

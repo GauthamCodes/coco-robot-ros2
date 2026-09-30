@@ -16,6 +16,7 @@
 """Summarize P03D Gazebo evidence without inferring successful runs."""
 
 import json
+import math
 from pathlib import Path
 import re
 import sys
@@ -82,6 +83,9 @@ def summarize(path):
         perception = 'none'
     grasp = 'held' if 'VERIFY_GRASP -> DESCEND' in mission else 'not_held'
     recovery = len(re.findall(r' -> RECOVERY \[', mission))
+    sim_s = result.get('timings', {}).get('mission_sim_s', '--')
+    if isinstance(sim_s, float) and not math.isfinite(sim_s):
+        sim_s = None
     return {
         'run': path.name,
         'mode': manifest['level'],
@@ -101,7 +105,7 @@ def summarize(path):
         'failure_reason': result.get('failure_reason', '--'),
         'recoveries': recovery,
         'wall_s': result.get('timings', {}).get('mission_wall_s', '--'),
-        'sim_s': result.get('timings', {}).get('mission_sim_s', '--'),
+        'sim_s': sim_s,
         'runner_checks_pass': result.get('measurements', {}).get(
             'runner_checks_pass'),
     }
@@ -111,7 +115,7 @@ def main():
     root = Path(sys.argv[1])
     rows = [row for path in sorted(root.iterdir())
             if path.is_dir() and (row := summarize(path))]
-    print(json.dumps(rows, indent=2))
+    print(json.dumps(rows, indent=2, allow_nan=False))
 
 
 if __name__ == '__main__':

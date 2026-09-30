@@ -1407,7 +1407,18 @@ class MissionMachine:
         x, y, z = obs.target_pose
         if not all(math.isfinite(v) for v in (x, y, z)):
             return RUNNING
-        if x <= 0.0 or abs(y) >= self.plan.search_half_spacing:
+        # The point is in base_footprint, whereas a search corridor is
+        # centred on a WORLD lane. A robot that finishes a valid climb
+        # off-centre can see its own target beyond +/- half a lane in the
+        # camera frame. Compare in the lane's frame instead. This uses
+        # live odometry and the perceived point, never an episode pose.
+        if obs.pose is None or not all(math.isfinite(v) for v in obs.pose):
+            return RUNNING
+        _, robot_y, robot_yaw = obs.pose
+        target_world_y = (robot_y + math.sin(robot_yaw) * x +
+                          math.cos(robot_yaw) * y)
+        if (x <= 0.0 or abs(target_world_y - self.plan.lane) >=
+                self.plan.search_half_spacing):
             self.last_search_rejection = SEARCH_REJECTED_GEOMETRY
             return RUNNING
         self.reason = None

@@ -4292,9 +4292,10 @@ colour and an empty region map; manifest target coordinates stay in the
 world generator/evaluator.
 
 Gazebo evidence is in `docs/data/p03d_autonomous_search/`, with raw runs
-under `/home/gautham/coco_p03d_runs/`. The 28 recorded runner attempts
+under `/home/gautham/coco_p03d_runs/`. The 29 recorded runner attempts
 include all failures and retries. The requested adversarial red-in-lane_2
-run completed after lane_1 was rejected. Colour seed 6 and position seed 6
+run completed after lane_1 was rejected on committed code with zero dirty
+paths. Colour seed 6 and position seed 6
 both searched all four regions and completed fetch; position seeds 1, 5,
 and 7 also completed with valid displaced targets. All four fixed colours
 completed, and final-code fixed red completed again. Seed 2 colour and

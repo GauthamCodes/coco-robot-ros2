@@ -1,5 +1,54 @@
 [
   {
+    "run": "colours_s1_red_final",
+    "episode_id": "ep-439c3216599e",
+    "software_commit": "ded8e5666c08a8e3bd7eea8f38184f850e54f4fc",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 1,
+    "requested": "red",
+    "actual_region": "lane_2",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": -0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_2",
+    "acquired_pose_base_footprint": [
+      1.2959,
+      0.0554,
+      -0.2483
+    ],
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 26,
+      "IMPLAUSIBLE_SIZE": 90,
+      "NOT_DETECTED": 1463,
+      "VALID": 70
+    },
+    "point_samples": 215,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 1,
+    "wall_s": 361.0,
+    "sim_s": 309.874,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s1_red_final"
+  },
+  {
     "run": "colours_s1_red_v2",
     "episode_id": "ep-439c3216599e",
     "software_commit": "dfcbc4bad02e78530e7bcd683e4ffddff9d8e186",

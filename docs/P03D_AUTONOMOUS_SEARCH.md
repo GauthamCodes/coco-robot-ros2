@@ -87,7 +87,7 @@ the requested colour and of any supplied region map.
 Every row below is an actual Gazebo mission. `--` for a fixed acquired
 region means the legacy status gate did not emit a `TARGET_ACQUIRED` event;
 its grasp and mission outcome were recorded. The seed 2 failures are retained
-as failures. The full 28-attempt record, including retries and the exact
+as failures. The full 29-attempt record, including retries and the exact
 wall/simulation timing, detection counts, Nav2 goals, recovery counts,
 software HEAD, and raw log paths, is in
 `data/p03d_autonomous_search/matrix_all_attempts.json`. This is an inventory
@@ -99,7 +99,7 @@ of observed runs, not an estimated success rate.
 | FIXED | 0 | green | lane_2 | -- | held | COMPLETE | 172 | 0 | fixed_green |
 | FIXED | 0 | blue | lane_3 | -- | held | COMPLETE | 202 | 0 | fixed_blue |
 | FIXED | 0 | yellow | lane_4 | -- | held | COMPLETE | 181 | 0 | fixed_yellow |
-| COLOUR | 1 | red | lane_2 | lane_2 | held | COMPLETE | 466 | 1 | colours_s1_red_v5 |
+| COLOUR | 1 | red | lane_2 | lane_2 | held | COMPLETE | 361 | 1 | colours_s1_red_final |
 | COLOUR | 2 | red | lane_4 | -- | no | DESCENT_TIMEOUT | 154 | 2 | colours_s2_red_r3 |
 | COLOUR | 5 | red | lane_1 | lane_1 | held | COMPLETE | 191 | 0 | colours_s5_red |
 | COLOUR | 6 | red | lane_4 | lane_4 | held | COMPLETE | 808 | 3 | colours_s6_red |
@@ -114,10 +114,11 @@ The deliberate adversarial case is COLOUR seed 1: the fixed rule would
 choose lane_1 for red, while the generated episode spawned red in lane_2.
 The robot visited lane_1, rejected its observation, took the Nav2 bypass,
 then acquired red in lane_2 at perceived `base_footprint` point
-`(1.2880, -0.1663, -0.2473)`. The matching RGB-D status was `VALID`,
+`(1.2959, +0.0554, -0.2483)`. The matching RGB-D status was `VALID`,
 `qual=1.0000`, `tf_age=0.0000`, and carried image stamp
-`285120000000` ns. Approach completed, grasp was verified, and placement
-completed. `data/p03d_autonomous_search/adversarial_red_lane2.json` pairs
+`306176000000` ns. Approach completed, grasp was verified, and placement
+completed on committed code with zero dirty paths.
+`data/p03d_autonomous_search/adversarial_red_lane2.json` pairs
 those events with the evaluator-only assignment and robot inputs.
 
 COLOUR seed 6 searched lane_1 → lane_2 → lane_3 → lane_4 and completed

@@ -1,5 +1,7 @@
 {
   "episode_id": "ep-439c3216599e",
+  "software_commit": "ded8e5666c08a8e3bd7eea8f38184f850e54f4fc",
+  "software_dirty_paths": 0,
   "evaluator_only": {
     "requested_target_manifest": {
       "colour": "red",
@@ -22,15 +24,16 @@
     "lane_1",
     "lane_2"
   ],
-  "acquisition_rgbd_status": "sel=red validity=VALID stamp_ns=285120000000 u=192 v=180 area=124 w=5 range=1.1630 x=1.2880 y=-0.1663 z=-0.2473 gx=1.2880 gy=-0.1663 gz=0.1280 qual=1.0000 spread=0.0126 cand=1 seen=red,green,blue frame=base_footprint tf_age=0.0000 reach=OFF_ARM_PLANE reach_appr=OFF_ARM_PLANE drive=+1.1343 lateral=-0.1663",
+  "acquisition_rgbd_status": "sel=red validity=VALID stamp_ns=306176000000 u=150 v=180 area=124 w=4 range=1.1709 x=1.2959 y=+0.0554 z=-0.2483 gx=1.2959 gy=+0.0554 gz=0.1280 qual=1.0000 spread=0.0124 cand=1 seen=red,blue frame=base_footprint tf_age=0.0000 reach=OFF_ARM_PLANE reach_appr=OFF_ARM_PLANE drive=+1.1421 lateral=+0.0554",
   "mission_events": [
-    "[mission_executive.py-11] [INFO] [1790578200.406902471] [mission_executive]: RECOVERY -> DESCEND [SEARCH_NEXT_REGION]: lane_1: SEARCH_REJECTED_GEOMETRY",
-    "[mission_executive.py-11] [INFO] [1790578328.306641070] [mission_executive]: RETURN_HOME -> NAVIGATE_TO_RAMP [SEARCH_NEXT_REGION]: candidate lane_2",
-    "[mission_executive.py-11] [INFO] [1790578354.507879512] [mission_executive]: SEARCH_TARGET -> SEARCH_TARGET [TARGET_ACQUIRED]: lane_2 red base_footprint=(1.2880,-0.1663,-0.2473)",
-    "[mission_executive.py-11] [INFO] [1790578380.407498566] [mission_executive]: APPROACH_TARGET -> GRASP",
-    "[mission_executive.py-11] [INFO] [1790578422.606921105] [mission_executive]: VERIFY_GRASP -> DESCEND",
-    "[mission_executive.py-11] [INFO] [1790578592.207565112] [mission_executive]: MISSION COMPLETE: result=fetch reason=-- attempts={}"
+    "[mission_executive.py-11] [INFO] [1790746820.914247123] [mission_executive]: RECOVERY -> DESCEND [SEARCH_NEXT_REGION]: lane_1: SEARCH_REJECTED_GEOMETRY",
+    "[mission_executive.py-11] [INFO] [1790746911.315266471] [mission_executive]: RETURN_HOME -> NAVIGATE_TO_RAMP [SEARCH_NEXT_REGION]: candidate lane_2",
+    "[mission_executive.py-11] [INFO] [1790746931.214441648] [mission_executive]: SEARCH_TARGET -> SEARCH_TARGET [TARGET_ACQUIRED]: lane_2 red base_footprint=(1.2959,0.0554,-0.2483)",
+    "[mission_executive.py-11] [INFO] [1790746949.613840529] [mission_executive]: APPROACH_TARGET -> GRASP",
+    "[mission_executive.py-11] [INFO] [1790746980.213762140] [mission_executive]: VERIFY_GRASP -> DESCEND",
+    "[mission_executive.py-11] [INFO] [1790747110.117565348] [mission_executive]: MISSION COMPLETE: result=fetch reason=-- attempts={}"
   ],
   "result": "complete",
-  "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s1_red_v5"
+  "runner_checks_pass": true,
+  "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s1_red_final"
 }

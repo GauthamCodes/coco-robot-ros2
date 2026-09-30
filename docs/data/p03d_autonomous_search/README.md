@@ -1,6 +1,6 @@
 # P03D Gazebo evidence
 
-`matrix_all_attempts.json` contains one row for each of the 28 completed
+`matrix_all_attempts.json` contains one row for each of the 29 completed
 runner attempts, including the final fixed-mode recheck. A row includes
 the exact mode, seed, requested colour, evaluator-only target pose and region,
 observed search sequence, perception verdict counts, acquired pose and region,
@@ -20,6 +20,7 @@ stamped `VALID` RGB-D observation, the mission's region transition, acquired
 `base_footprint` point, verified grasp, and completed placement. Its raw
 directory retains `mission.log`, `target_pose_status.txt`, `cmdpath.log`,
 Nav2 goals, process logs, topic samples, and spawned-target readback.
+This final adversarial run used committed code with zero dirty paths.
 
 These files are evaluator evidence. The episode manifest and its world
 coordinates are not inputs to the mission executive or ramp driver in

@@ -51,16 +51,20 @@ def point_samples(path):
 
 def summarize(path):
     manifest_path = path / 'manifest.json'
-    if not manifest_path.exists():
+    result_path = path / 'result.json'
+    if not manifest_path.exists() or not result_path.exists():
         return None
     manifest = json.loads(manifest_path.read_text())
     requested = manifest['requested_colour']
-    actual = next(t['region_id'] for t in manifest['targets']
+    target = next(t for t in manifest['targets']
                   if t['colour'] == requested)
+    actual = target['region_id']
     mission = (path / 'mission.log').read_text(errors='replace') if (
         path / 'mission.log').exists() else ''
-    result = json.loads((path / 'result.json').read_text()) if (
-        path / 'result.json').exists() else {}
+    runner = (path / 'runner.log').read_text(errors='replace') if (
+        path / 'runner.log').exists() else ''
+    dirty = re.search(r'dirty paths: (\d+)', runner)
+    result = json.loads(result_path.read_text())
     acquired = re.findall(r'TARGET_ACQUIRED\]:?[^\n]*', mission)
     region = None
     acquired_pose = None
@@ -88,10 +92,15 @@ def summarize(path):
         sim_s = None
     return {
         'run': path.name,
+        'episode_id': manifest['episode_id'],
+        'software_commit': result.get('software_commit', '--'),
+        'software_dirty_paths': (int(dirty.group(1)) if dirty else None),
         'mode': manifest['level'],
         'seed': manifest['seed'],
         'requested': requested,
         'actual_region': actual,
+        'evaluator_target_world': {key: target[key]
+                                   for key in ('x', 'y', 'z')},
         'acquired_region': region or '--',
         'acquired_pose_base_footprint': acquired_pose,
         'search_sequence': observed_regions(path),
@@ -108,6 +117,7 @@ def summarize(path):
         'sim_s': sim_s,
         'runner_checks_pass': result.get('measurements', {}).get(
             'runner_checks_pass'),
+        'raw_evidence_directory': str(path),
     }
 
 

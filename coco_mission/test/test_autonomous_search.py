@@ -128,6 +128,15 @@ def test_neighbouring_lane_is_rejected_even_if_point_is_robot_centred():
     assert harness.machine.last_search_rejection == ms.SEARCH_REJECTED_GEOMETRY
 
 
+def test_region_corridor_accounts_for_robot_heading():
+    harness = search_harness()
+    harness.pose = (ms.CLIMB_END_X, harness.machine.plan.lane, 0.30)
+    answer(harness, 'VALID', point=(1.0, 0.0, 0.0808),
+           reach='OFF_ARM_PLANE')
+    assert harness.state == ms.SEARCH_TARGET
+    assert harness.machine.last_search_rejection == ms.SEARCH_REJECTED_GEOMETRY
+
+
 def test_absent_first_region_descends_and_reaches_second():
     harness = search_harness()
     answer(harness, 'NOT_DETECTED')

@@ -1,0 +1,1214 @@
+[
+  {
+    "run": "colours_s1_red_v2",
+    "episode_id": "ep-439c3216599e",
+    "software_commit": "dfcbc4bad02e78530e7bcd683e4ffddff9d8e186",
+    "software_dirty_paths": 12,
+    "mode": "colours",
+    "seed": 1,
+    "requested": "red",
+    "actual_region": "lane_2",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": -0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_2",
+    "acquired_pose_base_footprint": [
+      1.2807,
+      -0.1225,
+      -0.2462
+    ],
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 22,
+      "IMPLAUSIBLE_SIZE": 87,
+      "NOT_DETECTED": 932,
+      "VALID": 77
+    },
+    "point_samples": 234,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "-2.00, 0.00",
+      "-2.00, 0.00",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "failed",
+    "failure_reason": "RETURN_FAILED",
+    "recoveries": 4,
+    "wall_s": 220.0,
+    "sim_s": 205.214,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s1_red_v2"
+  },
+  {
+    "run": "colours_s1_red_v3",
+    "episode_id": "ep-439c3216599e",
+    "software_commit": "dfcbc4bad02e78530e7bcd683e4ffddff9d8e186",
+    "software_dirty_paths": 13,
+    "mode": "colours",
+    "seed": 1,
+    "requested": "red",
+    "actual_region": "lane_2",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": -0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 87,
+      "NOT_DETECTED": 672,
+      "VALID": 13
+    },
+    "point_samples": 40,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "CLIMB_FAILED",
+    "recoveries": 2,
+    "wall_s": 7223.0,
+    "sim_s": 136.422,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s1_red_v3"
+  },
+  {
+    "run": "colours_s1_red_v5",
+    "episode_id": "ep-439c3216599e",
+    "software_commit": "dfcbc4bad02e78530e7bcd683e4ffddff9d8e186",
+    "software_dirty_paths": 13,
+    "mode": "colours",
+    "seed": 1,
+    "requested": "red",
+    "actual_region": "lane_2",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": -0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_2",
+    "acquired_pose_base_footprint": [
+      1.288,
+      -0.1663,
+      -0.2473
+    ],
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 28,
+      "IMPLAUSIBLE_SIZE": 86,
+      "NOT_DETECTED": 1414,
+      "VALID": 75
+    },
+    "point_samples": 227,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 1,
+    "wall_s": 466.0,
+    "sim_s": 303.698,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s1_red_v5"
+  },
+  {
+    "run": "colours_s2_red",
+    "episode_id": "ep-8236c0e9a885",
+    "software_commit": "320223d128f3ed057d2b517050a1b511bbdf85b0",
+    "software_dirty_paths": 1,
+    "mode": "colours",
+    "seed": 2,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.75,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1"
+    ],
+    "perception_validity_counts": {
+      "NOT_DETECTED": 947
+    },
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, -0.75"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "DESCENT_TIMEOUT",
+    "recoveries": 2,
+    "wall_s": 195.0,
+    "sim_s": 170.62,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s2_red"
+  },
+  {
+    "run": "colours_s2_red_r2",
+    "episode_id": "ep-8236c0e9a885",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 2,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.75,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1"
+    ],
+    "perception_validity_counts": {
+      "NOT_DETECTED": 351
+    },
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, -0.75"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "CLOCK_STALLED",
+    "recoveries": 1,
+    "wall_s": 83.0,
+    "sim_s": null,
+    "runner_checks_pass": false,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s2_red_r2"
+  },
+  {
+    "run": "colours_s2_red_r3",
+    "episode_id": "ep-8236c0e9a885",
+    "software_commit": "e3259d4dbbe9c1d632ad265e14aae4d73ac3ab0f",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 2,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.75,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1"
+    ],
+    "perception_validity_counts": {
+      "NOT_DETECTED": 720
+    },
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, -0.75"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "DESCENT_TIMEOUT",
+    "recoveries": 2,
+    "wall_s": 154.0,
+    "sim_s": 125.742,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s2_red_r3"
+  },
+  {
+    "run": "colours_s5_red",
+    "episode_id": "ep-125360ba0d75",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 5,
+    "requested": "red",
+    "actual_region": "lane_1",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": -0.75,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_1",
+    "acquired_pose_base_footprint": [
+      1.2773,
+      0.1319,
+      -0.2511
+    ],
+    "search_sequence": [
+      "lane_1"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 25,
+      "NOT_DETECTED": 849,
+      "VALID": 62
+    },
+    "point_samples": 188,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 0,
+    "wall_s": 191.0,
+    "sim_s": 168.516,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s5_red"
+  },
+  {
+    "run": "colours_s6_red",
+    "episode_id": "ep-6886a7f99519",
+    "software_commit": "e3259d4dbbe9c1d632ad265e14aae4d73ac3ab0f",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 6,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.75,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_4",
+    "acquired_pose_base_footprint": [
+      1.2773,
+      -0.039,
+      -0.2484
+    ],
+    "search_sequence": [
+      "lane_1",
+      "lane_2",
+      "lane_3",
+      "lane_4"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 26,
+      "IMPLAUSIBLE_SIZE": 88,
+      "NOT_DETECTED": 3249,
+      "VALID": 85
+    },
+    "point_samples": 255,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 3,
+    "wall_s": 808.0,
+    "sim_s": 669.892,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s6_red"
+  },
+  {
+    "run": "colours_s7_red",
+    "episode_id": "ep-d0e9f5fca915",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 7,
+    "requested": "red",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 90,
+      "NOT_DETECTED": 804,
+      "VALID": 2
+    },
+    "point_samples": 6,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "CLOCK_STALLED",
+    "recoveries": 2,
+    "wall_s": 211.0,
+    "sim_s": null,
+    "runner_checks_pass": false,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s7_red"
+  },
+  {
+    "run": "colours_s7_red_r2",
+    "episode_id": "ep-d0e9f5fca915",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 7,
+    "requested": "red",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 89,
+      "NOT_DETECTED": 1029,
+      "VALID": 6
+    },
+    "point_samples": 17,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "4.75, -2.06",
+      "4.75, -2.06"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "NAVIGATION_FAILED",
+    "recoveries": 5,
+    "wall_s": 232.0,
+    "sim_s": 205.75,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s7_red_r2"
+  },
+  {
+    "run": "colours_s7_red_r3",
+    "episode_id": "ep-d0e9f5fca915",
+    "software_commit": "d3af5f2d7e1ccf01715ff6698d7771d048e52ec5",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 7,
+    "requested": "red",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 90,
+      "NOT_DETECTED": 951,
+      "VALID": 3
+    },
+    "point_samples": 11,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "4.75, -2.06",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "CLOCK_STALLED",
+    "recoveries": 4,
+    "wall_s": 262.0,
+    "sim_s": null,
+    "runner_checks_pass": false,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s7_red_r3"
+  },
+  {
+    "run": "colours_s7_red_r4",
+    "episode_id": "ep-d0e9f5fca915",
+    "software_commit": "e3259d4dbbe9c1d632ad265e14aae4d73ac3ab0f",
+    "software_dirty_paths": 0,
+    "mode": "colours",
+    "seed": 7,
+    "requested": "red",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_3",
+    "acquired_pose_base_footprint": [
+      1.285,
+      -0.0854,
+      -0.2536
+    ],
+    "search_sequence": [
+      "lane_1",
+      "lane_2",
+      "lane_3"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 25,
+      "IMPLAUSIBLE_SIZE": 91,
+      "NOT_DETECTED": 2126,
+      "VALID": 68
+    },
+    "point_samples": 209,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 2,
+    "wall_s": 526.0,
+    "sim_s": 443.716,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/colours_s7_red_r4"
+  },
+  {
+    "run": "fixed_blue",
+    "episode_id": "ep-be0f51920fb2",
+    "software_commit": "a0ba8cc19008861b91611b99cf8924028420fcac",
+    "software_dirty_paths": 2,
+    "mode": "fixed",
+    "seed": 0,
+    "requested": "blue",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [],
+    "perception_validity_counts": {},
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, 0.25",
+      "-2.00, 0.00"
+    ],
+    "detection": "fixed_gate",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 0,
+    "wall_s": 202.0,
+    "sim_s": 169.444,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/fixed_blue"
+  },
+  {
+    "run": "fixed_green",
+    "episode_id": "ep-e89ab8905964",
+    "software_commit": "320223d128f3ed057d2b517050a1b511bbdf85b0",
+    "software_dirty_paths": 0,
+    "mode": "fixed",
+    "seed": 0,
+    "requested": "green",
+    "actual_region": "lane_2",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": -0.25,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [],
+    "perception_validity_counts": {},
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, -0.25",
+      "-2.00, 0.00"
+    ],
+    "detection": "fixed_gate",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 0,
+    "wall_s": 172.0,
+    "sim_s": 150.96,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/fixed_green"
+  },
+  {
+    "run": "fixed_red",
+    "episode_id": "ep-7916a30396de",
+    "software_commit": "dfcbc4bad02e78530e7bcd683e4ffddff9d8e186",
+    "software_dirty_paths": 10,
+    "mode": "fixed",
+    "seed": 0,
+    "requested": "red",
+    "actual_region": "lane_1",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": -0.75,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [],
+    "perception_validity_counts": {},
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "-2.00, 0.00"
+    ],
+    "detection": "fixed_gate",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 0,
+    "wall_s": 537.0,
+    "sim_s": 169.712,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/fixed_red"
+  },
+  {
+    "run": "fixed_red_final",
+    "episode_id": "ep-7916a30396de",
+    "software_commit": "77f2f2cda20c9dea2bdedbb47eeff867977e6e23",
+    "software_dirty_paths": 3,
+    "mode": "fixed",
+    "seed": 0,
+    "requested": "red",
+    "actual_region": "lane_1",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": -0.75,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [],
+    "perception_validity_counts": {},
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "-2.00, 0.00"
+    ],
+    "detection": "fixed_gate",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 0,
+    "wall_s": 166.0,
+    "sim_s": 152.844,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/fixed_red_final"
+  },
+  {
+    "run": "fixed_yellow",
+    "episode_id": "ep-83b636dd724b",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "fixed",
+    "seed": 0,
+    "requested": "yellow",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.05,
+      "y": 0.75,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [],
+    "perception_validity_counts": {},
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, 0.75",
+      "-2.00, 0.00"
+    ],
+    "detection": "fixed_gate",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 0,
+    "wall_s": 181.0,
+    "sim_s": 157.222,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/fixed_yellow"
+  },
+  {
+    "run": "positions_s1_red",
+    "episode_id": "ep-5e77d4ca4072",
+    "software_commit": "b64030993969d1768ccff2a4e6ad326c161c0ec4",
+    "software_dirty_paths": 1,
+    "mode": "positions",
+    "seed": 1,
+    "requested": "red",
+    "actual_region": "lane_2",
+    "evaluator_target_world": {
+      "x": 4.218109658230988,
+      "y": -0.24090442163663423,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_2",
+    "acquired_pose_base_footprint": [
+      1.4189,
+      -0.1809,
+      -0.2991
+    ],
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 25,
+      "IMPLAUSIBLE_SIZE": 87,
+      "NOT_DETECTED": 1467,
+      "VALID": 84
+    },
+    "point_samples": 252,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 1,
+    "wall_s": 370.0,
+    "sim_s": 312.802,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s1_red"
+  },
+  {
+    "run": "positions_s2_red",
+    "episode_id": "ep-8ef4f54d7715",
+    "software_commit": "a0ba8cc19008861b91611b99cf8924028420fcac",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 2,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.063364681209403,
+      "y": 0.7608747710995598,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 48,
+      "NOT_DETECTED": 618
+    },
+    "point_samples": 0,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "4.75, -2.06",
+      "4.75, -2.06"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "NAVIGATION_FAILED",
+    "recoveries": 4,
+    "wall_s": 132.0,
+    "sim_s": 114.07,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s2_red"
+  },
+  {
+    "run": "positions_s2_red_r2",
+    "episode_id": "ep-8ef4f54d7715",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 2,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.063364681209403,
+      "y": 0.7608747710995598,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2",
+      "lane_3"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 89,
+      "NOT_DETECTED": 1620,
+      "VALID": 10
+    },
+    "point_samples": 30,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.25",
+      "4.75, -2.06",
+      "4.75, -2.06",
+      "4.75, -2.06"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "NAVIGATION_FAILED",
+    "recoveries": 6,
+    "wall_s": 368.0,
+    "sim_s": 324.824,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s2_red_r2"
+  },
+  {
+    "run": "positions_s5_red",
+    "episode_id": "ep-073b86091138",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 5,
+    "requested": "red",
+    "actual_region": "lane_1",
+    "evaluator_target_world": {
+      "x": 4.347402393521571,
+      "y": -0.7234529829733769,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_1",
+    "acquired_pose_base_footprint": [
+      1.5457,
+      0.2055,
+      -0.341
+    ],
+    "search_sequence": [
+      "lane_1"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 27,
+      "NOT_DETECTED": 841,
+      "VALID": 67
+    },
+    "point_samples": 204,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 0,
+    "wall_s": 193.0,
+    "sim_s": 168.536,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s5_red"
+  },
+  {
+    "run": "positions_s6_red",
+    "episode_id": "ep-fd89251e3230",
+    "software_commit": "e3259d4dbbe9c1d632ad265e14aae4d73ac3ab0f",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 6,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.058186785340228,
+      "y": 0.7493304762848834,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2",
+      "lane_3"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 88,
+      "NOT_DETECTED": 1378,
+      "VALID": 10
+    },
+    "point_samples": 27,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.25"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "CLOCK_STALLED",
+    "recoveries": 3,
+    "wall_s": 352.0,
+    "sim_s": null,
+    "runner_checks_pass": false,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s6_red"
+  },
+  {
+    "run": "positions_s6_red_r2",
+    "episode_id": "ep-fd89251e3230",
+    "software_commit": "e3259d4dbbe9c1d632ad265e14aae4d73ac3ab0f",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 6,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.058186785340228,
+      "y": 0.7493304762848834,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2",
+      "lane_3",
+      "lane_4"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 175,
+      "NOT_DETECTED": 2538,
+      "VALID": 31
+    },
+    "point_samples": 94,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.75"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "DESCENT_TIMEOUT",
+    "recoveries": 5,
+    "wall_s": 603.0,
+    "sim_s": 529.542,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s6_red_r2"
+  },
+  {
+    "run": "positions_s6_red_r3",
+    "episode_id": "ep-fd89251e3230",
+    "software_commit": "77f2f2cda20c9dea2bdedbb47eeff867977e6e23",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 6,
+    "requested": "red",
+    "actual_region": "lane_4",
+    "evaluator_target_world": {
+      "x": 4.058186785340228,
+      "y": 0.7493304762848834,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_4",
+    "acquired_pose_base_footprint": [
+      1.2773,
+      -0.2185,
+      -0.2512
+    ],
+    "search_sequence": [
+      "lane_1",
+      "lane_2",
+      "lane_3",
+      "lane_4"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 27,
+      "IMPLAUSIBLE_SIZE": 92,
+      "NOT_DETECTED": 2751,
+      "VALID": 72
+    },
+    "point_samples": 219,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 3,
+    "wall_s": 628.0,
+    "sim_s": 568.926,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s6_red_r3"
+  },
+  {
+    "run": "positions_s7_red",
+    "episode_id": "ep-fe3213a7ccde",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 7,
+    "requested": "red",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.07169159786574,
+      "y": 0.2504461439913652,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 89,
+      "NOT_DETECTED": 1216,
+      "VALID": 7
+    },
+    "point_samples": 21,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "DESCENT_TIMEOUT",
+    "recoveries": 3,
+    "wall_s": 289.0,
+    "sim_s": 243.512,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s7_red"
+  },
+  {
+    "run": "positions_s7_red_r2",
+    "episode_id": "ep-fe3213a7ccde",
+    "software_commit": "d220ab84b65d819f1c8d2926ede337ccac8c4101",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 7,
+    "requested": "red",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.07169159786574,
+      "y": 0.2504461439913652,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 88,
+      "NOT_DETECTED": 911,
+      "VALID": 6
+    },
+    "point_samples": 15,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "CLOCK_STALLED",
+    "recoveries": 2,
+    "wall_s": 241.0,
+    "sim_s": null,
+    "runner_checks_pass": false,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s7_red_r2"
+  },
+  {
+    "run": "positions_s7_red_r3",
+    "episode_id": "ep-fe3213a7ccde",
+    "software_commit": "e3259d4dbbe9c1d632ad265e14aae4d73ac3ab0f",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 7,
+    "requested": "red",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.07169159786574,
+      "y": 0.2504461439913652,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "--",
+    "acquired_pose_base_footprint": null,
+    "search_sequence": [
+      "lane_1",
+      "lane_2"
+    ],
+    "perception_validity_counts": {
+      "IMPLAUSIBLE_SIZE": 91,
+      "NOT_DETECTED": 948,
+      "VALID": 3
+    },
+    "point_samples": 14,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25"
+    ],
+    "detection": "none",
+    "grasp": "not_held",
+    "mission": "failed",
+    "failure_reason": "CLOCK_STALLED",
+    "recoveries": 2,
+    "wall_s": 249.0,
+    "sim_s": null,
+    "runner_checks_pass": false,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s7_red_r3"
+  },
+  {
+    "run": "positions_s7_red_r4",
+    "episode_id": "ep-fe3213a7ccde",
+    "software_commit": "e3259d4dbbe9c1d632ad265e14aae4d73ac3ab0f",
+    "software_dirty_paths": 0,
+    "mode": "positions",
+    "seed": 7,
+    "requested": "red",
+    "actual_region": "lane_3",
+    "evaluator_target_world": {
+      "x": 4.07169159786574,
+      "y": 0.2504461439913652,
+      "z": 0.7288393924658125
+    },
+    "acquired_region": "lane_3",
+    "acquired_pose_base_footprint": [
+      1.3136,
+      -0.0788,
+      -0.2501
+    ],
+    "search_sequence": [
+      "lane_1",
+      "lane_2",
+      "lane_3"
+    ],
+    "perception_validity_counts": {
+      "DEPTH_INVALID": 28,
+      "IMPLAUSIBLE_SIZE": 90,
+      "NOT_DETECTED": 1944,
+      "VALID": 66
+    },
+    "point_samples": 203,
+    "nav_goals_world": [
+      "0.50, -0.75",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, -0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00",
+      "0.50, 0.25",
+      "4.75, -2.06",
+      "-2.00, 0.00"
+    ],
+    "detection": "acquired",
+    "grasp": "held",
+    "mission": "complete",
+    "failure_reason": "",
+    "recoveries": 2,
+    "wall_s": 495.0,
+    "sim_s": 406.4,
+    "runner_checks_pass": true,
+    "raw_evidence_directory": "/home/gautham/coco_p03d_runs/positions_s7_red_r4"
+  }
+]

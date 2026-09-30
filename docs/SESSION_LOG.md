@@ -4272,3 +4272,44 @@ bash scripts/build_overlay.sh "$COCO_WS"
 ln -s "<ws>/moveit_prefix" "$COCO_WS/moveit_prefix"   # once; the runner refuses without MoveIt
 bash docs/data/p03c_episode_run.sh ~/coco_nav_runs/p03c_next positions 4 green
 ```
+
+## P03D autonomous target search (2026-09-30)
+
+Worktree `/home/gautham/coco-p03d-target-search`, branch
+`p03d-autonomous-target-search`, started from verified P03C episode Gazebo
+commit `dfcbc4bad02e78530e7bcd683e4ffddff9d8e186`. P0.2, Docker,
+Isaac, and other worktrees were not changed.
+
+Autonomous randomized missions now visit the four existing target regions
+in a colour-independent order, gate acquisition on stamped RGB-D pose and
+status, and hand perception's `base_footprint` point to the existing
+approach/grasp path. Misses and rejected observations stop, descend, take
+Nav2's south bypass, return home, and continue at the next region. A
+verified ramp-exit AMCL seed waits for both the pose topic and Nav2's map
+transform before releasing a bypass goal. Fixed mode retains its original
+colour lane resolution. Randomized robot nodes receive only the requested
+colour and an empty region map; manifest target coordinates stay in the
+world generator/evaluator.
+
+Gazebo evidence is in `docs/data/p03d_autonomous_search/`, with raw runs
+under `/home/gautham/coco_p03d_runs/`. The 28 recorded runner attempts
+include all failures and retries. The requested adversarial red-in-lane_2
+run completed after lane_1 was rejected. Colour seed 6 and position seed 6
+both searched all four regions and completed fetch; position seeds 1, 5,
+and 7 also completed with valid displaced targets. All four fixed colours
+completed, and final-code fixed red completed again. Seed 2 colour and
+position attempts failed before acquisition; intermittent Gazebo ODE
+aborts and far-ramp contact stalls remain recorded limitations. A live
+position seed 6 trace exposed a robot-frame versus world-lane corridor
+error; the world-frame correction has dedicated off-centre and yaw tests.
+
+Final non-lint Python suites: 1,886 passed, 7 skipped, 9 style checks
+deselected. Focused autonomous-search tests: 20 passed. Changed Python
+files passed `flake8 --select=E,F`. Live runner topology checks confirmed
+one wheel controller publisher, `cmd_vel_arbiter`, on completed episodes.
+
+To inspect the exact matrix, run:
+
+```bash
+python3 docs/data/p03d_evidence.py /home/gautham/coco_p03d_runs
+```

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Guard physical provenance, drive semantics, frame geometry and startup order."""
+"""Guard physical provenance, drive semantics and startup order."""
 import math
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -25,14 +25,25 @@ from coco_sim.isaac.model import robot_description
 
 
 def test_generated_geometry_tracks_authority(monkeypatch):
-    monkeypatch.setattr(r, 'WHEEL_RADIUS', 0.071)
-    monkeypatch.setattr(r, 'WHEELBASE', 0.22)
-    monkeypatch.setattr(r, 'CHASSIS_SIZE', (0.3, 0.28, 0.07))
+    monkeypatch.setattr(r, "WHEEL_RADIUS", 0.071)
+    monkeypatch.setattr(r, "WHEELBASE", 0.22)
+    monkeypatch.setattr(r, "CHASSIS_SIZE", (0.3, 0.28, 0.07))
     root = ET.fromstring(robot_description())
-    assert root.find(".//link[@name='wheel1']/visual/geometry/cylinder").get('radius') == '0.071'
-    assert root.find(".//joint[@name='wheel1_joint']/origin").get('xyz').split()[0] == '0.11'
     assert (
-        root.find(".//link[@name='base_link']/visual/geometry/box").get('size') == '0.3 0.28 0.07'
+        root.find(".//link[@name='wheel1']/visual/geometry/cylinder").get(
+            "radius"
+        )
+        == "0.071"
+    )
+    assert (
+        root.find(".//joint[@name='wheel1_joint']/origin")
+        .get("xyz")
+        .split()[0]
+        == "0.11"
+    )
+    assert (
+        root.find(".//link[@name='base_link']/visual/geometry/box").get("size")
+        == "0.3 0.28 0.07"
     )
 
 
@@ -57,37 +68,51 @@ def test_acceleration_and_nonfinite_input():
     command = DriveCommand()
     command.receive(0.5, 0.5, 0.0)
     command.step(0.1, 0.1)
-    assert command.velocity == pytest.approx((r.MAX_LINEAR_ACCEL * 0.1, r.MAX_ANGULAR_ACCEL * 0.1))
-    command.receive(float('nan'), 0, 0.1)
+    assert command.velocity == pytest.approx(
+        (r.MAX_LINEAR_ACCEL * 0.1, r.MAX_ANGULAR_ACCEL * 0.1)
+    )
+    command.receive(float("nan"), 0, 0.1)
     assert command.stamp == 0.0
 
 
 def test_minimal_tree_has_single_parent_and_correct_optical_rotation():
     root = ET.fromstring(robot_description())
-    children = [j.find('child').get('link') for j in root.findall('joint')]
+    children = [j.find("child").get("link") for j in root.findall("joint")]
     assert len(children) == len(set(children))
-    assert 'base_footprint' not in children
+    assert "base_footprint" not in children
     joint = root.find(".//joint[@name='camera_optical_joint']")
-    assert list(map(float, joint.find('origin').get('rpy').split())) == pytest.approx(
-        [-math.pi / 2, 0, -math.pi / 2]
-    )
+    assert list(
+        map(float, joint.find("origin").get("rpy").split())
+    ) == pytest.approx([-math.pi / 2, 0, -math.pi / 2])
     assert len(wheel_layout()) == 4
 
 
 def test_runtime_never_teleports_body_and_scene_precedes_bridge():
-    source = (Path(__file__).parents[1] / 'coco_sim/isaac/runtime.py').read_text()
-    assert source.index('build_scene(ctx.get_stage()') < source.index("'isaacsim.ros2.bridge'")
-    for forbidden in ('set_linear_velocity(', 'set_angular_velocity(', 'set_world_pose('):
+    source = (
+        Path(__file__).parents[1] / "coco_sim/isaac/runtime.py"
+    ).read_text()
+    assert source.index("build_scene(ctx.get_stage()") < source.index(
+        "em.set_extension_enabled_immediate("
+    )
+    for forbidden in (
+        "set_linear_velocity(",
+        "set_angular_velocity(",
+        "set_world_pose(",
+    ):
         assert forbidden not in source
-    assert 'joint_velocities=' in source
+    assert "joint_velocities=" in source
 
 
 def test_controller_velocity_and_timeout_match_existing_yaml():
     import yaml
     from coco_sim.isaac import config
 
-    path = Path(__file__).parents[2] / 'gazebo_models/urdf/coco_controllers.yaml'
-    params = yaml.safe_load(path.read_text())['diff_drive_controller']['ros__parameters']
-    assert config.MAX_LINEAR == params['linear.x.max_velocity']
-    assert config.MAX_ANGULAR == params['angular.z.max_velocity']
-    assert config.COMMAND_TIMEOUT == params['cmd_vel_timeout']
+    path = (
+        Path(__file__).parents[2] / "gazebo_models/urdf/coco_controllers.yaml"
+    )
+    params = yaml.safe_load(path.read_text())["diff_drive_controller"][
+        "ros__parameters"
+    ]
+    assert config.MAX_LINEAR == params["linear.x.max_velocity"]
+    assert config.MAX_ANGULAR == params["angular.z.max_velocity"]
+    assert config.COMMAND_TIMEOUT == params["cmd_vel_timeout"]

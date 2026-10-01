@@ -26,23 +26,23 @@ from custom_teleop.cmd_vel_arbiter import CmdVelArbiter
 
 
 class TwistInput(Node):
-    """Provide a plain Twist smoke/teleop entry without bypassing arbitration."""
+    """Provide a plain Twist smoke/teleop entry through arbitration."""
 
     def __init__(self):
-        super().__init__('coco_isaac_twist_input')
-        self.declare_parameter('input_topic', '/cmd_vel')
-        self.declare_parameter('output_topic', '/cmd_vel_teleop')
+        super().__init__("coco_isaac_twist_input")
+        self.declare_parameter("input_topic", "/cmd_vel")
+        self.declare_parameter("output_topic", "/cmd_vel_teleop")
         self.pub = self.create_publisher(
-            TwistStamped, self.get_parameter('output_topic').value, 10
+            TwistStamped, self.get_parameter("output_topic").value, 10
         )
         self.sub = self.create_subscription(
-            Twist, self.get_parameter('input_topic').value, self.receive, 10
+            Twist, self.get_parameter("input_topic").value, self.receive, 10
         )
 
     def receive(self, msg):
         stamped = TwistStamped()
         stamped.header.stamp = self.get_clock().now().to_msg()
-        stamped.header.frame_id = 'base_footprint'
+        stamped.header.frame_id = "base_footprint"
         stamped.twist = msg
         self.pub.publish(stamped)
 
@@ -65,5 +65,5 @@ def main():
             rclpy.shutdown()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

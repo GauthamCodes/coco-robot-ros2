@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Write a map of the foundation fixture, derived from the same scene geometry."""
+"""Write a map derived from the foundation fixture geometry."""
 import argparse
 from pathlib import Path
 import numpy as np
@@ -31,18 +31,24 @@ def write_map(output):
     y = origin_world[1] + (np.arange(height) + 0.5) * resolution
     image = np.full((height, width), 254, dtype=np.uint8)
     for _, (cx, cy, _), (sx, sy, _), _ in FIXTURES:
-        mask = (np.abs(x[None, :] - cx) <= sx / 2) & (np.abs(y[:, None] - cy) <= sy / 2)
+        mask = (np.abs(x[None, :] - cx) <= sx / 2) & (
+            np.abs(y[:, None] - cy) <= sy / 2
+        )
         image[mask] = 0
-    (output / 'fixture.pgm').write_bytes(
-        f'P5\n{width} {height}\n255\n'.encode() + image[::-1].tobytes()
+    (output / "fixture.pgm").write_bytes(
+        f"P5\n{width} {height}\n255\n".encode() + image[::-1].tobytes()
     )
-    (output / 'fixture.yaml').write_text(
+    (output / "fixture.yaml").write_text(
         yaml.safe_dump(
             dict(
-                image='fixture.pgm',
-                mode='trinary',
+                image="fixture.pgm",
+                mode="trinary",
                 resolution=resolution,
-                origin=[origin_world[0] - r.SPAWN_XY[0], origin_world[1] - r.SPAWN_XY[1], 0.0],
+                origin=[
+                    origin_world[0] - r.SPAWN_XY[0],
+                    origin_world[1] - r.SPAWN_XY[1],
+                    0.0,
+                ],
                 negate=0,
                 occupied_thresh=0.65,
                 free_thresh=0.196,
@@ -51,7 +57,7 @@ def write_map(output):
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument('output', type=Path)
+    p.add_argument("output", type=Path)
     write_map(p.parse_args().output)

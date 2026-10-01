@@ -23,7 +23,14 @@ import time
 
 from coco_config import robot as r
 from coco_sim.episode import generate_episode
-from .config import DriveCommand, FRAMES, PHYSICS_DT, RENDER_DT, TOPICS, wheel_layout
+from .config import (
+    DriveCommand,
+    FRAMES,
+    PHYSICS_DT,
+    RENDER_DT,
+    TOPICS,
+    wheel_layout,
+)
 from .model import build_scene, robot_description
 
 
@@ -35,10 +42,10 @@ def sensors(stage, app):
     import usdrt
     from pxr import Gf
 
-    root = '/World/coco/base_link'
+    root = "/World/coco/base_link"
     ok, lidar = omni.kit.commands.execute(
-        'RangeSensorCreateLidar',
-        path='/lidar',
+        "RangeSensorCreateLidar",
+        path="/lidar",
         parent=root,
         min_range=0.15,
         max_range=12.0,
@@ -54,68 +61,82 @@ def sensors(stage, app):
         enable_semantics=False,
     )
     if not ok:
-        raise RuntimeError('PhysX LiDAR creation failed')
-    lidar.GetPrim().GetAttribute('xformOp:translate').Set(Gf.Vec3d(*r.LIDAR_MOUNT_XYZ))
-    rp = rep.create.render_product(root + '/camera', r.CAMERA_WH)
-    br = 'isaacsim.ros2.bridge.'
-    px = 'isaacsim.sensors.physx.'
-    core = 'isaacsim.core.nodes.'
+        raise RuntimeError("PhysX LiDAR creation failed")
+    lidar.GetPrim().GetAttribute("xformOp:translate").Set(
+        Gf.Vec3d(*r.LIDAR_MOUNT_XYZ)
+    )
+    rp = rep.create.render_product(root + "/camera", r.CAMERA_WH)
+    br = "isaacsim.ros2.bridge."
+    px = "isaacsim.sensors.physx."
+    core = "isaacsim.core.nodes."
     nodes = [
-        ('Tick', 'omni.graph.action.OnPlaybackTick'),
-        ('Time', core + 'IsaacReadSimulationTime'),
-        ('Gate', core + 'IsaacSimulationGate'),
-        ('Beams', px + 'IsaacReadLidarBeams'),
-        ('Scan', br + 'ROS2PublishLaserScan'),
+        ("Tick", "omni.graph.action.OnPlaybackTick"),
+        ("Time", core + "IsaacReadSimulationTime"),
+        ("Gate", core + "IsaacSimulationGate"),
+        ("Beams", px + "IsaacReadLidarBeams"),
+        ("Scan", br + "ROS2PublishLaserScan"),
     ]
     values = [
-        ('Gate.inputs:step', 3),
-        ('Beams.inputs:lidarPrim', [usdrt.Sdf.Path(str(lidar.GetPath()))]),
-        ('Scan.inputs:topicName', TOPICS['scan']),
-        ('Scan.inputs:frameId', FRAMES['lidar']),
+        ("Gate.inputs:step", 3),
+        ("Beams.inputs:lidarPrim", [usdrt.Sdf.Path(str(lidar.GetPath()))]),
+        ("Scan.inputs:topicName", TOPICS["scan"]),
+        ("Scan.inputs:frameId", FRAMES["lidar"]),
     ]
     connections = [
-        ('Tick.outputs:tick', 'Gate.inputs:execIn'),
-        ('Gate.outputs:execOut', 'Beams.inputs:execIn'),
-        ('Beams.outputs:execOut', 'Scan.inputs:execIn'),
-        ('Time.outputs:simulationTime', 'Scan.inputs:timeStamp'),
+        ("Tick.outputs:tick", "Gate.inputs:execIn"),
+        ("Gate.outputs:execOut", "Beams.inputs:execIn"),
+        ("Beams.outputs:execOut", "Scan.inputs:execIn"),
+        ("Time.outputs:simulationTime", "Scan.inputs:timeStamp"),
     ]
     connections += [
-        ('Beams.outputs:' + a, 'Scan.inputs:' + a)
+        ("Beams.outputs:" + a, "Scan.inputs:" + a)
         for a in (
-            'azimuthRange',
-            'depthRange',
-            'horizontalFov',
-            'horizontalResolution',
-            'intensitiesData',
-            'linearDepthData',
-            'numCols',
-            'numRows',
-            'rotationRate',
+            "azimuthRange",
+            "depthRange",
+            "horizontalFov",
+            "horizontalResolution",
+            "intensitiesData",
+            "linearDepthData",
+            "numCols",
+            "numRows",
+            "rotationRate",
         )
     ]
     for name, kind, topic in [
-        ('RGB', 'rgb', 'rgb'),
-        ('Depth', 'depth', 'depth'),
-        ('Info', 'camera_info', 'info'),
+        ("RGB", "rgb", "rgb"),
+        ("Depth", "depth", "depth"),
+        ("Info", "camera_info", "info"),
     ]:
         nodes.append(
-            (name, br + ('ROS2CameraInfoHelper' if name == 'Info' else 'ROS2CameraHelper'))
+            (
+                name,
+                br
+                + (
+                    "ROS2CameraInfoHelper"
+                    if name == "Info"
+                    else "ROS2CameraHelper"
+                ),
+            )
         )
         values += [
-            (name + '.inputs:renderProductPath', rp.path),
-            (name + '.inputs:topicName', TOPICS[topic]),
-            (name + '.inputs:frameId', FRAMES['optical']),
-            (name + '.inputs:useSystemTime', False),
-            (name + '.inputs:frameSkipCount', 1),
-            (name + '.inputs:queueSize', 2),
+            (name + ".inputs:renderProductPath", rp.path),
+            (name + ".inputs:topicName", TOPICS[topic]),
+            (name + ".inputs:frameId", FRAMES["optical"]),
+            (name + ".inputs:useSystemTime", False),
+            (name + ".inputs:frameSkipCount", 1),
+            (name + ".inputs:queueSize", 2),
         ]
-        if name != 'Info':
-            values.append((name + '.inputs:type', kind))
-        connections.append(('Tick.outputs:tick', name + '.inputs:execIn'))
+        if name != "Info":
+            values.append((name + ".inputs:type", kind))
+        connections.append(("Tick.outputs:tick", name + ".inputs:execIn"))
     keys = og.Controller.Keys
     og.Controller.edit(
-        {'graph_path': '/World/Sensors', 'evaluator_name': 'execution'},
-        {keys.CREATE_NODES: nodes, keys.SET_VALUES: values, keys.CONNECT: connections},
+        {"graph_path": "/World/Sensors", "evaluator_name": "execution"},
+        {
+            keys.CREATE_NODES: nodes,
+            keys.SET_VALUES: values,
+            keys.CONNECT: connections,
+        },
     )
     return rp
 
@@ -123,41 +144,52 @@ def sensors(stage, app):
 def main():
     """Run the backend; shutdown is graceful on SIGINT, SIGTERM or duration."""
     parser = argparse.ArgumentParser()
-    parser.add_argument('--gui', action='store_true')
+    parser.add_argument("--gui", action="store_true")
     parser.add_argument(
-        '--seconds',
+        "--seconds",
         type=float,
         default=0,
-        help='Simulation seconds after initialization; 0 is unlimited',
+        help="Simulation seconds after initialization; 0 is unlimited",
     )
     parser.add_argument(
-        '--output', type=Path, required=True, help='New evidence directory (must not exist)'
+        "--output",
+        type=Path,
+        required=True,
+        help="New evidence directory (must not exist)",
     )
     args = parser.parse_args()
-    if importlib.metadata.version('isaacsim') != '4.5.0.0':
-        raise RuntimeError('Only the validated Isaac Sim 4.5.0.0 is allowed')
+    if importlib.metadata.version("isaacsim") != "4.5.0.0":
+        raise RuntimeError("Only the validated Isaac Sim 4.5.0.0 is allowed")
     args.output.mkdir(parents=True, exist_ok=False)
-    episode = generate_episode(seed=0, level='fixed', backend='isaac', requested_colour='red')
-    (args.output / 'episode.json').write_text(episode.to_json())
-    (args.output / 'scene.json').write_text(
+    episode = generate_episode(
+        seed=0, level="fixed", backend="isaac", requested_colour="red"
+    )
+    (args.output / "episode.json").write_text(episode.to_json())
+    (args.output / "scene.json").write_text(
         json.dumps(
             {
-                'kind': 'foundation_fixture',
-                'episode_layout_instantiated': False,
-                'robot_start_from_episode': True,
-                'time_source': 'simulation',
-                'physics_dt_sim_s': PHYSICS_DT,
-                'render_dt_sim_s': RENDER_DT,
+                "kind": "foundation_fixture",
+                "episode_layout_instantiated": False,
+                "robot_start_from_episode": True,
+                "time_source": "simulation",
+                "physics_dt_sim_s": PHYSICS_DT,
+                "render_dt_sim_s": RENDER_DT,
             },
             indent=2,
         )
     )
-    (args.output / 'robot.urdf').write_text(robot_description())
+    (args.output / "robot.urdf").write_text(robot_description())
     wall_start = time.monotonic()
 
     def log(event, **data):
         print(
-            json.dumps({'event': event, 'elapsed_wall_s': time.monotonic() - wall_start, **data}),
+            json.dumps(
+                {
+                    "event": event,
+                    "elapsed_wall_s": time.monotonic() - wall_start,
+                    **data,
+                }
+            ),
             flush=True,
         )
 
@@ -165,12 +197,12 @@ def main():
 
     app = SimulationApp(
         {
-            'headless': not args.gui,
-            'create_new_stage': False,
-            'width': 640,
-            'height': 480,
-            'multi_gpu': False,
-            'fast_shutdown': True,
+            "headless": not args.gui,
+            "create_new_stage": False,
+            "width": 640,
+            "height": 480,
+            "multi_gpu": False,
+            "fast_shutdown": True,
         }
     )
     node = None
@@ -188,27 +220,32 @@ def main():
         for _ in range(3):
             app.update()
         root = build_scene(ctx.get_stage(), episode)
-        log('scene_created')
-        # No new_stage after this boundary. The ordering is an acceptance invariant.
+        log("scene_created")
+        # No new_stage after this boundary; preserve the tested ordering.
         em = omni.kit.app.get_app().get_extension_manager()
-        for extension in ('isaacsim.sensors.physx', 'isaacsim.ros2.bridge'):
+        for extension in ("isaacsim.sensors.physx", "isaacsim.ros2.bridge"):
             if not em.set_extension_enabled_immediate(extension, True):
-                raise RuntimeError('Could not enable ' + extension)
+                raise RuntimeError("Could not enable " + extension)
         for _ in range(3):
             app.update()
-        log('bridge_enabled')
-        _render_product = sensors(ctx.get_stage(), app)
+        log("bridge_enabled")
+        render_product = sensors(ctx.get_stage(), app)
+        if not render_product.path:
+            raise RuntimeError("Camera render product has no path")
         sim = SimulationContext(
             physics_dt=PHYSICS_DT,
             rendering_dt=RENDER_DT,
             stage_units_in_meters=1.0,
-            physics_prim_path='/World/physics',
+            physics_prim_path="/World/physics",
         )
         sim.initialize_physics()
         sim.play()
         robot = SingleArticulation(root)
         robot.initialize()
-        indices = [robot.get_dof_index(name + '_joint') for name, _, _ in wheel_layout()]
+        indices = [
+            robot.get_dof_index(name + "_joint")
+            for name, _, _ in wheel_layout()
+        ]
 
         # This rclpy belongs to the bridge's bundled Humble, never host Jazzy.
         import rclpy
@@ -223,21 +260,27 @@ def main():
         from tf2_msgs.msg import TFMessage
 
         rclpy.init()
-        node = Node('coco_isaac_backend')
+        node = Node("coco_isaac_backend")
         drive = DriveCommand()
 
         def command(msg):
             stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
             drive.receive(msg.twist.linear.x, msg.twist.angular.z, stamp)
 
-        _subscription = node.create_subscription(TwistStamped, TOPICS['command'], command, 1)
-        odom_pub = node.create_publisher(Odometry, TOPICS['odom'], 10)
-        clock_pub = node.create_publisher(Clock, TOPICS['clock'], 10)
-        tf_pub = node.create_publisher(TFMessage, '/tf', 10)
-        joint_pub = node.create_publisher(JointState, TOPICS['joints'], 10)
-        latched = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)
-        static_pub = node.create_publisher(TFMessage, '/tf_static', latched)
-        description_pub = node.create_publisher(String, '/robot_description', latched)
+        node.create_subscription(
+            TwistStamped, TOPICS["command"], command, 1
+        )
+        odom_pub = node.create_publisher(Odometry, TOPICS["odom"], 10)
+        clock_pub = node.create_publisher(Clock, TOPICS["clock"], 10)
+        tf_pub = node.create_publisher(TFMessage, "/tf", 10)
+        joint_pub = node.create_publisher(JointState, TOPICS["joints"], 10)
+        latched = QoSProfile(
+            depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL
+        )
+        static_pub = node.create_publisher(TFMessage, "/tf_static", latched)
+        description_pub = node.create_publisher(
+            String, "/robot_description", latched
+        )
         description_pub.publish(String(data=robot_description()))
 
         def transform(parent, child, xyz, quat, stamp):
@@ -261,21 +304,29 @@ def main():
             TFMessage(
                 transforms=[
                     transform(
-                        FRAMES['base'],
-                        FRAMES['body'],
+                        FRAMES["base"],
+                        FRAMES["body"],
                         (0, 0, r.CHASSIS_GROUND_CLEARANCE),
                         (1, 0, 0, 0),
                         Time(),
                     ),
                     transform(
-                        FRAMES['body'], FRAMES['lidar'], r.LIDAR_MOUNT_XYZ, (1, 0, 0, 0), Time()
+                        FRAMES["body"],
+                        FRAMES["lidar"],
+                        r.LIDAR_MOUNT_XYZ,
+                        (1, 0, 0, 0),
+                        Time(),
                     ),
                     transform(
-                        FRAMES['body'], FRAMES['camera'], r.CAMERA_MOUNT_XYZ, (1, 0, 0, 0), Time()
+                        FRAMES["body"],
+                        FRAMES["camera"],
+                        r.CAMERA_MOUNT_XYZ,
+                        (1, 0, 0, 0),
+                        Time(),
                     ),
                     transform(
-                        FRAMES['camera'],
-                        FRAMES['optical'],
+                        FRAMES["camera"],
+                        FRAMES["optical"],
                         (0, 0, 0),
                         (0.5, -0.5, 0.5, -0.5),
                         Time(),
@@ -286,8 +337,8 @@ def main():
         stop = [False]
         for sig in (signal.SIGINT, signal.SIGTERM):
             signal.signal(sig, lambda *_: stop.__setitem__(0, True))
-        (args.output / 'ready.marker').write_text('ready')
-        log('ready', joints=robot.dof_names)
+        (args.output / "ready.marker").write_text("ready")
+        log("ready", joints=robot.dof_names)
         initial_time = sim.current_time
         last_log = -10.0
         while app.is_running() and not stop[0]:
@@ -310,12 +361,20 @@ def main():
             qw, qx, qy, qz = map(float, q)
             # base_link -> footprint offset rotated into world coordinates.
             offset = r.CHASSIS_GROUND_CLEARANCE * np.array(
-                [2 * (qx * qz + qw * qy), 2 * (qy * qz - qw * qx), 1 - 2 * (qx * qx + qy * qy)]
+                [
+                    2 * (qx * qz + qw * qy),
+                    2 * (qy * qz - qw * qx),
+                    1 - 2 * (qx * qx + qy * qy),
+                ]
             )
             position = (
-                position - offset - np.array([episode.robot_start.x, episode.robot_start.y, 0.0])
+                position
+                - offset
+                - np.array([episode.robot_start.x, episode.robot_start.y, 0.0])
             )
-            yaw = math.atan2(2 * (qw * qz + qx * qy), 1 - 2 * (qy * qy + qz * qz))
+            yaw = math.atan2(
+                2 * (qw * qz + qx * qy), 1 - 2 * (qy * qy + qz * qz)
+            )
             linear_world = robot.get_linear_velocity()
             angular_world = robot.get_angular_velocity()
             # Odometry twist is in child frame, not world frame.
@@ -341,42 +400,56 @@ def main():
             linear = rot.T @ (linear_world - np.cross(angular_world, offset))
             angular = rot.T @ angular_world
             odom = Odometry()
-            odom.header.stamp, odom.header.frame_id = stamp, FRAMES['odom']
-            odom.child_frame_id = FRAMES['base']
-            odom.pose.pose.position.x, odom.pose.pose.position.y, odom.pose.pose.position.z = map(
-                float, position
-            )
+            odom.header.stamp, odom.header.frame_id = stamp, FRAMES["odom"]
+            odom.child_frame_id = FRAMES["base"]
+            (
+                odom.pose.pose.position.x,
+                odom.pose.pose.position.y,
+                odom.pose.pose.position.z,
+            ) = map(float, position)
             (
                 odom.pose.pose.orientation.w,
                 odom.pose.pose.orientation.x,
                 odom.pose.pose.orientation.y,
                 odom.pose.pose.orientation.z,
             ) = map(float, q)
-            odom.twist.twist.linear.x, odom.twist.twist.linear.y, odom.twist.twist.linear.z = map(
-                float, linear
-            )
-            odom.twist.twist.angular.x, odom.twist.twist.angular.y, odom.twist.twist.angular.z = (
-                map(float, angular)
-            )
+            (
+                odom.twist.twist.linear.x,
+                odom.twist.twist.linear.y,
+                odom.twist.twist.linear.z,
+            ) = map(float, linear)
+            (
+                odom.twist.twist.angular.x,
+                odom.twist.twist.angular.y,
+                odom.twist.twist.angular.z,
+            ) = map(float, angular)
             odom_pub.publish(odom)
             angles = robot.get_joint_positions()[indices]
             velocities = robot.get_joint_velocities()[indices]
             joint = JointState()
             joint.header.stamp = stamp
-            joint.name = [name + '_joint' for name, _, _ in wheel_layout()]
-            joint.position, joint.velocity = list(map(float, angles)), list(map(float, velocities))
+            joint.name = [name + "_joint" for name, _, _ in wheel_layout()]
+            joint.position, joint.velocity = list(map(float, angles)), list(
+                map(float, velocities)
+            )
             joint_pub.publish(joint)
-            transforms = [transform(FRAMES['odom'], FRAMES['base'], position, q, stamp)]
+            transforms = [
+                transform(FRAMES["odom"], FRAMES["base"], position, q, stamp)
+            ]
             transforms += [
                 transform(
-                    FRAMES['body'], name, xyz, (math.cos(a / 2), 0, math.sin(a / 2), 0), stamp
+                    FRAMES["body"],
+                    name,
+                    xyz,
+                    (math.cos(a / 2), 0, math.sin(a / 2), 0),
+                    stamp,
                 )
                 for (name, xyz, _), a in zip(wheel_layout(), angles)
             ]
             tf_pub.publish(TFMessage(transforms=transforms))
             if now - last_log >= 2:
                 log(
-                    'state',
+                    "state",
                     time_sim_s=now,
                     position_odom_m=list(map(float, position)),
                     yaw_rad=yaw,
@@ -388,14 +461,16 @@ def main():
             # Never accelerate sim time beyond wall delivery.
             time.sleep(max(0.0, RENDER_DT - (time.monotonic() - loop_start)))
         robot.apply_action(
-            ArticulationAction(joint_velocities=np.zeros(4), joint_indices=np.array(indices))
+            ArticulationAction(
+                joint_velocities=np.zeros(4), joint_indices=np.array(indices)
+            )
         )
-        log('stopping', time_sim_s=sim.current_time)
+        log("stopping", time_sim_s=sim.current_time)
     except BaseException:
         import traceback
 
         traceback.print_exc()
-        (args.output / 'failure.txt').write_text(traceback.format_exc())
+        (args.output / "failure.txt").write_text(traceback.format_exc())
         app.app.post_quit(1)
         raise
     finally:
@@ -405,14 +480,14 @@ def main():
             node.destroy_node()
             if rclpy.ok():
                 rclpy.shutdown()
-        if not (args.output / 'failure.txt').exists():
-            (args.output / 'shutdown_requested.json').write_text(
-                json.dumps({'normal_close': True})
+        if not (args.output / "failure.txt").exists():
+            (args.output / "shutdown_requested.json").write_text(
+                json.dumps({"normal_close": True})
             )
         app.close()
-    (args.output / 'shutdown.json').write_text(json.dumps({'clean': True}))
-    log('closed')
+    (args.output / "shutdown.json").write_text(json.dumps({"clean": True}))
+    log("closed")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

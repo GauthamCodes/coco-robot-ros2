@@ -1,0 +1,47 @@
+[setup_env] note: no overlay at /home/gautham/coco_isaac21_ws/install — run colcon build
+[build_overlay] /home/gautham/coco-isaac-21 -> /home/gautham/coco_isaac21_ws
+Starting >>> coco_config
+--- stderr: coco_config
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_config [1.11s]
+Starting >>> custom_teleop
+Starting >>> coco_sim
+Starting >>> coco_rl
+--- stderr: coco_sim
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_sim [1.52s]
+--- stderr: custom_teleop
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< custom_teleop [1.57s]
+Starting >>> gazebo_models
+Starting >>> coco_web
+--- stderr: coco_rl
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_rl [1.60s]
+--- stderr: coco_web
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_web [1.26s]
+Finished <<< gazebo_models [1.73s]
+Starting >>> coco_moveit_config
+Finished <<< coco_moveit_config [1.48s]
+Starting >>> coco_perception
+--- stderr: coco_perception
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_perception [1.21s]
+Starting >>> coco_mission
+Finished <<< coco_mission [1.34s]
+
+Summary: 9 packages finished [8.66s]
+  6 packages had stderr output: coco_config coco_perception coco_rl coco_sim coco_web custom_teleop

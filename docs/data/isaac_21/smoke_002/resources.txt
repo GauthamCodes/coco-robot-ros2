@@ -1,0 +1,23 @@
+	Command being timed: "bash /home/gautham/coco-isaac-21/scripts/isaac_sim_coco.sh --output /tmp/coco-isaac21-smoke-002/sim"
+	User time (seconds): 74.14
+	System time (seconds): 24.02
+	Percent of CPU this job got: 320%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:30.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 4970252
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 266
+	Minor (reclaiming a frame) page faults: 879792
+	Voluntary context switches: 688446
+	Involuntary context switches: 3720297
+	Swaps: 0
+	File system inputs: 643080
+	File system outputs: 3312
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,5 +1,12 @@
 # COCO 2.0 STATUS: ROBOT FROZEN / PLATFORM IN PROGRESS
 
+> **COCO 2.1 branch update (2026-10-02):** This branch starts from clean
+> P03D `8e518cf99b50347568d9e7c303ec80b18ef8c223` and adds a measured
+> Isaac 4.5 mobile-base/navigation fixture through the existing ROS 2 Nav2
+> and arbiter interface. P03D Gazebo code and evidence are unchanged. See
+> [the Isaac milestone record](docs/COCO_2_1_ISAAC.md). The COCO 2.0 snapshot
+> below remains a historical release record.
+
 **The ROBOT is final. There is no next robotics milestone.** Everything
 below describes it and still holds.
 

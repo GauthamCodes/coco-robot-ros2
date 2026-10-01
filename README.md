@@ -1,5 +1,11 @@
 # COCO 2.0 — Autonomous Mobile Manipulator
 
+> **COCO 2.1 Isaac integration branch:** A measured Isaac Sim 4.5 mobile-base
+> backend now runs the existing ROS 2 Nav2 and cmd_vel arbiter stack on a
+> small navigation fixture. The arm, grasp mechanism and P03D search world
+> are not yet represented there. See [COCO 2.1 Isaac integration](docs/COCO_2_1_ISAAC.md)
+> for the interface contract, launch commands, results and limitations.
+
 **ROS 2 Jazzy · Gazebo Harmonic · Nav2 · MoveIt 2**
 
 **Choose a colour on your phone. COCO finds it, grasps it, and brings it

@@ -29,12 +29,14 @@ def build_scene(stage, episode):
 
     UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
     UsdGeom.SetStageMetersPerUnit(stage, 1.0)
-    UsdGeom.Xform.Define(stage, '/World')
-    physics = UsdPhysics.Scene.Define(stage, '/World/physics')
+    UsdGeom.Xform.Define(stage, "/World")
+    physics = UsdPhysics.Scene.Define(stage, "/World/physics")
     physics.CreateGravityDirectionAttr(Gf.Vec3f(0, 0, -1))
     physics.CreateGravityMagnitudeAttr(9.81)
-    PhysxSchema.PhysxSceneAPI.Apply(physics.GetPrim()).CreateTimeStepsPerSecondAttr(120)
-    material = UsdShade.Material.Define(stage, '/World/contact')
+    PhysxSchema.PhysxSceneAPI.Apply(
+        physics.GetPrim()
+    ).CreateTimeStepsPerSecondAttr(120)
+    material = UsdShade.Material.Define(stage, "/World/contact")
     mat = UsdPhysics.MaterialAPI.Apply(material.GetPrim())
     mat.CreateStaticFrictionAttr(0.7)
     mat.CreateDynamicFrictionAttr(0.7)
@@ -42,10 +44,12 @@ def build_scene(stage, episode):
 
     def collision(prim):
         UsdPhysics.CollisionAPI.Apply(prim)
-        PhysxSchema.PhysxCollisionAPI.Apply(prim).CreateContactOffsetAttr(0.002)
+        PhysxSchema.PhysxCollisionAPI.Apply(prim).CreateContactOffsetAttr(
+            0.002
+        )
         PhysxSchema.PhysxCollisionAPI.Apply(prim).CreateRestOffsetAttr(0.0)
         UsdShade.MaterialBindingAPI.Apply(prim).Bind(
-            material, UsdShade.Tokens.weakerThanDescendants, 'physics'
+            material, UsdShade.Tokens.weakerThanDescendants, "physics"
         )
 
     def cube(path, centre, size, colour):
@@ -57,12 +61,12 @@ def build_scene(stage, episode):
         collision(obj.GetPrim())
         return obj
 
-    cube('/World/ground', (0, 0, -0.05), (20, 20, 0.1), (0.4, 0.4, 0.4))
+    cube("/World/ground", (0, 0, -0.05), (20, 20, 0.1), (0.4, 0.4, 0.4))
     for name, centre, size, colour in FIXTURES:
-        cube('/World/' + name, centre, size, colour)
-    UsdLux.DistantLight.Define(stage, '/World/sun').CreateIntensityAttr(3000.0)
-    UsdGeom.Xform.Define(stage, '/World/coco')
-    base = UsdGeom.Xform.Define(stage, '/World/coco/base_link')
+        cube("/World/" + name, centre, size, colour)
+    UsdLux.DistantLight.Define(stage, "/World/sun").CreateIntensityAttr(3000.0)
+    UsdGeom.Xform.Define(stage, "/World/coco")
+    base = UsdGeom.Xform.Define(stage, "/World/coco/base_link")
     start = episode.robot_start
     # Episode z is base_footprint; base_link is clearance above it.
     origin = (start.x, start.y, start.z + r.CHASSIS_GROUND_CLEARANCE)
@@ -75,7 +79,7 @@ def build_scene(stage, episode):
     api.CreateSolverPositionIterationCountAttr(16)
     api.CreateSolverVelocityIterationCountAttr(4)
     cube(
-        '/World/coco/base_link/chassis',
+        "/World/coco/base_link/chassis",
         (0, 0, r.CHASSIS_SIZE[2] / 2),
         r.CHASSIS_SIZE,
         (0.9, 0.45, 0.1),
@@ -97,16 +101,19 @@ def build_scene(stage, episode):
         other = [j for j in range(3) if j != i]
         inertia.append(
             r.CHASSIS_MASS * sum(r.CHASSIS_SIZE[j] ** 2 for j in other) / 12
-            + sum(m * sum((xyz[j] - com[j]) ** 2 for j in other) for m, xyz in lumps)
+            + sum(
+                m * sum((xyz[j] - com[j]) ** 2 for j in other)
+                for m, xyz in lumps
+            )
         )
     mass_api = UsdPhysics.MassAPI.Apply(base.GetPrim())
     mass_api.CreateMassAttr(mass)
     mass_api.CreateCenterOfMassAttr(Gf.Vec3f(*com))
     mass_api.CreateDiagonalInertiaAttr(Gf.Vec3f(*inertia))
     for name, xyz, _ in wheel_layout():
-        path = '/World/coco/' + name
+        path = "/World/coco/" + name
         wheel = UsdGeom.Mesh.Define(stage, path)
-        # Explicit convex wheel collider avoids implicit cylinder approximation.
+        # Explicit convex wheel collider avoids an implicit approximation.
         count = 64
         points = [
             Gf.Vec3f(
@@ -118,13 +125,20 @@ def build_scene(stage, episode):
             for i in range(count)
         ]
         faces = [list(reversed(range(count))), list(range(count, 2 * count))]
-        faces += [[i, (i + 1) % count, (i + 1) % count + count, i + count] for i in range(count)]
+        faces += [
+            [i, (i + 1) % count, (i + 1) % count + count, i + count]
+            for i in range(count)
+        ]
         wheel.CreatePointsAttr(points)
         wheel.CreateFaceVertexCountsAttr([len(f) for f in faces])
         wheel.CreateFaceVertexIndicesAttr([i for f in faces for i in f])
-        wheel.CreateSubdivisionSchemeAttr('none')
-        UsdPhysics.MeshCollisionAPI.Apply(wheel.GetPrim()).CreateApproximationAttr('convexHull')
-        wheel.AddTranslateOp().Set(Gf.Vec3d(*(origin[i] + xyz[i] for i in range(3))))
+        wheel.CreateSubdivisionSchemeAttr("none")
+        UsdPhysics.MeshCollisionAPI.Apply(
+            wheel.GetPrim()
+        ).CreateApproximationAttr("convexHull")
+        wheel.AddTranslateOp().Set(
+            Gf.Vec3d(*(origin[i] + xyz[i] for i in range(3)))
+        )
         wheel.AddOrientOp().Set(Gf.Quatf(1.0, 0.0, 0.0, 0.0))
         wheel.CreateDisplayColorAttr([Gf.Vec3f(0.05, 0.05, 0.05)])
         collision(wheel.GetPrim())
@@ -134,20 +148,22 @@ def build_scene(stage, episode):
         radial = r.WHEEL_MASS * (3 * r.WHEEL_RADIUS**2 + r.WHEEL_WIDTH**2) / 12
         axial = r.WHEEL_MASS * r.WHEEL_RADIUS**2 / 2
         ma.CreateDiagonalInertiaAttr(Gf.Vec3f(radial, axial, radial))
-        joint = UsdPhysics.RevoluteJoint.Define(stage, '/World/coco/' + name + '_joint')
+        joint = UsdPhysics.RevoluteJoint.Define(
+            stage, "/World/coco/" + name + "_joint"
+        )
         joint.CreateBody0Rel().SetTargets([base.GetPath()])
         joint.CreateBody1Rel().SetTargets([wheel.GetPath()])
-        joint.CreateAxisAttr('Y')
+        joint.CreateAxisAttr("Y")
         joint.CreateLocalPos0Attr(Gf.Vec3f(*xyz))
         joint.CreateLocalPos1Attr(Gf.Vec3f(0))
-        drive = UsdPhysics.DriveAPI.Apply(joint.GetPrim(), 'angular')
-        drive.CreateTypeAttr('force')
+        drive = UsdPhysics.DriveAPI.Apply(joint.GetPrim(), "angular")
+        drive.CreateTypeAttr("force")
         drive.CreateStiffnessAttr(0.0)
         drive.CreateDampingAttr(1.0)
         drive.CreateMaxForceAttr(2.0)
         drive.CreateTargetVelocityAttr(0.0)
     # Camera prim exists before ROS. USD camera -Z forward, +Y up.
-    cam = UsdGeom.Camera.Define(stage, '/World/coco/base_link/camera')
+    cam = UsdGeom.Camera.Define(stage, "/World/coco/base_link/camera")
     xf = UsdGeom.XformCommonAPI(cam)
     xf.SetTranslate(Gf.Vec3d(*r.CAMERA_MOUNT_XYZ))
     xf.SetRotate(Gf.Vec3f(90, 0, -90))
@@ -155,56 +171,75 @@ def build_scene(stage, episode):
     cam.CreateVerticalApertureAttr(20.0 * r.CAMERA_WH[1] / r.CAMERA_WH[0])
     cam.CreateFocalLengthAttr(10.0 / math.tan(r.CAMERA_HFOV / 2))
     cam.CreateClippingRangeAttr(Gf.Vec2f(0.1, 8.0))
-    return '/World/coco/base_link'
+    return "/World/coco/base_link"
 
 
 def robot_description():
-    """Generate a matching minimal RViz model; no second hand-authored robot."""
+    """Generate a matching minimal RViz model from shared dimensions."""
     from xml.etree.ElementTree import Element, SubElement, tostring
 
-    robot = Element('robot', name='coco_isaac_base')
+    robot = Element("robot", name="coco_isaac_base")
 
     def link(name, shape=None, xyz=(0, 0, 0), rpy=(0, 0, 0)):
-        node = SubElement(robot, 'link', name=name)
+        node = SubElement(robot, "link", name=name)
         if shape:
-            visual = SubElement(node, 'visual')
-            SubElement(visual, 'origin', xyz=' '.join(map(str, xyz)), rpy=' '.join(map(str, rpy)))
-            geometry = SubElement(visual, 'geometry')
+            visual = SubElement(node, "visual")
+            SubElement(
+                visual,
+                "origin",
+                xyz=" ".join(map(str, xyz)),
+                rpy=" ".join(map(str, rpy)),
+            )
+            geometry = SubElement(visual, "geometry")
             SubElement(geometry, shape[0], **shape[1])
 
-    def joint(name, parent, child, xyz, rpy=(0, 0, 0), kind='fixed'):
-        node = SubElement(robot, 'joint', name=name, type=kind)
-        SubElement(node, 'parent', link=parent)
-        SubElement(node, 'child', link=child)
-        SubElement(node, 'origin', xyz=' '.join(map(str, xyz)), rpy=' '.join(map(str, rpy)))
-        if kind == 'continuous':
-            SubElement(node, 'axis', xyz='0 1 0')
+    def joint(name, parent, child, xyz, rpy=(0, 0, 0), kind="fixed"):
+        node = SubElement(robot, "joint", name=name, type=kind)
+        SubElement(node, "parent", link=parent)
+        SubElement(node, "child", link=child)
+        SubElement(
+            node,
+            "origin",
+            xyz=" ".join(map(str, xyz)),
+            rpy=" ".join(map(str, rpy)),
+        )
+        if kind == "continuous":
+            SubElement(node, "axis", xyz="0 1 0")
 
-    link('base_footprint')
+    link("base_footprint")
     link(
-        'base_link',
-        ('box', {'size': ' '.join(map(str, r.CHASSIS_SIZE))}),
+        "base_link",
+        ("box", {"size": " ".join(map(str, r.CHASSIS_SIZE))}),
         (0, 0, r.CHASSIS_SIZE[2] / 2),
     )
     joint(
-        'base_footprint_joint', 'base_footprint', 'base_link', (0, 0, r.CHASSIS_GROUND_CLEARANCE)
+        "base_footprint_joint",
+        "base_footprint",
+        "base_link",
+        (0, 0, r.CHASSIS_GROUND_CLEARANCE),
     )
     for name, xyz, _ in wheel_layout():
         link(
             name,
-            ('cylinder', {'radius': str(r.WHEEL_RADIUS), 'length': str(r.WHEEL_WIDTH)}),
+            (
+                "cylinder",
+                {"radius": str(r.WHEEL_RADIUS), "length": str(r.WHEEL_WIDTH)},
+            ),
             rpy=(math.pi / 2, 0, 0),
         )
-        joint(name + '_joint', 'base_link', name, xyz, kind='continuous')
-    for name, xyz in [('lidar_link', r.LIDAR_MOUNT_XYZ), ('camera_link', r.CAMERA_MOUNT_XYZ)]:
+        joint(name + "_joint", "base_link", name, xyz, kind="continuous")
+    for name, xyz in [
+        ("lidar_link", r.LIDAR_MOUNT_XYZ),
+        ("camera_link", r.CAMERA_MOUNT_XYZ),
+    ]:
         link(name)
-        joint(name + '_joint', 'base_link', name, xyz)
-    link('camera_optical_frame')
+        joint(name + "_joint", "base_link", name, xyz)
+    link("camera_optical_frame")
     joint(
-        'camera_optical_joint',
-        'camera_link',
-        'camera_optical_frame',
+        "camera_optical_joint",
+        "camera_link",
+        "camera_optical_frame",
         (0, 0, 0),
         (-math.pi / 2, 0, -math.pi / 2),
     )
-    return tostring(robot, encoding='unicode')
+    return tostring(robot, encoding="unicode")

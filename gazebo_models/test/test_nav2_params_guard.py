@@ -155,3 +155,12 @@ def test_global_costmap_robot_radius_is_unchanged_by_c2nav48():
     glob = _node(doc, 'global_costmap', 'global_costmap', 'ros__parameters')
     assert glob['robot_radius'] == 0.20
     assert glob['inflation_layer']['cost_scaling_factor'] == 5.0
+
+
+def test_goal_alignment_counts_as_progress_without_relaxing_deadline():
+    checker = _node(_params(), 'controller_server', 'ros__parameters',
+                    'progress_checker')
+    assert checker['plugin'] == 'nav2_controller::PoseProgressChecker'
+    assert checker['required_movement_angle'] == 0.1
+    assert checker['required_movement_radius'] == 0.1
+    assert checker['movement_time_allowance'] == 10.0

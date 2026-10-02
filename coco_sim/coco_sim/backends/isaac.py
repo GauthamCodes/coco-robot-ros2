@@ -12,33 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-The Isaac backend's translation layer — data only, no Isaac import.
+"""Pure episode-to-USD target specifications, consumed by isaac.articulated.
 
-This is the adapter BOUNDARY, not an Isaac integration. It turns the same
-manifest the Gazebo backend reads into a list of primitive specs an Isaac
-stage builder can create one-for-one (a ``UsdGeom.Cylinder`` with rigid
-body, mass and a physics material per target). Nothing here imports
-``omni``, ``pxr`` or ``isaacsim``, so it runs and is tested in the same
-Python as the rest of ``coco_sim``.
-
-What an Isaac run needs from an episode, and where each piece stands
-(branch ``p03-isaac-backend`` @ ``ffb3fc6`` is the runtime):
-
-============== ================================= =========================
-piece          source                            status
-============== ================================= =========================
-robot          generated from coco_config        exists on p03-isaac-backend
-initial pose   ``EpisodeSpec.robot_start``       consumed there today
-targets        :meth:`IsaacBackend.translate`    this module; NOT consumed
-world geometry ramp / platform / arena           NOT generated for Isaac;
-                                                 the runtime builds a
-                                                 fixture world instead
-============== ================================= =========================
-
-So an Isaac run cannot instantiate a ``coco_world`` fetch episode yet;
-:meth:`IsaacBackend.translate` says so in ``missing`` rather than
-pretending, and a test pins that until the world exists.
+The fetch runtime builds coco_world from the committed arena and ramp geometry.
+The foundation smoke fixture remains a separate explicit runtime mode.
+No simulator or ROS import is needed to translate or test an episode.
 """
 
 from dataclasses import dataclass
@@ -77,12 +55,6 @@ class IsaacScene:
     missing: tuple            # world pieces the Isaac runtime cannot build
 
 
-#: World geometry an Isaac stage would need for a ``coco_world`` fetch
-#: episode and that no generator provides for Isaac today. Stated, not
-#: hidden: the Gazebo world gets these from coco_world.world and
-#: full_world_robo.launch.py.
-COCO_WORLD_GEOMETRY_FOR_ISAAC = ('arena', 'ramp_up', 'platform', 'ramp_down')
-
 TARGET_ROOT = '/World/Targets'
 
 
@@ -112,5 +84,4 @@ class IsaacBackend(SimulatorBackend):
             world_variant=spec.world_variant,
             robot_start=(start.x, start.y, start.z, start.yaw),
             targets=prims,
-            missing=(COCO_WORLD_GEOMETRY_FOR_ISAAC
-                     if spec.world_variant == 'coco_world' else ()))
+            missing=(() if spec.world_variant == 'coco_world' else (spec.world_variant,)))

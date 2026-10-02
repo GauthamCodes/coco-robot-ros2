@@ -141,7 +141,7 @@
          line does not show a planner doing anything.
 
          The RL corridor runs from spawn (-2, 0) straight along y~0 and
-         passes through this gate with room to spare. `--randomize` moves
+         passes through this gate with room to spare. `—randomize` moves
          the spawn +/-0.5 m in y, which can put the robot into the south
          cube — noted here rather than discovered inside a curriculum. -->
     <model name="gate_cube_north">

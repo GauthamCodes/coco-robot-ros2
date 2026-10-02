@@ -39,6 +39,8 @@ origin on the ground under the robot).
 
 import math
 
+from coco_config.joint_limits import ARM_LIMITS
+
 # Shoulder pivot in base_footprint (from URDF chain, arm plane y = 0)
 S_X = -0.075
 S_Z = 0.1485
@@ -50,8 +52,8 @@ PHI1 = 0.007576          # alpha at q_shoulder = 0; alpha = PHI1 - q_shoulder
 GAMMA0 = -0.021274       # beta - alpha at q_elbow = 0
 
 # Joint limits from the URDF
-SHOULDER_LIMITS = (-3.84, 1.0)
-ELBOW_LIMITS = (-1.6, 1.6)
+SHOULDER_LIMITS = ARM_LIMITS['m_link1_Revolute-6']
+ELBOW_LIMITS = ARM_LIMITS['m_link2_Revolute-7']
 
 
 def fk(q_shoulder, q_elbow):

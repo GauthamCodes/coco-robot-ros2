@@ -52,6 +52,7 @@ setup(
         'console_scripts': [
             'write_mjcf = coco_sim.mjcf:main',
             'coco_episode = coco_sim.episode_cli:main',
+            'isaac_trajectory = coco_sim.isaac.trajectory_node:main',
         ],
     },
 )

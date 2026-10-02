@@ -3,6 +3,17 @@
 Long-term milestone tracking. **No session history here** — that is
 `docs/SESSION_LOG.md`. Current snapshot is `PROJECT_STATE.md`.
 
+## Active COCO 2.1 milestone
+
+Complete one recorded perception-driven Isaac fetch through the shared P03D
+mission, including physical grasp/return, then run the same episode in Gazebo
+for cross-simulator measurements. The current blockers and evidence are in
+[the Isaac milestone](COCO_2_1_ISAAC.md). No RL retraining or new mission fork
+is required by this milestone.
+
+The closed tracks below record the historical COCO 2.0 roadmap; their freeze
+rules do not describe the current Isaac branch.
+
 > **The ROBOTICS roadmap (Tracks 1–3) is closed.** COCO 2.0's robot is
 > frozen at the release described in `PROJECT_STATE.md`. Everything in
 > those tracks marked DONE was built and measured. **C2-M6 through C2-M9

@@ -1,5 +1,102 @@
 # COCO 2.1 — Isaac Sim digital twin and cross-simulator integration
 
+## Current consolidation and fetch implementation (2026-10-02)
+
+The session begins at `569b81ff744c2542498bd37201ef509b3ec4b949`.
+The initial base fixture remains reproducible without `--fetch`. The new
+`--fetch` mode builds the canonical arm and `coco_world` target arena and
+launches the shared P03D mission; it does not implement a second mission.
+Historical P03D evidence has not been rewritten.
+
+| Capability | Current evidence level |
+| --- | --- |
+| Four-wheel base, safety/arbiter, Nav2 interfaces | Runtime verified; original fixture smoke evidence below |
+| Arm/gripper geometry, joint frames, URDF mass/inertia/limits | Implemented; FK and command-boundary tested; articulation initializes at runtime |
+| Arm action controller and gripper trajectory adapter | Implemented; ROS controller tests cover arrival, cancellation, stale feedback and timeout; physical MoveIt stow trajectory runtime verified (run006) |
+| Canonical arena and four randomized coloured targets | Runtime verified; settled poses checked against episode |
+| RGB-D, LiDAR, IMU, odometry, eight joint states and arm TF | Runtime publication verified; rates recorded |
+| P03D mission launch, lifecycle readiness, sole arbiter publisher | Runtime verified through successful climb and approach/recovery failures |
+| Proximity-gated magnet, lift/release measurement | Implemented and boundary tested; physical attach/lift/release not yet runtime verified |
+| Perception execution | Runtime verified positive RGB-D pose and target search transition (run006); close approach loses the target |
+| Full fetch / cross-simulator parity | **Not demonstrated** |
+
+The host Jazzy process exposes MoveIt's existing
+`/arm_controller/follow_joint_trajectory` action. Validated arm-only
+`JointState` commands cross Isaac's bundled Humble bridge. Completion uses
+fresh measured joint positions. The gripper retains its existing trajectory
+topic. Isaac magnet attach creates a physical fixed joint at the current
+relative pose only when the target intersects the pinch envelope; no snap,
+teleport, target-coordinate navigation or evaluator movement shortcut exists.
+
+Safety repairs also apply to Gazebo: grasp no longer falls back to a nominal
+pose when the approach fix is absent, invalid or stale, and missing height
+feedback fails verification. Colour changes clear the perception fix. Joint
+arrival requires fresh feedback. These are deliberate fail-closed changes.
+
+### Reproduce the fetch attempt
+
+Use an isolated COCO overlay with Jazzy, Nav2, MoveIt and ROS message packages.
+On this machine the installed MoveIt prefix is read from the existing P03D
+workspace; it is never modified by the runner. Other installations can use
+system MoveIt or set their own `COCO_MOVEIT_PREFIX`.
+
+```bash
+cd /home/gautham/coco-isaac-21
+export COCO_WS=/home/gautham/coco_isaac21_ws
+export COCO_MOVEIT_PREFIX=/home/gautham/coco_p03d_ws/moveit_prefix/root/opt/ros/jazzy
+source setup_env.sh
+# After source changes, build all nine packages in the selected overlay:
+cd "$COCO_WS"
+colcon build --symlink-install
+cd /home/gautham/coco-isaac-21
+source setup_env.sh
+python3 scripts/isaac_fetch.py /tmp/coco-fetch-new --domain 82 --timeout 600
+```
+
+The output directory must be new. The runner writes exact commands/source
+provenance, expanded URDF, manifest, task-only robot input, measured target
+placement, simulator/mission logs, ROS observations, results and exit codes.
+It waits for all Nav2 lifecycle nodes, MoveIt and shared worker services,
+then starts `/mission/start`. It shuts down only process groups it created,
+including orphan descendants; it does not use global `pkill` or alter other
+workspaces. Interrupted/failed runs retain their outputs and return failure.
+
+The native Isaac installation is expected at `$HOME/isaac-sim`, version4.5,
+with its Python3.10 venv and bundled Humble bridge. The shell wrapper isolates
+that environment from host Jazzy3.12, uses CycloneDDS on loopback and an
+advisory lock to prevent concurrent COCO Isaac launches. No Docker/GPU
+container or external service was verified here.
+
+### Model and measurement limitations
+
+The base retains primitive collision geometry and approximate inertia from
+the measured Isaac fixture. The arm uses URDF primitives and principal axes
+of the full URDF inertia tensor; arm visuals reuse the canonical CAD STL meshes; base/wheel visuals remain primitive.
+The fixed mounting link retains its URDF mass and a fixed articulation joint. Isaac
+wheel velocity drives retain the fixture's 2 Nm force ceiling, exceeding the
+0.4 Nm URDF wheel effort: the 0.4 Nm experiment produced poor steering and an
+off-lane climb. This is a disclosed simulator actuator approximation, not
+physical hardware equivalence. Arm drive gains require physical-motion tuning.
+
+Isaac odometry is perfect measured pose relative to spawn, not wheel-integrated
+odometry. IMU specific force is derived from body motion plus gravity without
+noise. Magnet grip approximates Gazebo's DetachableJoint semantics, not contact
+friction grasping. Only `coco_world` is implemented; Yard remains unsupported.
+Current startup yaw is the canonical zero-yaw episode. Low-speed steering
+and near-field approach remain uncalibrated: run006 reaches perception/arm
+stow, but repeated navigation attempts also fail, and the gain20 experiment
+was rejected. The baseline gain1 is retained. Cross-Humble/Jazzy DDS
+emits type-hash warnings; actual deliveries and lifecycle failures are logged.
+A shared PoseProgressChecker now recognises measured in-place rotation while retaining the translation and time bounds. The two existing goal tolerances remain unchanged.
+See the [Jazzy plugin documentation](https://docs.nav2.org/jazzy/configuration_and_development/navigation_plugins/).
+Tests and runtime status must not be confused with full-fetch parity.
+
+[Current runtime failures, measurements and test logs](data/isaac_fetch/README.md)
+are authoritative for this implementation. The remainder is the historical
+initial mobile-base milestone, whose absent-arm statements refer to its fixture.
+
+## Historical initial Isaac foundation milestone
+
 This branch starts at the clean P03D commit `8e518cf99b50347568d9e7c303ec80b18ef8c223`.
 The Gazebo implementation and all files under `docs/data/p03d_autonomous_search/`
 remain unchanged. The Isaac foundation code was ported from the committed

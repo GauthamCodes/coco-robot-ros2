@@ -61,6 +61,7 @@ from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
+from nav2_common.launch import RewrittenYaml
 
 
 def generate_launch_description():
@@ -69,7 +70,11 @@ def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time')
     map_yaml = LaunchConfiguration('map')
-    params_file = LaunchConfiguration('params_file')
+    # Rewrite the source itself so map selection works with both composed
+    # and noncomposed Nav2, including nested mission launches.
+    params_file = RewrittenYaml(
+        source_file=LaunchConfiguration('params_file'),
+        param_rewrites={'yaml_filename': map_yaml}, convert_types=True)
 
     # With the arbiter running it, not Nav2, owns the controller topic. Never
     # /cmd_vel_nav: that is the controller's raw output (see the docstring).

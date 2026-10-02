@@ -83,14 +83,15 @@ Requires move_group. It is not in any other mission launch file — see
 coco_mission/launch/mission.launch.py.
 """
 
+import math
 import threading
 import time
 
 import arm_ik
 
-from arm_control import ArmControl, GRIP_CLOSED, GRIP_OPEN, model_z
+from arm_control import ArmControl, GRIP_CLOSED, GRIP_OPEN
 
-from coco_config.robot import (approach_stop_x, approach_window,
+from coco_config.robot import (approach_window,
                                GRASP_APPROACH_X, GRASP_HOVER_CLEARANCE,
                                GRASP_MAX_LATERAL, target_by_colour,
                                TARGET_COLOURS, TARGET_GRASP_Z, TARGET_HEIGHT)
@@ -172,6 +173,8 @@ def check_target_pose(colour, x, y, max_lateral=GRASP_MAX_LATERAL):
     that welds whatever it is pointed at would report success from the
     wrong lane, and the magnet is quite capable of welding across a gap.
     """
+    if not all(math.isfinite(v) for v in (x, y)):
+        return 'non-finite target pose'
     window = approach_window(colour)
     if window is None:
         return f'{colour!r} is not one of the mission targets'
@@ -213,6 +216,7 @@ class GraspServer(ArmControl):
         self.target_xy = None
         self._fix = None            # (x, y, z) from approach_server
         self._fix_at = None
+        self._fix_stamp = None
         self._lock = threading.Lock()
         self._busy = False
 
@@ -244,17 +248,32 @@ class GraspServer(ArmControl):
     # ── inputs ───────────────────────────────────────────────────────────
     def _select(self, colour):
         self.colour = colour
+        self._fix = None
+        self._fix_at = None
+        self._fix_stamp = None
         self.bind_magnet(target_by_colour(colour).model)
 
     def _on_colour(self, msg):
         colour = (msg.data or '').strip().lower()
+        if self._busy:
+            return
         if colour in TARGET_COLOURS and colour != self.colour:
             self.get_logger().info(f'target {self.colour} -> {colour}')
             self._select(colour)
 
     def _on_fix(self, msg):
-        self._fix = (msg.point.x, msg.point.y, msg.point.z)
+        stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+        now = self.get_clock().now().nanoseconds * 1e-9
+        values = (msg.point.x, msg.point.y, msg.point.z)
+        if (msg.header.frame_id != 'base_footprint'
+                or not all(math.isfinite(v) for v in values)
+                or abs(msg.point.z - TARGET_GRASP_Z) > 0.02
+                or not 0 <= now - stamp <= APPROACH_FIX_MAX_AGE):
+            self._fix = self._fix_at = self._fix_stamp = None
+            return
+        self._fix = values
         self._fix_at = time.monotonic()
+        self._fix_stamp = stamp
 
     def _publish_status(self):
         self._status_pub.publish(String(data=format_status(
@@ -276,6 +295,7 @@ class GraspServer(ArmControl):
                 'no target colour — publish /mission/target_colour or start '
                 'with -p target_colour:=<red|green|blue|yellow>')
         self.outcome = None
+        self._busy = True
         threading.Thread(target=self._run, args=(worker, name),
                          daemon=True).start()
         return Trigger.Response(
@@ -311,6 +331,7 @@ class GraspServer(ArmControl):
         if self._busy:
             return self._reject(f'busy in {self.phase}')
         self.outcome = None
+        self._busy = True
         threading.Thread(target=self._run, args=(self._do_stow, 'stow'),
                          daemon=True).start()
         return Trigger.Response(success=True, message='stowing')
@@ -341,18 +362,14 @@ class GraspServer(ArmControl):
         return self.move_arm(CARRY_POSE)
 
     def _target_pose(self):
-        """Where the target is, from the approach fix or from the nominal."""
+        """Return only a fresh, validated approach fix."""
         if self._fix is not None and self._fix_at is not None and (
-                time.monotonic() - self._fix_at <= APPROACH_FIX_MAX_AGE):
+                time.monotonic() - self._fix_at <= APPROACH_FIX_MAX_AGE
+                and self._fix_stamp is not None
+                and 0 <= self.get_clock().now().nanoseconds * 1e-9 - self._fix_stamp
+                <= APPROACH_FIX_MAX_AGE):
             return self._fix[0], self._fix[1]
-        # No fix is not fatal: the approach stops at a known place by
-        # construction. Say which one is being used, because "grasped at the
-        # nominal" and "grasped at the measured" fail in different ways.
-        nominal = approach_stop_x(self.colour)
-        self.get_logger().warn(
-            f'no fresh /approach/target — assuming the nominal stop pose '
-            f'({nominal:.4f}, 0.0). Did approach_server run?')
-        return nominal, 0.0
+        return None
 
     def _do_pick(self):
         if not self.move_client.wait_for_server(timeout_sec=20.0):
@@ -365,7 +382,11 @@ class GraspServer(ArmControl):
             self.outcome = 'robot is not upright'
             return False
 
-        x, y = self._target_pose()
+        fix = self._target_pose()
+        if fix is None:
+            self.outcome = 'no valid fresh approach fix; pick rejected'
+            return False
+        x, y = fix
         self.target_xy = (x, y)
         why = check_target_pose(self.colour, x, y)
         if why is not None:
@@ -489,11 +510,11 @@ class GraspServer(ArmControl):
         holding was real, so an object still stuck to the palm would be
         reported as a completed delivery right up until the arm moved.
         """
-        height = model_z(self.magnet_model)
+        height = self.target_height()
         if height is None:
             self.get_logger().warn(
-                'could not read the target height — release check skipped')
-            return True
+                'could not read target height — cannot verify release')
+            return False
         expected = TARGET_HEIGHT / 2.0
         if abs(height - expected) > 0.02:
             self.get_logger().error(

@@ -18,9 +18,10 @@ import argparse
 import json
 import os
 from pathlib import Path
-import signal
 import subprocess
 import time
+
+from process_groups import stop
 
 
 def main():
@@ -64,23 +65,6 @@ def main():
         )
         processes.append((name, process))
         return process
-
-    def stop(name, process):
-        if process.poll() is None:
-            if name == "nav2":
-                # Launch forwards shutdown; avoid signalling children twice.
-                process.send_signal(signal.SIGINT)
-            else:
-                os.killpg(process.pid, signal.SIGINT)
-            try:
-                process.wait(timeout=60)
-            except subprocess.TimeoutExpired:
-                os.killpg(process.pid, signal.SIGTERM)
-                try:
-                    process.wait(timeout=30)
-                except subprocess.TimeoutExpired:
-                    os.killpg(process.pid, signal.SIGKILL)
-                    process.wait(timeout=10)
 
     try:
         isaac = spawn(

@@ -17,14 +17,16 @@ import argparse
 import importlib.metadata
 import json
 import math
+import os
 from pathlib import Path
 import signal
 import time
 
 from coco_config import robot as r
-from coco_sim.episode import generate_episode
+from coco_sim.episode import resolve_episode
 from .config import (
     DriveCommand,
+    COMMAND_TIMEOUT,
     FRAMES,
     PHYSICS_DT,
     RENDER_DT,
@@ -58,7 +60,7 @@ def sensors(stage, app):
         rotation_rate=0.0,
         high_lod=False,
         yaw_offset=0.0,
-        enable_semantics=False,
+        enable_semantics=True,
     )
     if not ok:
         raise RuntimeError("PhysX LiDAR creation failed")
@@ -157,19 +159,39 @@ def main():
         required=True,
         help="New evidence directory (must not exist)",
     )
+    parser.add_argument("--fetch", action="store_true")
+    parser.add_argument("--robot-urdf", type=Path)
+    parser.add_argument("--episode-manifest", default="")
+    parser.add_argument(
+        "--episode-level",
+        default="colours",
+        choices=["fixed", "colours", "positions"],
+    )
+    parser.add_argument("--episode-seed", type=int, default=5)
+    parser.add_argument("--colour", default="red")
     args = parser.parse_args()
+    if args.fetch and not args.robot_urdf:
+        parser.error("--fetch requires the canonical expanded --robot-urdf")
+    description = args.robot_urdf.read_text() if args.fetch else None
+    share = Path(os.environ["COCO_GAZEBO_SHARE"]) if args.fetch else None
     if importlib.metadata.version("isaacsim") != "4.5.0.0":
         raise RuntimeError("Only the validated Isaac Sim 4.5.0.0 is allowed")
     args.output.mkdir(parents=True, exist_ok=False)
-    episode = generate_episode(
-        seed=0, level="fixed", backend="isaac", requested_colour="red"
+    episode = resolve_episode(
+        seed=args.episode_seed if args.fetch else 0,
+        level=args.episode_level if args.fetch else "fixed",
+        backend="isaac",
+        requested_colour=args.colour,
+        manifest_path=args.episode_manifest,
     )
+    if args.fetch and episode.world_variant != "coco_world":
+        raise ValueError("Isaac fetch currently supports only coco_world")
     (args.output / "episode.json").write_text(episode.to_json())
     (args.output / "scene.json").write_text(
         json.dumps(
             {
-                "kind": "foundation_fixture",
-                "episode_layout_instantiated": False,
+                "kind": "fetch_arena" if args.fetch else "foundation_fixture",
+                "episode_layout_instantiated": args.fetch,
                 "robot_start_from_episode": True,
                 "time_source": "simulation",
                 "physics_dt_sim_s": PHYSICS_DT,
@@ -178,7 +200,7 @@ def main():
             indent=2,
         )
     )
-    (args.output / "robot.urdf").write_text(robot_description())
+    (args.output / "robot.urdf").write_text(description or robot_description())
     wall_start = time.monotonic()
 
     def log(event, **data):
@@ -219,7 +241,8 @@ def main():
         ctx.new_stage()
         for _ in range(3):
             app.update()
-        root = build_scene(ctx.get_stage(), episode)
+        root = build_scene(ctx.get_stage(), episode, description, share)
+        ctx.get_stage().Export(str(args.output / "scene.usda"))
         log("scene_created")
         # No new_stage after this boundary; preserve the tested ordering.
         em = omni.kit.app.get_app().get_extension_manager()
@@ -255,9 +278,25 @@ def main():
         from geometry_msgs.msg import TwistStamped, TransformStamped
         from nav_msgs.msg import Odometry
         from rosgraph_msgs.msg import Clock
-        from sensor_msgs.msg import JointState
+        from sensor_msgs.msg import JointState, Imu
         from std_msgs.msg import String
         from tf2_msgs.msg import TFMessage
+
+        arm_names, arm_indices = [], []
+        magnet = None
+        if args.fetch:
+            from coco_config.joint_limits import ARM_LIMITS
+            from .articulated import origin, quaternion
+            from scipy.spatial.transform import Rotation
+            from .control import valid_positions
+
+            arm_names = list(ARM_LIMITS)
+            arm_indices = [
+                robot.get_dof_index(n.replace("-", "_")) for n in arm_names
+            ]
+            arm_targets = dict(
+                zip(arm_names, robot.get_joint_positions()[arm_indices])
+            )
 
         rclpy.init()
         node = Node("coco_isaac_backend")
@@ -267,8 +306,37 @@ def main():
             stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
             drive.receive(msg.twist.linear.x, msg.twist.angular.z, stamp)
 
-        node.create_subscription(
-            TwistStamped, TOPICS["command"], command, 1
+        node.create_subscription(TwistStamped, TOPICS["command"], command, 1)
+        if args.fetch:
+            from .grasp import Magnet
+            from coco_sim.backends.isaac import IsaacBackend
+
+            magnet = Magnet(
+                ctx.get_stage(),
+                node,
+                IsaacBackend().translate(episode).targets,
+                description,
+                log,
+            )
+
+            def arm_command(msg):
+                stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+                if (
+                    0 <= sim.current_time - stamp <= COMMAND_TIMEOUT
+                    and valid_positions(msg.name, msg.position)
+                ):
+                    arm_targets.update(zip(msg.name, msg.position))
+
+            node.create_subscription(
+                JointState, "/isaac/manipulator_command", arm_command, 10
+            )
+        gt_pub = (
+            node.create_publisher(Odometry, "/model/coco/odometry", 10)
+            if args.fetch
+            else None
+        )
+        imu_pub = (
+            node.create_publisher(Imu, "/imu", 10) if args.fetch else None
         )
         odom_pub = node.create_publisher(Odometry, TOPICS["odom"], 10)
         clock_pub = node.create_publisher(Clock, TOPICS["clock"], 10)
@@ -281,7 +349,9 @@ def main():
         description_pub = node.create_publisher(
             String, "/robot_description", latched
         )
-        description_pub.publish(String(data=robot_description()))
+        description_pub.publish(
+            String(data=description or robot_description())
+        )
 
         def transform(parent, child, xyz, quat, stamp):
             msg = TransformStamped()
@@ -334,6 +404,26 @@ def main():
                 ]
             )
         )
+        if args.fetch:
+            import xml.etree.ElementTree as ET
+
+            tree = ET.fromstring(description)
+            # Re-publish one complete static message (latched history depth=1).
+            static_transforms = []
+            for joint in tree.findall("joint"):
+                if joint.get("type") != "fixed":
+                    continue
+                matrix = origin(joint)
+                static_transforms.append(
+                    transform(
+                        joint.find("parent").get("link"),
+                        joint.find("child").get("link"),
+                        matrix[:3, 3],
+                        quaternion(matrix),
+                        Time(),
+                    )
+                )
+            static_pub.publish(TFMessage(transforms=static_transforms))
         stop = [False]
         for sig in (signal.SIGINT, signal.SIGTERM):
             signal.signal(sig, lambda *_: stop.__setitem__(0, True))
@@ -341,6 +431,8 @@ def main():
         log("ready", joints=robot.dof_names)
         initial_time = sim.current_time
         last_log = -10.0
+        previous_linear_world = None
+        layout_checked = False
         while app.is_running() and not stop[0]:
             loop_start = time.monotonic()
             now = sim.current_time
@@ -353,6 +445,15 @@ def main():
                     joint_indices=np.array(indices),
                 )
             )
+            if args.fetch:
+                robot.apply_action(
+                    ArticulationAction(
+                        joint_positions=np.array(
+                            [arm_targets[n] for n in arm_names]
+                        ),
+                        joint_indices=np.array(arm_indices),
+                    )
+                )
             sim.step(render=True)
             now = sim.current_time
             stamp = Time(sec=int(now), nanosec=int((now % 1) * 1e9))
@@ -424,6 +525,36 @@ def main():
                 odom.twist.twist.angular.z,
             ) = map(float, angular)
             odom_pub.publish(odom)
+            if gt_pub:
+                import copy
+
+                gt = copy.deepcopy(odom)
+                gt.header.frame_id = "world"
+                gt.pose.pose.position.x += episode.robot_start.x
+                gt.pose.pose.position.y += episode.robot_start.y
+                gt_pub.publish(gt)
+                imu = Imu()
+                imu.header.stamp, imu.header.frame_id = stamp, "imu_link"
+                imu.orientation = odom.pose.pose.orientation
+                imu.angular_velocity = odom.twist.twist.angular
+                # Ideal body-mounted IMU specific force, including gravity.
+                previous = (
+                    previous_linear_world
+                    if previous_linear_world is not None
+                    else linear_world
+                )
+                acceleration = rot.T @ (
+                    (linear_world - previous) / RENDER_DT
+                    + np.array([0, 0, 9.81])
+                )
+                previous_linear_world = linear_world.copy()
+                (
+                    imu.linear_acceleration.x,
+                    imu.linear_acceleration.y,
+                    imu.linear_acceleration.z,
+                ) = map(float, acceleration)
+                imu_pub.publish(imu)
+                magnet.publish()
             angles = robot.get_joint_positions()[indices]
             velocities = robot.get_joint_velocities()[indices]
             joint = JointState()
@@ -432,28 +563,117 @@ def main():
             joint.position, joint.velocity = list(map(float, angles)), list(
                 map(float, velocities)
             )
+            if args.fetch:
+                joint.name = [f"base_Revolute-{i + 1}" for i in range(4)]
+                joint.name += arm_names
+                joint.position = list(joint.position) + list(
+                    map(float, robot.get_joint_positions()[arm_indices])
+                )
+                joint.velocity = list(joint.velocity) + list(
+                    map(float, robot.get_joint_velocities()[arm_indices])
+                )
             joint_pub.publish(joint)
             transforms = [
                 transform(FRAMES["odom"], FRAMES["base"], position, q, stamp)
             ]
-            transforms += [
-                transform(
-                    FRAMES["body"],
-                    name,
-                    xyz,
-                    (math.cos(a / 2), 0, math.sin(a / 2), 0),
-                    stamp,
+            transforms += (
+                []
+                if args.fetch
+                else [
+                    transform(
+                        FRAMES["body"],
+                        name,
+                        xyz,
+                        (math.cos(a / 2), 0, math.sin(a / 2), 0),
+                        stamp,
+                    )
+                    for (name, xyz, _), a in zip(wheel_layout(), angles)
+                ]
+            )
+            if args.fetch:
+                positions = dict(
+                    zip(arm_names, robot.get_joint_positions()[arm_indices])
                 )
-                for (name, xyz, _), a in zip(wheel_layout(), angles)
-            ]
+                for j in tree.findall("joint"):
+                    if j.get("type") == "fixed":
+                        continue
+                    matrix = origin(j)
+                    motion = np.eye(4)
+                    axis = np.array(
+                        list(map(float, j.find("axis").get("xyz").split()))
+                    )
+                    value = positions.get(j.get("name"))
+                    if value is None:
+                        value = angles[
+                            int(j.get("name").rsplit("-", 1)[1]) - 1
+                        ]
+                    motion[:3, :3] = Rotation.from_rotvec(
+                        axis / np.linalg.norm(axis) * value
+                    ).as_matrix()
+                    matrix = matrix @ motion
+                    transforms.append(
+                        transform(
+                            j.find("parent").get("link"),
+                            j.find("child").get("link"),
+                            matrix[:3, 3],
+                            quaternion(matrix),
+                            stamp,
+                        )
+                    )
             tf_pub.publish(TFMessage(transforms=transforms))
+            if args.fetch and not layout_checked and now >= 2:
+                from coco_sim.backends.common import (
+                    ObservedPose,
+                    check_instantiation,
+                )
+
+                observed = {}
+                for name, body in magnet.bodies.items():
+                    p, quat = body.get_world_pose()
+                    roll, pitch, _ = Rotation.from_quat(
+                        (*quat[1:], quat[0])
+                    ).as_euler("xyz")
+                    observed[name] = ObservedPose(
+                        *map(float, p), float(roll), float(pitch)
+                    )
+                report = check_instantiation(episode, observed)
+                (args.output / "settled_targets.json").write_text(
+                    json.dumps(report, indent=2)
+                )
+                log("target_layout", **report)
+                layout_checked = True
             if now - last_log >= 2:
+                from isaacsim.sensors.physx import _range_sensor
+
+                interface = _range_sensor.acquire_lidar_sensor_interface()
+                hit_paths = interface.get_prim_data(
+                    "/World/coco/base_link/lidar"
+                )
+                own_hits = [
+                    str(p)
+                    for p in np.asarray(hit_paths).ravel()
+                    if str(p).startswith("/World/coco/")
+                ]
+                log(
+                    "lidar_self_hits",
+                    count=len(own_hits),
+                    paths=sorted(set(own_hits)),
+                )
                 log(
                     "state",
                     time_sim_s=now,
                     position_odom_m=list(map(float, position)),
                     yaw_rad=yaw,
-                    measured_wheels_rad_s=list(joint.velocity),
+                    measured_wheels_rad_s=list(joint.velocity[:4]),
+                    measured_arm_rad=list(joint.position[4:]),
+                    targets_world_m=(
+                        {
+                            name: list(map(float, body.get_world_pose()[0]))
+                            for name, body in magnet.bodies.items()
+                        }
+                        if magnet
+                        else {}
+                    ),
                     command_m_s_rad_s=drive.velocity,
                     command_age_sim_s=now - drive.stamp,
                 )
@@ -471,7 +691,6 @@ def main():
 
         traceback.print_exc()
         (args.output / "failure.txt").write_text(traceback.format_exc())
-        app.app.post_quit(1)
         raise
     finally:
         if sim is not None:

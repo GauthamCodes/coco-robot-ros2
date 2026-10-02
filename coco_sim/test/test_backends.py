@@ -39,7 +39,6 @@ from coco_sim.backends import (ADAPTERS, backend_for, check_instantiation,
                                GazeboBackend, IsaacBackend, ObservedPose,
                                target_body)
 from coco_sim.backends.common import TARGET_FRICTION
-from coco_sim.backends.isaac import COCO_WORLD_GEOMETRY_FOR_ISAAC
 from coco_sim.episode import (generate_episode, InvalidEpisode, LEVELS,
                               rebind, validate_episode)
 import pytest
@@ -165,12 +164,12 @@ def test_isaac_prims_carry_the_same_physics_as_the_sdf():
         assert prim.path == f'/World/Targets/{target.model}'
 
 
-def test_isaac_says_what_world_geometry_it_cannot_build():
-    """The boundary is honest: targets translate, the arena does not."""
-    scene = IsaacBackend().translate(generate_episode(seed=0,
-                                                      backend='isaac'))
-    assert scene.missing == COCO_WORLD_GEOMETRY_FOR_ISAAC
-    assert 'platform' in scene.missing
+def test_isaac_fetch_world_supported_but_yard_remains_explicitly_missing():
+    scene = IsaacBackend().translate(generate_episode(seed=0, backend='isaac'))
+    assert scene.missing == ()
+    yard = IsaacBackend().translate(generate_episode(seed=0, backend='isaac',
+                                                      world_variant='coco_yard'))
+    assert yard.missing == ('coco_yard',)
 
 
 def test_each_backend_refuses_the_others_episode():

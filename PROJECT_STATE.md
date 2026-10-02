@@ -1,14 +1,17 @@
 # COCO 2.0 STATUS: ROBOT FROZEN / PLATFORM IN PROGRESS
 
-> **COCO 2.1 branch update (2026-10-02):** This branch starts from clean
-> P03D `8e518cf99b50347568d9e7c303ec80b18ef8c223` and adds a measured
-> Isaac 4.5 mobile-base/navigation fixture through the existing ROS 2 Nav2
-> and arbiter interface. P03D Gazebo code and evidence are unchanged. See
-> [the Isaac milestone record](docs/COCO_2_1_ISAAC.md). The COCO 2.0 snapshot
-> below remains a historical release record.
+> **Current branch update (2026-10-02):** The consolidation session starts
+> at `569b81ff744c2542498bd37201ef509b3ec4b949`, branch
+> `coco-2.1-isaac-integration`. Shared P03D mission logic remains canonical.
+> Isaac fetch scene, arm controller and grasp adapter are implemented;
+> sensor publication, randomized target placement, climb, positive RGB-D pose
+> and physical arm stow are runtime verified (run006).
+> Full fetch and physical grasp in Isaac remain unverified. Runtime failures,
+> regression results and commands: [Isaac evidence](docs/data/isaac_fetch/README.md).
+> The release snapshot below is historical, including its frozen-roadmap language.
 
-**The ROBOT is final. There is no next robotics milestone.** Everything
-below describes it and still holds.
+**Historical COCO 2.0 release:** the robot was frozen for productization.
+The current Isaac engineering branch deliberately resumes robotics work.
 
 **A productization track opened after that freeze** (`docs/ROADMAP.md`
 Track 4). P0.1 wraps the frozen robot in a browser-accessible platform:

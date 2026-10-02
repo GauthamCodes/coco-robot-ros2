@@ -111,9 +111,13 @@ COCO_PYVER="$(python3 -c 'import sys; print(f"python{sys.version_info.major}.{sy
 # in which case you can delete <ws>/moveit_prefix entirely).
 # It lives in the SOURCE workspace; an isolated overlay selected with
 # COCO_WS has none, and without this fallback would run without MoveIt.
-MV=""
+MV="${COCO_MOVEIT_PREFIX:-}"
+if [ -n "$MV" ] && [ ! -d "$MV/share/ament_index" ]; then
+    echo "Invalid COCO_MOVEIT_PREFIX: $MV" >&2
+    return 1
+fi
 for _ws in "$COCO_WS" "$_COCO_SRC_WS"; do
-    if [ -d "$_ws/moveit_prefix/root/opt/ros/jazzy" ]; then
+    if [ -z "$MV" ] && [ -d "$_ws/moveit_prefix/root/opt/ros/jazzy" ]; then
         MV="$_ws/moveit_prefix/root/opt/ros/jazzy"
         break
     fi
@@ -129,6 +133,10 @@ fi
 
 # pip --user packages (tornado/cbor2 for rosbridge, torch/sb3 for RL)
 export PYTHONPATH="$HOME/.local/lib/$COCO_PYVER/site-packages:$PYTHONPATH"
+
+# Keep the existing coco_episode/write_mjcf CLI conveniences available.
+# ROS executables are installed in the standard package libexec directory.
+export PATH="$COCO_WS/install/coco_sim/lib/coco_sim:$PATH"
 
 # Preflight. A package LISTED on AMENT_PREFIX_PATH that cannot be RESOLVED
 # kills every gz launch, naming a package COCO never asked for ("package

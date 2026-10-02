@@ -73,7 +73,7 @@ from sensor_msgs.msg import JointState
 
 from shape_msgs.msg import SolidPrimitive
 
-from std_msgs.msg import Empty as EmptyMsg, String
+from std_msgs.msg import Empty as EmptyMsg, String, Float64
 
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
@@ -193,6 +193,11 @@ class ArmControl(Node):
         # Measured, on the first end-to-end fetch: /grasp/stow returned
         # `error: Executor is already spinning` two seconds in, with the
         # robot parked on the platform and nothing else obviously wrong.
+        self.declare_parameter('simulator', 'gazebo')
+        self.simulator = self.get_parameter('simulator').value
+        if self.simulator not in ('gazebo', 'isaac'):
+            raise ValueError('simulator must be gazebo or isaac')
+        self._heights = {}
         self.spun_externally = spun_externally
         self.magnet_model = magnet_model
         # The caller's dict, not a copy: pick_place.retarget() rewrites its
@@ -208,9 +213,11 @@ class ArmControl(Node):
             JointTrajectory, '/gripper_controller/joint_trajectory', 10)
 
         self._gt = None
+        self._gt_at = None
         self.create_subscription(
             Odometry, '/model/coco/odometry', self._gt_cb, 10)
         self._joints = {}
+        self._joint_at = None
         self.create_subscription(
             JointState, '/joint_states', self._joint_cb, 10)
 
@@ -244,6 +251,11 @@ class ArmControl(Node):
                     EmptyMsg, f'/magnet/{model}/attach', 10),
                 self.create_publisher(
                     EmptyMsg, f'/magnet/{model}/detach', 10))
+            if self.simulator == 'isaac':
+                self.create_subscription(
+                    Float64, f'/grasp/{model}/height',
+                    lambda msg, m=model: self._heights.update(
+                        {m: (msg.data, time.monotonic())}), 10)
             self.create_subscription(
                 String, f'/magnet/{model}/state',
                 lambda msg, m=model: self._magnet_cb_for(m, msg), 10)
@@ -270,16 +282,18 @@ class ArmControl(Node):
             rclpy.spin_until_future_complete(
                 self, future, timeout_sec=timeout_sec)
             return future.result()
-        deadline = time.time() + timeout_sec
-        while not future.done() and time.time() < deadline and rclpy.ok():
+        deadline = time.monotonic() + timeout_sec
+        while not future.done() and time.monotonic() < deadline and rclpy.ok():
             time.sleep(poll)
         return future.result() if future.done() else None
 
     # ── inputs ───────────────────────────────────────────────────────────────
     def _gt_cb(self, msg):
         self._gt = msg
+        self._gt_at = time.monotonic()
 
     def _joint_cb(self, msg):
+        self._joint_at = time.monotonic()
         for name, position in zip(msg.name, msg.position):
             self._joints[name] = position
 
@@ -308,14 +322,14 @@ class ArmControl(Node):
             return True
 
         self._magnet_state = None
-        deadline = time.time() + MAGNET_TIMEOUT
+        deadline = time.monotonic() + MAGNET_TIMEOUT
         # Republished every half second: the bridge and the gz subscriber
         # may not both be up the first time this is called.
         next_send = 0.0
-        while time.time() < deadline:
-            if time.time() >= next_send:
+        while time.monotonic() < deadline:
+            if time.monotonic() >= next_send:
                 pub.publish(EmptyMsg())
-                next_send = time.time() + 0.5
+                next_send = time.monotonic() + 0.5
             self.pump(0.05)
             if self._magnet_state == want:
                 self._holding = (want == 'attached')
@@ -339,13 +353,23 @@ class ArmControl(Node):
         """Whether the magnet is currently believed to be welded."""
         return self._holding
 
+    def target_height(self):
+        """Simulator measurement for grasp verification, never search input."""
+        if self.simulator == 'gazebo':
+            return model_z(self.magnet_model)
+        sample = self._heights.get(self.magnet_model)
+        if sample and time.monotonic() - sample[1] <= 2 and math.isfinite(sample[0]):
+            return sample[0]
+        return None
+
     def grasp_magnet(self):
         """Note where the target is sitting, then weld it to the palm."""
-        self._grasp_z = model_z(self.magnet_model)
+        self._grasp_z = self.target_height()
         if self._grasp_z is None:
             self.get_logger().warn(
                 'could not read the target height before the grasp — the '
-                'lift check will be skipped')
+                'grasp rejected')
+            return False
         return self.magnet('attached')
 
     def check_lifted(self):
@@ -359,13 +383,13 @@ class ArmControl(Node):
         """
         if self._grasp_z is None:
             self.get_logger().warn(
-                'no target height recorded at the grasp — lift check skipped')
-            return True
-        now = model_z(self.magnet_model)
+                'no target height recorded at the grasp — cannot verify lift')
+            return False
+        now = self.target_height()
         if now is None:
             self.get_logger().warn(
-                'could not read the target height — lift check skipped')
-            return True
+                'could not read the target height — cannot verify lift')
+            return False
         rise = now - self._grasp_z
         if rise < LIFT_MIN_RISE:
             self.get_logger().error(
@@ -392,9 +416,11 @@ class ArmControl(Node):
             self.pump(0.1)
         if self._gt is None:
             self.get_logger().warn(
-                'No /model/coco/odometry — robot pose check skipped '
-                '(is the ground-truth bridge running?)')
-            return True
+                'No /model/coco/odometry — cannot verify robot pose')
+            return False
+        if self._gt_at is None or time.monotonic() - self._gt_at > 2:
+            self.get_logger().error('Stale robot pose; refusing manipulation')
+            return False
         p = self._gt.pose.pose.position
         q = self._gt.pose.pose.orientation
         roll = math.atan2(2 * (q.w * q.x + q.y * q.z),
@@ -602,12 +628,14 @@ class ArmControl(Node):
         self.get_logger().info(f'Gripper -> {label}')
 
         target = dict(zip(GRIPPER_JOINTS, [float(p) for p in positions]))
-        deadline = time.time() + timeout
+        deadline = time.monotonic() + timeout
         settled_since = None
         last = None
 
-        while time.time() < deadline:
+        while time.monotonic() < deadline:
             self.pump(0.05)
+            if self._joint_at is None or time.monotonic() - self._joint_at > 2:
+                continue
             now = [self._joints.get(j) for j in GRIPPER_JOINTS]
             if any(v is None for v in now):
                 continue
@@ -636,8 +664,8 @@ class ArmControl(Node):
                 continue
 
             # Not at the setpoint and no longer moving.
-            settled_since = settled_since or time.time()
-            if time.time() - settled_since >= GRIP_STALL_TIME:
+            settled_since = settled_since or time.monotonic()
+            if time.monotonic() - settled_since >= GRIP_STALL_TIME:
                 gap = {j: round(self._joints[j], 4) for j in GRIPPER_JOINTS}
                 if expect_object or expect_object is None:
                     self.get_logger().info(

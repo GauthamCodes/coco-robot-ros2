@@ -14,7 +14,7 @@
 
 """Generate the minimal physical COCO base in USD from coco_config.
 
-The arm is a fixed mass at its mounting point, as in the existing MJCF.
+The navigation fixture has a fixed arm payload; fetch mode builds the URDF arm.
 No manipulator control or cosmetic CAD conversion is attempted.
 """
 import math
@@ -23,7 +23,7 @@ from coco_config import robot as r
 from .config import FIXTURES, wheel_layout
 
 
-def build_scene(stage, episode):
+def build_scene(stage, episode, description=None, share=None):
     """Create the entire physical scene before the ROS bridge is loaded."""
     from pxr import Gf, UsdGeom, UsdLux, UsdPhysics, UsdShade, PhysxSchema
 
@@ -62,8 +62,13 @@ def build_scene(stage, episode):
         return obj
 
     cube("/World/ground", (0, 0, -0.05), (20, 20, 0.1), (0.4, 0.4, 0.4))
-    for name, centre, size, colour in FIXTURES:
-        cube("/World/" + name, centre, size, colour)
+    if description is None:
+        for name, centre, size, colour in FIXTURES:
+            cube("/World/" + name, centre, size, colour)
+    else:
+        from .articulated import build_fetch_world
+
+        build_fetch_world(stage, episode, share, cube, collision)
     UsdLux.DistantLight.Define(stage, "/World/sun").CreateIntensityAttr(3000.0)
     UsdGeom.Xform.Define(stage, "/World/coco")
     base = UsdGeom.Xform.Define(stage, "/World/coco/base_link")
@@ -75,7 +80,7 @@ def build_scene(stage, episode):
     UsdPhysics.RigidBodyAPI.Apply(base.GetPrim())
     UsdPhysics.ArticulationRootAPI.Apply(base.GetPrim())
     api = PhysxSchema.PhysxArticulationAPI.Apply(base.GetPrim())
-    api.CreateEnabledSelfCollisionsAttr(False)
+    api.CreateEnabledSelfCollisionsAttr(description is not None)
     api.CreateSolverPositionIterationCountAttr(16)
     api.CreateSolverVelocityIterationCountAttr(4)
     cube(
@@ -88,7 +93,11 @@ def build_scene(stage, episode):
     # plus point-mass parallel-axis terms (not CAD inertia equivalence).
     lumps = [
         (r.CHASSIS_MASS, (0.0, 0.0, r.CHASSIS_SIZE[2] / 2)),
-        (r.ARM_CHAIN_MASS, r.ARM_MOUNT_XYZ),
+        *(
+            ([(r.ARM_CHAIN_MASS, r.ARM_MOUNT_XYZ)])
+            if description is None
+            else []
+        ),
         (r.LIDAR_MASS, r.LIDAR_MOUNT_XYZ),
         (r.CAMERA_MASS, r.CAMERA_MOUNT_XYZ),
         (r.IMU_MASS, r.IMU_MOUNT_XYZ),
@@ -159,9 +168,46 @@ def build_scene(stage, episode):
         drive = UsdPhysics.DriveAPI.Apply(joint.GetPrim(), "angular")
         drive.CreateTypeAttr("force")
         drive.CreateStiffnessAttr(0.0)
+        # Gain-20 experiment did not improve mission arrival (run 008).
+        # Retain the fixture gain until low-speed tracking is calibrated.
         drive.CreateDampingAttr(1.0)
-        drive.CreateMaxForceAttr(2.0)
+        effort = 2.0
+        if description is not None:
+            import xml.etree.ElementTree as ET
+
+            number = int(name[-1])
+            limit = ET.fromstring(description).find(
+                f"joint[@name='base_Revolute-{number}']/limit"
+            )
+            # Retain the validated Isaac foundation motor ceiling. Gazebo's
+            # velocity interface and PhysX force drives are different motors;
+            # copying the URDF effort ceiling stalled skid steering in run 003.
+            PhysxSchema.PhysxJointAPI.Apply(
+                joint.GetPrim()
+            ).CreateMaxJointVelocityAttr(
+                math.degrees(float(limit.get("velocity")))
+            )
+        drive.CreateMaxForceAttr(effort)
         drive.CreateTargetVelocityAttr(0.0)
+    if description is not None:
+        from .articulated import build_arm
+
+        build_arm(stage, description, origin, collision, share)
+        import xml.etree.ElementTree as ET
+
+        # Respect the same allowed self-contact pairs used by MoveIt.
+        for pair in (
+            ET.parse(share.parent / "coco_moveit_config/config/coco.srdf")
+            .getroot()
+            .findall("disable_collisions")
+        ):
+            names = [pair.get("link1"), pair.get("link2")]
+            names = ["base_link" if n == "chassis_link" else n for n in names]
+            paths = ["/World/coco/" + n for n in names]
+            if all(stage.GetPrimAtPath(p).IsValid() for p in paths):
+                UsdPhysics.FilteredPairsAPI.Apply(
+                    stage.GetPrimAtPath(paths[0])
+                ).CreateFilteredPairsRel().AddTarget(paths[1])
     # Camera prim exists before ROS. USD camera -Z forward, +Y up.
     cam = UsdGeom.Camera.Define(stage, "/World/coco/base_link/camera")
     xf = UsdGeom.XformCommonAPI(cam)

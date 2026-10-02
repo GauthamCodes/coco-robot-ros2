@@ -39,7 +39,7 @@ for a in "$@"; do
   esac
 done
 
-PKGS="coco_config coco_mission coco_moveit_config coco_perception coco_rl custom_teleop gazebo_models coco_web"
+PKGS="coco_config coco_mission coco_moveit_config coco_perception coco_rl custom_teleop gazebo_models coco_web coco_sim"
 SIM_PID=""; NAV_PID=""
 FAILURES=()
 
@@ -49,22 +49,20 @@ FAILURES=()
 # clock restarts at 0, so tf2 sees "jump back in time", the buffer is cleared,
 # and Nav2's container dies with tf2::NoDataForExtrapolationException. So:
 # launches run via setsid (their own process group) and we kill the group,
-# then sweep any stragglers by name and wait for the clock to go quiet.
+# then stop surviving members of those same owned groups.
 stop_all() {
   for pid in "$NAV_PID" "$SIM_PID"; do
-    [ -n "$pid" ] && kill -TERM -- "-$pid" 2>/dev/null
+    [ -n "$pid" ] || continue
+    kill -INT "$pid" 2>/dev/null || true
+    for _ in {1..10}; do
+      kill -0 -- "-$pid" 2>/dev/null || break
+      sleep 1
+    done
+    kill -TERM -- "-$pid" 2>/dev/null || true
+    sleep 1
+    kill -KILL -- "-$pid" 2>/dev/null || true
   done
   NAV_PID=""; SIM_PID=""
-  pkill -f 'full_world_robo.launch.py' 2>/dev/null
-  pkill -f 'nav.launch.py' 2>/dev/null
-  pkill -f 'component_container_isolated' 2>/dev/null
-  pkill -f 'parameter_bridge' 2>/dev/null
-  pkill -f 'robot_state_publisher' 2>/dev/null
-  pkill -f 'controller_manager' 2>/dev/null
-  pkill -f 'gz sim' 2>/dev/null
-  sleep 3
-  pkill -9 -f 'gz sim' 2>/dev/null
-  sleep 2
 }
 trap stop_all EXIT
 
@@ -128,7 +126,7 @@ else
 fi
 
 # ── unit tests ───────────────────────────────────────────────────────────────
-step "2  colcon test (245 unit tests across the seven packages)"
+step "2  colcon test (all nine packages)"
 ( cd "$WS" && colcon test --packages-select $PKGS \
       && colcon test-result --verbose ) \
   && pass "colcon test" || fail "colcon test"

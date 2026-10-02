@@ -16,5 +16,6 @@ exec env -i HOME="$HOME" PATH=/usr/bin:/bin \
     RMW_IMPLEMENTATION=rmw_cyclonedds_cpp ROS_DOMAIN_ID="${ROS_DOMAIN_ID:-78}" \
     CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces><NetworkInterface name="lo" multicast="true"/></Interfaces></General></Domain></CycloneDDS>' \
     LD_LIBRARY_PATH="$BRIDGE" \
+    COCO_GAZEBO_SHARE="$REPO/gazebo_models" \
     PYTHONPATH="$REPO/coco_config:$REPO/coco_sim" \
     "$PY" -m coco_sim.isaac.runtime "$@"

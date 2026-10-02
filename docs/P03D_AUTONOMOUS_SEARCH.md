@@ -1,5 +1,11 @@
 # P03D autonomous target search
 
+The current Isaac branch launches this same executive/search implementation.
+Its simulator adapter supplies the arena and ROS interfaces; Isaac end-to-end
+search/fetch is not yet demonstrated. Gazebo measurements below remain
+historical evidence, untouched by the consolidation. See
+[Isaac capabilities](COCO_2_1_ISAAC.md) and [new runs](data/isaac_fetch/README.md).
+
 Randomized Gazebo missions use only `EpisodeSpec.task_view().requested_colour`
 on the robot side. The manifest, including the target's region and world pose,
 belongs to the world generator and evaluator. The mission launch resolves a

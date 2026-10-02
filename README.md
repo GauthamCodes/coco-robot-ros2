@@ -1,10 +1,12 @@
 # COCO 2.0 — Autonomous Mobile Manipulator
 
-> **COCO 2.1 Isaac integration branch:** A measured Isaac Sim 4.5 mobile-base
-> backend now runs the existing ROS 2 Nav2 and cmd_vel arbiter stack on a
-> small navigation fixture. The arm, grasp mechanism and P03D search world
-> are not yet represented there. See [COCO 2.1 Isaac integration](docs/COCO_2_1_ISAAC.md)
-> for the interface contract, launch commands, results and limitations.
+> **Current branch: COCO 2.1 consolidation / Isaac fetch integration.**
+> Gazebo P03D remains the demonstrated perception-driven fetch reference.
+> Isaac now has the canonical articulated arm, target arena, RGB-D/IMU,
+> MoveIt controller interface and proximity-gated physical magnet adapter.
+> Full fetch in Isaac is **not demonstrated**. See
+> [the current capability and reproduction record](docs/COCO_2_1_ISAAC.md)
+> and [new evidence](docs/data/isaac_fetch/README.md).
 
 **ROS 2 Jazzy · Gazebo Harmonic · Nav2 · MoveIt 2**
 
@@ -37,7 +39,8 @@ follows.*
 Clone, build and launch; then open the control panel in a browser, pick
 RED, GREEN, BLUE or YELLOW, and press start. Two commands and a browser,
 no configuration, nothing to download separately — the trained ramp
-policy ships in the repository. Everything is on `main`.
+policy ships in the repository. These instructions describe the historical Gazebo release. The current
+branch and Isaac commands are recorded in the milestone document.
 
 ### Then read
 

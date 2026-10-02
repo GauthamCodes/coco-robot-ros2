@@ -151,7 +151,8 @@ def resolve_mission_episode(context):
     spec = resolve_episode(
         level=level,
         seed=LaunchConfiguration('episode_seed').perform(context),
-        requested_colour=colour, manifest_path=manifest)
+        requested_colour=colour, manifest_path=manifest,
+        backend=LaunchConfiguration('simulator', default='gazebo').perform(context))
     requested = spec.task_view()['requested_colour']
     autonomous = spec.level != 'fixed'
     region_map = ('' if autonomous else
@@ -204,6 +205,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='true'),
+        DeclareLaunchArgument('simulator', default_value='gazebo', choices=['gazebo', 'isaac']),
         DeclareLaunchArgument(
             'policy', default_value=default_policy,
             description='Path to the trained PPO .zip. Defaults to the '
@@ -340,6 +342,10 @@ def generate_launch_description():
                 {'use_sim_time': use_sim_time,
                  'target_colour': target_colour,
                  'target_source': LaunchConfiguration('target_source')}),
+        Node(package='coco_sim', executable='isaac_trajectory',
+             parameters=[{'use_sim_time': use_sim_time}],
+             condition=IfCondition(PythonExpression([
+                 "'", LaunchConfiguration('simulator'), "' == 'isaac'"]))),
         include(coco_moveit, 'move_group.launch.py',
                 {'use_sim_time': use_sim_time}),
         # arbiter:=false is load-bearing, not tidiness. web.launch.py
@@ -413,7 +419,8 @@ def generate_launch_description():
             executable='grasp_server.py',
             name='grasp_server',
             output='screen',
-            parameters=[{'use_sim_time': use_sim_time}],
+            parameters=[{'use_sim_time': use_sim_time,
+                         'simulator': LaunchConfiguration('simulator')}],
         ),
         Node(
             package='coco_mission',

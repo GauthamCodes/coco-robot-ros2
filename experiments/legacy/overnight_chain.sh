@@ -3,6 +3,11 @@
 #
 # Licensed under the Apache License, Version 2.0 (the "License").
 #
+# Archived historical programme; its broad process kills and in-place
+# source edits are unsafe in a multi-project workspace. Preserve, do not run.
+echo "Historical script disabled; see experiments/legacy/README.md" >&2
+exit 2
+
 # overnight_chain.sh — unattended follow-up programme.
 #
 # REDIRECTED: the --randomize curriculum this originally queued was dropped in

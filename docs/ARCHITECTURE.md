@@ -1,6 +1,61 @@
 # Architecture
 
-How the eight packages, the Gazebo boundary and the ROS graph fit together.
+The repository has nine ROS packages. The diagrams below describe the
+Gazebo deployment; Isaac replaces the simulator boundary and controllers,
+while keeping the autonomy and command graph.
+
+## Current ownership and provenance
+
+| Area | Canonical responsibility | Classification |
+| --- | --- | --- |
+| `coco_config` | Robot constants, joint limits and target regions | Active shared configuration |
+| `gazebo_models` | Xacro/meshes, canonical arena, Gazebo deployment; shared Nav2 launch/config | Active; historical name does not mean all code is Gazebo-only |
+| `coco_sim` | Episode/world/evaluator contracts; simulator adapters including Isaac | Active adapters and supporting measurements |
+| `coco_mission` | Executive and `mission_states.py` P03D search/recovery contracts | Active shared mission |
+| `coco_perception` | RGB-D target pose and validity interfaces | Active shared perception; fixed-lane detector retained for fixed-mode compatibility |
+| `coco_moveit_config` | MoveIt/IK, grasp server and backend height verification | Active shared manipulation with narrow simulator boundary |
+| `coco_rl` | Ramp policy/driver; independent training and calibration tools | Active ramp driver plus experiments |
+| `custom_teleop` | Approach server, command relay/arbiter and optional operator commands | Active shared control and safety |
+| `coco_web` | Optional operator interface and platform lifecycle | Supporting product layer |
+| `*/test`, `scripts`, CI, Docker | Contracts, reproduction and deployment | Supporting; Docker runtime not verified in this session |
+| `experiments/legacy` | Disabled old overnight automation and curriculum draft | Legacy provenance, excluded from active run path |
+| `docs/data`, historical reports/demo assets | Committed observations and experiment history | Evidence; preserve even when implementation changes |
+| MuJoCo, Yard and training tools | Separate experiments using episode contracts | Experimental; not replacements for P03D |
+
+```mermaid
+flowchart TD
+  mission[Shared COCO mission / P03D search] --> nav[Nav2]
+  mission --> perception[RGB-D target pose and validity]
+  nav --> safety[Collision monitor / relay]
+  perception --> approach[Approach server]
+  mission --> grasp[Shared grasp server / MoveIt]
+  approach --> arbiter[cmd_vel arbiter]
+  safety --> arbiter
+  ramp[Shared ramp driver] --> arbiter
+  arbiter --> final[Final wheel command]
+  final --> gz[Gazebo drive controller]
+  final --> isaac[Isaac wheel drives]
+  grasp --> gzarm[Gazebo joint trajectory / magnet]
+  grasp --> isaacarm[Isaac trajectory adapter / physical fixed joint]
+```
+
+Search regions come from `coco_config`; Isaac builds the existing arena
+from SDF and the articulated arm from expanded Xacro. No second mission,
+region planner or privileged-coordinate target detector is introduced.
+Episode world coordinates stay in world generation/evaluation. Ground truth
+remains the existing arrival-verification/measurement input; target height
+is consumed only by grasp verification, never by search or approach.
+
+The arbiter is the sole publisher of `/diff_drive_controller/cmd_vel`.
+Isaac subscribes to that final stamped command and rejects stale commands.
+Its separate manipulation command accepts arm/gripper names only. There is
+no simulator pose setter or alternate wheel publisher in the fetch path.
+
+Only traceable legacy automation was relocated. Fixed-mode compatibility,
+traverse demos, calibration scripts, meshes, failed experiment reports and
+historical launch evidence remain because they have consumers or provenance.
+The old unsafe overnight driver is disabled, rather than silently repurposed.
+
 
 ## Node and topic graph
 

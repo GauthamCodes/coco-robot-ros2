@@ -1,0 +1,26 @@
+
+==================================== ERRORS ====================================
+________________________ ERROR collecting test session _________________________
+/usr/lib/python3/dist-packages/pluggy/_hooks.py:501: in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+/usr/lib/python3/dist-packages/pluggy/_manager.py:119: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+/usr/lib/python3/dist-packages/_pytest/python.py:215: in pytest_collect_file
+    module: Module = ihook.pytest_pycollect_makemodule(
+/usr/lib/python3/dist-packages/_pytest/config/compat.py:66: in fixed_hook
+    return hook(**kw)
+/usr/lib/python3/dist-packages/pluggy/_hooks.py:501: in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+/usr/lib/python3/dist-packages/pluggy/_manager.py:119: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+/opt/ros/jazzy/lib/python3.12/site-packages/launch_testing/pytest/hooks.py:193: in pytest_pycollect_makemodule
+    entrypoint = find_launch_test_entrypoint(path)
+/opt/ros/jazzy/lib/python3.12/site-packages/launch_testing/pytest/hooks.py:183: in find_launch_test_entrypoint
+    module = import_path(path, root=None)
+/usr/lib/python3/dist-packages/_pytest/pathlib.py:590: in import_path
+    raise ImportPathMismatchError(module_name, module_file, path)
+E   _pytest.pathlib.ImportPathMismatchError: ('test_copyright', '/home/gautham/coco-isaac-21/custom_teleop/test/test_copyright.py', PosixPath('/home/gautham/coco-isaac-21/coco_perception/test/test_copyright.py'))
+=========================== short test summary info ============================
+ERROR  - _pytest.pathlib.ImportPathMismatchError: ('test_copyright', '/home/g...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 3.45s

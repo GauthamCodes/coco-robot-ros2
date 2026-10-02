@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/gautham/coco-isaac-21/coco_sim/coco_sim/isaac/runtime.py", line 234, in main
+    root = build_scene(ctx.get_stage(), episode, description, share)
+  File "/home/gautham/coco-isaac-21/coco_sim/coco_sim/isaac/model.py", line 70, in build_scene
+    build_fetch_world(stage, episode, share, cube, collision)
+  File "/home/gautham/coco-isaac-21/coco_sim/coco_sim/isaac/articulated.py", line 150, in build_fetch_world
+    world = ET.parse(share / 'worlds/coco_world.world').getroot().find('world')
+  File "/usr/lib/python3.10/xml/etree/ElementTree.py", line 1222, in parse
+    tree.parse(source, parser)
+  File "/usr/lib/python3.10/xml/etree/ElementTree.py", line 580, in parse
+    self._root = parser._parse_whole(source)
+xml.etree.ElementTree.ParseError: not well-formed (invalid token): line 144, column 57

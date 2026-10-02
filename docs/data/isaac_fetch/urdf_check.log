@@ -1,0 +1,18 @@
+robot name is: coco
+---------- Successfully Parsed XML ---------------
+root Link: base_footprint has 1 child(ren)
+    child(1):  base_link
+        child(1):  camera_link
+            child(1):  camera_optical_frame
+        child(2):  chassis_link
+            child(1):  wheel1
+            child(2):  wheel2
+            child(3):  wheel3
+            child(4):  wheel4
+            child(5):  m_link1
+                child(1):  m_link2
+                    child(1):  m_link3
+                        child(1):  grip1
+                        child(2):  grip2
+        child(3):  imu_link
+        child(4):  lidar_link

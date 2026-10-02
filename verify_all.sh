@@ -27,6 +27,7 @@ REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Colcon builds from the workspace root (<ws>/src/coco-robot-ros2 -> <ws>).
 WS="$(cd "$REPO/../.." 2>/dev/null && pwd || echo "$REPO")"
 [ -d "$WS/src" ] || WS="$REPO"
+WS="${COCO_WS:-$WS}"
 
 DO_BUILD=1; DO_RL=1; DO_NAV=0; RAMP_ANGLE=18
 for a in "$@"; do

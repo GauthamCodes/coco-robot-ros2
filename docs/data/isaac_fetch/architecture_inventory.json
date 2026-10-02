@@ -1,0 +1,5921 @@
+[
+  {
+    "path": "watch_training.py",
+    "lines": 426,
+    "imports": [
+      "argparse",
+      "csv",
+      "glob",
+      "os",
+      "re",
+      "subprocess",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "paint",
+      "newest_run",
+      "read_text",
+      "monitor_parts",
+      "episodes",
+      "bar",
+      "hms",
+      "procs_matching",
+      "on_ac",
+      "battery_pct",
+      "inhibitor_held",
+      "disk_free_gb",
+      "Run",
+      "throughput",
+      "render",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_perception/setup.py",
+    "lines": 48,
+    "imports": [
+      "glob",
+      "setuptools"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "coco_sim/setup.py",
+    "lines": 58,
+    "imports": [
+      "setuptools"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "coco_rl/setup.py",
+    "lines": 50,
+    "imports": [
+      "setuptools"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "custom_teleop/setup.py",
+    "lines": 50,
+    "imports": [
+      "glob",
+      "setuptools"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "scripts/isaac_fetch.py",
+    "lines": 97,
+    "imports": [
+      "argparse",
+      "coco_sim.episode",
+      "json",
+      "os",
+      "pathlib",
+      "signal",
+      "subprocess",
+      "time"
+    ],
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "scripts/isaac_fetch_observer.py",
+    "lines": 144,
+    "imports": [
+      "argparse",
+      "collections",
+      "geometry_msgs.msg",
+      "json",
+      "moveit_msgs.action",
+      "nav2_msgs.action",
+      "nav_msgs.msg",
+      "pathlib",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.node",
+      "rclpy.parameter",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "time"
+    ],
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "scripts/isaac_ros.py",
+    "lines": 69,
+    "imports": [
+      "custom_teleop.cmd_vel_arbiter",
+      "geometry_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node"
+    ],
+    "definitions": [
+      "TwistInput",
+      "main"
+    ]
+  },
+  {
+    "path": "scripts/isaac_fixture_map.py",
+    "lines": 63,
+    "imports": [
+      "argparse",
+      "coco_config",
+      "coco_sim.isaac.config",
+      "numpy",
+      "pathlib",
+      "yaml"
+    ],
+    "definitions": [
+      "write_map"
+    ]
+  },
+  {
+    "path": "scripts/isaac_smoke.py",
+    "lines": 344,
+    "imports": [
+      "PIL",
+      "argparse",
+      "isaac_fixture_map",
+      "json",
+      "numpy",
+      "os",
+      "pathlib",
+      "re",
+      "signal",
+      "struct",
+      "subprocess",
+      "time",
+      "yaml"
+    ],
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "scripts/check_ament_path.py",
+    "lines": 103,
+    "imports": [
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "find_unresolvable",
+      "main"
+    ]
+  },
+  {
+    "path": "scripts/isaac_nav_observer.py",
+    "lines": 209,
+    "imports": [
+      "argparse",
+      "collections",
+      "geometry_msgs.msg",
+      "json",
+      "lifecycle_msgs.srv",
+      "math",
+      "nav2_msgs.action",
+      "nav_msgs.msg",
+      "pathlib",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.node",
+      "rclpy.time",
+      "tf2_ros",
+      "time"
+    ],
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "scripts/isaac_smoke_observer.py",
+    "lines": 408,
+    "imports": [
+      "argparse",
+      "coco_config",
+      "coco_sim.isaac.config",
+      "collections",
+      "geometry_msgs.msg",
+      "json",
+      "math",
+      "nav_msgs.msg",
+      "numpy",
+      "pathlib",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "rosgraph_msgs.msg",
+      "sensor_msgs.msg",
+      "tf2_msgs.msg",
+      "time"
+    ],
+    "definitions": [
+      "scan_geometry",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_web/setup.py",
+    "lines": 54,
+    "imports": [
+      "glob",
+      "setuptools"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "coco_config/setup.py",
+    "lines": 45,
+    "imports": [
+      "setuptools"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "coco_moveit_config/launch/move_group.launch.py",
+    "lines": 66,
+    "imports": [
+      "ament_index_python.packages",
+      "launch",
+      "launch.actions",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "moveit_configs_utils",
+      "os"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "coco_moveit_config/scripts/arm_control.py",
+    "lines": 672,
+    "imports": [
+      "builtin_interfaces.msg",
+      "coco_config.robot",
+      "geometry_msgs.msg",
+      "math",
+      "moveit_msgs.action",
+      "moveit_msgs.msg",
+      "moveit_msgs.srv",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.node",
+      "sensor_msgs.msg",
+      "shape_msgs.msg",
+      "std_msgs.msg",
+      "subprocess",
+      "time",
+      "trajectory_msgs.msg"
+    ],
+    "definitions": [
+      "run_cmd",
+      "model_z",
+      "remove_gz_model",
+      "ArmControl"
+    ]
+  },
+  {
+    "path": "coco_moveit_config/scripts/pick_place.py",
+    "lines": 421,
+    "imports": [
+      "argparse",
+      "arm_control",
+      "arm_ik",
+      "coco_config.robot",
+      "rclpy",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "_solve_hover",
+      "PickPlace",
+      "retarget",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_moveit_config/scripts/grasp_server.py",
+    "lines": 538,
+    "imports": [
+      "arm_control",
+      "arm_ik",
+      "coco_config.robot",
+      "geometry_msgs.msg",
+      "math",
+      "rclpy",
+      "rclpy.executors",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "threading",
+      "time"
+    ],
+    "definitions": [
+      "_status_value",
+      "format_status",
+      "solve_grasp",
+      "check_target_pose",
+      "GraspServer",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_moveit_config/scripts/arm_ik.py",
+    "lines": 117,
+    "imports": [
+      "coco_config.joint_limits",
+      "math",
+      "sys"
+    ],
+    "definitions": [
+      "fk",
+      "ik",
+      "ik_or_none"
+    ]
+  },
+  {
+    "path": "coco_moveit_config/test/test_grasp_contract.py",
+    "lines": 72,
+    "imports": [
+      "geometry_msgs.msg",
+      "grasp_server",
+      "pathlib",
+      "pytest",
+      "rclpy",
+      "sys"
+    ],
+    "definitions": [
+      "server",
+      "fix",
+      "test_missing_fix_never_falls_back_to_nominal",
+      "test_valid_fix_and_colour_change_invalidate_previous_target",
+      "test_invalid_fix_clears_previous_valid_fix",
+      "test_nonfinite_y_cannot_pass_the_grasp_window",
+      "test_unavailable_lift_and_release_measurements_fail"
+    ]
+  },
+  {
+    "path": "coco_moveit_config/test/test_arm_ik.py",
+    "lines": 62,
+    "imports": [
+      "arm_ik",
+      "math",
+      "os",
+      "random",
+      "sys"
+    ],
+    "definitions": [
+      "test_fk_matches_verified_grasp",
+      "test_ik_recovers_verified_grasp",
+      "test_round_trip_over_workspace",
+      "test_solutions_respect_joint_limits",
+      "test_unreachable_returns_empty"
+    ]
+  },
+  {
+    "path": "coco_moveit_config/test/test_pick_poses.py",
+    "lines": 142,
+    "imports": [
+      "arm_ik",
+      "coco_config.joint_limits",
+      "copy",
+      "moveit_msgs",
+      "os",
+      "pick_place",
+      "pytest",
+      "rclpy",
+      "sys"
+    ],
+    "definitions": [
+      "restore_module_state",
+      "test_arm_poses_within_limits",
+      "test_gripper_commands_within_limits",
+      "test_grasp_pose_reaches_target",
+      "test_place_matches_grasp",
+      "test_retarget_updates_scene_consistently",
+      "test_retarget_rejects_unreachable",
+      "test_retarget_does_not_leak_into_later_tests"
+    ]
+  },
+  {
+    "path": "coco_perception/coco_perception/__init__.py",
+    "lines": 0,
+    "imports": [],
+    "definitions": []
+  },
+  {
+    "path": "coco_perception/coco_perception/target_finder.py",
+    "lines": 603,
+    "imports": [
+      "coco_config.robot",
+      "cv2",
+      "cv_bridge",
+      "geometry_msgs.msg",
+      "math",
+      "numpy",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "std_msgs.msg"
+    ],
+    "definitions": [
+      "normalise_colour",
+      "classify_hsv",
+      "colour_mask",
+      "blob_stats",
+      "expected_width_px",
+      "plausible_blob",
+      "robust_depth",
+      "surface_to_axis",
+      "deproject",
+      "_rotate_rpy",
+      "optical_to_base",
+      "match_depth",
+      "_status_value",
+      "format_status",
+      "TargetFinder",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_perception/coco_perception/vision_check.py",
+    "lines": 343,
+    "imports": [
+      "argparse",
+      "coco_config.robot",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "std_msgs.msg",
+      "subprocess",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "gz_service",
+      "model_pose",
+      "world_to_base",
+      "field_of",
+      "platform_top",
+      "VisionCheck",
+      "measure",
+      "report",
+      "wrong_lane_check",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_perception/coco_perception/target_pose.py",
+    "lines": 682,
+    "imports": [
+      "coco_config.robot",
+      "math",
+      "numpy"
+    ],
+    "definitions": [
+      "DepthEstimate",
+      "TargetObservation",
+      "depth_statistics",
+      "deproject",
+      "expected_width_px",
+      "plausible_width",
+      "select_candidate",
+      "classify_reachability",
+      "grasp_window_state",
+      "reachability_after_approach",
+      "observe",
+      "transform_observation",
+      "_status_value",
+      "format_status",
+      "status_for",
+      "finder_status_fields"
+    ]
+  },
+  {
+    "path": "coco_perception/coco_perception/target_pose_node.py",
+    "lines": 554,
+    "imports": [
+      "ament_index_python.packages",
+      "coco_config.robot",
+      "coco_perception",
+      "coco_perception.target_finder",
+      "cv2",
+      "cv_bridge",
+      "geometry_msgs.msg",
+      "importlib.util",
+      "numpy",
+      "os",
+      "rclpy",
+      "rclpy.duration",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "rclpy.time",
+      "sensor_msgs.msg",
+      "std_msgs.msg",
+      "tf2_ros",
+      "vision_msgs.msg"
+    ],
+    "definitions": [
+      "load_arm_ik",
+      "TargetPoseNode",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_perception/launch/perception.launch.py",
+    "lines": 176,
+    "imports": [
+      "ament_index_python.packages",
+      "launch",
+      "launch.actions",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "os"
+    ],
+    "definitions": [
+      "perception_node",
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "coco_perception/test/test_copyright.py",
+    "lines": 23,
+    "imports": [
+      "ament_copyright.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_copyright"
+    ]
+  },
+  {
+    "path": "coco_perception/test/test_target_pose.py",
+    "lines": 864,
+    "imports": [
+      "ast",
+      "coco_config.robot",
+      "coco_perception.target_finder",
+      "importlib.util",
+      "launch",
+      "launch.substitutions",
+      "math",
+      "numpy",
+      "os",
+      "pytest"
+    ],
+    "definitions": [
+      "blob",
+      "width_at",
+      "axis_range",
+      "TestDepth",
+      "TestSelection",
+      "TestGeometry",
+      "TestTransformAndOutput",
+      "_load_arm_ik",
+      "TestReachability",
+      "test_bounds_are_the_measured_ones",
+      "_node_source",
+      "_point_topic_default",
+      "TestPointTopicContract",
+      "_declared_default",
+      "_finder_line",
+      "_fields",
+      "_valid_observation",
+      "TestFinderStatusCompat",
+      "TestStatusCompatTopicContract",
+      "_perception_launch",
+      "_nodes_for",
+      "_literals",
+      "TestExactlyOneTargetPublisher"
+    ]
+  },
+  {
+    "path": "coco_perception/test/test_pep257.py",
+    "lines": 23,
+    "imports": [
+      "ament_pep257.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_pep257"
+    ]
+  },
+  {
+    "path": "coco_perception/test/test_target_finder.py",
+    "lines": 426,
+    "imports": [
+      "coco_config.robot",
+      "cv2",
+      "math",
+      "numpy",
+      "pytest"
+    ],
+    "definitions": [
+      "hsv_of",
+      "targets",
+      "test_every_target_classifies_as_itself",
+      "test_red_wraps_hue_zero",
+      "test_no_grey_in_the_arena_is_ever_a_target",
+      "test_the_orange_forearm_is_not_a_target",
+      "test_no_two_bands_overlap",
+      "test_unsaturated_is_never_a_colour",
+      "test_dark_is_never_a_colour",
+      "test_an_unknown_target_colour_is_none_not_a_default",
+      "test_deprojection_round_trips_to_the_camera_mount",
+      "test_a_pixel_left_of_centre_is_a_positive_y",
+      "test_a_positive_pitch_is_nose_down",
+      "test_the_camera_extrinsics_are_actually_used",
+      "test_front_surface_correction_moves_away_from_the_camera",
+      "test_nan_inf_and_zero_are_all_discarded",
+      "test_all_invalid_returns_none_rather_than_zero",
+      "test_values_outside_the_clip_planes_are_discarded",
+      "test_too_few_valid_pixels_is_no_answer",
+      "_mask_with",
+      "test_blobs_come_back_largest_first_with_usable_labels",
+      "test_specks_below_the_floor_are_dropped",
+      "test_width_gate_accepts_a_target_and_rejects_a_wall",
+      "test_the_width_gate_cannot_separate_adjacent_diameters",
+      "test_a_red_mask_covers_both_sides_of_the_wrap",
+      "test_an_exact_stamp_beats_a_nearer_neighbour_list",
+      "test_the_nearest_frame_wins_when_there_is_no_exact_match",
+      "test_a_depth_frame_older_than_the_tolerance_is_refused",
+      "test_status_splits_on_space_into_key_equals_value",
+      "test_every_key_is_present_even_when_nothing_was_found",
+      "test_an_empty_seen_list_is_a_word_not_a_gap"
+    ]
+  },
+  {
+    "path": "coco_perception/test/test_flake8.py",
+    "lines": 25,
+    "imports": [
+      "ament_flake8.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_flake8"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/__init__.py",
+    "lines": 0,
+    "imports": [],
+    "definitions": []
+  },
+  {
+    "path": "coco_sim/coco_sim/episode_cli.py",
+    "lines": 177,
+    "imports": [
+      "argparse",
+      "backends",
+      "backends.gazebo",
+      "episode",
+      "json",
+      "sys"
+    ],
+    "definitions": [
+      "_load",
+      "_emit",
+      "cmd_generate",
+      "cmd_inputs",
+      "cmd_readback",
+      "cmd_check",
+      "cmd_result",
+      "build_parser",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/episode.py",
+    "lines": 927,
+    "imports": [
+      "coco_config.robot",
+      "dataclasses",
+      "hashlib",
+      "json",
+      "math",
+      "random"
+    ],
+    "definitions": [
+      "platform_top_z",
+      "InvalidEpisode",
+      "TargetSpec",
+      "ObstacleSpec",
+      "RobotStart",
+      "EpisodeSpec",
+      "episode_id",
+      "target_x_bounds",
+      "target_y_bounds",
+      "min_target_separation",
+      "approach_corridor_blocked",
+      "region_area",
+      "validate_episode",
+      "_fixed_layout",
+      "_permuted_colours",
+      "_jittered",
+      "generate_episode",
+      "_place",
+      "episode_from_manifest",
+      "episode_from_json",
+      "_tuples",
+      "rebind",
+      "compat_mission_inputs",
+      "resolve_episode",
+      "EpisodeResult",
+      "validate_result",
+      "record_result",
+      "result_from_json",
+      "check_reproducible"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/mjcf.py",
+    "lines": 366,
+    "imports": [
+      "argparse",
+      "coco_config.robot"
+    ],
+    "definitions": [
+      "wheel_positions",
+      "chassis_z_in_body",
+      "lumped_masses",
+      "build_mjcf",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/yard.py",
+    "lines": 845,
+    "imports": [
+      "argparse",
+      "coco_sim.mjcf",
+      "dataclasses",
+      "math",
+      "mujoco",
+      "numpy",
+      "os",
+      "struct",
+      "typing",
+      "yaml"
+    ],
+    "definitions": [
+      "load_params",
+      "RouteSample",
+      "YardSample",
+      "_tan",
+      "sample_yard",
+      "_rubble_field",
+      "height",
+      "_in_route",
+      "_rubble_at",
+      "_deck_height",
+      "_ramp_frame",
+      "rot_to_quat",
+      "rot_to_rpy",
+      "Box",
+      "Field",
+      "features",
+      "_field_geom_z",
+      "yard_mjcf_fragment",
+      "_wheel_names",
+      "_solref",
+      "_solimp",
+      "build_yard_mjcf",
+      "apply_hfields",
+      "_stl_triangles",
+      "_facet",
+      "write_stl",
+      "build_yard_sdf",
+      "write_yard",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/calibrate.py",
+    "lines": 212,
+    "imports": [
+      "argparse",
+      "coco_config.robot",
+      "coco_sim.mjcf",
+      "coco_sim.sweep",
+      "csv",
+      "itertools",
+      "math",
+      "mujoco",
+      "os"
+    ],
+    "definitions": [
+      "gazebo_reference",
+      "achieved_yaw",
+      "efficiency",
+      "score",
+      "audit_levers",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/sweep.py",
+    "lines": 89,
+    "imports": [],
+    "definitions": [
+      "DisconnectedParameter",
+      "assert_lever_is_connected"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/probes.py",
+    "lines": 213,
+    "imports": [
+      "math",
+      "numpy"
+    ],
+    "definitions": [
+      "_stations",
+      "probe_points",
+      "_despace"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_sweep.py",
+    "lines": 73,
+    "imports": [
+      "coco_sim.sweep",
+      "pytest"
+    ],
+    "definitions": [
+      "test_a_connected_lever_passes_and_returns_its_spread",
+      "test_a_disconnected_lever_raises_and_names_itself",
+      "test_a_weak_but_real_lever_still_passes",
+      "test_default_tolerance_is_exactly_zero",
+      "test_identical_inputs_are_rejected_as_meaningless",
+      "test_a_single_sample_is_rejected",
+      "test_the_message_points_at_the_pair_shadowing_trap"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_yard_parity.py",
+    "lines": 146,
+    "imports": [
+      "coco_sim.probes",
+      "coco_sim.yard",
+      "mujoco",
+      "numpy",
+      "pytest"
+    ],
+    "definitions": [
+      "yard",
+      "compiled",
+      "_ray",
+      "test_mujoco_hfield_diagonal_is_still_what_the_stl_writer_assumes",
+      "test_the_analytic_surface_is_what_mujoco_actually_built",
+      "test_probes_never_land_on_a_grid_node",
+      "test_concave_features_are_probed_from_inside",
+      "test_probe_sets_are_spaced_so_probes_cannot_collide"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_mjcf.py",
+    "lines": 182,
+    "imports": [
+      "coco_config.robot",
+      "coco_sim",
+      "coco_sim.mjcf",
+      "numpy",
+      "pathlib",
+      "pytest",
+      "re",
+      "xml.etree"
+    ],
+    "definitions": [
+      "test_the_model_is_well_formed_xml",
+      "test_there_are_four_wheels_and_four_actuators",
+      "test_wheel_positions_derive_from_wheelbase_and_track",
+      "test_masses_are_the_config_masses",
+      "test_wheel_radius_is_the_config_radius",
+      "test_mjcf_traces_to_config",
+      "test_a_constant_the_model_does_not_use_would_not_fool_the_trace_test",
+      "test_contact_pairs_carry_the_calibrated_contact_parameters",
+      "test_pair_friction_is_the_wheel_friction_not_a_max",
+      "test_chassis_underside_sits_at_the_urdf_ground_clearance",
+      "test_model_mass_is_the_whole_robot",
+      "test_timestep_matches_the_gazebo_world"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_episode_regions.py",
+    "lines": 320,
+    "imports": [
+      "coco_config.robot",
+      "coco_sim.episode",
+      "dataclasses",
+      "json",
+      "math",
+      "pytest"
+    ],
+    "definitions": [
+      "test_fixed_assigns_the_frozen_region_map",
+      "test_fixed_poses_are_the_region_nominal_poses",
+      "test_colour_level_permutes_regions_and_keeps_nominal_poses",
+      "test_colour_level_is_deterministic_per_seed",
+      "test_positions_and_colours_assign_the_same_regions_per_seed",
+      "test_region_area_contains_the_nominal_pose_on_its_near_edge",
+      "test_region_area_never_reaches_past_the_platform_bound",
+      "test_the_lateral_bound_is_the_measured_absorbed_offset",
+      "test_no_seed_places_a_target_outside_its_region",
+      "test_positions_actually_move_the_targets",
+      "test_positions_differ_between_seeds_and_repeat_within_one",
+      "spec",
+      "_retarget",
+      "test_a_target_nearer_the_crest_than_its_region_is_refused",
+      "test_a_target_off_its_lane_by_more_than_the_limit_is_refused",
+      "test_a_target_with_no_region_is_refused",
+      "test_two_targets_in_one_region_are_refused",
+      "test_a_pre_region_manifest_loads_but_does_not_validate",
+      "test_compat_inputs_resolve_every_colour_to_its_regions_lane",
+      "test_compat_inputs_carry_no_coordinate",
+      "test_fixed_compat_inputs_resolve_exactly_like_the_frozen_table",
+      "test_the_task_view_did_not_grow",
+      "test_resolve_episode_defaults_to_the_fixed_layout",
+      "test_resolve_episode_takes_launch_strings",
+      "test_resolve_episode_refuses_a_non_integer_seed",
+      "test_a_recorded_manifest_is_replayed_exactly",
+      "test_a_manifest_for_another_backend_is_refused",
+      "test_an_illegal_recorded_manifest_is_refused",
+      "test_layout_does_not_depend_on_the_requested_colour",
+      "test_every_positions_seed_keeps_the_full_envelope"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_calibrate.py",
+    "lines": 138,
+    "imports": [
+      "coco_sim",
+      "coco_sim.calibrate",
+      "coco_sim.mjcf",
+      "coco_sim.sweep",
+      "csv",
+      "inspect",
+      "math",
+      "pytest"
+    ],
+    "definitions": [
+      "test_every_contact_parameter_changes_the_generated_model",
+      "test_defaults_reproduce_the_committed_constants",
+      "test_the_harness_does_not_sweep_by_string_replacement",
+      "test_the_gazebo_reference_is_read_not_transcribed",
+      "test_the_reference_records_both_signs",
+      "test_all_four_levers_are_live_through_the_score",
+      "test_the_audit_fails_on_a_lever_that_is_not_connected",
+      "test_the_audit_rejects_a_sweep_whose_inputs_are_not_distinct",
+      "test_score_is_symmetric_in_over_and_under_steering"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_isaac.py",
+    "lines": 118,
+    "imports": [
+      "coco_config",
+      "coco_sim.isaac",
+      "coco_sim.isaac.config",
+      "coco_sim.isaac.model",
+      "math",
+      "pathlib",
+      "pytest",
+      "xml.etree.ElementTree",
+      "yaml"
+    ],
+    "definitions": [
+      "test_generated_geometry_tracks_authority",
+      "test_forward_and_positive_yaw_wheel_signs",
+      "test_timeout_and_future_stamp_fail_closed",
+      "test_acceleration_and_nonfinite_input",
+      "test_minimal_tree_has_single_parent_and_correct_optical_rotation",
+      "test_runtime_never_teleports_body_and_scene_precedes_bridge",
+      "test_controller_velocity_and_timeout_match_existing_yaml"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_episode.py",
+    "lines": 472,
+    "imports": [
+      "coco_config.robot",
+      "coco_sim.episode",
+      "dataclasses",
+      "json",
+      "math",
+      "pytest"
+    ],
+    "definitions": [
+      "test_half_footprint_matches_the_frozen_lane_test",
+      "test_the_frozen_row_is_inside_the_derived_envelope",
+      "test_the_envelope_sits_on_the_platform",
+      "test_every_colour_has_a_graspable_window",
+      "test_fixed_level_is_the_p02_layout_for_any_seed",
+      "test_fixed_level_starts_the_robot_at_the_p02_spawn",
+      "test_defaults_are_the_frozen_world_on_gazebo_with_no_obstacles",
+      "test_same_seed_gives_a_byte_identical_manifest",
+      "test_different_seeds_give_different_layouts",
+      "test_colours_level_permutes_colours_but_keeps_the_lanes",
+      "test_requested_colour_is_seeded_and_varies",
+      "test_episode_id_is_stable_and_distinguishes_episodes",
+      "test_no_seed_generates_a_target_outside_the_envelope",
+      "_move",
+      "good",
+      "test_the_fixture_is_valid",
+      "test_a_target_too_close_to_the_crest_is_rejected",
+      "test_a_target_off_the_far_edge_is_rejected",
+      "test_a_target_outside_the_standable_band_is_rejected",
+      "test_a_floating_target_is_rejected",
+      "test_a_target_in_anothers_approach_corridor_is_rejected",
+      "test_two_targets_too_close_are_rejected",
+      "test_schema_violations_are_rejected",
+      "test_duplicate_colours_are_rejected",
+      "test_an_unknown_level_is_rejected_before_generation",
+      "test_every_backend_generates_the_same_world",
+      "test_backend_changes_the_episode_id",
+      "test_rebind_recomputes_the_id_and_revalidates",
+      "test_world_variants_are_accepted",
+      "test_json_round_trips_exactly",
+      "test_obstacles_round_trip_including_tuples",
+      "test_dynamic_obstacles_are_represented_but_never_generated",
+      "test_the_manifest_is_complete",
+      "test_the_spec_is_immutable",
+      "test_the_manifest_is_json_native",
+      "test_the_task_view_leaks_no_geometry",
+      "test_the_task_view_names_a_colour_that_is_in_the_world",
+      "test_episode_spec_has_no_field_named_like_a_pose_in_its_view",
+      "_done",
+      "test_a_result_round_trips_through_json",
+      "test_a_result_replays_its_exact_episode",
+      "test_a_hand_edited_episode_replays_without_its_seed",
+      "test_the_seed_still_regenerates_the_recorded_episode",
+      "test_generator_drift_is_detected",
+      "test_every_outcome_is_recordable",
+      "test_an_unknown_outcome_is_refused",
+      "test_a_failure_must_say_why",
+      "test_a_success_cannot_carry_a_failure_reason",
+      "test_a_timing_that_does_not_name_its_clock_is_refused",
+      "test_a_result_cannot_embed_another_episodes_manifest",
+      "test_the_result_record_is_complete"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_isaac_manipulation.py",
+    "lines": 69,
+    "imports": [
+      "arm_ik",
+      "coco_config.joint_limits",
+      "coco_sim.isaac.articulated",
+      "coco_sim.isaac.control",
+      "coco_sim.isaac.grasp",
+      "numpy",
+      "pathlib",
+      "pytest",
+      "sys",
+      "xacro"
+    ],
+    "definitions": [
+      "description",
+      "test_urdf_fk_tracks_the_shared_analytic_ik",
+      "test_manipulator_command_rejects_invalid_and_wheel_joints",
+      "test_trajectory_interpolates_and_holds_end",
+      "test_invalid_trajectory_is_rejected",
+      "test_magnet_cannot_attach_at_a_distance_or_outside_target_band"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_episode_cli.py",
+    "lines": 118,
+    "imports": [
+      "coco_sim",
+      "coco_sim.backends.gazebo",
+      "coco_sim.episode",
+      "json",
+      "pytest",
+      "types"
+    ],
+    "definitions": [
+      "test_the_gz_pose_block_parses",
+      "test_an_unreadable_reply_is_none_not_zero",
+      "test_read_gz_poses_skips_what_gz_cannot_report",
+      "test_generate_writes_the_manifest_the_launch_files_replay",
+      "test_inputs_prints_names_only",
+      "test_check_says_reproducible_then_drifted",
+      "test_result_records_a_validated_run",
+      "test_an_invalid_result_is_refused_with_exit_2"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_backends.py",
+    "lines": 283,
+    "imports": [
+      "coco_config.robot",
+      "coco_sim.backends",
+      "coco_sim.backends.common",
+      "coco_sim.backends.isaac",
+      "coco_sim.episode",
+      "dataclasses",
+      "math",
+      "pytest",
+      "subprocess",
+      "sys"
+    ],
+    "definitions": [
+      "_p02_launch_target_spawns",
+      "test_fixed_gazebo_spawns_are_byte_identical_to_the_p02_launch",
+      "test_fixed_spawns_do_not_depend_on_seed_or_requested_colour",
+      "test_gazebo_spawns_every_target_exactly_at_its_manifest_pose",
+      "test_a_moved_target_keeps_its_identity_and_its_magnet",
+      "test_gazebo_refuses_a_world_built_at_another_grade",
+      "test_both_engines_build_the_same_bodies_from_one_manifest",
+      "test_isaac_prims_carry_the_same_physics_as_the_sdf",
+      "test_isaac_says_what_world_geometry_it_cannot_build",
+      "test_each_backend_refuses_the_others_episode",
+      "test_a_backend_revalidates_a_hand_edited_manifest",
+      "test_the_registry_names_the_manifest_backends",
+      "test_the_backend_layer_imports_no_ros_and_no_simulator",
+      "_observed",
+      "test_a_faithful_readback_passes",
+      "test_a_missing_model_fails_the_readback",
+      "test_a_tipped_or_displaced_target_fails_the_readback",
+      "test_readback_revalidates_the_layout_it_actually_saw",
+      "test_a_micrometre_settle_toward_the_crest_is_not_a_failure",
+      "test_settling_past_the_pose_tolerance_still_fails_the_layout",
+      "test_a_generated_episode_is_validated_with_no_slack"
+    ]
+  },
+  {
+    "path": "coco_sim/test/test_yard.py",
+    "lines": 199,
+    "imports": [
+      "coco_sim.yard",
+      "copy",
+      "math",
+      "pytest"
+    ],
+    "definitions": [
+      "params",
+      "yard",
+      "test_every_rescaled_value_records_its_spec_and_derivation",
+      "test_route_runs_are_derived_from_grade_not_typed",
+      "test_ramps_meet_the_deck_at_their_top",
+      "test_the_bridge_void_is_a_hole_not_a_low_step",
+      "test_the_curb_is_a_clean_step_of_the_stated_height",
+      "test_washboard_is_an_integer_number_of_half_wavelengths",
+      "test_deck_sections_tile_without_gaps",
+      "test_geometry_traces_to_the_yaml_and_is_not_hard_coded",
+      "test_both_emitters_read_the_same_feature_list",
+      "test_the_world_is_grey_because_perception_classifies_by_hue",
+      "test_grade_jitter_moves_the_foot_and_never_the_deck",
+      "test_route_b_grade_jitter_is_capped_below_the_tip_terminator",
+      "test_the_rubble_grid_shape_is_independent_of_grade_jitter",
+      "test_rubble_is_tapered_so_the_curb_height_is_not_a_random_variable"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/isaac/model.py",
+    "lines": 267,
+    "imports": [
+      "articulated",
+      "coco_config",
+      "config",
+      "math",
+      "pxr",
+      "xml.etree.ElementTree"
+    ],
+    "definitions": [
+      "build_scene",
+      "robot_description"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/isaac/__init__.py",
+    "lines": 15,
+    "imports": [],
+    "definitions": []
+  },
+  {
+    "path": "coco_sim/coco_sim/isaac/runtime.py",
+    "lines": 600,
+    "imports": [
+      "argparse",
+      "articulated",
+      "builtin_interfaces.msg",
+      "coco_config",
+      "coco_config.joint_limits",
+      "coco_sim.backends.common",
+      "coco_sim.backends.isaac",
+      "coco_sim.episode",
+      "config",
+      "control",
+      "copy",
+      "geometry_msgs.msg",
+      "grasp",
+      "importlib.metadata",
+      "isaacsim",
+      "isaacsim.core.api",
+      "isaacsim.core.prims",
+      "isaacsim.core.utils.types",
+      "json",
+      "math",
+      "model",
+      "nav_msgs.msg",
+      "numpy",
+      "omni.graph.core",
+      "omni.kit.app",
+      "omni.kit.commands",
+      "omni.replicator.core",
+      "omni.usd",
+      "os",
+      "pathlib",
+      "pxr",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "rosgraph_msgs.msg",
+      "scipy.spatial.transform",
+      "sensor_msgs.msg",
+      "signal",
+      "std_msgs.msg",
+      "tf2_msgs.msg",
+      "time",
+      "traceback",
+      "usdrt",
+      "xml.etree.ElementTree"
+    ],
+    "definitions": [
+      "sensors",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/isaac/control.py",
+    "lines": 42,
+    "imports": [
+      "coco_config.joint_limits",
+      "math"
+    ],
+    "definitions": [
+      "valid_positions",
+      "Trajectory"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/isaac/config.py",
+    "lines": 110,
+    "imports": [
+      "coco_config",
+      "math"
+    ],
+    "definitions": [
+      "wheel_layout",
+      "wheel_speeds",
+      "DriveCommand"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/isaac/grasp.py",
+    "lines": 98,
+    "imports": [
+      "articulated",
+      "isaacsim.core.prims",
+      "numpy",
+      "pxr",
+      "rclpy.qos",
+      "scipy.spatial.transform",
+      "std_msgs.msg",
+      "xml.etree.ElementTree"
+    ],
+    "definitions": [
+      "pinch_local",
+      "can_attach",
+      "Magnet"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/isaac/trajectory_node.py",
+    "lines": 151,
+    "imports": [
+      "coco_config.joint_limits",
+      "coco_sim.isaac.control",
+      "control_msgs.action",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.node",
+      "rclpy.task",
+      "sensor_msgs.msg",
+      "time",
+      "trajectory_msgs.msg"
+    ],
+    "definitions": [
+      "Controller",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/isaac/articulated.py",
+    "lines": 208,
+    "imports": [
+      "coco_config",
+      "coco_config.joint_limits",
+      "coco_sim.backends.isaac",
+      "math",
+      "numpy",
+      "pxr",
+      "scipy.spatial.transform",
+      "struct",
+      "xml.etree.ElementTree"
+    ],
+    "definitions": [
+      "pose",
+      "origin",
+      "arm_joints",
+      "arm_transforms",
+      "quaternion",
+      "build_arm",
+      "build_fetch_world"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/backends/__init__.py",
+    "lines": 53,
+    "imports": [
+      "common",
+      "gazebo",
+      "isaac"
+    ],
+    "definitions": [
+      "backend_for"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/backends/common.py",
+    "lines": 187,
+    "imports": [
+      "coco_config.robot",
+      "dataclasses",
+      "episode",
+      "math"
+    ],
+    "definitions": [
+      "TargetBody",
+      "target_body",
+      "SimulatorBackend",
+      "ObservedPose",
+      "check_instantiation"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/backends/isaac.py",
+    "lines": 116,
+    "imports": [
+      "common",
+      "dataclasses"
+    ],
+    "definitions": [
+      "IsaacPrim",
+      "IsaacScene",
+      "IsaacBackend"
+    ]
+  },
+  {
+    "path": "coco_sim/coco_sim/backends/gazebo.py",
+    "lines": 172,
+    "imports": [
+      "coco_config.robot",
+      "common",
+      "dataclasses",
+      "episode",
+      "subprocess"
+    ],
+    "definitions": [
+      "GazeboSpawn",
+      "GazeboScene",
+      "target_sdf",
+      "parse_gz_model_pose",
+      "read_gz_poses",
+      "GazeboBackend"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/lateral.py",
+    "lines": 63,
+    "imports": [],
+    "definitions": [
+      "lateral_hold"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/sensor_model.py",
+    "lines": 252,
+    "imports": [
+      "coco_config.robot",
+      "coco_rl.terrain_observer",
+      "coco_sim.yard",
+      "math",
+      "mujoco",
+      "numpy"
+    ],
+    "definitions": [
+      "quat_to_rpy",
+      "_rot",
+      "ImuSampler",
+      "deployable_signals",
+      "GroundTruth",
+      "true_grade",
+      "true_camber",
+      "ground_truth"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/ramp_driver.py",
+    "lines": 591,
+    "imports": [
+      "coco_config.robot",
+      "coco_rl.lateral",
+      "coco_rl.ramp_env",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "stable_baselines3",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "threading",
+      "time"
+    ],
+    "definitions": [
+      "descend_cmd",
+      "format_status",
+      "RampDriver",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/__init__.py",
+    "lines": 13,
+    "imports": [],
+    "definitions": []
+  },
+  {
+    "path": "coco_rl/coco_rl/mujoco_env.py",
+    "lines": 208,
+    "imports": [
+      "coco_config.robot",
+      "coco_sim.mjcf",
+      "gymnasium",
+      "math",
+      "mujoco",
+      "numpy"
+    ],
+    "definitions": [
+      "quat_to_rpy",
+      "wheel_speeds",
+      "CocoMujocoEnv"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/train_ppo.py",
+    "lines": 197,
+    "imports": [
+      "argparse",
+      "coco_rl.ramp_env",
+      "rclpy.executors",
+      "stable_baselines3",
+      "stable_baselines3.common.callbacks",
+      "stable_baselines3.common.monitor"
+    ],
+    "definitions": [
+      "set_physics",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/baseline_eval.py",
+    "lines": 328,
+    "imports": [
+      "coco_config.robot",
+      "coco_rl.baselines",
+      "coco_rl.sensor_model",
+      "coco_rl.yard_env",
+      "coco_sim.yard",
+      "math",
+      "multiprocessing",
+      "numpy"
+    ],
+    "definitions": [
+      "run_episode",
+      "_score_estimate",
+      "_on_ramp_face",
+      "_estimator_metrics",
+      "_belly_gap",
+      "summarise",
+      "_worker",
+      "run_many"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/terrain_observer.py",
+    "lines": 675,
+    "imports": [
+      "dataclasses",
+      "math"
+    ],
+    "definitions": [
+      "DeployableSignals",
+      "TerrainEstimate",
+      "_lp",
+      "GradeEstimator",
+      "_span",
+      "TractionEstimator",
+      "TerrainObserver"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/terrain_benchmark.py",
+    "lines": 320,
+    "imports": [
+      "argparse",
+      "coco_rl.baseline_eval",
+      "coco_rl.baselines",
+      "coco_sim.yard",
+      "json",
+      "math",
+      "numpy",
+      "sys"
+    ],
+    "definitions": [
+      "climbable",
+      "_mean",
+      "summarise_cell",
+      "run",
+      "report",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/baselines.py",
+    "lines": 426,
+    "imports": [
+      "coco_rl.lateral",
+      "coco_rl.terrain_observer",
+      "math"
+    ],
+    "definitions": [
+      "reference_y",
+      "_heading",
+      "schedule_gains",
+      "B0",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/ramp_env.py",
+    "lines": 483,
+    "imports": [
+      "coco_config.robot",
+      "coco_rl.reward",
+      "geometry_msgs.msg",
+      "gymnasium",
+      "math",
+      "nav_msgs.msg",
+      "numpy",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "subprocess",
+      "time"
+    ],
+    "definitions": [
+      "sample_start_pose",
+      "quat_to_rp",
+      "_stamp",
+      "gz_service",
+      "_rclpy_call",
+      "CocoRampEnv"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/plot_curve.py",
+    "lines": 107,
+    "imports": [
+      "argparse",
+      "csv",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "sys"
+    ],
+    "definitions": [
+      "load",
+      "rolling_mean",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/evaluate.py",
+    "lines": 100,
+    "imports": [
+      "argparse",
+      "coco_rl.ramp_env",
+      "coco_rl.train_ppo",
+      "stable_baselines3"
+    ],
+    "definitions": [
+      "run_episode",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/reward.py",
+    "lines": 81,
+    "imports": [],
+    "definitions": [
+      "is_tipped",
+      "reached_goal",
+      "episode_outcome",
+      "step_reward"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/yard_env.py",
+    "lines": 487,
+    "imports": [
+      "coco_config.robot",
+      "coco_rl.mujoco_env",
+      "coco_rl.sensor_model",
+      "coco_sim.mjcf",
+      "coco_sim.yard",
+      "gymnasium",
+      "math",
+      "mujoco",
+      "numpy"
+    ],
+    "definitions": [
+      "CocoYardEnv"
+    ]
+  },
+  {
+    "path": "coco_rl/coco_rl/terrain_observer_node.py",
+    "lines": 405,
+    "imports": [
+      "coco_config.robot",
+      "coco_rl.sensor_model",
+      "coco_rl.terrain_observer",
+      "diagnostic_msgs.msg",
+      "geometry_msgs.msg",
+      "math",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg"
+    ],
+    "definitions": [
+      "_kv",
+      "TerrainObserverNode",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_docker_context.py",
+    "lines": 353,
+    "imports": [
+      "os",
+      "pathlib",
+      "pytest",
+      "re"
+    ],
+    "definitions": [
+      "_patterns",
+      "_to_regex",
+      "_excluded",
+      "_instructions",
+      "test_star_does_not_cross_a_directory_separator",
+      "test_the_policy_file_is_actually_there",
+      "test_the_shipped_policy_is_not_excluded_from_the_image",
+      "test_runtime_assets_are_not_excluded",
+      "test_training_artifacts_are_excluded",
+      "test_worktrees_are_excluded",
+      "test_the_build_tree_is_excluded",
+      "test_dockerfile_builds_every_package_the_mission_needs",
+      "test_the_image_uses_container_paths_only",
+      "test_the_entrypoint_uses_container_paths_only",
+      "_compose",
+      "test_compose_is_one_service_publishing_only_the_platform_port",
+      "test_the_image_exposes_only_the_platform_port",
+      "test_compose_and_dockerfile_agree_on_the_health_contract",
+      "test_every_dockerfile_copy_source_exists_and_is_in_the_context",
+      "test_the_image_installs_what_the_web_platform_needs_at_runtime"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_entrypoint_children.py",
+    "lines": 55,
+    "imports": [
+      "os",
+      "pathlib",
+      "subprocess"
+    ],
+    "definitions": [
+      "test_launch_pid_is_a_child_the_entrypoint_can_wait_for",
+      "test_launch_callers_do_not_create_a_command_substitution_subshell",
+      "test_entrypoint_shell_syntax"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_mujoco_env.py",
+    "lines": 196,
+    "imports": [
+      "coco_config.robot",
+      "coco_rl.mujoco_env",
+      "math",
+      "numpy",
+      "pytest"
+    ],
+    "definitions": [
+      "test_spaces_match_ramp_env",
+      "test_reset_returns_an_observation_of_the_right_shape",
+      "test_x_and_y_are_relative_to_the_episode_origin",
+      "test_driving_forward_moves_forward",
+      "test_yaw_sign_is_positive_to_the_left",
+      "test_actions_are_clipped_not_trusted",
+      "test_truncates_at_max_steps",
+      "test_wheel_speeds_is_differential_drive",
+      "test_quat_to_rpy_round_trips_level",
+      "test_speed_limits_match_ramp_env",
+      "test_yaw_gain_is_sampled_per_episode",
+      "test_yaw_gain_stays_within_the_documented_range",
+      "test_yaw_gain_is_constant_within_an_episode",
+      "test_yaw_gain_actually_changes_the_achieved_yaw",
+      "test_yaw_gain_is_reproducible_from_a_seed",
+      "test_randomisation_can_be_turned_off",
+      "test_separation_comes_from_coco_config_not_a_local_copy"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_terrain_observer_node.py",
+    "lines": 237,
+    "imports": [
+      "coco_rl.terrain_observer_node",
+      "diagnostic_msgs.msg",
+      "geometry_msgs.msg",
+      "math",
+      "pytest",
+      "rclpy.qos",
+      "sensor_msgs.msg"
+    ],
+    "definitions": [
+      "node",
+      "_imu",
+      "_joints",
+      "test_the_node_constructs_at_all",
+      "test_imu_subscription_is_best_effort",
+      "test_estimator_runs_at_the_imu_rate_not_the_publish_rate",
+      "test_ten_hz_feeding_is_what_used_to_break_it",
+      "test_publish_does_not_advance_the_estimator",
+      "test_declare_flat_is_wired_through",
+      "test_it_publishes_no_velocity_command",
+      "test_it_subscribes_to_the_command_and_never_publishes_it",
+      "test_waiting_states_are_explicit_not_plausible_numbers",
+      "test_the_traction_payload_does_not_claim_a_friction_estimate",
+      "test_cmd_vel_is_read_from_a_twiststamped",
+      "test_missing_wheel_names_are_not_read_as_zeros"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_platform_scripts.py",
+    "lines": 191,
+    "imports": [
+      "os",
+      "pytest",
+      "re",
+      "subprocess"
+    ],
+    "definitions": [
+      "test_the_script_exists",
+      "test_the_script_parses",
+      "test_no_grep_dash_q_in_a_pipeline_under_pipefail",
+      "test_no_timeout_into_a_pipe_under_pipefail",
+      "_logical_lines",
+      "test_the_native_path_starts_from_a_clean_package_path",
+      "test_the_native_path_waits_for_localisation_not_just_health",
+      "test_the_entrypoint_sequences_the_simulator_before_the_stack"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_reward.py",
+    "lines": 132,
+    "imports": [
+      "coco_rl.reward",
+      "pytest"
+    ],
+    "definitions": [
+      "test_forward_progress_is_rewarded",
+      "test_backward_progress_is_punished",
+      "test_tilt_is_penalised_symmetrically",
+      "test_terminal_bonuses",
+      "test_tip_detection",
+      "test_goal_detection",
+      "test_goal_is_the_summit_not_the_foot",
+      "test_default_goal_matches_the_configured_summit",
+      "test_env_goal_stops_short_of_the_crest",
+      "test_episode_outcome_classifies_each_ending",
+      "test_episode_outcome_prefers_goal_over_truncation",
+      "test_episode_outcome_is_independent_of_reward_sign"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_baselines.py",
+    "lines": 173,
+    "imports": [
+      "coco_rl",
+      "coco_rl.baselines",
+      "coco_rl.lateral",
+      "coco_sim.yard",
+      "inspect",
+      "math",
+      "pytest"
+    ],
+    "definitions": [
+      "params",
+      "test_b1_uses_the_shipped_function_not_a_copy",
+      "test_b1_uses_the_shipped_gains_unchanged",
+      "test_b0_ignores_every_observation",
+      "test_b2_is_the_only_baseline_with_privileged_access",
+      "test_b2_actually_uses_the_privileged_friction",
+      "test_b2_reacts_to_the_privileged_grade",
+      "test_the_reference_path_converges_before_the_bridge",
+      "test_the_reference_path_is_the_route_centreline_on_the_ramp",
+      "test_the_reference_path_is_continuous",
+      "test_all_baselines_return_actions_inside_the_action_space",
+      "test_the_tuned_schedule_covers_every_route",
+      "test_the_tuned_throttle_range_reaches_full"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_ramp_driver_regions.py",
+    "lines": 119,
+    "imports": [
+      "coco_config.robot",
+      "inspect",
+      "pytest",
+      "types"
+    ],
+    "definitions": [
+      "_Log",
+      "_stub",
+      "_say",
+      "test_no_map_is_the_frozen_table",
+      "test_the_datum_is_the_episode_regions_lane",
+      "test_the_map_round_trips_through_the_parameter_form",
+      "test_an_unknown_colour_leaves_the_datum_alone",
+      "test_autonomous_datum_follows_region_and_ignores_colour",
+      "test_autonomous_climb_corrects_toward_region_centre",
+      "test_fixed_climb_keeps_its_existing_segment_datum",
+      "test_ramp_driver_declares_the_region_map_parameter"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_yard_env.py",
+    "lines": 388,
+    "imports": [
+      "builtins",
+      "coco_config.robot",
+      "coco_rl",
+      "coco_rl.yard_env",
+      "coco_sim.sweep",
+      "coco_sim.yard",
+      "math",
+      "mujoco",
+      "numpy",
+      "pathlib",
+      "pytest",
+      "rclpy",
+      "sys"
+    ],
+    "definitions": [
+      "_rollout",
+      "no_ros",
+      "test_the_env_imports_without_ros",
+      "test_the_no_ros_guard_itself_works",
+      "test_same_seed_gives_an_identical_episode",
+      "test_different_seeds_give_different_episodes",
+      "test_successive_episodes_differ_within_one_env",
+      "test_an_episode_is_reproducible_from_its_reported_seed",
+      "test_every_randomisation_lever_actually_varies",
+      "test_terrain_friction_reaches_the_contact_pairs",
+      "test_route_friction_stays_inside_what_gazebo_can_express",
+      "test_the_command_is_ramped_like_the_deployed_controller",
+      "test_torque_scale_is_authority_not_speed",
+      "test_the_robot_spawns_at_zero_penetration",
+      "test_driving_off_the_bridge_is_reported_as_a_fall_not_a_tip",
+      "test_a_successful_descent_is_not_scored_as_a_fall",
+      "test_action_and_observation_spaces_match_the_other_envs",
+      "test_the_imu_sampler_cannot_move_the_simulation",
+      "test_the_imu_runs_at_the_rate_the_xacro_declares",
+      "test_the_accelerometer_reads_specific_force_not_acceleration",
+      "test_the_flat_reference_is_measured_on_the_apron",
+      "test_tipping_is_measured_from_the_surface_not_from_world_vertical",
+      "test_the_absolute_backstop_still_catches_a_real_fall",
+      "test_a_large_surface_relative_excursion_still_terminates",
+      "test_v1s_tip_terminator_is_untouched"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_ramp_driver.py",
+    "lines": 250,
+    "imports": [
+      "math",
+      "pytest",
+      "types"
+    ],
+    "definitions": [
+      "test_straight_and_far_drives_at_speed_with_no_steering",
+      "test_arriving_stops_and_reports_done",
+      "test_overshooting_the_goal_still_reports_done",
+      "test_never_pivots_in_place_on_the_slope",
+      "test_steers_back_toward_zero_heading",
+      "test_correction_is_clamped",
+      "test_heading_wraps_the_short_way",
+      "test_on_the_centreline_the_policy_is_untouched",
+      "test_the_linear_channel_is_never_touched",
+      "test_drift_left_steers_right_and_vice_versa",
+      "test_heading_error_alone_is_corrected",
+      "test_correction_is_clamped_away_from_the_trained_distribution",
+      "test_a_saturated_policy_action_stays_inside_the_action_space",
+      "test_status_line_is_key_value_for_the_panel",
+      "test_status_reports_cross_track_and_displacement_separately",
+      "test_cross_track_is_dashes_when_no_lane_is_known",
+      "test_pitch_is_dashes_when_no_segment_is_measuring_it",
+      "test_live_pitch_is_none_only_while_idle",
+      "test_a_running_segment_still_reports_its_pitch",
+      "test_cross_track_sign_is_positive_to_the_left"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_plot_curve.py",
+    "lines": 106,
+    "imports": [
+      "coco_rl.plot_curve",
+      "pytest",
+      "textwrap"
+    ],
+    "definitions": [
+      "_write",
+      "test_load_parses_returns_and_accumulates_steps",
+      "test_load_skips_the_json_header",
+      "test_load_concatenates_multiple_runs_continuing_the_step_count",
+      "test_load_of_a_header_only_file_yields_nothing",
+      "test_rolling_mean_is_causal_and_full_length",
+      "test_rolling_mean_window_of_one_is_the_identity",
+      "test_rolling_mean_window_larger_than_input_is_a_running_average",
+      "test_rolling_mean_smooths_a_spike_without_shifting_it"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_terrain_observer.py",
+    "lines": 524,
+    "imports": [
+      "coco_rl.baselines",
+      "coco_rl.lateral",
+      "coco_rl.sensor_model",
+      "coco_rl.terrain_observer",
+      "coco_sim.yard",
+      "math",
+      "pytest"
+    ],
+    "definitions": [
+      "signal",
+      "drive",
+      "test_flat_ground_reads_zero_grade",
+      "test_positive_grade_and_the_sign_convention",
+      "test_negative_grade_is_a_descent",
+      "test_camber_is_reported_from_roll",
+      "test_noise_is_filtered_and_reported_as_roughness",
+      "test_flat_reference_is_subtracted_not_assumed",
+      "test_uncalibrated_observer_says_so_and_halves_its_confidence",
+      "test_reference_can_be_learned_from_declared_flat_samples",
+      "test_stale_input_invalidates_rather_than_extrapolating",
+      "test_a_clock_that_does_not_advance_is_a_fault",
+      "test_missing_signal_is_explicit",
+      "test_estimate_carries_the_stamp_of_its_input",
+      "test_estimate_exposes_every_documented_field",
+      "test_level_cruise_demands_no_traction",
+      "test_a_steady_climb_proves_mu_is_at_least_tan_grade",
+      "test_a_gentle_climb_proves_nothing_beyond_the_a_priori_floor",
+      "test_saturated_acceleration_recovers_mu_directly",
+      "test_the_bound_only_ever_tightens",
+      "test_low_speed_is_rejected_not_guessed",
+      "test_turning_is_rejected_because_skid_steer_scrubs",
+      "test_an_off_band_normal_load_is_rejected",
+      "test_tau_above_the_declared_ceiling_is_rejected_not_clamped",
+      "test_the_bound_survives_a_sample_that_does_not",
+      "test_mu_hat_is_clamped_into_the_declared_range",
+      "test_ground_truth_is_a_different_type_with_no_shared_fields",
+      "test_the_observer_cannot_consume_ground_truth",
+      "test_schedule_gains_reproduces_b2s_original_arithmetic",
+      "test_b2_still_resolves_the_gains_it_always_did",
+      "_Route",
+      "_Sample",
+      "_sample",
+      "_params",
+      "_b3",
+      "test_b3_starts_in_fallback_and_it_is_exactly_b1",
+      "test_b3_engages_once_the_bound_is_established",
+      "test_b3_falls_back_when_the_estimate_goes_stale",
+      "test_b3_output_stays_inside_the_action_space",
+      "test_b3_gains_stay_inside_the_schedules_own_endpoints",
+      "test_b3_never_reads_a_privileged_field",
+      "test_default_schedule_also_drives_b3"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_mujoco_env_has_no_ros.py",
+    "lines": 83,
+    "imports": [
+      "builtins",
+      "coco_rl.mujoco_env",
+      "pytest",
+      "rclpy",
+      "sys"
+    ],
+    "definitions": [
+      "no_ros",
+      "test_mujoco_env_imports_without_ros",
+      "test_the_guard_itself_works",
+      "test_rclpy_is_not_in_sys_modules_after_import"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_env_helpers.py",
+    "lines": 155,
+    "imports": [
+      "coco_rl",
+      "coco_rl.reward",
+      "math",
+      "pytest",
+      "subprocess"
+    ],
+    "definitions": [
+      "test_sample_start_pose_within_ranges",
+      "test_sample_start_pose_varies",
+      "_q_from_rpy",
+      "test_quat_to_rp_identity_is_level",
+      "test_quat_to_rp_round_trips",
+      "test_quat_to_rp_is_yaw_invariant",
+      "test_quat_to_rp_pitch_is_clamped_at_the_singularity",
+      "test_ramp_pitch_exceeds_the_tip_threshold_only_when_steep",
+      "_FakeRun",
+      "test_gz_service_retries_until_true",
+      "test_gz_service_retries_a_timeout",
+      "test_gz_service_gives_up_after_attempts",
+      "test_gz_service_defaults_to_a_single_attempt",
+      "test_gz_service_does_not_retry_a_missing_binary"
+    ]
+  },
+  {
+    "path": "coco_rl/test/test_setup_env.py",
+    "lines": 345,
+    "imports": [
+      "os",
+      "pytest",
+      "shutil",
+      "subprocess"
+    ],
+    "definitions": [
+      "_prefix",
+      "_overlay",
+      "_source",
+      "_exported_by_bashrc",
+      "test_a_workspace_the_terminal_exported_does_not_survive",
+      "test_the_system_path_survives_the_sanitising",
+      "test_coco_preserve_path_keeps_a_deliberate_underlay",
+      "test_sourcing_twice_is_harmless",
+      "test_the_overlay_is_sourced_without_its_frozen_underlays",
+      "test_a_clean_shell_gets_ros_and_the_overlay_and_nothing_else",
+      "test_a_dangling_marker_is_named_when_the_env_is_sourced",
+      "test_a_healthy_overlay_sources_silently",
+      "_copy_repo_files",
+      "test_an_isolated_overlay_still_finds_moveit_in_the_source_workspace",
+      "test_the_overlays_own_moveit_prefix_wins",
+      "test_build_overlay_confines_discovery_to_this_repo",
+      "test_the_checker_runs_without_ros"
+    ]
+  },
+  {
+    "path": "custom_teleop/launch/teleop.launch.py",
+    "lines": 92,
+    "imports": [
+      "ament_index_python.packages",
+      "launch",
+      "launch.actions",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "os"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "custom_teleop/launch/arbiter.launch.py",
+    "lines": 86,
+    "imports": [
+      "launch",
+      "launch.actions",
+      "launch.substitutions",
+      "launch_ros.actions"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "custom_teleop/custom_teleop/cmd_vel_relay.py",
+    "lines": 94,
+    "imports": [
+      "geometry_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node"
+    ],
+    "definitions": [
+      "CmdVelRelay",
+      "main"
+    ]
+  },
+  {
+    "path": "custom_teleop/custom_teleop/__init__.py",
+    "lines": 13,
+    "imports": [],
+    "definitions": []
+  },
+  {
+    "path": "custom_teleop/custom_teleop/cmd_vel_arbiter.py",
+    "lines": 387,
+    "imports": [
+      "custom_teleop.cmd_vel_relay",
+      "geometry_msgs.msg",
+      "rclpy",
+      "rclpy.clock",
+      "rclpy.executors",
+      "rclpy.node",
+      "std_msgs.msg",
+      "time"
+    ],
+    "definitions": [
+      "normalise_mode",
+      "select_source",
+      "format_status",
+      "CmdVelArbiter",
+      "main"
+    ]
+  },
+  {
+    "path": "custom_teleop/custom_teleop/teleop_wheels_node.py",
+    "lines": 203,
+    "imports": [
+      "geometry_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "select",
+      "sys",
+      "termios",
+      "time",
+      "tty"
+    ],
+    "definitions": [
+      "key_bindings",
+      "TeleopWheels",
+      "main"
+    ]
+  },
+  {
+    "path": "custom_teleop/custom_teleop/approach_server.py",
+    "lines": 630,
+    "imports": [
+      "coco_config.robot",
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "threading",
+      "time"
+    ],
+    "definitions": [
+      "wrap",
+      "clamp",
+      "heading_cmd",
+      "crest_cmd",
+      "bearing_to",
+      "servo_cmd",
+      "align_cmd",
+      "creep_cmd",
+      "_status_value",
+      "format_status",
+      "ApproachServer",
+      "main"
+    ]
+  },
+  {
+    "path": "custom_teleop/custom_teleop/teleop_arm_node.py",
+    "lines": 215,
+    "imports": [
+      "coco_config.joint_limits",
+      "rclpy",
+      "rclpy.duration",
+      "rclpy.executors",
+      "rclpy.node",
+      "select",
+      "sys",
+      "termios",
+      "trajectory_msgs.msg",
+      "tty"
+    ],
+    "definitions": [
+      "TeleopArm",
+      "main"
+    ]
+  },
+  {
+    "path": "custom_teleop/test/test_copyright.py",
+    "lines": 23,
+    "imports": [
+      "ament_copyright.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_copyright"
+    ]
+  },
+  {
+    "path": "custom_teleop/test/test_cmd_vel_relay.py",
+    "lines": 149,
+    "imports": [
+      "builtin_interfaces.msg",
+      "custom_teleop.cmd_vel_arbiter",
+      "custom_teleop.cmd_vel_relay",
+      "geometry_msgs.msg",
+      "pytest",
+      "rclpy"
+    ],
+    "definitions": [
+      "_Capture",
+      "context",
+      "relay",
+      "_command",
+      "_ns",
+      "test_the_relay_replaces_the_stamp_with_its_own_clock",
+      "test_an_old_stamp_is_replaced_not_kept",
+      "test_only_the_stamp_changes",
+      "test_every_message_is_forwarded_exactly_once",
+      "test_the_gated_topic_is_not_the_raw_controller_topic",
+      "test_the_gated_topic_survives_ros_clean",
+      "test_the_relay_defaults_still_drive_the_controller",
+      "test_the_arbiter_reads_the_relay_by_default"
+    ]
+  },
+  {
+    "path": "custom_teleop/test/test_teleop_basic.py",
+    "lines": 89,
+    "imports": [
+      "custom_teleop",
+      "custom_teleop.teleop_arm_node",
+      "custom_teleop.teleop_wheels_node"
+    ],
+    "definitions": [
+      "test_import_teleop_wheels",
+      "test_import_teleop_arm",
+      "test_key_bindings_derive_from_the_step_sizes",
+      "test_default_key_bindings_match_the_default_steps",
+      "test_opposing_keys_cancel",
+      "test_clamp_bounds_and_passes_through",
+      "test_arm_limits_are_ordered_and_nonempty",
+      "test_home_pose_is_reachable_within_limits"
+    ]
+  },
+  {
+    "path": "custom_teleop/test/test_approach_server.py",
+    "lines": 335,
+    "imports": [
+      "coco_config.robot",
+      "custom_teleop",
+      "custom_teleop.approach_server",
+      "math",
+      "pytest"
+    ],
+    "definitions": [
+      "test_import",
+      "test_the_slope_is_not_mistaken_for_the_platform",
+      "test_the_platform_reads_as_level",
+      "test_the_crest_never_pivots_in_place",
+      "test_the_crest_steers_back_toward_its_start_heading",
+      "test_the_servo_steers_toward_the_target",
+      "test_the_servo_absorbs_the_climbs_residual_lateral_error",
+      "test_the_servo_slows_as_it_closes",
+      "test_the_servo_never_creeps_to_a_halt_short_of_the_handoff",
+      "test_the_servo_hands_over_before_perception_goes_blind",
+      "test_the_servo_correction_is_clamped",
+      "test_the_align_only_ever_turns_in_place",
+      "test_the_align_turns_toward_the_target",
+      "test_the_align_finishes_inside_the_lateral_budget",
+      "test_the_align_never_commands_a_rate_the_base_cannot_execute",
+      "test_the_align_rate_is_clamped",
+      "test_the_creep_stops_at_the_distance_it_was_given",
+      "test_the_creep_holds_its_heading",
+      "test_the_lead_centres_the_creeps_quantisation_error",
+      "test_the_stop_pose_clears_the_chassis_by_the_targets_radius",
+      "test_the_stop_is_the_same_for_every_thickness",
+      "test_the_creep_leg_is_the_same_for_every_target",
+      "test_bearing_sign_matches_ros_convention",
+      "test_heading_error_wraps_the_short_way",
+      "test_status_line_is_key_value_with_no_blank_fields"
+    ]
+  },
+  {
+    "path": "custom_teleop/test/test_cmd_vel_arbiter.py",
+    "lines": 253,
+    "imports": [
+      "custom_teleop",
+      "custom_teleop.cmd_vel_arbiter"
+    ],
+    "definitions": [
+      "ages",
+      "test_import",
+      "test_every_mode_normalises_to_itself",
+      "test_panel_says_auto_but_the_source_is_called_nav",
+      "test_mode_parsing_is_forgiving_about_case_and_whitespace",
+      "test_unknown_mode_is_rejected_not_guessed",
+      "test_teleop_preempts_every_mode",
+      "test_teleop_preempts_a_running_rl_climb",
+      "test_teleop_preempts_from_idle",
+      "test_releasing_the_stick_returns_control_to_the_mode",
+      "test_mode_selects_its_own_source",
+      "test_unselected_sources_are_ignored_even_when_fresh",
+      "test_idle_drives_nothing_autonomously",
+      "test_mode_teleop_with_no_teleop_publisher_stops",
+      "test_a_stale_source_stops_the_robot",
+      "test_a_source_that_never_published_is_not_fresh",
+      "test_the_timeout_boundary_is_inclusive",
+      "test_timeout_is_a_parameter_not_a_constant",
+      "test_default_timeout_rides_out_dropped_frames_but_beats_the_controller",
+      "test_status_reports_mode_active_and_every_source",
+      "test_status_says_none_rather_than_going_blank_when_stopped",
+      "test_status_reports_every_source_it_arbitrates",
+      "test_approach_is_a_mode_and_a_source",
+      "test_approach_mode_selects_the_approach_source",
+      "test_approach_does_not_leak_into_other_modes",
+      "test_teleop_preempts_the_approach_too",
+      "test_a_stale_approach_stops_the_robot",
+      "test_every_autonomous_mode_can_select_its_own_source",
+      "test_idle_drives_none_of_the_autonomous_sources"
+    ]
+  },
+  {
+    "path": "custom_teleop/test/test_pep257.py",
+    "lines": 23,
+    "imports": [
+      "ament_pep257.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_pep257"
+    ]
+  },
+  {
+    "path": "custom_teleop/test/test_flake8.py",
+    "lines": 25,
+    "imports": [
+      "ament_flake8.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_flake8"
+    ]
+  },
+  {
+    "path": "scripts/browser_check/live.py",
+    "lines": 339,
+    "imports": [
+      "asyncio",
+      "bidi",
+      "json",
+      "os",
+      "signal",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "act",
+      "localised"
+    ]
+  },
+  {
+    "path": "scripts/browser_check/wheel_recorder.py",
+    "lines": 107,
+    "imports": [
+      "geometry_msgs.msg",
+      "json",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "signal",
+      "std_msgs.msg",
+      "sys",
+      "tf2_ros",
+      "time"
+    ],
+    "definitions": [
+      "Recorder",
+      "main"
+    ]
+  },
+  {
+    "path": "scripts/browser_check/metrics_sampler.py",
+    "lines": 18,
+    "imports": [
+      "json",
+      "sys",
+      "time",
+      "urllib.request"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "scripts/browser_check/fakestack.py",
+    "lines": 123,
+    "imports": [
+      "base64",
+      "coco_web",
+      "importlib.util",
+      "math",
+      "os",
+      "struct",
+      "sys",
+      "time",
+      "tornado.ioloop"
+    ],
+    "definitions": [
+      "make_map",
+      "main"
+    ]
+  },
+  {
+    "path": "scripts/browser_check/stale_client_probe.py",
+    "lines": 59,
+    "imports": [
+      "base64",
+      "json",
+      "os",
+      "socket",
+      "sys",
+      "time",
+      "urllib.request"
+    ],
+    "definitions": [
+      "clients"
+    ]
+  },
+  {
+    "path": "scripts/browser_check/analyse_live.py",
+    "lines": 272,
+    "imports": [
+      "json",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "load_jsonl",
+      "at",
+      "rows",
+      "moving",
+      "window",
+      "stop_after"
+    ]
+  },
+  {
+    "path": "scripts/browser_check/lifecycle.py",
+    "lines": 136,
+    "imports": [
+      "asyncio",
+      "bidi",
+      "json",
+      "os",
+      "signal",
+      "socket",
+      "subprocess",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "stack",
+      "wait_port"
+    ]
+  },
+  {
+    "path": "scripts/browser_check/bidi.py",
+    "lines": 128,
+    "imports": [
+      "asyncio",
+      "base64",
+      "json",
+      "os",
+      "shutil",
+      "subprocess",
+      "time",
+      "tornado.websocket"
+    ],
+    "definitions": [
+      "Bidi",
+      "unwrap",
+      "launch"
+    ]
+  },
+  {
+    "path": "scripts/browser_check/safety_probe.py",
+    "lines": 63,
+    "imports": [
+      "asyncio",
+      "json",
+      "sys",
+      "tornado.websocket"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "scripts/browser_check/render.py",
+    "lines": 93,
+    "imports": [
+      "asyncio",
+      "bidi",
+      "json",
+      "os",
+      "signal",
+      "sys"
+    ],
+    "definitions": []
+  },
+  {
+    "path": "coco_web/launch/web.launch.py",
+    "lines": 131,
+    "imports": [
+      "ament_index_python.packages",
+      "launch",
+      "launch.actions",
+      "launch.conditions",
+      "launch.launch_description_sources",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "os"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "coco_web/launch/platform.launch.py",
+    "lines": 130,
+    "imports": [
+      "ament_index_python.packages",
+      "launch",
+      "launch.actions",
+      "launch.conditions",
+      "launch.launch_description_sources",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "os"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_frontend_frame.py",
+    "lines": 124,
+    "imports": [
+      "base64",
+      "coco_web",
+      "json",
+      "os",
+      "pathlib",
+      "pytest",
+      "shutil",
+      "struct",
+      "subprocess"
+    ],
+    "definitions": [
+      "_b64",
+      "_fixtures",
+      "test_the_page_decoder_agrees_with_the_python_encoder",
+      "test_every_broken_fixture_is_broken_for_python_too",
+      "test_the_page_loads_the_decoder_before_the_client"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_platform_server.py",
+    "lines": 1565,
+    "imports": [
+      "ast",
+      "asyncio",
+      "coco_web",
+      "json",
+      "logging",
+      "os",
+      "pytest",
+      "re",
+      "sensor_msgs.msg",
+      "socket",
+      "struct",
+      "threading",
+      "time",
+      "tornado.httpclient",
+      "tornado.httpserver",
+      "tornado.iostream",
+      "tornado.tcpclient",
+      "tornado.tcpserver",
+      "tornado.testing",
+      "tornado.websocket",
+      "types"
+    ],
+    "definitions": [
+      "_Logger",
+      "FakeNode",
+      "_image",
+      "Harness",
+      "_streams_in",
+      "_run",
+      "test_camera_reaches_only_the_client_that_subscribed_to_it",
+      "test_depth_reaches_only_the_client_that_subscribed_to_it",
+      "test_a_default_client_gets_lidar_but_neither_camera_nor_depth",
+      "test_unsubscribing_stops_the_stream_for_that_client_only",
+      "test_the_release_brief_isolation_scenario",
+      "test_an_unknown_stream_is_refused_and_changes_nothing",
+      "test_a_text_client_subscribed_to_camera_is_never_sent_binary",
+      "test_the_ros_camera_subscription_follows_viewer_demand",
+      "test_a_rosbridge_publish_frame_is_refused_and_publishes_nothing",
+      "test_a_drive_frame_cannot_name_a_topic",
+      "test_drive_is_clamped_before_it_reaches_the_node",
+      "test_a_second_client_cannot_drive_but_its_stop_is_honoured",
+      "test_the_last_client_leaving_stops_the_robot_and_not_before",
+      "test_a_clock_without_coco_is_not_ready_and_not_healthy",
+      "test_healthz_is_200_and_healthy_on_a_converged_coco",
+      "test_losing_the_lidar_degrades_health_but_keeps_healthz_200",
+      "test_the_launch_declared_components_reach_the_session",
+      "test_telemetry_carries_lifecycle_health_and_connection_separately",
+      "_ros_names",
+      "test_the_needle_list_can_see_something",
+      "test_no_topic_name_appears_in_anything_a_browser_receives",
+      "FakeVideoServer",
+      "_jpeg",
+      "test_the_mjpeg_view_is_relayed_under_an_alias_with_no_topic",
+      "test_an_alias_the_operator_did_not_configure_is_not_found",
+      "test_a_video_server_that_is_not_running_is_503_without_detail",
+      "test_a_slow_mjpeg_viewer_costs_one_part_not_the_stream",
+      "test_unsubscribing_telemetry_is_accepted_and_changes_nothing",
+      "test_the_keepalive_tornado_applies_is_the_one_configured",
+      "test_a_keepalive_tornado_would_rewrite_is_refused_at_startup",
+      "test_a_frame_the_encoder_refuses_costs_only_its_own_stream",
+      "_mission_line",
+      "test_the_whole_session_lifecycle_through_the_real_server",
+      "test_a_client_that_stays_behind_has_frames_dropped_not_queued",
+      "_shrink",
+      "test_buffered_bytes_sees_a_client_that_stopped_reading",
+      "test_a_slow_browser_is_bounded_and_cannot_starve_stop",
+      "test_a_client_that_floods_without_reading_is_disconnected_and_stopped",
+      "test_each_client_is_told_its_own_drops",
+      "test_the_telemetry_tick_carries_this_clients_own_delivery",
+      "test_disconnect_releases_the_subscription_and_stops_the_robot",
+      "_boundary_stub",
+      "test_a_padded_colour_row_is_read_by_its_step_at_the_ros_boundary",
+      "test_a_padded_big_endian_depth_row_is_read_correctly_at_the_boundary"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_session.py",
+    "lines": 676,
+    "imports": [
+      "coco_web",
+      "inspect",
+      "itertools",
+      "json",
+      "pytest"
+    ],
+    "definitions": [
+      "_bring_up",
+      "test_a_new_session_is_starting",
+      "test_a_new_session_has_every_component",
+      "test_partial_bringup_is_degraded_not_starting",
+      "test_all_required_up_is_ready",
+      "test_optional_components_do_not_block_ready",
+      "test_a_component_going_down_leaves_ready",
+      "test_stop_is_terminal",
+      "test_stop_drops_clients",
+      "test_unknown_components_are_tolerated",
+      "test_attach_and_detach_are_idempotent",
+      "test_health_is_503_until_ready",
+      "test_health_is_200_when_ready",
+      "test_health_distinguishes_starting_from_degraded",
+      "test_health_names_what_is_missing",
+      "test_session_dict_is_json_safe",
+      "test_sole_creates_once_and_returns_the_same_session",
+      "test_the_single_session_cap_is_enforced_not_assumed",
+      "test_drop_stops_and_removes",
+      "test_get_by_id",
+      "_ready_session",
+      "test_a_brand_new_session_is_created",
+      "test_a_partly_started_session_is_starting",
+      "test_a_converged_idle_session_is_ready",
+      "test_a_session_running_a_mission_is_running",
+      "test_the_lifecycle_cannot_be_assigned_around_its_edges",
+      "test_running_a_mission_does_not_change_readiness",
+      "test_losing_the_simulator_after_convergence_is_a_failure",
+      "test_losing_any_other_component_is_health_not_lifecycle",
+      "test_never_having_had_a_component_is_still_starting",
+      "test_stopping_is_reported_before_stopped",
+      "test_a_failed_session_that_is_stopped_is_stopped_with_its_reason",
+      "test_fail_on_a_ready_session_is_failed_not_ready",
+      "test_fail_on_a_new_session_is_failed_not_created",
+      "test_losing_everything_after_convergence_is_not_created",
+      "test_the_simulator_returning_restarts_through_starting",
+      "test_a_restart_waits_for_the_stack_to_converge_again",
+      "test_an_explicit_failure_needs_an_explicit_restart",
+      "test_a_restart_forgets_what_the_old_world_had",
+      "test_a_mission_reported_during_bring_up_is_applied_on_convergence",
+      "test_stopped_is_terminal_for_every_event",
+      "test_every_recorded_transition_is_a_declared_edge",
+      "test_the_edge_table_uses_only_the_locked_vocabulary",
+      "test_every_lifecycle_value_is_in_the_documented_set",
+      "test_connection_reports_the_simulator_coming_up",
+      "test_connection_distinguishes_simulator_up_from_robot_ready",
+      "test_connection_is_connected_when_everything_is_up",
+      "test_connection_reports_a_running_mission",
+      "test_connection_reports_an_error_after_a_component_is_lost",
+      "test_the_server_never_claims_connecting_or_disconnected",
+      "test_both_axes_ride_the_session_document",
+      "test_health_values_are_exactly_the_documented_three",
+      "test_health_and_lifecycle_are_different_enums",
+      "test_a_new_session_is_unhealthy_and_created",
+      "test_required_up_and_expected_up_is_healthy",
+      "test_required_up_but_no_lidar_is_degraded_not_unhealthy",
+      "test_ready_and_degraded_is_the_combination_one_enum_cannot_say",
+      "test_running_and_healthy_is_a_fetch_with_nothing_wrong",
+      "test_a_component_that_was_up_and_died_degrades_even_if_undeclared",
+      "test_an_undeclared_component_never_seen_does_not_degrade",
+      "test_a_missing_required_component_is_unhealthy_whatever_else_is_up",
+      "test_stopped_and_failed_sessions_are_unhealthy",
+      "test_healthz_is_200_exactly_when_health_is_not_unhealthy",
+      "test_health_rides_the_session_document_and_healthz",
+      "test_parse_expected_accepts_commas_and_spaces_and_drops_required",
+      "test_the_simulator_component_is_not_described_as_the_clock"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_web_assets.py",
+    "lines": 341,
+    "imports": [
+      "coco_web",
+      "importlib.util",
+      "launch.actions",
+      "launch_ros.actions",
+      "os",
+      "pytest",
+      "re",
+      "yaml"
+    ],
+    "definitions": [
+      "_read",
+      "app_js",
+      "index_html",
+      "test_the_client_names_no_ros_topic",
+      "test_the_client_sends_only_frames_the_server_parses",
+      "test_the_client_only_subscribes_to_real_streams",
+      "test_the_client_declares_binary_support",
+      "test_every_id_the_script_uses_exists_in_the_page",
+      "test_the_page_loads_the_script_and_the_stylesheet",
+      "test_the_browser_no_longer_owns_a_phase_list",
+      "test_the_page_does_not_invent_a_percentage",
+      "test_the_page_labels_depth_as_visualisation_not_navigation",
+      "test_play_mode_speaks_english_not_ros",
+      "test_the_server_supplies_operator_wording_for_every_state",
+      "style_css",
+      "test_the_hidden_attribute_always_wins",
+      "_z_index",
+      "test_stop_stacks_above_the_not_ready_curtain",
+      "test_the_joystick_cannot_escape_its_pad",
+      "test_the_page_has_a_liveness_watchdog",
+      "test_health_and_connection_are_two_chips",
+      "_platform_launch_entities",
+      "test_platform_launch_shows_the_depth_image_but_never_fuses_it",
+      "test_the_platforms_web_video_server_listens_on_loopback_only"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_lifecycle.py",
+    "lines": 58,
+    "imports": [
+      "coco_web",
+      "pytest"
+    ],
+    "definitions": [
+      "test_axes_are_independent",
+      "test_transition_requires_explicit_owner_policy",
+      "test_duplicate_transition_is_idempotent",
+      "test_backwards_or_wrong_axis_value_is_refused",
+      "test_policy_must_not_mix_health_and_lifecycle"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_streams.py",
+    "lines": 450,
+    "imports": [
+      "coco_web",
+      "pytest"
+    ],
+    "definitions": [
+      "test_a_new_client_gets_the_p01_default_set",
+      "test_the_expensive_streams_are_opt_in",
+      "test_subscribing_adds_without_dropping_the_defaults",
+      "test_unsubscribing_removes_only_what_was_named",
+      "test_telemetry_cannot_be_unsubscribed",
+      "test_binary_streams_need_declared_binary_support",
+      "test_declaring_binary_unlocks_the_stream",
+      "test_unknown_stream_names_are_reported",
+      "test_the_protocol_refuses_an_unknown_stream",
+      "test_unsubscribe_validates_the_same_way",
+      "test_unsubscribe_is_advertised",
+      "test_hello_defaults_to_no_binary",
+      "test_hello_accepts_declared_binary",
+      "test_hello_refuses_a_non_boolean_binary",
+      "test_set_stream_only_accepts_tunable_streams",
+      "test_set_stream_refuses_non_finite_numbers",
+      "test_an_over_limit_rate_is_clamped_not_refused",
+      "test_the_rate_cap_sits_below_the_sensor_rate",
+      "test_quality_and_scale_are_clamped_too",
+      "test_junk_config_falls_back_to_the_default",
+      "test_one_clients_rate_does_not_affect_another",
+      "test_a_stream_is_not_due_again_immediately",
+      "_Pending",
+      "test_a_second_frame_is_dropped_while_the_first_is_in_flight",
+      "test_a_dropped_frame_is_counted_so_the_client_can_be_told",
+      "test_a_stalled_socket_blocks_even_a_first_frame",
+      "test_the_buffer_bound_is_a_real_limit",
+      "test_the_subscription_document_is_json_safe",
+      "test_the_document_advertises_what_is_available",
+      "test_protocol_and_streams_agree_on_the_vocabulary",
+      "test_a_text_client_is_never_sent_a_binary_lidar_frame",
+      "test_a_binary_client_gets_the_frame_and_not_the_json_copy",
+      "test_unsubscribing_lidar_stops_both_forms",
+      "test_every_binary_capable_stream_is_gated_on_declared_support",
+      "test_binary_capable_is_a_superset_of_binary_only",
+      "test_every_stream_the_server_frames_is_binary_capable",
+      "_frame",
+      "test_a_default_text_client_sees_everything_it_did_before",
+      "test_a_binary_client_loses_only_the_duplicate_json_scan",
+      "test_unsubscribing_blanks_the_section_rather_than_removing_it",
+      "test_filtering_does_not_mutate_the_shared_frame",
+      "test_two_clients_in_one_tick_get_independent_views",
+      "test_no_subscription_passes_the_frame_through"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_binary_hardening.py",
+    "lines": 124,
+    "imports": [
+      "coco_web",
+      "json",
+      "math",
+      "pytest",
+      "struct"
+    ],
+    "definitions": [
+      "raw_frame",
+      "camera_header",
+      "test_bad_metadata_is_refused",
+      "test_required_metadata_is_required",
+      "test_sensor_payload_length_is_exact",
+      "test_lidar_payload_count_is_exact_even_for_legacy_frames",
+      "test_invalid_lidar_returns_do_not_crash_or_draw_near_obstacles",
+      "test_depth_range_cannot_be_inverted",
+      "test_extra_metadata_cannot_override_image_identity",
+      "test_metadata_cannot_name_ros_access",
+      "test_binary_input_requires_a_byte_buffer",
+      "test_payload_limit_is_enforced_before_copying"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_imaging_hardening.py",
+    "lines": 67,
+    "imports": [
+      "coco_web",
+      "numpy",
+      "pytest"
+    ],
+    "definitions": [
+      "test_bad_dimensions_raise_image_error",
+      "test_bad_scale_is_refused",
+      "test_rgb_row_padding_is_not_interpreted_as_pixels",
+      "test_depth_endianness_and_padding_are_honoured",
+      "test_invalid_row_stride_is_refused"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_copyright.py",
+    "lines": 23,
+    "imports": [
+      "ament_copyright.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_copyright"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_telemetry.py",
+    "lines": 405,
+    "imports": [
+      "coco_web",
+      "importlib.util",
+      "math",
+      "pathlib",
+      "pytest"
+    ],
+    "definitions": [
+      "test_parse_kv_line",
+      "test_parse_kv_line_tolerates_prose",
+      "test_parse_kv_line_on_junk",
+      "test_arbiter_status_reports_the_active_source",
+      "test_arbiter_dash_becomes_none_not_a_dash",
+      "test_arbiter_offline_when_nothing_was_heard",
+      "test_arbiter_keeps_the_raw_line",
+      "test_mission_state_active_flag",
+      "test_mission_state_does_not_invent_a_colour",
+      "test_mission_colour_comes_from_the_caller",
+      "test_mission_detail_still_aliases_the_reason",
+      "test_mission_state_carries_the_executives_own_fields",
+      "test_grasp_phase_survives_spaces_in_the_label",
+      "test_grasp_outcome_survives_spaces_too",
+      "test_grasp_lifted_is_a_bool_from_the_wire_digit",
+      "test_grasp_dash_becomes_none",
+      "test_grasp_offline_is_reported_as_offline",
+      "test_mission_terminal_states_are_not_active",
+      "test_mission_offline_is_not_active",
+      "test_mission_states_are_real_state_names",
+      "test_perception_status_found_and_seen",
+      "test_yaw_from_identity_quaternion_is_zero",
+      "test_yaw_quarter_turn",
+      "test_yaw_of_a_degenerate_quaternion_is_zero",
+      "test_pose_payload_shape",
+      "test_velocity_payload_shape",
+      "test_downsample_returns_the_requested_point_count",
+      "test_downsample_never_upsamples",
+      "test_downsample_keeps_the_nearest_return_in_each_bucket",
+      "test_downsample_drops_non_finite_and_out_of_range",
+      "test_downsample_of_an_empty_scan",
+      "test_downsample_reports_the_lidar_floor",
+      "test_downsample_angle_step_spans_the_original_arc",
+      "test_path_payload_passes_short_paths_through",
+      "test_path_payload_bounds_long_paths",
+      "test_path_payload_keeps_the_final_point",
+      "test_path_payload_of_an_empty_plan",
+      "pytest_approx",
+      "_close",
+      "test_compose_with_the_inverse_is_the_identity",
+      "test_before_amcl_the_odometry_pose_is_reported_and_labelled_odom",
+      "test_the_live_failure_draws_the_robot_where_it_is",
+      "test_the_correction_uses_the_odometry_at_the_amcl_stamp",
+      "test_the_odometry_history_is_bounded"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_safety.py",
+    "lines": 209,
+    "imports": [
+      "coco_web",
+      "inspect",
+      "math",
+      "pytest"
+    ],
+    "definitions": [
+      "test_no_allowlisted_topic_reaches_the_wheels",
+      "test_allowlist_and_wheel_topics_are_disjoint",
+      "test_the_only_velocity_topic_is_the_arbiter_input",
+      "test_the_arbiter_output_is_named_as_a_wheel_topic",
+      "test_wheel_topics_match_the_arbiter_default",
+      "test_assert_publish_safe_accepts_the_allowlist",
+      "test_assert_publish_safe_rejects_every_wheel_topic",
+      "test_assert_publish_safe_rejects_a_bad_parameter_override",
+      "test_assert_publish_safe_normalises_before_comparing",
+      "test_the_error_names_the_offending_topic",
+      "test_clamp_velocity",
+      "test_clamp_velocity_maps_nan_to_zero",
+      "test_clamp_velocity_bounds_infinity",
+      "test_clamp_velocity_maps_junk_to_zero",
+      "test_no_client_frame_accepts_a_topic_field",
+      "test_a_rosbridge_publish_frame_is_rejected",
+      "test_a_drive_frame_carrying_a_topic_is_rejected_not_ignored",
+      "test_decoded_drive_is_already_clamped"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_binary.py",
+    "lines": 338,
+    "imports": [
+      "coco_web",
+      "json",
+      "pytest",
+      "struct"
+    ],
+    "definitions": [
+      "_frame",
+      "test_a_frame_round_trips",
+      "test_the_header_names_its_own_stream",
+      "test_an_empty_payload_is_legal",
+      "test_the_length_field_is_big_endian",
+      "test_encoding_an_unknown_stream_is_refused",
+      "test_a_frame_without_the_magic_is_refused",
+      "test_a_frame_shorter_than_the_prefix_is_refused",
+      "test_an_empty_frame_is_refused",
+      "test_a_future_format_version_is_refused",
+      "test_a_header_length_past_the_buffer_is_refused",
+      "test_an_absurd_header_length_is_refused_before_slicing",
+      "test_a_non_json_header_is_refused",
+      "test_a_non_utf8_header_is_refused",
+      "test_a_header_that_is_not_an_object_is_refused",
+      "test_an_unknown_stream_id_is_refused",
+      "test_an_oversized_header_is_refused_at_encode_time",
+      "test_lidar_ranges_survive_the_millimetre_round_trip",
+      "test_a_lidar_no_return_is_zero_not_a_range",
+      "test_the_lidar_header_carries_everything_needed_to_plot_it",
+      "test_the_lidar_frame_is_far_smaller_than_its_json",
+      "test_an_out_of_range_reading_is_clamped_not_wrapped",
+      "test_an_empty_scan_frames_cleanly",
+      "test_drops_are_reported_in_the_next_frame",
+      "test_an_image_frame_carries_its_own_dimensions",
+      "test_a_depth_frame_carries_the_metre_range_it_mapped",
+      "test_no_frame_header_can_carry_a_topic"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_transport.py",
+    "lines": 162,
+    "imports": [
+      "asyncio",
+      "coco_web",
+      "coco_web.platform_server",
+      "json",
+      "tornado.testing",
+      "tornado.websocket",
+      "unittest.mock"
+    ],
+    "definitions": [
+      "TestTransport"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_streams_hardening.py",
+    "lines": 110,
+    "imports": [
+      "coco_web",
+      "concurrent.futures",
+      "pytest"
+    ],
+    "definitions": [
+      "test_invalid_update_is_atomic",
+      "test_constructor_validates_names",
+      "test_duplicate_membership_and_client_isolation",
+      "test_unknown_configuration_cannot_grow_state",
+      "test_disconnect_is_terminal_and_releases_references",
+      "test_slow_client_has_one_pending_write_per_stream",
+      "test_unsubscribe_resubscribe_does_not_bypass_inflight_bound",
+      "test_exact_buffer_limit_refuses_a_new_frame"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_protocol.py",
+    "lines": 258,
+    "imports": [
+      "coco_web",
+      "json",
+      "pytest"
+    ],
+    "definitions": [
+      "test_malformed_frames_are_refused_with_a_code",
+      "test_a_refusal_keeps_the_correlation_id",
+      "test_a_bad_id_type_is_refused",
+      "test_hello_accepts_the_current_version",
+      "test_hello_refuses_a_different_version",
+      "test_hello_without_a_version_assumes_the_current_one",
+      "test_client_name_is_truncated",
+      "test_drive_defaults_to_zero",
+      "test_drive_refuses_non_numeric_velocity",
+      "test_drive_refuses_nan_and_infinity",
+      "test_mode_translation",
+      "test_every_ui_mode_translates",
+      "test_unknown_mode_does_not_translate",
+      "test_select_target_uses_the_supplied_colour_table",
+      "test_fallback_colours_match_coco_config",
+      "test_mission_actions",
+      "test_mission_refuses_anything_else",
+      "test_nav_goal_accepts_a_reasonable_pose",
+      "test_nav_goal_refuses_junk",
+      "test_subscribe_accepts_known_streams_and_dedupes",
+      "test_subscribe_refuses_an_unknown_stream",
+      "test_welcome_advertises_the_contract",
+      "test_every_advertised_command_actually_decodes",
+      "test_encode_scrubs_non_finite_floats",
+      "test_error_frame_shape",
+      "test_telemetry_frame_carries_a_sequence_number"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_protocol_hardening.py",
+    "lines": 51,
+    "imports": [
+      "coco_web",
+      "json",
+      "pytest"
+    ],
+    "definitions": [
+      "test_ambiguous_or_unrepresentable_json_is_refused",
+      "test_only_existing_client_command_vocabulary_is_accepted",
+      "test_approved_commands_cannot_name_a_ros_target"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_pep257.py",
+    "lines": 23,
+    "imports": [
+      "ament_pep257.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_pep257"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_mission_hardening.py",
+    "lines": 60,
+    "imports": [
+      "coco_web",
+      "json",
+      "pytest"
+    ],
+    "definitions": [
+      "test_invalid_status_number_is_absent",
+      "test_fractional_retry_count_is_not_invented",
+      "test_transition_timestamp_uses_observed_elapsed_only"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_mjpeg.py",
+    "lines": 123,
+    "imports": [
+      "coco_web",
+      "pytest"
+    ],
+    "definitions": [
+      "_upstream",
+      "test_whole_parts_come_out_in_order",
+      "test_any_chunking_gives_the_same_parts",
+      "test_a_body_containing_the_boundary_is_not_split",
+      "test_the_boundary_string_does_not_matter",
+      "test_our_own_parts_parse_back",
+      "test_malformed_or_oversized_parts_are_refused",
+      "test_an_endless_header_is_refused_not_buffered",
+      "test_the_descriptor_names_an_alias_and_no_topic",
+      "test_only_the_loopback_request_carries_the_topic",
+      "test_the_upstream_status_line_is_read_or_refused",
+      "test_every_alias_maps_to_a_parameter_not_a_topic"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_imaging.py",
+    "lines": 292,
+    "imports": [
+      "coco_web",
+      "cv2",
+      "math",
+      "numpy",
+      "pytest",
+      "sys"
+    ],
+    "definitions": [
+      "_solid",
+      "_decoded",
+      "test_rgb8_is_converted_rather_than_passed_through",
+      "test_bgr8_is_left_alone",
+      "test_the_two_encodings_do_not_produce_the_same_bytes",
+      "test_an_unknown_encoding_raises_rather_than_guessing",
+      "test_a_short_buffer_is_refused_not_reshaped",
+      "test_the_encoded_frame_reports_its_own_size",
+      "test_scaling_down_shrinks_the_frame_and_the_reported_size",
+      "test_scale_never_enlarges",
+      "test_lower_quality_produces_fewer_bytes",
+      "test_a_real_sized_frame_is_small_enough_for_a_websocket",
+      "_depth",
+      "test_depth_renders_near_bright_and_far_dark",
+      "test_depth_reports_the_range_it_mapped",
+      "test_non_finite_depth_is_excluded_from_the_range",
+      "test_non_finite_depth_pixels_are_drawn_black",
+      "test_a_degenerate_depth_range_falls_back_rather_than_dividing_by_zero",
+      "test_an_all_invalid_depth_frame_falls_back_to_the_camera_clip",
+      "test_depth_refuses_a_colour_encoding",
+      "test_depth_refuses_a_short_buffer",
+      "test_the_default_depth_range_is_the_cameras_own_clip",
+      "test_imaging_does_not_import_ros"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_metrics.py",
+    "lines": 175,
+    "imports": [
+      "coco_web",
+      "json",
+      "pytest"
+    ],
+    "definitions": [
+      "test_a_rate_is_measured_over_a_real_interval",
+      "test_a_rate_is_not_recomputed_inside_the_window",
+      "test_byte_rates_are_measured_too",
+      "test_in_and_out_rates_are_reported_separately",
+      "test_drops_are_counted_per_stream",
+      "test_mission_latency_measures_arrival_to_delivery",
+      "test_mission_latency_is_none_before_anything_arrives",
+      "test_a_repeated_state_line_does_not_restart_the_clock",
+      "test_the_peak_socket_buffer_is_remembered",
+      "test_cpu_is_a_share_of_one_core",
+      "test_cpu_never_goes_negative",
+      "test_the_document_is_json_safe",
+      "test_every_stream_appears_in_the_document",
+      "test_metrics_adds_no_new_dependency"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_mission_view.py",
+    "lines": 479,
+    "imports": [
+      "ast",
+      "coco_web",
+      "os",
+      "pytest"
+    ],
+    "definitions": [
+      "_mission_states_path",
+      "_executive_constants",
+      "_resolve",
+      "_executive_expression",
+      "test_the_executive_module_is_where_we_think_it_is",
+      "test_every_state_name_matches_the_executive",
+      "test_terminal_states_match_the_executive",
+      "test_nominal_order_matches_the_executive_chain",
+      "test_every_reason_matches_the_executive",
+      "test_no_executive_reason_is_missing_from_our_copy",
+      "test_the_world_to_map_offset_is_derivable_from_coco_config",
+      "test_each_state_maps_to_a_platform_phase",
+      "test_every_state_is_translatable",
+      "test_every_state_has_operator_wording",
+      "test_operator_abort_is_stopped_not_failed",
+      "test_a_real_failure_is_failed",
+      "test_recovery_keeps_the_phase_it_is_recovering_from",
+      "test_recovery_without_a_previous_state_does_not_crash",
+      "test_an_unknown_state_has_no_phase_rather_than_a_wrong_one",
+      "test_step_is_the_executives_own_ordinal",
+      "test_off_path_states_report_no_step",
+      "_fields",
+      "test_all_twelve_fields_survive_normalisation",
+      "test_the_dash_sentinel_becomes_none_not_a_dash",
+      "test_colour_comes_from_the_argument_not_the_line",
+      "test_the_transition_is_derived_on_one_clock_only",
+      "test_wall_time_is_never_subtracted_from_ros_time",
+      "test_no_transition_is_derived_unless_the_clocks_are_one_clock",
+      "test_no_receipt_means_no_timestamps_rather_than_epoch_zero",
+      "test_a_receipt_earlier_than_elapsed_derives_nothing",
+      "test_active_is_false_in_idle_and_both_terminal_states",
+      "test_recovering_is_flagged_separately_from_the_phase",
+      "test_an_unknown_reason_is_marked_unknown_not_printed_as_prose",
+      "test_a_known_reason_is_marked_known",
+      "test_an_empty_line_is_offline_with_every_key_present",
+      "test_no_percentage_is_reported"
+    ]
+  },
+  {
+    "path": "coco_web/test/test_flake8.py",
+    "lines": 25,
+    "imports": [
+      "ament_flake8.main",
+      "pytest"
+    ],
+    "definitions": [
+      "test_flake8"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/__init__.py",
+    "lines": 15,
+    "imports": [],
+    "definitions": []
+  },
+  {
+    "path": "coco_web/coco_web/protocol.py",
+    "lines": 521,
+    "imports": [
+      "coco_web",
+      "json",
+      "math"
+    ],
+    "definitions": [
+      "ProtocolError",
+      "mode_to_arbiter",
+      "_unique_object",
+      "_finite",
+      "decode",
+      "_v_hello",
+      "_v_ping",
+      "_v_drive",
+      "_v_stop",
+      "_v_set_mode",
+      "_v_select_target",
+      "_v_mission",
+      "_v_nav_goal",
+      "_v_set_arm",
+      "_v_set_gripper",
+      "_v_streams",
+      "_v_set_stream",
+      "welcome",
+      "subscription",
+      "ack",
+      "error",
+      "pong",
+      "telemetry",
+      "map_frame",
+      "encode",
+      "_scrub"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/mission_view.py",
+    "lines": 396,
+    "imports": [
+      "math"
+    ],
+    "definitions": [
+      "_value",
+      "_number",
+      "_integer",
+      "phase_for",
+      "step_for",
+      "_stamp",
+      "timing",
+      "normalise"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/binary.py",
+    "lines": 360,
+    "imports": [
+      "json",
+      "math",
+      "struct"
+    ],
+    "definitions": [
+      "BinaryFrameError",
+      "_integer",
+      "_finite",
+      "_unique_object",
+      "_validate",
+      "_buffer",
+      "encode_frame",
+      "decode_frame",
+      "lidar_frame",
+      "image_frame"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/mjpeg.py",
+    "lines": 179,
+    "imports": [
+      "urllib.parse"
+    ],
+    "definitions": [
+      "MjpegError",
+      "descriptor",
+      "upstream_request",
+      "part",
+      "response_status",
+      "MjpegParser"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/session.py",
+    "lines": 639,
+    "imports": [
+      "coco_web",
+      "collections",
+      "dataclasses",
+      "time",
+      "uuid"
+    ],
+    "definitions": [
+      "parse_expected",
+      "ComponentState",
+      "SimulationSession",
+      "SessionRegistry"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/streams.py",
+    "lines": 456,
+    "imports": [
+      "time"
+    ],
+    "definitions": [
+      "known",
+      "_validated_names",
+      "clamp",
+      "filter_telemetry",
+      "Subscription"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/safety.py",
+    "lines": 182,
+    "imports": [],
+    "definitions": [
+      "UnsafeTopicError",
+      "is_wheel_topic",
+      "_normalise",
+      "assert_publish_safe",
+      "allowlisted_topics",
+      "clamp_velocity",
+      "_clamp"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/metrics.py",
+    "lines": 197,
+    "imports": [
+      "os",
+      "time"
+    ],
+    "definitions": [
+      "Meter",
+      "Metrics"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/lifecycle.py",
+    "lines": 59,
+    "imports": [],
+    "definitions": [
+      "validate_axes",
+      "validate_transition"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/telemetry.py",
+    "lines": 389,
+    "imports": [
+      "coco_web",
+      "math"
+    ],
+    "definitions": [
+      "parse_kv_line",
+      "parse_arbiter_status",
+      "parse_mission_state",
+      "parse_grasp_status",
+      "_present",
+      "_span",
+      "parse_perception_status",
+      "yaw_from_quaternion",
+      "pose_payload",
+      "_wrap",
+      "compose2d",
+      "invert2d",
+      "MapPoseTracker",
+      "pose2d_payload",
+      "velocity_payload",
+      "downsample_scan",
+      "path_payload",
+      "_as_float"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/platform_server.py",
+    "lines": 1773,
+    "imports": [
+      "ament_index_python.packages",
+      "base64",
+      "coco_config.joint_limits",
+      "coco_config.robot",
+      "coco_web",
+      "geometry_msgs.msg",
+      "json",
+      "nav_msgs.msg",
+      "os",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "threading",
+      "time",
+      "tornado.ioloop",
+      "tornado.iostream",
+      "tornado.tcpclient",
+      "tornado.web",
+      "tornado.websocket",
+      "trajectory_msgs.msg"
+    ],
+    "definitions": [
+      "_sensor_qos",
+      "_latched_qos",
+      "CocoWebNode",
+      "video_streams",
+      "Platform",
+      "ControlSocket",
+      "HealthHandler",
+      "SessionHandler",
+      "MetricsHandler",
+      "VideoHandler",
+      "keepalive_settings",
+      "make_app",
+      "_default_web_root",
+      "main",
+      "_spin"
+    ]
+  },
+  {
+    "path": "coco_web/coco_web/imaging.py",
+    "lines": 207,
+    "imports": [
+      "cv2",
+      "math",
+      "numpy"
+    ],
+    "definitions": [
+      "ImageError",
+      "_layout",
+      "_array",
+      "_settings",
+      "_scaled",
+      "_jpeg",
+      "colour_jpeg",
+      "depth_jpeg"
+    ]
+  },
+  {
+    "path": "coco_mission/launch/mission.launch.py",
+    "lines": 474,
+    "imports": [
+      "ament_index_python.packages",
+      "coco_sim.episode",
+      "launch",
+      "launch.actions",
+      "launch.conditions",
+      "launch.launch_description_sources",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "launch_ros.parameter_descriptions",
+      "os"
+    ],
+    "definitions": [
+      "resolve_mission_episode",
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "coco_mission/scripts/localization_monitor.py",
+    "lines": 422,
+    "imports": [
+      "coco_config.robot",
+      "dataclasses",
+      "geometry_msgs.msg",
+      "localization_health",
+      "math",
+      "nav_msgs.msg",
+      "os",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "std_msgs.msg",
+      "sys",
+      "tf2_ros"
+    ],
+    "definitions": [
+      "yaw_of",
+      "format_status",
+      "LocalizationMonitor",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_mission/scripts/mission_states.py",
+    "lines": 1658,
+    "imports": [
+      "coco_config.robot",
+      "math"
+    ],
+    "definitions": [
+      "parse_kv",
+      "missing",
+      "WorkerView",
+      "Observation",
+      "Request",
+      "Event",
+      "Directive",
+      "StateContract",
+      "MissionPlan",
+      "MissionMachine",
+      "_wrap",
+      "_as_float"
+    ]
+  },
+  {
+    "path": "coco_mission/scripts/mission_executive.py",
+    "lines": 978,
+    "imports": [
+      "action_msgs.msg",
+      "argparse",
+      "coco_config.robot",
+      "geometry_msgs.msg",
+      "math",
+      "mission_states",
+      "nav2_msgs.action",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.clock",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "sys",
+      "tf2_ros",
+      "time"
+    ],
+    "definitions": [
+      "_finite",
+      "yaw_of",
+      "_region_note",
+      "MissionExecutive",
+      "parse_args",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_mission/scripts/mission_hud.py",
+    "lines": 641,
+    "imports": [
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.clock",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "rviz_2d_overlay_msgs.msg",
+      "sensor_msgs.msg",
+      "std_msgs.msg",
+      "time"
+    ],
+    "definitions": [
+      "parse_kv",
+      "age_of",
+      "format_age",
+      "is_live",
+      "pose_sigmas",
+      "format_localisation",
+      "format_distance",
+      "format_goal",
+      "quat_pitch",
+      "format_pitch",
+      "format_mission_state",
+      "format_recovery",
+      "render",
+      "MissionHud",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_mission/scripts/localization_health.py",
+    "lines": 748,
+    "imports": [
+      "coco_config.robot",
+      "dataclasses",
+      "numpy",
+      "scipy.ndimage"
+    ],
+    "definitions": [
+      "Observation",
+      "Thresholds",
+      "Envelope",
+      "Verdict",
+      "classify",
+      "on_mapped_ground",
+      "Persistence",
+      "LikelihoodField",
+      "score_scan"
+    ]
+  },
+  {
+    "path": "coco_mission/test/test_mission_cmd_vel_path.py",
+    "lines": 276,
+    "imports": [
+      "ast",
+      "importlib.util",
+      "launch",
+      "launch.actions",
+      "launch.utilities",
+      "launch_ros.actions",
+      "launch_ros.utilities",
+      "os",
+      "pytest"
+    ],
+    "definitions": [
+      "_web_includes_chosen",
+      "_tree",
+      "_includes",
+      "_code_strings",
+      "_resolved",
+      "_mission_arbiter_value",
+      "TestMissionCommandPath",
+      "_platform_expected_components",
+      "test_the_mission_stack_declares_what_the_platform_should_expect"
+    ]
+  },
+  {
+    "path": "coco_mission/test/test_mission_hud.py",
+    "lines": 333,
+    "imports": [
+      "math",
+      "mission_hud",
+      "os",
+      "pytest",
+      "sys"
+    ],
+    "definitions": [
+      "TestParseKv",
+      "TestFreshness",
+      "TestPoseSigmas",
+      "TestLocalisation",
+      "TestDistance",
+      "TestGoal",
+      "TestRender",
+      "TestPitch"
+    ]
+  },
+  {
+    "path": "coco_mission/test/test_mission_regions.py",
+    "lines": 253,
+    "imports": [
+      "coco_config.robot",
+      "coco_sim.episode",
+      "importlib.util",
+      "json",
+      "launch",
+      "launch.actions",
+      "mission_executive",
+      "mission_states",
+      "os",
+      "pytest",
+      "rclpy",
+      "std_msgs.msg",
+      "sys"
+    ],
+    "definitions": [
+      "test_a_plan_with_no_map_is_the_frozen_table",
+      "test_a_plan_climbs_the_lane_of_the_episode_region",
+      "test_an_explicit_lane_still_wins",
+      "test_the_align_check_measures_against_the_episode_lane",
+      "mapped",
+      "plain",
+      "test_the_executive_defaults_to_the_frozen_table",
+      "test_the_executive_takes_its_lane_from_the_region_map",
+      "test_a_colour_change_keeps_the_region_map",
+      "test_an_illegal_region_map_refuses_to_start",
+      "test_the_executive_still_publishes_no_velocity",
+      "_launch_module",
+      "_resolve",
+      "test_the_launch_file_changes_nothing_by_default",
+      "test_randomized_launch_hides_the_region_assignment",
+      "test_a_manifest_sets_the_requested_colour",
+      "test_randomized_robot_inputs_do_not_change_with_target_region",
+      "test_only_the_executive_and_ramp_driver_are_given_the_map",
+      "test_the_manifest_never_reaches_a_launch_configuration"
+    ]
+  },
+  {
+    "path": "coco_mission/test/test_localization_health.py",
+    "lines": 749,
+    "imports": [
+      "coco_config.robot",
+      "localization_health",
+      "math",
+      "os",
+      "pytest",
+      "sys"
+    ],
+    "definitions": [
+      "limits",
+      "healthy_obs",
+      "test_thresholds_cannot_be_constructed_without_naming_the_numbers",
+      "test_classify_without_thresholds_is_unknown_not_a_guess",
+      "test_the_envelope_is_not_a_threshold_object",
+      "test_only_consistent_is_truthy",
+      "test_consistent_is_truthy",
+      "test_a_stale_pose_is_stale",
+      "test_healthy_map_odom_age_is_negative_and_passes",
+      "test_map_odom_age_past_zero_is_stale",
+      "test_no_pose_at_all_is_unknown",
+      "test_freshness_is_checked_before_the_consistency_test",
+      "test_off_mapped_ground_is_unknown_not_inconsistent",
+      "test_the_gate_runs_before_the_consistency_test",
+      "test_too_few_beams_inside_the_map_is_unknown",
+      "test_a_missing_scan_score_is_unknown",
+      "test_the_measured_healthy_median_is_consistent",
+      "test_the_measured_diverged_median_is_inconsistent",
+      "test_either_half_of_the_consistency_test_can_fire_alone",
+      "test_the_detail_names_the_numbers_that_decided_it",
+      "test_covariance_alone_never_changes_the_verdict",
+      "test_the_recorded_divergence_dip_is_below_every_healthy_floor",
+      "test_the_latency_record_prefers_the_scan_signal_in_both_runs",
+      "test_the_scan_signal_detection_latency_replicated",
+      "test_the_run_lists_partition_the_envelope",
+      "test_healthy2_is_recorded_as_a_FAILED_leg",
+      "test_the_failure_that_was_not_injected_gets_no_covariance_warning",
+      "test_no_ground_truth_field_can_enter_the_observation",
+      "test_the_module_imports_without_ros",
+      "test_every_verdict_constant_is_listed",
+      "TestTheChosenThreshold",
+      "drive",
+      "TestPersistence",
+      "TestTheHoldWindows",
+      "TestTheMappedGroundGate",
+      "TestTheLikelihoodField",
+      "TestScoreScan",
+      "TestTheAmclAgeCheckIsOff",
+      "TestExperiment1"
+    ]
+  },
+  {
+    "path": "coco_mission/test/test_mission_executive.py",
+    "lines": 389,
+    "imports": [
+      "geometry_msgs.msg",
+      "mission_executive",
+      "mission_states",
+      "nav_msgs.msg",
+      "os",
+      "pytest",
+      "rclpy",
+      "rclpy.clock",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "sys"
+    ],
+    "definitions": [
+      "context",
+      "node",
+      "TestItConstructs",
+      "TestCmdVelInvariant",
+      "TestInterfaces",
+      "TestObservation",
+      "TestOperatorControl",
+      "TestRunning",
+      "TestWiring",
+      "TestPureHelpers"
+    ]
+  },
+  {
+    "path": "coco_mission/test/test_mission_states.py",
+    "lines": 1398,
+    "imports": [
+      "localization_health",
+      "math",
+      "mission_hud",
+      "mission_states",
+      "os",
+      "pytest",
+      "re",
+      "sys"
+    ],
+    "definitions": [
+      "Harness",
+      "run_to_climb",
+      "run_nominal",
+      "TestContractTable",
+      "TestNominalSequence",
+      "TestEntryConditions",
+      "TestSuccessVerification",
+      "TestArrivalConsistency",
+      "TestFailureTimeoutAndRetry",
+      "TestRecovery",
+      "TestSafety",
+      "TestDeterminism",
+      "TestPublication",
+      "TestHudRendering",
+      "TestLocalizationRecovery"
+    ]
+  },
+  {
+    "path": "coco_mission/test/test_autonomous_search.py",
+    "lines": 240,
+    "imports": [
+      "mission_states",
+      "os",
+      "pytest",
+      "sys",
+      "test_mission_states"
+    ],
+    "definitions": [
+      "search_harness",
+      "answer",
+      "test_search_order_is_colour_independent_and_ignores_episode_map",
+      "test_first_region_acquires_only_a_matching_perceived_pose",
+      "test_invalid_observation_cannot_trigger_approach_or_grasp",
+      "test_old_frame_and_point_from_different_frames_are_rejected",
+      "test_pose_outside_candidate_corridor_is_rejected",
+      "test_region_corridor_uses_world_lateral_pose_after_off_centre_climb",
+      "test_neighbouring_lane_is_rejected_even_if_point_is_robot_centred",
+      "test_region_corridor_accounts_for_robot_heading",
+      "test_absent_first_region_descends_and_reaches_second",
+      "test_perception_unavailable_times_out_with_explicit_reason",
+      "test_invalid_depth_times_out_as_rejected_depth",
+      "test_search_exhaustion_records_failure_and_descends",
+      "test_all_four_regions_are_tried_before_search_failure"
+    ]
+  },
+  {
+    "path": "coco_mission/test/test_localization_monitor.py",
+    "lines": 314,
+    "imports": [
+      "localization_health",
+      "localization_monitor",
+      "mission_states",
+      "os",
+      "pytest",
+      "rclpy",
+      "rclpy.qos",
+      "sys"
+    ],
+    "definitions": [
+      "context",
+      "node",
+      "TestItConstructs",
+      "TestItPublishesAndDoesNotDrive",
+      "TestTheScanSubscription",
+      "TestTheLatchesAreCoherent",
+      "TestTheStatusLine",
+      "TestTheLaunchAndCleanupWiring"
+    ]
+  },
+  {
+    "path": "gazebo_models/test_integration/test_sim_bringup.launch.py",
+    "lines": 171,
+    "imports": [
+      "ament_index_python.packages",
+      "controller_manager_msgs.srv",
+      "launch",
+      "launch.actions",
+      "launch_testing",
+      "launch_testing.actions",
+      "os",
+      "pytest",
+      "rclpy",
+      "rclpy.node",
+      "sys",
+      "tf2_ros",
+      "time",
+      "unittest",
+      "verify_sim"
+    ],
+    "definitions": [
+      "generate_test_description",
+      "TestSimBringup",
+      "TestShutdown"
+    ]
+  },
+  {
+    "path": "gazebo_models/launch/nav.launch.py",
+    "lines": 136,
+    "imports": [
+      "ament_index_python.packages",
+      "launch",
+      "launch.actions",
+      "launch.conditions",
+      "launch.launch_description_sources",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "os"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "gazebo_models/launch/slam.launch.py",
+    "lines": 91,
+    "imports": [
+      "ament_index_python.packages",
+      "launch",
+      "launch.actions",
+      "launch.events",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "launch_ros.event_handlers",
+      "launch_ros.events.lifecycle",
+      "lifecycle_msgs.msg",
+      "os"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "gazebo_models/launch/depth_cloud.launch.py",
+    "lines": 107,
+    "imports": [
+      "launch",
+      "launch.actions",
+      "launch.substitutions",
+      "launch_ros.actions"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "gazebo_models/launch/rsp.launch.py",
+    "lines": 99,
+    "imports": [
+      "ament_index_python.packages",
+      "launch",
+      "launch.actions",
+      "launch.conditions",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "os",
+      "xacro"
+    ],
+    "definitions": [
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "gazebo_models/launch/full_world_robo.launch.py",
+    "lines": 392,
+    "imports": [
+      "ament_index_python.packages",
+      "coco_config.robot",
+      "coco_sim.backends",
+      "coco_sim.episode",
+      "hashlib",
+      "launch",
+      "launch.actions",
+      "launch.launch_description_sources",
+      "launch.substitutions",
+      "launch_ros.actions",
+      "math",
+      "os",
+      "shlex",
+      "xacro"
+    ],
+    "definitions": [
+      "launch_setup",
+      "generate_launch_description"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/climb_check.py",
+    "lines": 152,
+    "imports": [
+      "argparse",
+      "coco_config.robot",
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "_pitch",
+      "run",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/magnet_release.py",
+    "lines": 143,
+    "imports": [
+      "argparse",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "std_msgs.msg",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "MagnetRelease",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/traverse_demo.py",
+    "lines": 567,
+    "imports": [
+      "action_msgs.msg",
+      "argparse",
+      "coco_config.robot",
+      "math",
+      "nav2_msgs.action",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.executors",
+      "rclpy.node",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "TraverseDemo",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/pitch_probe.py",
+    "lines": 190,
+    "imports": [
+      "argparse",
+      "coco_rl.ramp_env",
+      "csv",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "std_msgs.msg",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "field_of",
+      "hud_pitch_of",
+      "PitchProbe",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/nav_params_overlay.py",
+    "lines": 899,
+    "imports": [
+      "argparse",
+      "ast",
+      "copy",
+      "hashlib",
+      "json",
+      "math",
+      "os",
+      "re",
+      "subprocess",
+      "sys",
+      "yaml"
+    ],
+    "definitions": [
+      "ExperimentError",
+      "sha256_file",
+      "_same_kind",
+      "merge_overrides",
+      "_only_keys",
+      "load_experiment",
+      "load_perception",
+      "apply_perception",
+      "perception_launch_args",
+      "check_perception_sources",
+      "verify_perception",
+      "perception_live_checks",
+      "tour_goals",
+      "apply_goals",
+      "resolve",
+      "lookup_param",
+      "expected_value",
+      "parse_param_get",
+      "values_match",
+      "verify_live",
+      "parse_topic_info",
+      "parse_topic_endpoints",
+      "check_command_path",
+      "parse_arbiter_status",
+      "check_topology",
+      "verify_topology",
+      "verify_goals",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/verify_sim.py",
+    "lines": 172,
+    "imports": [
+      "coco_config.robot",
+      "geometry_msgs.msg",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "rosgraph_msgs.msg",
+      "sensor_msgs.msg",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "_checks",
+      "Probe",
+      "run_checks",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/nav_round_trip.py",
+    "lines": 248,
+    "imports": [
+      "action_msgs.msg",
+      "argparse",
+      "coco_config.robot",
+      "math",
+      "nav2_msgs.action",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "RoundTrip",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/gen_ramp.py",
+    "lines": 127,
+    "imports": [
+      "argparse",
+      "math",
+      "struct"
+    ],
+    "definitions": [
+      "_tri",
+      "wedge_triangles",
+      "write_stl",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/plan_compare.py",
+    "lines": 219,
+    "imports": [
+      "argparse",
+      "coco_config.robot",
+      "geometry_msgs.msg",
+      "math",
+      "nav2_msgs.action",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "to_map",
+      "path_length",
+      "PlanCompare",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/nav_bench.py",
+    "lines": 1981,
+    "imports": [
+      "action_msgs.msg",
+      "argparse",
+      "bisect",
+      "collections",
+      "csv",
+      "dwb_msgs.msg",
+      "geometry_msgs.msg",
+      "json",
+      "math",
+      "nav2_msgs.action",
+      "nav2_msgs.msg",
+      "nav_msgs.msg",
+      "numpy",
+      "os",
+      "rcl_interfaces.msg",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.parameter",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "sys",
+      "threading",
+      "time"
+    ],
+    "definitions": [
+      "apply_goal_overrides",
+      "apply_waypoint_insert",
+      "apply_through_poses",
+      "apply_leg_timeouts",
+      "yaw_of",
+      "ang_norm",
+      "Series",
+      "cloud_summary",
+      "NavBench",
+      "costmap_cross_section",
+      "summarise",
+      "write_trace",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/scripts/map_drive.py",
+    "lines": 218,
+    "imports": [
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "time"
+    ],
+    "definitions": [
+      "steer",
+      "WaypointDriver",
+      "main"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_nav_params_overlay.py",
+    "lines": 504,
+    "imports": [
+      "json",
+      "nav_params_overlay",
+      "os",
+      "pytest",
+      "subprocess",
+      "sys",
+      "yaml"
+    ],
+    "definitions": [
+      "_write",
+      "test_override_changes_only_the_named_value",
+      "test_unknown_key_is_an_error_not_a_silent_no_op",
+      "test_safety_gate_requires_explicit_permission",
+      "test_structure_and_type_changes_are_refused",
+      "test_experiment_rejects_unknown_keys_and_unsafe_names",
+      "test_resolve_without_overrides_points_at_the_base_file",
+      "test_resolve_with_overrides_writes_a_merged_file",
+      "test_committed_experiments_resolve_against_the_shipped_params",
+      "test_tour_goals_reads_the_committed_tour_without_ros",
+      "_entry_corridor_centre",
+      "test_entry_corridor_centre_moves_only_the_entry_goal",
+      "test_goal_args_are_what_nav_bench_parses",
+      "test_bad_goals_are_refused_before_launch",
+      "_legs",
+      "test_verify_goals_accepts_the_requested_goal",
+      "test_verify_goals_catches_an_override_that_was_not_driven",
+      "test_lookup_param_handles_dots_inside_keys",
+      "test_every_live_check_resolves_in_the_shipped_params",
+      "test_values_match",
+      "test_parse_param_get",
+      "test_parse_topic_info_returns_publishers_not_subscribers",
+      "test_parse_topic_info_sees_two_publishers",
+      "test_parse_arbiter_status",
+      "test_check_topology_accepts_each_wired_path",
+      "test_check_topology_catches_a_miswired_path",
+      "test_topology_a_check_has_a_positive_control",
+      "test_topology_defaults_to_a_and_normalises",
+      "test_bad_topology_is_refused_before_launch",
+      "test_baseline_topology_b_differs_from_baseline_only_in_topology",
+      "test_wheel_topic_is_the_one_the_arbiter_publishes",
+      "_endpoints",
+      "test_the_chain_covers_every_link_to_the_relay_output",
+      "test_parse_topic_endpoints_splits_and_deduplicates",
+      "test_check_command_path_accepts_the_fixed_wiring",
+      "test_check_command_path_catches_the_cmd_vel_nav_loop",
+      "test_check_command_path_has_a_positive_control",
+      "test_check_command_path_names_an_unknown_monitor_peer",
+      "test_check_command_path_rejects_a_smoother_bypass"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_rviz_configs.py",
+    "lines": 297,
+    "imports": [
+      "PIL",
+      "math",
+      "os",
+      "pytest",
+      "yaml"
+    ],
+    "definitions": [
+      "load",
+      "displays",
+      "topic_of",
+      "test_config_is_valid_yaml_with_a_view",
+      "test_mission_views_are_fixed_on_map",
+      "test_coco_robot_config_is_left_alone",
+      "test_best_effort_publishers_have_best_effort_subscribers",
+      "test_latched_publishers_have_transient_local_subscribers",
+      "test_goal_display_does_not_use_goal_pose",
+      "test_particle_cloud_uses_the_nav2_plugin",
+      "test_debug_view_offers_every_topic_the_clean_view_does",
+      "test_clean_view_keeps_every_diagnostic_display_present",
+      "test_clean_view_enables_the_mission_hierarchy",
+      "test_debug_view_enables_its_diagnostics",
+      "test_only_the_debug_view_docks_an_image_pane",
+      "test_clean_view_is_near_top_down_and_map_oriented",
+      "test_both_mission_views_focus_on_the_centre_of_the_map",
+      "test_every_config_the_launch_file_can_name_exists"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_gen_ramp.py",
+    "lines": 114,
+    "imports": [
+      "gen_ramp",
+      "math",
+      "os",
+      "pytest",
+      "struct",
+      "sys"
+    ],
+    "definitions": [
+      "_verts",
+      "test_exactly_eight_facets",
+      "test_driving_surface_matches_requested_angle",
+      "test_foot_is_flush_with_the_ground",
+      "test_summit_height_is_run_times_tan",
+      "test_bounds_are_run_by_width_by_rise",
+      "test_normals_are_unit_length",
+      "test_written_stl_round_trips",
+      "test_committed_curriculum_meshes_exist_and_are_correct"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_ros_clean_scope.py",
+    "lines": 206,
+    "imports": [
+      "os",
+      "pytest",
+      "re",
+      "subprocess",
+      "sys",
+      "time",
+      "uuid"
+    ],
+    "definitions": [
+      "_spawn",
+      "_visible",
+      "_would_kill",
+      "decoys",
+      "test_the_sweep_still_sees_a_coco_simulator",
+      "test_the_sweep_leaves_an_unrelated_simulator_alone",
+      "test_no_pattern_matches_a_bare_gz_sim",
+      "platform_decoy",
+      "test_the_sweep_kills_an_orphaned_platform_server",
+      "test_the_platform_pattern_is_bracketed",
+      "test_the_platform_pattern_does_not_match_the_launch_file_name"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_episode_spawning.py",
+    "lines": 204,
+    "imports": [
+      "coco_sim.backends",
+      "coco_sim.episode",
+      "importlib.util",
+      "json",
+      "launch",
+      "launch.actions",
+      "launch_ros.actions",
+      "os",
+      "pytest"
+    ],
+    "definitions": [
+      "_module",
+      "_declared",
+      "_run",
+      "_argv",
+      "_target_spawns",
+      "_magnets",
+      "test_the_episode_switch_defaults_to_fixed",
+      "test_the_launch_file_still_has_one_opaque_setup",
+      "test_default_traverse_spawns_the_fixed_episode_exactly",
+      "test_no_traverse_spawns_no_targets_at_any_grade",
+      "test_an_episode_without_the_platform_is_refused",
+      "test_an_episode_spawns_its_manifest",
+      "test_colours_moves_targets_off_the_fixed_lanes",
+      "test_the_spawned_manifest_is_recorded",
+      "test_a_recorded_manifest_is_spawned_exactly",
+      "test_a_manifest_for_another_grade_is_refused",
+      "test_a_manifest_that_breaks_the_envelope_is_refused"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_perception_experiments.py",
+    "lines": 331,
+    "imports": [
+      "copy",
+      "importlib.util",
+      "nav_params_overlay",
+      "os",
+      "pytest",
+      "re",
+      "sys",
+      "yaml"
+    ],
+    "definitions": [
+      "_yaml",
+      "_diff",
+      "test_the_two_arms_differ_only_in_perception",
+      "test_baseline_resolves_to_the_shipped_file_byte_for_byte",
+      "test_fusion_changes_only_the_local_voxel_layer",
+      "test_fusion_leaves_safety_global_obstacle_and_inflation_untouched",
+      "test_fusion_keeps_the_lidar_and_adds_the_depth_source",
+      "test_shipped_local_voxel_layer_is_lidar_only",
+      "_load_launch",
+      "test_the_depth_source_is_the_depth_cloud_launch_output",
+      "test_the_depth_cloud_is_computed_from_the_existing_bridged_camera",
+      "test_the_depth_cloud_is_half_resolution_nearest_neighbour",
+      "test_the_depth_cloud_is_off_unless_asked_for",
+      "test_ros_clean_sweeps_what_depth_cloud_starts",
+      "_endpoints",
+      "test_check_perception_sources_accepts_a_delivering_fusion",
+      "test_check_perception_sources_catches_a_blind_fusion",
+      "test_check_perception_sources_baseline_runs_no_depth_cloud",
+      "test_the_robot_still_carries_one_camera_and_one_lidar",
+      "test_live_readback_proves_which_sources_loaded",
+      "test_bad_perception_is_refused",
+      "test_integer_heights_are_written_as_doubles",
+      "test_perception_cannot_overwrite_an_existing_block",
+      "test_perception_and_overrides_on_the_same_layer_are_refused",
+      "test_experiments_without_perception_are_unchanged"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_steer.py",
+    "lines": 105,
+    "imports": [
+      "map_drive",
+      "math",
+      "os",
+      "pytest",
+      "sys"
+    ],
+    "definitions": [
+      "test_straight_ahead_drives_without_steering",
+      "test_distance_is_euclidean_and_yaw_independent",
+      "test_target_to_the_left_turns_positive",
+      "test_target_to_the_right_turns_negative",
+      "test_heading_error_wraps_the_short_way",
+      "test_directly_behind_turns_at_the_clamp_and_does_not_drive",
+      "test_angular_velocity_is_clamped",
+      "test_forward_motion_gated_on_heading_error",
+      "test_arrive_radius_is_smaller_than_one_cruise_step"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_nav2_params_guard.py",
+    "lines": 157,
+    "imports": [
+      "math",
+      "os",
+      "yaml"
+    ],
+    "definitions": [
+      "_params",
+      "_node",
+      "test_local_costmap_cost_scaling_factor_is_the_validated_65",
+      "test_global_costmap_inflation_is_unchanged",
+      "test_navigate_through_poses_uses_the_multi_pose_tree",
+      "test_base_obstacle_scale_is_not_the_rejected_value",
+      "test_goal_tolerances_are_not_widened",
+      "test_collision_monitor_safety_gates_are_at_baseline",
+      "test_amcl_resamples_every_update",
+      "_inscribed_radius",
+      "test_apothem_model_matches_the_c2nav0_measurement",
+      "test_local_costmap_inscribed_radius_exceeds_polygonstop_radius",
+      "test_local_costmap_robot_radius_is_the_c2nav48_value",
+      "test_global_costmap_robot_radius_is_unchanged_by_c2nav48"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_cmd_vel_wiring.py",
+    "lines": 466,
+    "imports": [
+      "ament_index_python.packages",
+      "ast",
+      "custom_teleop.cmd_vel_arbiter",
+      "custom_teleop.cmd_vel_relay",
+      "geometry_msgs.msg",
+      "importlib.util",
+      "launch",
+      "launch.actions",
+      "launch_ros.actions",
+      "launch_ros.utilities",
+      "os",
+      "pytest",
+      "rclpy",
+      "rclpy.executors",
+      "time",
+      "yaml"
+    ],
+    "definitions": [
+      "_load",
+      "_arbiter_launch_path",
+      "resolved_node_parameters",
+      "relay_output",
+      "arbiter_nav_topic",
+      "TestLaunchWiring",
+      "_bringup_cmd_vel_remaps",
+      "_topic",
+      "TestNav2Chain",
+      "_domain",
+      "Graph",
+      "fixed",
+      "looped",
+      "_drive",
+      "TestLiveGraph",
+      "TestTheOldLoopIsDetected"
+    ]
+  },
+  {
+    "path": "gazebo_models/test/test_no_turtlebot_dependency.py",
+    "lines": 259,
+    "imports": [
+      "ament_index_python.packages",
+      "ast",
+      "glob",
+      "importlib.util",
+      "os",
+      "pytest",
+      "re",
+      "xml.etree.ElementTree",
+      "yaml"
+    ],
+    "definitions": [
+      "_files",
+      "_declared",
+      "_strings",
+      "test_the_repository_has_packages",
+      "test_no_package_declares_a_turtlebot_dependency",
+      "test_no_launch_file_names_a_turtlebot_package",
+      "test_no_build_file_names_a_turtlebot_package",
+      "_walk",
+      "test_no_config_value_names_a_turtlebot_package",
+      "test_every_package_a_launch_file_looks_up_is_declared",
+      "_load_gz_sim",
+      "_load_checker",
+      "_stale_prefix",
+      "ros_prefix",
+      "gz_sim",
+      "test_one_dangling_marker_kills_the_gz_launch",
+      "test_a_prefix_with_no_marker_is_harmless",
+      "test_a_dangling_marker_shadowed_by_a_good_one_is_harmless"
+    ]
+  },
+  {
+    "path": "coco_config/test/test_base_matches_urdf.py",
+    "lines": 250,
+    "imports": [
+      "coco_config.robot",
+      "pathlib",
+      "pytest",
+      "re"
+    ],
+    "definitions": [
+      "_xacro_property",
+      "_controller_value",
+      "_wheel_joint_origins",
+      "test_the_parsers_find_something",
+      "test_wheel_radius_matches_both_sources",
+      "test_wheel_width_and_mass_match_the_xacro",
+      "test_wheel_separation_matches_the_controller",
+      "test_wheel_separation_matches_the_joint_geometry",
+      "test_wheelbase_matches_the_joint_geometry",
+      "test_chassis_mass_matches_the_xacro",
+      "test_the_separation_multiplier_is_recorded",
+      "_all_link_masses",
+      "test_the_mass_parser_does_not_run_past_a_self_closing_link",
+      "test_total_mass_matches_the_sum_of_urdf_links",
+      "test_the_non_wheel_masses_are_accounted_for_individually",
+      "test_ground_clearance_derives_from_the_chassis_box_and_the_axles",
+      "test_axle_height_matches_the_wheel_joint_origins"
+    ]
+  },
+  {
+    "path": "coco_config/test/test_regions.py",
+    "lines": 127,
+    "imports": [
+      "coco_config.robot",
+      "pytest"
+    ],
+    "definitions": [
+      "test_one_region_per_frozen_lane",
+      "test_regions_are_ordered_by_y_and_named_stably",
+      "test_every_region_is_on_the_crest_at_the_frozen_row",
+      "test_a_region_carries_no_colour",
+      "test_the_fixed_map_is_todays_colour_to_lane_table",
+      "test_lookups_refuse_unknown_names_rather_than_defaulting",
+      "test_no_region_map_is_exactly_the_frozen_lookup",
+      "test_a_region_map_moves_the_lane_with_the_colour",
+      "test_an_unknown_colour_resolves_to_none_with_or_without_a_map",
+      "test_the_wire_form_round_trips_and_is_canonical",
+      "test_blank_text_is_no_map",
+      "test_an_illegal_map_is_refused_not_half_applied",
+      "test_the_wire_form_carries_no_coordinate"
+    ]
+  },
+  {
+    "path": "coco_config/test/test_limits_match_urdf.py",
+    "lines": 91,
+    "imports": [
+      "coco_config.joint_limits",
+      "pathlib",
+      "pytest",
+      "re"
+    ],
+    "definitions": [
+      "_urdf_limits",
+      "test_urdf_parse_finds_the_arm_joints",
+      "test_limits_match_urdf",
+      "test_gripper_joints_are_exact_mirrors"
+    ]
+  },
+  {
+    "path": "coco_config/test/test_targets.py",
+    "lines": 200,
+    "imports": [
+      "coco_config.robot",
+      "math",
+      "pathlib",
+      "pytest",
+      "re"
+    ],
+    "definitions": [
+      "_urdf_text",
+      "_joint_origin",
+      "test_colours_and_models_are_unique",
+      "test_lanes_are_distinct_and_evenly_spaced",
+      "test_every_lane_fits_on_the_platform",
+      "test_the_target_row_is_on_the_platform",
+      "test_lane_lookup_round_trips",
+      "test_an_unknown_colour_is_none_not_a_default_lane",
+      "test_a_y_between_lanes_is_not_claimed_by_either",
+      "test_every_target_has_a_magnet_in_the_urdf",
+      "test_camera_pose_matches_the_urdf_chain",
+      "test_the_camera_is_deliberately_unpitched",
+      "test_camera_intrinsics_match_the_urdf_sensor"
+    ]
+  },
+  {
+    "path": "coco_config/test/test_topic_rate.py",
+    "lines": 118,
+    "imports": [
+      "coco_config.diagnostics_node",
+      "pytest"
+    ],
+    "definitions": [
+      "_FakeClock",
+      "_FakeNode",
+      "_probe",
+      "test_subscribes_to_the_topic_it_is_given",
+      "test_rate_is_zero_before_two_messages",
+      "test_rate_matches_a_steady_stream",
+      "test_rate_uses_intervals_not_message_count",
+      "test_old_samples_fall_out_of_the_window",
+      "test_age_is_infinite_until_the_first_message",
+      "test_age_tracks_the_most_recent_message"
+    ]
+  },
+  {
+    "path": "coco_config/test/test_reach.py",
+    "lines": 293,
+    "imports": [
+      "coco_config.robot",
+      "pathlib",
+      "pytest",
+      "sys"
+    ],
+    "definitions": [
+      "x_max",
+      "window",
+      "test_the_verified_grasp_pose_is_still_reachable",
+      "test_the_approach_is_reachable_from_the_hover_above_it",
+      "test_the_reach_bound_is_the_hover_height_not_the_grasp_height",
+      "test_both_ends_of_the_descent_are_reachable_at_the_stop_pose",
+      "test_the_stop_pose_is_centred_in_its_window",
+      "test_every_target_has_a_usable_approach_window",
+      "test_the_window_clears_the_arms_self_collision_bound",
+      "test_every_colour_shares_one_window",
+      "test_the_demo_approach_x_lies_inside_every_window",
+      "test_targets_standing_on_the_platform_would_be_unreachable",
+      "test_the_grasp_band_sits_below_the_top_of_the_target",
+      "test_the_hover_clears_the_top_of_the_target"
+    ]
+  },
+  {
+    "path": "coco_config/test/test_joint_limits.py",
+    "lines": 55,
+    "imports": [
+      "coco_config.joint_limits"
+    ],
+    "definitions": [
+      "test_mid_range_joint_is_clear_of_limits",
+      "test_joint_near_upper_limit_warns",
+      "test_joint_near_lower_limit_warns",
+      "test_joint_beyond_limit_is_flagged_and_margin_goes_negative",
+      "test_unknown_joints_are_ignored",
+      "test_margin_is_symmetric_about_range_centre"
+    ]
+  },
+  {
+    "path": "coco_config/coco_config/__init__.py",
+    "lines": 13,
+    "imports": [],
+    "definitions": []
+  },
+  {
+    "path": "coco_config/coco_config/joint_limits.py",
+    "lines": 53,
+    "imports": [],
+    "definitions": [
+      "limit_margin"
+    ]
+  },
+  {
+    "path": "coco_config/coco_config/joint_state_monitor.py",
+    "lines": 108,
+    "imports": [
+      "coco_config.joint_limits",
+      "diagnostic_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "sensor_msgs.msg"
+    ],
+    "definitions": [
+      "JointStateMonitor",
+      "main"
+    ]
+  },
+  {
+    "path": "coco_config/coco_config/robot.py",
+    "lines": 599,
+    "imports": [
+      "math",
+      "typing"
+    ],
+    "definitions": [
+      "Target",
+      "target_by_colour",
+      "lane_for_colour",
+      "colour_for_lane",
+      "TargetRegion",
+      "region_by_id",
+      "region_for_lane",
+      "lane_for_region",
+      "format_region_map",
+      "parse_region_map",
+      "resolve_lane",
+      "approach_window",
+      "approach_stop_x",
+      "camera_intrinsics",
+      "nominal_hz",
+      "is_best_effort"
+    ]
+  },
+  {
+    "path": "coco_config/coco_config/diagnostics_node.py",
+    "lines": 162,
+    "imports": [
+      "coco_config.robot",
+      "diagnostic_msgs.msg",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "sensor_msgs.msg"
+    ],
+    "definitions": [
+      "TopicRate",
+      "DiagnosticsNode",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav43_perception.py",
+    "lines": 1247,
+    "imports": [
+      "argparse",
+      "coco_config",
+      "json",
+      "lifecycle_msgs.msg",
+      "lifecycle_msgs.srv",
+      "math",
+      "matplotlib",
+      "matplotlib.patches",
+      "matplotlib.pyplot",
+      "nav2_msgs.msg",
+      "nav2_msgs.srv",
+      "nav_msgs.msg",
+      "numpy",
+      "os",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.qos",
+      "rosidl_runtime_py.utilities",
+      "sensor_msgs.msg",
+      "sensor_msgs_py.point_cloud2",
+      "signal",
+      "subprocess",
+      "sys",
+      "tf2_ros",
+      "threading",
+      "time",
+      "yaml"
+    ],
+    "definitions": [
+      "ramp_height",
+      "_rect_dist",
+      "geometry_distance",
+      "names",
+      "geometry_height",
+      "classify",
+      "yaw_of",
+      "quat_matrix",
+      "compose2d",
+      "inverse2d",
+      "world_from_odom",
+      "grid_marks",
+      "voxel_top",
+      "pinhole_convention",
+      "projection_stats",
+      "_zstats",
+      "mark_summary",
+      "sensor_fov",
+      "true_range",
+      "_ros_imports",
+      "_stamp",
+      "Probe",
+      "_rate",
+      "_monotonic",
+      "_cloud_xyz",
+      "_depth_array",
+      "_xacro_expectations",
+      "sensor_checks",
+      "sensor_checks_mode",
+      "rates_mode",
+      "_load_yaml",
+      "capture_params",
+      "teleport",
+      "capture_mode",
+      "render_pose",
+      "plot_capture",
+      "_proc_cpu",
+      "record_mode",
+      "record_summary",
+      "selftest",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m5_analysis.py",
+    "lines": 326,
+    "imports": [
+      "argparse",
+      "coco_config.robot",
+      "csv",
+      "math",
+      "numpy",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "state_of",
+      "load",
+      "mask_state",
+      "stats",
+      "fmt",
+      "report_states",
+      "report_leg",
+      "compare",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav49_clearance.py",
+    "lines": 214,
+    "imports": [
+      "argparse",
+      "csv",
+      "json",
+      "math",
+      "os",
+      "re",
+      "sys",
+      "xml.etree.ElementTree"
+    ],
+    "definitions": [
+      "cylinder_from_world",
+      "_f",
+      "episodes",
+      "one_run",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/map_audit.py",
+    "lines": 305,
+    "imports": [
+      "PIL",
+      "argparse",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "scipy"
+    ],
+    "definitions": [
+      "load",
+      "bbox_world",
+      "main",
+      "figure"
+    ]
+  },
+  {
+    "path": "docs/data/c2m51_plot.py",
+    "lines": 175,
+    "imports": [
+      "__future__",
+      "argparse",
+      "csv",
+      "math",
+      "matplotlib",
+      "matplotlib.patches",
+      "matplotlib.pyplot",
+      "os"
+    ],
+    "definitions": [
+      "num",
+      "load",
+      "runs_of",
+      "verdict_band",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav42_cmdpath.py",
+    "lines": 533,
+    "imports": [
+      "argparse",
+      "bisect",
+      "csv",
+      "geometry_msgs.msg",
+      "importlib.util",
+      "json",
+      "math",
+      "nav2_msgs.action",
+      "nav2_msgs.msg",
+      "nav_msgs.msg",
+      "os",
+      "rclpy",
+      "rclpy.action",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.parameter",
+      "rclpy.qos",
+      "sensor_msgs.msg",
+      "signal",
+      "std_msgs.msg",
+      "sys",
+      "threading",
+      "time"
+    ],
+    "definitions": [
+      "_topology_module",
+      "wrap",
+      "last_at",
+      "build_trace",
+      "build_events",
+      "_f",
+      "angular_authority",
+      "smoother_evidence",
+      "summarise_rows",
+      "write_csv",
+      "mode_summarise",
+      "run_live",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m51_inject.py",
+    "lines": 216,
+    "imports": [
+      "argparse",
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.parameter",
+      "rclpy.qos",
+      "std_msgs.msg",
+      "sys"
+    ],
+    "definitions": [
+      "yaw_of",
+      "state_of",
+      "Injector",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav44_m6_report.py",
+    "lines": 257,
+    "imports": [
+      "collections",
+      "csv",
+      "json",
+      "math",
+      "os",
+      "re",
+      "sys"
+    ],
+    "definitions": [
+      "read",
+      "kv",
+      "grep",
+      "state_durations",
+      "polygon_stop",
+      "amcl_final",
+      "report",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m2_plots.py",
+    "lines": 258,
+    "imports": [
+      "json",
+      "math",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "numpy",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "load",
+      "cell",
+      "rows",
+      "summary",
+      "_save",
+      "plot_grade_error",
+      "plot_controller_comparison",
+      "plot_xtrack",
+      "plot_success",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m2_analysis.py",
+    "lines": 255,
+    "imports": [
+      "json",
+      "math",
+      "numpy",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "rows",
+      "summ",
+      "_f",
+      "episode_accounting",
+      "control_table",
+      "estimator_table",
+      "failure_clusters",
+      "b3_vs_b1_seeds",
+      "decision",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav39_tour_report.py",
+    "lines": 505,
+    "imports": [
+      "argparse",
+      "csv",
+      "glob",
+      "importlib.util",
+      "json",
+      "math",
+      "os",
+      "statistics",
+      "sys"
+    ],
+    "definitions": [
+      "_load_geom",
+      "load_trace_xy",
+      "load_run_dir",
+      "load_c2nav5",
+      "true_min_clearance",
+      "load_trace_rows",
+      "stop_holds",
+      "immobile_from_start_s",
+      "inherits_stop_hold",
+      "leg_detail",
+      "_median",
+      "leg_stats",
+      "arm_table",
+      "_fmt",
+      "render",
+      "mode_report",
+      "mode_legs",
+      "mode_selftest"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav43_compare.py",
+    "lines": 271,
+    "imports": [
+      "argparse",
+      "importlib.util",
+      "json",
+      "os",
+      "re",
+      "statistics",
+      "sys"
+    ],
+    "definitions": [
+      "_load",
+      "_count_lines",
+      "_verdicts",
+      "run_record",
+      "_med",
+      "arm_record",
+      "_frac",
+      "render",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav43_ramp.py",
+    "lines": 114,
+    "imports": [
+      "importlib.util",
+      "json",
+      "math",
+      "numpy",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "analyse",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav46_matrix_report.py",
+    "lines": 278,
+    "imports": [
+      "json",
+      "os",
+      "re",
+      "subprocess",
+      "sys"
+    ],
+    "definitions": [
+      "sub_report",
+      "read",
+      "last_float",
+      "num",
+      "one_run",
+      "matrix",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/p03d_evidence.py",
+    "lines": 132,
+    "imports": [
+      "collections",
+      "json",
+      "math",
+      "pathlib",
+      "re",
+      "sys"
+    ],
+    "definitions": [
+      "observed_regions",
+      "perception_counts",
+      "point_samples",
+      "summarize",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav7_geom.py",
+    "lines": 361,
+    "imports": [
+      "csv",
+      "json",
+      "math",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "rect",
+      "dist_to_box",
+      "nearest",
+      "hdr",
+      "identify_obstacle",
+      "standoff_at_goal",
+      "corridor",
+      "candidates",
+      "sanity",
+      "track",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav45_gate_report.py",
+    "lines": 197,
+    "imports": [
+      "csv",
+      "json",
+      "math",
+      "os",
+      "re",
+      "sys"
+    ],
+    "definitions": [
+      "read",
+      "grep",
+      "rows",
+      "fnum",
+      "first_stop",
+      "classify",
+      "report",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav44_poserec.py",
+    "lines": 113,
+    "imports": [
+      "argparse",
+      "csv",
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.parameter",
+      "rclpy.qos",
+      "std_msgs.msg",
+      "sys",
+      "threading",
+      "time"
+    ],
+    "definitions": [
+      "yaw_of",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/p03c_matrix_report.py",
+    "lines": 235,
+    "imports": [
+      "argparse",
+      "coco_config.robot",
+      "json",
+      "math",
+      "os",
+      "re"
+    ],
+    "definitions": [
+      "_json",
+      "_text",
+      "_field",
+      "row",
+      "markdown",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m2_sanity.py",
+    "lines": 298,
+    "imports": [
+      "coco_config.robot",
+      "coco_rl",
+      "coco_rl.baselines",
+      "coco_rl.lateral",
+      "coco_rl.sensor_model",
+      "coco_rl.terrain_observer",
+      "coco_rl.yard_env",
+      "coco_sim.yard",
+      "math",
+      "numpy",
+      "sys"
+    ],
+    "definitions": [
+      "check",
+      "observe_drive",
+      "sanity_flat",
+      "sanity_ramp",
+      "sanity_friction",
+      "sanity_controller",
+      "sanity_tip",
+      "_v1_untouched",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m4_localisation.py",
+    "lines": 439,
+    "imports": [
+      "argparse",
+      "coco_config.robot",
+      "csv",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "re",
+      "std_msgs.msg",
+      "subprocess",
+      "sys",
+      "time",
+      "vision_msgs.msg"
+    ],
+    "definitions": [
+      "gz_service",
+      "gz_world_poses",
+      "quat_conj_rotate",
+      "world_to_base",
+      "Harness",
+      "median",
+      "measure",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m2_live_gate.py",
+    "lines": 280,
+    "imports": [
+      "coco_rl.baselines",
+      "coco_rl.terrain_observer",
+      "coco_sim.yard",
+      "csv",
+      "diagnostic_msgs.msg",
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "std_msgs.msg",
+      "sys"
+    ],
+    "definitions": [
+      "true_grade_deg",
+      "LiveGate",
+      "_Route",
+      "_Sample",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m4_analysis.py",
+    "lines": 348,
+    "imports": [
+      "argparse",
+      "arm_ik",
+      "coco_config.robot",
+      "csv",
+      "math",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "parse_status",
+      "as_float",
+      "ik_verdict",
+      "truth_verdict",
+      "median",
+      "mm",
+      "load",
+      "classify",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m51_hrec.py",
+    "lines": 290,
+    "imports": [
+      "argparse",
+      "csv",
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.parameter",
+      "rclpy.qos",
+      "std_msgs.msg",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "yaw_of",
+      "parse_kv",
+      "state_of",
+      "HealthRecorder",
+      "summarise",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m4_grasp.py",
+    "lines": 447,
+    "imports": [
+      "argparse",
+      "c2m4_localisation",
+      "coco_config.robot",
+      "csv",
+      "geometry_msgs.msg",
+      "math",
+      "nav_msgs.msg",
+      "os",
+      "rclpy",
+      "rclpy.node",
+      "rclpy.qos",
+      "std_msgs.msg",
+      "std_srvs.srv",
+      "sys",
+      "time"
+    ],
+    "definitions": [
+      "parse_kv",
+      "tail_value",
+      "GraspRun",
+      "target_z",
+      "target_xy",
+      "run",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav41_topology.py",
+    "lines": 626,
+    "imports": [
+      "argparse",
+      "glob",
+      "importlib.util",
+      "json",
+      "os",
+      "statistics",
+      "sys",
+      "tempfile"
+    ],
+    "definitions": [
+      "_load_report",
+      "_f",
+      "monitor_authority",
+      "speeds",
+      "stop_breach",
+      "bypass_source",
+      "iter_legs",
+      "run_topology",
+      "summarise",
+      "arm",
+      "render",
+      "mode_compare",
+      "mode_selftest",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2m5_locrec.py",
+    "lines": 705,
+    "imports": [
+      "PIL",
+      "action_msgs.msg",
+      "argparse",
+      "collections",
+      "csv",
+      "geometry_msgs.msg",
+      "math",
+      "nav2_msgs.msg",
+      "nav_msgs.msg",
+      "numpy",
+      "os",
+      "rclpy",
+      "rclpy.clock",
+      "rclpy.duration",
+      "rclpy.executors",
+      "rclpy.node",
+      "rclpy.parameter",
+      "rclpy.qos",
+      "scipy.ndimage",
+      "sensor_msgs.msg",
+      "std_msgs.msg",
+      "sys",
+      "tf2_ros",
+      "time",
+      "yaml"
+    ],
+    "definitions": [
+      "yaw_of",
+      "wrap",
+      "state_of",
+      "LikelihoodField",
+      "RateWindow",
+      "LocRecorder",
+      "show_topology",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/isaac_foundation/isaac_smoke5.py",
+    "lines": 111,
+    "imports": [
+      "faulthandler",
+      "isaacsim",
+      "isaacsim.core.api",
+      "isaacsim.core.api.objects",
+      "isaacsim.core.utils.extensions",
+      "numpy",
+      "omni.usd",
+      "os",
+      "rclpy",
+      "std_msgs.msg",
+      "sys",
+      "time",
+      "traceback"
+    ],
+    "definitions": [
+      "stamp"
+    ]
+  },
+  {
+    "path": "docs/data/isaac_foundation/isaac_smoke6.py",
+    "lines": 87,
+    "imports": [
+      "faulthandler",
+      "isaacsim",
+      "isaacsim.core.api",
+      "isaacsim.core.api.objects",
+      "numpy",
+      "omni.usd",
+      "os",
+      "sys",
+      "time",
+      "traceback"
+    ],
+    "definitions": [
+      "stamp"
+    ]
+  },
+  {
+    "path": "docs/data/isaac_foundation/isaac_smoke4.py",
+    "lines": 127,
+    "imports": [
+      "faulthandler",
+      "isaacsim",
+      "isaacsim.core.api",
+      "isaacsim.core.api.objects",
+      "isaacsim.core.utils.extensions",
+      "numpy",
+      "omni.graph.core",
+      "omni.usd",
+      "os",
+      "rclpy",
+      "std_msgs.msg",
+      "sys",
+      "time",
+      "traceback"
+    ],
+    "definitions": [
+      "stamp"
+    ]
+  },
+  {
+    "path": "docs/data/isaac_foundation/isaac_smoke3.py",
+    "lines": 70,
+    "imports": [
+      "faulthandler",
+      "isaacsim",
+      "isaacsim.core.api",
+      "isaacsim.core.api.objects",
+      "numpy",
+      "os",
+      "sys",
+      "time",
+      "traceback"
+    ],
+    "definitions": [
+      "stamp"
+    ]
+  },
+  {
+    "path": "docs/data/p03c_episode_gazebo/search_pose.py",
+    "lines": 78,
+    "imports": [
+      "csv",
+      "json",
+      "math",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/p03c_episode_gazebo/state_durations.py",
+    "lines": 59,
+    "imports": [
+      "os",
+      "re",
+      "sys"
+    ],
+    "definitions": [
+      "durations",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/p03c_episode_gazebo/readback_reeval.py",
+    "lines": 63,
+    "imports": [
+      "coco_sim.backends",
+      "coco_sim.episode",
+      "json",
+      "math",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/p03c_episode_gazebo/episode_evidence.py",
+    "lines": 117,
+    "imports": [
+      "coco_config.robot",
+      "coco_sim.backends",
+      "coco_sim.episode",
+      "collections",
+      "hashlib",
+      "json",
+      "sys"
+    ],
+    "definitions": [
+      "sha",
+      "main"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav48_live/analysis/c2nav48_an_cmd2.py",
+    "lines": 58,
+    "imports": [
+      "json",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "flat",
+      "load"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav48_live/analysis/c2nav48_world_near.py",
+    "lines": 101,
+    "imports": [
+      "math",
+      "xml.etree.ElementTree"
+    ],
+    "definitions": [
+      "pose_of",
+      "walk"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav48_live/analysis/c2nav48_an_escape.py",
+    "lines": 55,
+    "imports": [
+      "collections",
+      "csv",
+      "os"
+    ],
+    "definitions": [
+      "num"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav48_live/analysis/c2nav48_cost_compare.py",
+    "lines": 25,
+    "imports": [
+      "math"
+    ],
+    "definitions": [
+      "cost"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav48_live/analysis/c2nav48_an_new.py",
+    "lines": 80,
+    "imports": [
+      "collections",
+      "csv",
+      "math",
+      "os",
+      "sys"
+    ],
+    "definitions": [
+      "clear_to",
+      "report"
+    ]
+  },
+  {
+    "path": "docs/data/c2nav48_live/analysis/c2nav48_an_recov.py",
+    "lines": 45,
+    "imports": [
+      "os",
+      "re",
+      "sys"
+    ],
+    "definitions": [
+      "show"
+    ]
+  }
+]

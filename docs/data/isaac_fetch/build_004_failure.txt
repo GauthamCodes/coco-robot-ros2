@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/gautham/coco-isaac-21/coco_sim/coco_sim/isaac/runtime.py", line 510, in main
+    joint.position += list(map(float, robot.get_joint_positions()[arm_indices]))
+TypeError: can only extend array with array (not "list")

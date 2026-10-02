@@ -1,0 +1,11 @@
+{
+  "head": "569b81ff744c2542498bd37201ef509b3ec4b949",
+  "dirty": " M .github/workflows/ci.yml\n M coco_mission/launch/mission.launch.py\n M coco_moveit_config/package.xml\n M coco_moveit_config/scripts/arm_control.py\n M coco_moveit_config/scripts/arm_ik.py\n M coco_moveit_config/scripts/grasp_server.py\n M coco_sim/coco_sim/backends/isaac.py\n M coco_sim/coco_sim/isaac/model.py\n M coco_sim/coco_sim/isaac/runtime.py\n M coco_sim/package.xml\n M coco_sim/setup.py\n M coco_sim/test/test_backends.py\nRM overnight_chain.sh -> experiments/legacy/overnight_chain.sh\nR  train_curriculum.sh.next -> experiments/legacy/train_curriculum.sh.next\n M gazebo_models/launch/nav.launch.py\n M gazebo_models/package.xml\n M gazebo_models/worlds/coco_world.world\n M scripts/isaac_sim_coco.sh\n M scripts/isaac_smoke.py\n M setup_env.sh\n M verify_all.sh\n?? coco_moveit_config/test/test_grasp_contract.py\n?? coco_sim/coco_sim/isaac/articulated.py\n?? coco_sim/coco_sim/isaac/control.py\n?? coco_sim/coco_sim/isaac/grasp.py\n?? coco_sim/coco_sim/isaac/trajectory_node.py\n?? coco_sim/setup.cfg\n?? coco_sim/test/test_isaac_manipulation.py\n?? coco_sim/test/test_process_groups.py\n?? docs/data/isaac_fetch/\n?? experiments/legacy/README.md\n?? scripts/isaac_fetch.py\n?? scripts/isaac_fetch_observer.py\n?? scripts/process_groups.py\n",
+  "command": [
+    "scripts/isaac_fetch.py",
+    "/tmp/coco-isaac-fetch-005",
+    "--timeout",
+    "600"
+  ],
+  "domain": 82
+}

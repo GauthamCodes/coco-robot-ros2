@@ -1,0 +1,67 @@
+{
+  "packages": {
+    "coco_config": {
+      "passed": 92,
+      "logs": [
+        "coco_config.log"
+      ]
+    },
+    "coco_sim": {
+      "passed": 226,
+      "logs": [
+        "coco_sim_final.log"
+      ]
+    },
+    "coco_mission": {
+      "passed": 359,
+      "logs": [
+        "mission_nav_final.log"
+      ]
+    },
+    "coco_moveit_config": {
+      "passed": 23,
+      "logs": [
+        "coco_moveit_config_final.log"
+      ]
+    },
+    "coco_perception": {
+      "passed": 139,
+      "logs": [
+        "coco_perception_final.log",
+        "coco_perception_style.log"
+      ]
+    },
+    "custom_teleop": {
+      "passed": 75,
+      "logs": [
+        "custom_teleop_final.log",
+        "custom_teleop_style.log"
+      ]
+    },
+    "coco_rl": {
+      "passed": 232,
+      "logs": [
+        "coco_rl.log",
+        "coco_rl_remaining.log"
+      ]
+    },
+    "gazebo_models": {
+      "passed": 220,
+      "logs": [
+        "gazebo_models.log",
+        "gazebo_models_remaining.log"
+      ]
+    },
+    "coco_web": {
+      "passed": 575,
+      "logs": [
+        "coco_web.log",
+        "coco_web_remaining.log",
+        "coco_web_style.log"
+      ]
+    }
+  },
+  "total_passed": 1941,
+  "skipped": 0,
+  "selection": "All package tests including local ROS graph and style tests; external simulator workloads run separately."
+}

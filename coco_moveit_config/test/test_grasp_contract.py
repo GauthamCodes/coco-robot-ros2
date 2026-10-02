@@ -87,3 +87,14 @@ def test_unavailable_lift_and_release_measurements_fail(server, monkeypatch):
     assert not server.grasp_magnet()
     assert not server.check_lifted()
     assert not server.check_released()
+
+
+@pytest.mark.parametrize('simulator', ['gazebo', 'isaac'])
+def test_nonfinite_height_cannot_verify_a_grasp(server, monkeypatch, simulator):
+    import time
+    import arm_control
+
+    server.simulator = simulator
+    monkeypatch.setattr(arm_control, 'model_z', lambda _: float('nan'))
+    server._heights[server.magnet_model] = (float('nan'), time.monotonic())
+    assert server.target_height() is None

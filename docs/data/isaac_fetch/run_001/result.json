@@ -1,0 +1,69 @@
+{
+  "passed": false,
+  "mission": "NOT_STARTED",
+  "states": [],
+  "counts": {
+    "/diff_drive_controller/odom": 35,
+    "/model/coco/odometry": 35,
+    "/joint_states": 35,
+    "/scan": 12,
+    "/imu": 35,
+    "/camera/depth/image_raw": 8,
+    "/camera/image_raw": 7
+  },
+  "final": {
+    "/diff_drive_controller/odom": {
+      "xyz": [
+        -0.005734937624523706,
+        4.233999193263263e-06,
+        -0.00027986114846573554
+      ],
+      "quaternion_xyzw": [
+        8.3723070929409e-06,
+        -8.196147064154502e-06,
+        9.123353947870783e-07,
+        1.0
+      ]
+    },
+    "/model/coco/odometry": {
+      "xyz": [
+        -2.0057349376245237,
+        4.233999193263263e-06,
+        -0.00027986114846573554
+      ],
+      "quaternion_xyzw": [
+        8.3723070929409e-06,
+        -8.196147064154502e-06,
+        9.123353947870783e-07,
+        1.0
+      ]
+    },
+    "/joint_states": {
+      "base_Revolute-1": -0.09933867305517197,
+      "base_Revolute-2": -0.09933018684387207,
+      "base_Revolute-3": -0.09931740909814835,
+      "base_Revolute-4": -0.09956789761781693,
+      "m_link1_Revolute-6": 0.0010343017056584358,
+      "m_link2_Revolute-7": -4.204548531561159e-06,
+      "m_link3_Revolute-8": 2.6701989952471195e-08,
+      "m_link3_Revolute-9": -9.73310987362197e-10
+    },
+    "/scan": "sample",
+    "/imu": "sample",
+    "/camera/depth/image_raw": "sample",
+    "/camera/image_raw": "sample"
+  },
+  "stop_samples": 0,
+  "stop_breaches": 0,
+  "mission_wall_s": null,
+  "mission_sim_s": null,
+  "rates_sim_hz": {
+    "/diff_drive_controller/odom": 31.874998346484464,
+    "/model/coco/odometry": 31.874998346484464,
+    "/joint_states": 31.874998346484464,
+    "/scan": 10.31249946503909,
+    "/imu": 31.874998346484464,
+    "/camera/depth/image_raw": 6.99999963600002,
+    "/camera/image_raw": 6.923076560946766
+  }
+}

@@ -356,7 +356,8 @@ class ArmControl(Node):
     def target_height(self):
         """Simulator measurement for grasp verification, never search input."""
         if self.simulator == 'gazebo':
-            return model_z(self.magnet_model)
+            value = model_z(self.magnet_model)
+            return value if value is not None and math.isfinite(value) else None
         sample = self._heights.get(self.magnet_model)
         if sample and time.monotonic() - sample[1] <= 2 and math.isfinite(sample[0]):
             return sample[0]
@@ -637,7 +638,7 @@ class ArmControl(Node):
             if self._joint_at is None or time.monotonic() - self._joint_at > 2:
                 continue
             now = [self._joints.get(j) for j in GRIPPER_JOINTS]
-            if any(v is None for v in now):
+            if any(v is None or not math.isfinite(v) for v in now):
                 continue
 
             if all(abs(self._joints[j] - target[j]) <= GRIP_TOLERANCE

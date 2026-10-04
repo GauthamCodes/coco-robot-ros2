@@ -333,3 +333,54 @@ def test_status_line_is_key_value_with_no_blank_fields():
     assert fields['ty'] == '-0.013'        # signed: which way it is off
     assert fields['outcome'] == '--'       # never blank
     assert '' not in fields.values()
+
+
+def test_target_freshness_uses_image_sim_time_not_wall_arrival():
+    from types import SimpleNamespace
+    from geometry_msgs.msg import PointStamped
+    from custom_teleop.approach_server import ApproachServer
+
+    clock = SimpleNamespace(now=lambda: SimpleNamespace(nanoseconds=119_558_000_000))
+    server = SimpleNamespace(
+        _target=None, _target_at=None, get_clock=lambda: clock, _pose=lambda: None)
+    fix = PointStamped()
+    fix.header.frame_id = 'base_footprint'
+    fix.header.stamp.sec = 119
+    fix.header.stamp.nanosec = 458_000_000
+    fix.point.x, fix.point.y, fix.point.z = .315, .012, .083
+    ApproachServer._on_target(server, fix)
+    assert ApproachServer._fresh_target(server) == (.315, .012, .083)
+    clock.now = lambda: SimpleNamespace(nanoseconds=120_559_000_000)
+    assert ApproachServer._fresh_target(server) is None
+    clock.now = lambda: SimpleNamespace(nanoseconds=119_000_000_000)
+    assert ApproachServer._fresh_target(server) is None
+
+
+def test_target_rejects_wrong_frame_and_nonfinite_fix():
+    from types import SimpleNamespace
+    from geometry_msgs.msg import PointStamped
+    from custom_teleop.approach_server import ApproachServer
+
+    server = SimpleNamespace(_target=None, _target_at=None)
+    fix = PointStamped()
+    fix.header.frame_id = 'camera_optical_frame'
+    fix.point.x = .3
+    ApproachServer._on_target(server, fix)
+    assert server._target is None
+    fix.header.frame_id = 'base_footprint'
+    fix.point.x = float('nan')
+    ApproachServer._on_target(server, fix)
+    assert server._target is None
+
+
+def test_fix_projection_tracks_measured_translation_and_rotation():
+    from custom_teleop.approach_server import reproject_target
+
+    target = (.32, .004, .128)
+    assert reproject_target(target, (0, 0, 0), (.166, 0, 0)) == pytest.approx(
+        (.154, .004, .128))
+    assert reproject_target(target, (0, 0, 0), (0, 0, math.pi / 2)) == pytest.approx(
+        (.004, -.32, .128))
+    assert reproject_target(target, (2, 1, math.pi / 2),
+                            (2, 1.166, math.pi / 2)) == pytest.approx(
+        (.154, .004, .128))

@@ -116,3 +116,31 @@ def test_controller_velocity_and_timeout_match_existing_yaml():
     assert config.MAX_LINEAR == params["linear.x.max_velocity"]
     assert config.MAX_ANGULAR == params["angular.z.max_velocity"]
     assert config.COMMAND_TIMEOUT == params["cmd_vel_timeout"]
+
+
+def test_yaw_servo_overcomes_measured_scrub_and_remains_bounded():
+    from coco_sim.isaac.config import YawServo, MAX_ANGULAR
+
+    servo = YawServo()
+    measured = 0.0
+    # Regression model fitted only qualitatively to the observed dead zone:
+    # differential wheel rate alone does not imply measured chassis yaw.
+    for _ in range(600):
+        wheel_yaw = servo.step(.1, measured, 1 / 30)
+        response = math.copysign(max(0, abs(wheel_yaw) - .15), wheel_yaw)
+        measured += .1 * (response - measured)
+        assert abs(wheel_yaw) <= MAX_ANGULAR
+    assert measured == pytest.approx(.1, abs=.002)
+    servo.reset()
+    assert servo.output == servo.integral == 0
+    assert servo.step(.1, float('nan'), 1 / 30) == 0
+
+
+def test_feedback_drive_stale_command_resets_integral_and_stops():
+    command = DriveCommand()
+    command.receive(0, .1, 3)
+    for _ in range(10):
+        command.step(3.1, 1 / 30, 0)
+    assert command.yaw_servo.integral > 0
+    assert command.step(3.6, 1 / 30, 0) == [0] * 4
+    assert command.yaw_servo.integral == 0

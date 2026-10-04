@@ -665,8 +665,13 @@ class ArmControl(Node):
                 continue
 
             # Not at the setpoint and no longer moving.
-            settled_since = settled_since or time.monotonic()
-            if time.monotonic() - settled_since >= GRIP_STALL_TIME:
+            # Mechanical stall duration belongs to the simulator clock.
+            # A render pause repeats joint feedback without physical time
+            # passing; the wall deadline above still bounds dead simulators.
+            sim_now = self.get_clock().now().nanoseconds * 1e-9
+            if settled_since is None:
+                settled_since = sim_now
+            if sim_now - settled_since >= GRIP_STALL_TIME:
                 gap = {j: round(self._joints[j], 4) for j in GRIPPER_JOINTS}
                 if expect_object or expect_object is None:
                     self.get_logger().info(

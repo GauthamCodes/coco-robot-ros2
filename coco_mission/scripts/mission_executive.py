@@ -274,6 +274,7 @@ class MissionExecutive(Node):
         self._amcl_xy = None
         self._amcl_seen_at = None
         self._exit_seed_token = None
+        self._exit_handoff_done = False
         self._exit_seed_at = None
         self._nav_tf_ready = False
         self._target_pose = None
@@ -585,7 +586,7 @@ class MissionExecutive(Node):
         request = self._request
         if (request.kind == ms.NAV_GOAL and
                 self.machine.state == ms.BYPASS_RAMP and
-                self.plan.autonomous_search):
+                self.plan.autonomous_search and not self._exit_handoff_done):
             if self._exit_seed_token != request.token:
                 self._exit_seed_token = request.token
                 self._exit_seed_at = None
@@ -633,6 +634,11 @@ class MissionExecutive(Node):
 
         self._sent = True
         if request.kind == ms.NAV_GOAL:
+            if self.machine.state == ms.BYPASS_RAMP:
+                # The verified exit is a one-time odometry/navigation handoff.
+                # A retry can start anywhere along the bypass, so its pose
+                # must never be replaced with the nominal exit again.
+                self._exit_handoff_done = True
             self._send_nav(request)
         elif request.kind == ms.RELOCALIZE_GOAL:
             self._send_spin(request)

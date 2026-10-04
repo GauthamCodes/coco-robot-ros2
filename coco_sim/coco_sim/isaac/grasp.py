@@ -121,15 +121,29 @@ class Magnet:
         rq = relative.as_quat()
         joint.CreateLocalRot0Attr(Gf.Quatf(float(rq[3]), *map(float, rq[:3])))
         joint.CreateExcludeFromArticulationAttr(True)
+        # A fixed-joint magnet is a welded cluster, not a friction pinch.
+        # Internal finger/palm contact must not fight that rigid constraint.
+        # World and ground contacts remain enabled throughout.
+        filtered = UsdPhysics.FilteredPairsAPI.Apply(
+            self.stage.GetPrimAtPath(target.path)).CreateFilteredPairsRel()
+        for link in ('m_link3', 'grip1', 'grip2'):
+            filtered.AddTarget('/World/coco/' + link)
         self.attached = target.name
         self.states[target.name].publish(String(data="attached"))
-        self.log("attached", target=target.name, target_world_m=t.tolist())
+        self.log("attached", target=target.name, target_world_m=t.tolist(),
+                 pinch_world_m=pinch.tolist())
 
     def detach(self, target):
         from std_msgs.msg import String
 
         if self.attached == target.name:
+            from pxr import UsdPhysics
+
             self.stage.RemovePrim("/World/magnet_joint")
+            filtered = UsdPhysics.FilteredPairsAPI(
+                self.stage.GetPrimAtPath(target.path)).GetFilteredPairsRel()
+            for link in ('m_link3', 'grip1', 'grip2'):
+                filtered.RemoveTarget('/World/coco/' + link)
             self.attached = None
             self.log("detached", target=target.name)
         self.states[target.name].publish(String(data="detached"))

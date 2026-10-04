@@ -35,7 +35,7 @@ from lifecycle_msgs.srv import GetState
 from nav2_msgs.action import NavigateToPose
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import Image, Imu, JointState, LaserScan
-from std_msgs.msg import String
+from std_msgs.msg import String, Float64
 from std_srvs.srv import Trigger
 
 
@@ -133,9 +133,9 @@ def main():
             String, topic, lambda msg, t=topic: status(t, msg), 10
         )
 
-    def point(msg):
+    def point(msg, topic="/perception/target"):
         record(
-            "/perception/target",
+            topic,
             {
                 "frame": msg.header.frame_id,
                 "stamp_ns": msg.header.stamp.sec * 10**9
@@ -145,6 +145,19 @@ def main():
         )
 
     node.create_subscription(PointStamped, "/perception/target", point, 10)
+    node.create_subscription(
+        PointStamped, "/approach/target",
+        lambda msg: point(msg, "/approach/target"), 10)
+    # Volatile readers receive live state changes from both the Gazebo
+    # volatile bridge and Isaac's transient-local publisher.
+    magnet_qos = QoSProfile(depth=10)
+    for colour in ("red", "green", "blue", "yellow"):
+        topic = f"/magnet/target_{colour}/state"
+        node.create_subscription(
+            String, topic, lambda msg, t=topic: status(t, msg), magnet_qos)
+        topic = f"/grasp/target_{colour}/height"
+        node.create_subscription(
+            Float64, topic, lambda msg, t=topic: record(t, msg.data), 10)
     for topic in ("/diff_drive_controller/odom", "/model/coco/odometry"):
 
         def odom(msg, t=topic):

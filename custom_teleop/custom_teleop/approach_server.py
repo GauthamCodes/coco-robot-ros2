@@ -176,6 +176,16 @@ def wrap(angle):
     return math.atan2(math.sin(angle), math.cos(angle))
 
 
+def reproject_target(target, origin, current):
+    """Carry a perception fix through measured planar odometry motion."""
+    x, y, z = target
+    c, sn = math.cos(origin[2]), math.sin(origin[2])
+    wx, wy = origin[0] + c * x - sn * y, origin[1] + sn * x + c * y
+    dx, dy = wx - current[0], wy - current[1]
+    c, sn = math.cos(current[2]), math.sin(current[2])
+    return c * dx + sn * dy, -sn * dx + c * dy, z
+
+
 def clamp(value, limit):
     """Symmetric clamp to +/- `limit`."""
     return max(-limit, min(limit, value))
@@ -305,7 +315,8 @@ class ApproachServer(Node):
             self.colour = colour
 
         self._target = None        # (x, y, z) in base_footprint
-        self._target_at = None     # monotonic arrival time of that fix
+        self._target_at = None     # image stamp in the node clock domain
+        self._target_pose = None
         self._odom = None
         self._imu = None
         self._lock = threading.Lock()
@@ -355,14 +366,21 @@ class ApproachServer(Node):
 
     # ── inputs ───────────────────────────────────────────────────────────
     def _on_target(self, msg):
-        self._target = (msg.point.x, msg.point.y, msg.point.z)
-        self._target_at = time.monotonic()
+        point = (msg.point.x, msg.point.y, msg.point.z)
+        stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+        if (msg.header.frame_id != 'base_footprint'
+                or not all(math.isfinite(v) for v in point)):
+            return
+        self._target = point
+        self._target_at = stamp
+        self._target_pose = self._pose()
 
     def _on_colour(self, msg):
         colour = (msg.data or '').strip().lower()
         if colour in TARGET_COLOURS and colour != self.colour:
             self.get_logger().info(f'target {self.colour} -> {colour}')
             self.colour = colour
+            self._target = self._target_at = self._target_pose = None
 
     def _on_odom(self, msg):
         self._odom = msg
@@ -379,7 +397,7 @@ class ApproachServer(Node):
         self._cmd_pub.publish(msg)
 
     def _publish_status(self):
-        target = self._target
+        target = self._fresh_target()
         bearing = None if target is None else bearing_to(target[0], target[1])
         rng = None if target is None else math.hypot(target[0], target[1])
         self._status_pub.publish(String(data=format_status(
@@ -411,8 +429,12 @@ class ApproachServer(Node):
         """Return the latest fix, or None once it is older than VISION_STALE."""
         if self._target is None or self._target_at is None:
             return None
-        if time.monotonic() - self._target_at > VISION_STALE:
+        age = self.get_clock().now().nanoseconds * 1e-9 - self._target_at
+        if not 0.0 <= age <= VISION_STALE:
             return None
+        pose = self._pose()
+        if self._target_pose is not None and pose is not None:
+            return reproject_target(self._target, self._target_pose, pose)
         return self._target
 
     def _reject(self, why):
@@ -495,6 +517,10 @@ class ApproachServer(Node):
             pitch = self._pitch()
             linear, angular, level = crest_cmd(pitch, wrap(pose[2] - heading))
             if level:
+                # Settling is an attitude observation, not forward travel.
+                # A retry already on the platform must not cross the
+                # near-depth limit while waiting for this gate.
+                linear, angular = 0.0, 0.0
                 level_since = level_since or time.monotonic()
                 if time.monotonic() - level_since >= CREST_SETTLE:
                     break
@@ -583,6 +609,10 @@ class ApproachServer(Node):
             if done:
                 break
             self._tick(linear, angular)
+        else:
+            self._publish(0.0, 0.0)
+            self.outcome = 'stopped' if self._abort.is_set() else 'creep timeout'
+            return
         self._publish(0.0, 0.0)
         if self._abort.is_set():
             self.outcome = 'stopped'
@@ -600,8 +630,9 @@ class ApproachServer(Node):
         estimate = PointStamped()
         estimate.header.stamp = self.get_clock().now().to_msg()
         estimate.header.frame_id = 'base_footprint'
-        estimate.point.x = float(target[0] - travelled)
-        estimate.point.y = float(target[1])
+        final_target = reproject_target(target, creep_start, self._pose())
+        estimate.point.x = float(final_target[0])
+        estimate.point.y = float(final_target[1])
         estimate.point.z = float(TARGET_GRASP_Z)
         self._estimate_pub.publish(estimate)
         self.outcome = 'arrived'

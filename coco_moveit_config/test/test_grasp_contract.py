@@ -98,3 +98,53 @@ def test_nonfinite_height_cannot_verify_a_grasp(server, monkeypatch, simulator):
     monkeypatch.setattr(arm_control, 'model_z', lambda _: float('nan'))
     server._heights[server.magnet_model] = (float('nan'), time.monotonic())
     assert server.target_height() is None
+
+
+def test_release_rejects_object_below_the_floor(server, monkeypatch):
+    monkeypatch.setattr(server, 'target_height', lambda: -.011)
+    assert server.check_released() is False
+    monkeypatch.setattr(server, 'target_height', lambda: .079)
+    assert server.check_released() is True
+
+
+def test_open_failure_leaves_physical_attachment_intact(server, monkeypatch):
+    server._holding = True
+    server.poses['grasp'] = [0.277058, 0.516736]
+    calls = []
+    monkeypatch.setattr(server.move_client, 'wait_for_server', lambda **kw: True)
+    monkeypatch.setattr(server, 'check_robot_pose', lambda *a, **kw: True)
+    monkeypatch.setattr(server, 'publish_scene', lambda _: None)
+    monkeypatch.setattr(server, 'move_arm', lambda *a, **kw: True)
+    monkeypatch.setattr(server, 'move_gripper', lambda *a, **kw: False)
+    monkeypatch.setattr(server, 'magnet', lambda want: calls.append(want))
+    assert not server._do_place()
+    assert server.holding
+    assert calls == []
+
+
+def test_gripper_render_pause_does_not_count_as_physical_stall(monkeypatch):
+    from types import SimpleNamespace
+    import arm_control
+
+    wall = [0.0]
+    ticks = [0]
+    logs = []
+    joints = {name: .4 * sign for name, sign in zip(
+        arm_control.GRIPPER_JOINTS, (1, -1))}
+    node = SimpleNamespace(
+        _joints=joints, _joint_at=0.0,
+        grip_pub=SimpleNamespace(publish=lambda _: None),
+        get_logger=lambda: SimpleNamespace(info=logs.append, error=logs.append),
+        get_clock=lambda: SimpleNamespace(now=lambda: SimpleNamespace(nanoseconds=0)))
+
+    def pump(_):
+        wall[0] += .1
+        ticks[0] += 1
+        node._joint_at = wall[0]
+        if ticks[0] >= 10:
+            node._joints.update(zip(arm_control.GRIPPER_JOINTS, (.5, -.5)))
+
+    node.pump = pump
+    monkeypatch.setattr(arm_control, 'time', SimpleNamespace(monotonic=lambda: wall[0]))
+    assert arm_control.ArmControl.move_gripper(node, (.5, -.5), 'open') is True
+    assert not any('stalled' in line for line in logs)

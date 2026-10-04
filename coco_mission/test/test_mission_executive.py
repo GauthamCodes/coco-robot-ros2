@@ -104,6 +104,31 @@ class TestItConstructs:
         tf.transform.translation.x = seed.pose.pose.position.x
         assert node._nav_tf_near_search_exit()
 
+    def test_bypass_retry_does_not_reseed_the_old_exit(self, node, monkeypatch):
+        from unittest.mock import Mock
+        node.plan = ms.MissionPlan('red', autonomous_search=True)
+        node.machine.state = ms.BYPASS_RAMP
+        node._nav = Mock()
+        node._nav.server_is_ready.return_value = True
+        node._initialpose = Mock()
+        monkeypatch.setattr(node, '_send_nav', lambda request: None)
+        monkeypatch.setattr(node, '_amcl_near_search_exit', lambda: True)
+        node._token = 1
+        node._request = ms.Request(ms.NAV_GOAL, (7.0, -1.0), 1)
+        node._status = ms.PENDING
+        node._sent = False
+        node._pump()
+        assert node._exit_handoff_done
+        # Navigation has moved away from the exit before failing. Retrying
+        # must preserve this current estimate rather than reset to the ramp.
+        monkeypatch.setattr(node, '_amcl_near_search_exit', lambda: False)
+        node._token = 2
+        node._request = ms.Request(ms.NAV_GOAL, (7.0, -1.0), 2)
+        node._sent = False
+        node._pump()
+        node._initialpose.publish.assert_not_called()
+        assert node._sent
+
     def test_it_starts_without_a_colour_and_says_so(self, context):
         executive = mx.MissionExecutive()
         try:

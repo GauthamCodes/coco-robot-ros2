@@ -204,6 +204,8 @@ def main():
     wall_start = time.monotonic()
 
     def log(event, **data):
+        if sim is not None:
+            data.setdefault("time_sim_s", sim.current_time)
         print(
             json.dumps(
                 {
@@ -431,6 +433,7 @@ def main():
         log("ready", joints=robot.dof_names)
         initial_time = sim.current_time
         last_log = -10.0
+        measured_yaw = 0.0
         previous_linear_world = None
         layout_checked = False
         while app.is_running() and not stop[0]:
@@ -438,10 +441,15 @@ def main():
             now = sim.current_time
             if args.seconds and now - initial_time >= args.seconds:
                 break
-            rclpy.spin_once(node, timeout_sec=0.0)
+            # spin_once dispatches ONE callback. Arm targets alone arrive at
+            # the render rate; arbiter commands make the combined rate higher.
+            # Drain a bounded batch on this simulation thread so stale queued
+            # intermediate targets cannot starve final trajectory setpoints.
+            for _ in range(32):
+                rclpy.spin_once(node, timeout_sec=0.0)
             robot.apply_action(
                 ArticulationAction(
-                    joint_velocities=np.array(drive.step(now, RENDER_DT)),
+                    joint_velocities=np.array(drive.step(now, RENDER_DT, measured_yaw)),
                     joint_indices=np.array(indices),
                 )
             )
@@ -500,6 +508,7 @@ def main():
             )
             linear = rot.T @ (linear_world - np.cross(angular_world, offset))
             angular = rot.T @ angular_world
+            measured_yaw = float(angular[2])
             odom = Odometry()
             odom.header.stamp, odom.header.frame_id = stamp, FRAMES["odom"]
             odom.child_frame_id = FRAMES["base"]
@@ -674,6 +683,22 @@ def main():
                         if magnet
                         else {}
                     ),
+                    targets_world_velocity_m_s=(
+                        {name: body.get_linear_velocity().tolist()
+                         for name, body in magnet.bodies.items()}
+                        if magnet else {}),
+                    targets_world_quaternion_wxyz=(
+                        {name: body.get_world_pose()[1].tolist()
+                         for name, body in magnet.bodies.items()}
+                        if magnet else {}),
+                    arm_targets_rad={n: float(v) for n, v in arm_targets.items()}
+                    if args.fetch else {},
+                    magnet_attached=magnet.attached if magnet else None,
+                    palm_world_pose=(
+                        [a.tolist() for a in magnet.palm.get_world_pose()]
+                        if magnet else None),
+                    wheel_yaw_request_rad_s=drive.yaw_servo.output,
+                    measured_body_yaw_rad_s=measured_yaw,
                     command_m_s_rad_s=drive.velocity,
                     command_age_sim_s=now - drive.stamp,
                 )

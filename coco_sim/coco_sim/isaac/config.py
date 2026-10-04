@@ -75,6 +75,38 @@ def wheel_speeds(linear, angular):
     ]
 
 
+class YawServo:
+    """Measured body-rate feedback for a torque-driven skid-steer base.
+
+    Differential kinematics alone assumes rolling contact; four-wheel scrub
+    makes that false at low speed. Keep the motor force ceiling and close the
+    body yaw loop through wheel targets, never by imposing body velocity.
+    """
+
+    def __init__(self):
+        self.integral = 0.0
+        self.filtered = 0.0
+        self.output = 0.0
+
+    def reset(self):
+        self.integral = self.filtered = self.output = 0.0
+
+    def step(self, desired, measured, dt):
+        import math
+
+        if not all(math.isfinite(v) for v in (desired, measured, dt)) or dt <= 0:
+            self.reset()
+            return 0.0
+        self.filtered += min(1.0, dt / 0.15) * (measured - self.filtered)
+        error = desired - self.filtered
+        self.integral = max(-0.8, min(0.8, self.integral + 0.8 * error * dt))
+        target = max(-MAX_ANGULAR, min(
+            MAX_ANGULAR, desired + 0.8 * error + self.integral))
+        self.output += max(-r.MAX_ANGULAR_ACCEL * dt, min(
+            r.MAX_ANGULAR_ACCEL * dt, target - self.output))
+        return self.output
+
+
 class DriveCommand:
     """Age stamped commands in sim time and bound acceleration."""
 
@@ -82,6 +114,7 @@ class DriveCommand:
         self.command = (0.0, 0.0)
         self.stamp = -1e9
         self.velocity = (0.0, 0.0)
+        self.yaw_servo = YawServo()
 
     def receive(self, linear, angular, stamp):
         """Reject non-finite commands, preserving the last valid sample."""
@@ -94,7 +127,7 @@ class DriveCommand:
             )
             self.stamp = stamp
 
-    def step(self, now, dt):
+    def step(self, now, dt, measured_yaw=None):
         """Return wheel targets; stale or future commands stop immediately."""
         if not 0 <= now - self.stamp <= COMMAND_TIMEOUT:
             self.velocity = (0.0, 0.0)
@@ -107,4 +140,10 @@ class DriveCommand:
                     (r.MAX_LINEAR_ACCEL, r.MAX_ANGULAR_ACCEL),
                 )
             )
-        return wheel_speeds(*self.velocity)
+        linear, angular = self.velocity
+        if measured_yaw is not None:
+            if self.velocity == (0.0, 0.0):
+                self.yaw_servo.reset()
+            else:
+                angular = self.yaw_servo.step(angular, measured_yaw, dt)
+        return wheel_speeds(linear, angular)

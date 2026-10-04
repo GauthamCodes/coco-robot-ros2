@@ -60,3 +60,22 @@ def test_solutions_respect_joint_limits():
 def test_unreachable_returns_empty():
     assert arm_ik.ik(1.0, 1.0) == []
     assert arm_ik.ik_or_none(1.0, 1.0) is None
+
+
+def test_place_clearance_preserves_weld_orientation_and_height():
+    for x in (.145, .152, .156):
+        grasp = arm_ik.ik_or_none(x, .128)
+        place = arm_ik.place_clearance_pose(grasp, .015)
+        assert place is not None
+        assert abs(arm_ik.fk(*place)[1] - .143) < 1e-9
+        assert abs((place[1] - place[0]) - (grasp[1] - grasp[0])) < 1e-9
+        assert arm_ik.SHOULDER_LIMITS[0] <= place[0] <= arm_ik.SHOULDER_LIMITS[1]
+        assert arm_ik.ELBOW_LIMITS[0] <= place[1] <= arm_ik.ELBOW_LIMITS[1]
+
+
+def test_place_clearance_rejects_unreachable_or_invalid_motion():
+    grasp = arm_ik.ik_or_none(.152, .128)
+    assert arm_ik.place_clearance_pose(grasp, 5.) is None
+    assert arm_ik.place_clearance_pose(grasp, -.01) is None
+    assert arm_ik.place_clearance_pose((float('nan'), 0), .015) is None
+    assert arm_ik.place_clearance_pose((0, 9), .015) is None

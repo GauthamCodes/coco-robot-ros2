@@ -36,6 +36,7 @@ def build_scene(stage, episode, description=None, share=None):
     PhysxSchema.PhysxSceneAPI.Apply(
         physics.GetPrim()
     ).CreateTimeStepsPerSecondAttr(120)
+    PhysxSchema.PhysxSceneAPI.Apply(physics.GetPrim()).CreateEnableCCDAttr(True)
     material = UsdShade.Material.Define(stage, "/World/contact")
     mat = UsdPhysics.MaterialAPI.Apply(material.GetPrim())
     mat.CreateStaticFrictionAttr(0.7)
@@ -61,7 +62,19 @@ def build_scene(stage, episode, description=None, share=None):
         collision(obj.GetPrim())
         return obj
 
-    cube("/World/ground", (0, 0, -0.05), (20, 20, 0.1), (0.4, 0.4, 0.4))
+    if description is None:
+        cube("/World/ground", (0, 0, -0.05), (20, 20, 0.1), (0.4, 0.4, 0.4))
+    else:
+        # Match coco_world's plane. Thin target cylinders passed through the
+        # scaled box floor even in a free-drop probe; triangle contact works.
+        floor = UsdGeom.Mesh.Define(stage, "/World/ground")
+        floor.CreatePointsAttr([(-10, -10, 0), (10, -10, 0),
+                               (10, 10, 0), (-10, 10, 0)])
+        floor.CreateFaceVertexCountsAttr([3, 3])
+        floor.CreateFaceVertexIndicesAttr([0, 1, 2, 0, 2, 3])
+        floor.CreateSubdivisionSchemeAttr("none")
+        floor.CreateDisplayColorAttr([Gf.Vec3f(0.4, 0.4, 0.4)])
+        collision(floor.GetPrim())
     if description is None:
         for name, centre, size, colour in FIXTURES:
             cube("/World/" + name, centre, size, colour)

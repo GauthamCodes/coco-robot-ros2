@@ -226,7 +226,7 @@ def build_arm(stage, description, base_origin, collision, share):
 
 def build_fetch_world(stage, episode, share, cube, collision):
     """Read arena collisions and the committed ramp mesh; instantiate targets."""
-    from pxr import Gf, UsdGeom, UsdPhysics, UsdShade
+    from pxr import Gf, UsdGeom, UsdPhysics, UsdShade, PhysxSchema
 
     world = ET.parse(share / "worlds/coco_world.world").getroot().find("world")
     for model in world.findall("model"):
@@ -292,6 +292,9 @@ def build_fetch_world(stage, episode, share, cube, collision):
         collision(body.GetPrim())
         UsdPhysics.RigidBodyAPI.Apply(body.GetPrim())
         mass = UsdPhysics.MassAPI.Apply(body.GetPrim())
+        # Thin targets can tunnel through the floor on release impulses.
+        PhysxSchema.PhysxRigidBodyAPI.Apply(
+            body.GetPrim()).CreateEnableCCDAttr(True)
         mass.CreateMassAttr(target.mass)
         mass.CreateDiagonalInertiaAttr(Gf.Vec3f(*target.diagonal_inertia))
         material = UsdShade.Material.Define(stage, target.path + "_material")

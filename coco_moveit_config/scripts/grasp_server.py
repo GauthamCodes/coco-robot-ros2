@@ -92,7 +92,7 @@ import arm_ik
 from arm_control import ArmControl, GRIP_CLOSED, GRIP_OPEN
 
 from coco_config.robot import (approach_window,
-                               GRASP_APPROACH_X, GRASP_HOVER_CLEARANCE,
+                               GRASP_HOVER_CLEARANCE,
                                GRASP_MAX_LATERAL, target_by_colour,
                                TARGET_COLOURS, TARGET_GRASP_Z, TARGET_HEIGHT)
 
@@ -105,6 +105,9 @@ from std_msgs.msg import String
 from std_srvs.srv import Trigger
 
 STATUS_HZ = 5.0
+# Release just clear of the floor, preserving acquisition palm pitch.
+# The measured object must settle on the floor after the arm retreats.
+PLACE_RELEASE_CLEARANCE = 0.015
 
 # Joint-space waypoints shared with the demo. 'grasp' and 'hover' are
 # solved per pick and inserted at run time; the rest are fixed.
@@ -466,12 +469,13 @@ class GraspServer(ArmControl):
             self.get_logger().error(self.outcome)
             return False
 
-        # Put it down at the verified pinch point rather than back where it
-        # was picked from — the robot is at home now, not on the platform.
-        # That pose puts the pinch exactly TARGET_GRASP_Z above the ground,
-        # which is the cylinder's own bottom face on the floor, so the
-        # release needs no new geometry at all.
-        place = arm_ik.ik_or_none(GRASP_APPROACH_X, TARGET_GRASP_Z)
+        # Preserve the acquisition palm pitch: a nominal x/z IK changes
+        # orientation and can tip this slender welded cylinder past its
+        # stability angle. Raise the perception-derived grasp pose just
+        # clear of the floor; measured settling still verifies release.
+        acquired = self.poses.get('grasp')
+        place = (arm_ik.place_clearance_pose(acquired, PLACE_RELEASE_CLEARANCE)
+                 if acquired is not None else None)
         if place is None:
             self.outcome = 'the verified place pose is unreachable'
             self.get_logger().error(self.outcome)
@@ -482,11 +486,11 @@ class GraspServer(ArmControl):
         steps = [
             ('lift clear', lambda: self.move_arm('lift', speed=0.15)),
             ('descend to place', lambda: self.move_arm('place', speed=0.1)),
-            # Detach first, then open. Opening while still welded leaves the
-            # object hanging under the palm, which reads as a successful
-            # place until the arm moves.
-            ('magnet detach', lambda: self.magnet('detached')),
+            # Clear the fingers while the weld still retains the target.
+            # Restoring contact against closed fingers kicks this slender
+            # cylinder over. An opening failure must leave it attached.
             ('release', lambda: self.move_gripper(GRIP_OPEN, 'open')),
+            ('magnet detach', lambda: self.magnet('detached')),
             ('retreat', lambda: self.move_arm('lift', speed=0.15)),
             ('confirm it stayed down', self.check_released),
             ('home', lambda: self.move_arm('home')),

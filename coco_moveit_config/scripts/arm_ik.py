@@ -102,6 +102,31 @@ def ik_or_none(x, z):
     return sols[0] if sols else None
 
 
+def place_clearance_pose(grasp, clearance):
+    """Raise the acquired tool pose without rotating its welded target."""
+    q1, q2 = grasp
+    if (not all(math.isfinite(v) for v in (q1, q2, clearance))
+            or clearance < 0
+            or not SHOULDER_LIMITS[0] <= q1 <= SHOULDER_LIMITS[1]
+            or not ELBOW_LIMITS[0] <= q2 <= ELBOW_LIMITS[1]):
+        return None
+    alpha = PHI1 - q1
+    sine = math.sin(alpha) + clearance / L1
+    if abs(sine) > 1:
+        return None
+    principal = math.asin(sine)
+    candidates = []
+    for branch in (principal, math.pi - principal):
+        for turns in (-2 * math.pi, 0, 2 * math.pi):
+            shoulder = PHI1 - branch - turns
+            # Equal joint changes preserve beta, the palm's world pitch.
+            elbow = q2 + shoulder - q1
+            if (SHOULDER_LIMITS[0] <= shoulder <= SHOULDER_LIMITS[1]
+                    and ELBOW_LIMITS[0] <= elbow <= ELBOW_LIMITS[1]):
+                candidates.append((shoulder, elbow))
+    return min(candidates, key=lambda q: abs(q[0] - q1)) if candidates else None
+
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 3:

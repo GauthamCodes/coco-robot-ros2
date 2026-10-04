@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Run one fresh Isaac fetch through the shared ROS mission; own only children."""
+"""Run a matched fetch through the shared ROS mission; own only children."""
 import argparse
 import hashlib
 import json
@@ -27,25 +27,47 @@ from process_groups import stop
 from coco_sim.episode import generate_episode
 
 
+def nav_profile(repo, backend, override=None):
+    """Return explicit input or the measured ideal-odometry Isaac profile."""
+    if override is not None:
+        return override.read_bytes()
+    if backend != 'isaac':
+        return None
+    import yaml
+
+    params = yaml.safe_load(
+        (repo / 'gazebo_models/config/nav2_params.yaml').read_text())
+    for index in range(1, 6):
+        params['amcl']['ros__parameters'][f'alpha{index}'] = 0.001
+    # Leave one map-cell margin inside the existing 25-cm arrival gate.
+    params['controller_server']['ros__parameters']['FollowPath'][
+        'xy_goal_tolerance'] = 0.20
+    return yaml.safe_dump(params).encode()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("output", type=Path)
     parser.add_argument("--domain", type=int, default=82)
+    parser.add_argument("--backend", choices=["isaac", "gazebo"], default="isaac")
     parser.add_argument(
         "--level", choices=["colours", "positions"], default="colours"
     )
     parser.add_argument("--seed", type=int, default=5)
     parser.add_argument("--colour", default="red")
     parser.add_argument("--timeout", type=float, default=1200)
+    parser.add_argument("--params-file", type=Path)
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
     repo = Path(__file__).resolve().parents[1]
     env = dict(os.environ, ROS_DOMAIN_ID=str(args.domain))
+    if args.backend == "gazebo":
+        env["GZ_PARTITION"] = "coco22-" + out.name
     episode = generate_episode(
         seed=args.seed,
         level=args.level,
-        backend="isaac",
+        backend=args.backend,
         requested_colour=args.colour,
     )
     (out / "manifest.json").write_text(episode.to_json())
@@ -95,6 +117,11 @@ def main():
     (out / "source.patch").write_bytes(
         subprocess.check_output(["git", "diff", "HEAD"], cwd=repo)
     )
+    nav_arguments = []
+    params = nav_profile(repo, args.backend, args.params_file)
+    if params is not None:
+        (out / "nav2_params.yaml").write_bytes(params)
+        nav_arguments = ["params_file:=" + str(out / "nav2_params.yaml")]
     handles, children, exits = [], [], {}
 
     def spawn(name, command):
@@ -112,31 +139,41 @@ def main():
         return process
 
     try:
-        sim = spawn(
-            "isaac",
-            [
-                "bash",
-                str(repo / "scripts/isaac_sim_coco.sh"),
-                "--fetch",
-                "--robot-urdf",
-                str(out / "robot.urdf"),
-                "--episode-manifest",
-                str(out / "manifest.json"),
-                "--output",
-                str(out / "sim"),
-            ],
-        )
-        deadline = time.monotonic() + 300
-        while not (out / "sim/settled_targets.json").exists():
-            if sim.poll() is not None or time.monotonic() > deadline:
-                raise RuntimeError("Isaac startup failed or timed out")
-            time.sleep(1)
-        if not json.loads((out / "sim/settled_targets.json").read_text())[
-            "ok"
-        ]:
-            raise RuntimeError(
-                "Measured target placement does not match episode"
+        if args.backend == "isaac":
+            sim = spawn(
+                "isaac",
+                [
+                    "bash",
+                    str(repo / "scripts/isaac_sim_coco.sh"),
+                    "--fetch",
+                    "--robot-urdf",
+                    str(out / "robot.urdf"),
+                    "--episode-manifest",
+                    str(out / "manifest.json"),
+                    "--output",
+                    str(out / "sim"),
+                ],
             )
+            deadline = time.monotonic() + 300
+            while not (out / "sim/settled_targets.json").exists():
+                if sim.poll() is not None or time.monotonic() > deadline:
+                    raise RuntimeError("Isaac startup failed or timed out")
+                time.sleep(1)
+            if not json.loads((out / "sim/settled_targets.json").read_text())[
+                "ok"
+            ]:
+                raise RuntimeError(
+                    "Measured target placement does not match episode"
+                )
+        else:
+            sim = spawn("gazebo", [
+                "ros2", "launch", "gazebo_models", "full_world_robo.launch.py",
+                "traverse:=true", "gui:=false",
+                "episode_manifest:=" + str(out / "manifest.json"),
+                "episode_record:=" + str(out / "spawned_manifest.json"),
+            ])
+            spawn("physical", ["python3", str(repo / "scripts/gazebo_pose_observer.py"),
+                               str(out / "physical.jsonl")])
         mission = spawn(
             "mission",
             [
@@ -144,14 +181,14 @@ def main():
                 "launch",
                 "coco_mission",
                 "mission.launch.py",
-                "simulator:=isaac",
+                "simulator:=" + args.backend,
                 "rviz:=false",
                 "web:=false",
                 "use_composition:=False",
                 "episode_level:=" + args.level,
                 "episode_seed:=" + str(args.seed),
                 "target_colour:=" + args.colour,
-            ],
+            ] + nav_arguments,
         )
         observer = spawn(
             "observer",

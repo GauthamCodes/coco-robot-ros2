@@ -64,6 +64,16 @@ def main():
     env = dict(os.environ, ROS_DOMAIN_ID=str(args.domain))
     if args.backend == "gazebo":
         env["GZ_PARTITION"] = "coco22-" + out.name
+        # Gazebo controllers add participants beyond the measured default
+        # capacity (32 held processes). Keep discovery local and leave
+        # unrelated shells/simulations untouched; 40 held nodes pass here.
+        env["CYCLONEDDS_URI"] = (
+            '<CycloneDDS><Domain><General><Interfaces>'
+            '<NetworkInterface name="lo" multicast="true"/>'
+            '</Interfaces></General><Discovery>'
+            '<ParticipantIndex>auto</ParticipantIndex>'
+            '<MaxAutoParticipantIndex>119</MaxAutoParticipantIndex>'
+            '</Discovery></Domain></CycloneDDS>')
     episode = generate_episode(
         seed=args.seed,
         level=args.level,
@@ -88,6 +98,8 @@ def main():
         ),
         "command": __import__("sys").argv,
         "domain": args.domain,
+        "cyclonedds_uri": env.get("CYCLONEDDS_URI"),
+        "gazebo_partition": env.get("GZ_PARTITION"),
     }
     source_paths = (
         subprocess.check_output(

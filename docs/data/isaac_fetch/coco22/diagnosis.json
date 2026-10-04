@@ -1,0 +1,93 @@
+{
+  "run006_clock_gap": {
+    "preceding_fix": {
+      "wall_s": 170.48609094500034,
+      "sim_s": 119.45833956300001,
+      "topic": "/perception/target",
+      "data": {
+        "frame": "base_footprint",
+        "stamp_ns": 119458339563,
+        "xyz": [
+          0.3145878301858902,
+          0.011936402190720397,
+          0.08280798575764267
+        ]
+      }
+    },
+    "following_fix": {
+      "wall_s": 171.67076053400024,
+      "sim_s": 119.55833956800001,
+      "topic": "/perception/target",
+      "data": {
+        "frame": "base_footprint",
+        "stamp_ns": 119558339568,
+        "xyz": [
+          0.31487108635902405,
+          0.011904128689207288,
+          0.08280702689258437
+        ]
+      }
+    },
+    "wall_gap_s": 1.1846695889998955,
+    "sim_gap_s": 0.10000000499999828,
+    "old_wall_stale_threshold_s": 1.0
+  },
+  "run006_alignment": {
+    "sim_start_s": 106.02500552900001,
+    "sim_end_s": 117.99167282,
+    "measured_mean_yaw_rad_s": 0.0034843805358283635,
+    "command_rad_s": 0.1
+  },
+  "run003_command_starvation": {
+    "gripper_requested_rad": [
+      0.5,
+      -0.5
+    ],
+    "backend_last_accepted_target_rad": [
+      0.41666756904805824,
+      -0.4166667076236026
+    ],
+    "measured_rad": [
+      0.4166356921195984,
+      -0.4166499674320221
+    ],
+    "time_sim_s": 72.058337091468
+  },
+  "drive_geometry": {
+    "radius_m": 0.0585,
+    "track_m": 0.274,
+    "track_multiplier": 1.1,
+    "wheelbase_m": 0.18,
+    "physics_dt_s": 0.008333333333333333,
+    "render_dt_s": 0.03333333333333333,
+    "wheel_force_ceiling_Nm": 2
+  },
+  "rejected_hypotheses": [
+    "Self-collision disabling: probe yaw response essentially unchanged; reverted.",
+    "Lower AMCL noise alone with mismatched DWB .05 / goal checker .25: bypass stalled in fetch004; not promoted.",
+    "Opening before detach: old-floor probe still falls; both orders work on mesh. Original detach-first order restored.",
+    "Disable joint instead of RemovePrim: old-floor result unchanged; removal implementation restored.",
+    "CCD and clearance alone: fetch007 still crosses floor; not sufficient."
+  ],
+  "inference": [
+    "Fetch007 DWB20cm window + low-noise AMCL allows bypass/home; full-fetch reliability not established.",
+    "Shared orientation-preserving placement FK is tested; full mission release remains under fetch008 runtime test."
+  ],
+  "runtime_verified": [
+    "Bounded ROS callback draining delivers full .5-rad finger request in fetch004/005.",
+    "Welded palm/finger contact filtering plus callback draining enables first-attempt attachment/lift in fetch005; release not verified.",
+    "Fetch005 bypass recovery repeatedly reseeded nominal exit after robot moved: shared mission retry bug.",
+    "Fetch007 completed bypass, return and physical retention over6.05m; one return retry caused by FollowPath action acknowledgement timeout. Placement failed; no COMPLETE.",
+    "Free diagnostic cylinder falls through old scaled box floor with no weld or contact filters; flat triangle floor retains it. Matched-floor open-first and detach-first release probes both settle upright.",
+    "At94mm creation height on mesh floor, 0.13rad tilted diagnostic cylinder tips (centre10mm); upright cylinder settles at79.003mm."
+  ],
+  "scan_check": {
+    "sample_size": 1,
+    "source": "fetch006 sim18.558s ground truth pose; 480 beam endpoints projected using shared lidar mount, +2m world-to-map offset, .05m raster EDT",
+    "map_mean_endpoint_distance_m": 0.011787737256267538,
+    "fraction_within_0_2m": 0.9979166666666667,
+    "wrong_angle_sign_mean_m": 0.29418396321855605,
+    "wrong_180deg_offset_mean_m": 0.3585006257714745,
+    "conclusion": "MEASURED: correct scan sign, ordering and frame geometry on mapped ground at this pose; no broad localization guarantee."
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "kind": "isolated physical fixture; NEVER a mission/fetch completion",
+  "canonical_targets_untouched": true,
+  "wheel_commands": false,
+  "creation": "New diagnostic cylinder; initial pose declared before physics; no existing body pose/velocity set.",
+  "controlled_floor_comparison": "Old scaled box vs two flat triangles; matched floor contact offset/rest offset/friction in final probes. Cylinder diagnostic mass .05 kg; initial probes auto inertia, later canonical inertia. Diagnostic cylinder default friction differs from canonical target 1.5.",
+  "results": [
+    {
+      "probe": "detach-first",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -1.5912094116210938,
+        0.07804146409034729,
+        -185.21969604492188
+      ],
+      "final_up_world": [
+        0.05409347884715324,
+        -0.2000240676707425,
+        -0.9782966154999531
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": -185.21969604492188,
+      "events": [
+        {
+          "event": "attached",
+          "sim_s": 0.025000001303851604,
+          "target": "release_probe",
+          "target_world_m": [
+            -1.8322646617889404,
+            0.0026306172367185354,
+            0.14557556807994843
+          ],
+          "pinch_world_m": [
+            -1.832596171043146,
+            0.003534857734761361,
+            0.19554165993035927
+          ]
+        },
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "detached",
+          "sim_s": 3.025000157766044,
+          "target": "release_probe"
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    },
+    {
+      "probe": "open-first",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -1.7032233476638794,
+        -0.415679007768631,
+        -105.13395690917969
+      ],
+      "final_up_world": [
+        0.78822468082086,
+        0.6012403563307867,
+        0.13119407937891925
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": -105.13395690917969,
+      "events": [
+        {
+          "event": "attached",
+          "sim_s": 0.025000001303851604,
+          "target": "release_probe",
+          "target_world_m": [
+            -1.8322646617889404,
+            0.0026306172367185354,
+            0.14557556807994843
+          ],
+          "pinch_world_m": [
+            -1.832596171043146,
+            0.003534857734761361,
+            0.19554165993035927
+          ]
+        },
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "detached",
+          "sim_s": 6.025000314228237,
+          "target": "release_probe"
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    },
+    {
+      "probe": "free",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -3.8866212368011475,
+        -1.8950526714324951,
+        -559.9127807617188
+      ],
+      "final_up_world": [
+        -0.048449853046909006,
+        -0.07277578658237065,
+        0.996170816992272
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": -559.9127807617188,
+      "events": [
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    },
+    {
+      "probe": "disable-joint",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -1.7032233476638794,
+        -0.415679007768631,
+        -105.13395690917969
+      ],
+      "final_up_world": [
+        0.78822468082086,
+        0.6012403563307867,
+        0.13119407937891925
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": -105.13395690917969,
+      "events": [
+        {
+          "event": "attached",
+          "sim_s": 0.025000001303851604,
+          "target": "release_probe",
+          "target_world_m": [
+            -1.8322646617889404,
+            0.0026306172367185354,
+            0.14557556807994843
+          ],
+          "pinch_world_m": [
+            -1.832596171043146,
+            0.003534857734761361,
+            0.19554165993035927
+          ]
+        },
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "detached",
+          "sim_s": 6.025000314228237,
+          "target": "release_probe"
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    },
+    {
+      "probe": "free-mesh",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -2.9132986068725586,
+        -0.9630547165870667,
+        0.010001345537602901
+      ],
+      "final_up_world": [
+        0.9304121231413393,
+        0.36651504895655246,
+        -3.5655347729868225e-08
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": 0.0100007439032197,
+      "events": [
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    },
+    {
+      "probe": "open-mesh-matched",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -1.8385447263717651,
+        0.002395848510786891,
+        0.07900667190551758
+      ],
+      "final_up_world": [
+        0.0002912046811884713,
+        -0.0005971688843392977,
+        0.9999997792945543
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": 0.07900667190551758,
+      "events": [
+        {
+          "event": "attached",
+          "sim_s": 0.025000001303851604,
+          "target": "release_probe",
+          "target_world_m": [
+            -1.8322646617889404,
+            0.0026306172367185354,
+            0.14557556807994843
+          ],
+          "pinch_world_m": [
+            -1.832596171043146,
+            0.003534857734761361,
+            0.19554165993035927
+          ]
+        },
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "detached",
+          "sim_s": 6.025000314228237,
+          "target": "release_probe"
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    },
+    {
+      "probe": "detach-mesh-inertia",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -1.8364750146865845,
+        0.021690579131245613,
+        0.07901901751756668
+      ],
+      "final_up_world": [
+        0.00041746135939212516,
+        0.0017494722705422945,
+        0.999998382535086
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": 0.07901901751756668,
+      "events": [
+        {
+          "event": "attached",
+          "sim_s": 0.025000001303851604,
+          "target": "release_probe",
+          "target_world_m": [
+            -1.8322646617889404,
+            0.002630627015605569,
+            0.14557553827762604
+          ],
+          "pinch_world_m": [
+            -1.8325961710429868,
+            0.003534859572880308,
+            0.19554164085463346
+          ]
+        },
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "detached",
+          "sim_s": 3.025000157766044,
+          "target": "release_probe"
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    },
+    {
+      "probe": "tilted",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -2.9161856174468994,
+        -0.9998152852058411,
+        0.010001402348279953
+      ],
+      "final_up_world": [
+        0.9999998618611988,
+        0.0005256211385398198,
+        -4.122855917776391e-08
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": 0.010000779293477535,
+      "events": [
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    },
+    {
+      "probe": "upright",
+      "sample_size": 1,
+      "final_target_xyz_m": [
+        -3.000030040740967,
+        -1.000038981437683,
+        0.07900284975767136
+      ],
+      "final_up_world": [
+        -0.0003753632389659432,
+        -0.0004640757397110094,
+        0.9999998218680574
+      ],
+      "final_attached": null,
+      "minimum_sampled_height_m": 0.07900127023458481,
+      "events": [
+        {
+          "event": "settled",
+          "sim_s": 3.025000157766044
+        },
+        {
+          "event": "fingers_open",
+          "sim_s": 6.025000314228237
+        },
+        {
+          "event": "finished",
+          "sim_s": 11.025000574998558
+        }
+      ]
+    }
+  ]
+}

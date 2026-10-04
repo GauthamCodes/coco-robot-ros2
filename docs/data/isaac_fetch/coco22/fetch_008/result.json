@@ -1,0 +1,215 @@
+{
+  "passed": false,
+  "mission": "ABORT",
+  "states": [
+    "IDLE",
+    "LOCALIZE",
+    "NAVIGATE_TO_RAMP",
+    "ALIGN_FOR_CLIMB",
+    "CLIMB",
+    "VERIFY_CLIMB",
+    "SEARCH_TARGET",
+    "STOW_ARM",
+    "APPROACH_TARGET",
+    "GRASP",
+    "VERIFY_GRASP",
+    "DESCEND",
+    "BYPASS_RAMP",
+    "RETURN_HOME",
+    "PLACE",
+    "RECOVERY",
+    "PLACE",
+    "RECOVERY",
+    "ABORT"
+  ],
+  "counts": {
+    "/magnet/target_red/state": 3,
+    "/grasp/target_red/height": 5559,
+    "/magnet/target_green/state": 1,
+    "/grasp/target_green/height": 5559,
+    "/magnet/target_blue/state": 1,
+    "/grasp/target_blue/height": 5559,
+    "/magnet/target_yellow/state": 1,
+    "/grasp/target_yellow/height": 5559,
+    "/diff_drive_controller/odom": 5559,
+    "/model/coco/odometry": 5559,
+    "/joint_states": 5559,
+    "/scan": 1854,
+    "/imu": 5559,
+    "/camera/image_raw": 1648,
+    "/camera/depth/image_raw": 80,
+    "amcl": 146,
+    "/cmd_vel_arbiter/status": 692,
+    "/ramp/status": 925,
+    "/approach/status": 925,
+    "/grasp/status": 925,
+    "/perception/target_pose/status": 923,
+    "/perception/status": 923,
+    "/mission/state": 708,
+    "/mission/mode": 708,
+    "/mission/search_region": 681,
+    "/cmd_vel_nav": 1930,
+    "/cmd_vel_smoothed": 3916,
+    "/cmd_vel": 3916,
+    "/cmd_vel_gated": 3914,
+    "/diff_drive_controller/cmd_vel": 5053,
+    "/cmd_vel_rl": 561,
+    "/perception/target": 111,
+    "/cmd_vel_approach": 444,
+    "/approach/target": 1
+  },
+  "final": {
+    "/magnet/target_red/state": "detached",
+    "/grasp/target_red/height": 0.010001396760344505,
+    "/magnet/target_green/state": "detached",
+    "/grasp/target_green/height": 0.7288427352905273,
+    "/magnet/target_blue/state": "detached",
+    "/grasp/target_blue/height": 0.7288429737091064,
+    "/magnet/target_yellow/state": "detached",
+    "/grasp/target_yellow/height": 0.7288426756858826,
+    "/diff_drive_controller/odom": {
+      "xyz": [
+        0.13130513722357828,
+        0.007019007616524786,
+        0.0001465077468045025
+      ],
+      "quaternion_xyzw": [
+        -0.00024966857745312154,
+        -0.0016224264400079846,
+        -0.12726980447769165,
+        -0.9918667674064636
+      ]
+    },
+    "/model/coco/odometry": {
+      "xyz": [
+        -1.8686948627764217,
+        0.007019007616524786,
+        0.0001465077468045025
+      ],
+      "quaternion_xyzw": [
+        -0.00024966857745312154,
+        -0.0016224264400079846,
+        -0.12726980447769165,
+        -0.9918667674064636
+      ]
+    },
+    "/joint_states": {
+      "base_Revolute-1": 5.788962364196777,
+      "base_Revolute-2": 3.362645149230957,
+      "base_Revolute-3": 1.0117653608322144,
+      "base_Revolute-4": -2.5546493530273438,
+      "m_link1_Revolute-6": -0.28912466764450073,
+      "m_link2_Revolute-7": 0.2047717571258545,
+      "m_link3_Revolute-8": 0.49999725818634033,
+      "m_link3_Revolute-9": -0.49999940395355225
+    },
+    "/scan": "sample",
+    "/imu": "sample",
+    "/camera/image_raw": "sample",
+    "/camera/depth/image_raw": "sample",
+    "amcl": {
+      "xyz": [
+        0.1363149235565628,
+        0.02015597133044301,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.15890092176936454,
+        0.9872945340985365
+      ]
+    },
+    "/cmd_vel_arbiter/status": "mode=idle active=none teleop=-- nav=25.39 rl=0.37 approach=0.37",
+    "/ramp/status": "segment=idle step=486 progress=6.65 lateral=+0.76 disp=-0.09 pitch=-- outcome=stopped",
+    "/approach/status": "phase=idle tx=-- ty=-- range=-- bearing=-- stop=0.154 travel=1.196 colour=red outcome=stopped",
+    "/grasp/status": "phase=idle colour=red x=0.1540 y=-0.0032 lifted=1 outcome=nothing held \u2014 nothing to place",
+    "/perception/target_pose/status": "sel=red validity=IMPLAUSIBLE_SIZE stamp_ns=187825009795 u=-- v=-- area=-- w=-- range=-- x=-- y=-- z=-- gx=-- gy=-- gz=-- qual=-- spread=-- cand=1 seen=red frame=-- tf_age=-- reach=UNKNOWN reach_appr=UNKNOWN drive=-- lateral=--",
+    "/perception/status": "sel=red found=0 u=-- v=-- area=-- w=-- h=-- range=-- x=-- y=-- z=-- lane=-- seen=red age=--",
+    "/mission/state": "state=ABORT prev=RECOVERY event=enter elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=PLACE_FAILED result=aborted",
+    "/mission/mode": "idle",
+    "/mission/search_region": "lane_1",
+    "/cmd_vel_nav": [
+      0.0,
+      0.0
+    ],
+    "/cmd_vel_smoothed": [
+      0.0,
+      0.0
+    ],
+    "/cmd_vel": [
+      0.0,
+      0.0
+    ],
+    "/cmd_vel_gated": [
+      0.0,
+      0.0
+    ],
+    "/diff_drive_controller/cmd_vel": [
+      0.0,
+      0.0
+    ],
+    "/cmd_vel_rl": [
+      0.0,
+      0.0
+    ],
+    "/perception/target": {
+      "frame": "base_footprint",
+      "stamp_ns": 47025002452,
+      "xyz": [
+        0.2839607806801796,
+        -0.0036514975311883746,
+        0.07682164616649872
+      ]
+    },
+    "/cmd_vel_approach": [
+      0.0,
+      0.0
+    ],
+    "/approach/target": {
+      "frame": "base_footprint",
+      "stamp_ns": 51125002666,
+      "xyz": [
+        0.15404720024363128,
+        -0.003199840988452128,
+        0.128
+      ]
+    }
+  },
+  "stop_samples": 32,
+  "stop_breaches": 0,
+  "mission_wall_s": 332.1039165880029,
+  "mission_sim_s": 176.20000919,
+  "rates_sim_hz": {
+    "/magnet/target_red/state": 0.011055831374788761,
+    "/grasp/target_red/height": 29.99999843539051,
+    "/grasp/target_green/height": 29.99999843539051,
+    "/grasp/target_blue/height": 29.99999843539051,
+    "/grasp/target_yellow/height": 29.99999843539051,
+    "/diff_drive_controller/odom": 29.99999843539051,
+    "/model/coco/odometry": 29.99999843539051,
+    "/joint_states": 29.99999843539051,
+    "/scan": 10.001798686717994,
+    "/imu": 29.99999843539051,
+    "/camera/image_raw": 8.899495213119625,
+    "/camera/depth/image_raw": 7.406249613717794,
+    "amcl": 0.8456453680235901,
+    "/cmd_vel_arbiter/status": 3.7391772941656343,
+    "/ramp/status": 5.000901777789879,
+    "/approach/status": 5.000901777789879,
+    "/grasp/status": 5.0027068316671635,
+    "/perception/target_pose/status": 4.9999997392353706,
+    "/perception/status": 4.9999997392353706,
+    "/mission/state": 3.8368304800657387,
+    "/mission/mode": 3.8368304800657387,
+    "/mission/search_region": 3.8614421608895726,
+    "/cmd_vel_nav": 11.829516962783183,
+    "/cmd_vel_smoothed": 23.86709893817267,
+    "/cmd_vel": 23.86709893817267,
+    "/cmd_vel_gated": 23.85490629503695,
+    "/diff_drive_controller/cmd_vel": 30.892782734564328,
+    "/cmd_vel_rl": 3.4753825245803296,
+    "/perception/target": 8.46153802023671,
+    "/cmd_vel_approach": 2.954646355462319
+  }
+}

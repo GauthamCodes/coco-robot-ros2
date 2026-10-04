@@ -1,0 +1,30 @@
+[
+  {
+    "angle_sign": 1,
+    "offset": 0,
+    "mean_map_endpoint_distance_m": 0.011787737256267538,
+    "near_.2_fraction": 0.9979166666666667,
+    "valid": 480
+  },
+  {
+    "angle_sign": 1,
+    "offset": 3.141592653589793,
+    "mean_map_endpoint_distance_m": 0.3585006257714745,
+    "near_.2_fraction": 0.43487394957983194,
+    "valid": 476
+  },
+  {
+    "angle_sign": -1,
+    "offset": 0,
+    "mean_map_endpoint_distance_m": 0.29418396321855605,
+    "near_.2_fraction": 0.3706896551724138,
+    "valid": 464
+  },
+  {
+    "angle_sign": -1,
+    "offset": 3.141592653589793,
+    "mean_map_endpoint_distance_m": 0.41931112849734736,
+    "near_.2_fraction": 0.3426724137931034,
+    "valid": 464
+  }
+]

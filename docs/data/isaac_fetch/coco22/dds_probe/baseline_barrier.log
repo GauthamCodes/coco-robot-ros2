@@ -1,0 +1,175 @@
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+1791133740.788056 [89]    python3: Failed to find a free participant index for domain 89
+[ERROR] [1791133740.788138751] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py:188: RuntimeWarning: Failed to fini rosout publisher: rcl node implementation is invalid, at ./src/rcl/node.c:390
+  self.__node = _rclpy.Node(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 184, in create_node
+    return Node(
+           ^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 188, in __init__
+    self.__node = _rclpy.Node(
+                  ^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: error creating node: error not set, at ./src/rcl/node.c:252
+
+READY
+
+READY
+
+1791133741.042150 [89]    python3: Failed to find a free participant index for domain 89
+[ERROR] [1791133741.042224983] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py:188: RuntimeWarning: Failed to fini rosout publisher: rcl node implementation is invalid, at ./src/rcl/node.c:390
+  self.__node = _rclpy.Node(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 184, in create_node
+    return Node(
+           ^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 188, in __init__
+    self.__node = _rclpy.Node(
+                  ^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: error creating node: error not set, at ./src/rcl/node.c:252
+
+READY
+
+1791133740.931837 [89]    python3: Failed to find a free participant index for domain 89
+[ERROR] [1791133740.931944578] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py:188: RuntimeWarning: Failed to fini rosout publisher: rcl node implementation is invalid, at ./src/rcl/node.c:390
+  self.__node = _rclpy.Node(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 184, in create_node
+    return Node(
+           ^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 188, in __init__
+    self.__node = _rclpy.Node(
+                  ^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: error creating node: error not set, at ./src/rcl/node.c:252
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+READY
+
+1791133740.900816 [89]    python3: Failed to find a free participant index for domain 89
+[ERROR] [1791133740.900919847] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py:188: RuntimeWarning: Failed to fini rosout publisher: rcl node implementation is invalid, at ./src/rcl/node.c:390
+  self.__node = _rclpy.Node(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 184, in create_node
+    return Node(
+           ^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 188, in __init__
+    self.__node = _rclpy.Node(
+                  ^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: error creating node: error not set, at ./src/rcl/node.c:252
+
+READY
+
+READY
+
+READY
+
+1791133741.059189 [89]    python3: Failed to find a free participant index for domain 89
+[ERROR] [1791133741.059301873] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py:188: RuntimeWarning: Failed to fini rosout publisher: rcl node implementation is invalid, at ./src/rcl/node.c:390
+  self.__node = _rclpy.Node(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 184, in create_node
+    return Node(
+           ^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 188, in __init__
+    self.__node = _rclpy.Node(
+                  ^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: error creating node: error not set, at ./src/rcl/node.c:252
+
+READY
+
+1791133741.097020 [89]    python3: Failed to find a free participant index for domain 89
+[ERROR] [1791133741.097096071] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py:188: RuntimeWarning: Failed to fini rosout publisher: rcl node implementation is invalid, at ./src/rcl/node.c:390
+  self.__node = _rclpy.Node(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 184, in create_node
+    return Node(
+           ^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 188, in __init__
+    self.__node = _rclpy.Node(
+                  ^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: error creating node: error not set, at ./src/rcl/node.c:252
+
+READY
+
+1791133740.922006 [89]    python3: Failed to find a free participant index for domain 89
+[ERROR] [1791133740.922111479] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py:188: RuntimeWarning: Failed to fini rosout publisher: rcl node implementation is invalid, at ./src/rcl/node.c:390
+  self.__node = _rclpy.Node(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 184, in create_node
+    return Node(
+           ^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 188, in __init__
+    self.__node = _rclpy.Node(
+                  ^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: error creating node: error not set, at ./src/rcl/node.c:252
+
+READY
+
+READY
+
+READY
+
+1791133740.863819 [89]    python3: Failed to find a free participant index for domain 89
+[ERROR] [1791133740.863932967] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py:188: RuntimeWarning: Failed to fini rosout publisher: rcl node implementation is invalid, at ./src/rcl/node.c:390
+  self.__node = _rclpy.Node(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 184, in create_node
+    return Node(
+           ^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 188, in __init__
+    self.__node = _rclpy.Node(
+                  ^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: error creating node: error not set, at ./src/rcl/node.c:252

@@ -1,0 +1,32 @@
+[
+  {
+    "package": "custom_teleop",
+    "cwd": "/home/gautham/coco-isaac-21/custom_teleop",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "test/test_copyright.py",
+      "test/test_flake8.py",
+      "test/test_pep257.py"
+    ],
+    "exit": 0,
+    "wall_s": 3.1591879340012383
+  },
+  {
+    "package": "coco_perception",
+    "cwd": "/home/gautham/coco-isaac-21/coco_perception",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "test/test_copyright.py",
+      "test/test_flake8.py",
+      "test/test_pep257.py"
+    ],
+    "exit": 0,
+    "wall_s": 2.872408205999818
+  }
+]

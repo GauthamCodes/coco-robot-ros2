@@ -1,0 +1,50 @@
+.F.                                                                      [100%]
+=================================== FAILURES ===================================
+_________________________________ test_flake8 __________________________________
+
+    @pytest.mark.flake8
+    @pytest.mark.linter
+    def test_flake8():
+        rc, errors = main_with_errors(argv=[])
+>       assert rc == 0, \
+            'Found %d code style errors / warnings:\n' % len(errors) + \
+            '\n'.join(errors)
+E       AssertionError: Found 1 code style errors / warnings:
+E         ./test/test_approach_server.py:344:100: E501 line too long (104 > 99 characters)
+E       assert 1 == 0
+
+test/test_flake8.py:23: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+./test/test_approach_server.py:344:100: E501 line too long (104 > 99 characters)
+    server = SimpleNamespace(_target=None, _target_at=None, get_clock=lambda: clock, _pose=lambda: None)
+                                                                                                   ^
+
+1     E501 line too long (104 > 99 characters)
+
+16 files checked
+1 errors
+
+'E'-type errors: 1
+
+Checked files:
+
+* ./setup.py
+* ./launch/teleop.launch.py
+* ./launch/arbiter.launch.py
+* ./custom_teleop/cmd_vel_relay.py
+* ./custom_teleop/__init__.py
+* ./custom_teleop/cmd_vel_arbiter.py
+* ./custom_teleop/teleop_wheels_node.py
+* ./custom_teleop/approach_server.py
+* ./custom_teleop/teleop_arm_node.py
+* ./test/test_copyright.py
+* ./test/test_cmd_vel_relay.py
+* ./test/test_teleop_basic.py
+* ./test/test_approach_server.py
+* ./test/test_cmd_vel_arbiter.py
+* ./test/test_pep257.py
+* ./test/test_flake8.py
+=========================== short test summary info ============================
+FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 1 code style ...
+1 failed, 2 passed in 1.92s

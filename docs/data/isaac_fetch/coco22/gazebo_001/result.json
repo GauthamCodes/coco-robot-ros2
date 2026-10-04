@@ -1,0 +1,107 @@
+{
+  "passed": false,
+  "mission": "NOT_STARTED",
+  "error": "RuntimeError('Shared stack did not become ready')",
+  "states": [
+    "IDLE"
+  ],
+  "counts": {
+    "/mission/mode": 588,
+    "/mission/state": 588,
+    "/imu": 6502,
+    "/magnet/target_red/state": 2,
+    "/magnet/target_green/state": 2,
+    "/magnet/target_blue/state": 2,
+    "/magnet/target_yellow/state": 2,
+    "/camera/depth/image_raw": 1971,
+    "/camera/image_raw": 1970,
+    "/scan": 1301,
+    "/model/coco/odometry": 6501,
+    "/grasp/status": 650,
+    "/diff_drive_controller/odom": 6455,
+    "amcl": 1,
+    "/joint_states": 12883
+  },
+  "final": {
+    "/mission/mode": "idle",
+    "/mission/state": "state=IDLE prev=-- event=run elapsed=130.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--",
+    "/imu": "sample",
+    "/magnet/target_red/state": "detached",
+    "/magnet/target_green/state": "detached",
+    "/magnet/target_blue/state": "detached",
+    "/magnet/target_yellow/state": "detached",
+    "/camera/depth/image_raw": "sample",
+    "/camera/image_raw": "sample",
+    "/scan": "sample",
+    "/model/coco/odometry": {
+      "xyz": [
+        -2.0003296096974212,
+        1.249788697271249e-06,
+        -3.5677359491221916e-08
+      ],
+      "quaternion_xyzw": [
+        -4.395151211441854e-10,
+        1.080046752067311e-07,
+        6.0633588058575554e-06,
+        0.999999999981612
+      ]
+    },
+    "/grasp/status": "phase=idle colour=red x=-- y=-- lifted=-- outcome=--",
+    "/diff_drive_controller/odom": {
+      "xyz": [
+        -0.0005609747413843731,
+        -6.910003327749656e-09,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.0,
+        1.1718907885690648e-05,
+        0.9999999999313336
+      ]
+    },
+    "amcl": {
+      "xyz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "/joint_states": {
+      "base_Revolute-1": -0.0080522449639789,
+      "base_Revolute-2": -0.011005623843005448,
+      "base_Revolute-3": -0.007994850202831395,
+      "base_Revolute-4": -0.011304528268209565,
+      "m_link1_Revolute-6": 1.8216284359319597e-11,
+      "m_link2_Revolute-7": -5.069014448394526e-11,
+      "m_link3_Revolute-8": -3.4223589382401385e-13,
+      "m_link3_Revolute-9": 6.21191219879484e-13
+    }
+  },
+  "stop_samples": 0,
+  "stop_breaches": 0,
+  "mission_wall_s": null,
+  "mission_sim_s": null,
+  "rates_sim_hz": {
+    "/mission/mode": 4.5147594948391765,
+    "/mission/state": 4.51462060266724,
+    "/imu": 50.0007691242751,
+    "/magnet/target_red/state": 500.0,
+    "/magnet/target_green/state": 500.0,
+    "/magnet/target_blue/state": 500.0,
+    "/magnet/target_yellow/state": 500.0,
+    "/camera/depth/image_raw": 15.151282090723106,
+    "/camera/image_raw": 15.150815635580178,
+    "/scan": 9.99984615621298,
+    "/model/coco/odometry": 49.9992307810649,
+    "/grasp/status": 5.0,
+    "/diff_drive_controller/odom": 49.996901338621704,
+    "/joint_states": 99.99844747015261
+  }
+}

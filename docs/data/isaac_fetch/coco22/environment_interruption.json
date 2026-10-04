@@ -1,0 +1,14 @@
+{
+  "interrupted_run": "/tmp/coco22-fetch-009",
+  "last_observed_state": "RETURN_HOME",
+  "last_observed_physical_state": "target_red physically attached",
+  "complete_verified": false,
+  "evidence_limit": "Temporary output and owned Isaac process absent after environment switch; fetch009 is excluded from success counts.",
+  "replacement_run": "/home/gautham/coco22_runtime/fetch_009_restarted",
+  "retained_evidence": [
+    "fetch_008",
+    "release_probes/grasp-detach",
+    "release_probes/grasp-open",
+    "release_probes/grasp-offset-open"
+  ]
+}

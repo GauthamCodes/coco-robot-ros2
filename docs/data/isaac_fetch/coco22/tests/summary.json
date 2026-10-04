@@ -1,0 +1,74 @@
+[
+  {
+    "package": "custom_teleop",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "custom_teleop/test"
+    ],
+    "exit": 1,
+    "wall_s": 27.020439374002308
+  },
+  {
+    "package": "coco_sim",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "coco_sim/test"
+    ],
+    "exit": 0,
+    "wall_s": 6.146514496002055
+  },
+  {
+    "package": "coco_mission",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "coco_mission/test"
+    ],
+    "exit": 0,
+    "wall_s": 9.37993178400211
+  },
+  {
+    "package": "coco_perception",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "coco_perception/test"
+    ],
+    "exit": 1,
+    "wall_s": 27.224865716998465
+  },
+  {
+    "package": "coco_moveit_config",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "coco_moveit_config/test"
+    ],
+    "exit": 0,
+    "wall_s": 2.766579561000981
+  },
+  {
+    "package": "gazebo_models",
+    "command": [
+      "python3",
+      "-m",
+      "pytest",
+      "-q",
+      "gazebo_models/test"
+    ],
+    "exit": 0,
+    "wall_s": 22.742095456000243
+  }
+]

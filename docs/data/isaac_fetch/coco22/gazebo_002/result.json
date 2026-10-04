@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "mission": "NOT_STARTED",
+  "states": [],
+  "counts": {},
+  "final": {},
+  "stop_samples": 0,
+  "stop_breaches": 0,
+  "mission_wall_s": null,
+  "mission_sim_s": null,
+  "rates_sim_hz": {}
+}

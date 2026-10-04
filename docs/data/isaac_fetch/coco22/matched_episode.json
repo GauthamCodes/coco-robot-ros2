@@ -1,0 +1,15 @@
+{
+  "isaac_episode": "ep-ffde59818fff",
+  "gazebo_episode": "ep-125360ba0d75",
+  "identical_logical_fields": {
+    "level": true,
+    "seed": true,
+    "requested_colour": true,
+    "world_variant": true,
+    "ramp_angle_deg": true,
+    "robot_start": true,
+    "targets": true,
+    "obstacles": true
+  },
+  "logical_episode_count": 1
+}

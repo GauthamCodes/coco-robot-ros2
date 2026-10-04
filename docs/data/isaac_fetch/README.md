@@ -1,5 +1,193 @@
 # Isaac fetch consolidation evidence
 
+## COCO 2.2 evidence (2026-10-03)
+
+Starting SHA `589e1f1b8225a857d7c03ed9f019f53a5bd1efb9`, branch
+`coco-2.1-isaac-integration`, initially clean. See
+[`coco22/starting_state.json`](coco22/starting_state.json) and
+[`coco22/diagnosis.json`](coco22/diagnosis.json). Historical milestone evidence
+below is unchanged. **Isaac fetch009 is physically verified COMPLETE.**
+The matching Gazebo fetch004 is also physically verified COMPLETE.
+
+Fetch009 (replacement after the environment interruption) ran the shared
+seed-5, colours-level red episode through navigation, climb, RGB-D search,
+approach, acquisition, lift, descent, bypass, return, release, placement
+verification and COMPLETE. All owned processes exited zero. Its measured
+grasp-entry pose was `(0.154559, -0.003878, 0.079029)` m relative to
+`base_footprint` (object centre); the perception-derived grasp-band handoff
+was `(0.153977, -0.003673, 0.128)` m. The first lift check measured 32.8 mm.
+During carry, 95 sampled palm-relative positions spanned at most 0.318 mm
+over 6.063 m displacement. After detach and arm retreat, the cylinder stood
+at world `(-1.817764, -0.204262, 0.079014)` m, 0.274 m from home; its up-axis
+z component was 0.9999988. Four post-release samples were 79.014–79.183 mm
+high. Mission runtime was 255.767 simulation / 729.476 wall seconds, with
+zero RECOVERY entries and zero sampled idle-wheel breaches.
+
+This is **one complete Isaac fetch**, not statistical reliability or physical
+parity. Bypass arrival took longer than earlier attempts and had 0.352 m
+physical error, accepted by the pre-existing 0.50 m consistency band; home
+arrival had 0.241 m error. Neither arrival gate was relaxed. The arbiter
+remains the sole final wheel publisher, recorded in `fetch_009/command_graph.json`.
+
+| Evidence | Status / result |
+| --- | --- |
+| Run006 clock gap | **MEASURED:** valid fixes 0.100 s apart in simulation, 1.185 s in wall time; old 1-s wall freshness caused false loss |
+| Approach timestamp / frame checks and odometry handoff | **IMPLEMENTED, TESTED, RUNTIME VERIFIED:** fetch001/003/004/005/006 enter GRASP after RGB-D approach; no target coordinates supplied to robot |
+| Drive probes | **MEASURED:** 0.1 rad/s request yielded 0.0035 rad/s baseline; body-rate feedback improved response without increasing motor gains or 2 Nm ceiling; self-collision hypothesis rejected |
+| Arm command delivery | **MEASURED:** old single-callback render loop accepted only 0.4167 rad of a 0.5-rad request; bounded draining delivers 0.5 rad |
+| Physical magnet and carry | **RUNTIME VERIFIED:** fetch005 first-attempt attach/lift; 44 samples over 2.62 m, palm-relative span below 0.149 mm |
+| Release / placement | **RUNTIME VERIFIED, MEASURED:** fetch009 separates and stands upright near home; mesh floor, preserved acquisition pitch and open-before-detach address distinct failures |
+| Navigation | **MEASURED:** scan geometry agrees with map at one mapped-ground pose; AMCL process noise, DWB goal radius and return retry handoff investigated; reliability not established |
+| Relevant regression | **TESTED:** 1,053 unique tests across six packages; final zero failures. Initial root-cwd style invocations scanned unrelated packages; corrected package scope and one new test line wrap. Raw logs retained in `coco22/tests/` |
+| Gazebo full-fetch comparison | **RUNTIME VERIFIED, MEASURED:** fetch004 completes the same seed5 red episode; n=1 complete episode per backend, no parity or reliability claim |
+
+`coco22/fetch_001`, `fetch_003`, `fetch_004`, `fetch_005`, `fetch_006`, `fetch_007`, `fetch_008`, `fetch_009`
+retain full compressed simulator/mission/observer logs and ROS traces,
+source patches and source digests, manifests, task-only robot inputs, graph,
+exit codes and offline measurements. `fetch-002` retains the startup logging
+failure (non-serializable numpy value), fixed by float conversion. Drive probe
+records and rejected configurations are retained separately. Images and expanded
+USD/URDF remain in each original `/tmp/coco22-*` directory; the durable trace
+contains physical poses, arm targets, target orientations and velocities.
+
+Fetch003 reached home while holding, then failed release. Fetch004 tested low
+AMCL noise with the old 5-cm DWB rotation window, delivered the complete gripper
+request but failed arm raise without welded-cluster filtering, and stalled on
+return. Fetch005 used the 25-cm DWB window and canonical AMCL noise: attachment,
+lift and descent succeeded, but return pose consistency failed (0.95 / 0.60 m).
+The shared retry code re-seeded the ramp exit after navigation moved away; the
+new regression prevents that. Fetch006 used low AMCL noise plus the 25-cm DWB
+window: first grasp and descent succeeded, localization remained much closer,
+but bypass circled at the rotation window boundary until the 600-wall-second
+observation timeout. `fetch_006/dwb.json` records selected critic scores;
+RotateToGoal alternates between active and zero around 0.25 m. Jazzy DWB
+[resets critics on each new plan](https://raw.githubusercontent.com/ros-navigation/navigation2/jazzy/nav2_dwb_controller/dwb_core/src/dwb_local_planner.cpp)
+and [latches rotation only inside its configured window](https://raw.githubusercontent.com/ros-navigation/navigation2/jazzy/nav2_dwb_controller/dwb_critics/src/rotate_to_goal.cpp).
+Fetch008 completed navigation, acquisition, lift, descent and return without
+mission recovery, but its detach-first release tipped the target on the repaired
+floor: separation occurred, placement verification correctly failed.
+
+A 20-cm window leaves one 5-cm map-cell margin inside the unchanged 25-cm
+arrival tolerance. Fetch007 used it to complete bypass and return (one return
+retry after an action-acknowledgement timeout), but physical placement failed. Safety polygons, physical
+arrival consistency, wheel torque and gain ceilings are unchanged.
+
+`coco22/release_probes/summary.json` and compressed native traces retain nine
+isolated physical experiments. These are **not fetch episodes**: they create a
+new diagnostic cylinder, command no wheel, never teleport an existing body,
+and run no mission node. Both release orders and joint-disable vs removal
+failed on the old floor; a free cylinder also failed, ruling out the weld as
+the sole cause. Flat-mesh release probes with matched floor offsets/material
+settled upright at 79.007 / 79.019 mm. At identical 94-mm creation height,
+0.13-rad tilt tipped over whereas zero tilt settled at 79.003 mm. Diagnostic
+cylinder friction differs from the canonical target; full mission evidence is
+still required. The new shared `place_clearance_pose` preserves acquisition
+palm pitch while adding 15 mm height and respecting joint limits.
+
+Three further arm-actuated probes (`release_probes/grasp-*`) use the
+perception-derived acquisition pose, canonical target inertia/friction and
+physical joint actuation. Detach-first tips the target; opening before detach
+settles upright at 79.004 mm, also at the attachment offset measured in fetch008
+(79.002 mm). They isolate finger contact restoration as the remaining cause.
+These create a diagnostic body and are never counted as fetches. The shared
+place worker now opens while retaining the weld; opening failure leaves it held.
+
+Reproduce a narrow fixture without changing a mission episode:
+
+```bash
+xacro gazebo_models/urdf/coco_robo2.xacro > /tmp/coco22-probe-robot.urdf
+bash docs/data/isaac_fetch/coco22/release_probes/release_probe.sh \
+  free /tmp/coco22-probe-new --robot-urdf /tmp/coco22-probe-robot.urdf \
+  --floor-mesh --height .094 --tilt 0
+```
+
+A run under `/tmp/coco22-fetch-009` was interrupted by an environment switch
+after return began. Its temporary directory and process disappeared; it is
+excluded from completion counts. `coco22/environment_interruption.json` records
+that evidence limit. The replacement writes native output under
+`/home/gautham/coco22_runtime/fetch_009_restarted`.
+
+The observer's `result.json passed` records mission COMPLETE plus sampled
+idle-wheel safety only. Full physical success requires the simulator trace
+as well: attachment, retained relative pose, detach, final floor pose and
+placement area. `coco22/measure_fetch.py` evaluates saved telemetry offline;
+it never commands or supplies coordinates to robot nodes. Each measurement
+record has sample size one; interrupted and failed attempts are not successes.
+
+The fetch runner now generates the measured Isaac profile from canonical Nav2
+parameters: ideal-odometry AMCL alpha1–5=0.001 and DWB rotation window=0.20 m.
+The goal checker remains 0.25 m. `tests/profile_equivalence.log` verifies semantic
+identity to COMPLETE fetch009's explicit input. Gazebo uses the canonical
+profile; `--params-file` remains an explicit override. Every generated profile
+is saved in the run directory.
+
+### Matched fetch measurements
+
+`coco22/matched_episode.json` checks identical seed, level, requested colour,
+robot start, ramp, targets, obstacles and world variant. Backend-specific
+episode IDs differ. `coco22/comparison.json` contains the full measurements;
+`tests/comparison_checks.log` verifies physical evidence alongside COMPLETE.
+**Sample size: one recorded complete episode per simulator.** Development
+failures are retained and are not used to estimate a success rate.
+
+| Quantity | Isaac fetch009 | Gazebo fetch004 |
+| --- | --- | --- |
+| First detection after search entry, base xyz (m) | (1.2875, -0.1110, -0.2553) | (1.2853, +0.1020, -0.2480) |
+| Grasp-entry measured base x/y (m) | (0.154559, -0.003878) | (0.154550, -0.000392) |
+| First verified lift (mm) | 32.8 | 34.4 |
+| Maximum displacement from carry start (m), not path length | 6.063 | 6.345 |
+| Palm-relative maximum axis span (mm), samples | 0.318, 95 | 0.000325, 45 |
+| Ramp-goal / bypass / home arrival error (m) | 0.192 / 0.352 / 0.241 | 0.110 / 0.226 / 0.042 |
+| Final target height (mm) | 79.014 | 79.000 |
+| Placement distance from home (m) | 0.274 | 0.123 |
+| Runtime, sim / wall seconds | 255.767 / 729.476 | 166.386 / 174.437 |
+| Mission RECOVERY entries / sampled idle-wheel breaches | 0 / 0 | 0 / 0 |
+| Physical attach, retain, detach, upright placement / mission | verified / COMPLETE | verified / COMPLETE |
+
+The first detection occurs on the pitched crest, before final level approach;
+its z is the observed object centre in that base frame, not the 0.128-m
+grasp-band handoff. Gazebo palm poses are model-relative and composed with
+the measured model pose. Protobuf JSON seconds may be strings; omitted scalar
+quaternion fields are zero. The first evaluator incorrectly defaulted missing
+w to one, producing apparent 28.5-mm jumps during turns. Corrected evaluation
+of unchanged raw telemetry removes them; rejected results remain explicitly
+labelled in `gazebo_004/rejected_measurement.json`.
+
+Gazebo attempts001 and003 failed before mission start due to DDS participant
+index exhaustion; the publisher guard correctly refused an absent arbiter.
+Attempt002 had no simulator/mission startup output and timed out; its transient
+cause is **NOT VERIFIED**. The initial 28-process probe did not enforce peak
+concurrency. A held-process probe then measured 32/40 ready with the existing
+configuration versus 40/40 with explicit `MaxAutoParticipantIndex=119`.
+The runner applies that bounded loopback discovery setting only to its owned
+Gazebo children; other environments are untouched. Native controller processes
+make the Gazebo stack larger than the Isaac stack. The setting's meaning is
+documented by [Cyclone DDS](https://cyclonedds.io/docs/cyclonedds/latest/config/config_file_reference.html#cyclonedds-domain-discovery-maxautoparticipantindex).
+`dds_probe/*_barrier.json` and logs retain the measured comparison. Final
+Gazebo simulator, mission, observer and physical recorder all exited zero.
+No Gazebo rebuild was performed.
+
+Reproduce the narrow held-process diagnostic after sourcing `setup_env.sh`:
+
+```bash
+python3 docs/data/isaac_fetch/coco22/dds_probe/barrier_probe.py /tmp/coco-dds-new --domain 89
+```
+
+**Remaining limitations:** variable Isaac navigation time and localization
+error, ideal pose odometry, approximate base inertia/contact dynamics, 2-Nm
+wheel ceiling, and an explicitly filtered fixed-joint magnet approximation.
+Displaced-target full-fetch trials and broader repeatability remain **NOT
+VERIFIED**. These two runs do not establish physics or performance parity.
+
+Implementation checkpoint: `70d3f38c0e99de8f35c8a419f16e4ae00b84f672`.
+The final evidence commit also contains the measured DDS launch correction.
+Each runtime preserves its actual HEAD, dirty patch and source digests.
+Resolve the exact evidence commit with
+`git log -1 --format=%H -- docs/data/isaac_fetch/coco22`.
+
+## Historical COCO 2.1 evidence
+
+
 Starting state: clean `569b81ff744c2542498bd37201ef509b3ec4b949`, branch
 `coco-2.1-isaac-integration`, worktree `/home/gautham/coco-isaac-21`.
 Implementation commit: `dab3115` (follow-up evidence commit also hardens

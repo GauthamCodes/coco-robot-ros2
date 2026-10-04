@@ -1,0 +1,54 @@
+{
+  "packages": [
+    {
+      "package": "custom_teleop",
+      "passed": 78,
+      "failed_initial": 3,
+      "log": "custom_teleop.log",
+      "failed_final": 0,
+      "correction": "Style tests scoped to package cwd; all functional tests passed in initial run.",
+      "style_log": "custom_teleop_style_final.log"
+    },
+    {
+      "package": "coco_sim",
+      "passed": 228,
+      "failed_initial": 0,
+      "log": "coco_sim.log",
+      "failed_final": 0,
+      "final_log": "coco_sim_final.log"
+    },
+    {
+      "package": "coco_mission",
+      "passed": 360,
+      "failed_initial": 0,
+      "log": "coco_mission.log",
+      "failed_final": 0
+    },
+    {
+      "package": "coco_perception",
+      "passed": 139,
+      "failed_initial": 3,
+      "log": "coco_perception.log",
+      "failed_final": 0,
+      "correction": "Style tests scoped to package cwd; all functional tests passed in initial run.",
+      "style_log": "coco_perception_style_final.log"
+    },
+    {
+      "package": "coco_moveit_config",
+      "passed": 28,
+      "failed_initial": 0,
+      "log": "coco_moveit_config.log",
+      "failed_final": 0,
+      "final_log": "coco_moveit_config_final.log"
+    },
+    {
+      "package": "gazebo_models",
+      "passed": 220,
+      "failed_initial": 0,
+      "log": "gazebo_models.log",
+      "failed_final": 0
+    }
+  ],
+  "unique_passed": 1053,
+  "failed_final": 0
+}

@@ -1,6 +1,118 @@
 # COCO 2.1 — Isaac Sim digital twin and cross-simulator integration
 
-## Current consolidation and fetch implementation (2026-10-02)
+## COCO 2.2 full-fetch investigation (2026-10-03)
+
+Starting state: clean `589e1f1b8225a857d7c03ed9f019f53a5bd1efb9` on
+`coco-2.1-isaac-integration`. The records in
+[`data/isaac_fetch/coco22`](data/isaac_fetch/coco22/) extend the previous milestone;
+historical records below are retained. **One Isaac full fetch is physically
+verified COMPLETE** (`coco22/fetch_009`, seed5, colours-level red). Matched Gazebo
+comparison is also runtime verified COMPLETE (`coco22/gazebo_004`). This is
+one complete episode per simulator, not a parity or reliability claim.
+
+Measured grasp-entry x/y was `(0.15456, -0.00388)` m, first lift 32.8 mm;
+the target remained welded over 6.06 m carry displacement (95 samples,
+maximum palm-relative span 0.318 mm). After opening, detach and arm retreat,
+it stood upright at `(-1.81776, -0.20426, 0.079014)` m, 0.274 m from home.
+Mission runtime was 255.77 sim / 729.48 wall seconds, zero recoveries;
+simulator, mission and observer all exited zero. Final wheel publisher remains
+the arbiter. Bypass arrival error was 0.352 m within the unchanged 0.50 m
+consistency band; navigation timing remains variable.
+
+Reproduce with the existing isolated overlay and native installation described
+below (use new output directories):
+
+```bash
+export COCO_WS=/home/gautham/coco_isaac21_ws
+export COCO_MOVEIT_PREFIX=/home/gautham/coco_p03d_ws/moveit_prefix/root/opt/ros/jazzy
+source setup_env.sh
+python3 scripts/isaac_fetch.py /home/gautham/coco22_runtime/isaac_new --domain 82
+python3 scripts/isaac_fetch.py /home/gautham/coco22_runtime/gazebo_new --backend gazebo --domain 88
+```
+
+The runner's default Isaac Nav2 profile exactly matches the completed run's
+explicit saved profile: alpha1–5=0.001 for ideal odometry, DWB rotation window
+0.20 m inside the unchanged 0.25 m goal checker. Gazebo keeps canonical
+parameters. Run profiles, source hashes/patches, logical task inputs and
+physical telemetry are retained; `--params-file` overrides either backend.
+
+The matched Gazebo run measured grasp-entry x/y `(0.15455, -0.00039)` m,
+34.4-mm first lift, 6.34-m carry displacement and upright release at
+`(-1.88162, +0.03482, 0.079000)` m, 0.123 m from home. It completed in
+166.39 sim / 174.44 wall seconds with zero recoveries. Both runs retain
+source provenance, physical traces, single-arbiter graphs and zero owned
+process exit codes. See the detailed n=1 table and limitations in
+[`data/isaac_fetch/README.md`](data/isaac_fetch/README.md).
+
+Gazebo startup exhausted DDS participant indices before mission start.
+A held-process diagnostic measured 32/40 ready under the existing setup
+and 40/40 with explicit maximum index119. The fetch runner scopes that
+loopback discovery configuration to its Gazebo children only. An earlier
+startup stall remains unexplained; all failed attempts are preserved. No
+Gazebo rebuild or wheel-command bypass was introduced.
+
+Implementation checkpoint: `70d3f38c0e99de8f35c8a419f16e4ae00b84f672`;
+the final evidence commit also adds the measured DDS correction. Runtime
+patches/digests identify the tested code precisely. Resolve the evidence
+commit with `git log -1 --format=%H -- docs/data/isaac_fetch/coco22`.
+
+Run006's apparent target loss was a clock-domain error: two valid RGB-D fixes
+were only 0.100 s apart in simulation but 1.185 s apart in wall time, exceeding
+the approach controller's wall-time freshness limit. The controller now ages
+image timestamps in simulation time, rejects invalid frames/values, and
+reprojects the last observed pose using measured base odometry. Level settling
+at the ramp crest now stops the base; it previously drove toward an already
+near target during settling. Creep timeout fails closed and its final pose
+estimate uses measured translation and rotation.
+
+Measured Isaac yaw response at a requested 0.1 rad/s was approximately
+0.0035 rad/s, while 0.03 m/s forward motion tracked at 0.0291 m/s. Disabling
+self-collision did not resolve this skid-steer dead zone and was reverted.
+A bounded body-yaw feedback adapter corrects the physical wheel conversion
+behind the existing arbiter. Wheel gains, geometry, acceleration bounds and
+the disclosed 2 Nm drive ceiling are unchanged. Short probes improved yaw
+response; they do not establish perfect tracking or numerical Gazebo parity.
+
+Arm command delivery was starved by one ROS callback per render step. Logged
+backend targets stopped at 0.4167 rad despite a 0.5-rad finger request.
+Bounded callback draining delivers the complete request. During physical
+magnet attachment, contacts between the target and its welded palm/fingers
+are filtered to avoid fighting the fixed joint; world contacts remain active
+and internal contacts are restored on detach. This remains an explicit
+fixed-joint magnet approximation, not a friction grasp.
+
+Fetch005 physically acquired and lifted the target on its first attempt,
+then retained it over 2.62 m of travel (44 simulator samples; largest
+palm-relative position span 0.149 mm). It aborted during bypass navigation;
+acquisition is not a full fetch. Retry logic incorrectly re-seeded AMCL at the
+nominal ramp exit after the robot had already driven away. The shared executive
+now performs that region-based handoff once, preserving current localization
+on retries. No target coordinates are supplied to navigation.
+
+Fetch007 completed bypass and returned home with physical retention over
+6.05 m, then aborted at placement. CCD and clearance alone did not resolve
+floor penetration. A free-body probe, without any weld, also lost the cylinder
+through the scaled box floor. Replacing that floor with flat triangles, using
+the same contact offsets and friction, retained released cylinders at their
+expected 79-mm centre height. The canonical fetch world now uses this plane;
+the original mobile-base fixture is unchanged.
+
+Placement also changed palm pitch: the previous nominal x/z IK tilted the
+acquired cylinder approximately 7.4 degrees, beyond its static stability
+angle. Matched-height drop probes distinguished tipped (10-mm centre) from
+upright (79-mm centre) outcomes. Shared placement now derives a clearance pose
+from the perception-driven grasp, preserving palm pitch. Its FK height,
+orientation and joint-limit checks pass. At the actual acquisition geometry, detach-before-open restores contacts
+against closed fingers and tips the cylinder. Arm-only probes with canonical
+target inertia/friction distinguish detach-first (10-mm centre) from open-first
+(79-mm centre). Shared placement now opens while welded, then detaches; failed
+opening retains attachment. Fetch009 verifies the full release sequence.
+Run-local AMCL noise and DWB goal-radius experiments are recorded
+separately from the canonical Gazebo configuration. Isaac uses ideal pose
+odometry; localization and short Nav2 action-acknowledgement deadlines remain
+measured runtime risks.
+
+## Historical COCO 2.1 consolidation (2026-10-02)
 
 The session begins at `569b81ff744c2542498bd37201ef509b3ec4b949`.
 The initial base fixture remains reproducible without `--fetch`. The new

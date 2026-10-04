@@ -1,0 +1,41 @@
+Arguments (pass arguments as '<name>:=<value>'):
+
+    'use_sim_time':
+        Use Gazebo simulation clock
+        (default: 'true')
+
+    'gui':
+        Set false for headless/server-only mode
+        (default: 'true')
+
+    'traverse':
+        add a flat crest platform and a mirrored down-slope, turning the climb into an up-over-down traverse. The plain wedge ends in a vertical drop, so this is what makes "carry something back down" physically possible.
+        (default: 'false')
+
+    'world':
+        World file: a bare name resolves in the package worlds/ directory, an absolute path is used as given. Exists so terrain properties can be swept without editing the frozen coco_world.world.
+        (default: 'coco_world.world')
+
+    'ramp_angle':
+        Ramp grade in degrees; selects meshes/ramp_wedge_<deg>.stl (curriculum: 12, 18, 24)
+        (default: '18')
+
+    'episode_level':
+        fixed (default): the P0.2 target layout, spawned byte-identically to before episodes existed. colours: permute which colour stands in which region. positions: permute and move each target inside its region placement area. Requires traverse:=true. Valid choices are: ['fixed', 'colours', 'positions']
+        (default: 'fixed')
+
+    'episode_seed':
+        Integer seed; with episode_level, the whole layout. The same seed gives the same episode.
+        (default: '0')
+
+    'episode_colour':
+        Pin the episode's requested colour (it changes the episode id, never the layout). Empty: drawn from the seed.
+        (default: '')
+
+    'episode_manifest':
+        Path to a recorded manifest JSON to replay exactly. Wins over episode_level/episode_seed.
+        (default: '')
+
+    'episode_record':
+        If set, write the manifest this world was built from to this path.
+        (default: '')

@@ -1,0 +1,210 @@
+{
+  "isaac": {
+    "attempted": 5,
+    "completed": 3,
+    "mission_complete": 3,
+    "protocol_passed": 3,
+    "protocol_pass_rate": 0.6,
+    "sampled_idle_wheel_flags": 0,
+    "success_rate": 0.6,
+    "recoveries": 4,
+    "failure_terminal_status_counts": {
+      "state=ABORT prev=RECOVERY event=enter elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=DESCENT_TIMEOUT result=aborted": 2
+    },
+    "failures_by_state": {
+      "DESCEND": 2
+    },
+    "metrics_all_available": {
+      "mission_sim_s": {
+        "n": 5,
+        "mean": 169.22000882540001,
+        "min": 92.43333815400001,
+        "max": 278.80001454,
+        "median": 175.433342483
+      },
+      "mission_wall_s": {
+        "n": 5,
+        "mean": 273.977357633799,
+        "min": 141.9055519100002,
+        "max": 404.2527262099975,
+        "median": 330.8256964900065
+      },
+      "first_verified_lift_mm": {
+        "n": 3,
+        "mean": 33.0,
+        "min": 32.1,
+        "max": 33.5,
+        "median": 33.4
+      },
+      "final_target_distance_from_home_xy_m": {
+        "n": 5,
+        "mean": 2.609353168284192,
+        "min": 0.24425348565537297,
+        "max": 6.104369369290915,
+        "median": 0.35545167531639116
+      },
+      "maximum_target_rise_before_descent_m": {
+        "n": 3,
+        "mean": 0.2128022313117981,
+        "min": 0.19934552907943726,
+        "max": 0.22131848335266113,
+        "median": 0.2177426815032959
+      }
+    },
+    "retention_max_axis_span_m": {
+      "n": 3,
+      "mean": 0.0002784637600710428,
+      "min": 0.0001810353934146372,
+      "max": 0.0003925318435887143,
+      "median": 0.0002618240432097768
+    },
+    "carry_displacement_m": {
+      "n": 3,
+      "mean": 6.356969187782119,
+      "min": 6.110567470488201,
+      "max": 6.520912031282063,
+      "median": 6.439428061576092
+    },
+    "navigation_arrival_error_m": {
+      "n": 11,
+      "mean": 0.21754545454545454,
+      "min": 0.154,
+      "max": 0.386,
+      "median": 0.201
+    },
+    "placement_error_completed_m": {
+      "n": 3,
+      "mean": 0.2885363022664964,
+      "min": 0.24425348565537297,
+      "max": 0.35545167531639116,
+      "median": 0.26590374582772514
+    },
+    "grasp_relative_error_xy_norm_m": {
+      "n": 3,
+      "mean": 0.003468280857187821,
+      "min": 0.0017542234429652093,
+      "max": 0.005489001976980158,
+      "median": 0.003161617151618096
+    },
+    "grasp_relative_error_xy_m": [
+      {
+        "n": 3,
+        "mean": -0.0005304712764186611,
+        "min": -0.004041592759395418,
+        "max": 0.001645143155587614,
+        "median": 0.0008050357745518211
+      },
+      {
+        "n": 3,
+        "mean": -0.002657529257642701,
+        "min": -0.003714117751296344,
+        "max": -0.0015585946520954262,
+        "median": -0.002699875369536333
+      }
+    ]
+  },
+  "gazebo": {
+    "attempted": 5,
+    "completed": 4,
+    "mission_complete": 4,
+    "protocol_passed": 2,
+    "protocol_pass_rate": 0.4,
+    "sampled_idle_wheel_flags": 2,
+    "success_rate": 0.8,
+    "recoveries": 4,
+    "failure_terminal_status_counts": {
+      "state=ABORT prev=DESCEND event=enter elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=CLOCK_STALLED result=aborted": 1
+    },
+    "failures_by_state": {
+      "DESCEND": 1
+    },
+    "metrics_all_available": {
+      "mission_sim_s": {
+        "n": 5,
+        "mean": 218.12080000000003,
+        "min": 160.21,
+        "max": 437.61600000000004,
+        "median": 163.70600000000002
+      },
+      "mission_wall_s": {
+        "n": 5,
+        "mean": 252.5680209020007,
+        "min": 184.22593639099796,
+        "max": 494.17563619700377,
+        "median": 185.01056470399635
+      },
+      "first_verified_lift_mm": {
+        "n": 4,
+        "mean": 34.775,
+        "min": 34.5,
+        "max": 35.2,
+        "median": 34.7
+      },
+      "final_target_distance_from_home_xy_m": {
+        "n": 5,
+        "mean": 1.2950026103227172,
+        "min": 0.07603124883801916,
+        "max": 6.104350643369549,
+        "median": 0.0879183365873317
+      },
+      "maximum_target_rise_before_descent_m": {
+        "n": 3,
+        "mean": 0.2171951320052973,
+        "min": 0.2127694159217589,
+        "max": 0.21942303396640528,
+        "median": 0.21939294612772775
+      }
+    },
+    "retention_max_axis_span_m": {
+      "n": 4,
+      "mean": 9.060478925633497e-08,
+      "min": 3.95516952522712e-15,
+      "max": 3.624191427867296e-07,
+      "median": 5.141720382795256e-15
+    },
+    "carry_displacement_m": {
+      "n": 4,
+      "mean": 6.430928022923774,
+      "min": 6.216827831685947,
+      "max": 6.699845358115007,
+      "median": 6.403519450947071
+    },
+    "navigation_arrival_error_m": {
+      "n": 22,
+      "mean": 0.14736363636363636,
+      "min": 0.026,
+      "max": 0.281,
+      "median": 0.1085
+    },
+    "placement_error_completed_m": {
+      "n": 4,
+      "mean": 0.0926656020610092,
+      "min": 0.07603124883801916,
+      "max": 0.12402369078665944,
+      "median": 0.08530373430967911
+    },
+    "grasp_relative_error_xy_norm_m": {
+      "n": 4,
+      "mean": 0.0006600141718991495,
+      "min": 0.0005163575925535614,
+      "max": 0.0008365521427340954,
+      "median": 0.0006435734761544706
+    },
+    "grasp_relative_error_xy_m": [
+      {
+        "n": 4,
+        "mean": -6.896260778344737e-05,
+        "min": -0.0005190954539003589,
+        "max": 0.0006803724066489492,
+        "median": -0.00021856369194118985
+      },
+      {
+        "n": 4,
+        "mean": -0.000488472008401256,
+        "min": -0.0005045215378240483,
+        "max": -0.0004606900241560727,
+        "median": -0.0004943382358124516
+      }
+    ]
+  }
+}

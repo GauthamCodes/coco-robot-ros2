@@ -1,5 +1,45 @@
 # COCO 2.1 — Isaac Sim digital twin and cross-simulator integration
 
+## COCO 2.3 — matched positions-level repeatability (2026-10-05)
+
+Five existing P03D `positions` layouts (seeds 5–9), requesting red, were run once
+per simulator with the shared fetch runner at SHA
+`2e15706875c4850fe3a00200a9c5fd878e4b312d`. Backend manifests match apart from
+backend/episode ID; all four targets use the existing seeded region placement
+sampling. The preceding milestone's colours-level seed 5 does not count here.
+Fresh sequential runs use the existing Isaac/Gazebo launch profiles, shared
+mission/safety chain and fixed 1200-wall-second observation budget.
+
+**Verdict B: partial repeatability demonstrated, with specific failure modes.**
+Isaac physically completed 3/5 (60%), Gazebo 4/5 (80%); both completed 5, 8, 9,
+and Gazebo also completed 7. Isaac 6/7 timed out during the first search-continuation
+descent before acquisition. Gazebo 6 aborted after an ODE collision assertion
+stopped simulation time during the second descent. Exact physical triggers and
+whether failures are deterministic remain unverified. Gazebo 5/9 physically
+completed but retain observer idle-mode timing flags; original protocol pass
+counts are 3/5 Isaac and 2/5 Gazebo. Source digests and all command graphs verify
+unchanged runtime code and the sole authoritative `cmd_vel_arbiter` wheel path.
+
+Completed placement error averaged 0.289 m Isaac (n=3) /0.093 m Gazebo (n=4);
+first verified lift averaged 33.0/34.775 mm. In the three both-completed pairs,
+Isaac minus Gazebo averaged +53.734 sim seconds, +174.506 wall seconds and +0.206 m
+placement error. These descriptive measurements do not establish performance
+or physics parity. Displaced-target fetches are demonstrated across three
+matched lane 1 layouts; broader search-region repeatability remains incomplete.
+Five distinct layouts, one trial each, do not establish reliability or production
+readiness. Ideal Isaac odometry, contact/grasp approximations, asynchronous
+telemetry and variable simulation rates remain limitations.
+
+No implementation fix, parameter adjustment or rerun was made. Only evidence
+orchestration/evaluation and documentation changed. All nine relevant package
+suites passed 1,952 tests once after the batch. The major next milestone is to
+characterize and validate search-continuation far-slope descent across backends.
+
+[Full methodology, outcomes, failure evidence and limitations](data/isaac_fetch/coco23/README.md)
+· [All ten episodes and aggregates](data/isaac_fetch/coco23/comparison.json).
+The sections below describe preceding historical milestones.
+
+
 ## COCO 2.2 full-fetch investigation (2026-10-03)
 
 Starting state: clean `589e1f1b8225a857d7c03ed9f019f53a5bd1efb9` on

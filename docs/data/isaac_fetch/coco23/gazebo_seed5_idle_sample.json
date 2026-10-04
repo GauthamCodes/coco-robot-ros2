@@ -1,0 +1,109 @@
+[
+  {
+    "index": 2452,
+    "sample": {
+      "wall_s": 15.437159046996385,
+      "sim_s": 8.358,
+      "topic": "/diff_drive_controller/cmd_vel",
+      "data": [
+        0.125,
+        -0.12820512820512797
+      ]
+    },
+    "context": [
+      {
+        "wall_s": 14.89782853199722,
+        "sim_s": 7.840000000000001,
+        "topic": "/cmd_vel_arbiter/status",
+        "data": "mode=idle active=none teleop=-- nav=-- rl=-- approach=--"
+      },
+      {
+        "wall_s": 15.017204176001542,
+        "sim_s": 7.954000000000001,
+        "topic": "/mission/mode",
+        "data": "idle"
+      },
+      {
+        "wall_s": 15.018629214995599,
+        "sim_s": 7.954000000000001,
+        "topic": "/mission/state",
+        "data": "state=LOCALIZE prev=IDLE event=enter elapsed=0.0 timeout=40 attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--"
+      },
+      {
+        "wall_s": 15.435596741001063,
+        "sim_s": 8.358,
+        "topic": "/mission/state",
+        "data": "state=LOCALIZE prev=IDLE event=run elapsed=0.0 timeout=40 attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--"
+      },
+      {
+        "wall_s": 15.435692874998495,
+        "sim_s": 8.358,
+        "topic": "/mission/mode",
+        "data": "idle"
+      },
+      {
+        "wall_s": 15.436093776996131,
+        "sim_s": 8.358,
+        "topic": "/cmd_vel_arbiter/status",
+        "data": "mode=nav active=nav teleop=-- nav=0.05 rl=-- approach=--"
+      },
+      {
+        "wall_s": 15.437159046996385,
+        "sim_s": 8.358,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.125,
+          -0.12820512820512797
+        ]
+      },
+      {
+        "wall_s": 15.440794476999145,
+        "sim_s": 8.362,
+        "topic": "/mission/state",
+        "data": "state=NAVIGATE_TO_RAMP prev=LOCALIZE event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+      },
+      {
+        "wall_s": 15.443515469996782,
+        "sim_s": 8.362,
+        "topic": "/mission/mode",
+        "data": "nav"
+      },
+      {
+        "wall_s": 15.445277458995406,
+        "sim_s": 8.362,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.25,
+          -0.12820512820512797
+        ]
+      },
+      {
+        "wall_s": 15.449930707000021,
+        "sim_s": 8.370000000000001,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.25,
+          -0.12820512820512797
+        ]
+      },
+      {
+        "wall_s": 15.454001963997143,
+        "sim_s": 8.376000000000001,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.29999999999999993,
+          -0.02564102564102541
+        ]
+      },
+      {
+        "wall_s": 15.45720480899763,
+        "sim_s": 8.38,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.29999999999999993,
+          -0.02564102564102541
+        ]
+      }
+    ]
+  }
+]

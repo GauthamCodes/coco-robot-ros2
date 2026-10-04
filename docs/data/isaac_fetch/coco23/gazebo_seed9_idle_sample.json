@@ -1,0 +1,130 @@
+[
+  {
+    "index": 11028,
+    "sample": {
+      "wall_s": 37.19668508400355,
+      "sim_s": 28.654000000000003,
+      "topic": "/diff_drive_controller/cmd_vel",
+      "data": [
+        0.0,
+        0.005846153846153904
+      ]
+    },
+    "context": [
+      {
+        "wall_s": 36.94362208199891,
+        "sim_s": 28.430000000000003,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.0,
+          0.053846153846153905
+        ]
+      },
+      {
+        "wall_s": 36.97371243099769,
+        "sim_s": 28.456000000000003,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.0,
+          0.053846153846153905
+        ]
+      },
+      {
+        "wall_s": 37.04419224800222,
+        "sim_s": 28.520000000000003,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.0,
+          0.053846153846153905
+        ]
+      },
+      {
+        "wall_s": 37.09422709399951,
+        "sim_s": 28.564,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.0,
+          0.053846153846153905
+        ]
+      },
+      {
+        "wall_s": 37.13133676900179,
+        "sim_s": 28.596,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.0,
+          0.053846153846153905
+        ]
+      },
+      {
+        "wall_s": 37.19088577700313,
+        "sim_s": 28.654000000000003,
+        "topic": "/mission/mode",
+        "data": "idle"
+      },
+      {
+        "wall_s": 37.19299239599786,
+        "sim_s": 28.654000000000003,
+        "topic": "/mission/state",
+        "data": "state=ALIGN_FOR_CLIMB prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=10 attempt=1 retries=1 owner=nobody mode=idle reason=-- result=--"
+      },
+      {
+        "wall_s": 37.19668508400355,
+        "sim_s": 28.654000000000003,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.0,
+          0.005846153846153904
+        ]
+      },
+      {
+        "wall_s": 37.269257279003796,
+        "sim_s": 28.724,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "wall_s": 37.36887468799978,
+        "sim_s": 28.808000000000003,
+        "topic": "/diff_drive_controller/cmd_vel",
+        "data": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "wall_s": 37.39499594899826,
+        "sim_s": 28.834000000000003,
+        "topic": "/mission/state",
+        "data": "state=CLIMB prev=ALIGN_FOR_CLIMB event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+      },
+      {
+        "wall_s": 37.397283177000645,
+        "sim_s": 28.834000000000003,
+        "topic": "/mission/mode",
+        "data": "rl"
+      },
+      {
+        "wall_s": 37.39918387999933,
+        "sim_s": 28.838,
+        "topic": "/mission/state",
+        "data": "state=CLIMB prev=ALIGN_FOR_CLIMB event=run elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+      },
+      {
+        "wall_s": 37.39940833699802,
+        "sim_s": 28.838,
+        "topic": "/mission/mode",
+        "data": "rl"
+      },
+      {
+        "wall_s": 37.417979750003724,
+        "sim_s": 28.852,
+        "topic": "/cmd_vel_arbiter/status",
+        "data": "mode=rl active=none teleop=-- nav=0.04 rl=-- approach=--"
+      }
+    ]
+  }
+]

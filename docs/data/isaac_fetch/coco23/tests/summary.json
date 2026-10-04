@@ -1,0 +1,52 @@
+{
+  "packages": [
+    {
+      "package": "coco_config",
+      "passed": 92,
+      "summary": "92 passed in 0.34s"
+    },
+    {
+      "package": "coco_mission",
+      "passed": 360,
+      "summary": "360 passed in 6.34s"
+    },
+    {
+      "package": "coco_moveit_config",
+      "passed": 28,
+      "summary": "28 passed in 0.72s"
+    },
+    {
+      "package": "coco_perception",
+      "passed": 139,
+      "summary": "139 passed, 12 warnings in 1.64s"
+    },
+    {
+      "package": "coco_rl",
+      "passed": 232,
+      "summary": "232 passed in 8.04s"
+    },
+    {
+      "package": "coco_sim",
+      "passed": 228,
+      "summary": "228 passed in 2.63s"
+    },
+    {
+      "package": "coco_web",
+      "passed": 575,
+      "summary": "575 passed, 12 warnings in 11.70s"
+    },
+    {
+      "package": "custom_teleop",
+      "passed": 78,
+      "summary": "78 passed, 12 warnings in 1.54s"
+    },
+    {
+      "package": "gazebo_models",
+      "passed": 220,
+      "summary": "220 passed in 11.41s"
+    }
+  ],
+  "passed": 1952,
+  "exit_codes": "coco_config 0\ncoco_sim 0\ncoco_mission 0\ncoco_perception 0\ncoco_moveit_config 0\ncustom_teleop 0\ngazebo_models 0\ncoco_rl 0\ncoco_web 0\n",
+  "failures": 0
+}

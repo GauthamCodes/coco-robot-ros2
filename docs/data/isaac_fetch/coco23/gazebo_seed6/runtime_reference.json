@@ -1,0 +1,7 @@
+{
+  "original_directory": "/home/gautham/coco23_runtime/gazebo_seed6",
+  "images": "/home/gautham/coco23_runtime/gazebo_seed6/images",
+  "expanded_urdf": "/home/gautham/coco23_runtime/gazebo_seed6/robot.urdf",
+  "simulator_generated_assets": "/home/gautham/coco23_runtime/gazebo_seed6/sim",
+  "note": "Compressed logs and ROS/physical telemetry are durable here; large generated assets/images remain at original local path."
+}

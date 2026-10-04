@@ -1,5 +1,24 @@
 # Isaac fetch consolidation evidence
 
+## COCO 2.3 repeatability evidence (2026-10-05)
+
+**Verdict B: partial repeatability, with remaining failure modes.** Five matched
+**positions-level** red layouts, seeds 5–9, were attempted once in each backend
+at clean starting SHA `2e15706875c4850fe3a00200a9c5fd878e4b312d`.
+Isaac physically completed 3/5 (60%); Gazebo 4/5 (80%). Both completed 5, 8, 9;
+Gazebo also completed 7. Isaac 6/7 aborted during search-continuation descent;
+Gazebo 6 suffered an ODE physics abort/stopped clock during its second descent.
+Gazebo 5/9 each retain one observer idle-mode timing flag despite physical
+COMPLETE; original full runner protocol passes are 3/5 Isaac and 2/5 Gazebo.
+No implementation changes, parameter tuning, or episode reruns were made.
+All nine relevant regression suites passed 1,952 tests. Five layouts do not
+establish statistical reliability or within-seed repeatability.
+
+[Methodology, all ten outcomes, aggregates, failure diagnosis and limitations](coco23/README.md)
+· [Machine-readable comparison](coco23/comparison.json)
+· [Source/architecture/evidence checks](coco23/evidence_checks.json).
+Prior milestone evidence below remains unchanged and is historical.
+
 ## COCO 2.2 evidence (2026-10-03)
 
 Starting SHA `589e1f1b8225a857d7c03ed9f019f53a5bd1efb9`, branch

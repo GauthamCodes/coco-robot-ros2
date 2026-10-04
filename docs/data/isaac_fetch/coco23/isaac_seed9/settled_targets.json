@@ -1,0 +1,48 @@
+{
+  "models": {
+    "target_red": {
+      "dx": 3.8892762260545055e-05,
+      "dy": -3.309050197686236e-05,
+      "dz": 3.700452583466074e-06,
+      "tilt": 0.00042168122661033263,
+      "xy_ok": true,
+      "z_ok": true,
+      "upright": true,
+      "ok": true
+    },
+    "target_green": {
+      "dx": -6.217312064560332e-05,
+      "dy": 3.733448559850583e-05,
+      "dz": 4.8925454789738865e-06,
+      "tilt": 0.0005326938574750094,
+      "xy_ok": true,
+      "z_ok": true,
+      "upright": true,
+      "ok": true
+    },
+    "target_blue": {
+      "dx": -4.0091744878623103e-05,
+      "dy": -1.0954475767044336e-05,
+      "dz": 5.309777992401621e-06,
+      "tilt": 0.0004723595248224917,
+      "xy_ok": true,
+      "z_ok": true,
+      "upright": true,
+      "ok": true
+    },
+    "target_yellow": {
+      "dx": 5.2583387715188223e-05,
+      "dy": -1.6926005408368638e-06,
+      "dz": 6.680684822235605e-06,
+      "tilt": 0.0005052009543209378,
+      "xy_ok": true,
+      "z_ok": true,
+      "upright": true,
+      "ok": true
+    }
+  },
+  "missing": [],
+  "layout_valid": true,
+  "layout_error": "",
+  "ok": true
+}

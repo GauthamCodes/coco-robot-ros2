@@ -1,0 +1,1 @@
+Initial matrix wrapper stopped before any episode: ROS setup.bash reads unset AMENT_TRACE_SETUP_FILES under nounset. Disabled nounset only while sourcing setup_env.sh; no simulator or mission changes.

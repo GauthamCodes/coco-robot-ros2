@@ -1,0 +1,113 @@
+{
+  "checks": [
+    {
+      "backend": "isaac",
+      "seed": 5,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": true,
+      "protocol_pass": true
+    },
+    {
+      "backend": "isaac",
+      "seed": 6,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": false,
+      "protocol_pass": false
+    },
+    {
+      "backend": "isaac",
+      "seed": 7,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": false,
+      "protocol_pass": false
+    },
+    {
+      "backend": "isaac",
+      "seed": 8,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": true,
+      "protocol_pass": true
+    },
+    {
+      "backend": "isaac",
+      "seed": 9,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": true,
+      "protocol_pass": true
+    },
+    {
+      "backend": "gazebo",
+      "seed": 5,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": true,
+      "protocol_pass": false
+    },
+    {
+      "backend": "gazebo",
+      "seed": 6,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": false,
+      "protocol_pass": false
+    },
+    {
+      "backend": "gazebo",
+      "seed": 7,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": true,
+      "protocol_pass": true
+    },
+    {
+      "backend": "gazebo",
+      "seed": 8,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": true,
+      "protocol_pass": true
+    },
+    {
+      "backend": "gazebo",
+      "seed": 9,
+      "source_digests_unchanged": true,
+      "sole_arbiter": true,
+      "robot_inputs_task_only": true,
+      "initial_red_placement_within_5mm": true,
+      "physical_complete": true,
+      "protocol_pass": false
+    }
+  ],
+  "matched_seeds": [
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "regression_passed": 1952,
+  "implementation_changed": false
+}

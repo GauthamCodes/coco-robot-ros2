@@ -1,0 +1,15 @@
+{
+  "sha": "2e15706875c4850fe3a00200a9c5fd878e4b312d",
+  "branch": "coco-2.1-isaac-integration",
+  "status_before_evidence": "",
+  "seeds": [
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "level": "positions",
+  "colour": "red",
+  "timeout_wall_s": 1200
+}

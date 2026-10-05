@@ -1,0 +1,144 @@
+[
+  {
+    "case": "gazebo_seed6",
+    "search_pose_validity_counts": {
+      "lane_1": {
+        "validity=NOT_DETECTED reach_appr=UNKNOWN": 75
+      }
+    },
+    "navigation_failure_lines": [
+      "[planner_server-6] [WARN] [1791193474.461109003] [planner_server]: GridBased plugin failed to plan from (2.77, -0.95) to (2.50, -0.25): \"Start occupied\"",
+      "[bt_navigator-9] [ERROR] [1791193474.494753557] [bt_navigator]: Goal failed",
+      "[planner_server-6] [WARN] [1791193474.856744022] [planner_server]: GridBased plugin failed to plan from (2.77, -0.95) to (2.50, -0.25): \"Start occupied\"",
+      "[bt_navigator-9] [ERROR] [1791193474.885893192] [bt_navigator]: Goal failed",
+      "[planner_server-6] [WARN] [1791193475.360071363] [planner_server]: GridBased plugin failed to plan from (2.77, -0.95) to (2.50, -0.25): \"Start occupied\"",
+      "[bt_navigator-9] [ERROR] [1791193475.380259719] [bt_navigator]: Goal failed",
+      "[mission_executive.py-22] [ERROR] [1791193475.752716811] [mission_executive]: RECOVERY -> ABORT [NAVIGATION_FAILED]: NAVIGATE_TO_RAMP exhausted its retries"
+    ],
+    "retreat_completion_lines": [
+      "[ramp_driver-19] [INFO] [1791193474.088158810] [ramp_driver]: retreat finished: goal at x=0.65, final pitch +0.000 rad"
+    ],
+    "terminal_lines": [
+      "[mission_executive.py-22] [INFO] [1791193475.755170023] [mission_executive]: MISSION ABORT: result=aborted reason=NAVIGATION_FAILED attempts={'NAVIGATE_TO_RAMP': 2}"
+    ],
+    "raw_result": "ABORT"
+  },
+  {
+    "case": "gazebo_seed7",
+    "search_pose_validity_counts": {
+      "lane_1": {
+        "validity=NOT_DETECTED reach_appr=UNKNOWN": 75
+      },
+      "lane_2": {
+        "validity=IMPLAUSIBLE_SIZE reach_appr=UNKNOWN": 75
+      },
+      "lane_3": {
+        "validity=IMPLAUSIBLE_SIZE reach_appr=UNKNOWN": 75
+      },
+      "lane_4": {
+        "validity=IMPLAUSIBLE_SIZE reach_appr=UNKNOWN": 75
+      }
+    },
+    "navigation_failure_lines": [],
+    "retreat_completion_lines": [
+      "[ramp_driver-19] [INFO] [1791193616.900912909] [ramp_driver]: retreat finished: goal at x=0.65, final pitch +0.000 rad",
+      "[ramp_driver-19] [INFO] [1791193711.791131264] [ramp_driver]: retreat finished: goal at x=0.65, final pitch +0.000 rad",
+      "[ramp_driver-19] [INFO] [1791193825.034025131] [ramp_driver]: retreat finished: goal at x=0.65, final pitch +0.000 rad",
+      "[ramp_driver-19] [INFO] [1791193918.053351874] [ramp_driver]: retreat finished: goal at x=0.65, final pitch +0.000 rad"
+    ],
+    "terminal_lines": [
+      "[mission_executive.py-22] [INFO] [1791193961.944160995] [mission_executive]: MISSION ABORT: result=aborted reason=SEARCH_FAILED attempts={}"
+    ],
+    "raw_result": "ABORT"
+  },
+  {
+    "case": "gazebo_seed8",
+    "search_pose_validity_counts": {
+      "lane_1": {
+        "validity=VALID reach_appr=OFF_ARM_PLANE": 1
+      }
+    },
+    "navigation_failure_lines": [],
+    "retreat_completion_lines": [],
+    "terminal_lines": [
+      "[mission_executive.py-22] [INFO] [1791194384.497913155] [mission_executive]: MISSION COMPLETE: result=fetch reason=-- attempts={}"
+    ],
+    "raw_result": "COMPLETE"
+  },
+  {
+    "case": "isaac_seed6",
+    "search_pose_validity_counts": {
+      "lane_1": {
+        "validity=NOT_DETECTED reach_appr=UNKNOWN": 61,
+        "validity=DEPTH_INVALID reach_appr=UNKNOWN": 13
+      },
+      "lane_2": {
+        "validity=NOT_DETECTED reach_appr=UNKNOWN": 59,
+        "validity=DEPTH_INVALID reach_appr=UNKNOWN": 16
+      },
+      "lane_3": {
+        "validity=DEPTH_INVALID reach_appr=UNKNOWN": 18,
+        "validity=IMPLAUSIBLE_SIZE reach_appr=UNKNOWN": 56,
+        "validity=VALID reach_appr=OFF_ARM_PLANE": 1
+      }
+    },
+    "navigation_failure_lines": [
+      "[bt_navigator-9] [WARN] [1791191913.896997235] [bt_navigator_navigate_to_pose_rclcpp_node]: Timed out while waiting for action server to acknowledge goal request for compute_path_to_pose",
+      "[bt_navigator-9] [ERROR] [1791191913.920597352] [bt_navigator]: Goal failed",
+      "[bt_navigator-9] [WARN] [1791192195.502668877] [bt_navigator_navigate_to_pose_rclcpp_node]: Timed out while waiting for action server to acknowledge goal request for compute_path_to_pose",
+      "[bt_navigator-9] [ERROR] [1791192195.526656144] [bt_navigator]: Goal failed",
+      "[bt_navigator-9] [WARN] [1791192356.410203179] [bt_navigator_navigate_to_pose_rclcpp_node]: Timed out while waiting for action server to acknowledge goal request for compute_path_to_pose",
+      "[bt_navigator-9] [ERROR] [1791192356.432421632] [bt_navigator]: Goal failed",
+      "[mission_executive.py-23] [ERROR] [1791192357.006899985] [mission_executive]: RECOVERY -> ABORT [NAVIGATION_FAILED]: NAVIGATE_TO_RAMP exhausted its retries"
+    ],
+    "retreat_completion_lines": [
+      "[ramp_driver-20] [INFO] [1791191895.598012873] [ramp_driver]: retreat finished: goal at x=0.65, final pitch +0.000 rad",
+      "[ramp_driver-20] [INFO] [1791192179.542854122] [ramp_driver]: retreat finished: goal at x=0.64, final pitch -0.001 rad",
+      "[ramp_driver-20] [INFO] [1791192344.289091950] [ramp_driver]: retreat finished: goal at x=0.65, final pitch +0.001 rad"
+    ],
+    "terminal_lines": [
+      "[mission_executive.py-23] [INFO] [1791192357.009289016] [mission_executive]: MISSION ABORT: result=aborted reason=NAVIGATION_FAILED attempts={'NAVIGATE_TO_RAMP': 2}"
+    ],
+    "raw_result": "ABORT"
+  },
+  {
+    "case": "isaac_seed7",
+    "search_pose_validity_counts": {
+      "lane_1": {
+        "validity=IMPLAUSIBLE_SIZE reach_appr=UNKNOWN": 61,
+        "validity=DEPTH_INVALID reach_appr=UNKNOWN": 13,
+        "validity=VALID reach_appr=OFF_ARM_PLANE": 1
+      }
+    },
+    "navigation_failure_lines": [
+      "[bt_navigator-9] [WARN] [1791192474.119916250] [bt_navigator_navigate_to_pose_rclcpp_node]: Timed out while waiting for action server to acknowledge goal request for follow_path",
+      "[bt_navigator-9] [ERROR] [1791192474.127624183] [bt_navigator]: Goal failed",
+      "[bt_navigator-9] [WARN] [1791192638.069310022] [bt_navigator_navigate_to_pose_rclcpp_node]: Timed out while waiting for action server to acknowledge goal request for follow_path",
+      "[bt_navigator-9] [ERROR] [1791192638.071446637] [bt_navigator]: Goal failed",
+      "[bt_navigator-9] [WARN] [1791192678.304979144] [bt_navigator_navigate_to_pose_rclcpp_node]: Timed out while waiting for action server to acknowledge goal request for follow_path",
+      "[bt_navigator-9] [ERROR] [1791192678.307616939] [bt_navigator]: Goal failed",
+      "[mission_executive.py-23] [ERROR] [1791192678.736670080] [mission_executive]: RECOVERY -> ABORT [NAVIGATION_FAILED]: NAVIGATE_TO_RAMP exhausted its retries"
+    ],
+    "retreat_completion_lines": [
+      "[ramp_driver-20] [INFO] [1791192610.993026594] [ramp_driver]: retreat finished: goal at x=0.64, final pitch -0.001 rad"
+    ],
+    "terminal_lines": [
+      "[mission_executive.py-23] [INFO] [1791192678.748942002] [mission_executive]: MISSION ABORT: result=aborted reason=NAVIGATION_FAILED attempts={'NAVIGATE_TO_RAMP': 2}"
+    ],
+    "raw_result": "ABORT"
+  },
+  {
+    "case": "isaac_seed8",
+    "search_pose_validity_counts": {
+      "lane_1": {
+        "validity=VALID reach_appr=OFF_ARM_PLANE": 1
+      }
+    },
+    "navigation_failure_lines": [],
+    "retreat_completion_lines": [],
+    "terminal_lines": [
+      "[mission_executive.py-23] [INFO] [1791193324.265581853] [mission_executive]: MISSION COMPLETE: result=fetch reason=-- attempts={}"
+    ],
+    "raw_result": "COMPLETE"
+  }
+]

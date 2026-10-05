@@ -1,0 +1,64 @@
+{
+  "runtime_heads": [
+    "668190252d9e3e893a50ba785ed8fb5c169a07e6"
+  ],
+  "checks": [
+    {
+      "backend": "gazebo",
+      "seed": 6,
+      "matched_manifest": true,
+      "sole_arbiter": true,
+      "unchanged_simulation_navigation_perception_grasp_sources": true,
+      "complete": false,
+      "protocol_pass": false
+    },
+    {
+      "backend": "gazebo",
+      "seed": 7,
+      "matched_manifest": true,
+      "sole_arbiter": true,
+      "unchanged_simulation_navigation_perception_grasp_sources": true,
+      "complete": false,
+      "protocol_pass": false
+    },
+    {
+      "backend": "gazebo",
+      "seed": 8,
+      "matched_manifest": true,
+      "sole_arbiter": true,
+      "unchanged_simulation_navigation_perception_grasp_sources": true,
+      "complete": true,
+      "protocol_pass": false
+    },
+    {
+      "backend": "isaac",
+      "seed": 6,
+      "matched_manifest": true,
+      "sole_arbiter": true,
+      "unchanged_simulation_navigation_perception_grasp_sources": true,
+      "complete": false,
+      "protocol_pass": false
+    },
+    {
+      "backend": "isaac",
+      "seed": 7,
+      "matched_manifest": true,
+      "sole_arbiter": true,
+      "unchanged_simulation_navigation_perception_grasp_sources": true,
+      "complete": false,
+      "protocol_pass": false
+    },
+    {
+      "backend": "isaac",
+      "seed": 8,
+      "matched_manifest": true,
+      "sole_arbiter": true,
+      "unchanged_simulation_navigation_perception_grasp_sources": true,
+      "complete": true,
+      "protocol_pass": true
+    }
+  ],
+  "historical_evidence_unchanged": true,
+  "final_targeted_tests_passed": 431,
+  "limitations": "Under recorded host contention; physical completion and original protocol reported separately. Initial deliberately stopped diagnostic is preserved separately and excluded from this six-case batch."
+}

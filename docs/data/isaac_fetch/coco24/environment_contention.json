@@ -1,0 +1,26 @@
+{
+  "captured_utc_epoch": 1791191978.7258422,
+  "affected_attempt": "/home/gautham/coco24_final_runtime/isaac_seed6",
+  "observations": [
+    "Independent COCO Lab SLAM recorder active since14:39 IST",
+    "Separate eyantra Gazebo GUI/server and RViz started about14:45 IST",
+    "GNOME screencast active using >500%CPU",
+    "15Gi RAM, 12Gi used, 343Mi free, 2.5Gi available; 4Gi swap almost entirely used"
+  ],
+  "process_snapshot": "    PID    PPID    PGID                  STARTED COMMAND\n 267509  267310  267509 Mon Oct  5 14:39:38 2026 python3 /home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/lab1/docs/data/lab3/slam_record.py --out /home/gautham/coco_lab_runs/lab3_r2/backends/s1_tour_slam_toolbox_noloop/record.json\n 269605  269586  269605 Mon Oct  5 14:44:36 2026 /home/gautham/isaac-sim/venv/bin/python -m coco_sim.isaac.runtime --fetch --robot-urdf /home/gautham/coco24_final_runtime/isaac_seed6/robot.urdf --episode-manifest /home/gautham/coco24_final_runtime/isaac_seed6/manifest.json --output /home/gautham/coco24_final_runtime/isaac_seed6/sim\n 270753  270718  270753 Mon Oct  5 14:45:44 2026 gz sim server\n 270754  270718  270754 Mon Oct  5 14:45:44 2026 gz sim gui\n 271001  270707  270707 Mon Oct  5 14:45:55 2026 /opt/ros/jazzy/lib/rviz2/rviz2 -d /home/gautham/ros2_ws/install/eyantra_kepler_colony/share/eyantra_kepler_colony/rviz/task1c.rviz --ros-args -r __node:=rviz2 --params-file /tmp/launch_params_i_t8s68s\n 271139  271136  271136 Mon Oct  5 14:46:36 2026 /usr/bin/python3 /home/gautham/ros2_ws/install/algorithms/lib/algorithms/task1C.py\n",
+  "memory_snapshot": "               total        used        free      shared  buff/cache   available\nMem:            15Gi        13Gi       214Mi       168Mi       2.5Gi       2.2Gi\nSwap:          4.0Gi       4.0Gi       1.3Mi\n",
+  "action": "Other workloads left untouched. User asked whether to wait for idle machine or continue under load.",
+  "limitation": "Wall watchdogs and fixed1200s episode budget are sensitive to slowdown; this load was not present in the saved matched repeatability conditions.",
+  "followup": {
+    "time_utc_epoch": 1791192292.1566558,
+    "screen_recording_ended": true,
+    "other_gazebo_rviz_still_active": true,
+    "action": "No user reply yet. Current bounded attempt continues because physical/mission progress remains meaningful; contention is retained as a measurement limitation.",
+    "memory": "               total        used        free      shared  buff/cache   available\nMem:            15Gi        13Gi       317Mi       152Mi       2.0Gi       1.9Gi\nSwap:          4.0Gi       4.0Gi        12Mi\n"
+  },
+  "user_steering": {
+    "time_utc_epoch": 1791214606.0110226,
+    "instruction": "continue",
+    "action": "Continue remaining bounded matched runs; preserve resource contention and every failure."
+  }
+}

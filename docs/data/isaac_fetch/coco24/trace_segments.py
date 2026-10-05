@@ -40,6 +40,7 @@ def trace(folder):
             continue
         end = transitions[i+1] if i+1 < len(transitions) else rows[-1]
         samples = []
+        entry_region = near('/mission/search_region', entry['wall_s'])
         for wall in np.arange(entry['wall_s'], end['wall_s'] + .01, 2):
             odom = near('/model/coco/odometry', wall)
             xyz = odom['data']['xyz']; q = odom['data']['quaternion_xyzw']
@@ -56,9 +57,9 @@ def trace(folder):
                         targets_quaternion_wxyz=body['targets_world_quaternion_wxyz'])
             for topic, label in [('/diff_drive_controller/odom','wheel_odom'),('/diff_drive_controller/cmd_vel','final_command'),('/cmd_vel_rl','rl_command'),('/ramp/status','ramp'),('/cmd_vel_arbiter/status','arbiter'),('/mission/search_region','region'),('amcl','amcl'),('/joint_states','joints')]:
                 r=near(topic,wall);data[label]=r if r else None
-            if data['region']:
+            if entry_region:
                 from coco_config.robot import lane_for_region
-                data['lateral_m']=xyz[1]-lane_for_region(data['region']['data'])
+                data['lateral_m']=xyz[1]-lane_for_region(entry_region['data'])
             for key in ('command_age_sim_s','measured_wheels_rad_s','measured_body_yaw_rad_s'):
                 data[key]=body.get(key)
             samples.append(data)

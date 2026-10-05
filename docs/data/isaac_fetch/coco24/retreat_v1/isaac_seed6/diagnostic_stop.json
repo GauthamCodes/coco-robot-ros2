@@ -1,0 +1,8 @@
+{
+  "classification": "deliberate diagnostic stop, not a final validation attempt",
+  "reason": "Three verified retreats establish obstruction avoidance; redundant home legs consumed excessive budget. Final near-side direct continuation supersedes this intermediate implementation.",
+  "service": "/mission/abort",
+  "acknowledged": true,
+  "time_utc_epoch": 1791191650.796672,
+  "tested_head": "e4ed229"
+}

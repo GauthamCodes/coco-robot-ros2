@@ -42,6 +42,10 @@ def curate(runtime):
                 shutil.copyfileobj(src,dst)
 
 
+def manifest_targets(folder):
+    return json.loads((folder/'manifest.json').read_text())['targets']
+
+
 def evaluate():
     previous = json.loads((ROOT.parent/'coco23/comparison.json').read_text())
     episodes = []
@@ -53,8 +57,13 @@ def evaluate():
         physical = (coco23.legacy.gazebo_telemetry(folder, rows, 'target_red') if e['backend']=='gazebo'
                     else list(coco23.legacy.lines(coco23.legacy.source(folder, 'isaac.log'))))
         states=[r for r in physical if r.get('event')=='state']
-        starts=states[0]['targets_world_m']
-        e['nonrequested_max_displacement_m']={name:max(float(np.linalg.norm(np.array(r['targets_world_m'][name])-p)) for r in states) for name,p in starts.items() if name!='target_red'}
+        # A first Gazebo pose packet can precede the last target spawn.
+        # Start each target measurement at its first available observation.
+        names={t['model'] for t in manifest_targets(folder)}
+        starts={name:next(r['targets_world_m'][name] for r in states
+                          if name in r['targets_world_m'])
+                for name in names}
+        e['nonrequested_max_displacement_m']={name:max(float(np.linalg.norm(np.array(r['targets_world_m'][name])-p)) for r in states if name in r['targets_world_m']) for name,p in starts.items() if name!='target_red'}
         e['retreats']=[dict(entry=t, next_state=e['measurements']['transitions'][i+1] if i+1<len(e['measurements']['transitions']) else None)
                        for i,t in enumerate(e['measurements']['transitions']) if t['state']=='RETREAT']
         meta=json.loads((folder/'meta.json').read_text())

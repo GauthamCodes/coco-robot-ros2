@@ -1,5 +1,28 @@
 # COCO 2.1 — Isaac Sim digital twin and cross-simulator integration
 
+## COCO 2.4 — far-region search transit diagnosis and correction (2026-10-05)
+
+Rejected search previously drove forward through an unrequested cylinder.
+Saved Isaac6/7 traces show obstruction at the far crest with live commands and
+clock; Gazebo6 shows cylinder ejection followed by a native ODE assertion.
+Gazebo7's prior completion also displaced cylinders. Search failure now retreats
+through the already climbed corridor, verifies its near exit, then navigates to
+the next region. Acquired-target descent and the sole arbiter path are retained.
+No wheel gain, physics, Nav2 profile, perception threshold or seed tuning changed.
+
+**The shared unsafe transit is corrected; full-fetch repeatability remains open.**
+Nine rejected-search retreats complete with nonrequested cylinders undisturbed.
+Both seed8 controls physically complete; Isaac8 passes the original protocol,
+Gazebo8 retains one observer idle-mode timing flag. Isaac6/7 abort on Nav2 action
+acknowledgement/retry exhaustion; Gazebo6 aborts on an occupied planner start after
+handoff; Gazebo7 searches all regions and fails closed on IMPLAUSIBLE_SIZE poses.
+Host resource contention is recorded and not treated as proven sole causation.
+431 targeted tests and six-case source/manifest/sole-authority checks pass.
+
+[Diagnosis, correction, reproduction and limitations](data/isaac_fetch/coco24/README.md) ·
+[Pre-fix/post-fix measurements](data/isaac_fetch/coco24/comparison.json).
+Historical results below remain intact.
+
 ## COCO 2.3 — matched positions-level repeatability (2026-10-05)
 
 Five existing P03D `positions` layouts (seeds 5–9), requesting red, were run once

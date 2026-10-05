@@ -1,0 +1,2 @@
+PASS: candidate_trace ROS imports and one-second read-only startup (domain83, no runtime case collected).
+PASS: offline scripts parse; six-case evidence assertions pass.

@@ -1,0 +1,204 @@
+{
+  "passed": false,
+  "mission": "COMPLETE",
+  "states": [
+    "IDLE",
+    "LOCALIZE",
+    "NAVIGATE_TO_RAMP",
+    "ALIGN_FOR_CLIMB",
+    "CLIMB",
+    "VERIFY_CLIMB",
+    "SEARCH_TARGET",
+    "STOW_ARM",
+    "APPROACH_TARGET",
+    "GRASP",
+    "VERIFY_GRASP",
+    "DESCEND",
+    "BYPASS_RAMP",
+    "RETURN_HOME",
+    "PLACE",
+    "VERIFY_PLACEMENT",
+    "COMPLETE"
+  ],
+  "counts": {
+    "/cmd_vel_arbiter/status": 802,
+    "/mission/mode": 815,
+    "/mission/state": 816,
+    "/magnet/target_red/state": 4,
+    "/magnet/target_green/state": 2,
+    "/magnet/target_blue/state": 2,
+    "/magnet/target_yellow/state": 2,
+    "/imu": 8368,
+    "/camera/depth/image_raw": 2540,
+    "/camera/image_raw": 2539,
+    "/scan": 1677,
+    "/model/coco/odometry": 8372,
+    "/ramp/status": 837,
+    "/perception/target_pose/status": 838,
+    "/perception/status": 838,
+    "/approach/status": 838,
+    "/grasp/status": 838,
+    "/joint_states": 16600,
+    "/diff_drive_controller/odom": 8303,
+    "amcl": 117,
+    "/mission/search_region": 795,
+    "/cmd_vel_nav": 2112,
+    "/cmd_vel_smoothed": 4311,
+    "/cmd_vel": 4009,
+    "/cmd_vel_gated": 4009,
+    "/diff_drive_controller/cmd_vel": 6311,
+    "/cmd_vel_rl": 724,
+    "/perception/target": 190,
+    "/cmd_vel_approach": 483,
+    "/approach/target": 1
+  },
+  "final": {
+    "/cmd_vel_arbiter/status": "mode=idle active=none teleop=-- nav=34.32 rl=210.54 approach=296.38",
+    "/mission/mode": "idle",
+    "/mission/state": "state=COMPLETE prev=VERIFY_PLACEMENT event=enter elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=-- result=fetch",
+    "/magnet/target_red/state": "detached",
+    "/magnet/target_green/state": "detached",
+    "/magnet/target_blue/state": "detached",
+    "/magnet/target_yellow/state": "detached",
+    "/imu": "sample",
+    "/camera/depth/image_raw": "sample",
+    "/camera/image_raw": "sample",
+    "/scan": "sample",
+    "/model/coco/odometry": {
+      "xyz": [
+        -2.072432620725676,
+        -0.059872162555444204,
+        -1.5558098669497106e-08
+      ],
+      "quaternion_xyzw": [
+        -6.166388214956101e-10,
+        1.01661295682463e-09,
+        0.2158415452930662,
+        0.97642840358395
+      ]
+    },
+    "/ramp/status": "segment=idle step=661 progress=6.66 lateral=+0.69 disp=-0.13 pitch=-- outcome=goal",
+    "/perception/target_pose/status": "sel=red validity=NOT_DETECTED stamp_ns=167576000000 u=-- v=-- area=-- w=-- range=-- x=-- y=-- z=-- gx=-- gy=-- gz=-- qual=-- spread=-- cand=0 seen=none frame=-- tf_age=-- reach=UNKNOWN reach_appr=UNKNOWN drive=-- lateral=--",
+    "/perception/status": "sel=red found=0 u=-- v=-- area=-- w=-- h=-- range=-- x=-- y=-- z=-- lane=-- seen=none age=--",
+    "/approach/status": "phase=idle tx=-- ty=-- range=-- bearing=-- stop=0.154 travel=1.203 colour=red outcome=arrived",
+    "/grasp/status": "phase=idle colour=red x=0.1545 y=-0.0000 lifted=0 outcome=placed",
+    "/joint_states": {
+      "base_Revolute-1": 324.57658568791385,
+      "base_Revolute-2": 325.0978597931359,
+      "base_Revolute-3": 360.94081081367233,
+      "base_Revolute-4": 358.59245148816325,
+      "m_link1_Revolute-6": -0.002370545148298554,
+      "m_link2_Revolute-7": 0.003060570089549293,
+      "m_link3_Revolute-8": 0.5000000000007467,
+      "m_link3_Revolute-9": -0.5000000000009169
+    },
+    "/diff_drive_controller/odom": {
+      "xyz": [
+        1.099036883194582,
+        3.367765860693812,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        -0.0,
+        0.0,
+        0.24566495306252895,
+        -0.9693548013172398
+      ]
+    },
+    "amcl": {
+      "xyz": [
+        -0.01418169830413794,
+        0.0026583238920538836,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.1397147217596729,
+        0.9901917978470722
+      ]
+    },
+    "/mission/search_region": "lane_1",
+    "/cmd_vel_nav": [
+      0.0,
+      0.0
+    ],
+    "/cmd_vel_smoothed": [
+      0.0,
+      0.0
+    ],
+    "/cmd_vel": [
+      0.0,
+      0.0
+    ],
+    "/cmd_vel_gated": [
+      0.0,
+      0.0
+    ],
+    "/diff_drive_controller/cmd_vel": [
+      0.0,
+      0.0
+    ],
+    "/cmd_vel_rl": [
+      0.0,
+      0.0
+    ],
+    "/perception/target": {
+      "frame": "base_footprint",
+      "stamp_ns": 44748000000,
+      "xyz": [
+        0.28447271752357484,
+        -2.5512040552760906e-06,
+        0.07476930666111528
+      ]
+    },
+    "/cmd_vel_approach": [
+      0.0,
+      0.0
+    ],
+    "/approach/target": {
+      "frame": "base_footprint",
+      "stamp_ns": 48918000000,
+      "xyz": [
+        0.15446558292526685,
+        -4.159151570440334e-06,
+        0.128
+      ]
+    }
+  },
+  "stop_samples": 37,
+  "stop_breaches": 1,
+  "mission_wall_s": 389.80955703499785,
+  "mission_sim_s": 164.216,
+  "rates_sim_hz": {
+    "/cmd_vel_arbiter/status": 4.783688875086596,
+    "/mission/mode": 4.857729399408001,
+    "/mission/state": 4.862304314623902,
+    "/magnet/target_red/state": 0.018402424212682948,
+    "/magnet/target_green/state": 500.0,
+    "/magnet/target_blue/state": 500.0,
+    "/magnet/target_yellow/state": 500.0,
+    "/imu": 49.920647232199315,
+    "/camera/depth/image_raw": 15.15061103685316,
+    "/camera/image_raw": 15.143920950880709,
+    "/scan": 9.999642017588869,
+    "/model/coco/odometry": 49.949280983352224,
+    "/ramp/status": 4.993727973239352,
+    "/perception/target_pose/status": 4.999820794953585,
+    "/perception/status": 4.9999402635571855,
+    "/approach/status": 4.9999402635571855,
+    "/grasp/status": 5.000059737870225,
+    "/joint_states": 99.84721253097857,
+    "/diff_drive_controller/odom": 49.95727575790398,
+    "amcl": 0.7647981855822356,
+    "/mission/search_region": 4.83821826823472,
+    "/cmd_vel_nav": 14.124747413920002,
+    "/cmd_vel_smoothed": 28.648152825598554,
+    "/cmd_vel": 26.634414747278743,
+    "/cmd_vel_gated": 26.634060763935036,
+    "/diff_drive_controller/cmd_vel": 42.113834160926906,
+    "/cmd_vel_rl": 11.285237099241407,
+    "/perception/target": 15.161238568907427,
+    "/cmd_vel_approach": 37.59163936983309
+  }
+}

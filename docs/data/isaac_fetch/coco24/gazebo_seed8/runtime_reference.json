@@ -1,0 +1,6 @@
+{
+  "original_directory": "/home/gautham/coco24_final_runtime/gazebo_seed8",
+  "images": "/home/gautham/coco24_final_runtime/gazebo_seed8/images",
+  "expanded_urdf": "/home/gautham/coco24_final_runtime/gazebo_seed8/robot.urdf",
+  "simulator_generated_assets": "/home/gautham/coco24_final_runtime/gazebo_seed8/sim"
+}

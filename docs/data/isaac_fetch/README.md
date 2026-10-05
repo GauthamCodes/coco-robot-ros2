@@ -1,5 +1,27 @@
 # Isaac fetch consolidation evidence
 
+## COCO 2.4 — far-region search transit diagnosis and correction (2026-10-05)
+
+Rejected search previously drove forward through an unrequested cylinder.
+Saved Isaac6/7 traces show obstruction at the far crest with live commands and
+clock; Gazebo6 shows cylinder ejection followed by a native ODE assertion.
+Gazebo7's prior completion also displaced cylinders. Search failure now retreats
+through the already climbed corridor, verifies its near exit, then navigates to
+the next region. Acquired-target descent and the sole arbiter path are retained.
+No wheel gain, physics, Nav2 profile, perception threshold or seed tuning changed.
+
+**The shared unsafe transit is corrected; full-fetch repeatability remains open.**
+Nine rejected-search retreats complete with nonrequested cylinders undisturbed.
+Both seed8 controls physically complete; Isaac8 passes the original protocol,
+Gazebo8 retains one observer idle-mode timing flag. Isaac6/7 abort on Nav2 action
+acknowledgement/retry exhaustion; Gazebo6 aborts on an occupied planner start after
+handoff; Gazebo7 searches all regions and fails closed on IMPLAUSIBLE_SIZE poses.
+Host resource contention is recorded and not treated as proven sole causation.
+431 targeted tests and six-case source/manifest/sole-authority checks pass.
+
+[COCO2.4 evidence and reproduction](coco24/README.md) ·
+[Matched comparison](coco24/comparison.json) · [Provenance checks](coco24/evidence_checks.json).
+
 ## COCO 2.3 repeatability evidence (2026-10-05)
 
 **Verdict B: partial repeatability, with remaining failure modes.** Five matched

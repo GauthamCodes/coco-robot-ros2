@@ -1,0 +1,295 @@
+{
+  "sample_size": 1,
+  "episode": "ep-fe3213a7ccde",
+  "source_head": "668190252d9e3e893a50ba785ed8fb5c169a07e6",
+  "transitions": [
+    {
+      "state": "IDLE",
+      "sim_s": 0.004,
+      "wall_s": 4.7669933550059795,
+      "status": "state=IDLE prev=-- event=run elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "LOCALIZE",
+      "sim_s": 3.8440000000000003,
+      "wall_s": 15.069913233004627,
+      "status": "state=LOCALIZE prev=IDLE event=enter elapsed=0.0 timeout=40 attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "sim_s": 4.086,
+      "wall_s": 15.614666400004353,
+      "status": "state=NAVIGATE_TO_RAMP prev=LOCALIZE event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    {
+      "state": "ALIGN_FOR_CLIMB",
+      "sim_s": 20.264000000000003,
+      "wall_s": 51.071640613001364,
+      "status": "state=ALIGN_FOR_CLIMB prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=10 attempt=1 retries=1 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "CLIMB",
+      "sim_s": 20.400000000000002,
+      "wall_s": 51.37563303600473,
+      "status": "state=CLIMB prev=ALIGN_FOR_CLIMB event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    {
+      "state": "VERIFY_CLIMB",
+      "sim_s": 31.64,
+      "wall_s": 73.86737207500119,
+      "status": "state=VERIFY_CLIMB prev=CLIMB event=enter elapsed=0.0 timeout=10 attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "SEARCH_TARGET",
+      "sim_s": 31.834000000000003,
+      "wall_s": 74.28230702300061,
+      "status": "state=SEARCH_TARGET prev=VERIFY_CLIMB event=enter elapsed=0.0 timeout=15 attempt=1 retries=2 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "RECOVERY",
+      "sim_s": 46.868,
+      "wall_s": 105.67613040700235,
+      "status": "state=RECOVERY prev=SEARCH_TARGET event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "RETREAT",
+      "sim_s": 47.108000000000004,
+      "wall_s": 106.16844557300647,
+      "status": "state=RETREAT prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "sim_s": 59.23800000000001,
+      "wall_s": 131.17005269100628,
+      "status": "state=NAVIGATE_TO_RAMP prev=RETREAT event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "ALIGN_FOR_CLIMB",
+      "sim_s": 72.72,
+      "wall_s": 157.76981038300437,
+      "status": "state=ALIGN_FOR_CLIMB prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=10 attempt=1 retries=1 owner=nobody mode=idle reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "CLIMB",
+      "sim_s": 72.81,
+      "wall_s": 157.97581826900569,
+      "status": "state=CLIMB prev=ALIGN_FOR_CLIMB event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "VERIFY_CLIMB",
+      "sim_s": 79.652,
+      "wall_s": 171.57073810300062,
+      "status": "state=VERIFY_CLIMB prev=CLIMB event=enter elapsed=0.0 timeout=10 attempt=1 retries=0 owner=nobody mode=idle reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "SEARCH_TARGET",
+      "sim_s": 79.80000000000001,
+      "wall_s": 171.87068177100446,
+      "status": "state=SEARCH_TARGET prev=VERIFY_CLIMB event=enter elapsed=0.0 timeout=15 attempt=1 retries=2 owner=nobody mode=idle reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "RECOVERY",
+      "sim_s": 94.822,
+      "wall_s": 199.97058477500104,
+      "status": "state=RECOVERY prev=SEARCH_TARGET event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "RETREAT",
+      "sim_s": 94.924,
+      "wall_s": 200.16882690200146,
+      "status": "state=RETREAT prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "sim_s": 107.45800000000001,
+      "wall_s": 226.2727554430021,
+      "status": "state=NAVIGATE_TO_RAMP prev=RETREAT event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "ALIGN_FOR_CLIMB",
+      "sim_s": 129.32000000000002,
+      "wall_s": 270.5751573440066,
+      "status": "state=ALIGN_FOR_CLIMB prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=10 attempt=1 retries=1 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "CLIMB",
+      "sim_s": 129.434,
+      "wall_s": 270.8739518660004,
+      "status": "state=CLIMB prev=ALIGN_FOR_CLIMB event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "VERIFY_CLIMB",
+      "sim_s": 136.612,
+      "wall_s": 284.7755648740058,
+      "status": "state=VERIFY_CLIMB prev=CLIMB event=enter elapsed=0.0 timeout=10 attempt=1 retries=0 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "SEARCH_TARGET",
+      "sim_s": 136.82000000000002,
+      "wall_s": 285.1694591090054,
+      "status": "state=SEARCH_TARGET prev=VERIFY_CLIMB event=enter elapsed=0.0 timeout=15 attempt=1 retries=2 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "RECOVERY",
+      "sim_s": 151.85600000000002,
+      "wall_s": 314.7719261689999,
+      "status": "state=RECOVERY prev=SEARCH_TARGET event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "RETREAT",
+      "sim_s": 152.07600000000002,
+      "wall_s": 315.171706866,
+      "status": "state=RETREAT prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "sim_s": 164.03,
+      "wall_s": 339.27013465400523,
+      "status": "state=NAVIGATE_TO_RAMP prev=RETREAT event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "ALIGN_FOR_CLIMB",
+      "sim_s": 177.54600000000002,
+      "wall_s": 366.78304442500666,
+      "status": "state=ALIGN_FOR_CLIMB prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=10 attempt=1 retries=1 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "CLIMB",
+      "sim_s": 177.64200000000002,
+      "wall_s": 366.971377545,
+      "status": "state=CLIMB prev=ALIGN_FOR_CLIMB event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "VERIFY_CLIMB",
+      "sim_s": 184.216,
+      "wall_s": 379.1740027160049,
+      "status": "state=VERIFY_CLIMB prev=CLIMB event=enter elapsed=0.0 timeout=10 attempt=1 retries=0 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "SEARCH_TARGET",
+      "sim_s": 184.436,
+      "wall_s": 379.5736849640016,
+      "status": "state=SEARCH_TARGET prev=VERIFY_CLIMB event=enter elapsed=0.0 timeout=15 attempt=1 retries=2 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "RECOVERY",
+      "sim_s": 199.478,
+      "wall_s": 407.7783023709999,
+      "status": "state=RECOVERY prev=SEARCH_TARGET event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "RETREAT",
+      "sim_s": 199.70200000000003,
+      "wall_s": 408.1749435190068,
+      "status": "state=RETREAT prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "RETURN_HOME",
+      "sim_s": 212.056,
+      "wall_s": 432.57612938700186,
+      "status": "state=RETURN_HOME prev=RETREAT event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    {
+      "state": "ABORT",
+      "sim_s": 232.42800000000003,
+      "wall_s": 476.07931823800027,
+      "status": "state=ABORT prev=RETURN_HOME event=enter elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=SEARCH_FAILED result=aborted"
+    }
+  ],
+  "recovery_entries": 4,
+  "mission": "ABORT",
+  "attachment_events": [
+    {
+      "event": "attached",
+      "target": "target_red",
+      "time_sim_s": 0.006,
+      "target_world_m": [
+        4.07169159786574,
+        0.2504461439913652,
+        0.7288393924140859
+      ],
+      "pose_sample_time_sim_s": 0.004
+    },
+    {
+      "event": "detached",
+      "target": "target_red",
+      "time_sim_s": 0.008,
+      "target_world_m": [
+        4.07169159786574,
+        0.2504461439913652,
+        0.7288393924140859
+      ],
+      "pose_sample_time_sim_s": 0.004
+    }
+  ],
+  "first_detection_after_search_entry": {
+    "wall_s": 170.1116776380004,
+    "sim_s": 78.852,
+    "topic": "/perception/target",
+    "data": {
+      "frame": "base_footprint",
+      "stamp_ns": 78804000000,
+      "xyz": [
+        1.568830533504486,
+        0.6445526579359833,
+        -0.18215936697510426
+      ]
+    }
+  },
+  "final_target_world_xyz_m": [
+    4.071689075620754,
+    0.25044616424030935,
+    0.7288393921789276
+  ],
+  "final_target_distance_from_home_xy_m": 6.076852105506196,
+  "final_magnet_attached": null,
+  "final_target_up_world": [
+    1.0132989668732918e-06,
+    2.021730261892161e-07,
+    0.9999999999994662
+  ],
+  "mission_wall_s": 461.0701337930004,
+  "mission_sim_s": 228.61200000000002,
+  "stop_breaches": 2,
+  "first_verified_lift_mm": null,
+  "navigation_arrival_error_m": {
+    "NAVIGATE_TO_RAMP": 0.064,
+    "RETURN_HOME": 0.009
+  },
+  "last_detection_before_accepted_search": null,
+  "navigation_arrival_samples": [
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "error_m": 0.109
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "error_m": 0.04
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "error_m": 0.041
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "error_m": 0.064
+    },
+    {
+      "state": "RETURN_HOME",
+      "error_m": 0.009
+    }
+  ],
+  "grasp_relative_error_definition": "measured object centre x minus existing red approach_stop_x; y minus zero; z is not the grasp-band handoff",
+  "grasp_relative_error_xy_m": null,
+  "initial_target_world_xyz_m": [
+    4.071689075620754,
+    0.25044616424030935,
+    0.7288393921789276
+  ],
+  "initial_target_manifest_error_xyz_m": [
+    -2.522244986202793e-06,
+    2.0248944132550406e-08,
+    -2.868849602322143e-10
+  ],
+  "grasp_relative_error_xy_norm_m": null
+}

@@ -1,0 +1,169 @@
+{
+  "sample_size": 1,
+  "episode": "ep-fd89251e3230",
+  "source_head": "668190252d9e3e893a50ba785ed8fb5c169a07e6",
+  "transitions": [
+    {
+      "state": "IDLE",
+      "sim_s": 0.0,
+      "wall_s": 5.663531705999048,
+      "status": "state=IDLE prev=-- event=run elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "LOCALIZE",
+      "sim_s": 3.278,
+      "wall_s": 15.068823731999146,
+      "status": "state=LOCALIZE prev=IDLE event=enter elapsed=0.0 timeout=40 attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "sim_s": 3.584,
+      "wall_s": 15.643086729003699,
+      "status": "state=NAVIGATE_TO_RAMP prev=LOCALIZE event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    {
+      "state": "ALIGN_FOR_CLIMB",
+      "sim_s": 21.330000000000002,
+      "wall_s": 52.870775549003156,
+      "status": "state=ALIGN_FOR_CLIMB prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=10 attempt=1 retries=1 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "CLIMB",
+      "sim_s": 21.418000000000003,
+      "wall_s": 53.07517500100221,
+      "status": "state=CLIMB prev=ALIGN_FOR_CLIMB event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    {
+      "state": "VERIFY_CLIMB",
+      "sim_s": 34.628,
+      "wall_s": 81.37065648000134,
+      "status": "state=VERIFY_CLIMB prev=CLIMB event=enter elapsed=0.0 timeout=10 attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "SEARCH_TARGET",
+      "sim_s": 34.830000000000005,
+      "wall_s": 81.7670316540025,
+      "status": "state=SEARCH_TARGET prev=VERIFY_CLIMB event=enter elapsed=0.0 timeout=15 attempt=1 retries=2 owner=nobody mode=idle reason=-- result=--"
+    },
+    {
+      "state": "RECOVERY",
+      "sim_s": 49.874,
+      "wall_s": 110.37390948100074,
+      "status": "state=RECOVERY prev=SEARCH_TARGET event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "RETREAT",
+      "sim_s": 50.078,
+      "wall_s": 110.76632168299693,
+      "status": "state=RETREAT prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "sim_s": 62.25000000000001,
+      "wall_s": 135.8645706160023,
+      "status": "state=NAVIGATE_TO_RAMP prev=RETREAT event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=TARGET_NOT_FOUND result=--"
+    },
+    {
+      "state": "RECOVERY",
+      "sim_s": 62.346000000000004,
+      "wall_s": 136.06485219099704,
+      "status": "state=RECOVERY prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=NAVIGATION_FAILED result=--"
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "sim_s": 62.444,
+      "wall_s": 136.270788971,
+      "status": "state=NAVIGATE_TO_RAMP prev=RECOVERY event=enter elapsed=0.0 timeout=240 attempt=2 retries=2 owner=nav2 mode=nav reason=NAVIGATION_FAILED result=--"
+    },
+    {
+      "state": "RECOVERY",
+      "sim_s": 62.534000000000006,
+      "wall_s": 136.4695965409992,
+      "status": "state=RECOVERY prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=NAVIGATION_FAILED result=--"
+    },
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "sim_s": 62.676,
+      "wall_s": 136.76489687799767,
+      "status": "state=NAVIGATE_TO_RAMP prev=RECOVERY event=enter elapsed=0.0 timeout=240 attempt=3 retries=2 owner=nav2 mode=nav reason=NAVIGATION_FAILED result=--"
+    },
+    {
+      "state": "RECOVERY",
+      "sim_s": 62.778000000000006,
+      "wall_s": 136.97530025000015,
+      "status": "state=RECOVERY prev=NAVIGATE_TO_RAMP event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=NAVIGATION_FAILED result=--"
+    },
+    {
+      "state": "ABORT",
+      "sim_s": 62.934000000000005,
+      "wall_s": 137.26705157400283,
+      "status": "state=ABORT prev=RECOVERY event=enter elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=NAVIGATION_FAILED result=aborted"
+    }
+  ],
+  "recovery_entries": 4,
+  "mission": "ABORT",
+  "attachment_events": [
+    {
+      "event": "attached",
+      "target": "target_red",
+      "time_sim_s": 0.004,
+      "target_world_m": [
+        4.058186785340228,
+        0.7493304762848834,
+        0.7288393924140859
+      ],
+      "pose_sample_time_sim_s": 0.002
+    },
+    {
+      "event": "detached",
+      "target": "target_red",
+      "time_sim_s": 0.006,
+      "target_world_m": [
+        4.058186785340228,
+        0.7493304762848834,
+        0.7288393924140859
+      ],
+      "pose_sample_time_sim_s": 0.002
+    }
+  ],
+  "first_detection_after_search_entry": null,
+  "final_target_world_xyz_m": [
+    4.058184597278563,
+    0.7493304761605473,
+    0.7288393916704683
+  ],
+  "final_target_distance_from_home_xy_m": 6.104350643369549,
+  "final_magnet_attached": null,
+  "final_target_up_world": [
+    2.0525678516663553e-06,
+    -1.5003413803103858e-09,
+    0.9999999999978936
+  ],
+  "mission_wall_s": 122.26300758100115,
+  "mission_sim_s": 59.694,
+  "stop_breaches": 0,
+  "first_verified_lift_mm": null,
+  "navigation_arrival_error_m": {
+    "NAVIGATE_TO_RAMP": 0.092
+  },
+  "last_detection_before_accepted_search": null,
+  "navigation_arrival_samples": [
+    {
+      "state": "NAVIGATE_TO_RAMP",
+      "error_m": 0.092
+    }
+  ],
+  "grasp_relative_error_definition": "measured object centre x minus existing red approach_stop_x; y minus zero; z is not the grasp-band handoff",
+  "grasp_relative_error_xy_m": null,
+  "initial_target_world_xyz_m": [
+    4.058184597278563,
+    0.7493304761605473,
+    0.7288393916704683
+  ],
+  "initial_target_manifest_error_xyz_m": [
+    -2.188061664298857e-06,
+    -1.2433609697382053e-10,
+    -7.953442349162287e-10
+  ],
+  "grasp_relative_error_xy_norm_m": null
+}

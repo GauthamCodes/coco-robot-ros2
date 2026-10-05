@@ -83,6 +83,7 @@ class TestItConstructs:
     def test_autonomous_exit_seed_uses_region_geometry_only(self, node, retreat):
         node.plan = ms.MissionPlan('red', autonomous_search=True)
         node.plan.retreat_exit = retreat
+        node.plan.retreat_exit_lane = node.plan.lane
         node._target_pose = (99.0, 98.0, 97.0)
         seed = node._search_exit_seed()
         assert seed.header.frame_id == 'map'
@@ -113,7 +114,8 @@ class TestItConstructs:
         from unittest.mock import Mock
         node.plan = ms.MissionPlan('red', autonomous_search=True)
         node.plan.retreat_exit = retreat
-        node.machine.state = ms.RETURN_HOME if retreat else ms.BYPASS_RAMP
+        node.plan.retreat_exit_lane = node.plan.lane
+        node.machine.state = ms.NAVIGATE_TO_RAMP if retreat else ms.BYPASS_RAMP
         node._nav = Mock()
         node._nav.server_is_ready.return_value = True
         node._initialpose = Mock()

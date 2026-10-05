@@ -588,8 +588,8 @@ class MissionExecutive(Node):
         request = self._request
         if (request.kind == ms.NAV_GOAL and
                 (self.machine.state == ms.BYPASS_RAMP or
-                 (self.machine.state == ms.RETURN_HOME and
-                  self.plan.retreat_exit)) and
+                 (self.machine.state in (ms.RETURN_HOME, ms.NAVIGATE_TO_RAMP)
+                  and self.plan.retreat_exit)) and
                 self.plan.autonomous_search and not self._exit_handoff_done):
             if self._exit_seed_token != request.token:
                 self._exit_seed_token = request.token
@@ -639,8 +639,8 @@ class MissionExecutive(Node):
         self._sent = True
         if request.kind == ms.NAV_GOAL:
             if (self.machine.state == ms.BYPASS_RAMP or
-                    (self.machine.state == ms.RETURN_HOME and
-                     self.plan.retreat_exit)):
+                    (self.machine.state in (ms.RETURN_HOME, ms.NAVIGATE_TO_RAMP)
+                     and self.plan.retreat_exit)):
                 # The verified exit is a one-time odometry/navigation handoff.
                 # A retry can start anywhere along the bypass, so its pose
                 # must never be replaced with the nominal exit again.

@@ -42,7 +42,7 @@ it before descent. Their successful descents cross an emptied centreline.
 No historical contact pair/force telemetry exists: cylinder displacement,
 tipping, co-location and wheel/body disagreement support obstruction/contact;
 exact wheel/cylinder pairs and the ODE numerical trigger remain inferred.
-[Pre-fix sampled segment reconstruction](pre_fix_traces.json) contains all ten
+[Pre-fix sampled segment reconstruction](pre_fix_traces.json.gz) contains all ten
 runs' transitions, commands, physical pose/velocity, rpy, lane errors, arm/wheel
 positions, AMCL, arbiter and object pose samples, with original trace references.
 The original raw logs remain in [coco23](../coco23/README.md).
@@ -53,7 +53,8 @@ Unsuccessful autonomous search now enters RETREAT: reverse heading hold down the
 already climbed corridor, without entering the occupied row or pivoting on the
 grade. Same 0.18 m/s speed, yaw gains, limits, arbiter path and worker watchdog.
 A fresh near-exit pose must corroborate worker success before Nav2 is released.
-RETURN_HOME then selects the next region using the existing perception gates.
+Nav2 then drives directly to the next region's nearby pre-ramp goal using
+the existing perception gates.
 Exhausting search returns empty and reports failure. Acquired-target forward
 DESCEND, physical grasp/carry/release and the south bypass remain in place.
 
@@ -62,5 +63,40 @@ carry descent; its one-time latch resets per traversal but never on Nav2 retry.
 No target manifest/pose reaches this route decision. The near exit is derived
 from static ramp-foot geometry; no seed-specific parameter or simulator bypass.
 
+Initial retreat checkpoint: `e4ed229`. Targeted development tests passed 227;
+the mission package plus arbiter suite passed 393 (these counts overlap).
+No full repository regression sweep was run during development.
+
+Reproduce the six matched episodes with a new runtime root:
+
+```bash
+bash docs/data/isaac_fetch/coco24/run_matrix.sh /home/gautham/coco24_new_runtime
+# Or one case, after exporting COCO_WS/COCO_MOVEIT_PREFIX and sourcing setup_env.sh:
+python3 scripts/isaac_fetch.py /home/gautham/coco24_new_case --backend isaac \
+  --level positions --seed 6 --colour red --domain 82 --timeout 1200
+python3 docs/data/isaac_fetch/coco24/evaluate.py --runtime /home/gautham/coco24_new_runtime
+python3 docs/data/isaac_fetch/coco24/trace_segments.py \
+  docs/data/isaac_fetch/coco24 /home/gautham/coco24_post_fix_traces.json
+```
+
+The matrix uses seeds6/7 plus seed8 as the previously successful control in each
+backend. Every run uses the original generator, task-only inputs, default
+backend Nav2 profile and 1200-wall-second limit. The existing installed mission
+and driver resolve to source symlinks in this repository; no foreign workspace
+or package overlay is rebuilt or edited. Evaluator asserts byte-identical
+manifests and Isaac Nav2 profiles against COCO 2.3, sole arbiter, task-only
+inputs and runtime source digests.
+
+The first post-fix attempt at `e4ed229` demonstrated three successful retreats
+with undisturbed nonrequested cylinders. Its redundant RETURN_HOME leg after
+each retreat caused long navigation detours (second leg ~288 wall seconds).
+That leg existed to clear the old far-side route. The near exit already lies
+beside the next pre-ramp goal, so the final correction goes directly there;
+only exhausted search returns empty to home. The AMCL seed retains the exited
+lane before selecting the next lane, preventing a wrong-lane localization seed.
+The initial attempt remains separately preserved and is not counted as final
+validation. A read-only Nav2 snapshot retains the observed localization/plan.
+
+Final targeted tests: 431 passed (mission, arbiter, ramp driver/regions).
 Runtime validation is pending. The hypothesis predicts continued search without
 displacing nonrequested cylinders, then physical fetch in failed cases.

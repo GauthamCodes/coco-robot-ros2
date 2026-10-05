@@ -151,10 +151,10 @@ def test_absent_first_region_retreats_and_reaches_second():
     harness.worker('ramp', 'segment', 'retreat', 'goal',
                    pose=(ms.RAMP_FOOT_X - 0.35, harness.machine.plan.lane, 0.0))
     assert ms.BYPASS_RAMP not in harness.states()
-    assert harness.state == ms.RETURN_HOME
-    assert harness.requests[-1] == (ms.NAV_GOAL, ms.HOME)
-    harness.nav_arrives(*ms.HOME)
+    assert ms.RETURN_HOME not in harness.states()
     assert harness.state == ms.NAVIGATE_TO_RAMP
+    # Localization handoff is at the old lane, not the new goal's lane.
+    assert harness.machine.plan.search_exit == (ms.RAMP_FOOT_X - 0.35, -0.75)
     assert harness.machine.plan.region == 'lane_2'
     assert harness.machine.plan.lane == ms.lane_for_region('lane_2')
     assert harness.requests[-1] == (ms.NAV_GOAL,
@@ -218,11 +218,9 @@ def test_all_four_regions_are_tried_before_search_failure():
         harness.dt = 0.1
         harness.worker('ramp', 'segment', 'retreat', 'goal',
                    pose=(ms.RAMP_FOOT_X - 0.35, harness.machine.plan.lane, 0.0))
-        assert harness.state == ms.RETURN_HOME
         if candidate == 'lane_4':
+            assert harness.state == ms.RETURN_HOME
             break
-        assert harness.state == ms.RETURN_HOME
-        harness.nav_arrives(*ms.HOME)
         assert harness.state == ms.NAVIGATE_TO_RAMP
         harness.nav_arrives(*harness.machine.plan.pre_ramp)
         harness.tick(2)

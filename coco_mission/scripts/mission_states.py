@@ -757,6 +757,7 @@ class MissionPlan:
         self.region_map = dict(region_map or {})
         self.autonomous_search = bool(autonomous_search)
         self.retreat_exit = False
+        self.retreat_exit_lane = None
         self.search_regions = tuple(r.region_id for r in TARGET_REGIONS)
         self.search_half_spacing = min(
             abs(a.lane_y - b.lane_y)
@@ -793,8 +794,9 @@ class MissionPlan:
     @property
     def search_exit(self):
         """The known flat-ground exit of this candidate region."""
-        return ((RAMP_FOOT_X - 0.35) if self.retreat_exit
-                else SEARCH_EXIT_X, self.lane)
+        if self.retreat_exit:
+            return (RAMP_FOOT_X - 0.35, self.retreat_exit_lane)
+        return (SEARCH_EXIT_X, self.lane)
 
 
 class MissionMachine:
@@ -990,7 +992,12 @@ class MissionMachine:
 
         if self.state == RETREAT:
             self.plan.retreat_exit = True
-            self.search_transit_pending = not self.search_exhausted
+            self.plan.retreat_exit_lane = self.plan.lane
+            if not self.search_exhausted:
+                # Unlike a far-side descent, retreat already ends beside the
+                # next pre-ramp goal. No arena-wide home leg is needed.
+                self._next_search_region(now)
+                return
         elif self.state == DESCEND:
             self.plan.retreat_exit = False
 
@@ -1019,18 +1026,21 @@ class MissionMachine:
 
         if self.state == RETURN_HOME and self.search_transit_pending:
             self.search_transit_pending = False
-            self.search_index += 1
-            self.plan.region = self.plan.search_regions[self.search_index]
-            self.plan.lane = lane_for_region(self.plan.region)
-            self._transition(NAVIGATE_TO_RAMP, now,
-                             reason='SEARCH_NEXT_REGION',
-                             detail=f'candidate {self.plan.region}')
+            self._next_search_region(now)
             return
 
         if nxt == COMPLETE:
             self.result = 'fetch'
 
         self._transition(nxt, now)
+
+    def _next_search_region(self, now):
+        self.search_index += 1
+        self.plan.region = self.plan.search_regions[self.search_index]
+        self.plan.lane = lane_for_region(self.plan.region)
+        self._transition(NAVIGATE_TO_RAMP, now,
+                         reason='SEARCH_NEXT_REGION',
+                         detail=f'candidate {self.plan.region}')
 
     def _grasping(self):
         """True while the grasp half of the mission is still live."""

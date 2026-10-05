@@ -1,0 +1,764 @@
+[
+  {
+    "backend": "gazebo",
+    "seed": 5,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 82.674,
+      "wall_s": 99.91965786700166,
+      "status": "state=DESCEND prev=VERIFY_GRASP event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 97.21400000000001,
+      "wall_s": 116.61941457999637,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    "initial_pose": [
+      4.194302015836711,
+      -0.7363490204412073,
+      0.6498393767092951
+    ],
+    "initial_rpy": [
+      -8.683742683257556e-10,
+      8.834279974223591e-10,
+      0.0873200202243469
+    ],
+    "final_pose": [
+      6.576214344139667,
+      -0.7263368631287286,
+      0.0034192282648896244
+    ],
+    "final_rpy": [
+      7.172535956907827e-07,
+      0.03755193598453954,
+      4.608285008417396e-05
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_blue": 0.0,
+      "target_green": 0.0,
+      "target_yellow": 0.0
+    },
+    "first_nonrequested_displacement_sample": null
+  },
+  {
+    "backend": "gazebo",
+    "seed": 6,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 54.992000000000004,
+      "wall_s": 70.54800942200382,
+      "status": "state=DESCEND prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=TARGET_NOT_FOUND result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 77.664,
+      "wall_s": 97.75132311599737,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=TARGET_NOT_FOUND result=--"
+    },
+    "initial_pose": [
+      2.7651877463600125,
+      -0.8303799754245289,
+      0.5735442578779663
+    ],
+    "initial_rpy": [
+      0.018378580068827463,
+      -0.3136390401397926,
+      -0.059506094694868825
+    ],
+    "final_pose": [
+      6.496417569213876,
+      -0.8629365164224208,
+      0.015737070053629197
+    ],
+    "final_rpy": [
+      3.650702552154491e-07,
+      0.16667859986647082,
+      9.684801839282816e-06
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_green": 0.0,
+      "target_blue": 0.0,
+      "target_yellow": 3.141147840455087
+    },
+    "first_nonrequested_displacement_sample": {
+      "sim_s": 61.668000000000006,
+      "world_xyz_m": [
+        3.895558205974527,
+        -0.8629262666326118,
+        0.6498393761668663
+      ],
+      "objects": {
+        "target_green": [
+          4.323577295306174,
+          0.23916313984329277,
+          0.7288393923489136
+        ],
+        "target_blue": [
+          4.267348702887921,
+          -0.22206893374858874,
+          0.7288393923684642
+        ],
+        "target_red": [
+          4.058184597278563,
+          0.7493304761605473,
+          0.7288393916704683
+        ],
+        "target_yellow": [
+          4.198705102791337,
+          -0.7993229322755447,
+          0.6641391078347457
+        ]
+      }
+    }
+  },
+  {
+    "backend": "gazebo",
+    "seed": 6,
+    "region": "lane_2",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 166.108,
+      "wall_s": 205.54879868499847,
+      "status": "state=DESCEND prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=TARGET_NOT_FOUND result=--"
+    },
+    "end": {
+      "state": "ABORT",
+      "sim_s": 177.18200000000002,
+      "wall_s": 229.44958033500006,
+      "status": "state=ABORT prev=DESCEND event=enter elapsed=0.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=CLOCK_STALLED result=aborted"
+    },
+    "initial_pose": [
+      2.763321570244279,
+      -0.28644099633163594,
+      0.5729379004946836
+    ],
+    "initial_rpy": [
+      0.008713096065902766,
+      -0.3140424572496259,
+      -0.02819955046025826
+    ],
+    "final_pose": [
+      4.4968606074263855,
+      -0.2997678932435141,
+      0.6366662632240463
+    ],
+    "final_rpy": [
+      -5.828614489069333e-07,
+      0.15532821856242807,
+      -3.7187256578124764e-06
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_green": 0.0,
+      "target_blue": 2.249606524844934,
+      "target_yellow": 0.00043100526299836027
+    },
+    "first_nonrequested_displacement_sample": {
+      "sim_s": 174.282,
+      "world_xyz_m": [
+        4.184940268292489,
+        -0.29976664102805967,
+        0.6498393761673619
+      ],
+      "objects": {
+        "target_green": [
+          4.323577295306174,
+          0.23916313984329277,
+          0.7288393923489136
+        ],
+        "target_blue": [
+          4.387781112369653,
+          -0.24924258738949004,
+          0.7300524612232182
+        ],
+        "target_red": [
+          4.058184597278563,
+          0.7493304761605473,
+          0.7288393916704683
+        ],
+        "target_yellow": [
+          5.84188709652442,
+          1.7125791590135775,
+          0.01599999746289742
+        ]
+      }
+    }
+  },
+  {
+    "backend": "gazebo",
+    "seed": 7,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 57.212,
+      "wall_s": 72.58334855100111,
+      "status": "state=DESCEND prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=TARGET_NOT_FOUND result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 113.878,
+      "wall_s": 137.98546770199755,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=TARGET_NOT_FOUND result=--"
+    },
+    "initial_pose": [
+      2.7603965583047447,
+      -0.796533819972536,
+      0.5719875064914923
+    ],
+    "initial_rpy": [
+      0.005327886273255492,
+      -0.3141156222187804,
+      -0.017242174531207695
+    ],
+    "final_pose": [
+      6.480316857334682,
+      -0.8056700264523882,
+      0.01831537435946882
+    ],
+    "final_rpy": [
+      -5.380691162200522e-06,
+      0.1926860870900704,
+      -2.5969044590594368e-05
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_blue": 0.0,
+      "target_green": 0.0,
+      "target_yellow": 2.7259504236780527
+    },
+    "first_nonrequested_displacement_sample": {
+      "sim_s": 66.88000000000001,
+      "world_xyz_m": [
+        4.4539957089261515,
+        -0.8054505606639775,
+        0.6437086726031085
+      ],
+      "objects": {
+        "target_blue": [
+          4.0638901323060335,
+          0.7460187231215815,
+          0.7288393921078395
+        ],
+        "target_green": [
+          4.249504140937104,
+          -0.2580584902880693,
+          0.7288393923724944
+        ],
+        "target_yellow": [
+          4.546152027769188,
+          -0.8898424077924038,
+          0.6516701379532365
+        ],
+        "target_red": [
+          4.071686413618953,
+          0.2504461601401114,
+          0.7288393907946001
+        ]
+      }
+    }
+  },
+  {
+    "backend": "gazebo",
+    "seed": 7,
+    "region": "lane_2",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 207.68800000000002,
+      "wall_s": 242.0833626859967,
+      "status": "state=DESCEND prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 230.46200000000002,
+      "wall_s": 267.7837937619988,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    "initial_pose": [
+      2.753248434560837,
+      -0.3185375308519466,
+      0.5696649402626296
+    ],
+    "initial_rpy": [
+      0.0178007136253445,
+      -0.31367127118655724,
+      -0.057633173944404835
+    ],
+    "final_pose": [
+      6.415585862505782,
+      -0.33843499274939215,
+      0.02894588464517789
+    ],
+    "final_rpy": [
+      -3.2615991939666282e-06,
+      0.2981980742966386,
+      -1.3644434324897662e-05
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_blue": 0.0,
+      "target_green": 4.114161771300802,
+      "target_yellow": 0.01289273615087917
+    },
+    "first_nonrequested_displacement_sample": {
+      "sim_s": 216.502,
+      "world_xyz_m": [
+        4.277307112509226,
+        -0.3395020754448416,
+        0.6498261076123163
+      ],
+      "objects": {
+        "target_blue": [
+          4.0638901323060335,
+          0.7460187231215815,
+          0.7288393921078395
+        ],
+        "target_green": [
+          4.507817468478856,
+          -0.3017418581512039,
+          0.6598784366323825
+        ],
+        "target_yellow": [
+          4.635682083031422,
+          -3.298266205624554,
+          0.015999923354949243
+        ],
+        "target_red": [
+          4.071686413618953,
+          0.2504461601401114,
+          0.7288393907946001
+        ]
+      }
+    }
+  },
+  {
+    "backend": "gazebo",
+    "seed": 7,
+    "region": "lane_3",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 351.20000000000005,
+      "wall_s": 403.28368757299904,
+      "status": "state=DESCEND prev=VERIFY_GRASP event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 367.29600000000005,
+      "wall_s": 421.28221493800083,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    "initial_pose": [
+      3.9186189180501474,
+      0.257538682487314,
+      0.6498393767089318
+    ],
+    "initial_rpy": [
+      -8.687925205641545e-10,
+      8.979317289714572e-10,
+      -0.0430271010045335
+    ],
+    "final_pose": [
+      6.666839476729515,
+      0.2544902817811161,
+      -1.4593137607446558e-06
+    ],
+    "final_rpy": [
+      -6.773149171113434e-08,
+      -1.5110714061794539e-05,
+      -2.030400231001204e-05
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_blue": 0.0,
+      "target_green": 0.01612098621694214,
+      "target_yellow": 0.009382268314925198
+    },
+    "first_nonrequested_displacement_sample": {
+      "sim_s": 356.62,
+      "world_xyz_m": [
+        4.85043234620736,
+        0.25507349851256617,
+        0.5359770101255601
+      ],
+      "objects": {
+        "target_blue": [
+          4.0638901323060335,
+          0.7460187231215815,
+          0.7288393921078395
+        ],
+        "target_green": [
+          7.74776601403037,
+          1.5350880640089282,
+          0.011999922600294722
+        ],
+        "target_yellow": [
+          4.6356133001153434,
+          -3.216210508650958,
+          0.01599992335494864
+        ],
+        "target_red": [
+          5.129147817276241,
+          0.25450689758100264,
+          0.7596165796113674
+        ]
+      }
+    }
+  },
+  {
+    "backend": "gazebo",
+    "seed": 8,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 83.47800000000001,
+      "wall_s": 99.73333222899964,
+      "status": "state=DESCEND prev=VERIFY_GRASP event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 99.444,
+      "wall_s": 118.43362284800241,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    "initial_pose": [
+      3.9439722477875074,
+      -0.7445679167441676,
+      0.6498393767072422
+    ],
+    "initial_rpy": [
+      -8.835577339216805e-10,
+      1.434530272348411e-09,
+      0.04771036553286721
+    ],
+    "final_pose": [
+      6.587720666755965,
+      -0.7421274333122194,
+      0.0017036428587499201
+    ],
+    "final_rpy": [
+      -4.684642301949132e-07,
+      0.018830410185823654,
+      -1.3030055888569372e-05
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_green": 0.0,
+      "target_yellow": 0.0,
+      "target_blue": 0.0
+    },
+    "first_nonrequested_displacement_sample": null
+  },
+  {
+    "backend": "gazebo",
+    "seed": 9,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 84.804,
+      "wall_s": 99.79073051400337,
+      "status": "state=DESCEND prev=VERIFY_GRASP event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 100.42,
+      "wall_s": 117.39045780200104,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    "initial_pose": [
+      3.9958489204125565,
+      -0.7796101059585612,
+      0.6498393767089757
+    ],
+    "initial_rpy": [
+      -8.68542564258501e-10,
+      8.971983156413899e-10,
+      0.07300543044965868
+    ],
+    "final_pose": [
+      6.450195752624509,
+      -0.7755210505915276,
+      0.02320289670935666
+    ],
+    "final_rpy": [
+      -2.1286060617607102e-06,
+      0.24161426251784368,
+      -1.5987215526783223e-05
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_green": 0.0,
+      "target_yellow": 0.0,
+      "target_blue": 0.0
+    },
+    "first_nonrequested_displacement_sample": null
+  },
+  {
+    "backend": "isaac",
+    "seed": 5,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 80.658337539,
+      "wall_s": 105.89342870700057,
+      "status": "state=DESCEND prev=VERIFY_GRASP event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 94.425004924,
+      "wall_s": 123.89230019199749,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    "initial_pose": [
+      4.186677572889966,
+      -0.7103090061992979,
+      0.649819528696752
+    ],
+    "initial_rpy": [
+      0.00023316969129499876,
+      0.00018334039800893542,
+      -0.06445729378686343
+    ],
+    "final_pose": [
+      6.662490397696235,
+      -0.7328968531045444,
+      -4.103406586209758e-05
+    ],
+    "final_rpy": [
+      0.0008795754179611627,
+      0.00037588408881372715,
+      0.011902340121404452
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_green": 0.0,
+      "target_yellow": 0.0,
+      "target_blue": 0.0
+    },
+    "first_nonrequested_displacement_sample": null
+  },
+  {
+    "backend": "isaac",
+    "seed": 6,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 52.325002728,
+      "wall_s": 66.42812350099848,
+      "status": "state=DESCEND prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=TARGET_NOT_FOUND result=--"
+    },
+    "end": {
+      "state": "RECOVERY",
+      "sim_s": 122.225006374,
+      "wall_s": 156.72741671199765,
+      "status": "state=RECOVERY prev=DESCEND event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=DESCENT_TIMEOUT result=--"
+    },
+    "initial_pose": [
+      2.5996591566929137,
+      -0.7199017699303102,
+      0.5196192568824719
+    ],
+    "initial_rpy": [
+      -0.017841109837192785,
+      -0.3137490930533853,
+      0.0588570037762067
+    ],
+    "final_pose": [
+      4.755013910685716,
+      -1.0118453014342026,
+      0.5795575592832078
+    ],
+    "final_rpy": [
+      0.14771078731649384,
+      0.3140694788346734,
+      0.24482159335119352
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_yellow": 0.7163843110268481,
+      "target_blue": 0.0,
+      "target_green": 0.0
+    },
+    "first_nonrequested_displacement_sample": {
+      "sim_s": 61.725003219,
+      "world_xyz_m": [
+        4.1651687679496865,
+        -0.7074141732489441,
+        0.6499187113826037
+      ],
+      "objects": {
+        "target_yellow": [
+          4.35412073135376,
+          -0.7763349413871765,
+          0.7288621664047241
+        ],
+        "target_blue": [
+          4.267305850982666,
+          -0.22202971577644348,
+          0.7288450598716736
+        ],
+        "target_green": [
+          4.323530673980713,
+          0.23916420340538025,
+          0.7288428544998169
+        ],
+        "target_red": [
+          4.058197975158691,
+          0.7493748664855957,
+          0.7288431525230408
+        ]
+      }
+    }
+  },
+  {
+    "backend": "isaac",
+    "seed": 7,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 50.491669300000005,
+      "wall_s": 74.25204723800562,
+      "status": "state=DESCEND prev=RECOVERY event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=SEARCH_REJECTED_GEOMETRY result=--"
+    },
+    "end": {
+      "state": "RECOVERY",
+      "sim_s": 105.058338812,
+      "wall_s": 164.75076996400458,
+      "status": "state=RECOVERY prev=DESCEND event=enter elapsed=0.0 timeout=20 attempt=1 retries=0 owner=nobody mode=idle reason=DESCENT_TIMEOUT result=--"
+    },
+    "initial_pose": [
+      2.59781346916866,
+      -0.7236615575747032,
+      0.5190660037961455
+    ],
+    "initial_rpy": [
+      -0.02029343704939235,
+      -0.31337515065694155,
+      0.06369614009930322
+    ],
+    "final_pose": [
+      4.566645242807099,
+      -0.7663378654356424,
+      0.638195677762699
+    ],
+    "final_rpy": [
+      -0.0019294725938550639,
+      0.13197972039480255,
+      -0.17248688564008735
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_yellow": 0.42390761938268656,
+      "target_green": 0.0,
+      "target_blue": 0.0
+    },
+    "first_nonrequested_displacement_sample": {
+      "sim_s": 59.425003099,
+      "world_xyz_m": [
+        4.093170460597344,
+        -0.7057410881542636,
+        0.6499694443846423
+      ],
+      "objects": {
+        "target_yellow": [
+          4.339682102203369,
+          -0.7762647271156311,
+          0.7289291024208069
+        ],
+        "target_green": [
+          4.2494425773620605,
+          -0.25802838802337646,
+          0.728843629360199
+        ],
+        "target_red": [
+          4.071625709533691,
+          0.2504163682460785,
+          0.7288435101509094
+        ],
+        "target_blue": [
+          4.063878536224365,
+          0.7459702491760254,
+          0.7288431525230408
+        ]
+      }
+    }
+  },
+  {
+    "backend": "isaac",
+    "seed": 8,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 74.05833719500001,
+      "wall_s": 124.7289260250036,
+      "status": "state=DESCEND prev=VERIFY_GRASP event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 89.225004653,
+      "wall_s": 154.72919622900372,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    "initial_pose": [
+      3.949344400639342,
+      -0.722946301536521,
+      0.649785316167314
+    ],
+    "initial_rpy": [
+      7.758199289357309e-05,
+      -0.00040183143579208824,
+      -0.07456695300026225
+    ],
+    "final_pose": [
+      6.658461978496039,
+      -0.7400177409101573,
+      0.0003420551208551531
+    ],
+    "final_rpy": [
+      -8.464439186380533e-05,
+      -0.004479942682786842,
+      0.014474402087963072
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_blue": 0.0,
+      "target_yellow": 0.0,
+      "target_green": 0.0
+    },
+    "first_nonrequested_displacement_sample": null
+  },
+  {
+    "backend": "isaac",
+    "seed": 9,
+    "region": "lane_1",
+    "entry": {
+      "state": "DESCEND",
+      "sim_s": 74.25833720600001,
+      "wall_s": 123.08305768800346,
+      "status": "state=DESCEND prev=VERIFY_GRASP event=enter elapsed=0.0 timeout=180 attempt=1 retries=0 owner=ramp_driver mode=rl reason=-- result=--"
+    },
+    "end": {
+      "state": "BYPASS_RAMP",
+      "sim_s": 89.05833797800001,
+      "wall_s": 148.88455166600033,
+      "status": "state=BYPASS_RAMP prev=DESCEND event=enter elapsed=0.0 timeout=240 attempt=1 retries=2 owner=nav2 mode=nav reason=-- result=--"
+    },
+    "initial_pose": [
+      3.9980776070945057,
+      -0.7484394316476708,
+      0.6496986556027873
+    ],
+    "initial_rpy": [
+      -0.0004520793691022637,
+      -0.0008018478951168362,
+      -0.12363607442543226
+    ],
+    "final_pose": [
+      6.498980659217359,
+      -0.7768181125333963,
+      0.015639901743780247
+    ],
+    "final_rpy": [
+      0.00010277206414588402,
+      0.16628957069133654,
+      0.015752615257482307
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_green": 0.0,
+      "target_blue": 0.0,
+      "target_yellow": 0.0
+    },
+    "first_nonrequested_displacement_sample": null
+  }
+]

@@ -1,0 +1,14 @@
+/tmp/coco-m0-clean-build-20261005/build/coco_web/pytest.xml: 575 tests, 0 errors, 1 failure, 0 skipped
+- coco_web.test.test_mission_view test_no_executive_reason_is_missing_from_our_copy
+  <<< failure message
+    AssertionError: mission_states.py has self-named constants mission_view has never heard of; if they are new failure reasons, add them to REASONS
+    assert {'RETREAT', '...REAT_TIMEOUT'} == set()
+      Extra items in the left set:
+      'RETREAT_POSE_UNVERIFIED'
+      'RETREAT'
+      'RETREAT_FAILED'
+      'RETREAT_TIMEOUT'
+      Use -v to get more diff
+  >>>
+
+Summary: 1964 tests, 0 errors, 1 failure, 0 skipped

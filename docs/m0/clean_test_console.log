@@ -1,0 +1,46 @@
+Starting >>> coco_config
+[0.353s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+Finished <<< coco_config [0.86s]
+Starting >>> coco_rl
+Finished <<< coco_rl [12.4s]
+Starting >>> coco_sim
+Finished <<< coco_sim [3.95s]
+Starting >>> custom_teleop
+--- stderr: custom_teleop
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 12 warnings
+  Warning: This process (pid=384020) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< custom_teleop [3.77s]
+Starting >>> coco_web
+--- stderr: coco_web
+=============================== warnings summary ===============================
+test/test_flake8.py: 12 warnings
+  Warning: This process (pid=384142) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< coco_web [11.7s]	[ with test failures ]
+Starting >>> gazebo_models
+Finished <<< gazebo_models [11.4s]
+Starting >>> coco_moveit_config
+Finished <<< coco_moveit_config [5.19s]
+Starting >>> coco_perception
+--- stderr: coco_perception
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 12 warnings
+  Warning: This process (pid=384812) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< coco_perception [2.29s]
+Starting >>> coco_mission
+Finished <<< coco_mission [24.0s]
+
+Summary: 9 packages finished [1min 16s]
+  3 packages had stderr output: coco_perception coco_web custom_teleop
+  1 package had test failures: coco_web

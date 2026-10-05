@@ -30,6 +30,7 @@ Services (all ``std_srvs/Trigger``)
 -----------------------------------
 ``/ramp/climb``    run the PPO policy from here to the summit
 ``/ramp/descend``  scripted heading-hold down the far slope
+``/ramp/retreat``  reverse down the climbed corridor after a rejected search
 ``/ramp/stop``     abort whatever is running and command zero
 
 ``/ramp/status`` (``std_msgs/String``, 5 Hz) reports as space-separated
@@ -85,7 +86,8 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from std_srvs.srv import Trigger
 
-from coco_config.robot import lane_for_region, parse_region_map, resolve_lane
+from coco_config.robot import (RAMP_FOOT_X, lane_for_region, parse_region_map,
+                               resolve_lane)
 
 from coco_rl.ramp_env import CocoRampEnv, MAX_ANG, quat_to_rp
 
@@ -115,7 +117,7 @@ DESCEND_HZ = 20.0          # command rate; inside the arbiter 0.3 s timeout
 TIP_LIMIT = 0.6            # rad of |roll| or |pitch|; matches ramp_env
 
 
-def descend_cmd(yaw, x, goal_x):
+def descend_cmd(yaw, x, goal_x, *, reverse=False):
     """
     Velocity command for the scripted descent, as (linear, angular, done).
 
@@ -125,9 +127,11 @@ def descend_cmd(yaw, x, goal_x):
     linear term does not depend on heading error.
 
     `yaw` is the heading in radians, `x` the current world x, `goal_x` the
-    flat ground past the bottom of the slope.
+    flat ground past the bottom of the slope. With ``reverse=True``,
+    back down the near slope keeping the same forward-facing heading.
+    Unsuccessful searches must not plough through the occupied target row.
     """
-    remaining = goal_x - x
+    remaining = x - goal_x if reverse else goal_x - x
     if remaining <= DESCEND_ARRIVE:
         return 0.0, 0.0, True
     # Wrap to (-pi, pi] so a robot at +179 deg corrects 2 deg the short
@@ -135,7 +139,7 @@ def descend_cmd(yaw, x, goal_x):
     err = math.atan2(math.sin(-yaw), math.cos(-yaw))
     ang = max(-DESCEND_YAW_CLAMP,
               min(DESCEND_YAW_CLAMP, DESCEND_YAW_GAIN * err))
-    return DESCEND_SPEED, ang, False
+    return (-DESCEND_SPEED if reverse else DESCEND_SPEED), ang, False
 
 
 # ── lane hold on the climb ─────────────────────────────────────────────────
@@ -244,6 +248,8 @@ class RampDriver(Node):
         self.declare_parameter('model', '')
         self.declare_parameter('cmd_vel_topic', RL_CMD_VEL_TOPIC)
         self.declare_parameter('descend_goal_x', 6.8)
+        # Retrace the climbed corridor; stop with the whole footprint on flat.
+        self._retreat_goal_x = RAMP_FOOT_X - 0.5
         self.declare_parameter('status_topic', '/ramp/status')
         # Off reproduces the bare policy, which is how the +0.59 m baseline
         # was measured and how any claim that this helps stays falsifiable.
@@ -315,6 +321,7 @@ class RampDriver(Node):
             String, self.get_parameter('status_topic').value, 10)
         self.create_service(Trigger, '/ramp/climb', self._on_climb)
         self.create_service(Trigger, '/ramp/descend', self._on_descend)
+        self.create_service(Trigger, '/ramp/retreat', self._on_retreat)
         self.create_service(Trigger, '/ramp/stop', self._on_stop)
         self.create_timer(1.0 / STATUS_HZ, self._publish_status)
 
@@ -419,6 +426,16 @@ class RampDriver(Node):
         response.message = 'descend started; watch /ramp/status'
         return response
 
+    def _on_retreat(self, request, response):
+        del request
+        if self._busy:
+            return self._reject(f'busy running {self.segment}')
+        threading.Thread(target=self._run_descend, kwargs={'reverse': True},
+                         daemon=True).start()
+        response.success = True
+        response.message = 'retreat started; watch /ramp/status'
+        return response
+
     def _on_stop(self, request, response):
         del request
         self._abort.set()
@@ -504,11 +521,13 @@ class RampDriver(Node):
             # so the robot is still on the ramp face when it ends.
             f'final pitch {self.pitch:+.3f} rad')
 
-    def _run_descend(self):
+    def _run_descend(self, reverse=False):
         with self._lock:
             self._busy = True
             self._abort.clear()
-            self.segment, self.outcome, self.step = 'descend', None, 0
+            segment = 'retreat' if reverse else 'descend'
+            goal_x = self._retreat_goal_x if reverse else self._descend_goal_x
+            self.segment, self.outcome, self.step = segment, None, 0
             try:
                 env = self._ensure_env()
                 # No reset(): the robot is already standing on the platform
@@ -524,7 +543,7 @@ class RampDriver(Node):
                     iq = env._imu.orientation
                     roll, self.pitch = quat_to_rp(iq.x, iq.y, iq.z, iq.w)
                     lin, ang, done = descend_cmd(
-                        yaw, pose.position.x, self._descend_goal_x)
+                        yaw, pose.position.x, goal_x, reverse=reverse)
                     self.progress = pose.position.x
                     self.step += 1
                     if done:
@@ -553,12 +572,12 @@ class RampDriver(Node):
                 env._publish(0.0, 0.0)
             except Exception as exc:                      # noqa: BLE001
                 self.outcome = f'error: {exc}'
-                self.get_logger().error(f'descend failed: {exc}')
+                self.get_logger().error(f'{segment} failed: {exc}')
             finally:
                 self.segment = 'idle'
                 self._busy = False
         self.get_logger().info(
-            f'descend finished: {self.outcome} at x={self.progress:.2f}, '
+            f'{segment} finished: {self.outcome} at x={self.progress:.2f}, '
             f'final pitch {self.pitch:+.3f} rad')
 
 

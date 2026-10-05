@@ -113,6 +113,7 @@ APPROACH_TARGET = 'APPROACH_TARGET'
 GRASP = 'GRASP'
 VERIFY_GRASP = 'VERIFY_GRASP'
 DESCEND = 'DESCEND'
+RETREAT = 'RETREAT'
 BYPASS_RAMP = 'BYPASS_RAMP'
 RETURN_HOME = 'RETURN_HOME'
 PLACE = 'PLACE'
@@ -169,6 +170,9 @@ GRASP_FAILED = 'GRASP_FAILED'
 GRASP_TIMEOUT = 'GRASP_TIMEOUT'
 GRASP_UNVERIFIED = 'GRASP_UNVERIFIED'
 GRASP_VERIFY_TIMEOUT = 'GRASP_VERIFY_TIMEOUT'
+RETREAT_FAILED = 'RETREAT_FAILED'
+RETREAT_TIMEOUT = 'RETREAT_TIMEOUT'
+RETREAT_POSE_UNVERIFIED = 'RETREAT_POSE_UNVERIFIED'
 DESCENT_FAILED = 'DESCENT_FAILED'
 DESCENT_TIPPED = 'DESCENT_TIPPED'
 DESCENT_TIMEOUT = 'DESCENT_TIMEOUT'
@@ -648,6 +652,9 @@ CONTRACTS = {
     DESCEND: StateContract(
         DESCEND, 'rl', 'ramp_driver', 180.0,
         note='no retry, for the same reason as CLIMB'),
+    RETREAT: StateContract(
+        RETREAT, 'rl', 'ramp_driver', 180.0,
+        note='empty search backs down the climbed corridor; no retry on grade'),
     BYPASS_RAMP: StateContract(
         BYPASS_RAMP, 'nav', 'nav2', 240.0, max_retries=2,
         note='autonomous search takes the measured clear south-side route '
@@ -701,6 +708,7 @@ NOMINAL_NEXT = {
     GRASP: VERIFY_GRASP,
     VERIFY_GRASP: DESCEND,
     DESCEND: RETURN_HOME,
+    RETREAT: RETURN_HOME,
     BYPASS_RAMP: RETURN_HOME,
     RETURN_HOME: PLACE,
     PLACE: VERIFY_PLACEMENT,
@@ -719,6 +727,7 @@ STATE_SERVICE = {
     APPROACH_TARGET: '/approach/run',
     GRASP: '/grasp/pick',
     DESCEND: '/ramp/descend',
+    RETREAT: '/ramp/retreat',
     PLACE: '/grasp/place',
 }
 
@@ -747,6 +756,7 @@ class MissionPlan:
         # neither path holds an episode target coordinate.
         self.region_map = dict(region_map or {})
         self.autonomous_search = bool(autonomous_search)
+        self.retreat_exit = False
         self.search_regions = tuple(r.region_id for r in TARGET_REGIONS)
         self.search_half_spacing = min(
             abs(a.lane_y - b.lane_y)
@@ -783,7 +793,8 @@ class MissionPlan:
     @property
     def search_exit(self):
         """The known flat-ground exit of this candidate region."""
-        return (SEARCH_EXIT_X, self.lane)
+        return ((RAMP_FOOT_X - 0.35) if self.retreat_exit
+                else SEARCH_EXIT_X, self.lane)
 
 
 class MissionMachine:
@@ -977,6 +988,12 @@ class MissionMachine:
                 # south route; then we select the next candidate.
                 self.search_transit_pending = True
 
+        if self.state == RETREAT:
+            self.plan.retreat_exit = True
+            self.search_transit_pending = not self.search_exhausted
+        elif self.state == DESCEND:
+            self.plan.retreat_exit = False
+
         if self.state == IDLE:
             self._started_at = now
 
@@ -1038,7 +1055,9 @@ class MissionMachine:
                                      len(self.plan.search_regions))
             if self.search_exhausted:
                 self.degraded_reason = SEARCH_FAILED
-            self._transition(DESCEND, now,
+            # The requested target was not acquired. The region may still
+            # contain other objects; traversing it forward is not a clear route.
+            self._transition(RETREAT, now,
                              reason=('SEARCH_FAILED' if self.search_exhausted
                                      else 'SEARCH_NEXT_REGION'),
                              detail=f'{self.plan.region}: {self.reason}')
@@ -1130,6 +1149,7 @@ class MissionMachine:
             GRASP: GRASP_TIMEOUT,
             VERIFY_GRASP: GRASP_VERIFY_TIMEOUT,
             DESCEND: DESCENT_TIMEOUT,
+            RETREAT: RETREAT_TIMEOUT,
             RETURN_HOME: RETURN_TIMEOUT,
             PLACE: PLACE_TIMEOUT,
             VERIFY_PLACEMENT: PLACEMENT_VERIFY_TIMEOUT,
@@ -1316,6 +1336,23 @@ class MissionMachine:
             good=('goal',),
             reasons={'tipped': DESCENT_TIPPED, 'timeout': DESCENT_TIMEOUT},
             default=DESCENT_FAILED)
+
+    def _check_retreat(self, obs):
+        result = self._check_worker(
+            obs, '/ramp/retreat', obs.ramp, 'segment',
+            good=('goal',), reasons={'timeout': RETREAT_TIMEOUT},
+            default=RETREAT_FAILED)
+        if result != SUCCESS:
+            return result
+        pose = self._fresh_pose(obs)
+        if pose is None:
+            return RUNNING
+        x, y, _ = pose
+        # A worker outcome alone must not release Nav2 while still on grade.
+        if not (RAMP_FOOT_X - 0.75 <= x <= RAMP_FOOT_X - 0.25
+                and abs(y - self.plan.lane) <= self.plan.lane_tolerance):
+            return FAILURE, RETREAT_POSE_UNVERIFIED, f'near exit pose {pose}'
+        return SUCCESS
 
     def _check_stow_arm(self, obs):
         return self._check_worker(

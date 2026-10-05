@@ -161,7 +161,7 @@ STATUS_TOPICS = (
 # RECOVERY/ABORT use to stop them. /grasp has no stop service — an arm
 # trajectory in flight is finished by move_group, not interrupted here.
 SERVICES = (
-    '/ramp/climb', '/ramp/descend', '/ramp/stop',
+    '/ramp/climb', '/ramp/descend', '/ramp/retreat', '/ramp/stop',
     '/approach/run', '/approach/stop',
     '/grasp/stow', '/grasp/pick', '/grasp/place',
 )
@@ -508,6 +508,8 @@ class MissionExecutive(Node):
             self._report()
 
     def _log_event(self, event):
+        if event.state in (ms.RETREAT, ms.DESCEND):
+            self._exit_handoff_done = False
         # C2-NAV.45. Every nav leg reports the ground-truth error it
         # finished with, and says loudly when Nav2's success and ground
         # truth disagreed by more than the arrival tolerance. Without
@@ -585,7 +587,9 @@ class MissionExecutive(Node):
             return
         request = self._request
         if (request.kind == ms.NAV_GOAL and
-                self.machine.state == ms.BYPASS_RAMP and
+                (self.machine.state == ms.BYPASS_RAMP or
+                 (self.machine.state == ms.RETURN_HOME and
+                  self.plan.retreat_exit)) and
                 self.plan.autonomous_search and not self._exit_handoff_done):
             if self._exit_seed_token != request.token:
                 self._exit_seed_token = request.token
@@ -634,7 +638,9 @@ class MissionExecutive(Node):
 
         self._sent = True
         if request.kind == ms.NAV_GOAL:
-            if self.machine.state == ms.BYPASS_RAMP:
+            if (self.machine.state == ms.BYPASS_RAMP or
+                    (self.machine.state == ms.RETURN_HOME and
+                     self.plan.retreat_exit)):
                 # The verified exit is a one-time odometry/navigation handoff.
                 # A retry can start anywhere along the bypass, so its pose
                 # must never be replaced with the nominal exit again.

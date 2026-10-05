@@ -79,13 +79,16 @@ class TestItConstructs:
         assert node.colour == 'blue'
         assert node.plan.lane == pytest.approx(0.25)
 
-    def test_autonomous_exit_seed_uses_region_geometry_only(self, node):
+    @pytest.mark.parametrize('retreat', [False, True])
+    def test_autonomous_exit_seed_uses_region_geometry_only(self, node, retreat):
         node.plan = ms.MissionPlan('red', autonomous_search=True)
+        node.plan.retreat_exit = retreat
         node._target_pose = (99.0, 98.0, 97.0)
         seed = node._search_exit_seed()
         assert seed.header.frame_id == 'map'
         assert seed.pose.pose.position.x == pytest.approx(
-            ms.SEARCH_EXIT_X + ms.WORLD_TO_MAP_X)
+            (ms.RAMP_FOOT_X - 0.35 if retreat else ms.SEARCH_EXIT_X)
+            + ms.WORLD_TO_MAP_X)
         assert seed.pose.pose.position.y == ms.lane_for_region('lane_1')
         node._amcl_xy = (seed.pose.pose.position.x + 2.0,
                          seed.pose.pose.position.y)
@@ -104,10 +107,13 @@ class TestItConstructs:
         tf.transform.translation.x = seed.pose.pose.position.x
         assert node._nav_tf_near_search_exit()
 
-    def test_bypass_retry_does_not_reseed_the_old_exit(self, node, monkeypatch):
+    @pytest.mark.parametrize('retreat', [False, True])
+    def test_exit_retry_does_not_reseed_the_old_exit(self, node, monkeypatch,
+                                                  retreat):
         from unittest.mock import Mock
         node.plan = ms.MissionPlan('red', autonomous_search=True)
-        node.machine.state = ms.BYPASS_RAMP
+        node.plan.retreat_exit = retreat
+        node.machine.state = ms.RETURN_HOME if retreat else ms.BYPASS_RAMP
         node._nav = Mock()
         node._nav.server_is_ready.return_value = True
         node._initialpose = Mock()

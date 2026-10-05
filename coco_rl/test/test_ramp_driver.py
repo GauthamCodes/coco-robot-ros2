@@ -248,3 +248,17 @@ def test_cross_track_sign_is_positive_to_the_left():
     assert driver.format_status(
         'climb', 1, 0.0, -0.12, 0.0, 0.0, None).split('lateral=')[1][:5] \
         == '-0.12'
+
+
+@pytest.mark.parametrize('yaw', [-0.25, 0.0, 0.25])
+def test_retreat_backs_down_ascent_without_pivoting(yaw):
+    linear, angular, done = descend_cmd(yaw, 2.7, 0.5, reverse=True)
+    assert linear == -DESCEND_SPEED
+    assert not done
+    assert angular * yaw <= 0
+    assert abs(angular) <= DESCEND_YAW_CLAMP
+
+
+def test_retreat_stops_before_near_foot_with_whole_robot_on_flat():
+    assert descend_cmd(0, 0.64, 0.5, reverse=True) == (0, 0, True)
+    assert descend_cmd(0, 0.66, 0.5, reverse=True)[0] < 0

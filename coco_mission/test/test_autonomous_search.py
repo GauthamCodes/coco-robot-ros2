@@ -137,21 +137,20 @@ def test_region_corridor_accounts_for_robot_heading():
     assert harness.machine.last_search_rejection == ms.SEARCH_REJECTED_GEOMETRY
 
 
-def test_absent_first_region_descends_and_reaches_second():
+def test_absent_first_region_retreats_and_reaches_second():
     harness = search_harness()
     answer(harness, 'NOT_DETECTED')
     harness.dt = 5.0
     harness.tick(4)
     assert harness.state == ms.RECOVERY
     harness.recover()
-    assert harness.state == ms.DESCEND
+    assert harness.state == ms.RETREAT
     expected = [('lane_1', ms.TARGET_NOT_FOUND)]
     assert harness.machine.search_rejections == expected
     harness.dt = 0.1
-    harness.worker('ramp', 'segment', 'descend', 'goal')
-    assert harness.state == ms.BYPASS_RAMP
-    assert harness.requests[-1] == (ms.NAV_GOAL, ms.SOUTH_BYPASS)
-    harness.nav_arrives(*ms.SOUTH_BYPASS)
+    harness.worker('ramp', 'segment', 'retreat', 'goal',
+                   pose=(ms.RAMP_FOOT_X - 0.35, harness.machine.plan.lane, 0.0))
+    assert ms.BYPASS_RAMP not in harness.states()
     assert harness.state == ms.RETURN_HOME
     assert harness.requests[-1] == (ms.NAV_GOAL, ms.HOME)
     harness.nav_arrives(*ms.HOME)
@@ -191,7 +190,7 @@ def test_invalid_depth_times_out_as_rejected_depth():
     assert harness.machine.reason == ms.SEARCH_REJECTED_DEPTH
 
 
-def test_search_exhaustion_records_failure_and_descends():
+def test_search_exhaustion_records_failure_and_retreats():
     harness = search_harness()
     harness.machine.search_index = 3
     harness.machine.plan.region = 'lane_4'
@@ -202,7 +201,7 @@ def test_search_exhaustion_records_failure_and_descends():
     harness.recover()
     assert harness.machine.search_exhausted
     assert harness.machine.degraded_reason == ms.SEARCH_FAILED
-    assert harness.state == ms.DESCEND
+    assert harness.state == ms.RETREAT
 
 
 def test_all_four_regions_are_tried_before_search_failure():
@@ -215,11 +214,11 @@ def test_all_four_regions_are_tried_before_search_failure():
         harness.dt = 5.0
         harness.tick(4)
         harness.recover()
-        assert harness.state == ms.DESCEND
+        assert harness.state == ms.RETREAT
         harness.dt = 0.1
-        harness.worker('ramp', 'segment', 'descend', 'goal')
-        assert harness.state == ms.BYPASS_RAMP
-        harness.nav_arrives(*ms.SOUTH_BYPASS)
+        harness.worker('ramp', 'segment', 'retreat', 'goal',
+                   pose=(ms.RAMP_FOOT_X - 0.35, harness.machine.plan.lane, 0.0))
+        assert harness.state == ms.RETURN_HOME
         if candidate == 'lane_4':
             break
         assert harness.state == ms.RETURN_HOME
@@ -237,4 +236,36 @@ def test_all_four_regions_are_tried_before_search_failure():
     assert harness.machine.search_exhausted
     assert harness.machine.degraded_reason == ms.SEARCH_FAILED
     assert harness.state == ms.RETURN_HOME
+    assert ms.GRASP not in harness.states()
+
+
+@pytest.mark.parametrize('pose', [(4.50, -0.75, 0.0),
+                                  (0.65, 0.75, 0.0)])
+def test_retreat_worker_success_requires_near_exit_pose(pose):
+    harness = search_harness()
+    harness.dt = 5.0
+    harness.tick(4)
+    harness.recover()
+    assert harness.state == ms.RETREAT
+    harness.dt = 0.1
+    harness.worker('ramp', 'segment', 'retreat', 'goal', pose=pose)
+    assert ms.RECOVERY in harness.states()
+    assert harness.machine.reason == ms.RETREAT_POSE_UNVERIFIED
+    assert ms.RETURN_HOME not in harness.states()
+    harness.recover()
+    assert harness.state == ms.ABORT
+
+
+def test_retreat_failure_cannot_continue_search_or_grasp():
+    harness = search_harness()
+    harness.dt = 5.0
+    harness.tick(4)
+    harness.recover()
+    harness.dt = 0.1
+    harness.worker('ramp', 'segment', 'retreat', 'timeout')
+    assert ms.RECOVERY in harness.states()
+    assert harness.machine.reason == ms.RETREAT_TIMEOUT
+    harness.recover()
+    assert harness.state == ms.ABORT
+    assert ms.APPROACH_TARGET not in harness.states()
     assert ms.GRASP not in harness.states()

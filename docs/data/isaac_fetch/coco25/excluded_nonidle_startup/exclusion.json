@@ -1,0 +1,8 @@
+{
+  "included_in_diagnostics": false,
+  "mission": "NOT_STARTED",
+  "reason": "Idle preflight used comm but Gazebo reports ruby. Interrupted owned batch before mission start. Corrected guard now checks process title. No runtime root cause conclusion drawn.",
+  "runtime": "/home/gautham/coco25_idle_diagnostics/isaac_seed6",
+  "cleanup": "Owned simulator, mission, observer and recorder stopped; unrelated Gazebo untouched.",
+  "recorded_epoch_ns": 1791218953395992346
+}

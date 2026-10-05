@@ -703,11 +703,20 @@ class MissionExecutive(Node):
         goal.pose.pose.position.y = wy
         goal.pose.pose.orientation.w = 1.0
         token = request.token
+        sent_wall = self.wall()
         self.get_logger().info(
-            f'NavigateToPose -> world ({wx:.2f}, {wy:.2f})')
+            f'NavigateToPose -> world ({wx:.2f}, {wy:.2f}) '
+            f'token={token} map=({wx + ms.WORLD_TO_MAP_X:.3f},{wy:.3f}) '
+            f'sim_s={self.now():.9f}')
 
         def on_sent(future):
             handle = future.result()
+            self.get_logger().info(
+                f'NavigateToPose acknowledgement token={token} '
+                f'accepted={handle is not None and handle.accepted} '
+                f'uuid={bytes(handle.goal_id.uuid).hex() if handle else "--"} '
+                f'wall_latency_s={self.wall() - sent_wall:.6f} '
+                f'sim_s={self.now():.9f} current={token == self._token}')
             if handle is None or not handle.accepted:
                 self._finish(token, ms.REJECTED)
                 return
@@ -721,9 +730,17 @@ class MissionExecutive(Node):
 
         def on_result(future):
             if token != self._token:
+                self.get_logger().info(
+                    f'NavigateToPose stale result token={token} '
+                    f'sim_s={self.now():.9f}')
                 return
+            response = future.result()
+            self.get_logger().info(
+                f'NavigateToPose result token={token} status={response.status} '
+                f'wall_elapsed_s={self.wall() - sent_wall:.6f} '
+                f'sim_s={self.now():.9f} current={token == self._token}')
             self._goal_handle = None
-            status = future.result().status
+            status = response.status
             self._finish(token, {
                 GoalStatus.STATUS_SUCCEEDED: ms.SUCCEEDED,
                 GoalStatus.STATUS_CANCELED: ms.CANCELED,

@@ -1,0 +1,119 @@
+{
+  "passed": false,
+  "mission": "NOT_STARTED",
+  "states": [
+    "IDLE"
+  ],
+  "counts": {
+    "/grasp/target_red/height": 33,
+    "/grasp/target_green/height": 33,
+    "/grasp/target_blue/height": 33,
+    "/grasp/target_yellow/height": 32,
+    "/diff_drive_controller/odom": 32,
+    "/model/coco/odometry": 32,
+    "/joint_states": 32,
+    "/camera/image_raw": 10,
+    "/camera/depth/image_raw": 8,
+    "/scan": 11,
+    "/imu": 32,
+    "amcl": 1,
+    "/cmd_vel_arbiter/status": 3,
+    "/ramp/status": 4,
+    "/approach/status": 4,
+    "/grasp/status": 4,
+    "/mission/mode": 1,
+    "/mission/state": 1,
+    "/perception/target_pose/status": 2,
+    "/perception/status": 2
+  },
+  "final": {
+    "/grasp/target_red/height": 0.7288431525230408,
+    "/grasp/target_green/height": 0.7288428544998169,
+    "/grasp/target_blue/height": 0.7288450598716736,
+    "/grasp/target_yellow/height": 0.7288432717323303,
+    "/diff_drive_controller/odom": {
+      "xyz": [
+        -0.0036719898715871224,
+        3.3822859120594267e-09,
+        -0.00012194982107904123
+      ],
+      "quaternion_xyzw": [
+        -2.8584126994246617e-06,
+        3.90128980143345e-06,
+        -2.477080727203429e-07,
+        1.0
+      ]
+    },
+    "/model/coco/odometry": {
+      "xyz": [
+        -2.003671989871587,
+        3.3822859120594267e-09,
+        -0.00012194982107904123
+      ],
+      "quaternion_xyzw": [
+        -2.8584126994246617e-06,
+        3.90128980143345e-06,
+        -2.477080727203429e-07,
+        1.0
+      ]
+    },
+    "/joint_states": {
+      "base_Revolute-1": -0.06460469961166382,
+      "base_Revolute-2": -0.06414946913719177,
+      "base_Revolute-3": -0.06502086669206619,
+      "base_Revolute-4": -0.06457937508821487,
+      "m_link1_Revolute-6": 0.0010348919313400984,
+      "m_link2_Revolute-7": -4.203361640975345e-06,
+      "m_link3_Revolute-8": 1.3947445864914698e-08,
+      "m_link3_Revolute-9": -3.917799140662481e-10
+    },
+    "/camera/image_raw": "sample",
+    "/camera/depth/image_raw": "sample",
+    "/scan": "sample",
+    "/imu": "sample",
+    "amcl": {
+      "xyz": [
+        0.0,
+        -1.3234889800848443e-23,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "/cmd_vel_arbiter/status": "mode=idle active=none teleop=-- nav=-- rl=-- approach=--",
+    "/ramp/status": "segment=idle step=0 progress=0.00 lateral=-- disp=+0.00 pitch=-- outcome=none",
+    "/approach/status": "phase=idle tx=-- ty=-- range=-- bearing=-- stop=0.154 travel=0.000 colour=red outcome=--",
+    "/grasp/status": "phase=idle colour=red x=-- y=-- lifted=-- outcome=--",
+    "/mission/mode": "idle",
+    "/mission/state": "state=IDLE prev=-- event=run elapsed=4.0 timeout=-- attempt=1 retries=0 owner=nobody mode=idle reason=-- result=--",
+    "/perception/target_pose/status": "sel=red validity=DEPTH_INVALID stamp_ns=4025000209 u=-- v=-- area=-- w=-- range=-- x=-- y=-- z=-- gx=-- gy=-- gz=-- qual=-- spread=-- cand=0 seen=none frame=-- tf_age=-- reach=UNKNOWN reach_appr=UNKNOWN drive=-- lateral=--",
+    "/perception/status": "sel=red found=0 u=-- v=-- area=-- w=-- h=-- range=-- x=-- y=-- z=-- lane=-- seen=none age=--"
+  },
+  "stop_samples": 0,
+  "stop_breaches": 0,
+  "mission_wall_s": null,
+  "mission_sim_s": null,
+  "rates_sim_hz": {
+    "/grasp/target_red/height": 31.99999833600009,
+    "/grasp/target_green/height": 31.99999833600009,
+    "/grasp/target_blue/height": 31.99999833600009,
+    "/grasp/target_yellow/height": 30.999998388000087,
+    "/diff_drive_controller/odom": 30.999998388000087,
+    "/model/coco/odometry": 30.999998388000087,
+    "/joint_states": 30.999998388000087,
+    "/camera/image_raw": 9.31034434280621,
+    "/camera/depth/image_raw": 7.241378933293719,
+    "/scan": 10.344827047562456,
+    "/imu": 30.999998388000087,
+    "/cmd_vel_arbiter/status": 4.28571406224491,
+    "/ramp/status": 6.428571093367365,
+    "/approach/status": 6.428571093367365,
+    "/grasp/status": 6.923076560946766,
+    "/perception/target_pose/status": 29.999998500000057,
+    "/perception/status": 29.999998500000057
+  }
+}

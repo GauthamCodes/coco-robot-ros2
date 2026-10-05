@@ -1,0 +1,6 @@
+Final executive-node test rerun after UUID logging: 40 passed in 5.77s
+Python compile: passed (runner, executive, recorder, synthetic replay)
+Shell syntax: passed
+Git diff whitespace: passed
+COCO23/24 tracked evidence unchanged: passed
+Qualified idle-host diagnostic episodes: 0

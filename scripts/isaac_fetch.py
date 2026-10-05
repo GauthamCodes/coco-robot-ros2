@@ -57,6 +57,8 @@ def main():
     parser.add_argument("--colour", default="red")
     parser.add_argument("--timeout", type=float, default=1200)
     parser.add_argument("--params-file", type=Path)
+    parser.add_argument("--diagnostic-script", type=Path,
+                        help="Read-only ROS recorder to run in the episode environment")
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -151,6 +153,9 @@ def main():
         return process
 
     try:
+        if args.diagnostic_script is not None:
+            spawn("diagnostic", ["python3", str(args.diagnostic_script.resolve()),
+                                 str(out), "--seconds", str(args.timeout + 660)])
         if args.backend == "isaac":
             sim = spawn(
                 "isaac",

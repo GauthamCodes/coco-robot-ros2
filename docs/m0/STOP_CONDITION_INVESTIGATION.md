@@ -177,3 +177,16 @@ resolve the contradiction. This session proposes no architecture or milestone
 reordering and does not edit the plan on the owner's behalf.
 
 Exactly one next action: Gautham records that plan decision before further M0 work.
+
+## 2026-10-06 approved-amendment follow-up
+
+Gautham approved pre-M1 isolation remediation; recorded before implementation in
+`../STATUS.md` at commit `b541fc8`. The original findings above remain historical
+evidence. The expanded [dependency map](GROUND_TRUTH_ISOLATION.md) found direct
+Gazebo object-height API access and Isaac `/grasp/<target>/height` truth in active
+grasp/lift/release gates, plus Isaac low-level physics yaw feedback. Live
+production GraspServer graph evidence and fail-closed tests are preserved in
+`gti/`. The missing legitimate independent object-motion observation triggers
+the authorized architectural stop boundary. Isolation is still unresolved; M1
+has not started. The previous next action is superseded by the follow-up next
+action in the dependency report.

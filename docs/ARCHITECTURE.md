@@ -1,3 +1,14 @@
+# Ground-truth isolation status — 2026-10-06
+
+The current architecture still violates Master Plan integrity rule 1. The
+approved M0 amendment requires encoder-derived autonomy state and evaluator-only
+truth under `/eval` before M1. In addition to world odometry and Isaac normal
+odometry/TF, grasp lift/release checks consume simulator object height. The
+missing legitimate manipulation observation is a stop boundary; remediation is
+not implemented. See [the dependency map and blocker](m0/GROUND_TRUTH_ISOLATION.md)
+and [plan-change history](STATUS.md). Existing diagrams and descriptions below
+record the current legacy architecture, not compliant evaluation.
+
 # Architecture
 
 The repository has nine ROS packages. The diagrams below describe the

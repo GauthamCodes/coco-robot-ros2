@@ -1,0 +1,2 @@
+[INFO] [1791229500.447845571] [grasp_server]: grasp_server ready: /grasp/stow, /grasp/pick, /grasp/place. Needs move_group; assert /mission/mode idle while it runs so the wheels stay still.
+[INFO] [1791229501.506817981] [grasp_server]: grasp_server ready: /grasp/stow, /grasp/pick, /grasp/place. Needs move_group; assert /mission/mode idle while it runs so the wheels stay still.

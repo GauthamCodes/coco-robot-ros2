@@ -17,10 +17,29 @@ Reason: Master Plan integrity rule 1 conflicts with existing mission/ramp/manipu
 
 ## Open status and evidence
 
-- Privileged autonomy state: unresolved; investigation/remediation in progress.
+- Privileged autonomy state: unresolved; stopped at missing independent object-motion observation. Full dependency map and boundary: `docs/m0/GROUND_TRUTH_ISOLATION.md`. No production remediation implemented.
 - Prior telemetry inventory failure: locally corrected; evidence in stop-condition investigation. CI NOT VERIFIED.
 - Baseline capabilities and clean-build counts: `docs/m0/AUDIT.md`; historical runtime evidence remains unchanged. No new runtime capability claims.
 - M0.2 control files, M0.3 manifest, M0.4 oracle/back-check, M0.5 seed policy and M0.6 audit remain incomplete; this file is not completion of those checkpoints.
 - Seed policy: existing seeds are dev only; fresh held-out/reserve ranges have not yet been committed. No episodes run in this session.
 
-Next action: complete the approved isolation remediation, or record the exact sensor/architecture blocker.
+## Isolation session verification
+
+Production GraspServer ROS graph inspected with both backend parameters: world
+odometry remains subscribed; Isaac also subscribes to simulator object height.
+Raw graph: `docs/m0/gti/grasp_graph.json`. No simulator or mission run performed.
+Focused checks: 65 passed. Relevant regressions: mission 365, ramp 236,
+perception 139, manipulation 28, simulation 228, teleop/arbiter 78:
+**1074 passed, 0 failed, 0 skipped**. Logs: `docs/m0/gti/*_regression.log`.
+Local verification only; CI NOT VERIFIED. Existing overlay reused; no new clean
+build claimed. No behavior or gate changes; no command path introduced.
+
+Missing input: independently observed target rise/resting height for attachment,
+lift and release checks. Encoders/IMU do not provide it; current RGB-D contract
+provides a framing-dependent point and fixed grasp height. Replacing those gates
+requires an explicitly scoped sensor-based observation contract or an approved
+fail-closed limitation. M3.1 fidelity remains deferred; this new manipulation gap
+is not silently assigned to M3. Integrity stop condition remains unresolved.
+
+Exactly one next action: Gautham resolves the documented manipulation observation
+boundary through Master Plan change control before isolation remediation resumes.

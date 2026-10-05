@@ -1,0 +1,116 @@
+[
+  {
+    "backend_parameter": "gazebo",
+    "node": "grasp_server",
+    "subscriptions": [
+      {
+        "topic": "/approach/target",
+        "types": [
+          "geometry_msgs/msg/PointStamped"
+        ]
+      },
+      {
+        "topic": "/joint_states",
+        "types": [
+          "sensor_msgs/msg/JointState"
+        ]
+      },
+      {
+        "topic": "/magnet/target_red/state",
+        "types": [
+          "std_msgs/msg/String"
+        ]
+      },
+      {
+        "topic": "/mission/target_colour",
+        "types": [
+          "std_msgs/msg/String"
+        ]
+      },
+      {
+        "topic": "/model/coco/odometry",
+        "types": [
+          "nav_msgs/msg/Odometry"
+        ]
+      },
+      {
+        "topic": "/move_action/_action/feedback",
+        "types": [
+          "moveit_msgs/action/MoveGroup_FeedbackMessage"
+        ]
+      },
+      {
+        "topic": "/move_action/_action/status",
+        "types": [
+          "action_msgs/msg/GoalStatusArray"
+        ]
+      }
+    ]
+  },
+  {
+    "backend_parameter": "isaac",
+    "node": "grasp_server",
+    "subscriptions": [
+      {
+        "topic": "/approach/target",
+        "types": [
+          "geometry_msgs/msg/PointStamped"
+        ]
+      },
+      {
+        "topic": "/grasp/target_red/height",
+        "types": [
+          "std_msgs/msg/Float64"
+        ]
+      },
+      {
+        "topic": "/joint_states",
+        "types": [
+          "sensor_msgs/msg/JointState"
+        ]
+      },
+      {
+        "topic": "/magnet/target_red/state",
+        "types": [
+          "std_msgs/msg/String"
+        ]
+      },
+      {
+        "topic": "/mission/target_colour",
+        "types": [
+          "std_msgs/msg/String"
+        ]
+      },
+      {
+        "topic": "/model/coco/odometry",
+        "types": [
+          "nav_msgs/msg/Odometry"
+        ]
+      },
+      {
+        "topic": "/move_action/_action/feedback",
+        "types": [
+          "moveit_msgs/action/MoveGroup_FeedbackMessage"
+        ]
+      },
+      {
+        "topic": "/move_action/_action/feedback",
+        "types": [
+          "moveit_msgs/action/MoveGroup_FeedbackMessage"
+        ]
+      },
+      {
+        "topic": "/move_action/_action/status",
+        "types": [
+          "action_msgs/msg/GoalStatusArray"
+        ]
+      },
+      {
+        "topic": "/move_action/_action/status",
+        "types": [
+          "action_msgs/msg/GoalStatusArray"
+        ]
+      }
+    ]
+  }
+]

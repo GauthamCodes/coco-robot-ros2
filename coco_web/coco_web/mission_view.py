@@ -89,6 +89,7 @@ APPROACH_TARGET = 'APPROACH_TARGET'
 GRASP = 'GRASP'
 VERIFY_GRASP = 'VERIFY_GRASP'
 DESCEND = 'DESCEND'
+RETREAT = 'RETREAT'
 BYPASS_RAMP = 'BYPASS_RAMP'
 RETURN_HOME = 'RETURN_HOME'
 PLACE = 'PLACE'
@@ -98,11 +99,11 @@ RECOVERY = 'RECOVERY'
 RELOCALIZE = 'RELOCALIZE'
 ABORT = 'ABORT'
 
-#: Every state the executive can report. Twenty.
+#: Every state the executive can report. Twenty-one.
 STATES = (
     IDLE, LOCALIZE, NAVIGATE_TO_RAMP, ALIGN_FOR_CLIMB, CLIMB,
     VERIFY_CLIMB, SEARCH_TARGET, STOW_ARM, APPROACH_TARGET, GRASP,
-    VERIFY_GRASP, DESCEND, BYPASS_RAMP, RETURN_HOME, PLACE,
+    VERIFY_GRASP, DESCEND, RETREAT, BYPASS_RAMP, RETURN_HOME, PLACE,
     VERIFY_PLACEMENT,
     COMPLETE, RECOVERY, RELOCALIZE, ABORT,
 )
@@ -119,7 +120,7 @@ NOMINAL_ORDER = (
     COMPLETE,
 )
 
-#: Every structured failure reason the executive can report. Fifty-three.
+#: Every structured failure reason the executive can report. Fifty-six.
 #: Carried so an unknown code is reported AS unknown rather than printed
 #: to an operator as though it were a diagnosis.
 REASONS = (
@@ -137,6 +138,7 @@ REASONS = (
     'TARGET_COLOUR_MISMATCH', 'STOW_FAILED', 'STOW_TIMEOUT',
     'APPROACH_FAILED', 'APPROACH_TIMEOUT', 'GRASP_FAILED',
     'GRASP_TIMEOUT', 'GRASP_UNVERIFIED', 'GRASP_VERIFY_TIMEOUT',
+    'RETREAT_FAILED', 'RETREAT_TIMEOUT', 'RETREAT_POSE_UNVERIFIED',
     'DESCENT_FAILED', 'DESCENT_TIPPED', 'DESCENT_TIMEOUT',
     'RETURN_FAILED', 'RETURN_TIMEOUT', 'PLACE_FAILED',
     'PLACE_TIMEOUT', 'PLACEMENT_UNVERIFIED',
@@ -175,6 +177,7 @@ PHASE_OF = {
     GRASP: 'GRASPING',
     VERIFY_GRASP: 'GRASPING',
     DESCEND: 'RETURNING',
+    RETREAT: 'RETURNING',
     BYPASS_RAMP: 'RETURNING',
     RETURN_HOME: 'RETURNING',
     PLACE: 'RETURNING',
@@ -197,6 +200,7 @@ WORDS = {
     GRASP: 'Grasping',
     VERIFY_GRASP: 'Checking the grip',
     DESCEND: 'Coming back down',
+    RETREAT: 'Backing down the ramp',
     BYPASS_RAMP: 'Driving around the ramp',
     RETURN_HOME: 'Heading home',
     PLACE: 'Putting the cylinder down',

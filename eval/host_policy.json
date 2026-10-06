@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "profile": "rtx4050-laptop-16gb",
+  "status": "CALIBRATION_REQUIRED",
+  "derivation": {
+    "max_load1": "12 logical CPUs from M0 environment/current host. More than one runnable task per logical CPU indicates saturation; hard capacity ceiling, not a measured timing guarantee.",
+    "preflight_ram_lower_bound": "Largest committed Isaac foundation process RSS in docs/data/isaac_21/*/resources.txt. ROS/MCAP/fetch overhead not measured: production requirement remains null.",
+    "preflight_vram_lower_bound": "Largest total GPU allocation in docs/data/isaac_21/*/gpu.json. Foundation-only, not a fetch/MCAP requirement.",
+    "runtime": "Full-stack headroom not established by M0. Null limits refuse evaluation until justified measurements are committed."
+  },
+  "historical_lower_bounds": {
+    "simulator_ram_bytes": 5098934272,
+    "total_vram_used_bytes": 2585788416
+  },
+  "backends": {
+    "gazebo": {
+      "preflight": {
+        "max_load1": 12,
+        "min_ram_available_bytes": null,
+        "min_vram_free_bytes": null
+      },
+      "runtime": {
+        "max_load1": 12,
+        "min_ram_available_bytes": null,
+        "min_vram_free_bytes": null
+      }
+    },
+    "isaac": {
+      "preflight": {
+        "max_load1": 12,
+        "min_ram_available_bytes": null,
+        "min_vram_free_bytes": null
+      },
+      "runtime": {
+        "max_load1": 12,
+        "min_ram_available_bytes": null,
+        "min_vram_free_bytes": null
+      }
+    }
+  }
+}

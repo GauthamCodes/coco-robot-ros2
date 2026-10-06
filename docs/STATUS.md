@@ -1,6 +1,6 @@
 # COCO status
 
-Updated: 2026-10-06. Milestone **M1**, checkpoint **M1.1 entry stopped: host cannot currently qualify for Isaac**.
+Updated: 2026-10-06. Milestone **M1**, checkpoint **M1.1 implementation underway; runtime qualification pending**.
 Gautham confirms M0 independently reviewed/passed and G0 passed in the M1 session
 instruction. Older pending-gate statements below are historical and superseded
 by this dated entry. No M0 work reopened. M1.1–M1.8 remain incomplete.
@@ -154,3 +154,22 @@ and test the preflight (including no simulator launch), and continue M1.2–M1.8
 This is a stop-condition report, **not** the validated-harness overnight handoff.
 No baseline execution command exists yet. M2 remains forbidden until all M1
 exit criteria are satisfied and independently reviewed.
+
+## 2026-10-06 — M1.1 non-runtime qualification implementation
+
+Session input SHA `1bd501efb5ba444e61ae10ab5b107789f393a80a`, expected branch,
+clean. Downloads and canonical plan byte-identical (SHA256
+`e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d`).
+Owner explicitly directs non-runtime implementation to continue on a busy host.
+M1.1 advances dirty-host rejection: read-only /proc identity and loaded ROS
+library inspection, overwritten gz process titles, PID/start-time allowlist,
+unknown DDS segments blocked, missing metrics/thresholds fail closed.
+`eval/qualification.py`, `eval/host_policy.json`; local fixtures in
+`m1/validation/m11_tests.log` (initial failure retained; corrected result in
+`m11_tests_final.log`). IMPLEMENTED, remote CI/runtime not verified.
+Measured historical foundation lower bounds: RAM 5098934272 bytes, total GPU
+allocation 2585788416 bytes. They omit full fetch/ROS/MCAP overhead and are not
+silently used as production limits. CPU ceiling 12 comes from logical capacity.
+RAM/VRAM requirements remain calibration blockers, not invented thresholds.
+Checkpoint incomplete until justified full-stack limits and runtime sampling
+are validated. No simulator launched, no behavior changes.

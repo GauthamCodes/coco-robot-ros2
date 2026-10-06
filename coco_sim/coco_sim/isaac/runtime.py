@@ -337,6 +337,10 @@ def main():
             node.create_subscription(
                 JointState, "/isaac/manipulator_command", arm_command, 10
             )
+        # M1 evaluator-only world snapshots. No normal state or actuator input.
+        from coco_sim.isaac.evaluation import GroundTruth
+        eval_truth = GroundTruth(node, magnet) if args.fetch else None
+        last_eval_truth = -1.0
         gt_pub = node.create_publisher(Odometry, "/eval/robot/odometry", 10)
         imu_pub = (
             node.create_publisher(Imu, "/imu", 10) if args.fetch else None
@@ -540,6 +544,10 @@ def main():
             gt.pose.pose.position.x += episode.robot_start.x
             gt.pose.pose.position.y += episode.robot_start.y
             gt_pub.publish(gt)
+            if eval_truth is not None and now - last_eval_truth >= 1.0:
+                eval_truth.publish(now, (gt.pose.pose.position.x, gt.pose.pose.position.y,
+                                         gt.pose.pose.position.z), q)
+                last_eval_truth = now
             if args.fetch:
                 imu = Imu()
                 imu.header.stamp, imu.header.frame_id = stamp, "imu_link"

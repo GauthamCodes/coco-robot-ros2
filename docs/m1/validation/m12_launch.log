@@ -1,0 +1,47 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________________ TestGraph.test_live_subscriptions _______________________
+
+self = <test_isolation_launch.TestGraph testMethod=test_live_subscriptions>
+
+    def test_live_subscriptions(self):
+        # A private Context/domain avoids affecting foreign domains.
+        from rclpy.context import Context
+        context=Context();rclpy.init(context=context,domain_id=181)
+        node=rclpy.create_node('launch_graph_probe',context=context,namespace='/eval')
+        try:
+            deadline=time.monotonic()+15
+            while time.monotonic()<deadline:
+>               rclpy.spin_once(node,timeout_sec=.1)
+
+eval/ros_tests/test_isolation_launch.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py:221: in spin_once
+    executor = get_global_executor() if executor is None else executor
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py:106: in get_global_executor
+    __executor = SingleThreadedExecutor()
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:899: in __init__
+    super().__init__(context=context)
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py:198: in __init__
+    self._guard = GuardCondition(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rclpy.guard_condition.GuardCondition object at 0x79f7f732b020>
+callback = None, callback_group = None
+context = <rclpy.context.Context object at 0x79f7f725ee40>
+
+    def __init__(self, callback, callback_group, context=None):
+        self._context = get_default_context() if context is None else context
+>       with self._context.handle:
+E       TypeError: 'NoneType' object does not support the context manager protocol
+
+/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/guard_condition.py:23: TypeError
+=========================== short test summary info ============================
+FAILED eval/ros_tests/test_isolation_launch.py::TestGraph::test_live_subscriptions
+1 failed in 1.03s
+Exception ignored in: <function Executor.__del__ at 0x79f7f478a020>
+Traceback (most recent call last):
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 305, in __del__
+    if self._sigint_gc is not None:
+       ^^^^^^^^^^^^^^^
+AttributeError: 'SingleThreadedExecutor' object has no attribute '_sigint_gc'

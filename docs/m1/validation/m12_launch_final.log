@@ -1,0 +1,28 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________________ TestGraph.test_live_subscriptions _______________________
+
+self = <test_isolation_launch.TestGraph testMethod=test_live_subscriptions>
+
+    def test_live_subscriptions(self):
+        # A private Context/domain avoids affecting foreign domains.
+        from rclpy.context import Context
+        context=Context();rclpy.init(context=context,domain_id=181)
+        node=rclpy.create_node('launch_graph_probe',context=context,namespace='/eval')
+        from rclpy.executors import SingleThreadedExecutor
+        executor=SingleThreadedExecutor(context=context);executor.add_node(node)
+        try:
+            deadline=time.monotonic()+15
+            while time.monotonic()<deadline:
+                executor.spin_once(timeout_sec=.1)
+                g=snapshot(node)
+                names={e['name'] for e in g['nodes']}
+                if {'target_finder','isolation_fixture'}<=names and g['topics'].get('/eval/ground_truth/state',{}).get('subscriptions'):
+                    break
+>           else:self.fail('Required launched production/evaluator endpoints not discovered')
+E           AssertionError: Required launched production/evaluator endpoints not discovered
+
+eval/ros_tests/test_isolation_launch.py:39: AssertionError
+=========================== short test summary info ============================
+FAILED eval/ros_tests/test_isolation_launch.py::TestGraph::test_live_subscriptions
+1 failed in 16.01s

@@ -1,0 +1,48 @@
+[setup_env] note: no overlay at /home/gautham/coco_m1_ws/install — run colcon build
+[build_overlay] /home/gautham/coco-isaac-21 -> /home/gautham/coco_m1_ws
+[1.713s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+Starting >>> coco_config
+--- stderr: coco_config
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_config [6.01s]
+Starting >>> custom_teleop
+Starting >>> coco_sim
+Starting >>> coco_rl
+--- stderr: custom_teleop
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< custom_teleop [7.04s]
+Starting >>> coco_web
+--- stderr: coco_sim
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_sim [8.03s]
+--- stderr: coco_rl
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_rl [8.03s]
+Starting >>> gazebo_models
+--- stderr: coco_web
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_web [5.86s]
+Finished <<< gazebo_models [7.09s]
+Starting >>> coco_moveit_config
+Finished <<< coco_moveit_config [5.20s]
+Starting >>> coco_perception
+--- stderr: coco_perception
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_perception [5.99s]
+Starting >>> coco_mission
+Finished <<< coco_mission [5.15s]
+
+Summary: 9 packages finished [38.9s]
+  6 packages had stderr output: coco_config coco_perception coco_rl coco_sim coco_web custom_teleop

@@ -173,3 +173,19 @@ silently used as production limits. CPU ceiling 12 comes from logical capacity.
 RAM/VRAM requirements remain calibration blockers, not invented thresholds.
 Checkpoint incomplete until justified full-stack limits and runtime sampling
 are validated. No simulator launched, no behavior changes.
+
+## 2026-10-06 — M1.2 evaluator-only truth and launch graph checks
+
+M1 / M1.2 advances /eval isolation and ground-truth capture. Input `84f9e98`.
+Isaac adds only world-pose/dimension publications under `/eval/ground_truth`;
+Gazebo read-only transport adapter publishes the same schema. Existing encoder,
+IMU, manipulation and final wheel inputs unchanged. Graph checks reject any
+non-/eval subscriber (including misleading `/eval_disguised` namespace) and
+multiple/non-arbiter final wheel publishers. The launch test constructs a real
+production TargetFinder and evaluator, then proves detection with a real illicit
+subscriber negative control. Existing M0 full production graph tests are retained.
+Local: two pure tests, one ROS launch test pass; new nine-package overlay build
+passes. Evidence `m1/validation/m12_*`, `build.log`; IMPLEMENTED, remote CI and
+both simulator truth streams not runtime verified. CI explicitly runs new launch
+suite after build. Early import/context/launch-marker failures remain recorded.
+M1.2 runtime validation remains open; no simulator or seed launched.

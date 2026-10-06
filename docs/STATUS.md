@@ -15,6 +15,20 @@ Current commit: resolve with `git rev-parse HEAD` (a commit cannot contain its o
 
 Reason: Master Plan integrity rule 1 conflicts with existing mission/ramp/manipulation world-pose consumers and Isaac's simulator-derived normal odometry/TF. M0's behavior freeze prevented correction without this explicit amendment. Producer and consumer evidence forcing the amendment: `docs/m0/STOP_CONDITION_INVESTIGATION.md`, sections “Outcome B: simulator ground truth” and “Master Plan consistency and owner decision”; original finding retained in `docs/m0/AUDIT.md`. Milestone structure and M3 purpose are unchanged.
 
+### 2026-10-06 — All privileged autonomy inputs and fail-closed manipulation (approved by Gautham)
+
+> Ground-truth isolation must cover not only simulator world-pose odometry but every simulator-derived value that directly supplies autonomy with privileged state. This includes manipulation/attachment/lift/release truth and any simulator-state feedback used by autonomy where that feedback is not equivalent to a legitimate simulated robot sensor. Before M1, such dependencies must be replaced by legitimate robot-observable state or made explicitly fail-closed. Simulator ground truth remains evaluator-only under /eval. M3 retains its planned fidelity work for odometry, IMU and alignment.
+
+Evidence forcing this amendment: `docs/m0/GROUND_TRUTH_ISOLATION.md` and
+`docs/m0/gti/grasp_graph.json` at `af8921a57006a3f5110a58316dc0e5b8dbfb652a`:
+Gazebo direct object-pose queries and Isaac height exports gate manipulation;
+Isaac world state also feeds normal odometry/TF and yaw control. This amendment
+explicitly authorizes unavailable manipulation observations to fail closed.
+This session starts at that SHA, on the expected branch and worktree, clean.
+Checkpoint: M0 manipulation observation boundary and ground-truth isolation.
+Exit: all identified privileged paths removed/replaced/fail-closed with tests.
+M1 remains unstarted; M3 structure and fidelity scope remain unchanged.
+
 ## Open status and evidence
 
 - Privileged autonomy state: unresolved; stopped at missing independent object-motion observation. Full dependency map and boundary: `docs/m0/GROUND_TRUTH_ISOLATION.md`. No production remediation implemented.

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "max_batch_bytes": 8589934592,
+  "max_run_bytes": 1073741824,
+  "reserve_free_bytes": 2147483648,
+  "controls_per_batch": 2,
+  "derivation": "Entry disk inventory had about 15 GiB available. An 8 GiB per-batch cap and 2 GiB untouched reserve fit that host; a 1 GiB per-run bound limits one defective recorder. These are explicit storage allocations, not autonomy or failure-invariant thresholds. Every failure, interrupted and unqualified run remains. Stop rather than deleting failures when capacity runs out."
+}

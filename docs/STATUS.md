@@ -189,3 +189,20 @@ passes. Evidence `m1/validation/m12_*`, `build.log`; IMPLEMENTED, remote CI and
 both simulator truth streams not runtime verified. CI explicitly runs new launch
 suite after build. Early import/context/launch-marker failures remain recorded.
 M1.2 runtime validation remains open; no simulator or seed launched.
+
+## 2026-10-06 — M1.3 bounded passive trace capture
+
+M1 / M1.3 advances synchronized standard evidence and retained failure traces.
+`eval/recorder.py` writes fixed-topic MCAP plus timestamped decoded events;
+records source headers and receive simulation/wall stamps separately. Raw
+costmap writes throttled to 1 wall Hz; no image/depth streams or camera assets.
+Evaluator graph and lifecycle snapshots at 1 Hz. Service-event topic capture is
+conditional on producer availability; missing action goal/result service events
+are explicit trace gaps, not invented acknowledgements. `eval/topics.py` is the
+fixed list. `eval/evidence.py` provides atomic manifests, streaming bag hashes,
+outside-git storage, disk guard and conservative retention. Retention keeps all
+failed/unknown/unqualified/interrupted runs and two qualified PASS controls.
+8 GiB batch, 1 GiB run and 2 GiB filesystem reserve are committed storage
+allocations justified against entry ~15 GiB availability, not invariant tuning.
+Three local disk/hash/retention tests pass (`m1/validation/m13_tests.log`).
+IMPLEMENTED; real MCAP replay and qualified runtime pending. No simulator run.

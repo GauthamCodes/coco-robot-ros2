@@ -1,0 +1,548 @@
+[
+  {
+    "run_id": "coco23/gazebo_seed5",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "UNSCORABLE",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": null,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": null,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.0879183365873317,
+      "floor_center_error_m": 9.020645064250488e-10,
+      "rest_window_sim_s": 2.0020000000000095,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_green": 0,
+        "target_yellow": 0,
+        "target_blue": 0
+      },
+      "robot_distance_home_xy_m": 0.09543989252939386,
+      "episode_wall_s": 185.01056470399635
+    },
+    "missing_evidence": [
+      {
+        "condition": "no_arbiter_violation",
+        "reason": "Missing authority evidence or unresolved asynchronous observer flags"
+      }
+    ],
+    "failed_conditions": []
+  },
+  {
+    "run_id": "coco23/gazebo_seed6",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "ABORT",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": false,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": false,
+      "robot_home": false,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 6.104350643369549,
+      "floor_center_error_m": 0.6498393916704683,
+      "rest_window_sim_s": 2.0020000000000095,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 3.143886728024462,
+        "target_blue": 3.7269722728846078,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 6.503772639180155,
+      "episode_wall_s": 214.4425449900009
+    },
+    "missing_evidence": [],
+    "failed_conditions": [
+      "target_in_placement_zone",
+      "nonrequested_undisturbed",
+      "robot_home"
+    ]
+  },
+  {
+    "run_id": "coco23/gazebo_seed7",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": true,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": false,
+      "robot_home": true,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.12402369078665944,
+      "floor_center_error_m": 8.891552355505539e-10,
+      "rest_window_sim_s": 2.0,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 2.7262090012780256,
+        "target_green": 4.115623460753315,
+        "target_blue": 0
+      },
+      "robot_distance_home_xy_m": 0.06006759387157541,
+      "episode_wall_s": 494.17563619700377
+    },
+    "missing_evidence": [],
+    "failed_conditions": [
+      "nonrequested_undisturbed"
+    ]
+  },
+  {
+    "run_id": "coco23/gazebo_seed8",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "PASS",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.07603124883801918,
+      "floor_center_error_m": 8.011488555892399e-10,
+      "rest_window_sim_s": 2.0039999999999907,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_blue": 0,
+        "target_yellow": 0,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 0.0885332098716733,
+      "episode_wall_s": 184.22593639099796
+    },
+    "missing_evidence": [],
+    "failed_conditions": []
+  },
+  {
+    "run_id": "coco23/gazebo_seed9",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "UNSCORABLE",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": null,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": null,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.0826891320320265,
+      "floor_center_error_m": 1.522457160341162e-11,
+      "rest_window_sim_s": 2.0020000000000095,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_green": 0,
+        "target_blue": 0,
+        "target_yellow": 0
+      },
+      "robot_distance_home_xy_m": 0.07506700976003466,
+      "episode_wall_s": 184.9854222280046
+    },
+    "missing_evidence": [
+      {
+        "condition": "no_arbiter_violation",
+        "reason": "Missing authority evidence or unresolved asynchronous observer flags"
+      }
+    ],
+    "failed_conditions": []
+  },
+  {
+    "run_id": "coco23/isaac_seed5",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "PASS",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.26590374582772514,
+      "floor_center_error_m": 1.4122486114501176e-05,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0009109090245509529,
+      "rest_rotation_surface_motion_m": 0.0009039308705116451,
+      "nonrequested_max_displacement_m": {
+        "target_green": 0,
+        "target_yellow": 0,
+        "target_blue": 0
+      },
+      "robot_distance_home_xy_m": 0.23856131755886062,
+      "episode_wall_s": 404.2527262099975
+    },
+    "missing_evidence": [],
+    "failed_conditions": []
+  },
+  {
+    "run_id": "coco23/isaac_seed6",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "ABORT",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": false,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": false,
+      "robot_home": false,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 6.104369369290915,
+      "floor_center_error_m": 0.6498431525230408,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 0.7163843110268481,
+        "target_blue": 0,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 6.831620500353346,
+      "episode_wall_s": 141.9055519100002
+    },
+    "missing_evidence": [],
+    "failed_conditions": [
+      "target_in_placement_zone",
+      "nonrequested_undisturbed",
+      "robot_home"
+    ]
+  },
+  {
+    "run_id": "coco23/isaac_seed7",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "ABORT",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": false,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": false,
+      "robot_home": false,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 6.076787565330555,
+      "floor_center_error_m": 0.6498435101509095,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 0.42390761938268656,
+        "target_green": 0,
+        "target_blue": 0
+      },
+      "robot_distance_home_xy_m": 6.6103728954523024,
+      "episode_wall_s": 150.24248989399348
+    },
+    "missing_evidence": [],
+    "failed_conditions": [
+      "target_in_placement_zone",
+      "nonrequested_undisturbed",
+      "robot_home"
+    ]
+  },
+  {
+    "run_id": "coco23/isaac_seed8",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "PASS",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.24425348565537297,
+      "floor_center_error_m": 1.8168151378630815e-05,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0006103267546638299,
+      "rest_rotation_surface_motion_m": 0.0006056962477011671,
+      "nonrequested_max_displacement_m": {
+        "target_blue": 0,
+        "target_yellow": 0,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 0.15257120676754884,
+      "episode_wall_s": 330.8256964900065
+    },
+    "missing_evidence": [],
+    "failed_conditions": []
+  },
+  {
+    "run_id": "coco23/isaac_seed9",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "PASS",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.35545167531639116,
+      "floor_center_error_m": 6.507992744445024e-06,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.00033063093527600177,
+      "rest_rotation_surface_motion_m": 0.0003286250966334682,
+      "nonrequested_max_displacement_m": {
+        "target_green": 0,
+        "target_blue": 0,
+        "target_yellow": 0
+      },
+      "robot_distance_home_xy_m": 0.20611203371942402,
+      "episode_wall_s": 342.6603236649971
+    },
+    "missing_evidence": [],
+    "failed_conditions": []
+  },
+  {
+    "run_id": "coco24/gazebo_seed6",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "ABORT",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": false,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": false,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 6.104350643369549,
+      "floor_center_error_m": 0.6498393916704683,
+      "rest_window_sim_s": 2.0060000000000002,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 0,
+        "target_blue": 0,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 2.745086929508843,
+      "episode_wall_s": 122.26300758100115
+    },
+    "missing_evidence": [],
+    "failed_conditions": [
+      "target_in_placement_zone",
+      "robot_home"
+    ]
+  },
+  {
+    "run_id": "coco24/gazebo_seed7",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "ABORT",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": false,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": null,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 6.076852105506196,
+      "floor_center_error_m": 0.6498393921789276,
+      "rest_window_sim_s": 2.001999999999981,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 0,
+        "target_green": 0,
+        "target_blue": 0
+      },
+      "robot_distance_home_xy_m": 0.008922357939076217,
+      "episode_wall_s": 461.0701337930004
+    },
+    "missing_evidence": [
+      {
+        "condition": "no_arbiter_violation",
+        "reason": "Missing authority evidence or unresolved asynchronous observer flags"
+      }
+    ],
+    "failed_conditions": [
+      "target_in_placement_zone"
+    ]
+  },
+  {
+    "run_id": "coco24/gazebo_seed8",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "UNSCORABLE",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": null,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": null,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.07017257651042894,
+      "floor_center_error_m": 1.5598042302222836e-10,
+      "rest_window_sim_s": 2.0060000000000002,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_blue": 0,
+        "target_yellow": 0,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 0.09397425389038816,
+      "episode_wall_s": 389.80955703499785
+    },
+    "missing_evidence": [
+      {
+        "condition": "no_arbiter_violation",
+        "reason": "Missing authority evidence or unresolved asynchronous observer flags"
+      }
+    ],
+    "failed_conditions": []
+  },
+  {
+    "run_id": "coco24/isaac_seed6",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "ABORT",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": false,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": false,
+      "no_arbiter_violation": null,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 6.104369369290915,
+      "floor_center_error_m": 0.6498431525230408,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 0,
+        "target_blue": 0,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 2.778875446356958,
+      "episode_wall_s": 632.0039685040028
+    },
+    "missing_evidence": [
+      {
+        "condition": "no_arbiter_violation",
+        "reason": "Missing authority evidence or unresolved asynchronous observer flags"
+      }
+    ],
+    "failed_conditions": [
+      "target_in_placement_zone",
+      "robot_home"
+    ]
+  },
+  {
+    "run_id": "coco24/isaac_seed7",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "ABORT",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": false,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": false,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 6.076787565330555,
+      "floor_center_error_m": 0.6498435101509095,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 0,
+        "target_green": 0,
+        "target_blue": 0
+      },
+      "robot_distance_home_xy_m": 2.6933884350731896,
+      "episode_wall_s": 249.96999585500453
+    },
+    "missing_evidence": [],
+    "failed_conditions": [
+      "target_in_placement_zone",
+      "robot_home"
+    ]
+  },
+  {
+    "run_id": "coco24/isaac_seed8",
+    "definition_version": "m0-v1",
+    "oracle_verdict": "PASS",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.24847117809756492,
+      "floor_center_error_m": 1.097834110259932e-05,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0005050539750663235,
+      "rest_rotation_surface_motion_m": 0.0005023571541963549,
+      "nonrequested_max_displacement_m": {
+        "target_blue": 0,
+        "target_yellow": 0,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 0.08918498036679827,
+      "episode_wall_s": 582.8163031130025
+    },
+    "missing_evidence": [],
+    "failed_conditions": []
+  }
+]

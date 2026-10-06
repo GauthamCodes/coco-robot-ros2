@@ -1,0 +1,106 @@
+{
+  "run_id": "coco24/isaac_seed8",
+  "source_sha256": {
+    "docs/data/isaac_fetch/coco24/isaac_seed8/command_graph.json": "7032dd3380726dc1a35404d0803bc869fd806e3f7713d4ff83d0bec0377b485b",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/exits.json": "452317c1aaf0389d6ff5b4e98ebe8e3629e2313afbab2d1a4d12786660a62ec1",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/isaac.log.gz": "831de342c9b9ef127f5795c84a5d012fc3ca12fb6affe8f75d1c52cbb561c894",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/manifest.json": "80dda904c7360cccf6e5270d275b8be8947033dcc8557db6e75492d979e04b16",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/measurements.json": "c656c6cb808521dde545cd80f7a75a1b98d3fdfa6f64519f0990476d716fb05e",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/meta.json": "4c8243193bbd9928807fe0af24978a9c7b714827cc8c593d1554ac21d9d6f554",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/mission.log.gz": "79619dd763f1f4746cbf827324176c966573a4aad2471d75bcda776adcd46b5e",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/nav2_params.yaml": "7ca457f2521e517cfecc9fb6a911c995b01481654dcbca43860b60c3d01d255a",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/observations.jsonl.gz": "16077d44ed3b68f7bb6baf245ed6072610d1d2844bcf51ccba6a31b6ab4441f6",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/observer.log.gz": "1110be97c8588fbb00d9efc055b4a4147a25689006bd795ec4a3e34da0fd0a11",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/result.json": "9c81f7ba4b52b292150e24e4d83a412b16d8d157c1557dbcd3ea124b04d45f97",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/robot_inputs.json": "341c4cb83f1b04c71244bf29184074a1197806781a7790c3977f52ad71cad1a6",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/runner.log.gz": "8126784921cc2c12826117c76c99f92a14997c91180513216461e15e89b07578",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/runtime_reference.json": "add1b1b666094f09671234b61fa773c503cdbc44df3a400e557442be6004a635",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/settled_targets.json": "14582ba0a8711183640e6e1131a2c4ea5ff39702a7f71e17df2989611441c596",
+    "docs/data/isaac_fetch/coco24/isaac_seed8/source.patch.gz": "b289795b19ab9f2c6d5335d4be2f840b4b8f4fbe50f2bc0e356a13a9fd4a8812"
+  },
+  "facts": {
+    "home_xy_m": [
+      -2.0,
+      0.0
+    ],
+    "target_height_m": 0.158,
+    "target_final_xyz_m": [
+      -1.760276198387146,
+      0.06534849107265472,
+      0.0790109783411026
+    ],
+    "target_rest_samples": [
+      {
+        "sim_s": 202.05834387149662,
+        "xyz_m": [
+          -1.76021146774292,
+          0.06484933197498322,
+          0.07905256748199463
+        ],
+        "attached": false
+      },
+      {
+        "sim_s": 204.05834397580475,
+        "xyz_m": [
+          -1.760276198387146,
+          0.06534849107265472,
+          0.0790109783411026
+        ],
+        "attached": false
+      }
+    ],
+    "terminal_truth_covered": true,
+    "robot_final_xyz_m": [
+      -1.9159704442000334,
+      0.029883013152734228,
+      -9.471658898473415e-05
+    ],
+    "nonrequested_models": [
+      "target_blue",
+      "target_yellow",
+      "target_green"
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_blue": 0,
+      "target_yellow": 0,
+      "target_green": 0
+    },
+    "disturbance_truth_covered": true,
+    "arbiter_violations": [],
+    "arbiter_evidence_covered": true,
+    "historical_observer_stop_breaches": 0,
+    "episode_wall_s": 582.8163031130025,
+    "episode_finished": true,
+    "mission_verdict": "COMPLETE",
+    "sampling_limit": "Finite saved samples only; no continuous contact/velocity or qualification claim"
+  },
+  "score": {
+    "definition_version": "m0-v1",
+    "oracle_verdict": "PASS",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.24847117809756492,
+      "floor_center_error_m": 1.097834110259932e-05,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0005050539750663235,
+      "nonrequested_max_displacement_m": {
+        "target_blue": 0,
+        "target_yellow": 0,
+        "target_green": 0
+      },
+      "robot_distance_home_xy_m": 0.08918498036679827,
+      "episode_wall_s": 582.8163031130025
+    },
+    "missing_evidence": [],
+    "failed_conditions": []
+  }
+}

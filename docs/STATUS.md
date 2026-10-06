@@ -1,10 +1,10 @@
 # COCO status
 
-Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.3 complete; M0.4 next**.
+Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.4 / M0.4b complete; M0.5 next**.
 M1 has not started. Independent milestone review and owner G0 decision pending.
 
 Session start SHA: `c45d224a9cbcfd10b9661a40c4df7866febdce38`.
-Checkpoint input/current verified SHA: `bc44dd7639d570f8250153ecd48ad79f239ba614`.
+Checkpoint input/current verified SHA: `df02e3ed857143f70227acfc4c118f537da350d5`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
 Current HEAD: `git rev-parse HEAD` in the repository. A committed file cannot
 literally contain its own commit hash; checkpoint entries record their input SHA,
@@ -48,7 +48,7 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Historical privileged-input physical fetch | RUNTIME VERIFIED | `data/isaac_fetch/coco23/README.md`, `coco24/README.md`; unqualified historical runs, not current compliant baseline or reliability |
 | Current physical manipulation completion | NOT VERIFIED | `m0/MANIPULATION_OBSERVATION.md`; independent object observation unavailable; attachment/lift/release/placement fail closed |
 | Qualified cross-simulator reliability | NOT VERIFIED | M1 qualification/trace harness and M4 benchmark not implemented |
-| Single physical-success oracle | NOT VERIFIED | M0.4 pending |
+| Single physical-success oracle | IMPLEMENTED | `SUCCESS_DEFINITION.md`; `m0/ORACLE_BACKCHECK.md`; 40 local tests passed; CI configured, execution unverified |
 | Environment capture | IMPLEMENTED | `../eval/environment.py`; `m0/control_plane/environment/env.json`; executed without simulator launch |
 | Held-out seed governance | NOT VERIFIED | M0.5 pending |
 
@@ -62,7 +62,7 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Historical far-region descent/contact and ODE crash | Open; later causal evaluation, no M0 investigation | `data/isaac_fetch/coco23/README.md`, `coco24/README.md` |
 | Historical far-region Nav2 acknowledgment / perception geometry rejection | Open; later milestones | `data/isaac_fetch/coco24/README.md`, `data/isaac_fetch/coco25/` |
 | Observer idle-command ordering ambiguity | Open evidence ambiguity; oracle must not infer a clean arbiter from mission success | `data/isaac_fetch/coco23/gazebo_seed9_idle_sample.json` |
-| Remaining M0 control-plane checkpoints | M0 exit blockers, M0.4–M0.6 pending | `MASTER_PLAN.md` |
+| Remaining M0 control-plane checkpoints | M0 exit blockers, M0.5–M0.6 pending | `MASTER_PLAN.md` |
 
 ## Seed policy
 
@@ -78,5 +78,7 @@ pin disjoint ranges in M0.5; until then no seed is claimed held-out.
 - Session entry and plan comparison: `m0/CONTROL_PLANE.md`.
 - CI execution remains NOT VERIFIED; no simulation campaign in this session.
 
-Next: M0.3 environment manifest, followed by oracle/back-check, seeds and hygiene.
+Next: M0.5 seeds, then M0.6 hygiene. Historical oracle coverage: 16 inspected,
+13 scorable (5 PASS / 8 FAIL), 3 UNSCORABLE; one definite COMPLETE/FAIL disagreement
+(M2.3 Gazebo seed7). Evidence: `m0/ORACLE_BACKCHECK.md`.
 No M1, M2 reliability, M3 cleanup or robot behavior work authorized here.

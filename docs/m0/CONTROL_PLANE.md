@@ -22,3 +22,13 @@ read-only MoveIt prefix. Output: `control_plane/environment/env.json`. No
 simulator imported or launched. Captures missing-tool errors explicitly and
 refuses overwrite. `eval/README.md` defines per-run usage and the separate Isaac
 bridge environment. M1 will integrate this mechanism into its runner.
+
+## M0.4 oracle and M0.4b back-check
+
+`SUCCESS_DEFINITION.md` justifies existing placement/home/budget bounds and
+5 mm sampled disturbance/rest criteria against existing evidence allowances,
+object geometry and numerical settling measurements. `eval/oracle.py` is the
+single pure scorer, independent of mission verdict. `ORACLE_BACKCHECK.md`
+records all 16 historical attempts, the one definite disagreement and unknowns.
+40 local unit tests passed; CI explicitly collects the new evaluator suite.
+No historical script was executed in write mode or historical evidence edited.

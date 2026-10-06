@@ -1,0 +1,105 @@
+{
+  "run_id": "coco23/isaac_seed5",
+  "source_sha256": {
+    "docs/data/isaac_fetch/coco23/isaac_seed5/command_graph.json": "09d8bfca1b8a3c042dd49979fa499dcc598e8a0c6f9b0bcdcc68a10e932b100c",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/exits.json": "452317c1aaf0389d6ff5b4e98ebe8e3629e2313afbab2d1a4d12786660a62ec1",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/isaac.log.gz": "384b16d4764ca8b8a9c45100c4d4d4214b7533722907d5d129219bf8a20c426f",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/manifest.json": "568afe25f0413ef2f5e445037f811ea26232de627b37f27ddd10cd28f593f71d",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/measurements.json": "08b6dadd33078ae2a95fd111452a3eddebbf57b6da1e554815a2fd830abe2347",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/meta.json": "a8bd97ce1bc1533e6ea6511fa4effc594830200d99f4f1ecaf764c7cea5849fe",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/mission.log.gz": "265341fe9c755797f4360e8d43384af5d6669e029944abcb333d5d4508ba046d",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/nav2_params.yaml": "7ca457f2521e517cfecc9fb6a911c995b01481654dcbca43860b60c3d01d255a",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/observations.jsonl.gz": "66d6037d8799b12af60d327d6e083f8c991d22b051af27fa873907f97a286af8",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/observer.log.gz": "2261b8f4b029e56400763f1c2c0b3d8775ed675a49065beca3d20146f38e63ac",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/result.json": "c6b1a8f89ceb8b08dff67db32f8484353df4a3431ec07de7db2b164b059af54e",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/robot_inputs.json": "4429b6e26590d7d10454a5f8bd96206746b30b3b08fe059c96501b5eee95fd22",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/runtime_reference.json": "d953f9dbec24f6b77a3462b5904d640346b44d3c96240d8b503a6a9daf34268a",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/settled_targets.json": "a12a29614f6f1bdb4891d5d36dcaf3a748488baf2d62687992278b3351144efd",
+    "docs/data/isaac_fetch/coco23/isaac_seed5/source.patch.gz": "da08d396f7f35d8bd9f2f39704c32a10f43df10e4958169b99dfb1b39fc1d4b8"
+  },
+  "facts": {
+    "home_xy_m": [
+      -2.0,
+      0.0
+    ],
+    "target_height_m": 0.158,
+    "target_final_xyz_m": [
+      -1.8254063129425049,
+      -0.20055384933948517,
+      0.0790141224861145
+    ],
+    "target_rest_samples": [
+      {
+        "sim_s": 290.05834846105427,
+        "xyz_m": [
+          -1.824973464012146,
+          -0.19975894689559937,
+          0.07911672443151474
+        ],
+        "attached": false
+      },
+      {
+        "sim_s": 292.0583485653624,
+        "xyz_m": [
+          -1.8254063129425049,
+          -0.20055384933948517,
+          0.0790141224861145
+        ],
+        "attached": false
+      }
+    ],
+    "terminal_truth_covered": true,
+    "robot_final_xyz_m": [
+      -1.9849167530083123,
+      -0.23808401436385285,
+      -0.00014586217134992044
+    ],
+    "nonrequested_models": [
+      "target_green",
+      "target_yellow",
+      "target_blue"
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_green": 0,
+      "target_yellow": 0,
+      "target_blue": 0
+    },
+    "disturbance_truth_covered": true,
+    "arbiter_violations": [],
+    "arbiter_evidence_covered": true,
+    "historical_observer_stop_breaches": 0,
+    "episode_wall_s": 404.2527262099975,
+    "episode_finished": true,
+    "mission_verdict": "COMPLETE",
+    "sampling_limit": "Finite saved samples only; no continuous contact/velocity or qualification claim"
+  },
+  "score": {
+    "definition_version": "m0-v1",
+    "oracle_verdict": "PASS",
+    "mission_verdict": "COMPLETE",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": true,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": true,
+      "robot_home": true,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 0.26590374582772514,
+      "floor_center_error_m": 1.4122486114501176e-05,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0009109090245509529,
+      "nonrequested_max_displacement_m": {
+        "target_green": 0,
+        "target_yellow": 0,
+        "target_blue": 0
+      },
+      "robot_distance_home_xy_m": 0.23856131755886062,
+      "episode_wall_s": 404.2527262099975
+    },
+    "missing_evidence": [],
+    "failed_conditions": []
+  }
+}

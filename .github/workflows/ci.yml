@@ -46,6 +46,9 @@ jobs:
           # whole suite would vanish behind a collection error.
           pip install --break-system-packages gymnasium mujoco==3.11.0
 
+      - name: Evaluation control-plane unit tests
+        run: python3 -m pytest -q eval/tests
+
       - name: Build
         run: |
           source /opt/ros/jazzy/setup.bash

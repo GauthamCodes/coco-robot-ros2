@@ -1,0 +1,122 @@
+{
+  "run_id": "coco23/isaac_seed7",
+  "source_sha256": {
+    "docs/data/isaac_fetch/coco23/isaac_seed7/command_graph.json": "7032dd3380726dc1a35404d0803bc869fd806e3f7713d4ff83d0bec0377b485b",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/exits.json": "bd2506df0592d5deedde7a75adcc81d5c3f99b1f7edecf5f79733a44691cd86d",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/isaac.log.gz": "423c5ba927a1df2dec779f162469ebaf7fc2fc1e32eb1268bc008e000ef57694",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/manifest.json": "2ff63c3b03173612b2fded60231b436873b916d0e4e12b687b42abb88ce9ad1c",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/measurements.json": "3e57eca358d43fadf90495f264fc1c8c11513d36d7ee4c9b656d014eddf320c2",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/meta.json": "51af540f8fb2f166279f71dc552995fe3e2dd6baf8f5b3b069882ec9a405bc0b",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/mission.log.gz": "04ac1d41f4d5e6f53337c7d80c2325474fa5b99187a5b8b9a0052257b41a15ce",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/nav2_params.yaml": "7ca457f2521e517cfecc9fb6a911c995b01481654dcbca43860b60c3d01d255a",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/observations.jsonl.gz": "879c51d5009ef6ed83584be4297d8973d8e407f97c89070c280292529f20366c",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/observer.log.gz": "10d0e2a403e957beafe48431cbf86683c4e9492debf54ce653186fb32ca9a6f8",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/result.json": "f2586ba29bfd52b20f17879321adf1a0ae9926f5d265f606334443dc9a63df36",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/robot_inputs.json": "23b37f238e2253029f374c9085938eb788a5aeb3206bb0937cdadb3791696fe2",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/runtime_reference.json": "65bbd49484e5624127c56f1cf790455016340d7950a1a0be27e024f84a6e09e2",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/settled_targets.json": "a5c764a236e0923665bccdd3beda6eb17e569699f0f4ee33ecb15e3c230d7ec9",
+    "docs/data/isaac_fetch/coco23/isaac_seed7/source.patch.gz": "b303bf83a93a7e9c7690493c042d75c98ad730dbbce6887807de6b2933040e1c"
+  },
+  "facts": {
+    "home_xy_m": [
+      -2.0,
+      0.0
+    ],
+    "target_height_m": 0.158,
+    "target_final_xyz_m": [
+      4.071625709533691,
+      0.2504163682460785,
+      0.7288435101509094
+    ],
+    "target_rest_samples": [
+      {
+        "sim_s": 102.0583386560902,
+        "xyz_m": [
+          4.071625709533691,
+          0.2504163682460785,
+          0.7288435101509094
+        ],
+        "attached": false,
+        "quaternion_wxyz": [
+          1.0,
+          0.0002043780405074358,
+          -0.0001599576062289998,
+          2.748407678154763e-05
+        ]
+      },
+      {
+        "sim_s": 104.05833876039833,
+        "xyz_m": [
+          4.071625709533691,
+          0.2504163682460785,
+          0.7288435101509094
+        ],
+        "attached": false,
+        "quaternion_wxyz": [
+          1.0,
+          0.0002043780405074358,
+          -0.0001599576062289998,
+          2.748407678154763e-05
+        ]
+      }
+    ],
+    "terminal_truth_covered": true,
+    "robot_final_xyz_m": [
+      4.56609970842995,
+      -0.7637829769552287,
+      0.6381211441005573
+    ],
+    "nonrequested_models": [
+      "target_yellow",
+      "target_green",
+      "target_blue"
+    ],
+    "nonrequested_max_displacement_m": {
+      "target_yellow": 0.42390761938268656,
+      "target_green": 0,
+      "target_blue": 0
+    },
+    "disturbance_truth_covered": true,
+    "arbiter_violations": [],
+    "arbiter_evidence_covered": true,
+    "historical_observer_stop_breaches": 0,
+    "episode_wall_s": 150.24248989399348,
+    "episode_finished": true,
+    "mission_verdict": "ABORT",
+    "sampling_limit": "Finite saved samples only; no continuous contact/velocity or qualification claim"
+  },
+  "score": {
+    "definition_version": "m0-v1",
+    "oracle_verdict": "FAIL",
+    "mission_verdict": "ABORT",
+    "mission_oracle_disagreement": false,
+    "checks": {
+      "target_in_placement_zone": false,
+      "target_at_rest": true,
+      "nonrequested_undisturbed": false,
+      "robot_home": false,
+      "no_arbiter_violation": true,
+      "within_time_budget": true
+    },
+    "metrics": {
+      "placement_distance_xy_m": 6.076787565330555,
+      "floor_center_error_m": 0.6498435101509095,
+      "rest_window_sim_s": 2.0000001043081284,
+      "rest_max_pairwise_distance_m": 0.0,
+      "rest_rotation_surface_motion_m": 0.0,
+      "nonrequested_max_displacement_m": {
+        "target_yellow": 0.42390761938268656,
+        "target_green": 0,
+        "target_blue": 0
+      },
+      "robot_distance_home_xy_m": 6.6103728954523024,
+      "episode_wall_s": 150.24248989399348
+    },
+    "missing_evidence": [],
+    "failed_conditions": [
+      "target_in_placement_zone",
+      "nonrequested_undisturbed",
+      "robot_home"
+    ]
+  }
+}

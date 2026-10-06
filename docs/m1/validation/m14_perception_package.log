@@ -1,0 +1,1322 @@
+......FF................................................................ [ 49%]
+........................................................................ [ 99%]
+.                                                                        [100%]
+=================================== FAILURES ===================================
+________________________________ test_copyright ________________________________
+
+    @pytest.mark.copyright
+    @pytest.mark.linter
+    def test_copyright():
+        rc = main(argv=['.', 'test'])
+>       assert rc == 0, 'Found errors'
+E       AssertionError: Found errors
+E       assert 1 == 0
+
+test/test_copyright.py:23: AssertionError
+----------------------------- Captured stderr call -----------------------------
+coco_perception/candidate_diagnostics.py: could not find copyright notice
+test/test_candidate_diagnostics.py: could not find copyright notice
+2 errors, checked 13 files
+_________________________________ test_flake8 __________________________________
+
+    @pytest.mark.flake8
+    @pytest.mark.linter
+    def test_flake8():
+        rc, errors = main_with_errors(argv=[])
+>       assert rc == 0, \
+            'Found %d code style errors / warnings:\n' % len(errors) + \
+            '\n'.join(errors)
+E       AssertionError: Found 249 code style errors / warnings:
+E         ./coco_perception/candidate_diagnostics.py:4:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import math' is identified as Stdlib.
+E         ./coco_perception/candidate_diagnostics.py:7:19: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:7:25: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:7:32: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:7:43: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:7:48: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:7:52: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:7:62: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:7:71: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:8:35: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:8:66: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:10:43: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:10:54: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:10:67: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:10:83: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:10:98: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:10:100: E501 line too long (109 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:12:11: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:12:36: E702 multiple statements on one line (semicolon)
+E         ./coco_perception/candidate_diagnostics.py:12:36: E231 missing whitespace after ';'
+E         ./coco_perception/candidate_diagnostics.py:12:41: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:12:57: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:13:10: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:13:17: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:13:33: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:14:7: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:14:10: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:14:13: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:14:16: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:15:11: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:15:49: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:16:11: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:17:13: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:17:15: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:17:17: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:17:23: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:17:30: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:18:18: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:18:25: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:19:12: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:19:40: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:20:13: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:20:34: E227 missing whitespace around bitwise or shift operator
+E         ./coco_perception/candidate_diagnostics.py:20:39: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:20:45: E227 missing whitespace around bitwise or shift operator
+E         ./coco_perception/candidate_diagnostics.py:20:50: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:21:16: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:21:33: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:21:38: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:22:12: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:22:36: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:23:18: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:23:44: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:24:56: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:24:72: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:24:76: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:24:79: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:24:100: E501 line too long (114 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:25:15: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:27:15: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:27:18: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:27:40: E702 multiple statements on one line (semicolon)
+E         ./coco_perception/candidate_diagnostics.py:27:40: E231 missing whitespace after ';'
+E         ./coco_perception/candidate_diagnostics.py:27:46: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:27:63: E227 missing whitespace around bitwise or shift operator
+E         ./coco_perception/candidate_diagnostics.py:27:68: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:27:74: E227 missing whitespace around bitwise or shift operator
+E         ./coco_perception/candidate_diagnostics.py:27:79: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:28:14: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:28:25: E702 multiple statements on one line (semicolon)
+E         ./coco_perception/candidate_diagnostics.py:28:25: E231 missing whitespace after ';'
+E         ./coco_perception/candidate_diagnostics.py:28:32: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:28:62: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:28:82: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:28:85: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:29:17: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:30:16: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:31:15: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:31:40: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:31:84: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:31:100: E501 line too long (112 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:32:23: C408 Unnecessary dict call - rewrite as a literal.
+E         ./coco_perception/candidate_diagnostics.py:32:44: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:32:62: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:33:39: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:33:53: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:33:65: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:34:42: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:34:45: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:34:63: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:34:90: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:34:100: E501 line too long (108 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:35:42: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:36:60: E231 missing whitespace after ':'
+E         ./coco_perception/candidate_diagnostics.py:37:59: E231 missing whitespace after ':'
+E         ./coco_perception/candidate_diagnostics.py:38:56: E231 missing whitespace after ':'
+E         ./coco_perception/candidate_diagnostics.py:38:100: E501 line too long (102 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:39:53: E231 missing whitespace after ':'
+E         ./coco_perception/candidate_diagnostics.py:40:53: E231 missing whitespace after ':'
+E         ./coco_perception/candidate_diagnostics.py:41:53: E231 missing whitespace after ':'
+E         ./coco_perception/candidate_diagnostics.py:41:100: E501 line too long (121 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:42:39: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:42:67: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:43:63: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:43:88: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:44:66: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:44:90: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:44:100: E501 line too long (101 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:45:42: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:45:78: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:46:41: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:47:100: E501 line too long (138 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:51:14: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:51:18: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:51:24: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:51:28: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:51:48: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:51:79: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:51:100: E501 line too long (100 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:55:14: E225 missing whitespace around operator
+E         ./coco_perception/candidate_diagnostics.py:56:37: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:56:43: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:56:57: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:56:73: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:56:88: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:56:100: E501 line too long (103 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:57:54: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:57:60: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:58:48: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:58:64: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:59:70: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:61:75: E231 missing whitespace after ','
+E         ./coco_perception/candidate_diagnostics.py:61:100: E501 line too long (100 > 99 characters)
+E         ./coco_perception/target_finder.py:536:18: E231 missing whitespace after ','
+E         ./coco_perception/target_finder.py:536:22: E231 missing whitespace after ','
+E         ./coco_perception/target_finder.py:536:28: E231 missing whitespace after ','
+E         ./coco_perception/target_finder.py:536:32: E231 missing whitespace after ','
+E         ./coco_perception/target_finder.py:537:50: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:418:18: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:418:22: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:418:28: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:418:32: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:419:34: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:1:1: F401 'copy' imported but unused
+E         ./test/test_candidate_diagnostics.py:2:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import copy' is identified as Stdlib.
+E         ./test/test_candidate_diagnostics.py:4:1: I100 Import statements are in the wrong order. 'from coco_perception.candidate_diagnostics import candidates, emit' should be before 'import pytest'
+E         ./test/test_candidate_diagnostics.py:4:1: F401 'coco_perception.candidate_diagnostics.emit' imported but unused
+E         ./test/test_candidate_diagnostics.py:4:61: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:9:8: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:9:21: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:9:24: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:9:27: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:10:13: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:10:18: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:10:21: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:10:25: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:11:14: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:11:21: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:11:24: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:11:28: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:12:15: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:12:27: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:12:31: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:16:8: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:16:14: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:16:22: E702 multiple statements on one line (semicolon)
+E         ./test/test_candidate_diagnostics.py:16:22: E231 missing whitespace after ';'
+E         ./test/test_candidate_diagnostics.py:16:24: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:16:35: E702 multiple statements on one line (semicolon)
+E         ./test/test_candidate_diagnostics.py:16:35: E231 missing whitespace after ';'
+E         ./test/test_candidate_diagnostics.py:16:37: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:17:11: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:17:26: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:32: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:38: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:43: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:47: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:50: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:54: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:58: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:60: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:63: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:67: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:90: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:92: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:100: E501 line too long (104 > 99 characters)
+E         ./test/test_candidate_diagnostics.py:17:100: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:18:23: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:21:30: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:21:80: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:22:75: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:23:28: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:23:54: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:26:33: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:26:39: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:26:52: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:26:57: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:26:68: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:26:72: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:26:84: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:26:88: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:8: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:10: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:28:18: E702 multiple statements on one line (semicolon)
+E         ./test/test_candidate_diagnostics.py:28:18: E231 missing whitespace after ';'
+E         ./test/test_candidate_diagnostics.py:28:20: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:28:35: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:41: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:47: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:52: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:56: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:59: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:63: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:67: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:69: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:72: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:28:74: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:29:27: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:33:5: F401 'types.SimpleNamespace' imported but unused
+E         ./test/test_candidate_diagnostics.py:34:8: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:34:14: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:35:9: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:36:20: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:36:25: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:36:29: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:36:32: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:36:36: E702 multiple statements on one line (semicolon)
+E         ./test/test_candidate_diagnostics.py:36:36: E231 missing whitespace after ';'
+E         ./test/test_candidate_diagnostics.py:36:51: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:36:55: E702 multiple statements on one line (semicolon)
+E         ./test/test_candidate_diagnostics.py:36:55: E231 missing whitespace after ';'
+E         ./test/test_candidate_diagnostics.py:36:70: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:36:73: E702 multiple statements on one line (semicolon)
+E         ./test/test_candidate_diagnostics.py:36:73: E231 missing whitespace after ';'
+E         ./test/test_candidate_diagnostics.py:36:94: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:37:11: E225 missing whitespace around operator
+E         ./test/test_candidate_diagnostics.py:37:28: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:37:34: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:38:19: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:38:25: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:38:31: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:38:47: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:38:51: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:38:54: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:38:57: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:38:59: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:39:28: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:39:34: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:39:41: E225 missing whitespace around operator
+E       assert 1 == 0
+
+test/test_flake8.py:23: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+./coco_perception/candidate_diagnostics.py:4:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import math' is identified as Stdlib.
+import numpy as np
+^
+
+./coco_perception/candidate_diagnostics.py:7:19: E231 missing whitespace after ','
+def candidates(hsv,depth,colour,intrinsics,near,far,tolerance,stamp_ns,frame,
+                  ^
+
+./coco_perception/candidate_diagnostics.py:7:25: E231 missing whitespace after ','
+def candidates(hsv,depth,colour,intrinsics,near,far,tolerance,stamp_ns,frame,
+                        ^
+
+./coco_perception/candidate_diagnostics.py:7:32: E231 missing whitespace after ','
+def candidates(hsv,depth,colour,intrinsics,near,far,tolerance,stamp_ns,frame,
+                               ^
+
+./coco_perception/candidate_diagnostics.py:7:43: E231 missing whitespace after ','
+def candidates(hsv,depth,colour,intrinsics,near,far,tolerance,stamp_ns,frame,
+                                          ^
+
+./coco_perception/candidate_diagnostics.py:7:48: E231 missing whitespace after ','
+def candidates(hsv,depth,colour,intrinsics,near,far,tolerance,stamp_ns,frame,
+                                               ^
+
+./coco_perception/candidate_diagnostics.py:7:52: E231 missing whitespace after ','
+def candidates(hsv,depth,colour,intrinsics,near,far,tolerance,stamp_ns,frame,
+                                                   ^
+
+./coco_perception/candidate_diagnostics.py:7:62: E231 missing whitespace after ','
+def candidates(hsv,depth,colour,intrinsics,near,far,tolerance,stamp_ns,frame,
+                                                             ^
+
+./coco_perception/candidate_diagnostics.py:7:71: E231 missing whitespace after ','
+def candidates(hsv,depth,colour,intrinsics,near,far,tolerance,stamp_ns,frame,
+                                                                      ^
+
+./coco_perception/candidate_diagnostics.py:8:35: E231 missing whitespace after ','
+               selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+                                  ^
+
+./coco_perception/candidate_diagnostics.py:8:66: E231 missing whitespace after ','
+               selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+                                                                 ^
+
+./coco_perception/candidate_diagnostics.py:10:43: E231 missing whitespace after ','
+    from .target_finder import colour_mask,blob_stats,robust_depth,surface_to_axis,plausible_blob,MIN_BLOB_PX
+                                          ^
+
+./coco_perception/candidate_diagnostics.py:10:54: E231 missing whitespace after ','
+    from .target_finder import colour_mask,blob_stats,robust_depth,surface_to_axis,plausible_blob,MIN_BLOB_PX
+                                                     ^
+
+./coco_perception/candidate_diagnostics.py:10:67: E231 missing whitespace after ','
+    from .target_finder import colour_mask,blob_stats,robust_depth,surface_to_axis,plausible_blob,MIN_BLOB_PX
+                                                                  ^
+
+./coco_perception/candidate_diagnostics.py:10:83: E231 missing whitespace after ','
+    from .target_finder import colour_mask,blob_stats,robust_depth,surface_to_axis,plausible_blob,MIN_BLOB_PX
+                                                                                  ^
+
+./coco_perception/candidate_diagnostics.py:10:98: E231 missing whitespace after ','
+    from .target_finder import colour_mask,blob_stats,robust_depth,surface_to_axis,plausible_blob,MIN_BLOB_PX
+                                                                                                 ^
+
+./coco_perception/candidate_diagnostics.py:10:100: E501 line too long (109 > 99 characters)
+    from .target_finder import colour_mask,blob_stats,robust_depth,surface_to_axis,plausible_blob,MIN_BLOB_PX
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:12:11: E225 missing whitespace around operator
+    target=target_by_colour(colour);mask=colour_mask(hsv,colour)
+          ^
+
+./coco_perception/candidate_diagnostics.py:12:36: E702 multiple statements on one line (semicolon)
+    target=target_by_colour(colour);mask=colour_mask(hsv,colour)
+                                   ^
+
+./coco_perception/candidate_diagnostics.py:12:36: E231 missing whitespace after ';'
+    target=target_by_colour(colour);mask=colour_mask(hsv,colour)
+                                   ^
+
+./coco_perception/candidate_diagnostics.py:12:41: E225 missing whitespace around operator
+    target=target_by_colour(colour);mask=colour_mask(hsv,colour)
+                                        ^
+
+./coco_perception/candidate_diagnostics.py:12:57: E231 missing whitespace after ','
+    target=target_by_colour(colour);mask=colour_mask(hsv,colour)
+                                                        ^
+
+./coco_perception/candidate_diagnostics.py:13:10: E231 missing whitespace after ','
+    blobs,labels=blob_stats(mask,min_area=1)
+         ^
+
+./coco_perception/candidate_diagnostics.py:13:17: E225 missing whitespace around operator
+    blobs,labels=blob_stats(mask,min_area=1)
+                ^
+
+./coco_perception/candidate_diagnostics.py:13:33: E231 missing whitespace after ','
+    blobs,labels=blob_stats(mask,min_area=1)
+                                ^
+
+./coco_perception/candidate_diagnostics.py:14:7: E231 missing whitespace after ','
+    fx,fy,cx,cy=intrinsics
+      ^
+
+./coco_perception/candidate_diagnostics.py:14:10: E231 missing whitespace after ','
+    fx,fy,cx,cy=intrinsics
+         ^
+
+./coco_perception/candidate_diagnostics.py:14:13: E231 missing whitespace after ','
+    fx,fy,cx,cy=intrinsics
+            ^
+
+./coco_perception/candidate_diagnostics.py:14:16: E225 missing whitespace around operator
+    fx,fy,cx,cy=intrinsics
+               ^
+
+./coco_perception/candidate_diagnostics.py:15:11: E225 missing whitespace around operator
+    paired=depth is not None and depth.shape[:2]==labels.shape
+          ^
+
+./coco_perception/candidate_diagnostics.py:15:49: E225 missing whitespace around operator
+    paired=depth is not None and depth.shape[:2]==labels.shape
+                                                ^
+
+./coco_perception/candidate_diagnostics.py:16:11: E225 missing whitespace around operator
+    result=[]
+          ^
+
+./coco_perception/candidate_diagnostics.py:17:13: E231 missing whitespace after ','
+    for area,u,v,width,height,label in blobs:
+            ^
+
+./coco_perception/candidate_diagnostics.py:17:15: E231 missing whitespace after ','
+    for area,u,v,width,height,label in blobs:
+              ^
+
+./coco_perception/candidate_diagnostics.py:17:17: E231 missing whitespace after ','
+    for area,u,v,width,height,label in blobs:
+                ^
+
+./coco_perception/candidate_diagnostics.py:17:23: E231 missing whitespace after ','
+    for area,u,v,width,height,label in blobs:
+                      ^
+
+./coco_perception/candidate_diagnostics.py:17:30: E231 missing whitespace after ','
+    for area,u,v,width,height,label in blobs:
+                             ^
+
+./coco_perception/candidate_diagnostics.py:18:18: E225 missing whitespace around operator
+        component=labels==label
+                 ^
+
+./coco_perception/candidate_diagnostics.py:18:25: E225 missing whitespace around operator
+        component=labels==label
+                        ^
+
+./coco_perception/candidate_diagnostics.py:19:12: E225 missing whitespace around operator
+        raw=np.asarray(depth[component],dtype=float) if paired else np.array([])
+           ^
+
+./coco_perception/candidate_diagnostics.py:19:40: E231 missing whitespace after ','
+        raw=np.asarray(depth[component],dtype=float) if paired else np.array([])
+                                       ^
+
+./coco_perception/candidate_diagnostics.py:20:13: E225 missing whitespace around operator
+        good=raw[np.isfinite(raw)&(raw>near)&(raw<far)]
+            ^
+
+./coco_perception/candidate_diagnostics.py:20:34: E227 missing whitespace around bitwise or shift operator
+        good=raw[np.isfinite(raw)&(raw>near)&(raw<far)]
+                                 ^
+
+./coco_perception/candidate_diagnostics.py:20:39: E225 missing whitespace around operator
+        good=raw[np.isfinite(raw)&(raw>near)&(raw<far)]
+                                      ^
+
+./coco_perception/candidate_diagnostics.py:20:45: E227 missing whitespace around bitwise or shift operator
+        good=raw[np.isfinite(raw)&(raw>near)&(raw<far)]
+                                            ^
+
+./coco_perception/candidate_diagnostics.py:20:50: E225 missing whitespace around operator
+        good=raw[np.isfinite(raw)&(raw>near)&(raw<far)]
+                                                 ^
+
+./coco_perception/candidate_diagnostics.py:21:16: E225 missing whitespace around operator
+        surface=robust_depth(raw,near,far) if paired else None
+               ^
+
+./coco_perception/candidate_diagnostics.py:21:33: E231 missing whitespace after ','
+        surface=robust_depth(raw,near,far) if paired else None
+                                ^
+
+./coco_perception/candidate_diagnostics.py:21:38: E231 missing whitespace after ','
+        surface=robust_depth(raw,near,far) if paired else None
+                                     ^
+
+./coco_perception/candidate_diagnostics.py:22:12: E225 missing whitespace around operator
+        rng=surface_to_axis(surface,target.diameter/2) if surface is not None else None
+           ^
+
+./coco_perception/candidate_diagnostics.py:22:36: E231 missing whitespace after ','
+        rng=surface_to_axis(surface,target.diameter/2) if surface is not None else None
+                                   ^
+
+./coco_perception/candidate_diagnostics.py:23:18: E225 missing whitespace around operator
+        geometric=('BLOB_TOO_SMALL' if area<MIN_BLOB_PX else 'DEPTH_INVALID' if rng is None
+                 ^
+
+./coco_perception/candidate_diagnostics.py:23:44: E225 missing whitespace around operator
+        geometric=('BLOB_TOO_SMALL' if area<MIN_BLOB_PX else 'DEPTH_INVALID' if rng is None
+                                           ^
+
+./coco_perception/candidate_diagnostics.py:24:56: E231 missing whitespace after ','
+                   else 'VALID' if plausible_blob(width,target.diameter,rng,fx,tolerance) else 'IMPLAUSIBLE_SIZE')
+                                                       ^
+
+./coco_perception/candidate_diagnostics.py:24:72: E231 missing whitespace after ','
+                   else 'VALID' if plausible_blob(width,target.diameter,rng,fx,tolerance) else 'IMPLAUSIBLE_SIZE')
+                                                                       ^
+
+./coco_perception/candidate_diagnostics.py:24:76: E231 missing whitespace after ','
+                   else 'VALID' if plausible_blob(width,target.diameter,rng,fx,tolerance) else 'IMPLAUSIBLE_SIZE')
+                                                                           ^
+
+./coco_perception/candidate_diagnostics.py:24:79: E231 missing whitespace after ','
+                   else 'VALID' if plausible_blob(width,target.diameter,rng,fx,tolerance) else 'IMPLAUSIBLE_SIZE')
+                                                                              ^
+
+./coco_perception/candidate_diagnostics.py:24:100: E501 line too long (114 > 99 characters)
+                   else 'VALID' if plausible_blob(width,target.diameter,rng,fx,tolerance) else 'IMPLAUSIBLE_SIZE')
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:25:15: E225 missing whitespace around operator
+        points=None
+              ^
+
+./coco_perception/candidate_diagnostics.py:27:15: E231 missing whitespace after ','
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+              ^
+
+./coco_perception/candidate_diagnostics.py:27:18: E225 missing whitespace around operator
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+                 ^
+
+./coco_perception/candidate_diagnostics.py:27:40: E702 multiple statements on one line (semicolon)
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+                                       ^
+
+./coco_perception/candidate_diagnostics.py:27:40: E231 missing whitespace after ';'
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+                                       ^
+
+./coco_perception/candidate_diagnostics.py:27:46: E225 missing whitespace around operator
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+                                             ^
+
+./coco_perception/candidate_diagnostics.py:27:63: E227 missing whitespace around bitwise or shift operator
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+                                                              ^
+
+./coco_perception/candidate_diagnostics.py:27:68: E225 missing whitespace around operator
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:27:74: E227 missing whitespace around bitwise or shift operator
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+                                                                         ^
+
+./coco_perception/candidate_diagnostics.py:27:79: E225 missing whitespace around operator
+            ys,xs=np.nonzero(component);valid=np.isfinite(raw)&(raw>near)&(raw<far)
+                                                                              ^
+
+./coco_perception/candidate_diagnostics.py:28:14: E225 missing whitespace around operator
+            z=raw[valid];points=np.stack(((xs[valid]-cx)*z/fx,(ys[valid]-cy)*z/fy,z),axis=1)
+             ^
+
+./coco_perception/candidate_diagnostics.py:28:25: E702 multiple statements on one line (semicolon)
+            z=raw[valid];points=np.stack(((xs[valid]-cx)*z/fx,(ys[valid]-cy)*z/fy,z),axis=1)
+                        ^
+
+./coco_perception/candidate_diagnostics.py:28:25: E231 missing whitespace after ';'
+            z=raw[valid];points=np.stack(((xs[valid]-cx)*z/fx,(ys[valid]-cy)*z/fy,z),axis=1)
+                        ^
+
+./coco_perception/candidate_diagnostics.py:28:32: E225 missing whitespace around operator
+            z=raw[valid];points=np.stack(((xs[valid]-cx)*z/fx,(ys[valid]-cy)*z/fy,z),axis=1)
+                               ^
+
+./coco_perception/candidate_diagnostics.py:28:62: E231 missing whitespace after ','
+            z=raw[valid];points=np.stack(((xs[valid]-cx)*z/fx,(ys[valid]-cy)*z/fy,z),axis=1)
+                                                             ^
+
+./coco_perception/candidate_diagnostics.py:28:82: E231 missing whitespace after ','
+            z=raw[valid];points=np.stack(((xs[valid]-cx)*z/fx,(ys[valid]-cy)*z/fy,z),axis=1)
+                                                                                 ^
+
+./coco_perception/candidate_diagnostics.py:28:85: E231 missing whitespace after ','
+            z=raw[valid];points=np.stack(((xs[valid]-cx)*z/fx,(ys[valid]-cy)*z/fy,z),axis=1)
+                                                                                    ^
+
+./coco_perception/candidate_diagnostics.py:29:17: E225 missing whitespace around operator
+        centroid=points.mean(axis=0).tolist() if points is not None else None
+                ^
+
+./coco_perception/candidate_diagnostics.py:30:16: E225 missing whitespace around operator
+        extents=(points.max(axis=0)-points.min(axis=0)).tolist() if points is not None else None
+               ^
+
+./coco_perception/candidate_diagnostics.py:31:15: E225 missing whitespace around operator
+        reason=selected_reason if label==selected_label else geometric if geometric!='VALID' else 'NOT_SELECTED'
+              ^
+
+./coco_perception/candidate_diagnostics.py:31:40: E225 missing whitespace around operator
+        reason=selected_reason if label==selected_label else geometric if geometric!='VALID' else 'NOT_SELECTED'
+                                       ^
+
+./coco_perception/candidate_diagnostics.py:31:84: E225 missing whitespace around operator
+        reason=selected_reason if label==selected_label else geometric if geometric!='VALID' else 'NOT_SELECTED'
+                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:31:100: E501 line too long (112 > 99 characters)
+        reason=selected_reason if label==selected_label else geometric if geometric!='VALID' else 'NOT_SELECTED'
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:32:23: C408 Unnecessary dict call - rewrite as a literal.
+        result.append(dict(schema_version=1,stamp_ns=stamp_ns,depth_stamp_ns=depth_stamp_ns,
+                      ^
+
+./coco_perception/candidate_diagnostics.py:32:44: E231 missing whitespace after ','
+        result.append(dict(schema_version=1,stamp_ns=stamp_ns,depth_stamp_ns=depth_stamp_ns,
+                                           ^
+
+./coco_perception/candidate_diagnostics.py:32:62: E231 missing whitespace after ','
+        result.append(dict(schema_version=1,stamp_ns=stamp_ns,depth_stamp_ns=depth_stamp_ns,
+                                                             ^
+
+./coco_perception/candidate_diagnostics.py:33:39: E231 missing whitespace after ','
+                           frame=frame,colour=colour,label=label,centroid=centroid,
+                                      ^
+
+./coco_perception/candidate_diagnostics.py:33:53: E231 missing whitespace after ','
+                           frame=frame,colour=colour,label=label,centroid=centroid,
+                                                    ^
+
+./coco_perception/candidate_diagnostics.py:33:65: E231 missing whitespace after ','
+                           frame=frame,colour=colour,label=label,centroid=centroid,
+                                                                ^
+
+./coco_perception/candidate_diagnostics.py:34:42: E231 missing whitespace after ','
+                           centroid_uv=[u,v],extents_m=extents,point_count=int(good.size),mask_area_px=area,
+                                         ^
+
+./coco_perception/candidate_diagnostics.py:34:45: E231 missing whitespace after ','
+                           centroid_uv=[u,v],extents_m=extents,point_count=int(good.size),mask_area_px=area,
+                                            ^
+
+./coco_perception/candidate_diagnostics.py:34:63: E231 missing whitespace after ','
+                           centroid_uv=[u,v],extents_m=extents,point_count=int(good.size),mask_area_px=area,
+                                                              ^
+
+./coco_perception/candidate_diagnostics.py:34:90: E231 missing whitespace after ','
+                           centroid_uv=[u,v],extents_m=extents,point_count=int(good.size),mask_area_px=area,
+                                                                                         ^
+
+./coco_perception/candidate_diagnostics.py:34:100: E501 line too long (108 > 99 characters)
+                           centroid_uv=[u,v],extents_m=extents,point_count=int(good.size),mask_area_px=area,
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:35:42: E231 missing whitespace after ','
+                           width_px=width,height_px=height,
+                                         ^
+
+./coco_perception/candidate_diagnostics.py:36:60: E231 missing whitespace after ':'
+                           depth_statistics={'finite_count':int(np.isfinite(raw).sum()),
+                                                           ^
+
+./coco_perception/candidate_diagnostics.py:37:59: E231 missing whitespace after ':'
+                                             'valid_count':int(good.size),
+                                                          ^
+
+./coco_perception/candidate_diagnostics.py:38:56: E231 missing whitespace after ':'
+                                             'median_m':float(np.median(good)) if good.size else None,
+                                                       ^
+
+./coco_perception/candidate_diagnostics.py:38:100: E501 line too long (102 > 99 characters)
+                                             'median_m':float(np.median(good)) if good.size else None,
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:39:53: E231 missing whitespace after ':'
+                                             'min_m':float(good.min()) if good.size else None,
+                                                    ^
+
+./coco_perception/candidate_diagnostics.py:40:53: E231 missing whitespace after ':'
+                                             'max_m':float(good.max()) if good.size else None,
+                                                    ^
+
+./coco_perception/candidate_diagnostics.py:41:53: E231 missing whitespace after ':'
+                                             'mad_m':float(np.median(abs(good-np.median(good)))) if good.size else None},
+                                                    ^
+
+./coco_perception/candidate_diagnostics.py:41:100: E501 line too long (121 > 99 characters)
+                                             'mad_m':float(np.median(abs(good-np.median(good)))) if good.size else None},
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:42:39: E231 missing whitespace after ','
+                           range_m=rng,bearing_rad=math.atan2(u-cx,fx),
+                                      ^
+
+./coco_perception/candidate_diagnostics.py:42:67: E231 missing whitespace after ','
+                           range_m=rng,bearing_rad=math.atan2(u-cx,fx),
+                                                                  ^
+
+./coco_perception/candidate_diagnostics.py:43:63: E231 missing whitespace after ','
+                           touches_image_edge=bool(component[0,:].any() or component[-1,:].any()
+                                                              ^
+
+./coco_perception/candidate_diagnostics.py:43:88: E231 missing whitespace after ','
+                           touches_image_edge=bool(component[0,:].any() or component[-1,:].any()
+                                                                                       ^
+
+./coco_perception/candidate_diagnostics.py:44:66: E231 missing whitespace after ','
+                                                   or component[:,0].any() or component[:,-1].any()),
+                                                                 ^
+
+./coco_perception/candidate_diagnostics.py:44:90: E231 missing whitespace after ','
+                                                   or component[:,0].any() or component[:,-1].any()),
+                                                                                         ^
+
+./coco_perception/candidate_diagnostics.py:44:100: E501 line too long (101 > 99 characters)
+                                                   or component[:,0].any() or component[:,-1].any()),
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:45:42: E225 missing whitespace around operator
+                           accepted=label==selected_label and selected_reason=='VALID',
+                                         ^
+
+./coco_perception/candidate_diagnostics.py:45:78: E225 missing whitespace around operator
+                           accepted=label==selected_label and selected_reason=='VALID',
+                                                                             ^
+
+./coco_perception/candidate_diagnostics.py:46:41: E231 missing whitespace after ','
+                           reason=reason,geometry_reason=geometric,
+                                        ^
+
+./coco_perception/candidate_diagnostics.py:47:100: E501 line too long (138 > 99 characters)
+                           extent_kind='observed visible surface in camera optical frame; not object-center or full-cylinder dimensions'))
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:51:14: E231 missing whitespace after ','
+def emit(node,hsv,depth,msg,selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+             ^
+
+./coco_perception/candidate_diagnostics.py:51:18: E231 missing whitespace after ','
+def emit(node,hsv,depth,msg,selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+                 ^
+
+./coco_perception/candidate_diagnostics.py:51:24: E231 missing whitespace after ','
+def emit(node,hsv,depth,msg,selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+                       ^
+
+./coco_perception/candidate_diagnostics.py:51:28: E231 missing whitespace after ','
+def emit(node,hsv,depth,msg,selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+                           ^
+
+./coco_perception/candidate_diagnostics.py:51:48: E231 missing whitespace after ','
+def emit(node,hsv,depth,msg,selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+                                               ^
+
+./coco_perception/candidate_diagnostics.py:51:79: E231 missing whitespace after ','
+def emit(node,hsv,depth,msg,selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+                                                                              ^
+
+./coco_perception/candidate_diagnostics.py:51:100: E501 line too long (100 > 99 characters)
+def emit(node,hsv,depth,msg,selected_label=None,selected_reason='NOT_SELECTED',depth_stamp_ns=None):
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:55:14: E225 missing whitespace around operator
+        stamp=msg.header.stamp.sec*10**9+msg.header.stamp.nanosec
+             ^
+
+./coco_perception/candidate_diagnostics.py:56:37: E231 missing whitespace after ','
+        for record in candidates(hsv,depth,node.selected,node.intrinsics,node.min_range,node.max_range,
+                                    ^
+
+./coco_perception/candidate_diagnostics.py:56:43: E231 missing whitespace after ','
+        for record in candidates(hsv,depth,node.selected,node.intrinsics,node.min_range,node.max_range,
+                                          ^
+
+./coco_perception/candidate_diagnostics.py:56:57: E231 missing whitespace after ','
+        for record in candidates(hsv,depth,node.selected,node.intrinsics,node.min_range,node.max_range,
+                                                        ^
+
+./coco_perception/candidate_diagnostics.py:56:73: E231 missing whitespace after ','
+        for record in candidates(hsv,depth,node.selected,node.intrinsics,node.min_range,node.max_range,
+                                                                        ^
+
+./coco_perception/candidate_diagnostics.py:56:88: E231 missing whitespace after ','
+        for record in candidates(hsv,depth,node.selected,node.intrinsics,node.min_range,node.max_range,
+                                                                                       ^
+
+./coco_perception/candidate_diagnostics.py:56:100: E501 line too long (103 > 99 characters)
+        for record in candidates(hsv,depth,node.selected,node.intrinsics,node.min_range,node.max_range,
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:57:54: E231 missing whitespace after ','
+                                 node.width_tolerance,stamp,msg.header.frame_id,
+                                                     ^
+
+./coco_perception/candidate_diagnostics.py:57:60: E231 missing whitespace after ','
+                                 node.width_tolerance,stamp,msg.header.frame_id,
+                                                           ^
+
+./coco_perception/candidate_diagnostics.py:58:48: E231 missing whitespace after ','
+                                 selected_label,selected_reason,depth_stamp_ns):
+                                               ^
+
+./coco_perception/candidate_diagnostics.py:58:64: E231 missing whitespace after ','
+                                 selected_label,selected_reason,depth_stamp_ns):
+                                                               ^
+
+./coco_perception/candidate_diagnostics.py:59:70: E231 missing whitespace after ','
+            node._candidate_pub.publish(String(data=json.dumps(record,allow_nan=False)))
+                                                                     ^
+
+./coco_perception/candidate_diagnostics.py:61:75: E231 missing whitespace after ','
+        node.get_logger().warn(f'candidate diagnostics unavailable: {exc}',throttle_duration_sec=5.)
+                                                                          ^
+
+./coco_perception/candidate_diagnostics.py:61:100: E501 line too long (100 > 99 characters)
+        node.get_logger().warn(f'candidate diagnostics unavailable: {exc}',throttle_duration_sec=5.)
+                                                                                                   ^
+
+./coco_perception/target_finder.py:536:18: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,found[0][-1] if found else None,
+                 ^
+
+./coco_perception/target_finder.py:536:22: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,found[0][-1] if found else None,
+                     ^
+
+./coco_perception/target_finder.py:536:28: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,found[0][-1] if found else None,
+                           ^
+
+./coco_perception/target_finder.py:536:32: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,found[0][-1] if found else None,
+                               ^
+
+./coco_perception/target_finder.py:537:50: E231 missing whitespace after ','
+             'VALID' if found else 'NOT_SELECTED',key)
+                                                 ^
+
+./coco_perception/target_pose_node.py:418:18: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,observation.blob[-1] if observation.blob else None,
+                 ^
+
+./coco_perception/target_pose_node.py:418:22: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,observation.blob[-1] if observation.blob else None,
+                     ^
+
+./coco_perception/target_pose_node.py:418:28: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,observation.blob[-1] if observation.blob else None,
+                           ^
+
+./coco_perception/target_pose_node.py:418:32: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,observation.blob[-1] if observation.blob else None,
+                               ^
+
+./coco_perception/target_pose_node.py:419:34: E231 missing whitespace after ','
+             observation.validity,key)
+                                 ^
+
+./test/test_candidate_diagnostics.py:1:1: F401 'copy' imported but unused
+import copy
+^
+
+./test/test_candidate_diagnostics.py:2:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import copy' is identified as Stdlib.
+import numpy as np
+^
+
+./test/test_candidate_diagnostics.py:4:1: I100 Import statements are in the wrong order. 'from coco_perception.candidate_diagnostics import candidates, emit' should be before 'import pytest'
+from coco_perception.candidate_diagnostics import candidates,emit
+^
+
+./test/test_candidate_diagnostics.py:4:1: F401 'coco_perception.candidate_diagnostics.emit' imported but unused
+from coco_perception.candidate_diagnostics import candidates,emit
+^
+
+./test/test_candidate_diagnostics.py:4:61: E231 missing whitespace after ','
+from coco_perception.candidate_diagnostics import candidates,emit
+                                                            ^
+
+./test/test_candidate_diagnostics.py:9:8: E225 missing whitespace around operator
+    hsv=np.zeros((30,30,3),dtype=np.uint8)
+       ^
+
+./test/test_candidate_diagnostics.py:9:21: E231 missing whitespace after ','
+    hsv=np.zeros((30,30,3),dtype=np.uint8)
+                    ^
+
+./test/test_candidate_diagnostics.py:9:24: E231 missing whitespace after ','
+    hsv=np.zeros((30,30,3),dtype=np.uint8)
+                       ^
+
+./test/test_candidate_diagnostics.py:9:27: E231 missing whitespace after ','
+    hsv=np.zeros((30,30,3),dtype=np.uint8)
+                          ^
+
+./test/test_candidate_diagnostics.py:10:13: E231 missing whitespace after ','
+    hsv[0:15,0:8]=[0,200,200]
+            ^
+
+./test/test_candidate_diagnostics.py:10:18: E225 missing whitespace around operator
+    hsv[0:15,0:8]=[0,200,200]
+                 ^
+
+./test/test_candidate_diagnostics.py:10:21: E231 missing whitespace after ','
+    hsv[0:15,0:8]=[0,200,200]
+                    ^
+
+./test/test_candidate_diagnostics.py:10:25: E231 missing whitespace after ','
+    hsv[0:15,0:8]=[0,200,200]
+                        ^
+
+./test/test_candidate_diagnostics.py:11:14: E231 missing whitespace after ','
+    hsv[20:25,20:25]=[0,200,200]
+             ^
+
+./test/test_candidate_diagnostics.py:11:21: E225 missing whitespace around operator
+    hsv[20:25,20:25]=[0,200,200]
+                    ^
+
+./test/test_candidate_diagnostics.py:11:24: E231 missing whitespace after ','
+    hsv[20:25,20:25]=[0,200,200]
+                       ^
+
+./test/test_candidate_diagnostics.py:11:28: E231 missing whitespace after ','
+    hsv[20:25,20:25]=[0,200,200]
+                           ^
+
+./test/test_candidate_diagnostics.py:12:15: E231 missing whitespace after ','
+    return hsv,np.ones((30,30),dtype=np.float32)
+              ^
+
+./test/test_candidate_diagnostics.py:12:27: E231 missing whitespace after ','
+    return hsv,np.ones((30,30),dtype=np.float32)
+                          ^
+
+./test/test_candidate_diagnostics.py:12:31: E231 missing whitespace after ','
+    return hsv,np.ones((30,30),dtype=np.float32)
+                              ^
+
+./test/test_candidate_diagnostics.py:16:8: E231 missing whitespace after ','
+    hsv,depth=image();a=hsv.copy();b=depth.copy()
+       ^
+
+./test/test_candidate_diagnostics.py:16:14: E225 missing whitespace around operator
+    hsv,depth=image();a=hsv.copy();b=depth.copy()
+             ^
+
+./test/test_candidate_diagnostics.py:16:22: E702 multiple statements on one line (semicolon)
+    hsv,depth=image();a=hsv.copy();b=depth.copy()
+                     ^
+
+./test/test_candidate_diagnostics.py:16:22: E231 missing whitespace after ';'
+    hsv,depth=image();a=hsv.copy();b=depth.copy()
+                     ^
+
+./test/test_candidate_diagnostics.py:16:24: E225 missing whitespace around operator
+    hsv,depth=image();a=hsv.copy();b=depth.copy()
+                       ^
+
+./test/test_candidate_diagnostics.py:16:35: E702 multiple statements on one line (semicolon)
+    hsv,depth=image();a=hsv.copy();b=depth.copy()
+                                  ^
+
+./test/test_candidate_diagnostics.py:16:35: E231 missing whitespace after ';'
+    hsv,depth=image();a=hsv.copy();b=depth.copy()
+                                  ^
+
+./test/test_candidate_diagnostics.py:16:37: E225 missing whitespace around operator
+    hsv,depth=image();a=hsv.copy();b=depth.copy()
+                                    ^
+
+./test/test_candidate_diagnostics.py:17:11: E225 missing whitespace around operator
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+          ^
+
+./test/test_candidate_diagnostics.py:17:26: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                         ^
+
+./test/test_candidate_diagnostics.py:17:32: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                               ^
+
+./test/test_candidate_diagnostics.py:17:38: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                     ^
+
+./test/test_candidate_diagnostics.py:17:43: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                          ^
+
+./test/test_candidate_diagnostics.py:17:47: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                              ^
+
+./test/test_candidate_diagnostics.py:17:50: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                 ^
+
+./test/test_candidate_diagnostics.py:17:54: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                     ^
+
+./test/test_candidate_diagnostics.py:17:58: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                         ^
+
+./test/test_candidate_diagnostics.py:17:60: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                           ^
+
+./test/test_candidate_diagnostics.py:17:63: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                              ^
+
+./test/test_candidate_diagnostics.py:17:67: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                                  ^
+
+./test/test_candidate_diagnostics.py:17:90: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                                                         ^
+
+./test/test_candidate_diagnostics.py:17:92: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                                                           ^
+
+./test/test_candidate_diagnostics.py:17:100: E501 line too long (104 > 99 characters)
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                                                                   ^
+
+./test/test_candidate_diagnostics.py:17:100: E231 missing whitespace after ','
+    values=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,100,'camera_optical_frame',1,'VALID',100)
+                                                                                                   ^
+
+./test/test_candidate_diagnostics.py:18:23: E225 missing whitespace around operator
+    assert len(values)==2
+                      ^
+
+./test/test_candidate_diagnostics.py:21:30: E225 missing whitespace around operator
+    assert values[0]['frame']=='camera_optical_frame' and values[0]['stamp_ns']==100
+                             ^
+
+./test/test_candidate_diagnostics.py:21:80: E225 missing whitespace around operator
+    assert values[0]['frame']=='camera_optical_frame' and values[0]['stamp_ns']==100
+                                                                               ^
+
+./test/test_candidate_diagnostics.py:22:75: E225 missing whitespace around operator
+    assert values[0]['extents_m'] is not None and values[0]['point_count']>0
+                                                                          ^
+
+./test/test_candidate_diagnostics.py:23:28: E231 missing whitespace after ','
+    assert np.array_equal(a,hsv) and np.array_equal(b,depth)
+                           ^
+
+./test/test_candidate_diagnostics.py:23:54: E231 missing whitespace after ','
+    assert np.array_equal(a,hsv) and np.array_equal(b,depth)
+                                                     ^
+
+./test/test_candidate_diagnostics.py:26:33: E231 missing whitespace after ','
+@pytest.mark.parametrize('depth',[None,np.zeros((30,30)),np.ones((2,2)),np.full((30,30),np.nan)])
+                                ^
+
+./test/test_candidate_diagnostics.py:26:39: E231 missing whitespace after ','
+@pytest.mark.parametrize('depth',[None,np.zeros((30,30)),np.ones((2,2)),np.full((30,30),np.nan)])
+                                      ^
+
+./test/test_candidate_diagnostics.py:26:52: E231 missing whitespace after ','
+@pytest.mark.parametrize('depth',[None,np.zeros((30,30)),np.ones((2,2)),np.full((30,30),np.nan)])
+                                                   ^
+
+./test/test_candidate_diagnostics.py:26:57: E231 missing whitespace after ','
+@pytest.mark.parametrize('depth',[None,np.zeros((30,30)),np.ones((2,2)),np.full((30,30),np.nan)])
+                                                        ^
+
+./test/test_candidate_diagnostics.py:26:68: E231 missing whitespace after ','
+@pytest.mark.parametrize('depth',[None,np.zeros((30,30)),np.ones((2,2)),np.full((30,30),np.nan)])
+                                                                   ^
+
+./test/test_candidate_diagnostics.py:26:72: E231 missing whitespace after ','
+@pytest.mark.parametrize('depth',[None,np.zeros((30,30)),np.ones((2,2)),np.full((30,30),np.nan)])
+                                                                       ^
+
+./test/test_candidate_diagnostics.py:26:84: E231 missing whitespace after ','
+@pytest.mark.parametrize('depth',[None,np.zeros((30,30)),np.ones((2,2)),np.full((30,30),np.nan)])
+                                                                                   ^
+
+./test/test_candidate_diagnostics.py:26:88: E231 missing whitespace after ','
+@pytest.mark.parametrize('depth',[None,np.zeros((30,30)),np.ones((2,2)),np.full((30,30),np.nan)])
+                                                                                       ^
+
+./test/test_candidate_diagnostics.py:28:8: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+       ^
+
+./test/test_candidate_diagnostics.py:28:10: E225 missing whitespace around operator
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+         ^
+
+./test/test_candidate_diagnostics.py:28:18: E702 multiple statements on one line (semicolon)
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                 ^
+
+./test/test_candidate_diagnostics.py:28:18: E231 missing whitespace after ';'
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                 ^
+
+./test/test_candidate_diagnostics.py:28:20: E225 missing whitespace around operator
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                   ^
+
+./test/test_candidate_diagnostics.py:28:35: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                  ^
+
+./test/test_candidate_diagnostics.py:28:41: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                        ^
+
+./test/test_candidate_diagnostics.py:28:47: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                              ^
+
+./test/test_candidate_diagnostics.py:28:52: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                                   ^
+
+./test/test_candidate_diagnostics.py:28:56: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                                       ^
+
+./test/test_candidate_diagnostics.py:28:59: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                                          ^
+
+./test/test_candidate_diagnostics.py:28:63: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                                              ^
+
+./test/test_candidate_diagnostics.py:28:67: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                                                  ^
+
+./test/test_candidate_diagnostics.py:28:69: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                                                    ^
+
+./test/test_candidate_diagnostics.py:28:72: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                                                       ^
+
+./test/test_candidate_diagnostics.py:28:74: E231 missing whitespace after ','
+    hsv,_=image();r=candidates(hsv,depth,'red',(400,400,15,15),.15,2,.5,1,'camera')
+                                                                         ^
+
+./test/test_candidate_diagnostics.py:29:27: E225 missing whitespace around operator
+    assert all(v['reason']=='DEPTH_INVALID' and v['centroid'] is None for v in r)
+                          ^
+
+./test/test_candidate_diagnostics.py:33:5: F401 'types.SimpleNamespace' imported but unused
+    from types import SimpleNamespace
+    ^
+
+./test/test_candidate_diagnostics.py:34:8: E231 missing whitespace after ','
+    hsv,depth=image()
+       ^
+
+./test/test_candidate_diagnostics.py:34:14: E225 missing whitespace around operator
+    hsv,depth=image()
+             ^
+
+./test/test_candidate_diagnostics.py:35:9: E225 missing whitespace around operator
+    node=object.__new__(TargetFinder)
+        ^
+
+./test/test_candidate_diagnostics.py:36:20: E225 missing whitespace around operator
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                   ^
+
+./test/test_candidate_diagnostics.py:36:25: E231 missing whitespace after ','
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                        ^
+
+./test/test_candidate_diagnostics.py:36:29: E231 missing whitespace after ','
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                            ^
+
+./test/test_candidate_diagnostics.py:36:32: E231 missing whitespace after ','
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                               ^
+
+./test/test_candidate_diagnostics.py:36:36: E702 multiple statements on one line (semicolon)
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                   ^
+
+./test/test_candidate_diagnostics.py:36:36: E231 missing whitespace after ';'
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                   ^
+
+./test/test_candidate_diagnostics.py:36:51: E225 missing whitespace around operator
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                                  ^
+
+./test/test_candidate_diagnostics.py:36:55: E702 multiple statements on one line (semicolon)
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                                      ^
+
+./test/test_candidate_diagnostics.py:36:55: E231 missing whitespace after ';'
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                                      ^
+
+./test/test_candidate_diagnostics.py:36:70: E225 missing whitespace around operator
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                                                     ^
+
+./test/test_candidate_diagnostics.py:36:73: E702 multiple statements on one line (semicolon)
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                                                        ^
+
+./test/test_candidate_diagnostics.py:36:73: E231 missing whitespace after ';'
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                                                        ^
+
+./test/test_candidate_diagnostics.py:36:94: E225 missing whitespace around operator
+    node.intrinsics=(400,400,15,15);node.min_range=.15;node.max_range=2.;node.width_tolerance=.5
+                                                                                             ^
+
+./test/test_candidate_diagnostics.py:37:11: E225 missing whitespace around operator
+    before=node._locate(hsv,depth,'red')
+          ^
+
+./test/test_candidate_diagnostics.py:37:28: E231 missing whitespace after ','
+    before=node._locate(hsv,depth,'red')
+                           ^
+
+./test/test_candidate_diagnostics.py:37:34: E231 missing whitespace after ','
+    before=node._locate(hsv,depth,'red')
+                                 ^
+
+./test/test_candidate_diagnostics.py:38:19: E231 missing whitespace after ','
+    candidates(hsv,depth,'red',node.intrinsics,.15,2.,.5,1,'camera')
+                  ^
+
+./test/test_candidate_diagnostics.py:38:25: E231 missing whitespace after ','
+    candidates(hsv,depth,'red',node.intrinsics,.15,2.,.5,1,'camera')
+                        ^
+
+./test/test_candidate_diagnostics.py:38:31: E231 missing whitespace after ','
+    candidates(hsv,depth,'red',node.intrinsics,.15,2.,.5,1,'camera')
+                              ^
+
+./test/test_candidate_diagnostics.py:38:47: E231 missing whitespace after ','
+    candidates(hsv,depth,'red',node.intrinsics,.15,2.,.5,1,'camera')
+                                              ^
+
+./test/test_candidate_diagnostics.py:38:51: E231 missing whitespace after ','
+    candidates(hsv,depth,'red',node.intrinsics,.15,2.,.5,1,'camera')
+                                                  ^
+
+./test/test_candidate_diagnostics.py:38:54: E231 missing whitespace after ','
+    candidates(hsv,depth,'red',node.intrinsics,.15,2.,.5,1,'camera')
+                                                     ^
+
+./test/test_candidate_diagnostics.py:38:57: E231 missing whitespace after ','
+    candidates(hsv,depth,'red',node.intrinsics,.15,2.,.5,1,'camera')
+                                                        ^
+
+./test/test_candidate_diagnostics.py:38:59: E231 missing whitespace after ','
+    candidates(hsv,depth,'red',node.intrinsics,.15,2.,.5,1,'camera')
+                                                          ^
+
+./test/test_candidate_diagnostics.py:39:28: E231 missing whitespace after ','
+    assert node._locate(hsv,depth,'red')==before
+                           ^
+
+./test/test_candidate_diagnostics.py:39:34: E231 missing whitespace after ','
+    assert node._locate(hsv,depth,'red')==before
+                                 ^
+
+./test/test_candidate_diagnostics.py:39:41: E225 missing whitespace around operator
+    assert node._locate(hsv,depth,'red')==before
+                                        ^
+
+1     C408 Unnecessary dict call - rewrite as a literal.
+54    E225 missing whitespace around operator
+4     E227 missing whitespace around bitwise or shift operator
+163   E231 missing whitespace after ','
+12    E501 line too long (109 > 99 characters)
+9     E702 multiple statements on one line (semicolon)
+3     F401 'copy' imported but unused
+1     I100 Import statements are in the wrong order. 'from coco_perception.candidate_diagnostics import candidates, emit' should be before 'import pytest'
+2     I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import math' is identified as Stdlib.
+
+14 files checked
+249 errors
+
+'C'-type errors: 1
+'E'-type errors: 242
+'F'-type errors: 3
+'I'-type errors: 3
+
+Checked files:
+
+* ./setup.py
+* ./coco_perception/__init__.py
+* ./coco_perception/target_finder.py
+* ./coco_perception/vision_check.py
+* ./coco_perception/target_pose.py
+* ./coco_perception/candidate_diagnostics.py
+* ./coco_perception/target_pose_node.py
+* ./launch/perception.launch.py
+* ./test/test_copyright.py
+* ./test/test_target_pose.py
+* ./test/test_pep257.py
+* ./test/test_target_finder.py
+* ./test/test_flake8.py
+* ./test/test_candidate_diagnostics.py
+=============================== warnings summary ===============================
+test/test_flake8.py: 12 warnings
+  Warning: This process (pid=173716) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test/test_copyright.py::test_copyright - AssertionError: Found errors
+FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 249 code styl...
+2 failed, 143 passed, 12 warnings in 7.62s

@@ -272,6 +272,7 @@ class TargetPoseNode(Node):
             String, self.get_parameter('colour_topic').value,
             self._on_colour, 10)
 
+        self._candidate_pub = self.create_publisher(String, '/perception/candidates', 10)
         self._pose_pub = self.create_publisher(
             Detection3DArray, self.get_parameter('pose_topic').value, 10)
         self._grasp_pub = self.create_publisher(
@@ -413,6 +414,9 @@ class TargetPoseNode(Node):
             self._compat = finder_status(
                 **tp.finder_status_fields(observation))
         self._publish(observation, msg.header.stamp)
+        from .candidate_diagnostics import emit
+        emit(self, hsv, depth, msg, observation.blob[-1] if observation.blob else None,
+             observation.validity, key)
 
     def _observe(self, hsv, depth, seen):
         """Detect and range the target in the camera's own frame."""

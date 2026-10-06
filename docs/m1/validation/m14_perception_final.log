@@ -1,0 +1,325 @@
+.......F................................................................ [ 49%]
+........................................................................ [ 99%]
+.                                                                        [100%]
+=================================== FAILURES ===================================
+_________________________________ test_flake8 __________________________________
+
+    @pytest.mark.flake8
+    @pytest.mark.linter
+    def test_flake8():
+        rc, errors = main_with_errors(argv=[])
+>       assert rc == 0, \
+            'Found %d code style errors / warnings:\n' % len(errors) + \
+            '\n'.join(errors)
+E       AssertionError: Found 53 code style errors / warnings:
+E         ./coco_perception/candidate_diagnostics.py:18:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import math' is identified as Stdlib.
+E         ./coco_perception/candidate_diagnostics.py:32:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:63:13: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:66:17: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:69:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:71:26: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:92:44: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:92:57: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:95:13: C408 Unnecessary dict call - rewrite as a literal.
+E         ./coco_perception/candidate_diagnostics.py:110:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:111:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:112:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:113:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:114:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:115:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:129:73: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:132:29: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:132:100: E501 line too long (126 > 99 characters)
+E         ./coco_perception/candidate_diagnostics.py:144:21: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/candidate_diagnostics.py:171:13: Q000 Double quotes found but single quotes preferred
+E         ./coco_perception/target_finder.py:536:18: E231 missing whitespace after ','
+E         ./coco_perception/target_finder.py:536:22: E231 missing whitespace after ','
+E         ./coco_perception/target_finder.py:536:28: E231 missing whitespace after ','
+E         ./coco_perception/target_finder.py:536:32: E231 missing whitespace after ','
+E         ./coco_perception/target_finder.py:537:50: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:418:18: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:418:22: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:418:28: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:418:32: E231 missing whitespace after ','
+E         ./coco_perception/target_pose_node.py:419:34: E231 missing whitespace after ','
+E         ./test/test_candidate_diagnostics.py:17:1: I100 Import statements are in the wrong order. 'from coco_perception.candidate_diagnostics import candidates, emit' should be before 'import pytest'
+E         ./test/test_candidate_diagnostics.py:17:1: F401 'coco_perception.candidate_diagnostics.emit' imported but unused
+E         ./test/test_candidate_diagnostics.py:35:9: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:41:9: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:43:9: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:47:22: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:47:48: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:48:26: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:49:22: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:49:34: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:49:71: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:50:22: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:50:61: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:55:5: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:59:32: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:59:76: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:60:18: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:60:31: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:60:53: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:70:39: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:71:28: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:71:71: Q000 Double quotes found but single quotes preferred
+E         ./test/test_candidate_diagnostics.py:72:37: Q000 Double quotes found but single quotes preferred
+E       assert 1 == 0
+
+test/test_flake8.py:23: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+./coco_perception/candidate_diagnostics.py:18:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import math' is identified as Stdlib.
+import numpy as np
+^
+
+./coco_perception/candidate_diagnostics.py:32:21: Q000 Double quotes found but single quotes preferred
+    selected_reason="NOT_SELECTED",
+                    ^
+
+./coco_perception/candidate_diagnostics.py:63:13: Q000 Double quotes found but single quotes preferred
+            "BLOB_TOO_SMALL"
+            ^
+
+./coco_perception/candidate_diagnostics.py:66:17: Q000 Double quotes found but single quotes preferred
+                "DEPTH_INVALID"
+                ^
+
+./coco_perception/candidate_diagnostics.py:69:21: Q000 Double quotes found but single quotes preferred
+                    "VALID"
+                    ^
+
+./coco_perception/candidate_diagnostics.py:71:26: Q000 Double quotes found but single quotes preferred
+                    else "IMPLAUSIBLE_SIZE"
+                         ^
+
+./coco_perception/candidate_diagnostics.py:92:44: Q000 Double quotes found but single quotes preferred
+            else geometric if geometric != "VALID" else "NOT_SELECTED"
+                                           ^
+
+./coco_perception/candidate_diagnostics.py:92:57: Q000 Double quotes found but single quotes preferred
+            else geometric if geometric != "VALID" else "NOT_SELECTED"
+                                                        ^
+
+./coco_perception/candidate_diagnostics.py:95:13: C408 Unnecessary dict call - rewrite as a literal.
+            dict(
+            ^
+
+./coco_perception/candidate_diagnostics.py:110:21: Q000 Double quotes found but single quotes preferred
+                    "finite_count": int(np.isfinite(raw).sum()),
+                    ^
+
+./coco_perception/candidate_diagnostics.py:111:21: Q000 Double quotes found but single quotes preferred
+                    "valid_count": int(good.size),
+                    ^
+
+./coco_perception/candidate_diagnostics.py:112:21: Q000 Double quotes found but single quotes preferred
+                    "median_m": float(np.median(good)) if good.size else None,
+                    ^
+
+./coco_perception/candidate_diagnostics.py:113:21: Q000 Double quotes found but single quotes preferred
+                    "min_m": float(good.min()) if good.size else None,
+                    ^
+
+./coco_perception/candidate_diagnostics.py:114:21: Q000 Double quotes found but single quotes preferred
+                    "max_m": float(good.max()) if good.size else None,
+                    ^
+
+./coco_perception/candidate_diagnostics.py:115:21: Q000 Double quotes found but single quotes preferred
+                    "mad_m": (
+                    ^
+
+./coco_perception/candidate_diagnostics.py:129:73: Q000 Double quotes found but single quotes preferred
+                accepted=label == selected_label and selected_reason == "VALID",
+                                                                        ^
+
+./coco_perception/candidate_diagnostics.py:132:29: Q000 Double quotes found but single quotes preferred
+                extent_kind="observed visible surface in camera optical frame; not object-center or full-cylinder dimensions",
+                            ^
+
+./coco_perception/candidate_diagnostics.py:132:100: E501 line too long (126 > 99 characters)
+                extent_kind="observed visible surface in camera optical frame; not object-center or full-cylinder dimensions",
+                                                                                                   ^
+
+./coco_perception/candidate_diagnostics.py:144:21: Q000 Double quotes found but single quotes preferred
+    selected_reason="NOT_SELECTED",
+                    ^
+
+./coco_perception/candidate_diagnostics.py:171:13: Q000 Double quotes found but single quotes preferred
+            f"candidate diagnostics unavailable: {exc}", throttle_duration_sec=5.0
+            ^
+
+./coco_perception/target_finder.py:536:18: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,found[0][-1] if found else None,
+                 ^
+
+./coco_perception/target_finder.py:536:22: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,found[0][-1] if found else None,
+                     ^
+
+./coco_perception/target_finder.py:536:28: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,found[0][-1] if found else None,
+                           ^
+
+./coco_perception/target_finder.py:536:32: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,found[0][-1] if found else None,
+                               ^
+
+./coco_perception/target_finder.py:537:50: E231 missing whitespace after ','
+             'VALID' if found else 'NOT_SELECTED',key)
+                                                 ^
+
+./coco_perception/target_pose_node.py:418:18: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,observation.blob[-1] if observation.blob else None,
+                 ^
+
+./coco_perception/target_pose_node.py:418:22: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,observation.blob[-1] if observation.blob else None,
+                     ^
+
+./coco_perception/target_pose_node.py:418:28: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,observation.blob[-1] if observation.blob else None,
+                           ^
+
+./coco_perception/target_pose_node.py:418:32: E231 missing whitespace after ','
+        emit(self,hsv,depth,msg,observation.blob[-1] if observation.blob else None,
+                               ^
+
+./coco_perception/target_pose_node.py:419:34: E231 missing whitespace after ','
+             observation.validity,key)
+                                 ^
+
+./test/test_candidate_diagnostics.py:17:1: I100 Import statements are in the wrong order. 'from coco_perception.candidate_diagnostics import candidates, emit' should be before 'import pytest'
+from coco_perception.candidate_diagnostics import candidates, emit
+^
+
+./test/test_candidate_diagnostics.py:17:1: F401 'coco_perception.candidate_diagnostics.emit' imported but unused
+from coco_perception.candidate_diagnostics import candidates, emit
+^
+
+./test/test_candidate_diagnostics.py:35:9: Q000 Double quotes found but single quotes preferred
+        "red",
+        ^
+
+./test/test_candidate_diagnostics.py:41:9: Q000 Double quotes found but single quotes preferred
+        "camera_optical_frame",
+        ^
+
+./test/test_candidate_diagnostics.py:43:9: Q000 Double quotes found but single quotes preferred
+        "VALID",
+        ^
+
+./test/test_candidate_diagnostics.py:47:22: Q000 Double quotes found but single quotes preferred
+    assert values[0]["accepted"] and values[0]["touches_image_edge"]
+                     ^
+
+./test/test_candidate_diagnostics.py:47:48: Q000 Double quotes found but single quotes preferred
+    assert values[0]["accepted"] and values[0]["touches_image_edge"]
+                                               ^
+
+./test/test_candidate_diagnostics.py:48:26: Q000 Double quotes found but single quotes preferred
+    assert not values[1]["touches_image_edge"]
+                         ^
+
+./test/test_candidate_diagnostics.py:49:22: Q000 Double quotes found but single quotes preferred
+    assert values[0]["frame"] == "camera_optical_frame" and values[0]["stamp_ns"] == 100
+                     ^
+
+./test/test_candidate_diagnostics.py:49:34: Q000 Double quotes found but single quotes preferred
+    assert values[0]["frame"] == "camera_optical_frame" and values[0]["stamp_ns"] == 100
+                                 ^
+
+./test/test_candidate_diagnostics.py:49:71: Q000 Double quotes found but single quotes preferred
+    assert values[0]["frame"] == "camera_optical_frame" and values[0]["stamp_ns"] == 100
+                                                                      ^
+
+./test/test_candidate_diagnostics.py:50:22: Q000 Double quotes found but single quotes preferred
+    assert values[0]["extents_m"] is not None and values[0]["point_count"] > 0
+                     ^
+
+./test/test_candidate_diagnostics.py:50:61: Q000 Double quotes found but single quotes preferred
+    assert values[0]["extents_m"] is not None and values[0]["point_count"] > 0
+                                                            ^
+
+./test/test_candidate_diagnostics.py:55:5: Q000 Double quotes found but single quotes preferred
+    "depth", [None, np.zeros((30, 30)), np.ones((2, 2)), np.full((30, 30), np.nan)]
+    ^
+
+./test/test_candidate_diagnostics.py:59:32: Q000 Double quotes found but single quotes preferred
+    r = candidates(hsv, depth, "red", (400, 400, 15, 15), 0.15, 2, 0.5, 1, "camera")
+                               ^
+
+./test/test_candidate_diagnostics.py:59:76: Q000 Double quotes found but single quotes preferred
+    r = candidates(hsv, depth, "red", (400, 400, 15, 15), 0.15, 2, 0.5, 1, "camera")
+                                                                           ^
+
+./test/test_candidate_diagnostics.py:60:18: Q000 Double quotes found but single quotes preferred
+    assert all(v["reason"] == "DEPTH_INVALID" and v["centroid"] is None for v in r)
+                 ^
+
+./test/test_candidate_diagnostics.py:60:31: Q000 Double quotes found but single quotes preferred
+    assert all(v["reason"] == "DEPTH_INVALID" and v["centroid"] is None for v in r)
+                              ^
+
+./test/test_candidate_diagnostics.py:60:53: Q000 Double quotes found but single quotes preferred
+    assert all(v["reason"] == "DEPTH_INVALID" and v["centroid"] is None for v in r)
+                                                    ^
+
+./test/test_candidate_diagnostics.py:70:39: Q000 Double quotes found but single quotes preferred
+    before = node._locate(hsv, depth, "red")
+                                      ^
+
+./test/test_candidate_diagnostics.py:71:28: Q000 Double quotes found but single quotes preferred
+    candidates(hsv, depth, "red", node.intrinsics, 0.15, 2.0, 0.5, 1, "camera")
+                           ^
+
+./test/test_candidate_diagnostics.py:71:71: Q000 Double quotes found but single quotes preferred
+    candidates(hsv, depth, "red", node.intrinsics, 0.15, 2.0, 0.5, 1, "camera")
+                                                                      ^
+
+./test/test_candidate_diagnostics.py:72:37: Q000 Double quotes found but single quotes preferred
+    assert node._locate(hsv, depth, "red") == before
+                                    ^
+
+1     C408 Unnecessary dict call - rewrite as a literal.
+10    E231 missing whitespace after ','
+1     E501 line too long (126 > 99 characters)
+1     F401 'coco_perception.candidate_diagnostics.emit' imported but unused
+1     I100 Import statements are in the wrong order. 'from coco_perception.candidate_diagnostics import candidates, emit' should be before 'import pytest'
+1     I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import math' is identified as Stdlib.
+38    Q000 Double quotes found but single quotes preferred
+
+14 files checked
+53 errors
+
+'C'-type errors: 1
+'E'-type errors: 11
+'F'-type errors: 1
+'I'-type errors: 2
+'Q'-type errors: 38
+
+Checked files:
+
+* ./setup.py
+* ./coco_perception/__init__.py
+* ./coco_perception/target_finder.py
+* ./coco_perception/vision_check.py
+* ./coco_perception/target_pose.py
+* ./coco_perception/candidate_diagnostics.py
+* ./coco_perception/target_pose_node.py
+* ./launch/perception.launch.py
+* ./test/test_copyright.py
+* ./test/test_target_pose.py
+* ./test/test_pep257.py
+* ./test/test_target_finder.py
+* ./test/test_flake8.py
+* ./test/test_candidate_diagnostics.py
+=============================== warnings summary ===============================
+test/test_flake8.py: 12 warnings
+  Warning: This process (pid=174831) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 53 code style...
+1 failed, 144 passed, 12 warnings in 7.60s

@@ -434,6 +434,7 @@ class TargetFinder(Node):
             String, self.get_parameter('colour_topic').value,
             self._on_colour, 10)
 
+        self._candidate_pub = self.create_publisher(String, '/perception/candidates', 10)
         self._target_pub = self.create_publisher(
             PointStamped, self.get_parameter('target_topic').value, 10)
         self._status_pub = self.create_publisher(
@@ -531,6 +532,9 @@ class TargetFinder(Node):
 
         if self.publish_annotated:
             self._publish_annotated(msg.header, frame, found)
+        from .candidate_diagnostics import emit
+        emit(self, hsv, depth, msg, found[0][-1] if found else None,
+             'VALID' if found else 'NOT_SELECTED', key)
 
     # ── the actual measurement ───────────────────────────────────────────
     def _locate(self, hsv, depth, colour):

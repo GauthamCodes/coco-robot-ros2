@@ -206,3 +206,18 @@ failed/unknown/unqualified/interrupted runs and two qualified PASS controls.
 allocations justified against entry ~15 GiB availability, not invariant tuning.
 Three local disk/hash/retention tests pass (`m1/validation/m13_tests.log`).
 IMPLEMENTED; real MCAP replay and qualified runtime pending. No simulator run.
+
+## 2026-10-06 — M1.4 observational perception candidate diagnostics
+
+M1 / M1.4 advances candidate-level rejection/acceptance evidence. Both existing
+perception nodes now emit `/perception/candidates` after their unchanged decision
+and outputs. One JSON String per selected-colour component, including small
+rejected blobs, records source stamp/frame, label/colour, visible-surface 3D
+centroid/extents, point counts, depth statistics, range/bearing, image-edge flag,
+actual selected acceptance/rejection and separate recomputed geometry reason.
+Missing geometry is explicit null; visible surface is not relabeled as target
+center/full dimensions. Diagnostic failures cannot change the original result.
+Existing gates, ordering, thresholds, task inputs and output state unchanged.
+Six new functional tests; complete package validation in `m1/validation/m14_*`.
+Initial root-cwd lint run and own new-file style failures retained, corrected
+without broad source refactoring. IMPLEMENTED; simulator overhead not measured.

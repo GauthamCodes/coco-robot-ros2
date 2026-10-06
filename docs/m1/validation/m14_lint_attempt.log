@@ -1,0 +1,193 @@
+import numpy as np
+^
+    selected_reason="NOT_SELECTED",
+                    ^
+            "BLOB_TOO_SMALL"
+            ^
+                "DEPTH_INVALID"
+                ^
+                    "VALID"
+                    ^
+                    else "IMPLAUSIBLE_SIZE"
+                         ^
+            else geometric if geometric != "VALID" else "NOT_SELECTED"
+                                           ^
+            else geometric if geometric != "VALID" else "NOT_SELECTED"
+                                                        ^
+            dict(
+            ^
+                    "finite_count": int(np.isfinite(raw).sum()),
+                    ^
+                    "valid_count": int(good.size),
+                    ^
+                    "median_m": float(np.median(good)) if good.size else None,
+                    ^
+                    "min_m": float(good.min()) if good.size else None,
+                    ^
+                    "max_m": float(good.max()) if good.size else None,
+                    ^
+                    "mad_m": (
+                    ^
+                accepted=label == selected_label and selected_reason == "VALID",
+                                                                        ^
+                extent_kind="observed visible surface in camera optical frame; not object-center or full-cylinder dimensions",
+                            ^
+                extent_kind="observed visible surface in camera optical frame; not object-center or full-cylinder dimensions",
+                                                                                                   ^
+    selected_reason="NOT_SELECTED",
+                    ^
+            f"candidate diagnostics unavailable: {exc}", throttle_duration_sec=5.0
+            ^
+from coco_perception.candidate_diagnostics import candidates, emit
+^
+from coco_perception.candidate_diagnostics import candidates, emit
+^
+        "red",
+        ^
+        "camera_optical_frame",
+        ^
+        "VALID",
+        ^
+    assert values[0]["accepted"] and values[0]["touches_image_edge"]
+                     ^
+    assert values[0]["accepted"] and values[0]["touches_image_edge"]
+                                               ^
+    assert not values[1]["touches_image_edge"]
+                         ^
+    assert values[0]["frame"] == "camera_optical_frame" and values[0]["stamp_ns"] == 100
+                     ^
+    assert values[0]["frame"] == "camera_optical_frame" and values[0]["stamp_ns"] == 100
+                                 ^
+    assert values[0]["frame"] == "camera_optical_frame" and values[0]["stamp_ns"] == 100
+                                                                      ^
+    assert values[0]["extents_m"] is not None and values[0]["point_count"] > 0
+                     ^
+    assert values[0]["extents_m"] is not None and values[0]["point_count"] > 0
+                                                            ^
+    "depth", [None, np.zeros((30, 30)), np.ones((2, 2)), np.full((30, 30), np.nan)]
+    ^
+    r = candidates(hsv, depth, "red", (400, 400, 15, 15), 0.15, 2, 0.5, 1, "camera")
+                               ^
+    r = candidates(hsv, depth, "red", (400, 400, 15, 15), 0.15, 2, 0.5, 1, "camera")
+                                                                           ^
+    assert all(v["reason"] == "DEPTH_INVALID" and v["centroid"] is None for v in r)
+                 ^
+    assert all(v["reason"] == "DEPTH_INVALID" and v["centroid"] is None for v in r)
+                              ^
+    assert all(v["reason"] == "DEPTH_INVALID" and v["centroid"] is None for v in r)
+                                                    ^
+    before = node._locate(hsv, depth, "red")
+                                      ^
+    candidates(hsv, depth, "red", node.intrinsics, 0.15, 2.0, 0.5, 1, "camera")
+                           ^
+    candidates(hsv, depth, "red", node.intrinsics, 0.15, 2.0, 0.5, 1, "camera")
+                                                                      ^
+    assert node._locate(hsv, depth, "red") == before
+                                    ^
+1     C408 Unnecessary dict call - rewrite as a literal.
+1     E501 line too long (126 > 99 characters)
+1     F401 'coco_perception.candidate_diagnostics.emit' imported but unused
+1     I100 Import statements are in the wrong order. 'from coco_perception.candidate_diagnostics import candidates, emit' should be before 'import pytest'
+1     I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import math' is identified as Stdlib.
+38    Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:18:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import math' is identified as Stdlib.
+
+coco_perception/coco_perception/candidate_diagnostics.py:32:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:63:13: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:66:17: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:69:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:71:26: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:92:44: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:92:57: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:95:13: C408 Unnecessary dict call - rewrite as a literal.
+
+coco_perception/coco_perception/candidate_diagnostics.py:110:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:111:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:112:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:113:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:114:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:115:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:129:73: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:132:29: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:132:100: E501 line too long (126 > 99 characters)
+
+coco_perception/coco_perception/candidate_diagnostics.py:144:21: Q000 Double quotes found but single quotes preferred
+
+coco_perception/coco_perception/candidate_diagnostics.py:171:13: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:17:1: I100 Import statements are in the wrong order. 'from coco_perception.candidate_diagnostics import candidates, emit' should be before 'import pytest'
+
+coco_perception/test/test_candidate_diagnostics.py:17:1: F401 'coco_perception.candidate_diagnostics.emit' imported but unused
+
+coco_perception/test/test_candidate_diagnostics.py:35:9: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:41:9: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:43:9: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:47:22: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:47:48: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:48:26: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:49:22: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:49:34: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:49:71: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:50:22: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:50:61: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:55:5: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:59:32: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:59:76: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:60:18: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:60:31: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:60:53: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:70:39: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:71:28: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:71:71: Q000 Double quotes found but single quotes preferred
+
+coco_perception/test/test_candidate_diagnostics.py:72:37: Q000 Double quotes found but single quotes preferred
+
+
+2 files checked
+43 errors
+
+'C'-type errors: 1
+'E'-type errors: 1
+'F'-type errors: 1
+'I'-type errors: 2
+'Q'-type errors: 38
+
+Checked files:
+
+* coco_perception/coco_perception/candidate_diagnostics.py
+* coco_perception/test/test_candidate_diagnostics.py

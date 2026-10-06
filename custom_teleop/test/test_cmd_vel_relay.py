@@ -129,10 +129,10 @@ def test_the_gated_topic_survives_ros_clean():
     assert 'nav2_' not in GATED_TOPIC
 
 
-def test_the_relay_defaults_still_drive_the_controller(relay):
-    # Topology A -- nav.launch.py without the arbiter -- is unchanged.
+def test_the_relay_defaults_feed_the_arbiter(relay):
+    # Standalone defaults also require the arbiter; direct wheel output is blocked.
     assert relay.get_parameter('input_topic').value == '/cmd_vel'
-    assert relay.get_parameter('output_topic').value == WHEEL_TOPIC
+    assert relay.get_parameter('output_topic').value == '/cmd_vel_gated'
 
 
 def test_the_arbiter_reads_the_relay_by_default(context):

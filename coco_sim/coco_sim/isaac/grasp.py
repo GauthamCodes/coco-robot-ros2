@@ -74,7 +74,7 @@ class Magnet:
                 String, f"/magnet/{target.name}/state", latched
             )
             self.heights[target.name] = node.create_publisher(
-                Float64, f"/grasp/{target.name}/height", 10
+                Float64, f"/eval/objects/{target.name}/height", 10
             )
             node.create_subscription(
                 Empty,

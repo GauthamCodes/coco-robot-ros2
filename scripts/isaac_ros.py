@@ -20,7 +20,7 @@ The backend only ever consumes the arbiter's final TwistStamped output.
 """
 import rclpy
 from rclpy.executors import SingleThreadedExecutor
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from geometry_msgs.msg import Twist, TwistStamped
 from custom_teleop.cmd_vel_arbiter import CmdVelArbiter
 

@@ -15,7 +15,7 @@
 """
 Keyboard teleoperation for the Coco robot's differential-drive base.
 
-Publishes TwistStamped messages to /diff_drive_controller/cmd_vel (the
+Publishes TwistStamped messages to /cmd_vel_teleop through the arbiter (the
 Jazzy diff_drive_controller accepts TwistStamped only). Features:
 - Incremental velocity control with configurable steps
 - Safety limits on linear and angular velocities
@@ -46,11 +46,11 @@ import termios
 import time
 import tty
 
+from coco_config.ros_boundary import AutonomyNode as Node
 from geometry_msgs.msg import TwistStamped
 
 import rclpy
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy
 
 # Defaults for the ROS parameters declared below. Override at runtime with
@@ -60,8 +60,8 @@ LINEAR_STEP, ANGULAR_STEP = 0.1, 0.2
 MAX_LINEAR, MAX_ANGULAR = 1.0, 2.0
 TIMEOUT_SECONDS = 1.0  # Auto-stop if no input for 1 second
 # The controller's own topic, so this node drives the robot when run alone.
-# Set cmd_vel_topic:=/cmd_vel_teleop to arbitrate instead.
-CMD_VEL_TOPIC = '/diff_drive_controller/cmd_vel'
+# The arbiter is required; direct final-wheel remaps are rejected.
+CMD_VEL_TOPIC = '/cmd_vel_teleop'
 
 
 def key_bindings(linear_step, angular_step):

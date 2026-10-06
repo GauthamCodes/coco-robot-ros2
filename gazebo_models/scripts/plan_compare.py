@@ -51,7 +51,7 @@ from nav_msgs.msg import OccupancyGrid
 import rclpy
 from rclpy.action import ActionClient
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from rclpy.qos import (QoSDurabilityPolicy, QoSHistoryPolicy, QoSProfile,
                        QoSReliabilityPolicy)
 

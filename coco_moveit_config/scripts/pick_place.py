@@ -289,6 +289,10 @@ class PickPlace(ArmControl):
 
     # ── demo sequence ────────────────────────────────────────────────────────
     def run(self):
+        self.get_logger().error(
+            'Pick/place demo unavailable: independent object-motion observation missing')
+        return False  # no simulator scene mutation or manipulation from this entry point
+
         if _HOVER_ERROR:
             self.get_logger().error(
                 f'{_HOVER_ERROR} — the default hover pose is unreachable with '

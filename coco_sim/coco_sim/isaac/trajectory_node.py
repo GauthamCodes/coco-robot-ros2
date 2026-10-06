@@ -23,7 +23,7 @@ import time
 
 import rclpy
 from rclpy.action import ActionServer, CancelResponse, GoalResponse
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from rclpy.task import Future
 from control_msgs.action import FollowJointTrajectory
 from sensor_msgs.msg import JointState

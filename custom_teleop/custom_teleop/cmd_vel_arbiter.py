@@ -89,6 +89,7 @@ collision monitor (C2-NAV.41_RESULTS.md section 6). The chain is
 
 import time
 
+from coco_config.ros_boundary import AutonomyNode as Node
 from custom_teleop.cmd_vel_relay import GATED_TOPIC
 
 from geometry_msgs.msg import TwistStamped
@@ -96,7 +97,6 @@ from geometry_msgs.msg import TwistStamped
 import rclpy
 from rclpy.clock import Clock, ClockType
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
 
 from std_msgs.msg import String
 
@@ -204,6 +204,8 @@ def format_status(mode, active, ages):
 
 class CmdVelArbiter(Node):
     """Selects one velocity source and is the only publisher to the wheels."""
+
+    FINAL_WHEEL_AUTHORITY = True
 
     def __init__(self):
         super().__init__('cmd_vel_arbiter')

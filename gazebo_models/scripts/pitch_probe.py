@@ -98,7 +98,7 @@ class PitchProbe(Node):
 
         self.create_subscription(Imu, '/imu', self._on_imu, sensor)
         self.create_subscription(
-            Odometry, '/model/coco/odometry', self._on_gt, 10)
+            Odometry, '/eval/robot/odometry', self._on_gt, 10)
         self.create_subscription(String, '/ramp/status', self._on_ramp, 10)
         self.create_subscription(String, '/mission/state', self._on_state, 10)
         self.create_subscription(String, '/mission/hud', self._on_hud, 10)

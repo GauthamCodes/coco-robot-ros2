@@ -108,7 +108,7 @@ from nav_msgs.msg import Path
 import rclpy
 from rclpy.clock import Clock, ClockType
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from rclpy.qos import QoSDurabilityPolicy, QoSHistoryPolicy, QoSProfile
 from rclpy.qos import QoSReliabilityPolicy
 

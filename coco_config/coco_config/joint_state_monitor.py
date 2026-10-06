@@ -28,7 +28,7 @@ pure function in coco_config.joint_limits, unit-tested without a sim.
 from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
 import rclpy
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from sensor_msgs.msg import JointState
 
 from coco_config.joint_limits import ARM_LIMITS, limit_margin

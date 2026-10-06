@@ -261,13 +261,15 @@ class TestObservation:
     def test_odometry_becomes_a_world_pose_with_a_heading(self, node):
         from nav_msgs.msg import Odometry
         msg = Odometry()
+        msg.header.frame_id = "odom"
+        msg.child_frame_id = "base_footprint"
         msg.pose.pose.position.x = 1.5
         msg.pose.pose.position.y = -0.25
         msg.pose.pose.orientation.z = 0.7071068
         msg.pose.pose.orientation.w = 0.7071068
         node._on_odom(msg)
         obs = node.observe()
-        assert obs.pose[0] == pytest.approx(1.5)
+        assert obs.pose[0] == pytest.approx(mx.arena_xy(msg.pose.pose.position)[0])
         assert obs.pose[1] == pytest.approx(-0.25)
         assert obs.pose[2] == pytest.approx(1.5707963, abs=1e-5)
         assert obs.pose_stamp is not None

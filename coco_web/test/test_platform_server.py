@@ -681,7 +681,7 @@ def test_the_needle_list_can_see_something():
     for topic in ('/perception/annotated', '/camera/image_raw',
                   '/camera/depth/image_raw', '/mission/start', '/scan',
                   '/diff_drive_controller/cmd_vel', '/cmd_vel_teleop',
-                  '/mission/target_colour', '/model/coco/odometry'):
+                  '/mission/target_colour', '/diff_drive_controller/odom'):
         assert topic in names, topic
 
 

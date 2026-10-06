@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """
-Relay TwistStamped messages from /cmd_vel to /diff_drive_controller/cmd_vel.
+Relay TwistStamped messages from /cmd_vel to /cmd_vel_gated for arbitration.
 
 Nav2 publishes its final velocity command on /cmd_vel (via the collision
 monitor), while the ros2_control DiffDriveController subscribes on its own
@@ -44,11 +44,11 @@ stamp got wheel commands dropped as stale (DESIGN_DECISIONS.md, "The
 stamp changes: frame_id and the twist are forwarded untouched.
 """
 
+from coco_config.ros_boundary import AutonomyNode as Node
 from geometry_msgs.msg import TwistStamped
 
 import rclpy
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
 
 # The relay's output when cmd_vel_arbiter owns the wheels, and the arbiter's
 # nav input. Must not contain 'nav2_': ros_clean.sh kills by that substring.
@@ -61,7 +61,7 @@ class CmdVelRelay(Node):
     def __init__(self):
         super().__init__('cmd_vel_relay')
         self.declare_parameter('input_topic', '/cmd_vel')
-        self.declare_parameter('output_topic', '/diff_drive_controller/cmd_vel')
+        self.declare_parameter('output_topic', '/cmd_vel_gated')
         src = self.get_parameter('input_topic').value
         dst = self.get_parameter('output_topic').value
         self._pub = self.create_publisher(TwistStamped, dst, 10)

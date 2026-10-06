@@ -40,11 +40,11 @@ import termios
 import tty
 
 from coco_config.joint_limits import ARM_LIMITS
+from coco_config.ros_boundary import AutonomyNode as Node
 
 import rclpy
 from rclpy.duration import Duration
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 

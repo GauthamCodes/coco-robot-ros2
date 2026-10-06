@@ -94,6 +94,7 @@ import os
 import threading
 import time
 
+from coco_config.ros_boundary import AutonomyNode as Node
 from coco_web import binary, imaging, metrics as metrics_mod
 from coco_web import mjpeg, protocol, safety
 from coco_web import session as session_mod
@@ -107,7 +108,6 @@ from nav_msgs.msg import OccupancyGrid, Odometry, Path
 
 import rclpy
 from rclpy.executors import ExternalShutdownException, SingleThreadedExecutor
-from rclpy.node import Node
 from rclpy.qos import (QoSDurabilityPolicy, QoSHistoryPolicy, QoSProfile,
                        QoSReliabilityPolicy)
 
@@ -177,7 +177,7 @@ COMPONENT_WORDS = {
 #: for tests; never sent to a client.
 COMPONENT_EVIDENCE = {
     session_mod.ROS: 'rclpy executor spinning',
-    session_mod.SIMULATOR: '/clock publisher AND /model/coco/odometry '
+    session_mod.SIMULATOR: '/clock publisher AND /diff_drive_controller/odom '
                            'arriving within STALE_AFTER_S',
     session_mod.LIDAR: '/scan arriving',
     session_mod.ROBOT: '/diff_drive_controller/odom arriving',
@@ -231,7 +231,7 @@ class CocoWebNode(Node):
         self.declare_parameter('teleop_topic', safety.TELEOP_TOPIC)
         # The COCO-specific proof that the simulator up there is OURS.
         # See simulator_up() for why /clock alone is not enough.
-        self.declare_parameter('sim_topic', '/model/coco/odometry')
+        self.declare_parameter('sim_topic', '/diff_drive_controller/odom')
         # Optional components whose absence makes the session DEGRADED
         # (the health axis). Only the launch file knows whether Nav2 or
         # the executive were started at all, so it says; mission.launch.py
@@ -312,11 +312,8 @@ class CocoWebNode(Node):
             PoseWithCovarianceStamped, '/amcl_pose', self._on_amcl, 10)
         self.create_subscription(
             LaserScan, '/scan', self._on_scan, _sensor_qos())
-        # COCO's own model odometry, straight from the gz plugin, as
-        # evidence that the simulator on this graph is COCO's and is
-        # actually stepping. raw=True: only the ARRIVAL is used, so the
-        # message is never deserialised -- at the plugin's rate that is
-        # the difference between a free liveness probe and a costly one.
+        # COCO controller odometry arrival is legitimate robot readiness.
+        # raw=True keeps this liveness probe independent of pose values.
         self.create_subscription(
             Odometry, str(self.get_parameter('sim_topic').value),
             self._on_sim_odom, _sensor_qos(depth=1), raw=True)
@@ -471,7 +468,7 @@ class CocoWebNode(Node):
         self.metrics.observed('lidar', 4 * len(msg.ranges))
 
     def _on_sim_odom(self, _raw):
-        """Stamp the arrival of COCO's gz model odometry. Never decoded."""
+        """Stamp the arrival of COCO's measured odometry. Never decoded."""
         with self._lock:
             self._snap['sim_t'] = time.monotonic()
 
@@ -830,18 +827,16 @@ class CocoWebNode(Node):
         TASK 10 warns about -- a green light for a simulator that cannot
         answer. So a COCO-specific topic has to be there too.
 
-        ``/model/coco/odometry`` is the gz plugin's own output. It is the
-        right probe because it appears well BEFORE the ros2_control stack
-        finishes activating, which is exactly the "simulator up, robot not
-        yet" state the session model wants to be able to report -- and it
-        is what verify_all.sh already gates on for the same reason.
+        ``/diff_drive_controller/odom`` is measured controller odometry.
+        Readiness now waits for wheel feedback, rather than receiving early
+        simulator world pose. This also applies to Isaac's encoder estimate.
 
         And a PUBLISHER is not evidence either -- the message has to be
         ARRIVING. A ``parameter_bridge`` orphaned by a killed simulator
         keeps its publisher on the graph and publishes nothing, and
         orphans are common enough here that ``ros_clean.sh`` exists to
         sweep them. Counting publishers would call that stack up. So the
-        rule is: something publishes /clock, AND COCO's model odometry
+        rule is: something publishes /clock, AND COCO's controller odometry
         arrived within ``STALE_AFTER_S``. A paused simulator therefore
         reads as down, which is what it is to someone trying to drive.
         """

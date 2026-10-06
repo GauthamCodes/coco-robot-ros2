@@ -38,8 +38,7 @@ so Nav2 must not write to it directly:
   ros2 launch gazebo_models nav.launch.py arbiter:=true
 
 which points the relay at /cmd_vel_gated, the arbiter's nav input, instead.
-Without arbiter:=true the relay drives the controller exactly as it always
-has.
+The legacy arbiter flag cannot bypass arbitration; an arbiter must run.
 
 /cmd_vel_gated is a topic of its own on purpose. nav2_bringup remaps
 controller_server, behavior_server and the velocity smoother's input onto
@@ -78,16 +77,14 @@ def generate_launch_description():
 
     # With the arbiter running it, not Nav2, owns the controller topic. Never
     # /cmd_vel_nav: that is the controller's raw output (see the docstring).
-    relay_output = PythonExpression([
-        "'/cmd_vel_gated' if '", LaunchConfiguration('arbiter'),
-        "'.lower() in ('true', '1') else '/diff_drive_controller/cmd_vel'"])
+    relay_output = '/cmd_vel_gated'  # every Nav2 command passes through arbitration
 
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='true'),
         DeclareLaunchArgument(
-            'arbiter', default_value='false',
+            'arbiter', default_value='true',
             description='Send Nav2 through cmd_vel_arbiter (/cmd_vel_gated) '
-                        'instead of straight to the controller. Requires '
+                        'for every launch mode. Requires '
                         'custom_teleop arbiter.launch.py to be running.'),
         DeclareLaunchArgument(
             'map',

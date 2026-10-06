@@ -155,10 +155,10 @@ def main():
         topic = f"/magnet/target_{colour}/state"
         node.create_subscription(
             String, topic, lambda msg, t=topic: status(t, msg), magnet_qos)
-        topic = f"/grasp/target_{colour}/height"
+        topic = f"/eval/objects/target_{colour}/height"
         node.create_subscription(
             Float64, topic, lambda msg, t=topic: record(t, msg.data), 10)
-    for topic in ("/diff_drive_controller/odom", "/model/coco/odometry"):
+    for topic in ("/diff_drive_controller/odom", "/eval/robot/odometry"):
 
         def odom(msg, t=topic):
             p, q = msg.pose.pose.position, msg.pose.pose.orientation

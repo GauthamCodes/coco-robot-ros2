@@ -100,11 +100,16 @@ def test_nonfinite_height_cannot_verify_a_grasp(server, monkeypatch, simulator):
     assert server.target_height() is None
 
 
-def test_release_rejects_object_below_the_floor(server, monkeypatch):
-    monkeypatch.setattr(server, 'target_height', lambda: -.011)
-    assert server.check_released() is False
-    monkeypatch.setattr(server, 'target_height', lambda: .079)
-    assert server.check_released() is True
+@pytest.mark.parametrize('height', [-.011, .079, 99.0])
+def test_simulator_height_cache_cannot_verify_a_release(server, height):
+    import time
+
+    server._heights[server.magnet_model] = (height, time.monotonic())
+    server._grasp_z = 0.0
+    assert server.target_height() is None
+    assert not server.grasp_magnet()
+    assert not server.check_lifted()
+    assert not server.check_released()
 
 
 def test_open_failure_leaves_physical_attachment_intact(server, monkeypatch):
@@ -148,3 +153,30 @@ def test_gripper_render_pause_does_not_count_as_physical_stall(monkeypatch):
     monkeypatch.setattr(arm_control, 'time', SimpleNamespace(monotonic=lambda: wall[0]))
     assert arm_control.ArmControl.move_gripper(node, (.5, -.5), 'open') is True
     assert not any('stalled' in line for line in logs)
+
+
+def test_attachment_failure_emits_no_magnet_command(server, monkeypatch):
+    def forbidden_command(*args, **kwargs):
+        raise AssertionError('Missing observation must not issue attachment')
+
+    monkeypatch.setattr(server, 'magnet', forbidden_command)
+    assert not server.grasp_magnet()
+    assert server._grasp_z is None
+
+
+def test_missing_or_stale_imu_cannot_be_replaced_by_planar_encoder_attitude(server):
+    import time
+    from nav_msgs.msg import Odometry
+    from sensor_msgs.msg import Imu
+
+    odom = Odometry()
+    odom.header.frame_id, odom.child_frame_id = 'odom', 'base_footprint'
+    odom.pose.pose.orientation.w = 1.0
+    server._odom_cb(odom)
+    assert not server.check_robot_pose('no attitude', expect_xy=None)
+    imu = Imu()
+    imu.orientation.w = 1.0
+    server._imu_cb(imu)
+    assert server.check_robot_pose('upright', expect_xy=None)
+    server._imu_at = time.monotonic() - 3
+    assert not server.check_robot_pose('stale attitude', expect_xy=None)

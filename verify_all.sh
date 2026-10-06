@@ -137,16 +137,13 @@ step "3  launch full_world_robo.launch.py (headless, ${RAMP_ANGLE} deg wedge)"
 stop_all   # never start on top of a previous run's nodes
 SIM_PID=$(launch_bg /tmp/coco_sim.log gazebo_models full_world_robo.launch.py \
                     gui:=false "ramp_angle:=${RAMP_ANGLE}")
-# Gate on BOTH odometry sources: /model/coco/odometry (gz plugin) appears well
-# before the ros2_control stack finishes activating, and verify_sim also checks
-# /diff_drive_controller/odom — waiting only for the former raced the controller
-# and produced a spurious "no messages" failure.
-if wait_for_topic /model/coco/odometry 120 \
+# Require the simulator clock and measured controller odometry.
+if wait_for_topic /clock 120 \
    && wait_for_topic /diff_drive_controller/odom 120; then
   sleep 5   # let the controllers settle before measuring rates
   pass "sim topics up"
 else
-  fail "sim never published both odometry topics (see /tmp/coco_sim.log)"
+  fail "sim never published clock and controller odometry (see /tmp/coco_sim.log)"
 fi
 
 # ── six-topic health ─────────────────────────────────────────────────────────
@@ -205,7 +202,7 @@ if [ "$DO_NAV" -eq 1 ]; then
   SIM_PID=$(launch_bg /tmp/coco_sim_nav.log gazebo_models \
                       full_world_robo.launch.py gui:=false \
                       "ramp_angle:=${RAMP_ANGLE}")
-  if ! wait_for_topic /model/coco/odometry 120 \
+  if ! wait_for_topic /clock 120 \
      || ! wait_for_topic /diff_drive_controller/odom 120; then
     fail "sim did not come back up for the Nav2 stage"
   fi

@@ -123,6 +123,7 @@ import os
 
 from coco_config.robot import (camera_intrinsics, is_best_effort,
                                target_by_colour, TARGET_COLOURS)
+from coco_config.ros_boundary import AutonomyNode as Node
 
 from coco_perception import target_pose as tp
 from coco_perception.target_finder import (blob_stats, colour_mask,
@@ -140,7 +141,6 @@ import numpy as np
 import rclpy
 from rclpy.duration import Duration
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy
 from rclpy.time import Time
 

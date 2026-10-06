@@ -52,7 +52,7 @@ TYPES = {
     '/imu': Imu,
     '/camera/image_raw': Image,
     '/diff_drive_controller/odom': Odometry,
-    '/model/coco/odometry': Odometry,
+    '/eval/robot/odometry': Odometry,
 }
 
 # Minimum acceptable rate in SIM Hz. These are floors, not targets, and
@@ -67,7 +67,7 @@ MIN_HZ = {
     '/imu': 40.0,
     '/camera/image_raw': 10.0,
     '/diff_drive_controller/odom': 30.0,
-    '/model/coco/odometry': 40.0,
+    '/eval/robot/odometry': 40.0,
 }
 
 

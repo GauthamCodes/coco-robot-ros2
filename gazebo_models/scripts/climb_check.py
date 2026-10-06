@@ -61,6 +61,7 @@ def _pitch(q):
 
 
 def run(duration, speed, node=None):
+    raise RuntimeError("Legacy truth-controlled climb probe disabled by M0 isolation")
     owns = node is None
     if owns:
         if not rclpy.ok():
@@ -68,14 +69,14 @@ def run(duration, speed, node=None):
         node = Node('climb_check')
 
     state = {'gt': None, 'odom': None, 'imu': None}
-    node.create_subscription(Odometry, '/model/coco/odometry',
+    node.create_subscription(Odometry, '/eval/robot/odometry',
                              lambda m: state.update(gt=m), 10)
     node.create_subscription(Odometry, '/diff_drive_controller/odom',
                              lambda m: state.update(odom=m), 10)
     node.create_subscription(Imu, '/imu',
                              lambda m: state.update(imu=m), BEST_EFFORT)
     cmd = node.create_publisher(TwistStamped,
-                                '/diff_drive_controller/cmd_vel', 10)
+                                '/cmd_vel_gated', 10)
 
     # Wait for pose + attitude to arrive.
     deadline = time.time() + 15.0

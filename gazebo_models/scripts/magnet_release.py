@@ -58,7 +58,7 @@ import time
 
 import rclpy
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 
 from std_msgs.msg import Empty, String
 

@@ -303,6 +303,11 @@ def main():
         rclpy.init()
         node = Node("coco_isaac_backend")
         drive = DriveCommand()
+        from coco_config.encoder_odometry import EncoderOdometry
+        from .odometry import encoder_message
+
+        wheel_odom = EncoderOdometry()
+        wheel_odom.update(robot.get_joint_positions()[indices], sim.current_time)
 
         def command(msg):
             stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
@@ -332,11 +337,7 @@ def main():
             node.create_subscription(
                 JointState, "/isaac/manipulator_command", arm_command, 10
             )
-        gt_pub = (
-            node.create_publisher(Odometry, "/model/coco/odometry", 10)
-            if args.fetch
-            else None
-        )
+        gt_pub = node.create_publisher(Odometry, "/eval/robot/odometry", 10)
         imu_pub = (
             node.create_publisher(Imu, "/imu", 10) if args.fetch else None
         )
@@ -433,7 +434,7 @@ def main():
         log("ready", joints=robot.dof_names)
         initial_time = sim.current_time
         last_log = -10.0
-        measured_yaw = 0.0
+        measured_yaw = None
         previous_linear_world = None
         layout_checked = False
         while app.is_running() and not stop[0]:
@@ -508,44 +509,42 @@ def main():
             )
             linear = rot.T @ (linear_world - np.cross(angular_world, offset))
             angular = rot.T @ angular_world
-            measured_yaw = float(angular[2])
-            odom = Odometry()
-            odom.header.stamp, odom.header.frame_id = stamp, FRAMES["odom"]
-            odom.child_frame_id = FRAMES["base"]
+            truth = Odometry()
+            truth.header.stamp, truth.header.frame_id = stamp, FRAMES["odom"]
+            truth.child_frame_id = FRAMES["base"]
             (
-                odom.pose.pose.position.x,
-                odom.pose.pose.position.y,
-                odom.pose.pose.position.z,
+                truth.pose.pose.position.x,
+                truth.pose.pose.position.y,
+                truth.pose.pose.position.z,
             ) = map(float, position)
             (
-                odom.pose.pose.orientation.w,
-                odom.pose.pose.orientation.x,
-                odom.pose.pose.orientation.y,
-                odom.pose.pose.orientation.z,
+                truth.pose.pose.orientation.w,
+                truth.pose.pose.orientation.x,
+                truth.pose.pose.orientation.y,
+                truth.pose.pose.orientation.z,
             ) = map(float, q)
             (
-                odom.twist.twist.linear.x,
-                odom.twist.twist.linear.y,
-                odom.twist.twist.linear.z,
+                truth.twist.twist.linear.x,
+                truth.twist.twist.linear.y,
+                truth.twist.twist.linear.z,
             ) = map(float, linear)
             (
-                odom.twist.twist.angular.x,
-                odom.twist.twist.angular.y,
-                odom.twist.twist.angular.z,
+                truth.twist.twist.angular.x,
+                truth.twist.twist.angular.y,
+                truth.twist.twist.angular.z,
             ) = map(float, angular)
-            odom_pub.publish(odom)
-            if gt_pub:
-                import copy
+            import copy
 
-                gt = copy.deepcopy(odom)
-                gt.header.frame_id = "world"
-                gt.pose.pose.position.x += episode.robot_start.x
-                gt.pose.pose.position.y += episode.robot_start.y
-                gt_pub.publish(gt)
+            gt = copy.deepcopy(truth)
+            gt.header.frame_id = "world"
+            gt.pose.pose.position.x += episode.robot_start.x
+            gt.pose.pose.position.y += episode.robot_start.y
+            gt_pub.publish(gt)
+            if args.fetch:
                 imu = Imu()
                 imu.header.stamp, imu.header.frame_id = stamp, "imu_link"
-                imu.orientation = odom.pose.pose.orientation
-                imu.angular_velocity = odom.twist.twist.angular
+                imu.orientation = truth.pose.pose.orientation
+                imu.angular_velocity = truth.twist.twist.angular
                 # Ideal body-mounted IMU specific force, including gravity.
                 previous = (
                     previous_linear_world
@@ -563,8 +562,12 @@ def main():
                     imu.linear_acceleration.z,
                 ) = map(float, acceleration)
                 imu_pub.publish(imu)
+                # Exactly the ideal body-mounted IMU gyro sample exposed on /imu.
+                measured_yaw = float(imu.angular_velocity.z)
                 magnet.publish()
             angles = robot.get_joint_positions()[indices]
+            odom = encoder_message(wheel_odom, angles, now, stamp)
+            odom_pub.publish(odom)
             velocities = robot.get_joint_velocities()[indices]
             joint = JointState()
             joint.header.stamp = stamp
@@ -583,7 +586,11 @@ def main():
                 )
             joint_pub.publish(joint)
             transforms = [
-                transform(FRAMES["odom"], FRAMES["base"], position, q, stamp)
+                transform(
+                    FRAMES["odom"], FRAMES["base"],
+                    (wheel_odom.x, wheel_odom.y, 0.0),
+                    (math.cos(wheel_odom.yaw / 2), 0.0, 0.0,
+                     math.sin(wheel_odom.yaw / 2)), stamp)
             ]
             transforms += (
                 []

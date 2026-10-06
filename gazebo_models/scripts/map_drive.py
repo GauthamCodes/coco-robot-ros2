@@ -22,9 +22,9 @@ Usage (with sim + slam.launch.py already running):
   python3 map_drive.py
 
 Follows a waypoint loop around the whole arena — south lane, east half
-behind the ramp, north lane, back to spawn — using the ground-truth
+behind the ramp, north lane, back to spawn — using the encoder-estimated
 odometry published by the gz OdometryPublisher plugin
-(/model/coco/odometry). A P-controller steers toward each waypoint;
+(/diff_drive_controller/odom). A P-controller steers toward each waypoint;
 translation-dominant motion keeps the slam_toolbox scan matcher locked
 (skid-steer wheel odometry alone drifts badly during in-place turns).
 
@@ -39,7 +39,8 @@ from geometry_msgs.msg import TwistStamped
 from nav_msgs.msg import Odometry
 import rclpy
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.encoder_odometry import arena_xy
+from coco_config.ros_boundary import AutonomyNode as Node
 
 FWD = 0.25         # cruise speed, m/s
 TURN_MAX = 0.3     # steering clamp, rad/s — faster turns break scan matching
@@ -110,22 +111,22 @@ ROUTE = [
 
 
 class WaypointDriver(Node):
-    """Drive a waypoint route using ground-truth odometry feedback."""
+    """Drive a waypoint route using encoder-estimated odometry feedback."""
 
     def __init__(self):
         super().__init__('map_drive')
         self.pub = self.create_publisher(
-            TwistStamped, '/diff_drive_controller/cmd_vel', 10)
+            TwistStamped, '/cmd_vel_gated', 10)
         self.pose = None
         self.create_subscription(
-            Odometry, '/model/coco/odometry', self._odom_cb, 10)
+            Odometry, '/diff_drive_controller/odom', self._odom_cb, 10)
 
     def _odom_cb(self, msg):
         p = msg.pose.pose.position
         q = msg.pose.pose.orientation
         yaw = math.atan2(2 * (q.w * q.z + q.x * q.y),
                          1 - 2 * (q.y * q.y + q.z * q.z))
-        self.pose = (p.x, p.y, yaw)
+        self.pose = (*arena_xy(p), yaw)
 
     def _cmd(self, lx, az):
         m = TwistStamped()
@@ -170,13 +171,13 @@ class WaypointDriver(Node):
         within a second of the interrupt.
         """
         try:
-            # wait for ground-truth odometry
+            # wait for encoder-estimated odometry
             t0 = time.time()
             while self.pose is None and time.time() - t0 < 15.0 and rclpy.ok():
                 rclpy.spin_once(self, timeout_sec=0.2)
             if self.pose is None:
                 self.get_logger().error(
-                    'no /model/coco/odometry — is the sim up?')
+                    'no /diff_drive_controller/odom — is the sim up?')
                 return False
             for i, (x, y, spin) in enumerate(ROUTE, 1):
                 # A stuck robot silently burns the timeout at every remaining

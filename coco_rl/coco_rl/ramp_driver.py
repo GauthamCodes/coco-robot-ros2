@@ -82,10 +82,11 @@ from nav_msgs.msg import Odometry
 
 import rclpy
 from rclpy.executors import ExternalShutdownException, SingleThreadedExecutor
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from std_msgs.msg import String
 from std_srvs.srv import Trigger
 
+from coco_config.encoder_odometry import arena_xy, valid_encoder_message
 from coco_config.robot import (RAMP_FOOT_X, lane_for_region, parse_region_map,
                                resolve_lane)
 
@@ -271,7 +272,7 @@ class RampDriver(Node):
         # table, as before.
         self.declare_parameter('region_map', '')
         self.declare_parameter('autonomous_search', False)
-        self.declare_parameter('odom_topic', '/model/coco/odometry')
+        self.declare_parameter('odom_topic', '/diff_drive_controller/odom')
         self.declare_parameter('colour_topic', '/mission/target_colour')
 
         self._model_path = self.get_parameter('model').value
@@ -293,7 +294,7 @@ class RampDriver(Node):
         self._peak_correction = 0.0
         self._lateral_hold = bool(self.get_parameter('lateral_hold').value)
 
-        # Ground-truth y and the target lane, the two halves of cross-track.
+        # Encoder-estimated y and the target lane, the two halves of cross-track.
         # A second subscription to the odometry ramp_env already consumes is
         # cheaper than reaching into env._y0, and it keeps the env untouched
         # -- obs[1] is a POLICY INPUT and redefining it would invalidate the
@@ -333,7 +334,9 @@ class RampDriver(Node):
 
     # ── plumbing ─────────────────────────────────────────────────────────
     def _on_odom(self, msg):
-        self._world_y = msg.pose.pose.position.y
+        if not valid_encoder_message(msg):
+            return
+        self._world_y = arena_xy(msg.pose.pose.position)[1]
 
     def _on_colour(self, msg):
         """Use the fixed-mode colour lane; search mode uses region IDs."""

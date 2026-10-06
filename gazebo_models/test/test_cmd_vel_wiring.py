@@ -143,10 +143,10 @@ class TestLaunchWiring:
         assert relay_output('true') == GATED_TOPIC
 
     @pytest.mark.parametrize('arbiter', ['false', 'False', '0'])
-    def test_without_the_arbiter_the_relay_still_drives_the_wheels(
+    def test_legacy_flag_cannot_bypass_the_arbiter(
             self, arbiter):
-        # Topology A, the harness every C2-NAV tour before .41 ran on.
-        assert relay_output(arbiter) == WHEEL_TOPIC
+        # Historical direct-wheel launch is no longer an allowed command path.
+        assert relay_output(arbiter) == arbiter_nav_topic()
 
     def test_in_arbiter_mode_the_relay_does_not_publish_the_wheels(self):
         # With the arbiter up, a relay on the wheel topic would be a second

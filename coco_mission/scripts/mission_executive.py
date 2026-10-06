@@ -40,7 +40,7 @@ the last mode it saw. ``mission.launch.py`` starts this node;
 
 Interfaces
 ----------
-in   /model/coco/odometry     nav_msgs/Odometry            world pose
+in   /diff_drive_controller/odom nav_msgs/Odometry           encoder pose
 in   /amcl_pose               geometry_msgs/PoseWithCovarianceStamped
 in   /ramp/status             std_msgs/String
 in   /approach/status         std_msgs/String
@@ -94,6 +94,7 @@ import time
 
 from action_msgs.msg import GoalStatus
 
+from coco_config.encoder_odometry import arena_xy, valid_encoder_message
 from coco_config.robot import parse_region_map, TARGET_COLOURS
 
 from geometry_msgs.msg import PointStamped, PoseWithCovarianceStamped
@@ -108,7 +109,7 @@ import rclpy
 from rclpy.action import ActionClient
 from rclpy.clock import Clock, ClockType
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from rclpy.qos import QoSDurabilityPolicy, QoSHistoryPolicy, QoSProfile
 from rclpy.qos import QoSReliabilityPolicy
 
@@ -282,7 +283,7 @@ class MissionExecutive(Node):
         self._views = {key: ms.WorkerView() for key, _ in STATUS_TOPICS}
 
         self.create_subscription(
-            Odometry, '/model/coco/odometry', self._on_odom, 10)
+            Odometry, '/diff_drive_controller/odom', self._on_odom, 10)
         for key, topic in STATUS_TOPICS:
             self.create_subscription(
                 String, topic,
@@ -392,8 +393,10 @@ class MissionExecutive(Node):
 
     # ── subscriptions ────────────────────────────────────────────────────
     def _on_odom(self, msg):
+        if not valid_encoder_message(msg):
+            return
         pose = msg.pose.pose
-        self._pose = (pose.position.x, pose.position.y,
+        self._pose = (*arena_xy(pose.position),
                       yaw_of(pose.orientation))
         self._pose_stamp = self.now()
 
@@ -518,7 +521,7 @@ class MissionExecutive(Node):
         error = self.machine.arrival_error.get(event.previous)
         if error is not None:
             gap = self.machine.arrival_discrepancy.get(event.previous)
-            head = (f'{event.previous} arrived: ground truth {error:.3f} m '
+            head = (f'{event.previous} arrived: encoder estimate {error:.3f} m '
                     f'from the goal')
             if gap is None:
                 self.get_logger().info(
@@ -526,7 +529,7 @@ class MissionExecutive(Node):
                     f'{self.plan.xy_tolerance:.2f} m)')
             else:
                 self.get_logger().warning(
-                    f'{head} — Nav2 reported SUCCESS but ground truth is '
+                    f'{head} — Nav2 reported SUCCESS but encoder estimate is '
                     f'{gap:.3f} m out, past the '
                     f'{self.plan.xy_tolerance:.2f} m tolerance. Accepted: '
                     f'within the {self.plan.xy_consistency:.2f} m '
@@ -754,7 +757,7 @@ class MissionExecutive(Node):
         **Preferred: the last fix the health monitor verified.** The
         monitor publishes ``fix_x/fix_y/fix_yaw/fix_age`` — the pose AMCL
         was reporting while the scan still agreed with the map. Seeding
-        there is not cheating and is not ground truth: it is the robot's
+        there uses the robot's own verified localization: it is the robot's
         own estimate from a few seconds ago, at a moment something
         independent had checked it.
 

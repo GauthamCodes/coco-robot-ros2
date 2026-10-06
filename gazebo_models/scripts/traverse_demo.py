@@ -77,7 +77,7 @@ from nav_msgs.msg import Odometry
 import rclpy
 from rclpy.action import ActionClient
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from std_msgs.msg import String
 from std_srvs.srv import Trigger
 
@@ -100,7 +100,7 @@ class TraverseDemo(Node):
         self.vision_status = ''
         self.colour = None
         self.create_subscription(
-            Odometry, '/model/coco/odometry', self._odom_cb, 10)
+            Odometry, '/diff_drive_controller/odom', self._odom_cb, 10)
         self.create_subscription(
             String, '/ramp/status', self._ramp_cb, 10)
         self.create_subscription(

@@ -22,16 +22,13 @@ gui:=false first) through ROS 2:
 
   action       : [linear_x, angular_z]  (continuous, scaled to limits)
   observation  : [x, y, sin(yaw), cos(yaw), v, w, roll, pitch]
-                 planar pose from ground-truth odometry
-                 (/model/coco/odometry, gz OdometryPublisher) when it is
-                 being published, else wheel odometry
-                 (/diff_drive_controller/odom — under-reads on the ramp
-                 slope); attitude from /imu
+                 planar pose/twist from /diff_drive_controller/odom, derived
+                 from measured wheel joints; attitude from /imu. Slip remains
+                 unobserved dead-reckoning error, never corrected from truth.
   reward       : forward progress toward/up the ramp (+x), minus penalties
                  for tilt and for tipping over (terminal) — see reward.py
-  reset        : teleports the robot back to the start pose with the
-                 Gazebo /world/<world>/set_pose service and re-zeroes the
-                 pose by tracking the offset
+  reset        : mission mode (teleport=False) keeps the current robot pose;
+                 legacy teleport resets fail closed before creating ROS nodes
   stepping     : each step waits for STEP_DT of *simulation* time (from
                  odometry stamps), so training also works when the physics
                  real-time factor is unlocked above 1
@@ -51,7 +48,8 @@ import rclpy
 from geometry_msgs.msg import TwistStamped
 from nav_msgs.msg import Odometry
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.encoder_odometry import valid_encoder_message
+from coco_config.ros_boundary import AutonomyNode as Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy
 from sensor_msgs.msg import Imu
 
@@ -118,10 +116,9 @@ MIN_LIN = 0.15
 # Where the twist goes. A constructor kwarg rather than a launch remap
 # because this env calls rclpy.init() with no args and creates its node
 # directly, so `remappings=` in a launch file is silently ignored. The
-# default publishes straight to the controller, so training and evaluation
-# behave exactly as measured; the mission's ramp driver passes
-# '/cmd_vel_rl' to go through cmd_vel_arbiter instead.
-CMD_VEL_TOPIC = '/diff_drive_controller/cmd_vel'
+# Every command passes through the arbiter's RL input. Legacy simulator-
+# teleport training entry points remain unavailable; no new training is run.
+CMD_VEL_TOPIC = '/cmd_vel_rl'
 
 # First-order low-pass on the commanded twist, in SIM seconds. A stochastic
 # policy samples a fresh action every STEP_DT (0.1 s), so an untrained one
@@ -237,31 +234,29 @@ class CocoRampEnv(gym.Env):
 
     def __init__(self, randomize=False, start_progress=0.0,
                  cmd_vel_topic=CMD_VEL_TOPIC, teleport=True):
+        if teleport:
+            raise ValueError("Simulator teleport reset is unavailable to autonomy")
         super().__init__()
         if not rclpy.ok():
             rclpy.init()
-        self.node: Node = rclpy.create_node('coco_ramp_env')
+        self.node: Node = Node('coco_ramp_env')
         self.randomize = randomize
         # Training resets the robot to the start line; a mission does not.
         # With teleport=False, reset() takes the robot wherever it already
         # is — which mid-mission is the pre-ramp pose Nav2 just drove to.
         # Teleporting there would snap it back to spawn, across the arena.
-        self.teleport = teleport
+        self.teleport = False
 
         self.action_space = gym.spaces.Box(-1.0, 1.0, shape=(2,), dtype=np.float32)
         high = np.array([np.inf] * 8, dtype=np.float32)
         self.observation_space = gym.spaces.Box(-high, high, dtype=np.float32)
 
         self._odom = None       # wheel odometry (always present)
-        self._gt = None         # ground-truth odometry (if plugin is bridged)
         self._imu = None
-        self._use_gt = False
         self._closed = False
         qos = QoSProfile(depth=5, reliability=ReliabilityPolicy.BEST_EFFORT)
         self.node.create_subscription(
             Odometry, '/diff_drive_controller/odom', self._odom_cb, 10)
-        self.node.create_subscription(
-            Odometry, '/model/coco/odometry', self._gt_cb, 10)
         self.node.create_subscription(Imu, '/imu', self._imu_cb, qos)
         self._cmd = self.node.create_publisher(TwistStamped, cmd_vel_topic, 10)
 
@@ -284,16 +279,15 @@ class CocoRampEnv(gym.Env):
 
     # ── ROS plumbing ─────────────────────────────────────────────────────────
     def _odom_cb(self, msg):
+        if not valid_encoder_message(msg):
+            return
         self._odom = msg
-
-    def _gt_cb(self, msg):
-        self._gt = msg
 
     def _imu_cb(self, msg):
         self._imu = msg
 
     def _pose_msg(self):
-        return self._gt if self._use_gt else self._odom
+        return self._odom
 
     def _spin(self, timeout_sec):
         _rclpy_call(rclpy.spin_once, self.node, timeout_sec=timeout_sec)
@@ -358,24 +352,6 @@ class CocoRampEnv(gym.Env):
             (x, y, z), yaw = START_POSE, 0.0
         x += self.start_progress
         qz, qw = math.sin(yaw / 2), math.cos(yaw / 2)
-        # Teleport the robot back to the start with the gz set_pose service.
-        # A failed teleport must not be silent: reset() rebases the episode
-        # origin onto wherever the robot currently is, so a robot still lying
-        # on its side at the ramp top would look like a fresh episode at the
-        # start line and quietly poison the run.
-        # Retried and given a longer window: this call runs once per episode,
-        # so over a multi-hour run a 3s single-shot is a near-certain crash
-        # (see gz_service). Re-sending the same absolute pose is harmless
-        # even if the first request did land and only its reply was lost.
-        if self.teleport and not gz_service(
-                f'/world/{WORLD}/set_pose', 'gz.msgs.Pose', 'gz.msgs.Boolean',
-                f'name: "coco", position: {{x: {x}, y: {y}, z: {z}}}, '
-                f'orientation: {{z: {qz}, w: {qw}}}',
-                timeout_ms=5000, attempts=5):
-            raise RuntimeError(
-                f'set_pose failed for world {WORLD!r} — is the sim running '
-                f'and is the model named "coco"?')
-
         deadline = time.monotonic() + SIM_WAIT_TIMEOUT   # see _spin_sim
         while self._odom is None or self._imu is None:
             if time.monotonic() > deadline:
@@ -386,8 +362,6 @@ class CocoRampEnv(gym.Env):
                     f'no {" or ".join(missing)} after {SIM_WAIT_TIMEOUT:.0f}s '
                     f'— is the sim running?')
             self._spin(0.1)
-        # prefer ground-truth pose when the OdometryPublisher is bridged
-        self._use_gt = self._gt is not None
         if not self._spin_sim(0.5):   # let physics settle, fresh odom/imu
             raise RuntimeError(
                 'simulation time did not advance while settling after reset '
@@ -399,12 +373,11 @@ class CocoRampEnv(gym.Env):
         # whole point. Observation x is therefore "progress from spawn", which
         # also tells the policy how far along it already is.
         src = self._pose_msg()
-        self._x0 = SPAWN_XY[0]
+        self._x0 = 0.0  # controller odom starts at the nominal start prior
         self._y0 = src.pose.pose.position.y
         self._prev_x = src.pose.pose.position.x - self._x0
         self._steps = 0
-        # Zero the command filter too: carrying the last episode's velocity
-        # into a freshly teleported robot would have it lurch on step 1.
+        # Zero the command filter when the segment starts.
         self._lin_cmd = 0.0
         self._ang_cmd = 0.0
         return self._state(), {}

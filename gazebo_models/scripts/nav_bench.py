@@ -34,7 +34,7 @@ scores and — the part that matters — the name of the critic that threw
 those by critic is the difference between "DWB looks cautious near
 walls" and "BaseObstacle rejected 94 % of the sample set at t=31.2 s".
 
-Ground truth (`/model/coco/odometry`) is read for EVALUATION ONLY and is
+Ground truth (`/eval/robot/odometry`) is read for EVALUATION ONLY and is
 never published anywhere Nav2 can see it.
 
 The tour is a chain: each leg starts wherever the previous one stopped,
@@ -568,7 +568,7 @@ class NavBench(Node):
             durability=QoSDurabilityPolicy.TRANSIENT_LOCAL)
 
         self.create_subscription(
-            Odometry, '/model/coco/odometry', self._gt_cb, 20)
+            Odometry, '/eval/robot/odometry', self._gt_cb, 20)
         self.create_subscription(
             PoseWithCovarianceStamped, '/amcl_pose', self._amcl_cb, 10)
         self.create_subscription(

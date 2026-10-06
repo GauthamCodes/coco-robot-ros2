@@ -155,7 +155,7 @@ class VisionCheck(Node):
         self.yaw = None
         self.status = ''
         self.create_subscription(
-            Odometry, '/model/coco/odometry', self._odom_cb, 10)
+            Odometry, '/eval/robot/odometry', self._odom_cb, 10)
         self.create_subscription(
             String, '/perception/status', self._status_cb, 10)
         self._colour_pub = self.create_publisher(

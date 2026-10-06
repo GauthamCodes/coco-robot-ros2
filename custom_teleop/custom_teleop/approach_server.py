@@ -86,6 +86,7 @@ import time
 
 from coco_config.robot import (approach_stop_x, is_best_effort,
                                TARGET_COLOURS, TARGET_GRASP_Z)
+from coco_config.ros_boundary import AutonomyNode as Node
 
 from geometry_msgs.msg import PointStamped, TwistStamped
 
@@ -93,7 +94,6 @@ from nav_msgs.msg import Odometry
 
 import rclpy
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy
 
 from sensor_msgs.msg import Imu

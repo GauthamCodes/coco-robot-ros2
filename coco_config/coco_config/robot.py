@@ -583,7 +583,6 @@ SENSOR_TOPICS = {
     '/imu': (50.0, True),
     '/camera/image_raw': (15.0, True),
     '/diff_drive_controller/odom': (50.0, False),
-    '/model/coco/odometry': (50.0, False),   # gz OdometryPublisher (ground truth)
 }
 
 

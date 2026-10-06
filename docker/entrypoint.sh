@@ -93,15 +93,13 @@ run_platform() {
     full_world_robo.launch.py "gui:=${GUI}" traverse:=true
   SIM_PID=$LAUNCHED_PID
 
-  # Both odometry sources, for the reason verify_all.sh gives: the gz
-  # plugin's /model/coco/odometry appears well before ros2_control
-  # finishes activating, so waiting only for it races the controllers.
-  if ! wait_for_topic /model/coco/odometry 240; then
-    log "simulator never published /model/coco/odometry; last log lines:"
+  # Require clock and measured controller odometry, never evaluator truth.
+  if ! wait_for_topic /clock 240; then
+    log "simulator never published /clock; last log lines:"
     tail -40 /tmp/coco_sim.log >&2
     die "simulator did not come up"
   fi
-  log "    simulator clock and model odometry are up"
+  log "    simulator clock is up"
   if ! wait_for_topic /diff_drive_controller/odom 180; then
     log "controllers never activated; last log lines:"
     tail -40 /tmp/coco_sim.log >&2

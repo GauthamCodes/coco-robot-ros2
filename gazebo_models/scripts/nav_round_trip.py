@@ -57,7 +57,7 @@ from nav_msgs.msg import OccupancyGrid, Odometry
 import rclpy
 from rclpy.action import ActionClient
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 from rclpy.qos import (QoSDurabilityPolicy, QoSHistoryPolicy, QoSProfile,
                        QoSReliabilityPolicy)
 
@@ -85,7 +85,7 @@ class RoundTrip(Node):
         self.track = []
         self.grid = None
         self.create_subscription(
-            Odometry, '/model/coco/odometry', self._odom_cb, 10)
+            Odometry, '/diff_drive_controller/odom', self._odom_cb, 10)
         # /map is latched TRANSIENT_LOCAL and published once at
         # activation; a VOLATILE subscriber joining later sees nothing.
         self.create_subscription(

@@ -78,6 +78,7 @@ import math
 from coco_config.robot import (camera_intrinsics, CAMERA_RPY, CAMERA_XYZ,
                                is_best_effort, lane_for_colour,
                                target_by_colour, TARGET_COLOURS)
+from coco_config.ros_boundary import AutonomyNode as Node
 
 import cv2
 
@@ -89,7 +90,6 @@ import numpy as np
 
 import rclpy
 from rclpy.executors import ExternalShutdownException
-from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy
 
 from sensor_msgs.msg import CameraInfo, Image

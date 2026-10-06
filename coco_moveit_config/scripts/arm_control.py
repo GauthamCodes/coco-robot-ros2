@@ -30,16 +30,12 @@ is picking up: MoveIt joint goals, the gripper's confirm-against-joint-states
 close, the magnet weld and the height check that proves it took, and the
 planning-scene helpers.
 
-Two behaviours of the gz DetachableJoint are load-bearing and both were
-measured rather than read (see pick_place.py's MAGNET_MODEL block for the
-full account):
+The historical world-height lift check is retained as a documented requirement,
+but its simulator API/topic input was removed by M0 ground-truth isolation.
+The current sensors do not provide independent target height during lift and
+release. target_height() is unavailable, so those gates fail closed. Magnet
+state is actuator engagement telemetry, not proof of physical retention.
 
-- it attaches its child **the instant the model spawns**, not when
-  commanded, so anything that spawns a graspable object must detach first;
-- it binds to that entity **once**. Remove and re-spawn the model and a
-  later attach still answers "attached" while welding nothing — a silent
-  success. Hence `check_lifted`, which reads the object's own height out of
-  Gazebo instead of believing the plugin.
 """
 
 import math
@@ -67,13 +63,15 @@ from nav_msgs.msg import Odometry
 
 import rclpy
 from rclpy.action import ActionClient
-from rclpy.node import Node
+from coco_config.ros_boundary import AutonomyNode as Node
 
-from sensor_msgs.msg import JointState
+from sensor_msgs.msg import Imu, JointState
+from rclpy.qos import QoSProfile, ReliabilityPolicy
+from coco_config.encoder_odometry import arena_xy, valid_encoder_message
 
 from shape_msgs.msg import SolidPrimitive
 
-from std_msgs.msg import Empty as EmptyMsg, String, Float64
+from std_msgs.msg import Empty as EmptyMsg, String
 
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
@@ -143,27 +141,7 @@ def run_cmd(cmd, timeout):
 
 
 def model_z(name):
-    """
-    Read the height of a Gazebo model, or None if it could not be read.
-
-    The physical check behind 'did the grasp actually take'. The magnet's
-    own state topic cannot answer that: see the module docstring for the
-    measured case where it reports "attached" and welds nothing.
-    """
-    out = run_cmd(['gz', 'model', '-m', name, '-p'], timeout=10)
-    if out is None or out.returncode != 0:
-        return None
-    # ...  - Pose [ XYZ (m) ] [ RPY (rad) ]:
-    #          [0.000000 1.000000 0.800000]
-    lines = out.stdout.splitlines()
-    for i, line in enumerate(lines):
-        if 'Pose' in line and i + 1 < len(lines):
-            parts = lines[i + 1].strip().strip('[]').split()
-            if len(parts) == 3:
-                try:
-                    return float(parts[2])
-                except ValueError:
-                    return None
+    """No legitimate object-height observation exists; unavailable, fail closed."""
     return None
 
 
@@ -212,10 +190,15 @@ class ArmControl(Node):
         self.grip_pub = self.create_publisher(
             JointTrajectory, '/gripper_controller/joint_trajectory', 10)
 
-        self._gt = None
-        self._gt_at = None
+        self._odom = None
+        self._odom_at = None
         self.create_subscription(
-            Odometry, '/model/coco/odometry', self._gt_cb, 10)
+            Odometry, '/diff_drive_controller/odom', self._odom_cb, 10)
+        self._imu = None
+        self._imu_at = None
+        self.create_subscription(
+            Imu, '/imu', self._imu_cb,
+            QoSProfile(depth=5, reliability=ReliabilityPolicy.BEST_EFFORT))
         self._joints = {}
         self._joint_at = None
         self.create_subscription(
@@ -251,11 +234,6 @@ class ArmControl(Node):
                     EmptyMsg, f'/magnet/{model}/attach', 10),
                 self.create_publisher(
                     EmptyMsg, f'/magnet/{model}/detach', 10))
-            if self.simulator == 'isaac':
-                self.create_subscription(
-                    Float64, f'/grasp/{model}/height',
-                    lambda msg, m=model: self._heights.update(
-                        {m: (msg.data, time.monotonic())}), 10)
             self.create_subscription(
                 String, f'/magnet/{model}/state',
                 lambda msg, m=model: self._magnet_cb_for(m, msg), 10)
@@ -288,9 +266,15 @@ class ArmControl(Node):
         return future.result() if future.done() else None
 
     # ── inputs ───────────────────────────────────────────────────────────────
-    def _gt_cb(self, msg):
-        self._gt = msg
-        self._gt_at = time.monotonic()
+    def _odom_cb(self, msg):
+        if not valid_encoder_message(msg):
+            return
+        self._odom = msg
+        self._odom_at = time.monotonic()
+
+    def _imu_cb(self, msg):
+        self._imu = msg
+        self._imu_at = time.monotonic()
 
     def _joint_cb(self, msg):
         self._joint_at = time.monotonic()
@@ -354,13 +338,7 @@ class ArmControl(Node):
         return self._holding
 
     def target_height(self):
-        """Simulator measurement for grasp verification, never search input."""
-        if self.simulator == 'gazebo':
-            value = model_z(self.magnet_model)
-            return value if value is not None and math.isfinite(value) else None
-        sample = self._heights.get(self.magnet_model)
-        if sample and time.monotonic() - sample[1] <= 2 and math.isfinite(sample[0]):
-            return sample[0]
+        """Unavailable independent object observation; never read simulator truth."""
         return None
 
     def grasp_magnet(self):
@@ -407,23 +385,31 @@ class ArmControl(Node):
         return True
 
     def check_robot_pose(self, label, expect_xy=(ROBOT_WORLD_X, ROBOT_WORLD_Y)):
-        """Verify the robot's actual world pose (ground-truth odometry)
+        """Verify encoder-estimated XY and independently measured IMU attitude
         matches the pose the scene geometry assumes. MoveIt goals are
         joint-space, so without this a toppled or displaced robot would
         'succeed' while grasping air."""
         for _ in range(20):
-            if self._gt is not None:
+            if self._odom is not None:
                 break
             self.pump(0.1)
-        if self._gt is None:
+        if self._odom is None:
             self.get_logger().warn(
-                'No /model/coco/odometry — cannot verify robot pose')
+                'No /diff_drive_controller/odom — cannot verify robot pose')
             return False
-        if self._gt_at is None or time.monotonic() - self._gt_at > 2:
+        if self._odom_at is None or time.monotonic() - self._odom_at > 2:
             self.get_logger().error('Stale robot pose; refusing manipulation')
             return False
-        p = self._gt.pose.pose.position
-        q = self._gt.pose.pose.orientation
+        p = self._odom.pose.pose.position
+        if (self._imu is None or self._imu_at is None
+                or time.monotonic() - self._imu_at > 2
+                or self._imu.orientation_covariance[0] < 0):
+            self.get_logger().error('Missing/stale IMU attitude; refusing manipulation')
+            return False
+        q = self._imu.orientation
+        if (not all(math.isfinite(v) for v in (p.x, p.y, q.x, q.y, q.z, q.w))
+                or abs(sum(v * v for v in (q.x, q.y, q.z, q.w)) - 1) > 0.01):
+            return False
         roll = math.atan2(2 * (q.w * q.x + q.y * q.z),
                           1 - 2 * (q.x * q.x + q.y * q.y))
         pitch = math.asin(max(-1.0, min(1.0, 2 * (q.w * q.y - q.z * q.x))))
@@ -434,7 +420,8 @@ class ArmControl(Node):
         if expect_xy is None:
             offset = 0.0
         else:
-            offset = math.hypot(p.x - expect_xy[0], p.y - expect_xy[1])
+            px, py = arena_xy(p)
+            offset = math.hypot(px - expect_xy[0], py - expect_xy[1])
         if offset > 0.05 or abs(roll) > 0.15 or abs(pitch) > 0.15:
             self.get_logger().error(
                 f'Robot pose check FAILED ({label}): at ({p.x:.2f}, {p.y:.2f}, '

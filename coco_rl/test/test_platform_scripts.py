@@ -187,5 +187,5 @@ def test_the_entrypoint_sequences_the_simulator_before_the_stack():
     with open(SCRIPTS[1], encoding='utf-8') as handle:
         body = handle.read()
     assert 'wait_for_topic' in body
-    assert body.index('wait_for_topic /model/coco/odometry') < \
+    assert body.index('wait_for_topic /diff_drive_controller/odom') < \
         body.index('mission.launch.py')

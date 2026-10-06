@@ -1,0 +1,34 @@
+schema_version: 1
+policy:
+  prior_use: Every previously run or inspected seed is Dev permanently, including 0-9 and all earlier P03D seeds.
+  held_out_use: Aggregate evaluation only; never debugging, tuning, per-seed fixes or layout inspection.
+  reserve_use: Untouched until the M4 final benchmark; never debugging or tuning.
+  promotion: If a test trace is opened for debugging, permanently move that seed to Dev and pre-register an untouched replacement before evaluation.
+  generation: Do not generate held-out layouts merely to validate this policy.
+  seed_identity: Seed governance applies across backends, levels and requested colours.
+dev:
+  inclusive_ranges:
+    - [0, 9999]
+    - [10000, 10029]
+  explicit: [12345, 99999, 2147483647]
+  prior_evidence:
+    - docs/data/p03d_autonomous_search/matrix_all_attempts.json
+    - docs/data/p03_episode_spec/episode_evidence.sh
+    - docs/data/p03_episode_spec/corridor_count.sh
+    - coco_sim/test/test_episode.py
+    - coco_sim/test/test_episode_regions.py
+    - docs/data/isaac_fetch/coco23/comparison.json
+    - docs/data/isaac_fetch/coco24/comparison.json
+  rationale: Conservatively includes all 0-9999 layouts previously generated/inspected as well as simulator runs; 10000-10029 are 30 fresh Dev seeds required by the measurement protocol; large fixture seeds are Dev too.
+test_a:
+  inclusive_ranges:
+    - [1000000, 1000059]
+  count: 60
+  used: false
+  rationale: Fresh 60-seed pool per M0.5; later campaigns pre-register the 30-seed aggregate subset required by the measurement protocol. Do not choose a subset using observed layouts or outcomes.
+reserve_m4:
+  inclusive_ranges:
+    - [2000000, 2000059]
+  count: 60
+  used: false
+  rationale: Separate untouched Test B reserve; M4 pre-registers its 30-50 final benchmark subset without inspecting layouts.

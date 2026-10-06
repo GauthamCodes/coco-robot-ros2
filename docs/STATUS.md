@@ -1,10 +1,10 @@
 # COCO status
 
-Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.4 / M0.4b complete; M0.5 next**.
+Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.5 complete; M0.6 next**.
 M1 has not started. Independent milestone review and owner G0 decision pending.
 
 Session start SHA: `c45d224a9cbcfd10b9661a40c4df7866febdce38`.
-Checkpoint input/current verified SHA: `df02e3ed857143f70227acfc4c118f537da350d5`.
+Checkpoint input/current verified SHA: `5d8fd638c3591846957fd4ea22cc813e8c1b8ae1`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
 Current HEAD: `git rev-parse HEAD` in the repository. A committed file cannot
 literally contain its own commit hash; checkpoint entries record their input SHA,
@@ -50,7 +50,7 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Qualified cross-simulator reliability | NOT VERIFIED | M1 qualification/trace harness and M4 benchmark not implemented |
 | Single physical-success oracle | IMPLEMENTED | `SUCCESS_DEFINITION.md`; `m0/ORACLE_BACKCHECK.md`; 40 local tests passed; CI configured, execution unverified |
 | Environment capture | IMPLEMENTED | `../eval/environment.py`; `m0/control_plane/environment/env.json`; executed without simulator launch |
-| Held-out seed governance | NOT VERIFIED | M0.5 pending |
+| Held-out seed governance | IMPLEMENTED | `../eval/seeds.yaml`; `m0/control_plane/seed_tests.log`; disjoint pools, never run |
 
 ## Open failure classes and blockers
 
@@ -62,13 +62,19 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Historical far-region descent/contact and ODE crash | Open; later causal evaluation, no M0 investigation | `data/isaac_fetch/coco23/README.md`, `coco24/README.md` |
 | Historical far-region Nav2 acknowledgment / perception geometry rejection | Open; later milestones | `data/isaac_fetch/coco24/README.md`, `data/isaac_fetch/coco25/` |
 | Observer idle-command ordering ambiguity | Open evidence ambiguity; oracle must not infer a clean arbiter from mission success | `data/isaac_fetch/coco23/gazebo_seed9_idle_sample.json` |
-| Remaining M0 control-plane checkpoints | M0 exit blockers, M0.5–M0.6 pending | `MASTER_PLAN.md` |
+| Remaining M0 control-plane checkpoints | M0 exit blockers, M0.6 pending | `MASTER_PLAN.md` |
 
 ## Seed policy
 
-Every previously run seed (including 0–9 and all earlier P03D seeds) is Dev.
-No held-out or reserve range has been run in this session. `eval/seeds.yaml` will
-pin disjoint ranges in M0.5; until then no seed is claimed held-out.
+`eval/seeds.yaml` is canonical. All previously used seeds are Dev permanently,
+including 0–9/P03D, generated layouts 0–9999, and fixture seeds 12345, 99999,
+2147483647. Thirty fresh Dev IDs: **10000–10029**.
+Held-out Test A: **1000000–1000059 inclusive (60)**.
+Untouched M4 reserve/Test B: **2000000–2000059 inclusive (60)**.
+No held-out/reserve layouts generated or run. Never debug/tune with those IDs;
+inspection for fixes permanently promotes a seed to Dev and requires replacement.
+M0 creates 60-seed pools; later campaigns pre-register the plan's 30 and 30–50
+subsets before looking at layouts/outcomes. No new plan amendment.
 
 ## Checkpoint evidence
 
@@ -78,7 +84,7 @@ pin disjoint ranges in M0.5; until then no seed is claimed held-out.
 - Session entry and plan comparison: `m0/CONTROL_PLANE.md`.
 - CI execution remains NOT VERIFIED; no simulation campaign in this session.
 
-Next: M0.5 seeds, then M0.6 hygiene. Historical oracle coverage: 16 inspected,
+Next: M0.6 hygiene and final regression verification. Historical oracle coverage: 16 inspected,
 13 scorable (5 PASS / 8 FAIL), 3 UNSCORABLE; one definite COMPLETE/FAIL disagreement
 (M2.3 Gazebo seed7). Evidence: `m0/ORACLE_BACKCHECK.md`.
 No M1, M2 reliability, M3 cleanup or robot behavior work authorized here.

@@ -32,3 +32,13 @@ single pure scorer, independent of mission verdict. `ORACLE_BACKCHECK.md`
 records all 16 historical attempts, the one definite disagreement and unknowns.
 40 local unit tests passed; CI explicitly collects the new evaluator suite.
 No historical script was executed in write mode or historical evidence edited.
+
+## M0.5 seed governance
+
+Dev includes prior simulator/P03D IDs, all previously generated 0–9999 layouts
+and high fixture IDs. Thirty fresh Dev seeds allocated. Test A 1000000–1000059
+and M4 reserve 2000000–2000059, each inclusive 60, remain untouched. Static
+validation and six tests verify disjointness, invalid policy rejection and all
+saved JSON seed IDs are Dev; no held-out layout generation or inspection.
+M0's ≥60 pool and the protocol's later smaller campaign subsets coexist without
+a scope change. `control_plane/seed_validation.json`, `seed_tests.log`.

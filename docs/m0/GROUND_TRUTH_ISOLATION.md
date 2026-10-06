@@ -157,3 +157,14 @@ Amendment and dependency evidence recorded; isolation stop condition remains
 M0 work, cleanup, M1 work or M3 fidelity experiments. Exactly one next action:
 Gautham resolves the newly documented manipulation observation boundary through
 Master Plan change control before ground-truth isolation remediation resumes.
+
+## 2026-10-06 fail-closed remediation follow-up
+
+The plan owner subsequently approved legitimate replacement or explicit
+fail-closed handling of every privileged autonomy input. Amendment: `f47f4df`;
+implementation: `e4f58dad27e7506a049f0f604514eef44a8fc6bb`. See
+[the current observation contract and isolation evidence](MANIPULATION_OBSERVATION.md).
+The original blocker and next-action statements above are historical and are
+superseded by that report. World odometry/height are now evaluator-only; normal
+odometry/TF are encoder-derived; manipulation's missing physical observation
+fails closed. Historical evidence remains unchanged. M1 has not started.

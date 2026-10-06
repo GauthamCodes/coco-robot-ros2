@@ -1,13 +1,31 @@
-# Ground-truth isolation status — 2026-10-06
+# Ground-truth isolation — 2026-10-06
 
-The current architecture still violates Master Plan integrity rule 1. The
-approved M0 amendment requires encoder-derived autonomy state and evaluator-only
-truth under `/eval` before M1. In addition to world odometry and Isaac normal
-odometry/TF, grasp lift/release checks consume simulator object height. The
-missing legitimate manipulation observation is a stop boundary; remediation is
-not implemented. See [the dependency map and blocker](m0/GROUND_TRUTH_ISOLATION.md)
-and [plan-change history](STATUS.md). Existing diagrams and descriptions below
-record the current legacy architecture, not compliant evaluation.
+IMPLEMENTED at `e4f58dad27e7506a049f0f604514eef44a8fc6bb`, with local automated
+isolation/regression evidence; CI and full simulator behavior NOT VERIFIED.
+Autonomy receives encoder odometry, IMU attitude, joint/actuator telemetry and
+RGB-D perception. Simulator truth is evaluator-only under `/eval`. Manipulation
+attachment/lift/release/placement verification fails closed because independent
+object-motion observations are unavailable. Historical successful fetch runs
+used privileged inputs and remain historical evidence.
+
+See [the observation contract, classified dependency map and proof](m0/MANIPULATION_OBSERVATION.md)
+and [approved amendments](STATUS.md). M1 has not started; M3 fidelity is deferred.
+
+```mermaid
+flowchart LR
+  gzw[Gazebo measured wheel joints] --> gzo[diff_drive_controller odometry]
+  isw[Isaac measured wheel joints] --> iso[EncoderOdometry]
+  gzo --> normal[Normal odometry and odom/base TF]
+  iso --> normal
+  normal --> autonomy[Shared mission, Nav2, ramp and approach]
+  imu[IMU and joints] --> arm[Shared manipulation; physical proof unavailable]
+  camera[RGB-D perception] --> autonomy
+  camera --> arm
+  truth[Simulator world/object state] --> eval[/eval topics]
+  eval --> evaluator[Evaluator only]
+  autonomy --> arbiter[cmd_vel_arbiter]
+  arbiter --> wheels[Final wheel command]
+```
 
 # Architecture
 
@@ -24,7 +42,7 @@ while keeping the autonomy and command graph.
 | `coco_sim` | Episode/world/evaluator contracts; simulator adapters including Isaac | Active adapters and supporting measurements |
 | `coco_mission` | Executive and `mission_states.py` P03D search/recovery contracts | Active shared mission |
 | `coco_perception` | RGB-D target pose and validity interfaces | Active shared perception; fixed-lane detector retained for fixed-mode compatibility |
-| `coco_moveit_config` | MoveIt/IK, grasp server and backend height verification | Active shared manipulation with narrow simulator boundary |
+| `coco_moveit_config` | MoveIt/IK, grasp server and fail-closed object verification | Active shared manipulation with narrow simulator boundary |
 | `coco_rl` | Ramp policy/driver; independent training and calibration tools | Active ramp driver plus experiments |
 | `custom_teleop` | Approach server, command relay/arbiter and optional operator commands | Active shared control and safety |
 | `coco_web` | Optional operator interface and platform lifecycle | Supporting product layer |
@@ -53,9 +71,10 @@ flowchart TD
 Search regions come from `coco_config`; Isaac builds the existing arena
 from SDF and the articulated arm from expanded Xacro. No second mission,
 region planner or privileged-coordinate target detector is introduced.
-Episode world coordinates stay in world generation/evaluation. Ground truth
-remains the existing arrival-verification/measurement input; target height
-is consumed only by grasp verification, never by search or approach.
+Episode world coordinates stay in world generation/evaluation. Arrival and
+ramp gates use encoder estimates expressed in the fixed nominal start prior.
+Target world height has no autonomy consumer; physical manipulation proof fails
+closed until a legitimate independent observation contract exists.
 
 The arbiter is the sole publisher of `/diff_drive_controller/cmd_vel`.
 Isaac subscribes to that final stamped command and rejects stale commands.
@@ -99,16 +118,17 @@ flowchart LR
     relay["cmd_vel_relay"]
     arb["cmd_vel_arbiter"]
     mg["MoveIt2 move_group"]
-    pp["pick_place.py"]
+    pp["pick_place.py<br/>run disabled: observation unavailable"]
     teleop["teleop_wheels / teleop_arm"]
     web["rosbridge + web panel"]
-    rl["coco_rl<br/>ramp_env / PPO<br/>ramp_driver"]
+    rl["coco_rl<br/>ramp_env / ramp_driver"]
     appr["approach_server"]
     grasp["grasp_server"]
     perc["target_finder"]
     mx["mission_executive<br/>state machine (C2-M3)"]
     hud["mission_hud"]
     diag["diagnostics_node<br/>joint_state_monitor"]
+    evaluator["Evaluator only"]
   end
 
   world --- model
@@ -116,7 +136,7 @@ flowchart LR
   model --> odomp
 
   model -- "/scan /imu /camera/*" --> bridge
-  odomp -- "/model/coco/odometry" --> bridge
+  odomp -- "/eval/robot/odometry" --> bridge
   world -- "/clock" --> bridge
 
   gzc --> cm
@@ -124,8 +144,9 @@ flowchart LR
 
   bridge -- "/scan" --> slam
   bridge -- "/scan" --> nav
-  bridge -- "/model/coco/odometry" --> rl
-  bridge -- "/model/coco/odometry" --> pp
+  bridge -- "/eval/robot/odometry" --> evaluator
+  dd -- "/diff_drive_controller/odom" --> rl & mx & grasp
+  bridge -- "/imu" --> rl & grasp
   bridge -- "/camera/image_raw" --> web
   bridge -- "/camera/image_raw<br/>/camera/depth/*" --> perc
   perc -- "/perception/target" --> appr
@@ -232,11 +253,11 @@ Three details are load-bearing and easy to get wrong:
   anything older than its 0.5 s `cmd_vel_timeout`, so forwarding a held
   command with its original stamp would silently stop the robot.
 
-`web.launch.py` starts it by default. Nav2's relay only feeds it when
-started as `nav.launch.py arbiter:=true`; with the default `false` the
-relay still publishes straight to the controller so a standalone Nav2 run
-keeps working. If both end up publishing, the arbiter logs a warning
-naming the topic rather than letting the interleaving return unnoticed.
+`web.launch.py` starts it by default. Nav2's relay always feeds the existing
+arbiter input, including the legacy `arbiter:=false` flag. Standalone Nav2,
+teleop and mapping require an arbiter to run; otherwise no final wheel command
+is produced. Robot-side direct final-wheel publisher remaps are rejected.
+The arbiter's existing foreign-publisher warning remains unchanged.
 
 ## The mission executive
 
@@ -318,17 +339,15 @@ state machine is how the arbiter invariant dies.
 
 Where a stronger observable exists, the state uses it:
 
-- **Navigation** — `NavigateToPose` SUCCEEDED **and** the ground-truth
-  world pose within Nav2's own `xy_goal_tolerance` of the goal. Nav2
-  judges arrival by the AMCL pose it is also steering by; this does not.
+- **Navigation** — `NavigateToPose` SUCCEEDED and the encoder-estimated pose
+  within the existing arrival consistency policy. This estimate can drift;
+  it is not a physical ground-truth success oracle.
 - **Climb** — `outcome=goal` **and** the robot at the summit x **and**
   cross-track inside half the lane spacing. The measured 0.51 m drift
   reported `outcome=goal`.
-- **Grasp** — `outcome=held` **and** `lifted=1` re-read after the action
-  returned. Same underlying `check_lifted` probe, read again; it is not
-  an independent sensor and is not claimed to be.
-- **Placement** — `outcome=placed` **and** `lifted=0`, so an object still
-  stuck to the palm is not a delivery.
+- **Grasp and placement** — the existing `held/lifted` and `placed` contracts
+  remain, but their independent physical observation is unavailable. The gates
+  fail closed and cannot produce verified success from actuator acknowledgment.
 
 ### `/mission/state`
 
@@ -488,19 +507,17 @@ type, not a dependency on the package that publishes it.
 
 | Demo | Path |
 |---|---|
-| Teleop | keyboard → `teleop_wheels` → `/diff_drive_controller/cmd_vel` → controller → Gazebo |
+| Teleop | keyboard → `teleop_wheels` → `/cmd_vel_teleop` → arbiter → controller |
 | SLAM | `/scan` + `/tf` → `slam_toolbox` → `/map`; `map_drive.py` supplies the route |
-| Nav2 | goal → BT navigator → planner/controller → `/cmd_vel` → `cmd_vel_relay` → controller |
-| Pick & place | `pick_place.py` → `arm_ik` → MoveIt2 `move_group` → `arm_controller`; grasp confirmed on `/joint_states` |
+| Nav2 | goal → safety chain → `/cmd_vel` → relay → `/cmd_vel_gated` → arbiter → controller |
+| Pick & place | standalone demo disabled; shared IK/MoveIt/joints retained; physical object verification unavailable |
 | Web panel | browser → rosbridge → `/cmd_vel_teleop`, `/mission/mode` and `/goal_pose`; video via `web_video_server` |
-| RL | `ramp_env` ← `/model/coco/odometry` + `/imu`; actions → `/diff_drive_controller/cmd_vel`; steps on **sim** time |
+| Ramp | `ramp_env` ← encoder odometry + `/imu`; intents → `/cmd_vel_rl` → arbiter; legacy teleport reset disabled |
 | Mission | every velocity source → `cmd_vel_arbiter` (mode from `/mission/mode`, teleop preempts) → controller |
 
-Every row above except the last is the **standalone** path, which is what
-each demo does when run on its own. Under the arbiter the last hop into
-the controller is replaced by the arbiter's input topic — `/cmd_vel_gated`,
-`/cmd_vel_teleop` or `/cmd_vel_rl` — selected by launch argument or, for
-`ramp_env`, by constructor argument.
+Every wheel command uses the existing arbiter inputs. Standalone direct-wheel
+publication is rejected; an arbiter must be running. No second command path is
+created by simulator or evaluator adapters.
 
 Nav2's input is `/cmd_vel_gated`, never `/cmd_vel_nav` (C2-NAV.42).
 `nav2_bringup` remaps `controller_server`, `behavior_server` and the

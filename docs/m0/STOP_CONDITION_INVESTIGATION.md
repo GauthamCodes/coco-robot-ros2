@@ -190,3 +190,14 @@ production GraspServer graph evidence and fail-closed tests are preserved in
 the authorized architectural stop boundary. Isolation is still unresolved; M1
 has not started. The previous next action is superseded by the follow-up next
 action in the dependency report.
+
+## 2026-10-06 fail-closed remediation follow-up
+
+The plan owner subsequently approved legitimate replacement or explicit
+fail-closed handling of every privileged autonomy input. Amendment: `f47f4df`;
+implementation: `e4f58dad27e7506a049f0f604514eef44a8fc6bb`. See
+[the current observation contract and isolation evidence](MANIPULATION_OBSERVATION.md).
+The original blocker and next-action statements above are historical and are
+superseded by that report. World odometry/height are now evaluator-only; normal
+odometry/TF are encoder-derived; manipulation's missing physical observation
+fails closed. Historical evidence remains unchanged. M1 has not started.

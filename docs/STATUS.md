@@ -1,8 +1,9 @@
 # COCO status
 
-Updated: 2026-10-06. Milestone: M0; checkpoint: approved ground-truth isolation remediation. M1 has not started.
+Updated: 2026-10-06. Milestone: M0; checkpoint: manipulation observation boundary and ground-truth isolation. M1 has not started.
 
-Starting verified HEAD: `74875c7aca2fcb5a6d3020438588a39b8855c22b`.
+Starting verified HEAD for this checkpoint: `af8921a57006a3f5110a58316dc0e5b8dbfb652a`.
+Implementation checkpoint: `e4f58dad27e7506a049f0f604514eef44a8fc6bb`.
 Branch: `coco-2.1-isaac-integration`.
 Worktree: `/home/gautham/coco-isaac-21`; initially clean.
 Current commit: resolve with `git rev-parse HEAD` (a commit cannot contain its own SHA).
@@ -29,31 +30,49 @@ Checkpoint: M0 manipulation observation boundary and ground-truth isolation.
 Exit: all identified privileged paths removed/replaced/fail-closed with tests.
 M1 remains unstarted; M3 structure and fidelity scope remain unchanged.
 
-## Open status and evidence
+## Current checkpoint status
 
-- Privileged autonomy state: unresolved; stopped at missing independent object-motion observation. Full dependency map and boundary: `docs/m0/GROUND_TRUTH_ISOLATION.md`. No production remediation implemented.
-- Prior telemetry inventory failure: locally corrected; evidence in stop-condition investigation. CI NOT VERIFIED.
-- Baseline capabilities and clean-build counts: `docs/m0/AUDIT.md`; historical runtime evidence remains unchanged. No new runtime capability claims.
-- M0.2 control files, M0.3 manifest, M0.4 oracle/back-check, M0.5 seed policy and M0.6 audit remain incomplete; this file is not completion of those checkpoints.
-- Seed policy: existing seeds are dev only; fresh held-out/reserve ranges have not yet been committed. No episodes run in this session.
+Ground-truth isolation is IMPLEMENTED with locally passing automated graph and
+regression evidence. CI and full physical simulator behavior are NOT VERIFIED.
+The integrity stop condition is resolved for the committed active architecture;
+this is not completion of M0 or authorization to start M1.
 
-## Isolation session verification
+- Gazebo truth and Isaac world/object exports are evaluator-only under `/eval`.
+- Shared autonomy uses normal encoder-derived odometry/TF, IMU, joints and RGB-D.
+- Manipulation attachment/lift/release/physical placement fails closed: independent
+  object-motion observations are unavailable. Historical fetch completion cannot
+  be claimed for this compliant checkpoint. Actuator acknowledgment is not
+  physical retention proof.
+- Isaac yaw feedback uses the exact existing ideal simulated IMU gyro sample;
+  no raw-world pose or velocity enters normal odometry. Fidelity remains M3.
+- Existing arbiter semantics remain; direct-wheel publishers/remaps outside it
+  are rejected or use its existing inputs. Legacy truth climb/teleport/demo entry
+  points are explicitly unavailable.
+- Full contract, classified source map and limitations:
+  `docs/m0/MANIPULATION_OBSERVATION.md`.
 
-Production GraspServer ROS graph inspected with both backend parameters: world
-odometry remains subscribed; Isaac also subscribes to simulator object height.
-Raw graph: `docs/m0/gti/grasp_graph.json`. No simulator or mission run performed.
-Focused checks: 65 passed. Relevant regressions: mission 365, ramp 236,
-perception 139, manipulation 28, simulation 228, teleop/arbiter 78:
-**1074 passed, 0 failed, 0 skipped**. Logs: `docs/m0/gti/*_regression.log`.
-Local verification only; CI NOT VERIFIED. Existing overlay reused; no new clean
-build claimed. No behavior or gate changes; no command path introduced.
+## Verification and evidence
 
-Missing input: independently observed target rise/resting height for attachment,
-lift and release checks. Encoders/IMU do not provide it; current RGB-D contract
-provides a framing-dependent point and fixed grasp height. Replacing those gates
-requires an explicitly scoped sensor-based observation contract or an approved
-fail-closed limitation. M3.1 fidelity remains deferred; this new manipulation gap
-is not silently assigned to M3. Integrity stop condition remains unresolved.
+Fresh nine-package build passed. Relevant regressions: **1984 passed, zero
+failures/skips**. Focused graph/executive checks: 50 passed; encoder/Isaac checks:
+32 passed. Logs and contradictory-truth production-node ROS graphs:
+`docs/m0/gti_remediation/`. Initial failed tests are retained beside final logs.
+No full simulator runs, benchmark campaigns, held-out inspection or remote CI.
+Baseline audit and historical violations: `docs/m0/AUDIT.md`,
+`STOP_CONDITION_INVESTIGATION.md`, `GROUND_TRUTH_ISOLATION.md`, `gti/`.
+These historical files retain their original findings with appended follow-up.
 
-Exactly one next action: Gautham resolves the documented manipulation observation
-boundary through Master Plan change control before isolation remediation resumes.
+## Remaining M0 and plan boundaries
+
+M0.2 control-file capability inventory and IDEAS, M0.3 manifest, M0.4 oracle and
+back-check, M0.5 seed policy and M0.6 hygiene audit remain incomplete. No broad M0
+work was performed. Known dev seeds remain dev; held-out/reserve ranges have not
+been committed and no seeds were run here. M3 retains odometry/IMU/alignment
+fidelity, C++ arbiter, safety case, Docker, CI expansion and observability.
+A future legitimate object-motion observation needs explicit milestone scope;
+none is silently assigned by this checkpoint. No owner decision is needed to
+keep the approved fail-closed limitation in force.
+
+Exactly one next action according to MASTER_PLAN: resume **M0.2 control files**
+and capability inventory with this checkpoint's evidence and limitations.
+Do not start M1.

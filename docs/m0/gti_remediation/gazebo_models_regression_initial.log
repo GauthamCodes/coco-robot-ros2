@@ -1,0 +1,55 @@
+......FFF............................................................... [ 32%]
+........................................................................ [ 65%]
+........................................................................ [ 98%]
+....                                                                     [100%]
+=================================== FAILURES ===================================
+_ TestLaunchWiring.test_without_the_arbiter_the_relay_still_drives_the_wheels[false] _
+
+self = <test_cmd_vel_wiring.TestLaunchWiring object at 0x707b303ff4a0>
+arbiter = 'false'
+
+    @pytest.mark.parametrize('arbiter', ['false', 'False', '0'])
+    def test_without_the_arbiter_the_relay_still_drives_the_wheels(
+            self, arbiter):
+        # Topology A, the harness every C2-NAV tour before .41 ran on.
+>       assert relay_output(arbiter) == WHEEL_TOPIC
+E       AssertionError: assert '/cmd_vel_gated' == '/diff_drive_...oller/cmd_vel'
+E         - /diff_drive_controller/cmd_vel
+E         + /cmd_vel_gated
+
+test/test_cmd_vel_wiring.py:149: AssertionError
+_ TestLaunchWiring.test_without_the_arbiter_the_relay_still_drives_the_wheels[False] _
+
+self = <test_cmd_vel_wiring.TestLaunchWiring object at 0x707b30240560>
+arbiter = 'False'
+
+    @pytest.mark.parametrize('arbiter', ['false', 'False', '0'])
+    def test_without_the_arbiter_the_relay_still_drives_the_wheels(
+            self, arbiter):
+        # Topology A, the harness every C2-NAV tour before .41 ran on.
+>       assert relay_output(arbiter) == WHEEL_TOPIC
+E       AssertionError: assert '/cmd_vel_gated' == '/diff_drive_...oller/cmd_vel'
+E         - /diff_drive_controller/cmd_vel
+E         + /cmd_vel_gated
+
+test/test_cmd_vel_wiring.py:149: AssertionError
+_ TestLaunchWiring.test_without_the_arbiter_the_relay_still_drives_the_wheels[0] _
+
+self = <test_cmd_vel_wiring.TestLaunchWiring object at 0x707b302405f0>
+arbiter = '0'
+
+    @pytest.mark.parametrize('arbiter', ['false', 'False', '0'])
+    def test_without_the_arbiter_the_relay_still_drives_the_wheels(
+            self, arbiter):
+        # Topology A, the harness every C2-NAV tour before .41 ran on.
+>       assert relay_output(arbiter) == WHEEL_TOPIC
+E       AssertionError: assert '/cmd_vel_gated' == '/diff_drive_...oller/cmd_vel'
+E         - /diff_drive_controller/cmd_vel
+E         + /cmd_vel_gated
+
+test/test_cmd_vel_wiring.py:149: AssertionError
+=========================== short test summary info ============================
+FAILED test/test_cmd_vel_wiring.py::TestLaunchWiring::test_without_the_arbiter_the_relay_still_drives_the_wheels[false]
+FAILED test/test_cmd_vel_wiring.py::TestLaunchWiring::test_without_the_arbiter_the_relay_still_drives_the_wheels[False]
+FAILED test/test_cmd_vel_wiring.py::TestLaunchWiring::test_without_the_arbiter_the_relay_still_drives_the_wheels[0]
+3 failed, 217 passed in 22.21s

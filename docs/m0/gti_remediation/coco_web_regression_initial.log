@@ -1,0 +1,100 @@
+............................................................F........... [ 12%]
+........................................................................ [ 25%]
+........................................................................ [ 37%]
+.......................................................F................ [ 50%]
+........................................................................ [ 62%]
+........................................................................ [ 75%]
+........................................................................ [ 87%]
+.......................................................................  [100%]
+=================================== FAILURES ===================================
+_________________________________ test_flake8 __________________________________
+
+    @pytest.mark.flake8
+    @pytest.mark.linter
+    def test_flake8():
+        rc, errors = main_with_errors(argv=[])
+>       assert rc == 0, \
+            'Found %d code style errors / warnings:\n' % len(errors) + \
+            '\n'.join(errors)
+E       AssertionError: Found 1 code style errors / warnings:
+E         ./coco_web/platform_server.py:110:1: I100 Import statements are in the wrong order. 'from coco_config.ros_boundary import AutonomyNode' should be before 'from rclpy.executors import ExternalShutdownException, SingleThreadedExecutor'
+E       assert 1 == 0
+
+test/test_flake8.py:23: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+./coco_web/platform_server.py:110:1: I100 Import statements are in the wrong order. 'from coco_config.ros_boundary import AutonomyNode' should be before 'from rclpy.executors import ExternalShutdownException, SingleThreadedExecutor'
+from coco_config.ros_boundary import AutonomyNode as Node
+^
+
+1     I100 Import statements are in the wrong order. 'from coco_config.ros_boundary import AutonomyNode' should be before 'from rclpy.executors import ExternalShutdownException, SingleThreadedExecutor'
+
+39 files checked
+1 errors
+
+'I'-type errors: 1
+
+Checked files:
+
+* ./setup.py
+* ./launch/web.launch.py
+* ./launch/platform.launch.py
+* ./test/test_frontend_frame.py
+* ./test/test_platform_server.py
+* ./test/test_session.py
+* ./test/test_web_assets.py
+* ./test/test_lifecycle.py
+* ./test/test_streams.py
+* ./test/test_binary_hardening.py
+* ./test/test_imaging_hardening.py
+* ./test/test_copyright.py
+* ./test/test_telemetry.py
+* ./test/test_safety.py
+* ./test/test_binary.py
+* ./test/test_transport.py
+* ./test/test_streams_hardening.py
+* ./test/test_protocol.py
+* ./test/test_protocol_hardening.py
+* ./test/test_pep257.py
+* ./test/test_mission_hardening.py
+* ./test/test_mjpeg.py
+* ./test/test_imaging.py
+* ./test/test_metrics.py
+* ./test/test_mission_view.py
+* ./test/test_flake8.py
+* ./coco_web/__init__.py
+* ./coco_web/protocol.py
+* ./coco_web/mission_view.py
+* ./coco_web/binary.py
+* ./coco_web/mjpeg.py
+* ./coco_web/session.py
+* ./coco_web/streams.py
+* ./coco_web/safety.py
+* ./coco_web/metrics.py
+* ./coco_web/lifecycle.py
+* ./coco_web/telemetry.py
+* ./coco_web/platform_server.py
+* ./coco_web/imaging.py
+____________________ test_the_needle_list_can_see_something ____________________
+
+    def test_the_needle_list_can_see_something():
+        """A leak scan with no needles passes vacuously; prove it has them."""
+        names = _ros_names()
+        for topic in ('/perception/annotated', '/camera/image_raw',
+                      '/camera/depth/image_raw', '/mission/start', '/scan',
+                      '/diff_drive_controller/cmd_vel', '/cmd_vel_teleop',
+                      '/mission/target_colour', '/model/coco/odometry'):
+>           assert topic in names, topic
+E           AssertionError: /model/coco/odometry
+E           assert '/model/coco/odometry' in {'/amcl_pose', '/arm_controller/joint_trajectory', '/camera/depth/image_raw', '/camera/image_raw', '/clock', '/cmd_vel', ...}
+
+test/test_platform_server.py:685: AssertionError
+=============================== warnings summary ===============================
+test/test_flake8.py: 12 warnings
+  Warning: This process (pid=462610) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 1 code style ...
+FAILED test/test_platform_server.py::test_the_needle_list_can_see_something
+2 failed, 573 passed, 12 warnings in 20.80s

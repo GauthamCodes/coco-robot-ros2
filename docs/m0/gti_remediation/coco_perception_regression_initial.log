@@ -1,0 +1,57 @@
+.F...................................................................... [ 51%]
+...................................................................      [100%]
+=================================== FAILURES ===================================
+_________________________________ test_flake8 __________________________________
+
+    @pytest.mark.flake8
+    @pytest.mark.linter
+    def test_flake8():
+        rc, errors = main_with_errors(argv=[])
+>       assert rc == 0, \
+            'Found %d code style errors / warnings:\n' % len(errors) + \
+            '\n'.join(errors)
+E       AssertionError: Found 2 code style errors / warnings:
+E         ./coco_perception/target_finder.py:92:1: I100 Import statements are in the wrong order. 'from coco_config.ros_boundary import AutonomyNode' should be before 'from rclpy.executors import ExternalShutdownException'
+E         ./coco_perception/target_pose_node.py:143:1: I100 Import statements are in the wrong order. 'from coco_config.ros_boundary import AutonomyNode' should be before 'from rclpy.executors import ExternalShutdownException'
+E       assert 1 == 0
+
+test/test_flake8.py:23: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+./coco_perception/target_finder.py:92:1: I100 Import statements are in the wrong order. 'from coco_config.ros_boundary import AutonomyNode' should be before 'from rclpy.executors import ExternalShutdownException'
+from coco_config.ros_boundary import AutonomyNode as Node
+^
+
+./coco_perception/target_pose_node.py:143:1: I100 Import statements are in the wrong order. 'from coco_config.ros_boundary import AutonomyNode' should be before 'from rclpy.executors import ExternalShutdownException'
+from coco_config.ros_boundary import AutonomyNode as Node
+^
+
+2     I100 Import statements are in the wrong order. 'from coco_config.ros_boundary import AutonomyNode' should be before 'from rclpy.executors import ExternalShutdownException'
+
+12 files checked
+2 errors
+
+'I'-type errors: 2
+
+Checked files:
+
+* ./setup.py
+* ./coco_perception/__init__.py
+* ./coco_perception/target_finder.py
+* ./coco_perception/vision_check.py
+* ./coco_perception/target_pose.py
+* ./coco_perception/target_pose_node.py
+* ./launch/perception.launch.py
+* ./test/test_copyright.py
+* ./test/test_target_pose.py
+* ./test/test_pep257.py
+* ./test/test_target_finder.py
+* ./test/test_flake8.py
+=============================== warnings summary ===============================
+test/test_flake8.py: 12 warnings
+  Warning: This process (pid=462615) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 2 code style ...
+1 failed, 138 passed, 12 warnings in 4.48s

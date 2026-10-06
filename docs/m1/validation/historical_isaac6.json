@@ -1,0 +1,730 @@
+{
+  "schema_version": 1,
+  "first_violated_invariant": "I19",
+  "first_violation": {
+    "invariant": "I19",
+    "mission_stage": "DESCEND",
+    "sim_s": 62.05833656992763,
+    "sequence": 23,
+    "details": [
+      {
+        "measurement": "nonrequested_displacement_m",
+        "value": 0.2905499052522268,
+        "relation": "le",
+        "limit": 0.005
+      }
+    ]
+  },
+  "mission_stage": "DESCEND",
+  "simulation_timestamp": 62.05833656992763,
+  "context_window": {
+    "start_sim_s": 57.05833656992763,
+    "end_sim_s": 67.05833656992763,
+    "events": [
+      {
+        "sim_s": 58.058336361311376,
+        "mission_stage": "DESCEND",
+        "measurements": {
+          "physics_poses_finite": true,
+          "nonrequested_displacement_m": 0.0
+        },
+        "invariants": [
+          "I19"
+        ],
+        "source_topic": "/eval/ground_truth/state",
+        "source_wall_s": null,
+        "receive_sequence": 21
+      },
+      {
+        "sim_s": 60.058336465619504,
+        "mission_stage": "DESCEND",
+        "measurements": {
+          "physics_poses_finite": true,
+          "nonrequested_displacement_m": 0.0
+        },
+        "invariants": [
+          "I19"
+        ],
+        "source_topic": "/eval/ground_truth/state",
+        "source_wall_s": null,
+        "receive_sequence": 22
+      },
+      {
+        "sim_s": 62.05833656992763,
+        "mission_stage": "DESCEND",
+        "measurements": {
+          "physics_poses_finite": true,
+          "nonrequested_displacement_m": 0.2905499052522268
+        },
+        "invariants": [
+          "I19"
+        ],
+        "source_topic": "/eval/ground_truth/state",
+        "source_wall_s": null,
+        "receive_sequence": 23
+      },
+      {
+        "sim_s": 64.05833667423576,
+        "mission_stage": "DESCEND",
+        "measurements": {
+          "physics_poses_finite": true,
+          "nonrequested_displacement_m": 0.590786750123207
+        },
+        "invariants": [
+          "I19"
+        ],
+        "source_topic": "/eval/ground_truth/state",
+        "source_wall_s": null,
+        "receive_sequence": 24
+      },
+      {
+        "sim_s": 66.05833677854389,
+        "mission_stage": "DESCEND",
+        "measurements": {
+          "physics_poses_finite": true,
+          "nonrequested_displacement_m": 0.5987531190178237
+        },
+        "invariants": [
+          "I19"
+        ],
+        "source_topic": "/eval/ground_truth/state",
+        "source_wall_s": null,
+        "receive_sequence": 25
+      }
+    ]
+  },
+  "violations": [
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 62.05833656992763,
+      "sequence": 23,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.2905499052522268,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 64.05833667423576,
+      "sequence": 24,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.590786750123207,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 66.05833677854389,
+      "sequence": 25,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.5987531190178237,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 68.05833688285202,
+      "sequence": 26,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.5993659320352727,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 70.05833698716015,
+      "sequence": 27,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6012563137840925,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 72.05833709146827,
+      "sequence": 28,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.605152013758466,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 74.0583371957764,
+      "sequence": 29,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6067428987447666,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 76.05833730008453,
+      "sequence": 30,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6113056884029965,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 78.05833740439266,
+      "sequence": 31,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6138928868654908,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 80.05833750870079,
+      "sequence": 32,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6178360493769558,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 82.05833761300892,
+      "sequence": 33,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6221436636122499,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 84.05833771731704,
+      "sequence": 34,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6254291263348414,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 86.05833782162517,
+      "sequence": 35,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6283600589404851,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 88.0583379259333,
+      "sequence": 36,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6324708917585382,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 90.05833803024143,
+      "sequence": 37,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.634889174665837,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 92.05833813454956,
+      "sequence": 38,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6371496891031669,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 94.05833823885769,
+      "sequence": 39,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.63981545002335,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 96.05833834316581,
+      "sequence": 40,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6466668980504888,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 98.05833844747394,
+      "sequence": 41,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6742146998256285,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 100.05833855178207,
+      "sequence": 42,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6934351457219037,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 102.0583386560902,
+      "sequence": 43,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.6967967131169924,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 104.05833876039833,
+      "sequence": 44,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7089749999886306,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 106.05833886470646,
+      "sequence": 45,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7162028952471126,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 108.05833896901459,
+      "sequence": 46,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7163204782673551,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 110.05833907332271,
+      "sequence": 47,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7160641356551921,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 112.05833917763084,
+      "sequence": 48,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7161095252061872,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 114.05833928193897,
+      "sequence": 49,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.716341796383983,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 116.0583393862471,
+      "sequence": 50,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.716341796383983,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 118.05833949055523,
+      "sequence": 51,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7163843110268481,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 120.05833959486336,
+      "sequence": 52,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7163843110268481,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "DESCEND",
+      "sim_s": 122.05833969917148,
+      "sequence": 53,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7163843110268481,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    },
+    {
+      "invariant": "I19",
+      "mission_stage": "ABORT",
+      "sim_s": 124.05833980347961,
+      "sequence": 54,
+      "details": [
+        {
+          "measurement": "nonrequested_displacement_m",
+          "value": 0.7168853848406855,
+          "relation": "le",
+          "limit": 0.005
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "I01": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I02": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I03": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I04": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I05": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I06": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I07": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I08": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I09": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I10": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I11": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I12": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I13": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I14": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I15": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I16": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I17": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I18": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I19": {
+      "pass": 23,
+      "fail": 32,
+      "unknown": 0,
+      "missing": []
+    },
+    "I20": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I21": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I22": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I23": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I24": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    },
+    "I25": {
+      "pass": 0,
+      "fail": 0,
+      "unknown": 0,
+      "missing": []
+    }
+  },
+  "analyzer_work_items": [
+    "I01",
+    "I02",
+    "I03",
+    "I04",
+    "I05",
+    "I06",
+    "I07",
+    "I08",
+    "I09",
+    "I10",
+    "I11",
+    "I12",
+    "I13",
+    "I14",
+    "I15",
+    "I16",
+    "I17",
+    "I18",
+    "I20",
+    "I21",
+    "I22",
+    "I23",
+    "I24",
+    "I25"
+  ],
+  "qualification_exclusion_separate": true,
+  "historical_unqualified": true,
+  "supported_checks": [
+    "I19"
+  ],
+  "limitation": "Replay only displacement; timing, TF, service UUIDs, host qualification and candidate geometry unavailable"
+}

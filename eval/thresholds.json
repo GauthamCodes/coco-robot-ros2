@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "CALIBRATION_REQUIRED",
+  "thresholds": {
+    "accepted_target_true_error_m": null,
+    "amcl_true_error_m": null,
+    "arbiter_latency_sim_s": null,
+    "attachment_proximity_m": null,
+    "clock_stall_wall_s": null,
+    "command_motion_delay_sim_s": null,
+    "costmap_age_sim_s": null,
+    "depth_age_sim_s": null,
+    "goal_ack_sim_s": null,
+    "joint_tracking_error_rad": null,
+    "max_roll_pitch_rad": null,
+    "odom_true_displacement_error_m": null,
+    "plan_latency_sim_s": null,
+    "projected_extent_error_fraction": null,
+    "retreat_clearance_m": null,
+    "rgb_age_sim_s": null,
+    "rgb_depth_skew_sim_s": null,
+    "rtf_floor": null,
+    "tf_age_sim_s": null
+  },
+  "derivations": {},
+  "controls": [],
+  "fixed_contracts": {
+    "I19": "M0 oracle 5mm displacement",
+    "I21": "existing lift gate 0.03m",
+    "I23": "M0 oracle 5mm / 2 simulated seconds",
+    "I10": "Nav2 start occupied server report; no invented raw cost",
+    "I25": "published unchanged stage budget"
+  }
+}

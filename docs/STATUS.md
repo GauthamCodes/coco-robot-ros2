@@ -242,3 +242,25 @@ unchanged; existing publisher-inventory test adds only that diagnostic topic.
 Dev 6/7, without destroying other sessions. This host has lttng but no ros2 trace
 CLI (`tracing_availability.json`); executor timing is NOT VERIFIED, no timing
 trace claimed. IMPLEMENTED; qualified server goal/lifecycle runtime pending.
+
+## 2026-10-06 — M1.6 offline invariant engine and supported historical replay
+
+M1 / M1.6 advances first-violation analysis, fixture coverage and explicit gaps.
+`eval/invariants.py` implements all I01–I25 as tri-state checks on normalized
+measurements; `analyzer.py` orders source sim timestamps, preserves receive order,
+writes stage/stamp and a centered ten-second context. Missing evidence/limits
+are unknown, never successful or forcibly classified. 25 passing, 25 failing,
+25 missing-evidence fixtures plus order/context/calibration checks pass (77).
+`calibration.py` derives P99 ceilings/P1 floors from qualified oracle-PASS Dev
+controls with explicitly justified margins and trace hashes; held-out inputs
+rejected. Production thresholds remain null because qualified controls do not
+exist; no arbitrary invariant limits committed. Existing oracle/physical gates
+and stage budgets retained where already defined.
+`normalize.py` currently derives physical finiteness, I19 disturbance, graph
+sole-publisher evidence and explicit planner "Start occupied" observations.
+Other catalog raw-trace derivations remain analyzer work, not a complete M1.6.
+Historical replay proves I19 is observed for coco23 Gazebo6 at 61.726 sim s and
+Isaac6 at 62.0583365699 sim s. These are the first supported displacement breaches,
+not proven earliest causal divergence among missing invariants, and are not
+qualified baseline evidence. `m1/validation/historical_*.json`, `m16_*`.
+IMPLEMENTED engine; full trace-to-catalog coverage/calibration remains pending.

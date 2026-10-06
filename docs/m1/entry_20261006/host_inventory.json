@@ -1,0 +1,478 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-10-06T17:45:49.593047+00:00",
+  "starting_sha": "3671059fd86d8cdd2a052283f6cad47e071e148b",
+  "branch": "coco-2.1-isaac-integration",
+  "initial_worktree_clean": true,
+  "worktrees": "/home/gautham/ros2_ws(personal)/src/coco-robot-ros2                                           9ee4a52 [main]\n/home/gautham/coco-infra-worktree                                                             23f372c [claude/docker-reproducibility]\n/home/gautham/coco-isaac-21                                                                   3671059 [coco-2.1-isaac-integration]\n/home/gautham/coco-isaac-backend                                                              ffb3fc6 [p03-isaac-backend]\n/home/gautham/coco-p03c-consolidation                                                         917bc59 [p03c-consolidation]\n/home/gautham/coco-p03d-target-search                                                         8e518cf [p03d-autonomous-target-search]\n/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/c2nav0-diagnosis        1235502 [worktree-c2nav0-diagnosis]\n/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/c2nav43-integration     d317d85 [c2nav49-integration]\n/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/episode-gazebo          dfcbc4b [p03c-episode-gazebo]\n/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/isaac-compat            20a9619 [isaac-compat-4x]\n/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/lab1                    3ddfe74 [lab4]\n/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/p0-consolidation-merge  b55f24f [p0-consolidation-merge]\n/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/p01-platform            921f6d0 [worktree-p01-platform]\n/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/p02-browser             b3c6598 [p03-episode-spec]\n",
+  "plan_comparison": {
+    "committed": {
+      "path": "docs/MASTER_PLAN.md",
+      "sha256": "e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d"
+    },
+    "downloads": {
+      "path": "/home/gautham/Downloads/COCO Master Plan \u2014 Road to v2.0.md",
+      "sha256": "e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d"
+    }
+  },
+  "plans_identical": true,
+  "cpu_count": 12,
+  "cpu_affinity_count": 12,
+  "loadavg": [
+    24.77392578125,
+    24.080078125,
+    22.85009765625
+  ],
+  "memory": {
+    "argv": [
+      "free",
+      "-m"
+    ],
+    "returncode": 0,
+    "stdout": "               total        used        free      shared  buff/cache   available\nMem:           15696        7592        2282         231        6390        8104\nSwap:           4095           0        4095\n",
+    "stderr": ""
+  },
+  "gpu": {
+    "argv": [
+      "nvidia-smi",
+      "--query-gpu=name,memory.total,memory.free",
+      "--format=csv,noheader,nounits"
+    ],
+    "returncode": 0,
+    "stdout": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141, 5268\n",
+    "stderr": ""
+  },
+  "disk": {
+    "argv": [
+      "df",
+      "-B1",
+      ".",
+      "/dev/shm"
+    ],
+    "returncode": 0,
+    "stdout": "Filesystem        1B-blocks        Used   Available Use% Mounted on\n/dev/nvme0n1p5 109421105152 87887405056 15941808128  85% /\ntmpfs            8229277696   214814720  8014462976   3% /dev/shm\n",
+    "stderr": ""
+  },
+  "foreign_ros_simulator_processes": [
+    {
+      "pid": 147942,
+      "ppid": 147773,
+      "pgid": 147942,
+      "start_ticks": 1655558,
+      "comm": "ros2",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/jazzy/bin/ros2",
+        "launch",
+        "gazebo_models",
+        "full_world_robo.launch.py",
+        "traverse:=true",
+        "gui:=false",
+        "episode_record:=/home/gautham/coco_lab_runs/lab4/matrix/C2_green_nearest/spawned_manifest.json"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 147971,
+      "ppid": 147942,
+      "pgid": 147942,
+      "start_ticks": 1655697,
+      "comm": "robot_state_pub",
+      "argv": [
+        "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+        "--ros-args",
+        "--params-file",
+        "/tmp/launch_params_ll4y8xy7"
+      ],
+      "exe": "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher"
+    },
+    {
+      "pid": 147972,
+      "ppid": 147970,
+      "pgid": 147942,
+      "start_ticks": 1655697,
+      "comm": "ruby",
+      "argv": [
+        "gz sim -r -s -v2 /home/gautham/coco_search_ws/install/gazebo_models/share/gazebo_models/worlds/coco_navigation.world"
+      ],
+      "exe": "/usr/bin/ruby3.2"
+    },
+    {
+      "pid": 147975,
+      "ppid": 147942,
+      "pgid": 147942,
+      "start_ticks": 1655698,
+      "comm": "parameter_bridg",
+      "argv": [
+        "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+        "--ros-args",
+        "-r",
+        "__node:=ros_gz_bridge",
+        "--params-file",
+        "/tmp/launch_params_04mu60hk"
+      ],
+      "exe": "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge"
+    },
+    {
+      "pid": 148693,
+      "ppid": 147773,
+      "pgid": 148693,
+      "start_ticks": 1657926,
+      "comm": "ros2",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/jazzy/bin/ros2",
+        "launch",
+        "coco_mission",
+        "mission.launch.py",
+        "rviz:=false",
+        "target_colour:=green",
+        "search_order:=bay_3,bay_2,bay_1,bay_4"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148738,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658201,
+      "comm": "component_conta",
+      "argv": [
+        "/opt/ros/jazzy/lib/rclcpp_components/component_container_isolated",
+        "--ros-args",
+        "--log-level",
+        "info",
+        "--ros-args",
+        "-r",
+        "__node:=nav2_container",
+        "--params-file",
+        "/tmp/launch_params_yl8hyunh",
+        "--params-file",
+        "/tmp/launch_params_42ljxbq7",
+        "-r",
+        "/tf:=tf",
+        "-r",
+        "/tf_static:=tf_static"
+      ],
+      "exe": "/opt/ros/jazzy/lib/rclcpp_components/component_container_isolated"
+    },
+    {
+      "pid": 148739,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658201,
+      "comm": "cmd_vel_relay",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/gautham/coco_search_ws/install/custom_teleop/lib/custom_teleop/cmd_vel_relay",
+        "--ros-args",
+        "-r",
+        "__node:=cmd_vel_relay",
+        "--params-file",
+        "/tmp/launch_params_m7f7pxim"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148740,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658201,
+      "comm": "cmd_vel_arbiter",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/gautham/coco_search_ws/install/custom_teleop/lib/custom_teleop/cmd_vel_arbiter",
+        "--ros-args",
+        "-r",
+        "__node:=cmd_vel_arbiter",
+        "--params-file",
+        "/tmp/launch_params_a29kknef"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148741,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658201,
+      "comm": "target_finder",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/gautham/coco_search_ws/install/coco_perception/lib/coco_perception/target_finder",
+        "--ros-args",
+        "-r",
+        "__node:=target_finder",
+        "--params-file",
+        "/home/gautham/coco_search_ws/install/coco_perception/share/coco_perception/config/target_finder.yaml",
+        "--params-file",
+        "/tmp/launch_params_fyoyk4o6"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148742,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658202,
+      "comm": "move_group",
+      "argv": [
+        "/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy/lib/moveit_ros_move_group/move_group",
+        "--ros-args",
+        "--params-file",
+        "/tmp/launch_params_tdqpf5ph",
+        "--params-file",
+        "/tmp/launch_params_729ti_94"
+      ],
+      "exe": "/home/gautham/coco_labs_ws/moveit_prefix/root/opt/ros/jazzy/lib/moveit_ros_move_group/move_group"
+    },
+    {
+      "pid": 148743,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658202,
+      "comm": "platform_server",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/gautham/coco_search_ws/install/coco_web/lib/coco_web/platform_server",
+        "--ros-args",
+        "-r",
+        "__node:=coco_web_platform",
+        "--params-file",
+        "/tmp/launch_params_s40n_39f"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148744,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658202,
+      "comm": "web_video_serve",
+      "argv": [
+        "/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy/lib/web_video_server/web_video_server",
+        "--ros-args",
+        "-r",
+        "__node:=web_video_server",
+        "--params-file",
+        "/tmp/launch_params_ntp_e58o"
+      ],
+      "exe": "/home/gautham/coco_labs_ws/moveit_prefix/root/opt/ros/jazzy/lib/web_video_server/web_video_server"
+    },
+    {
+      "pid": 148745,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658202,
+      "comm": "ramp_driver",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/gautham/coco_search_ws/install/coco_rl/lib/coco_rl/ramp_driver",
+        "--ros-args",
+        "-r",
+        "__node:=ramp_driver",
+        "--params-file",
+        "/tmp/launch_params_k36xi5d7"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148746,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658202,
+      "comm": "approach_server",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/gautham/coco_search_ws/install/custom_teleop/lib/custom_teleop/approach_server",
+        "--ros-args",
+        "-r",
+        "__node:=approach_server",
+        "--params-file",
+        "/tmp/launch_params_okqsoo_k"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148747,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658202,
+      "comm": "python3",
+      "argv": [
+        "python3",
+        "/home/gautham/coco_search_ws/install/coco_moveit_config/lib/coco_moveit_config/grasp_server.py",
+        "--ros-args",
+        "-r",
+        "__node:=grasp_server",
+        "--params-file",
+        "/tmp/launch_params_sevovjhv"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148748,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658203,
+      "comm": "python3",
+      "argv": [
+        "python3",
+        "/home/gautham/coco_search_ws/install/coco_mission/lib/coco_mission/mission_executive.py",
+        "--ros-args",
+        "-r",
+        "__node:=mission_executive",
+        "--params-file",
+        "/tmp/launch_params_za0pic0k"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148749,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658203,
+      "comm": "python3",
+      "argv": [
+        "python3",
+        "/home/gautham/coco_search_ws/install/coco_mission/lib/coco_mission/localization_monitor.py",
+        "--ros-args",
+        "-r",
+        "__node:=localization_monitor",
+        "--params-file",
+        "/tmp/launch_params_gdg6kjwn"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 148750,
+      "ppid": 148693,
+      "pgid": 148693,
+      "start_ticks": 1658203,
+      "comm": "python3",
+      "argv": [
+        "python3",
+        "/home/gautham/coco_search_ws/install/coco_mission/lib/coco_mission/mission_hud.py",
+        "--ros-args",
+        "-r",
+        "__node:=mission_hud",
+        "--params-file",
+        "/tmp/launch_params_gzinnvvh"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 151069,
+      "ppid": 147773,
+      "pgid": 8646,
+      "start_ticks": 1680428,
+      "comm": "ros2",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/jazzy/bin/ros2",
+        "topic",
+        "echo",
+        "/mission/state",
+        "--field",
+        "data"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 151070,
+      "ppid": 147773,
+      "pgid": 8646,
+      "start_ticks": 1680428,
+      "comm": "ros2",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/jazzy/bin/ros2",
+        "topic",
+        "echo",
+        "/mission/search",
+        "--field",
+        "data"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 151071,
+      "ppid": 147773,
+      "pgid": 8646,
+      "start_ticks": 1680428,
+      "comm": "ros2",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/jazzy/bin/ros2",
+        "bag",
+        "record",
+        "-o",
+        "/home/gautham/coco_lab_runs/lab4/matrix/C2_green_nearest/bag",
+        "/mission/state",
+        "/mission/search",
+        "/mission/search_region",
+        "/perception/status",
+        "/ramp/status",
+        "/approach/status",
+        "/grasp/status",
+        "/model/coco/odometry"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 151072,
+      "ppid": 147773,
+      "pgid": 8646,
+      "start_ticks": 1680428,
+      "comm": "ros2",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/jazzy/bin/ros2",
+        "topic",
+        "echo",
+        "/perception/status",
+        "--field",
+        "data"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 151073,
+      "ppid": 147773,
+      "pgid": 8646,
+      "start_ticks": 1680428,
+      "comm": "ros2",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/jazzy/bin/ros2",
+        "topic",
+        "echo",
+        "/ramp/status",
+        "--field",
+        "data"
+      ],
+      "exe": "/usr/bin/python3.12"
+    },
+    {
+      "pid": 151074,
+      "ppid": 147773,
+      "pgid": 8646,
+      "start_ticks": 1680428,
+      "comm": "ros2",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/jazzy/bin/ros2",
+        "topic",
+        "echo",
+        "/approach/status",
+        "--field",
+        "data"
+      ],
+      "exe": "/usr/bin/python3.12"
+    }
+  ],
+  "dds_named_segments": [],
+  "qualification": "BLOCKED: foreign Gazebo and ROS processes; cannot start Isaac while Gazebo runs",
+  "resource_thresholds": "NOT ESTABLISHED: inventory is not a complete M1.1 preflight",
+  "simulator_launches_by_this_session": 0,
+  "seed_runs_by_this_session": 0
+}

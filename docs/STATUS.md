@@ -1,7 +1,9 @@
 # COCO status
 
-Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.2–M0.6 execution complete; independent review pending**.
-M1 has not started. Independent milestone review and owner G0 decision pending.
+Updated: 2026-10-06. Milestone **M1**, checkpoint **M1.1 entry stopped: host cannot currently qualify for Isaac**.
+Gautham confirms M0 independently reviewed/passed and G0 passed in the M1 session
+instruction. Older pending-gate statements below are historical and superseded
+by this dated entry. No M0 work reopened. M1.1–M1.8 remain incomplete.
 
 Session start SHA: `c45d224a9cbcfd10b9661a40c4df7866febdce38`.
 Checkpoint input/current verified SHA: `33354011c9d76857b3c66b12e14176633b1346ee`.
@@ -112,3 +114,43 @@ legitimate independent object observation is missing; truth remains evaluator-on
 
 All M0 implementation checkpoints are ready for review. Independent review and
 Gautham's G0 remain pending; this session does not pass either gate.
+
+## 2026-10-06 — M1 entry and host qualification stop
+
+Milestone: M1 — Evaluation harness and failure taxonomy. Checkpoint: M1.1.
+Exit criterion advanced: establish live provenance and identify host conditions
+that must block a qualified batch before simulator launch.
+
+Input HEAD: `3671059fd86d8cdd2a052283f6cad47e071e148b`; expected branch
+`coco-2.1-isaac-integration`; worktree clean at entry. The committed Master Plan
+and Downloads source are byte-identical; hashes and read-only worktree inventory
+are in `m1/entry_20261006/host_inventory.json`. Gautham's session instruction
+confirms the independent M0 pass and owner G0 pass. This records the owner's
+confirmation; it does not fabricate a new independent review artifact or modify
+the plan. Existing M0 evidence was read, not re-audited or replaced.
+
+**Stop condition hit: host cannot currently be qualified for Isaac runs.**
+Foreign Gazebo PID 147972 runs from `coco_search_ws`; foreign launch PID 147942
+records to `coco_lab_runs/lab4/matrix/C2_green_nearest`. Foreign mission launch
+PID 148693, Nav2 container PID 148738 and associated ROS nodes/recorder are also
+active. No foreign processes were terminated or modified. Launching Isaac would
+violate the explicit simultaneous-simulator prohibition. At 17:45:49 UTC the
+1-minute load was 24.7739 on 12 logical CPUs. Load/RAM/VRAM are inventory facts,
+not newly invented qualification cutoffs. No simulator or seed was launched.
+
+Evidence: `m1/entry_20261006/host_inventory.json`, `env.json`, and
+`m1/BASELINE.md`. Environment captured in the entry shell (ROS not sourced),
+not represented as the future run environment. No DDS-named shared-memory
+segments were found; orphan detection is not implemented or claimed complete.
+
+Evidence label: **NOT VERIFIED** for M1 harness/baseline capabilities. This is a
+recorded host blocker, not a completed or tested M1.1 preflight. No autonomy,
+parameters, launch, oracle, seed policy, historical evidence or CI changed.
+No M2 hypothesis, new invariant or parked idea added. No campaign started.
+
+Next: Gautham makes the host available without foreign simulator/ROS workloads;
+then resume M1.1, commit environment-grounded qualification thresholds, implement
+and test the preflight (including no simulator launch), and continue M1.2–M1.8.
+This is a stop-condition report, **not** the validated-harness overnight handoff.
+No baseline execution command exists yet. M2 remains forbidden until all M1
+exit criteria are satisfied and independently reviewed.

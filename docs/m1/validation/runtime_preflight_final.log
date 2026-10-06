@@ -1,0 +1,32 @@
+{
+  "qualified": false,
+  "reasons": [
+    "/proc/6293: [Errno 13] Permission denied: '/proc/6293/exe'",
+    "foreign robotics process pid=8877 start=46091 argv=['/usr/bin/python3', '-c', 'from ros2cli.daemon.daemonize import main; main()', '--name', 'ros2-daemon', '--ros-domain-id', '64', '--rmw-implementation', 'rmw_cyclonedds_cpp']",
+    "foreign robotics process pid=183965 start=1993672 argv=['/usr/bin/python3', '/opt/ros/jazzy/bin/ros2', 'launch', 'gazebo_models', 'full_world_robo.launch.py', 'traverse:=true', 'gui:=false', 'episode_manifest:=/home/gautham/coco_lab_runs/lab4/matrix/B3_colours_s7_red/manifest.json', 'episode_record:=/home/gautham/coco_lab_runs/lab4/matrix/B3_colours_s7_red/spawned_manifest.json']",
+    "foreign robotics process pid=183993 start=1993812 argv=['/bin/sh', '-c', 'ruby /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz sim -r -s -v2 /home/gautham/coco_search_ws/install/gazebo_models/share/gazebo_models/worlds/coco_navigation.world --force-version 8']",
+    "foreign robotics process pid=183994 start=1993812 argv=['/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher', '--ros-args', '--params-file', '/tmp/launch_params_dgsmukoz']",
+    "foreign robotics process pid=183995 start=1993812 argv=['gz sim -r -s -v2 /home/gautham/coco_search_ws/install/gazebo_models/share/gazebo_models/worlds/coco_navigation.world']",
+    "foreign robotics process pid=183998 start=1993812 argv=['/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge', '--ros-args', '-r', '__node:=ros_gz_bridge', '--params-file', '/tmp/launch_params_kp2qk3ru']",
+    "foreign robotics process pid=184747 start=1996214 argv=['/usr/bin/python3', '/opt/ros/jazzy/bin/ros2', 'launch', 'coco_mission', 'mission.launch.py', 'rviz:=false', 'target_colour:=red', 'episode_manifest:=/home/gautham/coco_lab_runs/lab4/matrix/B3_colours_s7_red/manifest.json']",
+    "foreign robotics process pid=184801 start=1996517 argv=['/opt/ros/jazzy/lib/rclcpp_components/component_container_isolated', '--ros-args', '--log-level', 'info', '--ros-args', '-r', '__node:=nav2_container', '--params-file', '/tmp/launch_params_aca03jb4', '--params-file', '/tmp/launch_params_wp8noj_p', '-r', '/tf:=tf', '-r', '/tf_static:=tf_static']",
+    "foreign robotics process pid=184802 start=1996517 argv=['/usr/bin/python3', '/home/gautham/coco_search_ws/install/custom_teleop/lib/custom_teleop/cmd_vel_relay', '--ros-args', '-r', '__node:=cmd_vel_relay', '--params-file', '/tmp/launch_params_j34saxc5']",
+    "foreign robotics process pid=184803 start=1996517 argv=['/usr/bin/python3', '/home/gautham/coco_search_ws/install/custom_teleop/lib/custom_teleop/cmd_vel_arbiter', '--ros-args', '-r', '__node:=cmd_vel_arbiter', '--params-file', '/tmp/launch_params_f48c5z9d']",
+    "foreign robotics process pid=184804 start=1996517 argv=['/usr/bin/python3', '/home/gautham/coco_search_ws/install/coco_perception/lib/coco_perception/target_finder', '--ros-args', '-r', '__node:=target_finder', '--params-file', '/home/gautham/coco_search_ws/install/coco_perception/share/coco_perception/config/target_finder.yaml', '--params-file', '/tmp/launch_params_8dotouq8']",
+    "foreign robotics process pid=184805 start=1996517 argv=['/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy/lib/moveit_ros_move_group/move_group', '--ros-args', '--params-file', '/tmp/launch_params_dflh7imd', '--params-file', '/tmp/launch_params_9_9xehsu']",
+    "foreign robotics process pid=184806 start=1996517 argv=['/usr/bin/python3', '/home/gautham/coco_search_ws/install/coco_web/lib/coco_web/platform_server', '--ros-args', '-r', '__node:=coco_web_platform', '--params-file', '/tmp/launch_params_c50do746']",
+    "foreign robotics process pid=184807 start=1996517 argv=['/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy/lib/web_video_server/web_video_server', '--ros-args', '-r', '__node:=web_video_server', '--params-file', '/tmp/launch_params_7ilofgu5']",
+    "foreign robotics process pid=184808 start=1996518 argv=['/usr/bin/python3', '/home/gautham/coco_search_ws/install/coco_rl/lib/coco_rl/ramp_driver', '--ros-args', '-r', '__node:=ramp_driver', '--params-file', '/tmp/launch_params_5rm0vynj']",
+    "foreign robotics process pid=184809 start=1996518 argv=['/usr/bin/python3', '/home/gautham/coco_search_ws/install/custom_teleop/lib/custom_teleop/approach_server', '--ros-args', '-r', '__node:=approach_server', '--params-file', '/tmp/launch_params_aj6yax9r']",
+    "foreign robotics process pid=184810 start=1996518 argv=['python3', '/home/gautham/coco_search_ws/install/coco_moveit_config/lib/coco_moveit_config/grasp_server.py', '--ros-args', '-r', '__node:=grasp_server', '--params-file', '/tmp/launch_params_nhl4t2dj']",
+    "foreign robotics process pid=184811 start=1996519 argv=['python3', '/home/gautham/coco_search_ws/install/coco_mission/lib/coco_mission/mission_executive.py', '--ros-args', '-r', '__node:=mission_executive', '--params-file', '/tmp/launch_params_g05tg09j']",
+    "foreign robotics process pid=184814 start=1996520 argv=['python3', '/home/gautham/coco_search_ws/install/coco_mission/lib/coco_mission/localization_monitor.py', '--ros-args', '-r', '__node:=localization_monitor', '--params-file', '/tmp/launch_params_apagpa7v']",
+    "foreign robotics process pid=184815 start=1996520 argv=['python3', '/home/gautham/coco_search_ws/install/coco_mission/lib/coco_mission/mission_hud.py', '--ros-args', '-r', '__node:=mission_hud', '--params-file', '/tmp/launch_params_1ghp58rj']",
+    "foreign robotics process pid=186850 start=2014433 argv=['/usr/bin/python3', '/opt/ros/jazzy/bin/ros2', 'param', 'dump', '/mission_executive']",
+    "max_load1: observed 22.720703125, required 12",
+    "isaac/preflight: uncalibrated requirement min_ram_available_bytes",
+    "isaac/preflight: uncalibrated requirement min_vram_free_bytes"
+  ],
+  "backend": "isaac",
+  "phase": "preflight"
+}

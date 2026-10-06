@@ -1,13 +1,15 @@
 # COCO status
 
-Updated: 2026-10-06. Milestone **M1**, checkpoint **M1.1 implementation underway; runtime qualification pending**.
-Gautham confirms M0 independently reviewed/passed and G0 passed in the M1 session
-instruction. Older pending-gate statements below are historical and superseded
-by this dated entry. No M0 work reopened. M1.1–M1.8 remain incomplete.
+Updated: 2026-10-07. Milestone **M1**, checkpoints **M1.1–M1.7 infrastructure
+implemented in part; qualified runtime/calibration and M1.8 blocked**.
+M0 independently reviewed/passed and G0 passed per Gautham. No M0 reopened.
+M1 remains incomplete; no qualified smoke or baseline and no M2 authorized.
 
-Session start SHA: `c45d224a9cbcfd10b9661a40c4df7866febdce38`.
-Checkpoint input/current verified SHA: `33354011c9d76857b3c66b12e14176633b1346ee`.
+Current session start/live verified input SHA: `1bd501efb5ba444e61ae10ab5b107789f393a80a`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
+Canonical repository and Downloads Master Plans byte-identical (SHA256
+`e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d`).
+Previous session SHA entries below are historical, not this session's HEAD.
 Current SHA and worktree state (live): **`python3 eval/status.py`**. It prints
 the true full HEAD SHA, branch and cleanliness before this committed status.
 Equivalent SHA command: `git rev-parse HEAD`. A committed file cannot
@@ -51,7 +53,7 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Arm IK / MoveIt trajectory interface | IMPLEMENTED | `coco_moveit_config/`; local 32-test suite; frozen |
 | Historical fetch under current qualification rules | NOT VERIFIED | `data/isaac_fetch/coco23/README.md`, `coco24/README.md`; unqualified historical observations, not a qualified current capability or reliability result |
 | Current physical manipulation completion | NOT VERIFIED | `m0/MANIPULATION_OBSERVATION.md`; independent object observation unavailable; attachment/lift/release/placement fail closed |
-| Qualified cross-simulator reliability | NOT VERIFIED | M1 qualification/trace harness and M4 benchmark not implemented |
+| Qualified cross-simulator reliability | NOT VERIFIED | M1 qualification/trace infrastructure implemented in part, runtime not validated; M4 benchmark not implemented |
 | Single physical-success oracle | IMPLEMENTED | `SUCCESS_DEFINITION.md`; `m0/ORACLE_BACKCHECK.md`; 43 oracle/environment/adapter tests and 6 seed tests locally pass; CI configured, execution unverified |
 | Environment capture | IMPLEMENTED | `../eval/environment.py`; `m0/control_plane/environment/env.json`; executed without simulator launch |
 | Held-out seed governance | IMPLEMENTED | `../eval/seeds.yaml`; `m0/control_plane/seed_tests.log`; disjoint pools, never run |
@@ -264,3 +266,49 @@ Isaac6 at 62.0583365699 sim s. These are the first supported displacement breach
 not proven earliest causal divergence among missing invariants, and are not
 qualified baseline evidence. `m1/validation/historical_*.json`, `m16_*`.
 IMPLEMENTED engine; full trace-to-catalog coverage/calibration remains pending.
+
+
+## 2026-10-07 — M1.7 runner implementation and runtime-gate stop
+
+Input SHA `ab45dc5034cecae364ad8909499498a73dd6597d`. IMPLEMENTED, not a
+completed/validated M1.7: `eval/bin/eval`, `cli.py`, `batch.py` provide sequential
+locked batches, preflight before any launch, append-only crash attempts, saved
+PID/start-time and process-group reconciliation, recorder-first/last lifecycle,
+1 Hz host metrics/RTF, disk gates, preserved failures, single oracle/analyzer and
+qualified-only Dev/Test A summaries. Large campaigns require fresh validated
+smoke proof. Dirty-host and mid-run resource tests explicitly assert launch
+blocking/unqualification; synthetic bag placeholders are not MCAP evidence.
+Corrupt raw traces fail closed and processing exceptions preserve an interrupted
+manifest. Standard evidence dirs include blocked attempts; counts distinguish
+blocked inventories from simulated runs.
+
+Supporting hardening: explicit UID/comm/argv allowlist for installed background
+services; unknown unreadable userspace remains blocked. Kernel threads excluded
+only via PF_KTHREAD. Recorder samples TF/lifecycle and writes a bounded clock
+cache. Additional raw derivations cover source-stamped clock/TF/AMCL/odom,
+lifecycle, correlated acknowledged UUID status, perception timestamps/width and
+MoveIt terminal status. Null calibration and missing command/manipulation/
+costmap/progress evidence remain explicit analyzer work; no earliest causal
+classification or physical-success proof claimed. Oracle authority coverage
+remains fail-closed. No control/source/parameter/physics/timeout/retry changes.
+
+Evidence: `m1/validation/eval_verified.log` (155 pass), `ros_final.log` (2 pass,
+actual MCAP replay plus isolation launch negative control), `regressions/*.xml`
+(1,992 robot-package tests pass, zero failures), `build.log` (9 packages built).
+CI dependencies include MCAP/launch testing, tests configured; remote CI not run.
+Earlier failed invocations preserved with corrected results. New perception
+logging field rerun in `perception_final.log` (145 pass).
+
+Runtime gate STOP: `m1/validation/runtime_preflight_final.json` records foreign
+Gazebo/ROS in coco_search_ws (launch183965, sim183995, executive184811), daemon8877,
+unreadable process6293 and load1=22.720703125 >12. Isaac cannot qualify; no simulator
+launched, no foreign PID killed or worktree modified. Even after busy host clears,
+full-stack RAM/VRAM thresholds remain uncalibrated and refuse launch. M0 foundation
+lower bounds cannot establish full fetch/ROS/MCAP requirements. No arbitrary
+threshold substituted. Qualified controls/calibration and catalog raw derivations
+are additional unfinished harness work, not merely an overnight campaign.
+
+See `m1/BASELINE.md` and `../eval/README.md` for exact gaps, evidence schema,
+retention, guarded commands and baseline state. This is not a validated overnight
+handoff. M1 exit criteria remain open; M2 must not start. No hypotheses newly
+confirmed/rejected, no autonomy repair or IDEAS additions.

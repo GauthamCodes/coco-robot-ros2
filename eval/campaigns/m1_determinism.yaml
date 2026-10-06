@@ -1,0 +1,26 @@
+schema_version: 1
+milestone: M1
+kind: baseline
+hypothesis: Known Dev failures have repeatable or intermittent first-divergence labels;
+  controls bound ordinary behavior
+primary_metric: qualified physical oracle completion k/n; Wilson 95% interval
+configuration: unchanged positions/red, existing backend profile, 1200 wall-second
+  oracle budget
+run_count: 20
+parts:
+- seed_group: dev
+  seeds:
+  - 6
+  - 7
+  backends:
+  - gazebo
+  - isaac
+  repeats: 3
+- seed_group: dev
+  seeds:
+  - 5
+  - 8
+  backends:
+  - gazebo
+  - isaac
+  repeats: 2

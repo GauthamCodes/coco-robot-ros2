@@ -1,0 +1,45 @@
+schema_version: 1
+milestone: M1
+kind: baseline
+hypothesis: Thirty new Dev layouts establish failure frequency per backend
+primary_metric: qualified physical oracle completion k/n; Wilson 95% interval
+configuration: unchanged positions/red, existing backend profile, 1200 wall-second
+  oracle budget
+run_count: 60
+parts:
+- seed_group: dev
+  seeds:
+  - 10000
+  - 10001
+  - 10002
+  - 10003
+  - 10004
+  - 10005
+  - 10006
+  - 10007
+  - 10008
+  - 10009
+  - 10010
+  - 10011
+  - 10012
+  - 10013
+  - 10014
+  - 10015
+  - 10016
+  - 10017
+  - 10018
+  - 10019
+  - 10020
+  - 10021
+  - 10022
+  - 10023
+  - 10024
+  - 10025
+  - 10026
+  - 10027
+  - 10028
+  - 10029
+  backends:
+  - gazebo
+  - isaac
+  repeats: 1

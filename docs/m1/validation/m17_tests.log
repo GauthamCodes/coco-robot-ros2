@@ -1,0 +1,48 @@
+F....                                                                    [100%]
+=================================== FAILURES ===================================
+_________ test_dirty_host_blocks_all_process_launches_and_is_preserved _________
+
+tmp_path = PosixPath('/tmp/pytest-of-gautham/pytest-5/test_dirty_host_blocks_all_pro0')
+
+    def test_dirty_host_blocks_all_process_launches_and_is_preserved(tmp_path):
+        snapshot=dict(errors=[],processes=[dict(pid=99,start_ticks=1,pgid=99,robotics=True,argv=['gz sim server'])],
+                      dds_segments=[],load1=0,ram_available_bytes=100,gpu={'free_bytes':100})
+        policy={'backends':{'isaac':{'preflight':dict(max_load1=1,min_ram_available_bytes=1,min_vram_free_bytes=1)}}}
+        job=dict(backend='isaac',seed=5,seed_group='dev',repeat=0)
+        with patch('batch.capture',return_value={'synthetic':True}),patch('batch.subprocess.Popen',side_effect=AssertionError('preflight launched a process')):
+>           rc=run_batch(tmp_path,[job],BASE/'campaigns/m1_smoke.yaml',collect=lambda:snapshot,policy=policy,
+                         storage=dict(max_batch_bytes=10**8,max_run_bytes=1000,reserve_free_bytes=1000,controls_per_batch=2))
+
+eval/tests/test_batch.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+eval/batch.py:208: in run_batch
+    'source_sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()}
+/usr/lib/python3.12/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+/usr/lib/python3.12/subprocess.py:548: in run
+    with Popen(*popenargs, **kwargs) as process:
+/usr/lib/python3.12/unittest/mock.py:1134: in __call__
+    return self._mock_call(*args, **kwargs)
+/usr/lib/python3.12/unittest/mock.py:1138: in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <MagicMock name='Popen' id='135721172811696'>
+args = (['git', 'rev-parse', 'HEAD'],)
+kwargs = {'cwd': PosixPath('/home/gautham/coco-isaac-21'), 'stdout': -1, 'text': True}
+effect = AssertionError('preflight launched a process')
+
+    def _execute_mock_call(self, /, *args, **kwargs):
+        # separate from _increment_mock_call so that awaited functions are
+        # executed separately from their call, also AsyncMock overrides this method
+    
+        effect = self.side_effect
+        if effect is not None:
+            if _is_exception(effect):
+>               raise effect
+E               AssertionError: preflight launched a process
+
+/usr/lib/python3.12/unittest/mock.py:1193: AssertionError
+=========================== short test summary info ============================
+FAILED eval/tests/test_batch.py::test_dirty_host_blocks_all_process_launches_and_is_preserved
+1 failed, 4 passed in 0.60s

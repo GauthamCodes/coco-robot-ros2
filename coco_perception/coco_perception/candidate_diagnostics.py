@@ -105,6 +105,7 @@ def candidates(
                 extents_m=extents,
                 point_count=int(good.size),
                 mask_area_px=area,
+                expected_width_px=(target.diameter * fx / rng if rng else None),
                 width_px=width,
                 height_px=height,
                 depth_statistics={

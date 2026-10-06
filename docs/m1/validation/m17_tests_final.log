@@ -1,0 +1,41 @@
+....F                                                                    [100%]
+=================================== FAILURES ===================================
+______ test_mid_run_resource_violation_unqualifies_and_preserves_evidence ______
+
+tmp_path = PosixPath('/tmp/pytest-of-gautham/pytest-9/test_mid_run_resource_violatio0')
+
+    def test_mid_run_resource_violation_unqualifies_and_preserves_evidence(tmp_path):
+        from batch import initialize,execute
+        root=tmp_path/'batch';root.mkdir();run=root/'run-0'
+        job=dict(backend='isaac',seed=5,seed_group='dev',repeat=0)
+        def snapshot(t,load):
+            return dict(errors=[],processes=[],dds_segments=[],load1=load,ram_available_bytes=10000,
+                        gpu={'free_bytes':10000},cpu_ticks=[t]*8,wall_epoch_ns=t*10**9,monotonic_s=t)
+        snapshots=iter([snapshot(1,0),snapshot(2,20),snapshot(3,0)])
+        policy={'backends':{'isaac':{p:dict(max_load1=12,min_ram_available_bytes=1,min_vram_free_bytes=1) for p in ('preflight','runtime')}}}
+        storage=dict(max_batch_bytes=10**8,max_run_bytes=10**7,reserve_free_bytes=1000)
+        class Child:
+            pid=777
+            returncode=None
+            def poll(self):return None
+        with patch('batch.capture',return_value={'synthetic':True}):manifest=initialize(run,job,'fixture',root)
+        atomic_json(run/'logs/recorder_ready.json',{'synthetic':True})
+        (run/'bag').mkdir();(run/'bag/fixture.mcap').write_bytes(b'preserved synthetic placeholder, not MCAP proof')
+        with patch('batch.subprocess.Popen',return_value=Child()),patch('batch.identity',return_value=dict(pid=777,start_ticks=1,pgid=777)),patch('batch.stop'),patch('batch.availability',return_value={'synthetic':True}):
+            assert execute(run,job,manifest,root,policy,storage,collect=lambda:next(snapshots)) is False
+        value=json.loads((run/'manifest.json').read_text())
+        assert not value['qualified'] and value['state']=='INTERRUPTED'
+        assert any('max_load1' in r for r in value['qualification_reasons'])
+        assert (run/'bag/fixture.mcap').exists()
+>       assert len((run/'host_metrics.csv').read_text().splitlines())==2
+E       AssertionError: assert 1 == 2
+E        +  where 1 = len(['wall_epoch_ns,wall_elapsed_s,sim_s,cpu_percent,load1,ram_available_bytes,vram_free_bytes,rtf,qualified,reasons'])
+E        +    where ['wall_epoch_ns,wall_elapsed_s,sim_s,cpu_percent,load1,ram_available_bytes,vram_free_bytes,rtf,qualified,reasons'] = <built-in method splitlines of str object at 0x77c9878e5570>()
+E        +      where <built-in method splitlines of str object at 0x77c9878e5570> = 'wall_epoch_ns,wall_elapsed_s,sim_s,cpu_percent,load1,ram_available_bytes,vram_free_bytes,rtf,qualified,reasons\n'.splitlines
+E        +        where 'wall_epoch_ns,wall_elapsed_s,sim_s,cpu_percent,load1,ram_available_bytes,vram_free_bytes,rtf,qualified,reasons\n' = <bound method Path.read_text of PosixPath('/tmp/pytest-of-gautham/pytest-9/test_mid_run_resource_violatio0/batch/run-0/host_metrics.csv')>()
+E        +          where <bound method Path.read_text of PosixPath('/tmp/pytest-of-gautham/pytest-9/test_mid_run_resource_violatio0/batch/run-0/host_metrics.csv')> = (PosixPath('/tmp/pytest-of-gautham/pytest-9/test_mid_run_resource_violatio0/batch/run-0') / 'host_metrics.csv').read_text
+
+eval/tests/test_batch.py:73: AssertionError
+=========================== short test summary info ============================
+FAILED eval/tests/test_batch.py::test_mid_run_resource_violation_unqualifies_and_preserves_evidence
+1 failed, 4 passed in 0.28s

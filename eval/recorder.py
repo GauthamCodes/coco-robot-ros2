@@ -28,12 +28,17 @@ def main():
     writer.open(rosbag2_py.StorageOptions(uri=str(run/'bag'),storage_id='mcap'),rosbag2_py.ConverterOptions('',''))
     trace=(run/'logs/events.jsonl').open('x')
     subscribed={};created=set();last={};stop=False
-    publisher={t:node.create_publisher(String,t,10) for t in ('/eval/nav2/lifecycle','/eval/graph','/eval/trace_health')}
+    from tf2_ros import Buffer,TransformListener
+    tf_buffer=Buffer();tf_listener=TransformListener(tf_buffer,node)
+    publisher={t:node.create_publisher(String,t,10) for t in ('/eval/nav2/lifecycle','/eval/tf','/eval/graph','/eval/trace_health')}
     start=time.monotonic()
+    latest_clock=None
     def halt(*_):
         nonlocal stop;stop=True
     signal.signal(signal.SIGINT,halt);signal.signal(signal.SIGTERM,halt)
     def record(topic,type_name,msg):
+        nonlocal latest_clock
+        if topic=='/clock':latest_clock=msg.clock.sec+msg.clock.nanosec/1e9
         mono=time.monotonic();interval=TOPICS[topic]
         if interval and mono-last.get(topic,-interval)<interval:return
         last[topic]=mono
@@ -47,6 +52,7 @@ def main():
         trace.flush()
     def publish(topic,value):publisher[topic].publish(String(data=json.dumps(value,allow_nan=False)))
     def discover():
+        atomic_json(run/'logs/clock_latest.json',{'sim_s':latest_clock})
         for topic,types in node.get_topic_names_and_types():
             if topic not in TOPICS or topic in subscribed:continue
             if len(types)!=1:continue
@@ -59,6 +65,15 @@ def main():
                            durability=DurabilityPolicy.TRANSIENT_LOCAL if durable else DurabilityPolicy.VOLATILE)
             subscribed[topic]=node.create_subscription(kind,topic,lambda m,t=topic,k=types[0]:record(t,k,m),qos)
         publish('/eval/trace_health',{'observed_topics':sorted(subscribed),'missing_topics':sorted(set(TOPICS)-set(subscribed))})
+        transforms={}
+        from rclpy.time import Time
+        for source in ('base_footprint','odom'):
+            try:
+                tf=tf_buffer.lookup_transform('map',source,Time())
+                transforms[source]={'available':True,'stamp_s':tf.header.stamp.sec+tf.header.stamp.nanosec/1e9,
+                                    'message':message_to_ordereddict(tf)}
+            except Exception as exc:transforms[source]={'available':False,'error':str(exc)}
+        publish('/eval/tf',{'transforms':transforms})
         g=snapshot(node);publish('/eval/graph',g)
         # Store all violations; missing arbiter during startup is not silently
         # considered clean. Runner/analyzer decide stage/coverage later.

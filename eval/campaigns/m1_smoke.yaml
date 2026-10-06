@@ -1,0 +1,18 @@
+schema_version: 1
+milestone: M1
+kind: smoke
+hypothesis: Instrumentation preserves behavior and captures a complete standard run
+  on both backends
+primary_metric: qualified physical oracle completion k/n; Wilson 95% interval
+configuration: unchanged positions/red, existing backend profile, 1200 wall-second
+  oracle budget
+run_count: 4
+parts:
+- seed_group: dev
+  seeds:
+  - 5
+  - 8
+  backends:
+  - gazebo
+  - isaac
+  repeats: 1

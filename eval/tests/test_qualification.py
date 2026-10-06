@@ -58,3 +58,11 @@ def test_uncalibrated_is_blocked_and_runtime_violation_is_preserved():
 
 def test_cpu_percentage():
     assert cpu_percent({'cpu_ticks':[0]*8},{'cpu_ticks':[1,0,0,1,0,0,0,0]})==50
+
+
+def test_explicit_background_allowlist_does_not_imply_process_ownership():
+    from qualification import allowed_background
+    rules=[dict(comm='systemd',uid=0,argv_prefix=['/sbin/init'])]
+    assert allowed_background(dict(comm='systemd',uid=0,argv=['/sbin/init','splash']),rules)
+    assert not allowed_background(dict(comm='systemd',uid=1000,argv=['/sbin/init']),rules)
+    assert not allowed_background(dict(comm='python',uid=0,argv=['python','robot.py']),rules)

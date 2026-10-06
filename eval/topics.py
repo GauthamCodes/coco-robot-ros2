@@ -8,8 +8,9 @@ TOPICS={t:0 for t in (
     '/cmd_vel_approach','/diff_drive_controller/cmd_vel','/rosout','/plan',
     '/behavior_tree_log','/perception/status','/perception/target_pose/status',
     '/perception/target','/perception/target_pose','/perception/candidates',
-    '/diagnostics/mission_callbacks','/eval/ground_truth/state','/eval/ground_truth/robot/pose',
-    '/eval/nav2/lifecycle','/eval/graph','/eval/trace_health')}
+    '/planner_server/transition_event','/controller_server/transition_event',
+    '/bt_navigator/transition_event','/diagnostics/mission_callbacks','/eval/ground_truth/state','/eval/ground_truth/robot/pose',
+    '/eval/nav2/lifecycle','/eval/tf','/eval/graph','/eval/trace_health')}
 for name in ('target_red','target_green','target_blue','target_yellow'):
     for suffix in ('pose','dimensions'):
         TOPICS[f'/eval/ground_truth/objects/{name}/{suffix}']=0

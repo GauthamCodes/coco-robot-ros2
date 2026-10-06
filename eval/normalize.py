@@ -51,7 +51,8 @@ def normalized(events,manifest):
         if measurements:
             output.append(dict(sim_s=now,mission_stage=stage,measurements=measurements,
                                invariants=ids,source_topic=topic,source_wall_s=event.get('wall_s')))
-    return output
+    from trace_features import derive
+    return output+derive(events,manifest,payload)
 
 
 def oracle_facts(events,manifest):

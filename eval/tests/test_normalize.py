@@ -19,3 +19,17 @@ def test_truth_displacement_first_time_and_oracle_failure():
     result=score(oracle_facts(events,manifest))
     assert result['oracle_verdict']=='FAIL'
     assert result['checks']['no_arbiter_violation'] is None
+
+
+def test_source_stamps_pose_interpolation_and_lifecycle_at_goal():
+    from trace_features import derive
+    from normalize import payload
+    manifest={'home_xy_m':[-2,0]}
+    states=[event('/eval/ground_truth/state',t,{'sim_s':t,'objects':{},'robot':{'xyz_m':[x,0,0]}}) for t,x in ((1,-2),(3,0))]
+    pose=dict(header={'stamp':{'sec':2,'nanosec':0}},pose={'pose':{'position':{'x':1,'y':0,'z':0}}})
+    raw=dict(topic='/amcl_pose',sim_s=2,wall_s=2,data=pose)
+    stages=[event('/eval/nav2/lifecycle',1,{'server':name,'state':'active'}) for name in ('planner_server','controller_server','bt_navigator')]
+    goal=dict(topic='/rosout',sim_s=2,wall_s=2,data={'name':'mission_executive','msg':'NavigateToPose -> token=4 sim_s=2.000'})
+    facts=derive(states+stages+[raw,goal],manifest,payload)
+    assert next(e for e in facts if e['invariants']==['I04'])['measurements']['amcl_true_error_m']==0
+    assert all(next(e for e in facts if e['invariants']==['I08'])['measurements'].values())

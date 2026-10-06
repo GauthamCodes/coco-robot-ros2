@@ -2,6 +2,7 @@
 """Derive P99/P1 limits from qualified successful Dev controls; no defaults."""
 import argparse
 import json
+import math
 from pathlib import Path
 from evidence import file_hash
 from invariants import RULES,threshold_keys
@@ -25,7 +26,11 @@ def derive(controls,margins):
             event=json.loads(line)
             for rule in RULES.values():
                 for field,_,key in rule:
-                    if key in values and field in event.get('measurements',{}):values[key].append(event['measurements'][field])
+                    if key in values and field in event.get('measurements',{}):
+                        value=event['measurements'][field]
+                        if not isinstance(value,(float,int)) or isinstance(value,bool) or not math.isfinite(value):
+                            raise ValueError('Control measurement must be finite numeric')
+                        values[key].append(value)
     thresholds={};derivations={}
     for key,distribution in values.items():
         if not distribution or key not in margins:
@@ -33,7 +38,9 @@ def derive(controls,margins):
         q=.01 if directions[key]=='ge' else .99
         baseline=quantile(distribution,q)
         margin=margins[key]
-        if not isinstance(margin,dict) or 'value' not in margin or not margin.get('justification'):
+        if (not isinstance(margin,dict) or 'value' not in margin or not margin.get('justification')
+                or not isinstance(margin['value'],(int,float)) or isinstance(margin['value'],bool)
+                or not math.isfinite(margin['value']) or margin['value']<0):
             raise ValueError('Each margin needs an explicit value and justification')
         thresholds[key]=baseline-margin['value'] if directions[key]=='ge' else baseline+margin['value']
         derivations[key]={'n':len(distribution),'quantile':q,'quantile_value':baseline,'margin':margin}

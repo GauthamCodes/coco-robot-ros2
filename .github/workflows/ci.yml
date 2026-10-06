@@ -30,6 +30,10 @@ jobs:
             ros-jazzy-vision-msgs \
             ros-jazzy-tf2-geometry-msgs \
             ros-jazzy-diagnostic-msgs \
+            ros-jazzy-rosbag2-py \
+            ros-jazzy-rosbag2-storage-mcap \
+            ros-jazzy-launch-testing \
+            ros-jazzy-launch-testing-ros \
             ros-jazzy-cv-bridge \
             python3-pytest \
             python3-yaml \

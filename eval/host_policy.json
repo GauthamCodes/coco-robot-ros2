@@ -37,5 +37,345 @@
         "min_vram_free_bytes": null
       }
     }
-  }
+  },
+  "background_process_allowlist": [
+    {
+      "comm": "(sd-pam)",
+      "uid": 1000,
+      "argv_prefix": [
+        "(sd-pam)"
+      ]
+    },
+    {
+      "comm": "brave",
+      "uid": 1000,
+      "argv_prefix": [
+        "/opt/brave.com/brave/brave"
+      ]
+    },
+    {
+      "comm": "chrome-sandbox",
+      "uid": 1000,
+      "argv_prefix": [
+        "/opt/brave.com/brave/chrome-sandbox"
+      ]
+    },
+    {
+      "comm": "systemd",
+      "uid": 0,
+      "argv_prefix": [
+        "/sbin/init"
+      ]
+    },
+    {
+      "comm": "mount.ntfs-3g",
+      "uid": 0,
+      "argv_prefix": [
+        "/sbin/mount.ntfs-3g"
+      ]
+    },
+    {
+      "comm": "snapd",
+      "uid": 0,
+      "argv_prefix": [
+        "/snap/snapd/current/usr/lib/snapd/snapd"
+      ]
+    },
+    {
+      "comm": "containerd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/bin/containerd"
+      ]
+    },
+    {
+      "comm": "dockerd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/bin/dockerd"
+      ]
+    },
+    {
+      "comm": "lttng-runas",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/bin/lttng-sessiond"
+      ]
+    },
+    {
+      "comm": "lttng-sessiond",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/bin/lttng-sessiond"
+      ]
+    },
+    {
+      "comm": "nvidia-persiste",
+      "uid": 129,
+      "argv_prefix": [
+        "/usr/bin/nvidia-persistenced"
+      ]
+    },
+    {
+      "comm": "unattended-upgr",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/bin/python3",
+        "/usr/share/unattended-upgrades/unattended-upgrade-shutdown"
+      ]
+    },
+    {
+      "comm": "dbus",
+      "uid": 7,
+      "argv_prefix": [
+        "/usr/lib/cups/notifier/dbus"
+      ]
+    },
+    {
+      "comm": "polkitd",
+      "uid": 999,
+      "argv_prefix": [
+        "/usr/lib/polkit-1/polkitd"
+      ]
+    },
+    {
+      "comm": "systemd",
+      "uid": 1000,
+      "argv_prefix": [
+        "/usr/lib/systemd/systemd"
+      ]
+    },
+    {
+      "comm": "systemd-journal",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/lib/systemd/systemd-journald"
+      ]
+    },
+    {
+      "comm": "systemd-logind",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/lib/systemd/systemd-logind"
+      ]
+    },
+    {
+      "comm": "systemd-oomd",
+      "uid": 108,
+      "argv_prefix": [
+        "/usr/lib/systemd/systemd-oomd"
+      ]
+    },
+    {
+      "comm": "systemd-resolve",
+      "uid": 101,
+      "argv_prefix": [
+        "/usr/lib/systemd/systemd-resolved"
+      ]
+    },
+    {
+      "comm": "systemd-timesyn",
+      "uid": 103,
+      "argv_prefix": [
+        "/usr/lib/systemd/systemd-timesyncd"
+      ]
+    },
+    {
+      "comm": "systemd-udevd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/lib/systemd/systemd-udevd"
+      ]
+    },
+    {
+      "comm": "accounts-daemon",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/libexec/accounts-daemon"
+      ]
+    },
+    {
+      "comm": "bluetoothd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/libexec/bluetooth/bluetoothd"
+      ]
+    },
+    {
+      "comm": "boltd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/libexec/boltd"
+      ]
+    },
+    {
+      "comm": "colord",
+      "uid": 123,
+      "argv_prefix": [
+        "/usr/libexec/colord"
+      ]
+    },
+    {
+      "comm": "geoclue",
+      "uid": 124,
+      "argv_prefix": [
+        "/usr/libexec/geoclue"
+      ]
+    },
+    {
+      "comm": "gnome-remote-de",
+      "uid": 996,
+      "argv_prefix": [
+        "/usr/libexec/gnome-remote-desktop-daemon"
+      ]
+    },
+    {
+      "comm": "power-profiles-",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/libexec/power-profiles-daemon"
+      ]
+    },
+    {
+      "comm": "rtkit-daemon",
+      "uid": 116,
+      "argv_prefix": [
+        "/usr/libexec/rtkit-daemon"
+      ]
+    },
+    {
+      "comm": "switcheroo-cont",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/libexec/switcheroo-control"
+      ]
+    },
+    {
+      "comm": "udisksd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/libexec/udisks2/udisksd"
+      ]
+    },
+    {
+      "comm": "upowerd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/libexec/upowerd"
+      ]
+    },
+    {
+      "comm": "ModemManager",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/ModemManager"
+      ]
+    },
+    {
+      "comm": "NetworkManager",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/NetworkManager"
+      ]
+    },
+    {
+      "comm": "cron",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/cron"
+      ]
+    },
+    {
+      "comm": "cups-browsed",
+      "uid": 131,
+      "argv_prefix": [
+        "/usr/sbin/cups-browsed"
+      ]
+    },
+    {
+      "comm": "cupsd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/cupsd"
+      ]
+    },
+    {
+      "comm": "gdm3",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/gdm3"
+      ]
+    },
+    {
+      "comm": "kerneloops",
+      "uid": 113,
+      "argv_prefix": [
+        "/usr/sbin/kerneloops"
+      ]
+    },
+    {
+      "comm": "rsyslogd",
+      "uid": 104,
+      "argv_prefix": [
+        "/usr/sbin/rsyslogd"
+      ]
+    },
+    {
+      "comm": "smartd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/smartd"
+      ]
+    },
+    {
+      "comm": "thermald",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/thermald"
+      ]
+    },
+    {
+      "comm": "wpa_supplicant",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/wpa_supplicant"
+      ]
+    },
+    {
+      "comm": "dbus-daemon",
+      "uid": 102,
+      "argv_prefix": [
+        "@dbus-daemon"
+      ]
+    },
+    {
+      "comm": "avahi-daemon",
+      "uid": 114,
+      "argv_prefix": [
+        "avahi-daemon: chroot helper"
+      ]
+    },
+    {
+      "comm": "avahi-daemon",
+      "uid": 114,
+      "argv_prefix": [
+        "avahi-daemon: running [gautham-Nitro-ANV15-51.local]"
+      ]
+    },
+    {
+      "comm": "fusermount3",
+      "uid": 1000,
+      "argv_prefix": [
+        "fusermount3"
+      ]
+    },
+    {
+      "comm": "gdm-session-wor",
+      "uid": 0,
+      "argv_prefix": [
+        "gdm-session-worker [pam/gdm-password]"
+      ]
+    }
+  ],
+  "allowlist_justification": "Explicit installed Ubuntu system services and browser sandbox processes, matched by UID + comm + argv prefix. Kernel threads excluded only by PF_KTHREAD flag. These are allowed background applications, not runner-owned processes. No arbitrary Python, shell, ROS, simulator, daemon or project process is auto-allowed. Unreadable unlisted userspace process remains a blocker. This guard addresses accidental workload contamination, not malicious root argv spoofing."
 }

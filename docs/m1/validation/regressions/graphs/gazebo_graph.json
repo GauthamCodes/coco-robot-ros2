@@ -1,0 +1,93 @@
+{
+  "subscriptions": {
+    "mission_executive": [
+      "/amcl_pose",
+      "/approach/status",
+      "/cmd_vel_arbiter/status",
+      "/diff_drive_controller/odom",
+      "/grasp/status",
+      "/localization/health",
+      "/mission/target_colour",
+      "/navigate_to_pose/_action/feedback",
+      "/navigate_to_pose/_action/status",
+      "/perception/status",
+      "/perception/target",
+      "/perception/target_pose/status",
+      "/ramp/status",
+      "/spin/_action/feedback",
+      "/spin/_action/status",
+      "/tf",
+      "/tf_static"
+    ],
+    "localization_monitor": [
+      "/amcl_pose",
+      "/map",
+      "/scan",
+      "/tf",
+      "/tf_static"
+    ],
+    "grasp_server": [
+      "/approach/target",
+      "/diff_drive_controller/odom",
+      "/imu",
+      "/joint_states",
+      "/magnet/target_red/state",
+      "/mission/target_colour",
+      "/move_action/_action/feedback",
+      "/move_action/_action/status"
+    ],
+    "target_finder": [
+      "/camera/camera_info",
+      "/camera/depth/image_raw",
+      "/camera/image_raw",
+      "/mission/target_colour"
+    ],
+    "target_pose_node": [
+      "/camera/camera_info",
+      "/camera/depth/image_raw",
+      "/camera/image_raw",
+      "/mission/target_colour",
+      "/tf",
+      "/tf_static"
+    ],
+    "cmd_vel_relay": [
+      "/cmd_vel"
+    ],
+    "cmd_vel_arbiter": [
+      "/cmd_vel_approach",
+      "/cmd_vel_gated",
+      "/cmd_vel_rl",
+      "/cmd_vel_teleop",
+      "/mission/mode"
+    ],
+    "terrain_observer": [
+      "/diff_drive_controller/cmd_vel",
+      "/imu",
+      "/joint_states"
+    ],
+    "ramp_driver": [
+      "/diff_drive_controller/odom",
+      "/mission/target_colour"
+    ],
+    "coco_ramp_env": [
+      "/diff_drive_controller/odom",
+      "/imu"
+    ],
+    "approach_server": [
+      "/diff_drive_controller/odom",
+      "/imu",
+      "/mission/target_colour",
+      "/perception/target"
+    ]
+  },
+  "wheel_authorities": [
+    "cmd_vel_arbiter"
+  ],
+  "truth_x": 1000.0,
+  "encoder_x": 0.117,
+  "mission_xy": [
+    -1.883,
+    0.0
+  ],
+  "gates_fail_closed": true
+}

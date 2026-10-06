@@ -1,0 +1,46 @@
+schema_version: 1
+milestone: M1
+kind: baseline
+hypothesis: Untouched pre-registered first thirty Test A IDs estimate physical completion
+  before M2; aggregate only
+primary_metric: qualified physical oracle completion k/n; Wilson 95% interval
+configuration: unchanged positions/red, existing backend profile, 1200 wall-second
+  oracle budget
+run_count: 60
+parts:
+- seed_group: test_a
+  seeds:
+  - 1000000
+  - 1000001
+  - 1000002
+  - 1000003
+  - 1000004
+  - 1000005
+  - 1000006
+  - 1000007
+  - 1000008
+  - 1000009
+  - 1000010
+  - 1000011
+  - 1000012
+  - 1000013
+  - 1000014
+  - 1000015
+  - 1000016
+  - 1000017
+  - 1000018
+  - 1000019
+  - 1000020
+  - 1000021
+  - 1000022
+  - 1000023
+  - 1000024
+  - 1000025
+  - 1000026
+  - 1000027
+  - 1000028
+  - 1000029
+  backends:
+  - gazebo
+  - isaac
+  repeats: 1

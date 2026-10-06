@@ -13,7 +13,8 @@ def identity(pid, proc=Path('/proc')):
     p = proc / str(pid)
     fields = (p / 'stat').read_text().rsplit(')', 1)[1].split()
     return {'pid': int(pid), 'start_ticks': int(fields[19]),
-            'pgid': int(fields[2]), 'state': fields[0]}
+            'pgid': int(fields[2]), 'ppid': int(fields[1]), 'state': fields[0],
+            'kernel_thread': bool(int(fields[6]) & 0x00200000)}
 
 
 def robotics_process(argv, comm, exe, maps=''):
@@ -28,18 +29,39 @@ def robotics_process(argv, comm, exe, maps=''):
             or '/opt/ros/' in exe or 'librcl.' in maps or 'librclpy' in maps)
 
 
+def allowed_background(item, rules):
+    for rule in rules:
+        argv = item['argv']
+        prefix = rule['argv_prefix']
+        if (item['comm'] == rule['comm'] and item.get('uid') == rule['uid']
+                and len(argv) >= len(prefix)
+                and all(a == b or (i == 0 and a.startswith(b + ' '))
+                        for i, (a, b) in enumerate(zip(argv, prefix)))):
+            return True
+    return False
+
+
 def inventory(proc=Path('/proc'), shm=Path('/dev/shm')):
     errors, processes = [], []
+    background_rules=load_policy().get('background_process_allowlist',[])
     for p in proc.iterdir():
         if not p.name.isdigit():
             continue
         try:
             item = identity(int(p.name), proc)
-            if item['state'] == 'Z':
+            if item['state'] == 'Z' or item['kernel_thread']:
                 continue
             item['argv'] = [s.decode(errors='replace') for s in
                             (p / 'cmdline').read_bytes().split(b'\0') if s]
             item['comm'] = (p / 'comm').read_text().strip()
+            status=(p/'status').read_text()
+            item['uid']=int(next(line for line in status.splitlines() if line.startswith('Uid:')).split()[1])
+            if allowed_background(item,background_rules):
+                item['exe']=None
+                item['robotics']=False
+                item['classification']='explicit committed background allowlist; not runner-owned'
+                processes.append(item)
+                continue
             item['exe'] = os.readlink(p / 'exe')
             maps = (p / 'maps').read_text()
             item['robotics'] = robotics_process(item['argv'], item['comm'], item['exe'], maps)

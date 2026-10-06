@@ -31,6 +31,8 @@ jobs:
             ros-jazzy-tf2-geometry-msgs \
             ros-jazzy-diagnostic-msgs \
             ros-jazzy-cv-bridge \
+            python3-pytest \
+            python3-yaml \
             python3-opencv \
             python3-numpy \
             python3-scipy \

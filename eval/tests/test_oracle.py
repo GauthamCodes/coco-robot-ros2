@@ -145,3 +145,18 @@ def test_historical_adapter_string_stamps_and_side_by_side(tmp_path):
     assert result['oracle_verdict']=='PASS'
     assert result['mission_verdict']=='ABORT'
     assert result['mission_oracle_disagreement'] is True
+
+
+def test_stale_terminal_pose_cannot_prove_placement_failure():
+    e=fixture();e['target_final_xyz_m']=[10.,0.,.079];e['terminal_truth_covered']=False
+    assert score(e)['checks']['target_in_placement_zone'] is None
+
+
+def test_logged_violation_fails_even_with_partial_coverage():
+    e=fixture();e['arbiter_violations']=['bypass'];e['arbiter_evidence_covered']=False
+    assert score(e)['oracle_verdict']=='FAIL'
+
+
+def test_overflowed_quaternion_invalid():
+    e=fixture();e['target_rest_samples'][0]['quaternion_wxyz']=[1e308]*4
+    assert score(e)['checks']['target_at_rest'] is None

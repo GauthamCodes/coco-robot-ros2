@@ -26,7 +26,8 @@ def xyz(value):
 
 def quaternion(value):
     return (isinstance(value, (list, tuple)) and len(value) == 4
-            and all(map(finite, value)) and sum(v*v for v in value) > 0)
+            and all(map(finite, value)) and finite(sum(v*v for v in value))
+            and sum(v*v for v in value) > 0)
 
 
 def distance(a, b):
@@ -51,7 +52,8 @@ def score(episode):
     valid_home = isinstance(home, list) and len(home) == 2 and all(map(finite, home))
     target = episode.get('target_final_xyz_m')
     height = episode.get('target_height_m')
-    if valid_home and xyz(target) and finite(height) and height > 0:
+    if (valid_home and xyz(target) and finite(height) and height > 0
+            and episode.get('terminal_truth_covered') is True):
         metrics['placement_distance_xy_m'] = distance(target[:2], home)
         metrics['floor_center_error_m'] = abs(target[2] - height / 2)
         check('target_in_placement_zone', metrics['placement_distance_xy_m'] <= PLACEMENT_RADIUS_M
@@ -103,8 +105,10 @@ def score(episode):
         check('robot_home', None, 'Missing finite terminal robot truth or home')
 
     violations = episode.get('arbiter_violations')
-    if isinstance(violations, list) and episode.get('arbiter_evidence_covered') is True:
-        check('no_arbiter_violation', len(violations) == 0)
+    if isinstance(violations, list) and violations:
+        check('no_arbiter_violation', False)
+    elif isinstance(violations, list) and episode.get('arbiter_evidence_covered') is True:
+        check('no_arbiter_violation', True)
     else:
         check('no_arbiter_violation', None, 'Missing authority evidence or unresolved asynchronous observer flags')
 

@@ -23,3 +23,11 @@ A package inventory is a version lock, not a Docker image or proof that apt/pip
 artifacts remain available; deployment packaging belongs to M3.
 
 Run offline unit tests from a fresh checkout: `python3 -m pytest -q eval/tests`.
+
+`python3 eval/status.py` prints the exact live HEAD, branch and clean state,
+then the committed STATUS. Static checkpoint provenance names input commits;
+a commit cannot embed its own SHA without changing that SHA.
+
+`python3 eval/seed_policy.py` validates disjoint pools without generating layouts.
+`python3 eval/hygiene_inventory.py NEW_JSON` reproduces tracked-source searches
+and syntax checks without executing optional runtime entry points.

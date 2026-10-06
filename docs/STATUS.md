@@ -1,12 +1,14 @@
 # COCO status
 
-Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.5 complete; M0.6 next**.
+Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.2–M0.6 execution complete; independent review pending**.
 M1 has not started. Independent milestone review and owner G0 decision pending.
 
 Session start SHA: `c45d224a9cbcfd10b9661a40c4df7866febdce38`.
-Checkpoint input/current verified SHA: `5d8fd638c3591846957fd4ea22cc813e8c1b8ae1`.
+Checkpoint input/current verified SHA: `33354011c9d76857b3c66b12e14176633b1346ee`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
-Current HEAD: `git rev-parse HEAD` in the repository. A committed file cannot
+Current SHA and worktree state (live): **`python3 eval/status.py`**. It prints
+the true full HEAD SHA, branch and cleanliness before this committed status.
+Equivalent SHA command: `git rev-parse HEAD`. A committed file cannot
 literally contain its own commit hash; checkpoint entries record their input SHA,
 and the final report records the exact resulting HEAD. Verify cleanliness with
 `git status --porcelain=v1`. Do not substitute a prior implementation SHA for HEAD.
@@ -45,10 +47,10 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Encoder normal odometry / evaluator-only truth isolation | IMPLEMENTED | `m0/MANIPULATION_OBSERVATION.md`; encoder provenance and production graph tests; no full compliant simulator mission |
 | RGB-D perception and validation gates | IMPLEMENTED | `coco_perception/`; local 139-test suite in remediation evidence |
 | Arm IK / MoveIt trajectory interface | IMPLEMENTED | `coco_moveit_config/`; local 32-test suite; frozen |
-| Historical privileged-input physical fetch | RUNTIME VERIFIED | `data/isaac_fetch/coco23/README.md`, `coco24/README.md`; unqualified historical runs, not current compliant baseline or reliability |
+| Historical fetch under current qualification rules | NOT VERIFIED | `data/isaac_fetch/coco23/README.md`, `coco24/README.md`; unqualified historical observations, not a qualified current capability or reliability result |
 | Current physical manipulation completion | NOT VERIFIED | `m0/MANIPULATION_OBSERVATION.md`; independent object observation unavailable; attachment/lift/release/placement fail closed |
 | Qualified cross-simulator reliability | NOT VERIFIED | M1 qualification/trace harness and M4 benchmark not implemented |
-| Single physical-success oracle | IMPLEMENTED | `SUCCESS_DEFINITION.md`; `m0/ORACLE_BACKCHECK.md`; 40 local tests passed; CI configured, execution unverified |
+| Single physical-success oracle | IMPLEMENTED | `SUCCESS_DEFINITION.md`; `m0/ORACLE_BACKCHECK.md`; 43 oracle/environment/adapter tests and 6 seed tests locally pass; CI configured, execution unverified |
 | Environment capture | IMPLEMENTED | `../eval/environment.py`; `m0/control_plane/environment/env.json`; executed without simulator launch |
 | Held-out seed governance | IMPLEMENTED | `../eval/seeds.yaml`; `m0/control_plane/seed_tests.log`; disjoint pools, never run |
 
@@ -62,7 +64,7 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Historical far-region descent/contact and ODE crash | Open; later causal evaluation, no M0 investigation | `data/isaac_fetch/coco23/README.md`, `coco24/README.md` |
 | Historical far-region Nav2 acknowledgment / perception geometry rejection | Open; later milestones | `data/isaac_fetch/coco24/README.md`, `data/isaac_fetch/coco25/` |
 | Observer idle-command ordering ambiguity | Open evidence ambiguity; oracle must not infer a clean arbiter from mission success | `data/isaac_fetch/coco23/gazebo_seed9_idle_sample.json` |
-| Remaining M0 control-plane checkpoints | M0 exit blockers, M0.6 pending | `MASTER_PLAN.md` |
+| M0 control-plane implementation | No unresolved implementation blocker; review/G0 pending | `m0/HYGIENE_AUDIT.md`, `m0/ORACLE_BACKCHECK.md` |
 
 ## Seed policy
 
@@ -84,7 +86,29 @@ subsets before looking at layouts/outcomes. No new plan amendment.
 - Session entry and plan comparison: `m0/CONTROL_PLANE.md`.
 - CI execution remains NOT VERIFIED; no simulation campaign in this session.
 
-Next: M0.6 hygiene and final regression verification. Historical oracle coverage: 16 inspected,
+Next: independent fresh M0 review, then owner G0 decision. **M0 is not formally
+closed until review passes.** Do not start M1 in this session. Historical oracle coverage: 16 inspected,
 13 scorable (5 PASS / 8 FAIL), 3 UNSCORABLE; one definite COMPLETE/FAIL disagreement
 (M2.3 Gazebo seed7). Evidence: `m0/ORACLE_BACKCHECK.md`.
 No M1, M2 reliability, M3 cleanup or robot behavior work authorized here.
+
+## M0.6 exit evidence and remaining gates
+
+Fresh isolated build **9/9**; complete package suites **1984 passed / 0 failed /
+0 skipped**; evaluator suite **49 passed / 0 failed / 0 skipped**; total **2033**.
+`m0/control_plane/clean_build.log`, `test_counts.json`, `regressions/` contain
+logs/XML and current Gazebo/Isaac production-node ROS graphs. Existing isolation
+and fail-closed tests pass unchanged. Simulator bringup, expensive campaigns and
+remote CI were not run. No robot source, launch, parameters, gains or historical
+`docs/data` changed relative to this session's starting SHA.
+
+M0.6: **18 findings**, **2 blocks M1 resolved**, **10 M3 cleanup deferred**,
+**6 historical, keep**. No unresolved M0 stop condition or new plan amendment.
+See `m0/HYGIENE_AUDIT.md` and full tracked-text inventory. Current-authority
+banners prevent root historical roadmap instructions from superseding this plan.
+New eval CI dependencies/coverage are pinned as explicit requirements, while
+broader CI/deployment work remains M3. Manipulation stays fail closed wherever
+legitimate independent object observation is missing; truth remains evaluator-only.
+
+All M0 implementation checkpoints are ready for review. Independent review and
+Gautham's G0 remain pending; this session does not pass either gate.

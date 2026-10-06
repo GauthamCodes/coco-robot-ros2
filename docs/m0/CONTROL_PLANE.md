@@ -42,3 +42,23 @@ validation and six tests verify disjointness, invalid policy rejection and all
 saved JSON seed IDs are Dev; no held-out layout generation or inspection.
 M0's ≥60 pool and the protocol's later smaller campaign subsets coexist without
 a scope change. `control_plane/seed_validation.json`, `seed_tests.log`.
+
+## M0.6 hygiene and final verification
+
+All findings classified in HYGIENE_AUDIT: 2 M1 blockers resolved, 10 M3 cleanup
+items deferred, 6 historical groups retained. No new truth dependency found.
+Only control-plane code, explicit new test CI coverage/dependencies and
+current-authority doc banners changed. Existing robot behavior and historical
+files are byte-unchanged against the entry SHA.
+
+Fresh build 9/9; 1984 package + 49 evaluation tests pass, 0 failures/errors/skips.
+`control_plane/test_counts.json` records XML-derived counts and source hashes;
+`regressions/graphs` retains new production-node proofs. Environment mechanism
+ran again against this fresh overlay (`final_environment/env.json`). No simulator,
+held-out seed, reliability campaign, M2 causal investigation or M3 cleanup run.
+No new ideas/hypotheses beyond threshold justification and oracle correctness.
+
+Execution is complete for M0.2–M0.6; milestone closure remains pending the Master
+Plan's fresh independent review and Gautham's G0 decision. Stop here; no M1.
+The live STATUS resolver reports exact HEAD and cleanliness; static checkpoint
+provenance names each input SHA because a committed file cannot hold its own SHA.

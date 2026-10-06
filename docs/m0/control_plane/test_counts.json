@@ -1,0 +1,94 @@
+{
+  "suites": {
+    "coco_config": {
+      "tests": 92,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 92
+    },
+    "coco_mission": {
+      "tests": 375,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 375
+    },
+    "coco_moveit_config": {
+      "tests": 32,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 32
+    },
+    "coco_perception": {
+      "tests": 139,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 139
+    },
+    "coco_rl": {
+      "tests": 236,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 236
+    },
+    "coco_sim": {
+      "tests": 237,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 237
+    },
+    "coco_web": {
+      "tests": 575,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 575
+    },
+    "custom_teleop": {
+      "tests": 78,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 78
+    },
+    "eval": {
+      "tests": 49,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 49
+    },
+    "gazebo_models": {
+      "tests": 220,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 220
+    }
+  },
+  "package_passed": 1984,
+  "evaluator_passed": 49,
+  "total_passed": 2033,
+  "isolation_subset": {
+    "test.test_ground_truth_isolation": 10,
+    "test.test_grasp_contract": 18,
+    "test.test_encoder_isolation": 9
+  },
+  "ci_execution": "NOT VERIFIED",
+  "simulator_runs": 0,
+  "control_plane_sources_sha256_at_verification": {
+    "eval/backcheck.py": "1121abe784fbe681911084669e551e0139ced5b1c998d943c25772764b4bcc5e",
+    "eval/environment.py": "7d6fe5e71c589f431371142d9e19e42026693a3c563288afe328282f365372d2",
+    "eval/hygiene_inventory.py": "e8582e939a4da87aed7beef40b984337485b6a6eb4abc61065fa1c7e7b498861",
+    "eval/oracle.py": "efdd06b16949bc4a76103ec72897dd45520455bb076b0fe20ecce16544f66172",
+    "eval/seed_policy.py": "deaa1602914c3b64bf41c41c870e740170eb8b53432f7f73da1a1a1a055fdcd3",
+    "eval/status.py": "78036ee1d1c923777bd0dab720aa927bfaf713f56bf71a3ca246ec62ede37431",
+    "eval/tests/test_oracle.py": "85d9437cfe15addef4d9f0d6785c5dbd3f5bbafe05a1cd0dde0ecd0f2b677eb4",
+    "eval/tests/test_seeds.py": "01705b1657a3d634ed21a659a5788ce735ac100c3844c3ce8448c21f7ef231de"
+  }
+}

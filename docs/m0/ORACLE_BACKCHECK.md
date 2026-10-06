@@ -77,3 +77,8 @@ physical failure, missing/non-finite data, time boundary, whole-window motion,
 orientation/sign equivalence, disagreement in both directions and string-stamp
 Gazebo historical parsing. CI now explicitly runs `eval/tests` in addition to
 existing package suites; remote CI execution is NOT VERIFIED.
+
+Final M0.6 verification: 43 oracle/environment/adapter tests plus 6 seed tests,
+49 total, all passing. Final stale/partial/overflow checks leave every v2 result
+unchanged; source-hash equality and score equality are recorded in
+`control_plane/backcheck_validation.json`.

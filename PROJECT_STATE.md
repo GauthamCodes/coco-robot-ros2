@@ -1,5 +1,15 @@
 # COCO 2.0 STATUS: ROBOT FROZEN / PLATFORM IN PROGRESS
 
+> **Current project authority (M0, 2026-10-06):** Read
+> [docs/MASTER_PLAN.md](docs/MASTER_PLAN.md) and
+> [docs/STATUS.md](docs/STATUS.md) first. This branch is
+> `coco-2.1-isaac-integration`. The older roadmap/results below are historical;
+> their milestone IDs and completion claims do not describe the current plan.
+> Truth is evaluator-only; current manipulation completion remains fail closed
+> without legitimate object observations. See
+> [the current observation contract](docs/m0/MANIPULATION_OBSERVATION.md).
+
+
 > **Current branch update (2026-10-02):** The consolidation session starts
 > at `569b81ff744c2542498bd37201ef509b3ec4b949`, branch
 > `coco-2.1-isaac-integration`. Shared P03D mission logic remains canonical.

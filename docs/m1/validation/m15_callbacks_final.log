@@ -1,0 +1,35 @@
+............F.............................                               [100%]
+=================================== FAILURES ===================================
+_ TestCmdVelInvariant.test_it_publishes_only_the_mission_topics_and_the_pose_seed _
+
+self = <test_mission_executive.TestCmdVelInvariant object at 0x7fd83ff52120>
+node = <mission_executive.MissionExecutive object at 0x7fd83fd96d50>
+
+    def test_it_publishes_only_the_mission_topics_and_the_pose_seed(
+            self, node):
+        # /initialpose joined the list in C2-M5.1. It is the topic RViz's
+        # "2D Pose Estimate" writes, and the localization recovery uses it
+        # to re-seed AMCL at the last fix the health monitor verified.
+        # Publishing a POSE is not publishing a velocity — the invariant
+        # this class exists for is about the wheel topic, and the two
+        # tests above still hold. Anything else appearing here needs the
+        # same justification written down.
+        builtin = ('/rosout', '/parameter_events')
+        topics = sorted(publisher.topic_name
+                        for publisher in node.publishers
+                        if publisher.topic_name not in builtin)
+>       assert topics == ['/initialpose', '/mission/mode',
+                          '/mission/search_region', '/mission/state',
+                          '/mission/target_colour']
+E       AssertionError: assert ['/diagnostic...arget_colour'] == ['/initialpos...arget_colour']
+E         At index 0 diff: '/diagnostics/mission_callbacks' != '/initialpose'
+E         Left contains one more item: '/mission/target_colour'
+E         Use -v to get more diff
+
+coco_mission/test/test_mission_executive.py:193: AssertionError
+---------------------------- Captured stderr setup -----------------------------
+[INFO] [1791310520.395589245] [mission_executive]: mission_executive up: colour=blue lane=+0.25 grasp=yes autostart=False
+[INFO] [1791310520.398513204] [mission_executive]: waiting for /mission/start — ros2 service call /mission/start std_srvs/srv/Trigger
+=========================== short test summary info ============================
+FAILED coco_mission/test/test_mission_executive.py::TestCmdVelInvariant::test_it_publishes_only_the_mission_topics_and_the_pose_seed
+1 failed, 41 passed in 11.70s

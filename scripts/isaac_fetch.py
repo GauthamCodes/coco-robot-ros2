@@ -59,6 +59,8 @@ def main():
     parser.add_argument("--params-file", type=Path)
     parser.add_argument("--diagnostic-script", type=Path,
                         help="Read-only ROS recorder to run in the episode environment")
+    parser.add_argument('--eval-logging', action='store_true',
+                        help='M1 logging-only Nav2 server debug evidence')
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -131,11 +133,11 @@ def main():
     (out / "source.patch").write_bytes(
         subprocess.check_output(["git", "diff", "HEAD"], cwd=repo)
     )
-    nav_arguments = []
+    nav_arguments = ['eval_nav2_log_level:=debug'] if args.eval_logging else []
     params = nav_profile(repo, args.backend, args.params_file)
     if params is not None:
         (out / "nav2_params.yaml").write_bytes(params)
-        nav_arguments = ["params_file:=" + str(out / "nav2_params.yaml")]
+        nav_arguments.append("params_file:=" + str(out / "nav2_params.yaml"))
     handles, children, exits = [], [], {}
 
     def spawn(name, command):

@@ -1,0 +1,17 @@
+{
+  "commands": {
+    "ros2 trace --help": {
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "usage: ros2 [-h] [--use-python-default-buffering]\n            Call `ros2 <command> -h` for more detailed usage. ...\nros2: error: argument Call `ros2 <command> -h` for more detailed usage.: invalid choice: 'trace' (choose from 'action', 'bag', 'component', 'control', 'daemon', 'doctor', 'extension_points', 'extensions', 'interface', 'launch', 'lifecycle', 'multicast', 'node', 'param', 'pkg', 'plugin', 'run', 'security', 'service', 'topic', 'wtf')\n"
+    },
+    "lttng --version": {
+      "returncode": 0,
+      "stdout": "lttng (LTTng Trace Control) 2.13.11 - Nordicit\u00e9\n",
+      "stderr": ""
+    }
+  },
+  "available": false,
+  "executor_timing_verified": false,
+  "note": "Availability is not proof of working UST session or captured executor events"
+}

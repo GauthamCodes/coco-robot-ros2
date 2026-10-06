@@ -223,6 +223,8 @@ def generate_launch_description():
                         'approach_server and grasp_server deliberately have '
                         'no default: stopping in the wrong window, or '
                         'welding the wrong object, is worse than refusing.'),
+        DeclareLaunchArgument('eval_nav2_log_level', default_value='info',
+                              description='Logging only; forwarded to Nav2'),
         DeclareLaunchArgument(
             'target_source', default_value='target_finder',
             choices=['target_finder', 'target_pose'],
@@ -335,7 +337,8 @@ def generate_launch_description():
                         '70 mm of the platform edge.'),
 
         include(gazebo_models, 'nav.launch.py',
-                {'use_sim_time': use_sim_time, 'arbiter': 'true'}),
+                {'eval_nav2_log_level': LaunchConfiguration('eval_nav2_log_level'),
+                 'use_sim_time': use_sim_time, 'arbiter': 'true'}),
         include(custom_teleop, 'arbiter.launch.py',
                 {'use_sim_time': use_sim_time}),
         include(coco_perception, 'perception.launch.py',

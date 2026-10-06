@@ -109,6 +109,7 @@ import rclpy
 from rclpy.action import ActionClient
 from rclpy.clock import Clock, ClockType
 from rclpy.executors import ExternalShutdownException
+from coco_config.callback_diagnostics import observed
 from coco_config.ros_boundary import AutonomyNode as Node
 from rclpy.qos import QoSDurabilityPolicy, QoSHistoryPolicy, QoSProfile
 from rclpy.qos import QoSReliabilityPolicy
@@ -267,6 +268,13 @@ class MissionExecutive(Node):
         self.started = bool(autostart)
         self.abort_requested = False
         self.finished_at = None
+
+        # M1 logging only: same callback groups, timers, decisions and futures.
+        from coco_config.callback_diagnostics import observed
+        self._timing_pub = self.create_publisher(String, '/diagnostics/mission_callbacks', 10)
+        for name in ('_on_odom', '_on_status', '_on_target', '_on_amcl',
+                     '_on_colour', '_on_start', '_on_abort', '_tick', '_assert_outputs'):
+            setattr(self, name, observed(self, getattr(self, name)))
 
         # ── inputs ───────────────────────────────────────────────────────
         self._pose = None
@@ -729,7 +737,7 @@ class MissionExecutive(Node):
             self._goal_handle = handle
             self._finish(token, ms.ACCEPTED)
             handle.get_result_async().add_done_callback(
-                lambda result: on_result(result))
+                observed(self, on_result))
 
         def on_result(future):
             if token != self._token:
@@ -749,7 +757,7 @@ class MissionExecutive(Node):
                 GoalStatus.STATUS_CANCELED: ms.CANCELED,
             }.get(status, ms.ABORTED))
 
-        self._nav.send_goal_async(goal).add_done_callback(on_sent)
+        self._nav.send_goal_async(goal).add_done_callback(observed(self, on_sent))
 
     def _reseed_amcl(self):
         """Give AMCL somewhere to put its particles before the spin.
@@ -875,7 +883,7 @@ class MissionExecutive(Node):
                 return
             self._goal_handle = handle
             self._finish(token, ms.ACCEPTED)
-            handle.get_result_async().add_done_callback(on_result)
+            handle.get_result_async().add_done_callback(observed(self, on_result))
 
         def on_result(future):
             if token != self._token:
@@ -887,7 +895,7 @@ class MissionExecutive(Node):
                 GoalStatus.STATUS_CANCELED: ms.CANCELED,
             }.get(status, ms.ABORTED))
 
-        self._spin.send_goal_async(goal).add_done_callback(on_sent)
+        self._spin.send_goal_async(goal).add_done_callback(observed(self, on_sent))
 
     def _call(self, request, name):
         token = request.token
@@ -902,7 +910,7 @@ class MissionExecutive(Node):
                 self.get_logger().error(f'{name} refused: {reply.message}')
 
         self.service_clients[name].call_async(
-            Trigger.Request()).add_done_callback(on_reply)
+            Trigger.Request()).add_done_callback(observed(self, on_reply))
 
     def _stop_all(self, request):
         """Cancel the nav goal and tell every driver to stop.
@@ -932,7 +940,7 @@ class MissionExecutive(Node):
 
         for name in pending:
             self.service_clients[name].call_async(
-                Trigger.Request()).add_done_callback(on_reply)
+                Trigger.Request()).add_done_callback(observed(self, on_reply))
 
     # ── outputs ──────────────────────────────────────────────────────────
     def _assert_outputs(self, event='run'):

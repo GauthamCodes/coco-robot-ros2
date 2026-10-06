@@ -221,3 +221,24 @@ Existing gates, ordering, thresholds, task inputs and output state unchanged.
 Six new functional tests; complete package validation in `m1/validation/m14_*`.
 Initial root-cwd lint run and own new-file style failures retained, corrected
 without broad source refactoring. IMPLEMENTED; simulator overhead not measured.
+
+## 2026-10-06 — M1.5 Nav2 server logs and callback timing
+
+M1 / M1.5 advances server-side action/lifecycle and executive timing evidence.
+Nav2's shipped SimpleActionServer debug logs include "Received request for goal
+acceptance" and "Receiving a new goal". New launch option changes logging only;
+normal default remains info. The evaluator runner selects debug and captures
+rosout plus server status/UUID streams and 1 Hz lifecycle replies. No Nav2
+parameter/controller/timeout or action semantics changed. Server logs and UUID
+status are separate observations; an unobserved request/response is never
+invented from a client request. Exact goal/result service payloads remain a gap
+when installed producers lack service introspection.
+Executive callbacks/future callbacks publish observational wall durations and
+source sim times on `/diagnostics/mission_callbacks`; callback returns and
+exceptions preserved, logging errors cannot affect them. Sole wheel authority
+unchanged; existing publisher-inventory test adds only that diagnostic topic.
+42 focused timing/executive tests pass: `m1/validation/m15_callbacks_corrected.log`.
+`eval/tracing.py` probes ros2_tracing and can own a unique LTTng UST session for
+Dev 6/7, without destroying other sessions. This host has lttng but no ros2 trace
+CLI (`tracing_availability.json`); executor timing is NOT VERIFIED, no timing
+trace claimed. IMPLEMENTED; qualified server goal/lifecycle runtime pending.

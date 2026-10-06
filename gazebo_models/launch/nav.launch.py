@@ -86,6 +86,8 @@ def generate_launch_description():
             description='Send Nav2 through cmd_vel_arbiter (/cmd_vel_gated) '
                         'for every launch mode. Requires '
                         'custom_teleop arbiter.launch.py to be running.'),
+        DeclareLaunchArgument('eval_nav2_log_level', default_value='info',
+                              description='Logging only; M1 server-side action receipt evidence'),
         DeclareLaunchArgument(
             'map',
             default_value=os.path.join(pkg_share, 'maps', 'coco_world.yaml')),
@@ -113,6 +115,7 @@ def generate_launch_description():
                 'map': map_yaml,
                 'use_sim_time': use_sim_time,
                 'params_file': params_file,
+                'log_level': LaunchConfiguration('eval_nav2_log_level'),
                 # Pinned, not left to the default. bringup_launch.py
                 # declares autostart with default 'true', but a
                 # DeclareLaunchArgument does not override a configuration

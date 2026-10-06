@@ -1,10 +1,10 @@
 # COCO status
 
-Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.2 complete; M0.3 next**.
+Updated: 2026-10-06. Milestone **M0**, checkpoint **M0.3 complete; M0.4 next**.
 M1 has not started. Independent milestone review and owner G0 decision pending.
 
 Session start SHA: `c45d224a9cbcfd10b9661a40c4df7866febdce38`.
-Checkpoint input/current verified SHA: `c45d224a9cbcfd10b9661a40c4df7866febdce38`.
+Checkpoint input/current verified SHA: `bc44dd7639d570f8250153ecd48ad79f239ba614`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
 Current HEAD: `git rev-parse HEAD` in the repository. A committed file cannot
 literally contain its own commit hash; checkpoint entries record their input SHA,
@@ -49,7 +49,8 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Current physical manipulation completion | NOT VERIFIED | `m0/MANIPULATION_OBSERVATION.md`; independent object observation unavailable; attachment/lift/release/placement fail closed |
 | Qualified cross-simulator reliability | NOT VERIFIED | M1 qualification/trace harness and M4 benchmark not implemented |
 | Single physical-success oracle | NOT VERIFIED | M0.4 pending |
-| Environment capture and held-out seed governance | NOT VERIFIED | M0.3/M0.5 pending |
+| Environment capture | IMPLEMENTED | `../eval/environment.py`; `m0/control_plane/environment/env.json`; executed without simulator launch |
+| Held-out seed governance | NOT VERIFIED | M0.5 pending |
 
 ## Open failure classes and blockers
 
@@ -61,7 +62,7 @@ CI-dependent TESTED; historical runtime is explicitly separated from current beh
 | Historical far-region descent/contact and ODE crash | Open; later causal evaluation, no M0 investigation | `data/isaac_fetch/coco23/README.md`, `coco24/README.md` |
 | Historical far-region Nav2 acknowledgment / perception geometry rejection | Open; later milestones | `data/isaac_fetch/coco24/README.md`, `data/isaac_fetch/coco25/` |
 | Observer idle-command ordering ambiguity | Open evidence ambiguity; oracle must not infer a clean arbiter from mission success | `data/isaac_fetch/coco23/gazebo_seed9_idle_sample.json` |
-| Remaining M0 control-plane checkpoints | M0 exit blockers, M0.3–M0.6 pending | `MASTER_PLAN.md` |
+| Remaining M0 control-plane checkpoints | M0 exit blockers, M0.4–M0.6 pending | `MASTER_PLAN.md` |
 
 ## Seed policy
 

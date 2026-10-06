@@ -13,3 +13,12 @@ Existing two dated owner approvals concerning isolation remain in STATUS.
 M0.2: capability table, open classes, seed governance and approved change history
 recorded in STATUS; IDEAS initialized. Evidence labels follow CI/runtime limits.
 No robot behavior, simulator run or historical evidence modified.
+
+## M0.3 environment mechanism
+
+M0 / M0.3; advances reproducible manifest exit criterion. `eval/environment.py`
+executed after sourcing setup_env with the existing fresh overlay and explicit
+read-only MoveIt prefix. Output: `control_plane/environment/env.json`. No
+simulator imported or launched. Captures missing-tool errors explicitly and
+refuses overwrite. `eval/README.md` defines per-run usage and the separate Isaac
+bridge environment. M1 will integrate this mechanism into its runner.

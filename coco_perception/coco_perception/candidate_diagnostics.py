@@ -99,6 +99,8 @@ def candidates(
                 depth_stamp_ns=depth_stamp_ns,
                 frame=frame,
                 colour=colour,
+                requested_colour=colour,
+                detected_colour=colour,  # HSV mask class, not true object identity
                 label=label,
                 centroid=centroid,
                 centroid_uv=[u, v],

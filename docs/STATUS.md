@@ -373,3 +373,13 @@ Impacted overlay packages build (2/2); colcon custom_teleop 78 tests, coco_sim
 packages; corrected invocation explicitly uses this repository as base path.
 Logs are in `m1/validation/session_20261007`. IMPLEMENTED with local automated
 checks; no qualified simulator command proof or overhead measurement claimed.
+
+## 2026-10-07 — M1.4 explicit diagnostic colour semantics
+
+Input `51d4fa2`. M1 / M1.4 advances the candidate trace contract: requested
+colour and detected HSV mask class are now explicit separate JSON fields.
+Detected class is observational classification, never physical identity proof.
+The existing `colour` field and all decision/geometry gates are unchanged.
+Six targeted candidate tests pass (`session_20261007/m14_candidates.log`),
+including input-array immutability. IMPLEMENTED; qualified simulator diagnostic
+coverage and overhead remain NOT VERIFIED. No other perception work performed.

@@ -50,6 +50,8 @@ def test_every_component_stamp_frame_edge_and_depth_geometry():
     assert not values[1]['touches_image_edge']
     assert values[0]['frame'] == 'camera_optical_frame' and values[0]['stamp_ns'] == 100
     assert values[0]['extents_m'] is not None and values[0]['point_count'] > 0
+    assert values[0]['requested_colour'] == 'red'
+    assert values[0]['detected_colour'] == 'red'
     assert np.array_equal(a, hsv) and np.array_equal(b, depth)
 
 

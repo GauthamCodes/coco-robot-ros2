@@ -65,3 +65,10 @@ def test_catalog_coverage_tracks_each_rule_not_one_supported_fragment():
     result=analyze([dict(sim_s=1,measurements={'moveit_execution_succeeded':True},invariants=['I20'])],{})
     assert 'I20' in result['analyzer_work_items']
     assert result['coverage']['I20']['measured_fields']==['moveit_execution_succeeded']
+
+
+def test_manual_test_a_analysis_is_blocked_before_opening_trace(tmp_path):
+    import json
+    from analyzer import run
+    (tmp_path/'manifest.json').write_text(json.dumps({'seed_group':'test_a'}))
+    with pytest.raises(ValueError,match='Manual Test A'):run(tmp_path,tmp_path/'unused_thresholds')

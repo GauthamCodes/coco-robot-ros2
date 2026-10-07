@@ -1,108 +1,122 @@
-# M1 baseline — implementation checkpoint, campaign not started
+# M1 baseline — partial infrastructure, campaign not started
 
-2026-10-07. Labels: **IMPLEMENTED** infrastructure; **NOT VERIFIED** qualified
-runtime and baseline. Session start: `1bd501efb5ba444e61ae10ab5b107789f393a80a`.
-Branch `coco-2.1-isaac-integration`, initially clean. Canonical and Downloads
-Master Plan byte-identical; no plan or seed changes. M0 remains passed.
+2026-10-07. **IMPLEMENTED / locally verified** means infrastructure evidence;
+**NOT VERIFIED** means qualified simulator evidence is absent. Session start
+`10ba56210429d7e56e9fc605d879643dd3dda2d4`, branch
+`coco-2.1-isaac-integration`, initially clean. Downloads and canonical Master
+Plans byte-identical. Plan, campaigns, seed policy and autonomy behavior unchanged.
 
 ## Current checkpoint status
 
-| Checkpoint | Implementation/evidence | Remaining validation or implementation |
+| Checkpoint | Progress this session | Still incomplete |
 | --- | --- | --- |
-| M1.1 | Read-only inventory, explicit allowlist, fail-closed qualification, 1 Hz runtime metrics; synthetic dirty/mid-run/crash fixtures | Full-stack RAM/VRAM requirements are null; qualification refuses launch |
-| M1.2 | Gazebo/Isaac evaluator-only truth exports; live ROS isolation launch test with negative control | Qualified full simulator graph/truth coverage on both backends; remote CI execution |
-| M1.3 | Fixed-topic MCAP recorder, hashes, storage caps/retention; actual simulator-free ROS→MCAP replay | Full mission trace coverage, including Nav2 goal/result service events |
-| M1.4 | Candidate diagnostics after existing decisions, no threshold changes; 145 perception tests | Qualified simulator candidate evidence |
-| M1.5 | Server debug logging/lifecycle snapshots, UUID status, callback durations, optional owned LTTng session | Exact service receipt/acceptance correlation, executor trace validation |
-| M1.6 | I01–I25 tri-state engine; pass/fail/missing fixtures for each; supported historical replay | Raw derivations listed below and qualified-control calibration |
-| M1.7 | Sequential locked append-only runner, preflight gates, crash reconciliation, standard evidence, single oracle/analyzer, summaries | Qualified smoke and full oracle command-authority coverage; not a validated harness |
-| M1.8 | Executable campaign definitions preregistered | All 140 initial baseline runs remain; no campaign started |
+| M1.1 | Fresh process inventories, diagnostic-shell classification, owned/opposite-backend blocking, 1 Hz host/clock sampling | Justified full-stack RAM/VRAM limits; qualified runtime |
+| M1.2 | Actual ROS isolation test including negative control; evaluator-only truth preserved | Qualified full graph/truth coverage on both simulators |
+| M1.3 | Actual arbiter lineage, reliable final-command capture, explicit clocks, real MCAP UUID/stamp replay, bag integrity gate | Complete qualified mission/action trace coverage |
+| M1.4 | Requested/detected diagnostic colour semantics, six targeted tests | Qualified simulator candidate evidence/overhead |
+| M1.5 | Native owned-PID UST capture: 22 paired callbacks, 94 executor events, zero unmatched | Mission/Nav2 executor timing; exact goal receipt/acceptance/service payload coverage |
+| M1.6 | Additional raw command, resource, costmap, target, joint, lift/carry/release and tilt measurements; conservative missing-field coverage | Raw catalog witnesses listed below and successful-control thresholds |
+| M1.7 | Content-bound resumability/smoke gate, persistent integrity stops, teardown checks, held-out protections | Trustworthy qualified smoke; not a validated harness |
+| M1.8 | Preregistered definitions retained | All 140 initial baseline runs |
 
-Local tests: 1,992 robot-package tests pass; latest evaluator suite 155 pass;
-two ROS integration tests pass. Fresh isolated overlay build: 9 packages pass.
-See [validation](validation/), especially `checkpoint_regressions.log`,
-`regressions/*.xml`, `eval_verified.log`, `ros_final.log`, `build.log`.
-These are local tests, not a claim of executed remote CI. Earlier failed test
-invocations are retained alongside corrected passing evidence.
+Evidence root: [session_20261007](validation/session_20261007/). Latest evaluator
+suite **176 passed** (`eval_tests_checkpoint_final.log`); affected package tests
+custom_teleop **78**, coco_sim **237** pass, with **2/2** packages built.
+Authority regression **38** and candidate diagnostics **6** passed (overlap with
+package tests). Full ROS suite **4** items passed before the teardown refinement;
+corrected isolation/recorder subset **2** passed, then clock replay **1** passed.
+Native tracing and authority tests passed independently. These are local checks,
+not remote CI or simulator success. Earlier failed invocations remain preserved.
+Prior full-suite/build reports remain historical evidence below, not fresh reruns.
 
-## Qualification blocker
+## Qualification and calibration blockers
 
-[runtime_preflight_final.json](validation/runtime_preflight_final.json) preserves
-live process identities/resource inventory and every rejection reason. Foreign
-Gazebo launch PID 183965, simulator PID 183995, mission PID 184811 and related
-ROS nodes belong to another workspace; ROS daemon PID 8877 is also foreign.
-Load1 22.720703125 exceeds 12. An unlisted process PID 6293 has unreadable `/proc`
-metadata. No processes were killed. No simulator was launched by this session.
-Earlier snapshots remain in `validation/runtime_preflight*.json` and the entry
-inventory below; PIDs are snapshot evidence, not instructions to kill them.
+Latest full inventory:
+[preflight_checkpoint_isaac.json](validation/session_20261007/preflight_checkpoint_isaac.json).
+Same inventory's Gazebo verdict: `preflight_checkpoint_gazebo.json`.
+Both reject foreign ROS daemon PID **260322**, start ticks **8029900**, domain
+**66**, CycloneDDS, plus null RAM/VRAM requirements. Load1 **2.1513671875** against
+unchanged limit **12**; available RAM **9711841280 bytes**; GPU free
+**5649727488 / 6439305216 bytes**. No DDS segments or inventory errors.
+Temporary foreign Gazebo/Nav2 workloads in `preflight_final_isaac.json` ended
+externally. No foreign process was signaled. No simulator was launched.
 
-`eval/host_policy.json` documents why historical foundation RSS/VRAM lower bounds
-cannot justify full-stack requirements. RAM/VRAM preflight and runtime limits
-remain null and block launch even on an otherwise idle host. Thresholds were not
-invented to get a run accepted. Successful-control invariant limits likewise
-remain null in `eval/thresholds.json`; calibration requires qualified oracle-PASS
-Dev controls with explicit margins/provenance. Current M0 fail-closed manipulation
-is preserved, so complete physical-success controls are not established.
+A leaked child from our isolation test was identified by exact PID/start time,
+installed executable, domain 181 and pytest marker, then gracefully stopped.
+`test_orphan_teardown.json` records ownership. The test now launches directly
+and asserts clean recorded exit and no surviving process identity; corrected
+validation passes. This was harness cleanup, not host cleaning.
+
+`resource_audit.json` rehashes four historical foundation samples. Maximum RSS
+**5098934272 bytes**, peak total GPU use **2585788416 bytes** are lower bounds
+without complete fetch/ROS/MCAP. They cannot justify production limits. Host
+hardware incapacity is **not established**. RAM/VRAM and invariant thresholds
+remain null rather than being increased to pass. Qualified oracle-PASS Dev
+controls required by calibration are also unavailable: the approved M0
+fail-closed `ArmControl.target_height()` returns None and inherited grasp rejects
+before attachment. M1 does not repair that behavior or restore privileged truth.
 
 ## Campaign registration and results
 
-| Campaign file under `eval/campaigns/` | Definition | Planned | Executed |
+| File under `eval/campaigns/` | Definition | Planned | Executed |
 | --- | --- | ---: | ---: |
 | `m1_smoke.yaml` | Dev 5/8 once per backend, sequential | 4 | 0 |
-| `m1_determinism.yaml` | Dev 6/7 ×3, controls 5/8 ×2, both backends | 20 | 0 |
-| `m1_breadth.yaml` | Dev 10000–10029 once per backend | 60 | 0 |
-| `m1_test_a.yaml` | Preregistered untouched Test A 1000000–1000029 once per backend | 60 | 0 |
+| `m1_determinism.yaml` | Dev 6/7 ×3, 5/8 ×2 per backend | 20 | 0 |
+| `m1_breadth.yaml` | Dev 10000–10029 per backend | 60 | 0 |
+| `m1_test_a.yaml` | Test A 1000000–1000029 per backend | 60 | 0 |
 
-Qualified simulated runs **0**; unqualified simulated runs **0**. Rejected
-preflight inventories are not simulated runs or evaluation denominators.
-Qualified smoke **not passed**; harness **not validated before M1.8**.
-Determinism verdicts: pending. Dev Pareto: unavailable for Gazebo and Isaac.
-Test A: n=0 on both backends; completion rates/Wilson 95% intervals undefined.
-UNCLASSIFIED: no scored baseline failures; fraction undefined, exit criterion
-not met. No Test A layout or individual held-out trace has been opened.
-Reserve 2000000–2000059 remains untouched.
+Qualified simulated runs **0**, unqualified simulated runs **0**. Preflight
+inventories are not episodes or rate denominators. Smoke not passed.
+Determinism and both Dev failure Paretos unmeasured. Test A n=0 per backend:
+completion rates and Wilson 95% intervals undefined. UNCLASSIFIED **0 scored
+baseline failures**, fraction undefined; exit criterion not met. Oracle/mission
+and independent physical-outcome agreement remain unmeasured. No individual
+Test A layout/trace inspected; reserve seeds untouched.
 
-Historical Dev replay finds I19 nonrequested displacement for coco23 Gazebo6 at
-61.726 sim s and Isaac6 at 62.0583365699 sim s. Artifacts:
-`validation/historical_gazebo6.json`, `validation/historical_isaac6.json`.
-These are first **supported** breaches, not proven earliest causal divergence
-among unobserved invariants, and not qualified current baseline evidence.
+Historical Dev replay reproduces supported I19 displacement at Gazebo6 **61.726
+sim s** and Isaac6 **62.05833656992763 sim s** (`historical_*_corrected.json`).
+These are unqualified historical observations, not earliest causal proof or
+current baseline. Synthetic `/clock`→MCAP evidence is hashed in
+`mcap_clock_replay_evidence.json`; CTF/MCAP stay outside Git under
+`/home/gautham/coco_m1_runs/`.
 
-## Analyzer and oracle gaps
+## Remaining measurement work
 
-Raw derivations cover clock, sampled TF availability/age, planar AMCL/odometry
-truth comparison with bracketed translation interpolation, latest lifecycle
-observations, acknowledged UUID/server status correlation, perception timestamps
-and projected width, MoveIt terminal status, displacement and graph authority.
-Missing evidence stays unknown. Outstanding work includes complete command
-lineage/arbiter latency (I06), command-motion delay (I07), costmap/plan geometry and
-latency (I11–I14), accepted-target identity/position (I17–I18), joint tracking
-(I20), attachment/lift/carry/release ordering (I21–I23), roll/pitch (I24), and
-stage-progress/budget extraction (I25). I01 resource/RTF facts still need complete
-analyzer ingestion. Known passes alone cannot certify the whole catalog.
+Missing fields remain unknown. Remaining witnesses include I07 command-motion
+association, I12 independent world-free costmap, I13 exact plan-return source
+timing, I14 clearance, I16 truth projection, I18 physical identity, I21 proximity,
+I23 finger-before-detach and I25 progress. Successful-control thresholds are
+uncalibrated. Older throttled costmaps are context only; unknown raw cost 255
+cannot establish an occupied goal. Candidate self-model extents cannot establish
+true projection. Source colour/class cannot establish physical identity.
+Production analysis keeps incomplete catalogs UNCLASSIFIED and separately records
+first-supported violation/context; no forced earliest-cause claim.
 
-Installed Nav2 does not currently publish action service introspection. Requested
-service-event topics remain explicit missing streams; debug receipt logs and
-status UUIDs cannot replace missing goal/result payloads. Host has LTTng but no
-`ros2 trace` CLI; executor timing remains unverified. Oracle adapter fails closed
-on missing correlated command-authority coverage rather than granting PASS.
-No independent physical-outcome comparison has yet been performed; no oracle
-agreement/disagreement claim is possible without a qualified run.
+Installed Nav2 service introspection streams remain missing. Logs/status UUIDs
+do not replace server request/result payloads. Native ROS UST works without the
+`ros2 trace` CLI, but synthetic C++ executor spans do not verify mission timing.
+Actual simulator-free ROS tests prove isolation and root arbiter command lineage;
+qualified simulator graph/lineage/clock equivalence remains unverified.
 
-## Remaining execution path
+## Exact continuation point
 
-Exact guarded commands and evidence/retention contract are in [eval README](../../eval/README.md).
-Finish the listed raw derivations and justify resource limits; obtain qualified
-controls/calibration without changing autonomy; run/inspect the four-run Dev smoke;
-validate both backends. Only then run the committed baseline campaigns. Any new
-breadth failure needs additional qualified Dev repetitions to assign a determinism
-verdict. Qualified-only aggregates use Wilson score intervals with z=1.96; unknown
-oracle outcomes suppress reported rates/intervals and remain visible. Pareto
-counts qualified Dev oracle failures; no held-out debugging or tuning.
+Commands and prerequisites are in [eval README](../../eval/README.md). Resolve
+foreign workload ownership and justified resource/control prerequisites, finish
+raw catalog witnesses/calibration within approved scope, then run the four-run
+qualified smoke sequentially, inspect evidence and validate it before baseline.
+If the frozen successful-control dependency needs a decision, do not silently
+change autonomy in M1. No baseline or M2 is authorized by an incomplete proof.
 
-This is **not** a validated overnight handoff and M1 is **not complete**. The
-Isaac host-qualification stop condition is hit at the runtime gate. Infrastructure
-progress continued despite the busy host. No autonomy repair or M2 work occurred.
+Integrity/disk stops persist in `STOP.json` and prohibit automatic resume.
+Resume otherwise binds exact executable/data/campaign/policy content; docs/proof
+commits may change SHA without changing runtime fingerprints. Original batch
+registration remains immutable. Test A public summaries expose aggregates only;
+manual trace analysis is guarded by committed seed governance.
+
+M1 is **not complete** and this is **not a validated overnight handoff**. Runtime
+qualification gate failed; hardware-incapacity, disk-overrun and actual oracle
+mismatch stop conditions are not established. No new M2 hypotheses confirmed,
+no IDEAS entries, no autonomy repair or plan deviation beyond withheld runtime.
 
 ## Preserved previous M1 entry report
 

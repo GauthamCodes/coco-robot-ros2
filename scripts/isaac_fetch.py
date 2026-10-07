@@ -154,6 +154,12 @@ def main():
         children.append((name, process))
         return process
 
+    def record_exit_observation(value):
+        path = out / 'runtime_exit_observation.json'
+        temporary = path.with_suffix('.json.tmp')
+        temporary.write_text(json.dumps(value, indent=2))
+        os.replace(temporary, path)
+
     try:
         if args.diagnostic_script is not None:
             spawn("diagnostic", ["python3", str(args.diagnostic_script.resolve()),
@@ -176,6 +182,15 @@ def main():
             deadline = time.monotonic() + 300
             while not (out / "sim/settled_targets.json").exists():
                 if sim.poll() is not None or time.monotonic() > deadline:
+                    if args.eval_logging:
+                        record_exit_observation({
+                            'simulator_returncode': sim.poll(),
+                            'mission_returncode': None,
+                            'observer_returncode': None,
+                            'deadline_exceeded': time.monotonic() > deadline,
+                            'wall_monotonic_s': time.monotonic(),
+                            'observation': 'startup, before owned-process teardown',
+                        })
                     raise RuntimeError("Isaac startup failed or timed out")
                 time.sleep(1)
             if not json.loads((out / "sim/settled_targets.json").read_text())[
@@ -226,6 +241,15 @@ def main():
                 or mission.poll() is not None
                 or time.monotonic() > deadline
             ):
+                if args.eval_logging:
+                    record_exit_observation({
+                        'simulator_returncode': sim.poll(),
+                        'mission_returncode': mission.poll(),
+                        'observer_returncode': observer.poll(),
+                        'deadline_exceeded': time.monotonic() > deadline,
+                        'wall_monotonic_s': time.monotonic(),
+                        'observation': 'before owned-process teardown',
+                    })
                 raise RuntimeError("A required child exited or run timed out")
             time.sleep(1)
         exits["observer"] = observer.returncode

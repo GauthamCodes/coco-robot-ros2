@@ -1,0 +1,114 @@
+F.                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ launch tests: test_isolation_launch ______________________
+
+=====================================================================================================================
+FAIL: test_isolation_launch.TestOwnedShutdown.test_launched_nodes_stopped
+---------------------------------------------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/gautham/coco-isaac-21/eval/ros_tests/test_isolation_launch.py", line 65, in test_launched_nodes_stopped
+    proc_info.assertWaitForShutdown(process=evaluator,timeout=10)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ProcInfoHandler' object has no attribute 'assertWaitForShutdown'
+----------------------------- Captured stdout call -----------------------------
+[DEBUG] [launch.launch_context]: emitting event synchronously: 'launch.events.IncludeLaunchDescription'
+[INFO] [launch]: All log files can be found below /home/gautham/.ros/log/2026-10-07-17-05-43-612311-gautham-Nitro-ANV15-51-273033
+[INFO] [launch]: Default logging verbosity is set to DEBUG
+[DEBUG] [launch]: processing event: '<launch.events.include_launch_description.IncludeLaunchDescription object at 0x7029888aa6c0>'
+[DEBUG] [launch]: processing event: '<launch.events.include_launch_description.IncludeLaunchDescription object at 0x7029888aa6c0>' ✓ '<launch.event_handlers.on_include_launch_description.OnIncludeLaunchDescription object at 0x7029888a8350>'
+[INFO] [python3-1]: process started with pid [273056]
+[DEBUG] [launch.launch_context]: emitting event: 'launch.events.process.ProcessStarted'
+[INFO] [target_finder-2]: process started with pid [273057]
+[DEBUG] [launch.launch_context]: emitting event: 'launch.events.process.ProcessStarted'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_started.ProcessStarted object at 0x702983611fa0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_started.ProcessStarted object at 0x702983611fa0>' ✓ '<launch.event_handlers.on_process_start.OnProcessStart object at 0x7029888aa1b0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_started.ProcessStarted object at 0x702983611fa0>' ✓ '<launch.event_handlers.on_process_start.OnProcessStart object at 0x7029888aa150>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_started.ProcessStarted object at 0x70298a6624b0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_started.ProcessStarted object at 0x70298a6624b0>' ✓ '<launch.event_handlers.on_process_start.OnProcessStart object at 0x7029888aa1b0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_started.ProcessStarted object at 0x70298a6624b0>' ✓ '<launch.event_handlers.on_process_start.OnProcessStart object at 0x7029888aa150>'
+[DEBUG] [launch.launch_context]: emitting event synchronously: 'launch.events.process.ProcessStderr'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x702979e8a750>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x702979e8a750>' ✓ '<launch.event_handlers.on_process_io.OnProcessIO object at 0x702983610830>'
+[target_finder-2] [INFO] [1791372944.268449237] [target_finder]: watching /camera/image_raw (best-effort) + /camera/depth/image_raw, looking for 'blue'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x702979e8a750>' ✓ '<launch.event_handlers.on_process_io.OnProcessIO object at 0x7029888aa420>'
+[DEBUG] [launch.launch_context]: emitting event synchronously: 'launch.events.process.ProcessStderr'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x7029888aab10>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x7029888aab10>' ✓ '<launch.event_handlers.on_process_io.OnProcessIO object at 0x702983610830>'
+[target_finder-2] [INFO] [1791372944.269113025] [target_finder]: fx=221.8 px from the URDF until /camera/camera_info arrives; range gate 0.15-2.00 m
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x7029888aab10>' ✓ '<launch.event_handlers.on_process_io.OnProcessIO object at 0x7029888aa420>'
+[DEBUG] [launch.launch_context]: emitting event: 'launch.events.Shutdown'
+[DEBUG] [launch]: processing event: '<launch.events.shutdown.Shutdown object at 0x70298ab3f500>'
+[DEBUG] [launch]: processing event: '<launch.events.shutdown.Shutdown object at 0x70298ab3f500>' ✓ '<launch.event_handlers.on_shutdown.OnShutdown object at 0x702983610860>'
+[DEBUG] [launch.launch_context]: emitting event synchronously: 'launch.events.process.SignalProcess'
+[DEBUG] [launch]: processing event: '<launch.events.shutdown.Shutdown object at 0x70298ab3f500>' ✓ '<launch.event_handlers.on_shutdown.OnShutdown object at 0x7029888abf50>'
+[DEBUG] [launch.launch_context]: emitting event synchronously: 'launch.events.process.SignalProcess'
+[DEBUG] [launch]: processing event: '<launch.events.shutdown.Shutdown object at 0x70298ab3f500>' ✓ '<launch.event_handlers.on_shutdown.OnShutdown object at 0x70298a4d5940>'
+[DEBUG] [launch]: processing event: '<launch.events.process.signal_process.SignalProcess object at 0x702979f62570>'
+[DEBUG] [launch]: processing event: '<launch.events.process.signal_process.SignalProcess object at 0x702979f62570>' ✓ '<launch.event_handler.EventHandler object at 0x702983610710>'
+[INFO] [target_finder-2]: sending signal 'SIGINT' to process[target_finder-2]
+[DEBUG] [launch]: processing event: '<launch.events.process.signal_process.SignalProcess object at 0x702979f62570>' ✓ '<launch.event_handler.EventHandler object at 0x7029888abfe0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.signal_process.SignalProcess object at 0x702979e8b5c0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.signal_process.SignalProcess object at 0x702979e8b5c0>' ✓ '<launch.event_handler.EventHandler object at 0x702983610710>'
+[DEBUG] [launch]: processing event: '<launch.events.process.signal_process.SignalProcess object at 0x702979e8b5c0>' ✓ '<launch.event_handler.EventHandler object at 0x7029888abfe0>'
+[INFO] [python3-1]: sending signal 'SIGINT' to process[python3-1]
+[DEBUG] [launch.launch_context]: emitting event synchronously: 'launch.events.process.ProcessStderr'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x702979f65be0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x702979f65be0>' ✓ '<launch.event_handlers.on_process_io.OnProcessIO object at 0x7029888abf80>'
+[python3-1] Traceback (most recent call last):
+[python3-1]   File "/home/gautham/coco-isaac-21/eval/graph_fixture.py", line 8, in <module>
+[python3-1]     rclpy.spin(node)
+[python3-1]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+[python3-1]     executor.spin_once()
+[python3-1]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+[python3-1]     self._spin_once_impl(timeout_sec)
+[python3-1]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x702979f65be0>' ✓ '<launch.event_handlers.on_process_io.OnProcessIO object at 0x7029888aa420>'
+[DEBUG] [launch.launch_context]: emitting event synchronously: 'launch.events.process.ProcessStderr'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x7029824139b0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x7029824139b0>' ✓ '<launch.event_handlers.on_process_io.OnProcessIO object at 0x7029888abf80>'
+[python3-1]     handler, entity, node = self.wait_for_ready_callbacks(
+[python3-1]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[python3-1]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+[python3-1]     return next(self._cb_iter)
+[python3-1]            ^^^^^^^^^^^^^^^^^^^
+[python3-1]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 781, in _wait_for_ready_callbacks
+[python3-1]     wait_set.wait(timeout_nsec)
+[python3-1] KeyboardInterrupt
+[DEBUG] [launch]: processing event: '<launch.events.process.process_stderr.ProcessStderr object at 0x7029824139b0>' ✓ '<launch.event_handlers.on_process_io.OnProcessIO object at 0x7029888aa420>'
+[ERROR] [python3-1]: process has died [pid 273056, exit code -2, cmd '/usr/bin/python3 /home/gautham/coco-isaac-21/eval/graph_fixture.py'].
+[DEBUG] [launch.launch_context]: emitting event: 'launch.events.process.ProcessExited'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_exited.ProcessExited object at 0x702983642f00>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_exited.ProcessExited object at 0x702983642f00>' ✓ '<launch.event_handlers.on_process_exit.OnProcessExit object at 0x7029836101a0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_exited.ProcessExited object at 0x702983642f00>' ✓ '<launch.event_handlers.on_process_exit.OnProcessExit object at 0x7029836100e0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_exited.ProcessExited object at 0x702983642f00>' ✓ '<launch.event_handlers.on_process_exit.OnProcessExit object at 0x7029888aa330>'
+[INFO] [target_finder-2]: process has finished cleanly [pid 273057]
+[DEBUG] [launch.launch_context]: emitting event: 'launch.events.process.ProcessExited'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_exited.ProcessExited object at 0x70298257e030>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_exited.ProcessExited object at 0x70298257e030>' ✓ '<launch.event_handlers.on_process_exit.OnProcessExit object at 0x7029836109e0>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_exited.ProcessExited object at 0x70298257e030>' ✓ '<launch.event_handlers.on_process_exit.OnProcessExit object at 0x702983610920>'
+[DEBUG] [launch]: processing event: '<launch.events.process.process_exited.ProcessExited object at 0x70298257e030>' ✓ '<launch.event_handlers.on_process_exit.OnProcessExit object at 0x7029888aa330>'
+----------------------------- Captured stderr call -----------------------------
+test_live_subscriptions (test_isolation_launch.TestGraph.test_live_subscriptions) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.895s
+
+OK
+test_launched_nodes_stopped (test_isolation_launch.TestOwnedShutdown.test_launched_nodes_stopped) ... ERROR
+
+======================================================================
+ERROR: test_launched_nodes_stopped (test_isolation_launch.TestOwnedShutdown.test_launched_nodes_stopped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/gautham/coco-isaac-21/eval/ros_tests/test_isolation_launch.py", line 65, in test_launched_nodes_stopped
+    proc_info.assertWaitForShutdown(process=evaluator,timeout=10)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ProcInfoHandler' object has no attribute 'assertWaitForShutdown'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+=========================== short test summary info ============================
+FAILED eval/ros_tests/test_isolation_launch.py::test_isolation_launch - test_...
+1 failed, 1 passed in 5.12s

@@ -95,3 +95,14 @@ def test_accepted_pose_uses_stamped_truth_and_explicit_frame_provenance():
     assert metric['sim_s']==1 and metric['measurements']['accepted_target_true_error_m']==0
     packet.pop('robot_frame')
     assert not any(e['invariants']==['I17'] for e in derive(events,{'requested_colour':'red'},payload))
+
+
+def test_unknown_raw_goal_cost_stays_unobserved():
+    grid={'metadata':{'size_x':1,'size_y':1,'resolution':1.,
+                      'update_time':{'sec':1},'origin':{}},'data':[255]}
+    goal={'info':{'event_type':1},'request':[{'goal':{
+        'goal':{'header':{'frame_id':'map'},'pose':{'position':{'x':.5,'y':.5}}}}}]}
+    events=[record('/global_costmap/costmap_raw',1,grid),
+            record('/compute_path_to_pose/_action/send_goal/_service_event',1,goal)]
+    facts=derive(events,{'requested_colour':'red'},payload)
+    assert not any('planner_goal_free' in e['measurements'] for e in facts)

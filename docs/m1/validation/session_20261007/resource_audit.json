@@ -1,0 +1,53 @@
+{
+  "evidence_label": "historical resource samples; not qualified M1 evidence",
+  "samples": [
+    {
+      "resources": "docs/data/isaac_21/nav_001/resources.txt",
+      "resources_sha256": "62912c8a4c816e8500d29f18eaddc66fe000d0cb90a978adb53a68ab2686bb02",
+      "gpu": "docs/data/isaac_21/nav_001/gpu.json",
+      "gpu_sha256": "60413b84e3072e51fd7be0940910b85d3ab594505941a4294756af1f471e08be",
+      "max_rss_bytes": 5098934272,
+      "total_gpu_used_peak_bytes": 2585788416,
+      "timed_command": "Command being timed: \"bash /home/gautham/coco-isaac-21/scripts/isaac_sim_coco.sh --output /tmp/coco-isaac21-nav-001/sim\"",
+      "full_fetch_ros_mcap": false
+    },
+    {
+      "resources": "docs/data/isaac_21/nav_002/resources.txt",
+      "resources_sha256": "8824fae9de65077826359ef68e69f243782737e720cc49076429d642a666afd0",
+      "gpu": "docs/data/isaac_21/nav_002/gpu.json",
+      "gpu_sha256": "c602f29cb67685de835338f8722147bc9bfce4635739dc5ad489ad2c5b501b90",
+      "max_rss_bytes": 5096873984,
+      "total_gpu_used_peak_bytes": 2452619264,
+      "timed_command": "Command being timed: \"bash /home/gautham/coco-isaac-21/scripts/isaac_sim_coco.sh --output /tmp/coco-isaac21-nav-002/sim\"",
+      "full_fetch_ros_mcap": false
+    },
+    {
+      "resources": "docs/data/isaac_21/smoke_001/resources.txt",
+      "resources_sha256": "b69623564d6d8d81fa638a304d5de027234b80444f73102a50e2957035251f48",
+      "gpu": "docs/data/isaac_21/smoke_001/gpu.json",
+      "gpu_sha256": "a07120d1cb25a00864fcf3434a586666102048822f21a401ad7d95593d440aa9",
+      "max_rss_bytes": 5070491648,
+      "total_gpu_used_peak_bytes": 2282749952,
+      "timed_command": "Command being timed: \"bash /home/gautham/coco-isaac-21/scripts/isaac_sim_coco.sh --output /tmp/coco-isaac21-smoke-001/sim\"",
+      "full_fetch_ros_mcap": false
+    },
+    {
+      "resources": "docs/data/isaac_21/smoke_002/resources.txt",
+      "resources_sha256": "2c82702c8c263fcd7c19351bef1674b5d5dd9cc6112b80e2ea6650c2c8d49bbb",
+      "gpu": "docs/data/isaac_21/smoke_002/gpu.json",
+      "gpu_sha256": "19dcbcb90a0d0c2b203449cdb61b7acdc54a3384fa63d4b8d3488a4ae3de4672",
+      "max_rss_bytes": 5089538048,
+      "total_gpu_used_peak_bytes": 2454716416,
+      "timed_command": "Command being timed: \"bash /home/gautham/coco-isaac-21/scripts/isaac_sim_coco.sh --output /tmp/coco-isaac21-smoke-002/sim\"",
+      "full_fetch_ros_mcap": false
+    }
+  ],
+  "max_rss_bytes": 5098934272,
+  "max_total_gpu_used_bytes": 2585788416,
+  "limit_decision": "No production thresholds can be derived from foundation-only samples. Full fetch + ROS + recorder overhead and headroom are unmeasured.",
+  "control_calibration_blocker": {
+    "source": "coco_moveit_config/scripts/arm_control.py:340",
+    "fact": "target_height() unconditionally returns None; grasp_magnet() rejects before attachment. GraspServer inherits ArmControl without overriding these methods.",
+    "consequence": "Frozen current full-fetch autonomy cannot produce oracle-PASS controls for eval/calibration.py. Do not restore truth or repair behavior during M1."
+  }
+}

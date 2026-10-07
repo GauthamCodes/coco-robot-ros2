@@ -5,4 +5,10 @@ rclpy.init()
 node=rclpy.create_node('isolation_fixture',namespace='/eval')
 node.create_publisher(String,'/eval/ground_truth/state',10)
 node.create_subscription(String,'/eval/ground_truth/state',lambda _:None,10)
-rclpy.spin(node)
+try:
+    rclpy.spin(node)
+except (KeyboardInterrupt,rclpy.executors.ExternalShutdownException):
+    pass
+finally:
+    node.destroy_node()
+    if rclpy.ok():rclpy.shutdown()

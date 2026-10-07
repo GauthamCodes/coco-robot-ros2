@@ -13,7 +13,7 @@ def test_dirty_host_blocks_all_process_launches_and_is_preserved(tmp_path):
                   dds_segments=[],load1=0,ram_available_bytes=100,gpu={'free_bytes':100})
     policy={'backends':{'isaac':{'preflight':dict(max_load1=1,min_ram_available_bytes=1,min_vram_free_bytes=1)}}}
     job=dict(backend='isaac',seed=5,seed_group='dev',repeat=0)
-    with patch('batch.capture',return_value={'synthetic':True}),patch('batch.subprocess.check_output',return_value='synthetic-sha'),patch('batch.subprocess.Popen',side_effect=AssertionError('preflight launched a process')):
+    with patch('batch.capture',return_value={'synthetic':True}),patch('batch.runtime_fingerprint',return_value={'synthetic':True}),patch('batch.subprocess.check_output',return_value='synthetic-sha'),patch('batch.subprocess.Popen',side_effect=AssertionError('preflight launched a process')):
         rc=run_batch(tmp_path,[job],BASE/'campaigns/m1_smoke.yaml',collect=lambda:snapshot,policy=policy,
                      storage=dict(max_batch_bytes=10**8,max_run_bytes=1000,reserve_free_bytes=1000,controls_per_batch=2))
     assert rc==3
@@ -85,3 +85,89 @@ def test_corrupt_trace_is_not_silently_scored(tmp_path):
     (tmp_path/'logs/events.jsonl').write_text('{"topic":"/clock"}\n{"truncated":')
     with pytest.raises(json.JSONDecodeError):read_events(tmp_path)
     assert 'truncated' in (tmp_path/'logs/events.jsonl').read_text()
+
+
+def test_disagreement_stops_before_next_job_and_remains_stopped_on_resume(tmp_path):
+    job=dict(backend='gazebo',seed=5,seed_group='dev',repeat=0)
+    def execute(run,job,manifest,*args):
+        manifest.update(state='COMPLETE',qualified=True)
+        atomic_json(run/'manifest.json',manifest)
+        atomic_json(run/'oracle.json',dict(oracle_verdict='FAIL',mission_verdict='COMPLETE',mission_oracle_disagreement=True))
+        return True
+    with patch('batch.capture',return_value={'synthetic':True}),patch('batch.runtime_fingerprint',return_value={}),patch('batch.execute',side_effect=execute) as called:
+        assert run_batch(tmp_path,[job,dict(job,seed=8)],BASE/'campaigns/m1_smoke.yaml')==4
+        assert called.call_count==1
+        assert run_batch(tmp_path,[job,dict(job,seed=8)],BASE/'campaigns/m1_smoke.yaml')==4
+        assert called.call_count==1
+    assert json.loads((tmp_path/'STOP.json').read_text())['stop_condition']=='MISSION_ORACLE_DISAGREEMENT'
+
+
+def test_simulator_exit_evidence_is_pre_teardown_not_cleanup_signal(tmp_path):
+    from batch import simulator_failure
+    folder=tmp_path/'logs/episode';folder.mkdir(parents=True)
+    (folder/'runner_failure.txt').write_text("RuntimeError('A required child exited or run timed out')")
+    events=[dict(topic='/mission/state',data={'data':'state=LOCALIZE'})]
+    atomic_json(folder/'runtime_exit_observation.json',dict(simulator_returncode=None,mission_returncode=1))
+    assert simulator_failure(tmp_path,events) is None
+    atomic_json(folder/'runtime_exit_observation.json',dict(simulator_returncode=-11,mission_returncode=None))
+    assert simulator_failure(tmp_path,events)['exit_code']==-11
+    assert simulator_failure(tmp_path,[])['phase']=='startup'
+
+
+def test_disk_budget_stop_is_persistent_and_never_launches_next_job(tmp_path):
+    job=dict(backend='gazebo',seed=5,seed_group='dev',repeat=0)
+    def execute(run,job,manifest,*args):
+        manifest.update(state='INTERRUPTED',qualified=False,qualification_reasons=['BATCH_DISK_BUDGET_EXCEEDED'])
+        atomic_json(run/'manifest.json',manifest)
+        return False
+    with patch('batch.capture',return_value={'synthetic':True}),patch('batch.runtime_fingerprint',return_value={}),patch('batch.execute',side_effect=execute) as called:
+        assert run_batch(tmp_path,[job,dict(job,seed=8)],BASE/'campaigns/m1_smoke.yaml')==4
+        assert called.call_count==1
+        assert run_batch(tmp_path,[job],BASE/'campaigns/m1_smoke.yaml')==4
+        assert called.call_count==1
+    assert json.loads((tmp_path/'STOP.json').read_text())['stop_condition']=='DISK_BUDGET_EXCEEDED'
+
+
+def test_docs_only_checkpoint_sha_can_resume_but_runtime_changes_cannot(tmp_path):
+    job=dict(backend='gazebo',seed=5,seed_group='dev',repeat=0)
+    def execute(run,job,manifest,*args):
+        manifest.update(state='COMPLETE',qualified=True)
+        atomic_json(run/'manifest.json',manifest)
+        return True
+    with patch('batch.capture',return_value={'synthetic':True}),patch('batch.runtime_fingerprint',return_value={}),patch('batch.execute',side_effect=execute) as called:
+        with patch('batch.subprocess.check_output',return_value='original-sha'):
+            assert run_batch(tmp_path,[job],BASE/'campaigns/m1_smoke.yaml')==0
+        with patch('batch.subprocess.check_output',return_value='docs-only-sha'):
+            assert run_batch(tmp_path,[job],BASE/'campaigns/m1_smoke.yaml')==0
+        assert called.call_count==1
+    assert json.loads((tmp_path/'batch.json').read_text())['source_sha']=='original-sha'
+    assert len(json.loads((tmp_path/'resume_sources.json').read_text()))==2
+    with patch('batch.runtime_fingerprint',return_value={'changed-runtime':True}),pytest.raises(ValueError,match='runtime'):
+        run_batch(tmp_path,[job],BASE/'campaigns/m1_smoke.yaml')
+
+
+def test_calibrated_rtf_and_clock_violation_are_runtime_exclusions():
+    from batch import timing_qualification
+    limits=dict(rtf_floor=.3,clock_stall_wall_s=2.)  # synthetic only
+    assert timing_qualification('GRASP',.2,3.,limits)==['RTF_BELOW_CALIBRATED_FLOOR','SIM_CLOCK_STALLED']
+    assert timing_qualification('IDLE',0,20,limits)==[]
+    assert timing_qualification('COMPLETE',0,20,limits)==[]
+    assert timing_qualification('GRASP',.4,1,limits)==[]
+
+
+def test_held_out_public_aggregates_do_not_expose_individual_outcomes():
+    from batch_statistics import held_out_aggregates
+    row=dict(backend='isaac',qualified=True,oracle_verdict='FAIL',invariant_label='I19')
+    result=held_out_aggregates([row,dict(row,qualified=False,qualification_reasons=['FOREIGN_WORKLOAD'])])
+    assert result['isaac']['k']==0 and result['isaac']['n']==1
+    assert 'failure_pareto' not in result['isaac']
+    assert 'oracle_verdict' not in result['unqualified'][0]
+    assert result['unqualified'][0]['qualification_reasons']==['FOREIGN_WORKLOAD']
+
+
+def test_unclassified_failure_repeats_do_not_invent_intermittency():
+    row=dict(backend='gazebo',seed=6,qualified=True,oracle_verdict='FAIL',invariant_label='UNCLASSIFIED')
+    value=determinism([row]*3)[0]
+    assert value['verdict'] is None and value['additional_reproduction_required']
+    control=determinism([dict(row,seed=5,oracle_verdict='PASS',invariant_label='NONE')]*2)[0]
+    assert not control['additional_reproduction_required']

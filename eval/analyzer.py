@@ -46,6 +46,14 @@ def analyze(events,thresholds,mission_verdict='UNOBSERVED',oracle_verdict='UNSCO
 
 def run(directory,threshold_file):
     directory=Path(directory)
+    manifest=json.loads((directory/'manifest.json').read_text())
+    import yaml
+    from seed_policy import expand
+    policy=yaml.safe_load(Path(__file__).with_name('seeds.yaml').read_text())
+    seed=manifest.get('seed');dev=expand(policy['dev']);held=expand(policy['test_a']);reserve=expand(policy['reserve_m4'])
+    promoted=seed in dev and seed not in held and seed not in reserve
+    if seed in held or seed in reserve or manifest.get('seed_group')=='test_a' and not promoted:
+        raise ValueError('Manual Test A trace analysis is forbidden; follow MASTER_PLAN seed replacement before debugging')
     events=[json.loads(line) for line in (directory/'logs/normalized.jsonl').read_text().splitlines() if line.strip()]
     oracle=json.loads((directory/'oracle.json').read_text())
     result=analyze(events,json.loads(Path(threshold_file).read_text())['thresholds'],oracle.get('mission_verdict'),oracle.get('oracle_verdict'),require_catalog_coverage=True)

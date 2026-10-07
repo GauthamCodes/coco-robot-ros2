@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import subprocess
 
 REPO=Path(__file__).resolve().parents[1]
 
@@ -32,6 +33,13 @@ def file_hash(path):
         for chunk in iter(lambda:f.read(2**20),b''):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def runtime_fingerprint():
+    """Bind smoke to executable/configuration content; docs/proof commits are OK."""
+    paths=subprocess.check_output(['git','ls-files','-z'],cwd=REPO).decode().split('\0')
+    return {p:file_hash(REPO/p) for p in paths if p and not p.startswith(('docs/','.github/'))
+            and p!='eval/runtime_validation.json'}
 
 
 def bag_hash(bag):

@@ -34,14 +34,17 @@ def main():
     start=time.monotonic()
     latest_clock=None
     latest_clock_wall=None
+    mission_stage='UNKNOWN'
     def halt(*_):
         nonlocal stop;stop=True
     signal.signal(signal.SIGINT,halt);signal.signal(signal.SIGTERM,halt)
     def record(topic,type_name,msg):
-        nonlocal latest_clock,latest_clock_wall
+        nonlocal latest_clock,latest_clock_wall,mission_stage
         if topic=='/clock':
             latest_clock=msg.clock.sec+msg.clock.nanosec/1e9
             latest_clock_wall=time.monotonic()
+        if topic=='/mission/state':
+            mission_stage=next((s.split('=',1)[1] for s in msg.data.split() if s.startswith('state=')),mission_stage)
         mono=time.monotonic();interval=TOPICS[topic]
         if interval and mono-last.get(topic,-interval)<interval:return
         last[topic]=mono
@@ -55,7 +58,8 @@ def main():
         trace.flush()
     def publish(topic,value):publisher[topic].publish(String(data=json.dumps(value,allow_nan=False)))
     def discover():
-        atomic_json(run/'logs/clock_latest.json',{'sim_s':latest_clock,'clock_receive_monotonic_s':latest_clock_wall})
+        atomic_json(run/'logs/clock_latest.json',{'sim_s':latest_clock,'clock_receive_monotonic_s':latest_clock_wall,
+                                               'ros_clock_sim_s':node.get_clock().now().nanoseconds/1e9,'mission_stage':mission_stage})
         for topic,types in node.get_topic_names_and_types():
             if topic not in TOPICS or topic in subscribed:continue
             if len(types)!=1:continue

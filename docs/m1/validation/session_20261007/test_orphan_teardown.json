@@ -1,0 +1,19 @@
+{
+  "before": {
+    "pid": 267921,
+    "start_ticks": 8088379,
+    "pgid": 267832,
+    "ppid": 2244,
+    "state": "S",
+    "kernel_thread": false
+  },
+  "ownership_evidence": {
+    "domain": 181,
+    "pytest_marker": "eval/ros_tests/test_isolation_launch.py::test_isolation_launch (call)",
+    "command": "/home/gautham/coco_m1_ws/install/coco_perception/lib/coco_perception/target_finder",
+    "fixture_log": "ros_tests_final.log"
+  },
+  "action": "SIGINT to verified owned PID only",
+  "stopped": true,
+  "foreign_processes_signaled": 0
+}

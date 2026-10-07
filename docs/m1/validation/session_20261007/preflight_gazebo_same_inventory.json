@@ -1,0 +1,13 @@
+{
+  "inventory_source": "preflight_after_test_teardown_isaac.json",
+  "verdict": {
+    "qualified": false,
+    "reasons": [
+      "foreign robotics process pid=260322 start=8029900 argv=['/usr/bin/python3', '-c', 'from ros2cli.daemon.daemonize import main; main()', '--name', 'ros2-daemon', '--ros-domain-id', '66', '--rmw-implementation', 'rmw_cyclonedds_cpp']",
+      "gazebo/preflight: uncalibrated requirement min_ram_available_bytes",
+      "gazebo/preflight: uncalibrated requirement min_vram_free_bytes"
+    ],
+    "backend": "gazebo",
+    "phase": "preflight"
+  }
+}

@@ -45,8 +45,9 @@ def test_resource_and_inventory_fail_closed(field,value):
 
 def test_owned_allowlist_rejects_pid_reuse():
     s=clean(); s['processes']=[dict(pid=2,start_ticks=99,robotics=True,argv=['gz sim server'])]
-    assert qualify(s,policy(),'isaac',owned=[dict(pid=2,start_ticks=99)])['qualified']
-    assert not qualify(s,policy(),'isaac',owned=[dict(pid=2,start_ticks=98)])['qualified']
+    assert qualify(s,policy(),'gazebo',owned=[dict(pid=2,start_ticks=99)])['qualified']
+    assert not qualify(s,policy(),'gazebo',owned=[dict(pid=2,start_ticks=98)])['qualified']
+    assert not qualify(s,policy(),'isaac',owned=[dict(pid=2,start_ticks=99)])['qualified']
 
 
 def test_uncalibrated_is_blocked_and_runtime_violation_is_preserved():

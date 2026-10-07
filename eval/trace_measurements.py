@@ -104,7 +104,7 @@ def derive(events,manifest,decode):
                 # cell cost. It may be used for context, never a false breach.
                 if grid_time!=now:continue
                 point=gpose.get('pose',{}).get('position',{});cost=grid_cost(grid,point.get('x',0),point.get('y',0))
-                if cost is not None:emit(event,{'planner_goal_free':cost==0},['I11'])
+                if cost is not None and cost!=255:emit(event,{'planner_goal_free':cost==0},['I11'])
                 start=goal.get('start',{}).get('pose',{}).get('position') if goal.get('use_start') else pose
                 if start:
                     cost=grid_cost(grid,start['x'],start['y'])

@@ -1,0 +1,17 @@
+{
+  "evidence_scope": "synthetic ROS clock/source only; no simulator or qualified run",
+  "external_directory": "/home/gautham/coco_m1_runs/ros-clock-replay-20261007",
+  "bag_hash": {
+    "sha256": "17d60fb0140db092280270cae0ce8e82545170f0bb21b533f5b0281cea0be5a3",
+    "files": {
+      "bag_0.mcap": "eb954916c8723cd51aa75567dea6af3d81c9fbe57f358af0b27806059367c6d1",
+      "metadata.yaml": "facd60cc962b349c3f5acbcaef8ebbe50275875b691d46a929077be3ab7aa302"
+    },
+    "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+  },
+  "source_stamp_seconds": 7,
+  "mcap_status_receive_timestamp_bounds_ns": [
+    7000000000,
+    9000000000
+  ]
+}

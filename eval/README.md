@@ -82,7 +82,7 @@ matching committed campaign and exact repeat count. Pools stay governed by
 first 30 untouched seeds; inspect aggregates only, never individual traces for
 debugging. A change of seed governance requires the Master Plan process.
 
-Resume by repeating the exact command, same source commit, campaign, policy and
+Resume by repeating the exact command, same runtime content, campaign, policy and
 output root. A filesystem lock enforces sequential ownership. Completed qualified
 jobs are skipped; blocked/interrupted attempts are appended, never overwritten.
 Saved live processes or process groups require explicit ownership reconciliation
@@ -97,7 +97,7 @@ receive simulation/wall timestamps; analysis orders simulation time with receive
 order as tie-breaker and includes stage and centered ten-second context.
 Corrupt/truncated input is evidence loss, never a clean trace. Full bags/CTF/raw
 runtime logs stay outside git; commit compact batch summaries and selected
-analysis/env/manifests with provenance. `summary.json` contains every attempt,
+analysis/env/manifests with provenance. `summary.json` contains Dev attempts and only aggregate held-out outcomes,
 qualified/unqualified/blocked counts, Dev Pareto/determinism and separate Test A
 aggregates. UNCLASSIFIED is visible analyzer work, not forced attribution.
 
@@ -121,3 +121,45 @@ First supported breaches cannot establish causal precedence across missing data.
 Local tests: `python3 -m pytest -q eval/tests`; sourced ROS integration:
 `python3 -m pytest -q eval/ros_tests`. Neither launches a simulator. CI includes
 both, but local passing results do not claim remote CI execution.
+
+
+## Current guarded continuation (2026-10-07)
+
+Use only this explicit overlay, starting in a clean shell:
+
+```bash
+cd /home/gautham/coco-isaac-21
+export COCO_WS=/home/gautham/coco_m1_ws
+export COCO_MOVEIT_PREFIX='/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy'
+source setup_env.sh
+./eval/bin/eval preflight --backend isaac --output /tmp/coco-m1-resume-preflight-isaac.json
+```
+
+Preflight is read-only and currently fails. Do not launch simulation until
+resource/control prerequisites and remaining catalog gaps in BASELINE.md are
+resolved with legitimate evidence. Then execute the smoke commands above. Inspect
+actual evidence, run validate-smoke, commit proof/status, and only then execute
+the registered three baseline campaigns. Commands are resumable, not proof of a
+validated handoff. Output arguments are exclusive; preserve existing evidence.
+
+Resume compares all tracked runtime/data content plus campaign/policy/job hashes.
+Docs and runtime_validation.json proof changes may change HEAD without changing
+runtime identity; original batch.json stays immutable and resume_sources.json
+records the new source. A runtime change requires new registration and renewed
+smoke evidence. STOP.json prevents continuation after integrity/disk stop;
+resolve the recorded cause rather than removing the sentinel to continue.
+
+Clock contract: bag receive stamps use ROS simulation time; message source/header
+stamps are retained; host sampling uses wall epoch and monotonic time. RTF divides
+successive simulator-clock values by their source receipt monotonic deltas, not
+poll scheduling. Missing clock data stays unknown. Ten-second invariant context
+uses simulation time; wall clock stall lengths remain explicitly wall durations.
+Arbiter diagnostics are observational, emitted after wheel publication, and
+matched to actual stamped commands before authority can be attested. A sampled
+ROS graph cannot alone prove command lineage. Native UST span attribution is
+restricted to owned PIDs. Synthetic evidence cannot calibrate production limits.
+
+Held-out public output is aggregate-only. Manual held-out/reserve analysis is
+blocked; any exceptional inspection must follow Master Plan seed replacement.
+Automatic offline scoring remains part of the locked batch and never tunes
+behavior. UNCLASSIFIED repeats cannot establish failure-class determinism.

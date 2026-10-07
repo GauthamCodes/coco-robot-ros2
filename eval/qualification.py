@@ -32,6 +32,15 @@ def robotics_process(argv, comm, exe, maps=''):
             or '/opt/ros/' in exe or 'librcl.' in maps or 'librclpy' in maps)
 
 
+def simulator_backend(item):
+    argv=item.get('argv',[]);exe=item.get('exe') or '';comm=item.get('comm','')
+    shell=Path(exe).name in ('bash','sh','dash','zsh')
+    head=' '.join(argv[:1] if shell else argv[:3]).lower()
+    if comm in ('gazebo','gzserver','gzclient') or 'gz sim' in head:return 'gazebo'
+    if any(s in head for s in ('isaacsim','isaac-sim','coco_sim.isaac.runtime','omni.kit')):return 'isaac'
+    return None
+
+
 def allowed_background(item, rules):
     for rule in rules:
         argv = item['argv']
@@ -105,6 +114,9 @@ def qualify(snapshot, policy, backend, phase='preflight', owned=(), owned_shm=()
     reasons = list(snapshot.get('errors', []))
     allowed = {(i['pid'], i['start_ticks']) for i in owned}
     for p in snapshot['processes']:
+        simulator=simulator_backend(p)
+        if simulator is not None and simulator!=backend:
+            reasons.append(f"SIMULATOR_BACKEND_CONFLICT: {simulator} pid={p['pid']} while qualifying {backend}")
         if p['robotics'] and (p['pid'], p['start_ticks']) not in allowed:
             reasons.append(f"foreign robotics process pid={p['pid']} start={p['start_ticks']} argv={p['argv']}")
     for s in snapshot['dds_segments']:

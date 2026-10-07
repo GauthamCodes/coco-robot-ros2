@@ -4,9 +4,10 @@ import json
 import os
 from pathlib import Path
 import sys
+import subprocess
 import yaml
 from batch import run_batch
-from evidence import atomic_json,file_hash
+from evidence import atomic_json,file_hash,runtime_fingerprint
 from qualification import inventory,qualify,load_policy
 from seed_policy import expand
 
@@ -53,6 +54,8 @@ def main():
         run(args.run,BASE/'thresholds.json');return 0
     os.environ['ROS_DOMAIN_ID']=str(args.domain)
     os.environ['ROS2CLI_NO_DAEMON']='1'
+    if subprocess.check_output(['git','status','--porcelain=v1'],cwd=BASE.parent,text=True).strip():
+        print('BLOCKED: commit the M1 checkpoint before simulation; worktree is dirty',file=sys.stderr);return 3
     if args.command=='run':
         if args.repeats<1:parser.error('repeats must be positive')
         campaign=args.campaign or BASE/'campaigns'/('m1_breadth.yaml' if args.seeds=='dev' else 'm1_test_a.yaml' if args.seeds=='testA' else 'm1_smoke.yaml')
@@ -71,7 +74,7 @@ def main():
             print('BLOCKED: qualified smoke/runtime capture and analyzer calibration not yet validated',file=sys.stderr);return 3
         validation=json.loads(validation_path.read_text())
         if validation.get('validated') is not True or any(validation.get(k)!=file_hash(BASE/f) for k,f in
-              [('host_policy_sha256','host_policy.json'),('thresholds_sha256','thresholds.json'),('topics_sha256','topics.py')]):
+              [('host_policy_sha256','host_policy.json'),('thresholds_sha256','thresholds.json'),('topics_sha256','topics.py')]) or validation.get('runtime_fingerprint')!=runtime_fingerprint():
             print('BLOCKED: stale/incomplete runtime validation',file=sys.stderr);return 3
     return run_batch(args.output,jobs,campaign)
 

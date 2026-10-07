@@ -34,11 +34,23 @@ def determinism(rows):
         if r['qualified']:groups[(r['backend'],r['seed'])].append(r)
     result=[]
     for (backend,seed),runs in sorted(groups.items()):
-        verdict=None
+        verdict=None;fails=[r for r in runs if r['oracle_verdict']=='FAIL']
         if len(runs)>=3:
-            fails=[r for r in runs if r['oracle_verdict']=='FAIL']
             if not fails and all(r['oracle_verdict']=='PASS' for r in runs):verdict='not reproduced'
             elif len(fails)==len(runs) and len({r['invariant_label'] for r in fails})==1 and fails[0]['invariant_label']!='UNCLASSIFIED':verdict='deterministic'
-            elif fails and all(r['oracle_verdict'] in ('PASS','FAIL') for r in runs):verdict='intermittent'
-        result.append(dict(backend=backend,seed=seed,n=len(runs),verdict=verdict,additional_reproduction_required=verdict is None))
+            elif fails and all(r['oracle_verdict'] in ('PASS','FAIL') for r in runs) and (
+                    len(fails)<len(runs) or len({r['invariant_label'] for r in fails})>1 and all(r['invariant_label']!='UNCLASSIFIED' for r in fails)):
+                verdict='intermittent'
+        result.append(dict(backend=backend,seed=seed,n=len(runs),verdict=verdict,additional_reproduction_required=verdict is None and bool(fails)))
+    return result
+
+
+def held_out_aggregates(rows):
+    """Public Test A results expose completion aggregates and exclusion reasons."""
+    result=aggregate(rows)
+    for backend in ('gazebo','isaac'):
+        result[backend].pop('failure_pareto',None)
+        result[backend].pop('unclassified_count',None)
+    result['unqualified']=[{k:r.get(k) for k in ('run_id','backend','seed','state','qualification_reasons')}
+                           for r in rows if not r['qualified']]
     return result

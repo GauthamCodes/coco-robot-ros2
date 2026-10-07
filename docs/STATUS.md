@@ -415,3 +415,62 @@ output files are retained alongside corrected replay JSON. Evidence:
 current baseline results. Remaining I07/I12–I14/I16/I18/proximity/finger/progress
 measurements require additional source/association evidence and controls; not
 claimed finished. No autonomy parameters, motion/physics or retry budgets changed.
+
+
+## 2026-10-07 — M1.7 guarded execution, resumability and final host audit
+
+Input `730f1dfb77794aa15ec8cb81626e7f5bf2a470ac`. M1 remains incomplete.
+Runner preserves persistent STOP.json for oracle/mission discrepancy and batch
+budget exhaustion; re-entry cannot skip a recorded discrepancy. Runtime/campaign/
+policy fingerprints bind resume and smoke evidence, permitting docs/proof-only
+SHA changes while preserving immutable registration and append-only resume
+provenance. Startup simulator failures require a direct pre-teardown exit
+observation; cleanup signal exit codes cannot become simulator failure evidence.
+RTF uses source-clock receipt monotonic deltas; calibrated active-stage stalls,
+regressions and resource violations exclude runs. Opposite backend is refused
+even if listed owned. Saved identity survivors, teardown host state, changed
+HEAD/runtime and dirty worktree are checked. No foreign PID killing.
+
+Smoke validation reads every MCAP record, checks fixed topics/counts/hashes,
+all four distinct registered Dev jobs, host samples/RTF, graph isolation,
+oracle/analyzer completeness and teardown. Placeholder or incomplete proofs
+cannot authorize baseline. Held-out public output contains aggregate completion/
+Wilson and qualification exclusions only. Manual held-out/reserve analyzer entry
+is guarded by committed seed governance. Repeated UNCLASSIFIED failures no longer
+receive a fabricated intermittent verdict. Unknown raw cost 255 stays unknown.
+
+Latest evaluator suite **176 passed** (`eval_tests_checkpoint_final.log`). Full
+simulator-free ROS suite **4 passed** before teardown refinement. It exposed an
+owned target_finder child left by ros2 run; exact PID/start/executable/domain/pytest
+ownership established and only that child gracefully stopped. Isolation launch
+now uses the direct executable and verifies ProcessExited plus no identity
+survivor. Corrected isolation/recorder **2 passed**, synthetic-clock MCAP replay
+**1 passed**; source stamp/UUID and simulation receive timestamps preserved.
+Failed intermediate post-shutdown assertion retained. Logs, graph and ownership
+records are in `m1/validation/session_20261007`; MCAP/CTF remain external with
+committed hashes. Local verification only, no remote CI/simulator claims.
+
+Latest Isaac inventory `preflight_after_test_teardown_isaac.json` and same-inventory
+Gazebo verdict reject only foreign domain-66 CycloneDDS daemon PID260322,
+start8029900, and null RAM/VRAM requirements. Load1 3.8828125/12, RAM available
+8697798656 bytes, GPU free5548015616/total6439305216 bytes; no DDS/error entries.
+Temporary foreign Gazebo workloads in the earlier final snapshot ended externally.
+Historical foundation resource audit rehashes four samples; full fetch/ROS/MCAP
+not covered, so peak RSS5098934272/GPU2585788416 cannot justify production limits.
+Hardware incapacity not proven. Calibration also requires qualified oracle-PASS
+Dev controls unavailable under approved M0 target_height=None fail-closed grasp.
+No behavior change made to obtain controls. Remaining raw witnesses and exact
+continuation are in `m1/BASELINE.md` and `../eval/README.md`.
+
+Qualified/unqualified simulated runs **0/0**, smoke **0/4**, baseline **0/140**.
+Determinism, Dev Pareto and Test A unmeasured; Wilson intervals undefined (n=0).
+UNCLASSIFIED scored baseline count0, fraction undefined. Actual oracle/mission
+agreement unmeasured. No Test A debugging, reserve use, M2 work or IDEAS additions.
+M1.1–M1.7 are partial, not claimed complete; remaining raw coverage/calibration
+and qualified runtime cannot be replaced by synthetic success.
+
+Final read-only checkpoint inventory `preflight_checkpoint_isaac.json` (same
+inventory Gazebo verdict `preflight_checkpoint_gazebo.json`) confirms identical
+rejections with load1 **2.1513671875**, available RAM **9711841280 bytes**, GPU
+free **5649727488 bytes**. Previous teardown snapshot retained. No simulation
+retry performed; no host-capacity qualification inferred from idle readings.

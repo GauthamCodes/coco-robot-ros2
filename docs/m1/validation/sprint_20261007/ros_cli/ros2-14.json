@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "ros2",
+    "lifecycle",
+    "get",
+    "/bt_navigator",
+    "--no-daemon"
+  ],
+  "returncode": 0,
+  "stdout": "active [3]\n",
+  "stderr": ""
+}

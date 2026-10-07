@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "ros2",
+    "lifecycle",
+    "get",
+    "/planner_server",
+    "--no-daemon"
+  ],
+  "returncode": 0,
+  "stdout": "active [3]\n",
+  "stderr": ""
+}

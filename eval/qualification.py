@@ -77,6 +77,23 @@ def inventory(proc=Path('/proc'), shm=Path('/dev/shm')):
             item['exe'] = os.readlink(p / 'exe')
             maps = (p / 'maps').read_text()
             item['robotics'] = robotics_process(item['argv'], item['comm'], item['exe'], maps)
+            if item['robotics']:
+                # Read only the isolation field, never serialize the environment.
+                try:
+                    domain = next((v.split(b'=', 1)[1].decode() for v in
+                                   (p / 'environ').read_bytes().split(b'\0')
+                                   if v.startswith(b'ROS_DOMAIN_ID=')), '0')
+                    item['ros_domain_id'] = int(domain)
+                except (OSError, ValueError):
+                    item['ros_domain_id'] = None
+                if '--ros-domain-id' in item['argv']:
+                    try:
+                        item['ros_domain_id'] = int(item['argv'][item['argv'].index('--ros-domain-id')+1])
+                    except (ValueError, IndexError):
+                        item['ros_domain_id'] = None
+                item['domain_evidence'] = 'DECLARED_METADATA_ONLY; runtime ROS contexts may override'
+                # Reparenting is not proof of orphanhood or cleanup authority.
+                item['reparented_to_init'] = item['ppid'] == 1
             processes.append(item)
         except FileNotFoundError:
             continue  # process exited during inventory
@@ -110,11 +127,26 @@ def inventory(proc=Path('/proc'), shm=Path('/dev/shm')):
             'processes': processes, 'dds_segments': segments, 'errors': errors}
 
 
-def qualify(snapshot, policy, backend, phase='preflight', owned=(), owned_shm=()):
+def qualify(snapshot, policy, backend, phase='preflight', owned=(), owned_shm=(), domain=None):
+    domain = int(os.environ.get('ROS_DOMAIN_ID', '82')) if domain is None else domain
     reasons = list(snapshot.get('errors', []))
     allowed = {(i['pid'], i['start_ticks']) for i in owned}
+    classifications = []
     for p in snapshot['processes']:
         simulator=simulator_backend(p)
+        if p['robotics']:
+            owned_identity = (p['pid'], p['start_ticks']) in allowed
+            category = ('COCO_OWNED' if owned_identity else
+                        'FOREIGN_SIMULATOR' if simulator else
+                        'SAME_DOMAIN_CONTAMINATION' if p.get('ros_domain_id') == domain else
+                        'FOREIGN_OTHER_DOMAIN' if p.get('ros_domain_id') is not None else
+                        'FOREIGN_UNKNOWN_DOMAIN')
+            classifications.append(dict(pid=p['pid'], start_ticks=p['start_ticks'],
+                                        category=category, ros_domain_id=p.get('ros_domain_id'),
+                                        simulator=simulator,
+                                        domain_evidence=p.get('domain_evidence', 'DECLARED_METADATA_ONLY'),
+                                        orphan_status='NOT_ESTABLISHED',
+                                        allowed=owned_identity and simulator in (None, backend)))
         if simulator is not None and simulator!=backend:
             reasons.append(f"SIMULATOR_BACKEND_CONFLICT: {simulator} pid={p['pid']} while qualifying {backend}")
         if p['robotics'] and (p['pid'], p['start_ticks']) not in allowed:
@@ -134,7 +166,8 @@ def qualify(snapshot, policy, backend, phase='preflight', owned=(), owned_shm=()
             reasons.append(f'{key}: metric unavailable/non-finite')
         elif (value > limit if key.startswith('max_') else value < limit):
             reasons.append(f'{key}: observed {value}, required {limit}')
-    return {'qualified': not reasons, 'reasons': reasons, 'backend': backend, 'phase': phase}
+    return {'qualified': not reasons, 'reasons': reasons, 'backend': backend, 'phase': phase,
+            'evaluation_domain': domain, 'process_classifications': classifications}
 
 
 def cpu_percent(previous, current):

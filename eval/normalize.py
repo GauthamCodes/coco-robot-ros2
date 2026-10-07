@@ -64,6 +64,22 @@ def normalized(events,manifest):
                                    'placement_rest_window_sim_s':metrics['rest_window_sim_s'],
                                    'placement_rest_motion_m':max(metrics['rest_max_pairwise_distance_m'],metrics['rest_rotation_surface_motion_m']),
                                    'placed_detached':True}))
+    # Recorder starts before the mission and stops after teardown. Keep those
+    # observations as context, but do not score a latched pre-mission action
+    # result (or post-terminal shutdown) as an episode's first violation.
+    beginning=next((e for e in events if e['topic']=='/mission/state' and state_name(payload(e))=='LOCALIZE'),None)
+    for fact in output:
+        if beginning is None:
+            fact['invariants']=[]
+            fact['episode_scope']='NO_MISSION_START'
+            continue
+        receipt=fact.get('source_wall_s')
+        wall_bounds=receipt is not None and beginning.get('wall_s') is not None
+        before=receipt<beginning['wall_s'] if wall_bounds else fact['sim_s']<beginning['sim_s']
+        after=bool(terminal and (receipt>terminal['wall_s'] if wall_bounds and terminal.get('wall_s') is not None else fact['sim_s']>terminal['sim_s']))
+        if before or after:
+            fact['invariants']=[]
+            fact['episode_scope']='PRE_MISSION' if before else 'POST_TERMINAL'
     return output
 
 

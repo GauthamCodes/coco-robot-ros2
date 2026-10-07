@@ -1,0 +1,3029 @@
+{
+  "nodes": [
+    {
+      "name": "trace_recorder",
+      "namespace": "/eval"
+    },
+    {
+      "name": "non_sim_source",
+      "namespace": "/eval"
+    },
+    {
+      "name": "target_finder",
+      "namespace": "/"
+    },
+    {
+      "name": "cmd_vel_relay",
+      "namespace": "/"
+    },
+    {
+      "name": "cmd_vel_arbiter",
+      "namespace": "/"
+    },
+    {
+      "name": "launch_ros_464041",
+      "namespace": "/"
+    },
+    {
+      "name": "nav2_container",
+      "namespace": "/"
+    },
+    {
+      "name": "map_server",
+      "namespace": "/"
+    },
+    {
+      "name": "amcl",
+      "namespace": "/"
+    },
+    {
+      "name": "lifecycle_manager_localization",
+      "namespace": "/"
+    },
+    {
+      "name": "controller_server",
+      "namespace": "/"
+    },
+    {
+      "name": "local_costmap",
+      "namespace": "/local_costmap"
+    },
+    {
+      "name": "smoother_server",
+      "namespace": "/"
+    },
+    {
+      "name": "planner_server",
+      "namespace": "/"
+    },
+    {
+      "name": "global_costmap",
+      "namespace": "/global_costmap"
+    },
+    {
+      "name": "route_server",
+      "namespace": "/"
+    },
+    {
+      "name": "behavior_server",
+      "namespace": "/"
+    },
+    {
+      "name": "bt_navigator",
+      "namespace": "/"
+    },
+    {
+      "name": "waypoint_follower",
+      "namespace": "/"
+    },
+    {
+      "name": "velocity_smoother",
+      "namespace": "/"
+    },
+    {
+      "name": "collision_monitor",
+      "namespace": "/"
+    },
+    {
+      "name": "docking_server",
+      "namespace": "/"
+    },
+    {
+      "name": "lifecycle_manager_navigation",
+      "namespace": "/"
+    },
+    {
+      "name": "transform_listener_impl_750788000ee0",
+      "namespace": "/"
+    },
+    {
+      "name": "transform_listener_impl_750770000f40",
+      "namespace": "/"
+    },
+    {
+      "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+      "namespace": "/"
+    },
+    {
+      "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+      "namespace": "/"
+    }
+  ],
+  "topics": {
+    "/amcl/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "amcl",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/amcl_pose": {
+      "types": [
+        "geometry_msgs/msg/PoseWithCovarianceStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "amcl",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/assisted_teleop/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/AssistedTeleop_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/assisted_teleop/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/backup/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/BackUp_FeedbackMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/backup/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/battery_state": {
+      "types": [
+        "sensor_msgs/msg/BatteryState"
+      ],
+      "subscriptions": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/behavior_server/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/behavior_tree_log": {
+      "types": [
+        "nav2_msgs/msg/BehaviorTreeLog"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/bond": {
+      "types": [
+        "bond/msg/Status"
+      ],
+      "subscriptions": [
+        {
+          "name": "map_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "map_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/bt_navigator/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/camera/camera_info": {
+      "types": [
+        "sensor_msgs/msg/CameraInfo"
+      ],
+      "subscriptions": [
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/camera/depth/image_raw": {
+      "types": [
+        "sensor_msgs/msg/Image"
+      ],
+      "subscriptions": [
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/camera/image_raw": {
+      "types": [
+        "sensor_msgs/msg/Image"
+      ],
+      "subscriptions": [
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/clock": {
+      "types": [
+        "rosgraph_msgs/msg/Clock"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        },
+        {
+          "name": "cmd_vel_relay",
+          "namespace": "/"
+        },
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        },
+        {
+          "name": "map_server",
+          "namespace": "/"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        },
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        },
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        },
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "non_sim_source",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/cmd_vel": {
+      "types": [
+        "geometry_msgs/msg/TwistStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "cmd_vel_relay",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/cmd_vel_approach": {
+      "types": [
+        "geometry_msgs/msg/TwistStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/cmd_vel_arbiter/status": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/cmd_vel_gated": {
+      "types": [
+        "geometry_msgs/msg/TwistStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "cmd_vel_relay",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/cmd_vel_nav": {
+      "types": [
+        "geometry_msgs/msg/TwistStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/cmd_vel_rl": {
+      "types": [
+        "geometry_msgs/msg/TwistStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/cmd_vel_smoothed": {
+      "types": [
+        "geometry_msgs/msg/TwistStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/cmd_vel_teleop": {
+      "types": [
+        "geometry_msgs/msg/TwistStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/collision_monitor/collision_points_marker": {
+      "types": [
+        "visualization_msgs/msg/MarkerArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/collision_monitor/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/collision_monitor_state": {
+      "types": [
+        "nav2_msgs/msg/CollisionMonitorState"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/compute_and_track_route/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/ComputeAndTrackRoute_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/compute_and_track_route/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/compute_path_through_poses/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/ComputePathThroughPoses_FeedbackMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/compute_path_through_poses/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/compute_path_to_pose/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/ComputePathToPose_FeedbackMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/compute_path_to_pose/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/compute_route/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/ComputeRoute_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/compute_route/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/controller_selector": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/controller_server/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/cost_cloud": {
+      "types": [
+        "sensor_msgs/msg/PointCloud2"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/diagnostics": {
+      "types": [
+        "diagnostic_msgs/msg/DiagnosticArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/diagnostics/arbiter_commands": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/diff_drive_controller/cmd_vel": {
+      "types": [
+        "geometry_msgs/msg/TwistStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/dock_pose": {
+      "types": [
+        "geometry_msgs/msg/PoseStamped"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/dock_robot/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/DockRobot_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/dock_robot/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/docking_server/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/docking_trajectory": {
+      "types": [
+        "nav_msgs/msg/Path"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/drive_on_heading/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/DriveOnHeading_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/drive_on_heading/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/eval/graph": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/eval/ground_truth/state": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "non_sim_source",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/eval/nav2/lifecycle": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/eval/tf": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/eval/trace_health": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/evaluation": {
+      "types": [
+        "dwb_msgs/msg/LocalPlanEvaluation"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/execute_trajectory/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "non_sim_source",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/filtered_dock_pose": {
+      "types": [
+        "geometry_msgs/msg/PoseStamped"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/follow_gps_waypoints/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/FollowGPSWaypoints_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/follow_gps_waypoints/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/follow_path/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/FollowPath_FeedbackMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/follow_path/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/follow_waypoints/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/FollowWaypoints_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/follow_waypoints/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/global_costmap/clearing_endpoints": {
+      "types": [
+        "sensor_msgs/msg/PointCloud2"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/costmap": {
+      "types": [
+        "nav_msgs/msg/OccupancyGrid"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/costmap_raw": {
+      "types": [
+        "nav2_msgs/msg/Costmap"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/costmap_raw_updates": {
+      "types": [
+        "nav2_msgs/msg/CostmapUpdate"
+      ],
+      "subscriptions": [
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/costmap_updates": {
+      "types": [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/footprint": {
+      "types": [
+        "geometry_msgs/msg/Polygon"
+      ],
+      "subscriptions": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ],
+      "publishers": []
+    },
+    "/global_costmap/global_costmap/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/obstacle_layer": {
+      "types": [
+        "nav_msgs/msg/OccupancyGrid"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/obstacle_layer_raw": {
+      "types": [
+        "nav2_msgs/msg/Costmap"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/obstacle_layer_raw_updates": {
+      "types": [
+        "nav2_msgs/msg/CostmapUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/obstacle_layer_updates": {
+      "types": [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/published_footprint": {
+      "types": [
+        "geometry_msgs/msg/PolygonStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/static_layer": {
+      "types": [
+        "nav_msgs/msg/OccupancyGrid"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/static_layer_raw": {
+      "types": [
+        "nav2_msgs/msg/Costmap"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/static_layer_raw_updates": {
+      "types": [
+        "nav2_msgs/msg/CostmapUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/static_layer_updates": {
+      "types": [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/voxel_grid": {
+      "types": [
+        "nav2_msgs/msg/VoxelGrid"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/voxel_layer": {
+      "types": [
+        "nav_msgs/msg/OccupancyGrid"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/voxel_layer_raw": {
+      "types": [
+        "nav2_msgs/msg/Costmap"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/voxel_layer_raw_updates": {
+      "types": [
+        "nav2_msgs/msg/CostmapUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/global_costmap/voxel_layer_updates": {
+      "types": [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ]
+    },
+    "/goal_pose": {
+      "types": [
+        "geometry_msgs/msg/PoseStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/initialpose": {
+      "types": [
+        "geometry_msgs/msg/PoseWithCovarianceStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/local_costmap/clearing_endpoints": {
+      "types": [
+        "sensor_msgs/msg/PointCloud2"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/costmap": {
+      "types": [
+        "nav_msgs/msg/OccupancyGrid"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/costmap_raw": {
+      "types": [
+        "nav2_msgs/msg/Costmap"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/costmap_raw_updates": {
+      "types": [
+        "nav2_msgs/msg/CostmapUpdate"
+      ],
+      "subscriptions": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/costmap_updates": {
+      "types": [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/footprint": {
+      "types": [
+        "geometry_msgs/msg/Polygon"
+      ],
+      "subscriptions": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ],
+      "publishers": []
+    },
+    "/local_costmap/local_costmap/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/obstacle_layer": {
+      "types": [
+        "nav_msgs/msg/OccupancyGrid"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/obstacle_layer_raw": {
+      "types": [
+        "nav2_msgs/msg/Costmap"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/obstacle_layer_raw_updates": {
+      "types": [
+        "nav2_msgs/msg/CostmapUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/obstacle_layer_updates": {
+      "types": [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/published_footprint": {
+      "types": [
+        "geometry_msgs/msg/PolygonStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/voxel_grid": {
+      "types": [
+        "nav2_msgs/msg/VoxelGrid"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/voxel_layer": {
+      "types": [
+        "nav_msgs/msg/OccupancyGrid"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/voxel_layer_raw": {
+      "types": [
+        "nav2_msgs/msg/Costmap"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/voxel_layer_raw_updates": {
+      "types": [
+        "nav2_msgs/msg/CostmapUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_costmap/voxel_layer_updates": {
+      "types": [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        }
+      ]
+    },
+    "/local_plan": {
+      "types": [
+        "nav_msgs/msg/Path"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/map": {
+      "types": [
+        "nav_msgs/msg/OccupancyGrid"
+      ],
+      "subscriptions": [
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "map_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/map_server/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "map_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/marker": {
+      "types": [
+        "visualization_msgs/msg/MarkerArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/mission/mode": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/mission/state": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "non_sim_source",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/mission/target_colour": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/navigate_through_poses/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/NavigateThroughPoses_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/navigate_through_poses/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/navigate_to_pose/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/NavigateToPose_FeedbackMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/navigate_to_pose/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/odom": {
+      "types": [
+        "nav_msgs/msg/Odometry"
+      ],
+      "subscriptions": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/parameter_events": {
+      "types": [
+        "rcl_interfaces/msg/ParameterEvent"
+      ],
+      "subscriptions": [
+        {
+          "name": "nav2_container",
+          "namespace": "/"
+        },
+        {
+          "name": "map_server",
+          "namespace": "/"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        },
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        },
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        },
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "transform_listener_impl_750788000ee0",
+          "namespace": "/"
+        },
+        {
+          "name": "transform_listener_impl_750770000f40",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "non_sim_source",
+          "namespace": "/eval"
+        },
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        },
+        {
+          "name": "cmd_vel_relay",
+          "namespace": "/"
+        },
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        },
+        {
+          "name": "launch_ros_464041",
+          "namespace": "/"
+        },
+        {
+          "name": "map_server",
+          "namespace": "/"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        },
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        },
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        },
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/particle_cloud": {
+      "types": [
+        "nav2_msgs/msg/ParticleCloud"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "amcl",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/perception/annotated": {
+      "types": [
+        "sensor_msgs/msg/Image"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/perception/candidates": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/perception/status": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/perception/target": {
+      "types": [
+        "geometry_msgs/msg/PointStamped"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/plan": {
+      "types": [
+        "nav_msgs/msg/Path"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/plan_smoothed": {
+      "types": [
+        "nav_msgs/msg/Path"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/planner_selector": {
+      "types": [
+        "std_msgs/msg/String"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/planner_server/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/polygon_limit": {
+      "types": [
+        "geometry_msgs/msg/PolygonStamped"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/polygon_slowdown": {
+      "types": [
+        "geometry_msgs/msg/PolygonStamped"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/polygon_stop": {
+      "types": [
+        "geometry_msgs/msg/PolygonStamped"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/preempt_teleop": {
+      "types": [
+        "std_msgs/msg/Empty"
+      ],
+      "subscriptions": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": []
+    },
+    "/received_global_plan": {
+      "types": [
+        "nav_msgs/msg/Path"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/rosout": {
+      "types": [
+        "rcl_interfaces/msg/Log"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "non_sim_source",
+          "namespace": "/eval"
+        },
+        {
+          "name": "target_finder",
+          "namespace": "/"
+        },
+        {
+          "name": "cmd_vel_relay",
+          "namespace": "/"
+        },
+        {
+          "name": "cmd_vel_arbiter",
+          "namespace": "/"
+        },
+        {
+          "name": "launch_ros_464041",
+          "namespace": "/"
+        },
+        {
+          "name": "nav2_container",
+          "namespace": "/"
+        },
+        {
+          "name": "map_server",
+          "namespace": "/"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_localization",
+          "namespace": "/"
+        },
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        },
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        },
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        },
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        },
+        {
+          "name": "lifecycle_manager_navigation",
+          "namespace": "/"
+        },
+        {
+          "name": "transform_listener_impl_750788000ee0",
+          "namespace": "/"
+        },
+        {
+          "name": "transform_listener_impl_750770000f40",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/route_graph": {
+      "types": [
+        "visualization_msgs/msg/MarkerArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/route_server/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/scan": {
+      "types": [
+        "sensor_msgs/msg/LaserScan"
+      ],
+      "subscriptions": [
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        },
+        {
+          "name": "local_costmap",
+          "namespace": "/local_costmap"
+        },
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        },
+        {
+          "name": "global_costmap",
+          "namespace": "/global_costmap"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "non_sim_source",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/smooth_path/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/SmoothPath_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/smooth_path/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/smoother_server/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/speed_limit": {
+      "types": [
+        "nav2_msgs/msg/SpeedLimit"
+      ],
+      "subscriptions": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "route_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/spin/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/Spin_FeedbackMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/spin/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/staging_pose": {
+      "types": [
+        "geometry_msgs/msg/PoseStamped"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/tf": {
+      "types": [
+        "tf2_msgs/msg/TFMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "transform_listener_impl_750788000ee0",
+          "namespace": "/"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "transform_listener_impl_750770000f40",
+          "namespace": "/"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "amcl",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/tf_static": {
+      "types": [
+        "tf2_msgs/msg/TFMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "trace_recorder",
+          "namespace": "/eval"
+        },
+        {
+          "name": "amcl",
+          "namespace": "/"
+        },
+        {
+          "name": "transform_listener_impl_750788000ee0",
+          "namespace": "/"
+        },
+        {
+          "name": "smoother_server",
+          "namespace": "/"
+        },
+        {
+          "name": "transform_listener_impl_750770000f40",
+          "namespace": "/"
+        },
+        {
+          "name": "route_server",
+          "namespace": "/"
+        },
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        },
+        {
+          "name": "collision_monitor",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator",
+          "namespace": "/"
+        },
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "non_sim_source",
+          "namespace": "/eval"
+        }
+      ]
+    },
+    "/transformed_global_plan": {
+      "types": [
+        "nav_msgs/msg/Path"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "controller_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/undock_robot/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/UndockRobot_FeedbackMessage"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/undock_robot/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "docking_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/unsmoothed_plan": {
+      "types": [
+        "nav_msgs/msg/Path"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "planner_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/velocity_smoother/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "velocity_smoother",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/wait/_action/feedback": {
+      "types": [
+        "nav2_msgs/action/Wait_FeedbackMessage"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/wait/_action/status": {
+      "types": [
+        "action_msgs/msg/GoalStatusArray"
+      ],
+      "subscriptions": [
+        {
+          "name": "bt_navigator_navigate_to_pose_rclcpp_node",
+          "namespace": "/"
+        },
+        {
+          "name": "bt_navigator_navigate_through_poses_rclcpp_node",
+          "namespace": "/"
+        }
+      ],
+      "publishers": [
+        {
+          "name": "behavior_server",
+          "namespace": "/"
+        }
+      ]
+    },
+    "/waypoint_follower/transition_event": {
+      "types": [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ],
+      "subscriptions": [],
+      "publishers": [
+        {
+          "name": "waypoint_follower",
+          "namespace": "/"
+        }
+      ]
+    }
+  },
+  "violations": []
+}

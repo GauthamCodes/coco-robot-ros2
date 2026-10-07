@@ -70,3 +70,18 @@ def test_real_mcap_uuid_stamps_and_costmap_throttle(tmp_path):
     assert health and json.loads(health[-1]['data']['data'])['missing_topics']
     from collections import Counter
     assert inspect_bag(tmp_path/'bag')==dict(Counter(t for t,_,_ in records))
+    # Exercise the executable replay decoder against real production MCAP,
+    # including fail-closed payload/sidecar disagreement.
+    from replay import mcap_events
+    decoded,proof=mcap_events(tmp_path)
+    assert len(decoded)==len(records)
+    assert proof['goal_uuids']==['000102030405060708090a0b0c0d0e0f']
+    assert proof['source_headers']>0
+    corrupt=tmp_path/'corrupt-sidecar';(corrupt/'logs').mkdir(parents=True)
+    (corrupt/'bag').symlink_to(tmp_path/'bag',target_is_directory=True)
+    lines=(tmp_path/'logs/events.jsonl').read_text().splitlines()
+    changed=json.loads(lines[0]);changed['data']['tamper']=True
+    lines[0]=json.dumps(changed)
+    (corrupt/'logs/events.jsonl').write_text('\n'.join(lines)+'\n')
+    import pytest
+    with pytest.raises(ValueError,match='payload mismatch'):mcap_events(corrupt)

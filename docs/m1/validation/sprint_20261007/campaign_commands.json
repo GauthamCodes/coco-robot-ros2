@@ -1,0 +1,202 @@
+{
+  "campaigns": [
+    {
+      "path": "eval/campaigns/m1_smoke.yaml",
+      "sha256": "f0ca909c7e16e370a5ab1bcaab2e5213f40b6fd4b84ba2e90e47cec2d2f2d8d1",
+      "registered_jobs": 4,
+      "backend_counts": {
+        "gazebo": 2,
+        "isaac": 2
+      },
+      "definition": {
+        "schema_version": 1,
+        "milestone": "M1",
+        "kind": "smoke",
+        "hypothesis": "Instrumentation preserves behavior and captures a complete standard run on both backends",
+        "primary_metric": "qualified physical oracle completion k/n; Wilson 95% interval",
+        "configuration": "unchanged positions/red, existing backend profile, 1200 wall-second oracle budget",
+        "run_count": 4,
+        "parts": [
+          {
+            "seed_group": "dev",
+            "seeds": [
+              5,
+              8
+            ],
+            "backends": [
+              "gazebo",
+              "isaac"
+            ],
+            "repeats": 1
+          }
+        ]
+      }
+    },
+    {
+      "path": "eval/campaigns/m1_determinism.yaml",
+      "sha256": "3988374a9c93af8b99ce74aaef41beb639f1e8ba6337acf4f763625f74d2891e",
+      "registered_jobs": 20,
+      "backend_counts": {
+        "gazebo": 10,
+        "isaac": 10
+      },
+      "definition": {
+        "schema_version": 1,
+        "milestone": "M1",
+        "kind": "baseline",
+        "hypothesis": "Known Dev failures have repeatable or intermittent first-divergence labels; controls bound ordinary behavior",
+        "primary_metric": "qualified physical oracle completion k/n; Wilson 95% interval",
+        "configuration": "unchanged positions/red, existing backend profile, 1200 wall-second oracle budget",
+        "run_count": 20,
+        "parts": [
+          {
+            "seed_group": "dev",
+            "seeds": [
+              6,
+              7
+            ],
+            "backends": [
+              "gazebo",
+              "isaac"
+            ],
+            "repeats": 3
+          },
+          {
+            "seed_group": "dev",
+            "seeds": [
+              5,
+              8
+            ],
+            "backends": [
+              "gazebo",
+              "isaac"
+            ],
+            "repeats": 2
+          }
+        ]
+      }
+    },
+    {
+      "path": "eval/campaigns/m1_breadth.yaml",
+      "sha256": "c0acdca7f37a8ca4aed3815e0abcefc49bf42954a7b6386399304c2d0a0a5b68",
+      "registered_jobs": 60,
+      "backend_counts": {
+        "gazebo": 30,
+        "isaac": 30
+      },
+      "definition": {
+        "schema_version": 1,
+        "milestone": "M1",
+        "kind": "baseline",
+        "hypothesis": "Thirty new Dev layouts establish failure frequency per backend",
+        "primary_metric": "qualified physical oracle completion k/n; Wilson 95% interval",
+        "configuration": "unchanged positions/red, existing backend profile, 1200 wall-second oracle budget",
+        "run_count": 60,
+        "parts": [
+          {
+            "seed_group": "dev",
+            "seeds": [
+              10000,
+              10001,
+              10002,
+              10003,
+              10004,
+              10005,
+              10006,
+              10007,
+              10008,
+              10009,
+              10010,
+              10011,
+              10012,
+              10013,
+              10014,
+              10015,
+              10016,
+              10017,
+              10018,
+              10019,
+              10020,
+              10021,
+              10022,
+              10023,
+              10024,
+              10025,
+              10026,
+              10027,
+              10028,
+              10029
+            ],
+            "backends": [
+              "gazebo",
+              "isaac"
+            ],
+            "repeats": 1
+          }
+        ]
+      }
+    },
+    {
+      "path": "eval/campaigns/m1_test_a.yaml",
+      "sha256": "e10e3f8727e187e68e21f6d78880ef4180d48e05731abba5d36c06e48decb6c3",
+      "registered_jobs": 60,
+      "backend_counts": {
+        "gazebo": 30,
+        "isaac": 30
+      },
+      "definition": {
+        "schema_version": 1,
+        "milestone": "M1",
+        "kind": "baseline",
+        "hypothesis": "Untouched pre-registered first thirty Test A IDs estimate physical completion before M2; aggregate only",
+        "primary_metric": "qualified physical oracle completion k/n; Wilson 95% interval",
+        "configuration": "unchanged positions/red, existing backend profile, 1200 wall-second oracle budget",
+        "run_count": 60,
+        "parts": [
+          {
+            "seed_group": "test_a",
+            "seeds": [
+              1000000,
+              1000001,
+              1000002,
+              1000003,
+              1000004,
+              1000005,
+              1000006,
+              1000007,
+              1000008,
+              1000009,
+              1000010,
+              1000011,
+              1000012,
+              1000013,
+              1000014,
+              1000015,
+              1000016,
+              1000017,
+              1000018,
+              1000019,
+              1000020,
+              1000021,
+              1000022,
+              1000023,
+              1000024,
+              1000025,
+              1000026,
+              1000027,
+              1000028,
+              1000029
+            ],
+            "backends": [
+              "gazebo",
+              "isaac"
+            ],
+            "repeats": 1
+          }
+        ]
+      }
+    }
+  ],
+  "executed_qualified_runs": 0,
+  "policy_changes": false
+}

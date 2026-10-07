@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "ros2",
+    "action",
+    "info",
+    "/compute_path_to_pose"
+  ],
+  "returncode": 0,
+  "stdout": "Action: /compute_path_to_pose\nAction clients: 2\n    /eval/trace_recorder\n    /bt_navigator_navigate_to_pose_rclcpp_node\nAction servers: 1\n    /planner_server\n",
+  "stderr": ""
+}

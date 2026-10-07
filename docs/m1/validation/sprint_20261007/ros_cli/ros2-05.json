@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "ros2",
+    "topic",
+    "info",
+    "-v",
+    "/cmd_vel_gated",
+    "--no-daemon"
+  ],
+  "returncode": 0,
+  "stdout": "Type: geometry_msgs/msg/TwistStamped\n\nPublisher count: 1\n\nNode name: cmd_vel_relay\nNode namespace: /\nTopic type: geometry_msgs/msg/TwistStamped\nTopic type hash: RIHS01_5f0fcd4f81d5d06ad9b4c4c63e3ea51b82d6ae4d0558f1d475229b1121db6f64\nEndpoint type: PUBLISHER\nGID: 01.10.50.91.ed.c2.6f.3f.43.09.b7.15.00.00.17.03\nQoS profile:\n  Reliability: RELIABLE\n  History (Depth): KEEP_LAST (10)\n  Durability: VOLATILE\n  Lifespan: Infinite\n  Deadline: Infinite\n  Liveliness: AUTOMATIC\n  Liveliness lease duration: Infinite\n\nSubscription count: 2\n\nNode name: trace_recorder\nNode namespace: /eval\nTopic type: geometry_msgs/msg/TwistStamped\nTopic type hash: RIHS01_5f0fcd4f81d5d06ad9b4c4c63e3ea51b82d6ae4d0558f1d475229b1121db6f64\nEndpoint type: SUBSCRIPTION\nGID: 01.10.10.49.bf.79.71.55.ce.4a.d6.cd.00.00.2a.04\nQoS profile:\n  Reliability: BEST_EFFORT\n  History (Depth): KEEP_LAST (100)\n  Durability: VOLATILE\n  Lifespan: Infinite\n  Deadline: Infinite\n  Liveliness: AUTOMATIC\n  Liveliness lease duration: Infinite\n\nNode name: cmd_vel_arbiter\nNode namespace: /\nTopic type: geometry_msgs/msg/TwistStamped\nTopic type hash: RIHS01_5f0fcd4f81d5d06ad9b4c4c63e3ea51b82d6ae4d0558f1d475229b1121db6f64\nEndpoint type: SUBSCRIPTION\nGID: 01.10.8f.f3.d4.5f.e1.30.66.4c.7b.35.00.00.1b.04\nQoS profile:\n  Reliability: RELIABLE\n  History (Depth): KEEP_LAST (10)\n  Durability: VOLATILE\n  Lifespan: Infinite\n  Deadline: Infinite\n  Liveliness: AUTOMATIC\n  Liveliness lease duration: Infinite\n\n",
+  "stderr": ""
+}

@@ -38,3 +38,18 @@ def test_source_stamps_pose_interpolation_and_lifecycle_at_goal():
     facts=derive(states+stages+[raw,goal],manifest,payload)
     assert next(e for e in facts if e['invariants']==['I04'])['measurements']['amcl_true_error_m']==0
     assert all(next(e for e in facts if e['invariants']==['I08'])['measurements'].values())
+
+
+def test_latched_pre_mission_and_teardown_results_are_context_not_episode_failures():
+    manifest=dict(requested_colour='red',targets=[dict(model='target_red',height=.1)])
+    def status(receipt,source):
+        return dict(topic='/execute_trajectory/_action/status',sim_s=source,wall_s=receipt,
+                    data={'status_list':[dict(status=6,goal_info={'goal_id':{'uuid':list(range(16))}})]})
+    events=[status(1,999),event('/mission/state',2,'state=LOCALIZE'),
+            status(3,3),event('/mission/state',4,'state=ABORT'),status(5,0)]
+    facts=normalized(events,manifest)
+    statuses=[f for f in facts if 'moveit_execution_succeeded' in f['measurements']]
+    assert statuses[0]['invariants']==[] and statuses[0]['episode_scope']=='PRE_MISSION'
+    assert statuses[1]['invariants']==['I20']
+    assert statuses[2]['invariants']==[] and statuses[2]['episode_scope']=='POST_TERMINAL'
+    assert statuses[0]['sim_s']==999 and statuses[2]['sim_s']==0

@@ -1,0 +1,127 @@
+{
+  "phases": {
+    "idle": {
+      "samples": 30,
+      "duration_s": 29.04307398799574,
+      "metrics": {
+        "cpu_percent": {
+          "min": 15.4485049833887,
+          "max": 35.89743589743589,
+          "median": 16.88424717145344
+        },
+        "load1": {
+          "min": 3.04638671875,
+          "max": 3.2734375,
+          "median": 3.14990234375
+        },
+        "ram_available_bytes": {
+          "min": 8723226624,
+          "max": 8891457536,
+          "median": 8842235904
+        },
+        "vram_free_bytes": {
+          "min": 5606735872,
+          "max": 5643436032,
+          "median": 5640290304
+        },
+        "owned_rss_sum_bytes": {
+          "min": 0,
+          "max": 0,
+          "median": 0
+        },
+        "owned_process_count": {
+          "min": 0,
+          "max": 0,
+          "median": 0
+        }
+      }
+    },
+    "ros_nav2_perception_arbiter": {
+      "samples": 30,
+      "duration_s": 29.062397649002378,
+      "metrics": {
+        "cpu_percent": {
+          "min": 22.310405643738974,
+          "max": 71.13030957523398,
+          "median": 41.32743362831859
+        },
+        "load1": {
+          "min": 3.2734375,
+          "max": 4.74853515625,
+          "median": 4.07763671875
+        },
+        "ram_available_bytes": {
+          "min": 8093757440,
+          "max": 8623833088,
+          "median": 8231436288
+        },
+        "vram_free_bytes": {
+          "min": 5479858176,
+          "max": 5624561664,
+          "median": 5562695680
+        },
+        "owned_rss_sum_bytes": {
+          "min": 262393856,
+          "max": 505262080,
+          "median": 505139200
+        },
+        "owned_process_count": {
+          "min": 3,
+          "max": 5,
+          "median": 5
+        }
+      }
+    },
+    "ros_plus_mcap_20hz_synthetic": {
+      "samples": 30,
+      "duration_s": 29.045098618997145,
+      "metrics": {
+        "cpu_percent": {
+          "min": 27.975673327541273,
+          "max": 84.73824312333629,
+          "median": 72.28496959165942
+        },
+        "load1": {
+          "min": 4.92138671875,
+          "max": 5.83642578125,
+          "median": 5.08740234375
+        },
+        "ram_available_bytes": {
+          "min": 8086917120,
+          "max": 8731291648,
+          "median": 8205709312
+        },
+        "vram_free_bytes": {
+          "min": 5585764352,
+          "max": 5597298688,
+          "median": 5596250112
+        },
+        "owned_rss_sum_bytes": {
+          "min": 598863872,
+          "max": 602116096,
+          "median": 601935872
+        },
+        "owned_process_count": {
+          "min": 6,
+          "max": 6,
+          "median": 6
+        }
+      }
+    }
+  },
+  "sampling": "1 Hz /proc and nvidia-smi; CPU tick deltas; owned RSS sum includes shared pages",
+  "resource_policy_changed": false,
+  "qualified": false,
+  "simulator_rtf": null,
+  "missing_resource_measurement": "Full simulator + unchanged mission + ROS + MCAP combined envelope and clock RTF on an exclusively released host",
+  "limitation": "Synthetic scan/TF and truth; no images or MoveIt/mission; cannot calibrate full-stack production limits",
+  "metrics_sha256": "0359dcdf40491923e69b087d84cd474e47ca78fedba070336cb3227314346ffe",
+  "bag_hash": {
+    "sha256": "b4e5f565b32766a08956b914d4c1402520260a20d72be92b442b7c0abecc3708",
+    "files": {
+      "bag_0.mcap": "93064168383fc3a48f8095a9d5bd26851ae4a72fc55a4750dbdcbee1fcd96f77",
+      "metadata.yaml": "c263606c8c96bcaaa85b9b0c9b4138be96e42500eb79a76c40dfa1e03e519f4e"
+    },
+    "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+  }
+}

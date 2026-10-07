@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "ros2",
+    "action",
+    "info",
+    "/navigate_to_pose"
+  ],
+  "returncode": 0,
+  "stdout": "Action: /navigate_to_pose\nAction clients: 4\n    /eval/trace_recorder\n    /bt_navigator\n    /waypoint_follower\n    /docking_server\nAction servers: 1\n    /bt_navigator\n",
+  "stderr": ""
+}

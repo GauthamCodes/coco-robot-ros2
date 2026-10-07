@@ -1,0 +1,28 @@
+{
+  "method": "Independent raw physical packet XYZ Euclidean distances from first packet after LOCALIZE; frozen 5mm comparison",
+  "previous_packet": {
+    "sim_s": 61.712,
+    "displacement_m": {
+      "target_green": 0.0,
+      "target_blue": 0.0,
+      "target_yellow": 0.002351465448174269
+    }
+  },
+  "first_supported_I19": {
+    "sim_s": 61.726,
+    "displacement_m": {
+      "target_green": 0.0,
+      "target_blue": 0.0,
+      "target_yellow": 0.005170431884673925
+    }
+  },
+  "mission_stage": "DESCEND",
+  "matches_evaluator": true,
+  "earliest_cause_verified": false,
+  "oracle_failed_conditions": [
+    "target_in_placement_zone",
+    "nonrequested_undisturbed",
+    "robot_home"
+  ],
+  "limitation": "Historical physical samples are unqualified; action UUIDs and earlier catalog timing absent"
+}

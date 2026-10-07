@@ -8,7 +8,7 @@ from normalize import normalized
 from analyzer import analyze
 
 
-def replay(folder):
+def historical_events(folder):
     manifest=json.loads((folder/'manifest.json').read_text())
     observations=list(rows(folder/'observations.jsonl.gz'))
     events=[{'topic':'/mission/state','sim_s':r['sim_s'],'wall_s':r.get('wall_s'),
@@ -24,6 +24,12 @@ def replay(folder):
         else:continue
         events.append({'topic':'/eval/ground_truth/state','sim_s':packet['sim_s'],'data':{'data':json.dumps(packet)}})
     events.sort(key=lambda e:e['sim_s'])
+    return events
+
+
+def replay(folder):
+    manifest=json.loads((folder/'manifest.json').read_text())
+    events=historical_events(folder)
     facts=normalized(events,manifest)
     facts=[dict(e,invariants=['I19']) for e in facts if 'nonrequested_displacement_m' in e['measurements']]
     result=analyze(facts,{},'ABORT','FAIL')

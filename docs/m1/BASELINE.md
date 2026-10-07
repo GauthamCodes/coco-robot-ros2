@@ -213,3 +213,26 @@ debugging. No rate or interval can be reported before those counts exist.
 Resume M1.1 after host availability is restored. This is a stop-condition report,
 not an overnight handoff: there is no validated resumable runner or exact
 baseline command yet. Do not start M2.
+
+## 2026-10-07 execution sprint — real non-simulator results
+
+See [sprint evidence](validation/sprint_20261007/REPORT.md). Historical Dev
+Gazebo6 now executes through the real evaluator CLI: ABORT/FAIL agreement;
+manual raw-packet I19 check at61.726 sim seconds. Real production MCAP replay
+preserves3169 records,107 source headers and the16-byte goal UUID, detects
+injected I20, retains unknown catalog/safety evidence and ends UNCLASSIFIED.
+Neither is a qualified simulation. Live Nav2 servers active[3], command/eval
+graph checked using all15 ROS CLI commands; owned fixture teardown clean.
+
+Three30-second resource phases sampled at1Hz establish partial ROS/recording
+measurements, not full-stack requirements. Full simulator + unchanged mission +
+ROS + MCAP envelope/RTF remains the single missing resource measurement. All19
+threshold dependencies accounted for with exact control/witness requirements;
+none fabricated. Frozen fail-closed grasp prevents the successful controls
+required by current calibration. Nine raw catalog witnesses remain missing.
+Fresh backend qualification still blocks foreign domain66 plus null RAM/VRAM.
+
+Qualified simulated runs0; real smoke0/4; baseline0/140; Test A0/60 and no
+held-out/reserve inspection. M1 BLOCKED — ADDITIONAL ENGINEERING REQUIRED.
+Foreign release alone is not a zero-implementation continuation. The guarded
+smoke command remains executable and refuses unsafe launch. M1.8/M2 closed.

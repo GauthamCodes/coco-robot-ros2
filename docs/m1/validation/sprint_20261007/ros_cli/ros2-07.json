@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "ros2",
+    "action",
+    "list",
+    "-t"
+  ],
+  "returncode": 0,
+  "stdout": "/assisted_teleop [nav2_msgs/action/AssistedTeleop]\n/backup [nav2_msgs/action/BackUp]\n/compute_and_track_route [nav2_msgs/action/ComputeAndTrackRoute]\n/compute_path_through_poses [nav2_msgs/action/ComputePathThroughPoses]\n/compute_path_to_pose [nav2_msgs/action/ComputePathToPose]\n/compute_route [nav2_msgs/action/ComputeRoute]\n/dock_robot [nav2_msgs/action/DockRobot]\n/drive_on_heading [nav2_msgs/action/DriveOnHeading]\n/follow_gps_waypoints [nav2_msgs/action/FollowGPSWaypoints]\n/follow_path [nav2_msgs/action/FollowPath]\n/follow_waypoints [nav2_msgs/action/FollowWaypoints]\n/navigate_through_poses [nav2_msgs/action/NavigateThroughPoses]\n/navigate_to_pose [nav2_msgs/action/NavigateToPose]\n/smooth_path [nav2_msgs/action/SmoothPath]\n/spin [nav2_msgs/action/Spin]\n/undock_robot [nav2_msgs/action/UndockRobot]\n/wait [nav2_msgs/action/Wait]\n",
+  "stderr": ""
+}

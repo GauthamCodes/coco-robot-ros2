@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "ros2",
+    "node",
+    "info",
+    "/cmd_vel_arbiter",
+    "--no-daemon"
+  ],
+  "returncode": 0,
+  "stdout": "/cmd_vel_arbiter\n  Subscribers:\n    /clock: rosgraph_msgs/msg/Clock\n    /cmd_vel_approach: geometry_msgs/msg/TwistStamped\n    /cmd_vel_gated: geometry_msgs/msg/TwistStamped\n    /cmd_vel_rl: geometry_msgs/msg/TwistStamped\n    /cmd_vel_teleop: geometry_msgs/msg/TwistStamped\n    /mission/mode: std_msgs/msg/String\n  Publishers:\n    /cmd_vel_arbiter/status: std_msgs/msg/String\n    /diagnostics/arbiter_commands: std_msgs/msg/String\n    /diff_drive_controller/cmd_vel: geometry_msgs/msg/TwistStamped\n    /parameter_events: rcl_interfaces/msg/ParameterEvent\n    /rosout: rcl_interfaces/msg/Log\n  Service Servers:\n    /cmd_vel_arbiter/describe_parameters: rcl_interfaces/srv/DescribeParameters\n    /cmd_vel_arbiter/get_parameter_types: rcl_interfaces/srv/GetParameterTypes\n    /cmd_vel_arbiter/get_parameters: rcl_interfaces/srv/GetParameters\n    /cmd_vel_arbiter/get_type_description: type_description_interfaces/srv/GetTypeDescription\n    /cmd_vel_arbiter/list_parameters: rcl_interfaces/srv/ListParameters\n    /cmd_vel_arbiter/set_parameters: rcl_interfaces/srv/SetParameters\n    /cmd_vel_arbiter/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically\n  Service Clients:\n\n  Action Servers:\n\n  Action Clients:\n\n",
+  "stderr": ""
+}

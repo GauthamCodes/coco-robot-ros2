@@ -5,7 +5,8 @@ implemented in part; qualified runtime/calibration and M1.8 blocked**.
 M0 independently reviewed/passed and G0 passed per Gautham. No M0 reopened.
 M1 remains incomplete; no qualified smoke or baseline and no M2 authorized.
 
-Current qualification-session start/live verified input SHA: `ceeb914923f7629b4830d58fd3b47279044b2024`.
+Current execution-sprint verified input SHA: `551d532090b25438dda83d58fd9431f186a616e2`.
+Previous qualification-session input: `ceeb914923f7629b4830d58fd3b47279044b2024`.
 Previous implementation-session start: `10ba56210429d7e56e9fc605d879643dd3dda2d4`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
 Canonical repository and Downloads Master Plans byte-identical (SHA256
@@ -512,3 +513,83 @@ Evidence: `m1/validation/qualification_20261007/REPORT.md`,
 clean-shell continuation preflight command. Owner release alone does not resolve
 calibration; keep remaining gates closed. No M2 hypotheses, IDEAS additions,
 Test A debugging, behavior/campaign/threshold changes.
+
+## 2026-10-07 — Execution sprint: historical evaluator command verified
+
+Input SHA `551d532090b25438dda83d58fd9431f186a616e2`; expected branch and
+clean entry verified; Downloads Master Plan byte-identical. M1 / M1.1 and
+M1.6 advances reproducible qualification and scorer execution. Clean-shell
+documented preflight rejects existing domain66 PID260322/start8029900 plus
+null RAM/VRAM requirements. Foreign ROS rejection is required by MASTER_PLAN;
+no domain exemption or ownership/allowlist change is justified. Explicit domain
+and ownership classification added observationally; no foreign signal sent.
+
+Actual `eval replay` on coco23/gazebo_seed6: 12,326 saved records; ABORT / FAIL,
+agreement; first supported I19 at 61.726 sim seconds in DESCEND, displacement
+0.005170431884673925 m against frozen 0.005 m. Production catalog classification
+UNCLASSIFIED, since earlier missing invariants cannot be ruled out. Historical
+replay is unqualified and is not a current episode. All19 threshold dependencies
+now name exact control/witness requirements; no threshold fabricated. Targeted
+qualification/normalization/invariant checks: 99 pass before subsequent replay
+checks. Raw outputs: `/home/gautham/coco_m1_runs/sprint-20261007/`.
+
+Frozen successful-control dependency and missing raw witnesses remain independent
+of foreign workload release. Do not claim runtime-ready or start M1.8 from this
+checkpoint. No robot behavior, benchmark, seed, physics or oracle changes.
+
+## 2026-10-07 — Execution sprint: measured ROS/MCAP and live Nav2 proof
+
+M1 / M1.1–M1.7: actual simulator-free work executed; no qualified simulation.
+Three 30-second phases at1Hz (90 samples): idle, production Nav2 + arbiter +
+perception under synthetic scan/TF, then the same with fixed-topic MCAP. Final
+ROS child RSS peak505262080 bytes; ROS+MCAP602116096 bytes; median recording
+child RSS increment96796672 bytes. Shared pages double-counted and source probe
+excluded. Host CPU peak84.738%, load1 peak5.8364, available RAM minimum
+8086917120 bytes, free VRAM minimum5479858176 bytes. Background host activity
+confounds CPU/GPU attribution. Full simulator/mission/ROS/MCAP envelope plus
+clock-derived RTF is the one missing combined resource measurement; no
+production resource/invariant threshold changed. Failed initial context probe
+and earlier successful probe retained externally alongside final probe.
+
+All15 actual ROS CLI commands pass. Production planner/controller/bt_navigator
+report active[3]; NavigateToPose and ComputePathToPose servers live. Live graph
+shows relay alone publishes /cmd_vel_gated; root arbiter alone publishes final
+wheel command; all /eval truth subscriptions in /eval. No actuator exists in
+this fixture graph. Full mission/MoveIt autonomy graph remains unverified.
+All owned production/CLI groups exit0; no surviving identity. Native UST probe
+produces22 matched callback spans, no unmatched starts; synthetic C++ timing
+only, not mission timing. Production arbiter lineage/preemption/stop test passes.
+
+Final MCAP:3169 decoded records,107 source headers and UUID
+000102030405060708090a0b0c0d0e0f preserved; every payload/receipt stamp matches
+sidecar. CLI replay ABORT/FAIL agrees; injected failed MoveIt status supports
+I20 at34.564697456 sim seconds, LOCALIZE. Safety evidence remains unknown in
+this fixture; independent authority test is separate. Final classification
+UNCLASSIFIED preserves incomplete catalog. Scoping defect found by actual
+MCAP replay fixed: pre-LOCALIZE/post-terminal facts retained as context without
+scoring them as episode violations; source/receipt times unchanged. Regression
+passes; historical I19 unchanged at61.726 sim seconds, manually checked from
+raw physical packets (preceding packet61.712,2.351mm; breach5.170mm).
+
+Validation: evaluator180 pass; ROS authority/native tracing2 pass; real MCAP
+replay/corrupt-sidecar rejection1 pass. No rebuild or robot-source change.
+Qualification now reports declared domain/owned/simulator classes without
+allowing foreign ROS or claiming reparenting proves orphanhood. Fresh backend
+preflights still reject domain66 PID260322/start8029900 and null RAM/VRAM.
+
+All19 threshold dependencies have exact classifications/control requirements,
+zero unexplained unknown items. They are NOT numerically calibrated. Nine raw
+catalog witnesses remain unfinished; qualified oracle-PASS controls cannot be
+provided by the frozen target_height=None/grasp rejection path. Daemon release
+alone is insufficient. Final state is **M1 BLOCKED — ADDITIONAL ENGINEERING
+REQUIRED**, not runtime-ready. This session does not manufacture a fourth
+success outcome or pretend the requested prepared result has been achieved.
+
+Evidence and exact commands: `m1/validation/sprint_20261007/REPORT.md`,
+`calibration_dependency_audit.json`, `measurement_summary.json`,
+`historical_analysis.json`, `mcap_analysis.json`, `ros_cli/`,
+`authority_evidence.json`, `native_trace_inspection.json`, `ros_teardown.json`.
+Raw MCAP/CTF and failed attempts remain external under
+`/home/gautham/coco_m1_runs/sprint-20261007`, with committed hash index.
+No foreign workload signaled; no Test A/reserve data opened; behavior changes
+NONE. Smoke/baseline0; M1.8 not started; no M2.

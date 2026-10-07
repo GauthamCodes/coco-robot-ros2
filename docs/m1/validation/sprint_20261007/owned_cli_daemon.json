@@ -1,0 +1,9 @@
+{
+  "observed_pid": 462558,
+  "observed_parent_pid": 462533,
+  "domain": 184,
+  "origin": "ROS CLI diagnostics in simulator-free probe; not foreign domain66",
+  "current_identity": null,
+  "signal_sent": false,
+  "teardown": "No process identity remains; no cleanup signal necessary"
+}

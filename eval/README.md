@@ -163,3 +163,43 @@ Held-out public output is aggregate-only. Manual held-out/reserve analysis is
 blocked; any exceptional inspection must follow Master Plan seed replacement.
 Automatic offline scoring remains part of the locked batch and never tunes
 behavior. UNCLASSIFIED repeats cannot establish failure-class determinism.
+
+## Executed replay and simulator-free resource probe
+
+These commands do not launch a simulator and never qualify an episode. Source
+the explicit clean M1 overlay above. Output directories must be new; prior
+evidence is preserved. Manual replay refuses Test A/reserve seeds.
+
+```bash
+./eval/bin/eval replay docs/data/isaac_fetch/coco23/gazebo_seed6 \
+  --source-format historical --output /home/gautham/coco_m1_runs/NEW/historical-gazebo6
+python3 eval/non_sim_probe.py --seconds 30 \
+  --output /home/gautham/coco_m1_runs/NEW/non-sim
+./eval/bin/eval replay /home/gautham/coco_m1_runs/NEW/non-sim/fixture \
+  --source-format mcap --output /home/gautham/coco_m1_runs/NEW/mcap-replay
+```
+
+The probe measures 30 seconds each of idle, production Nav2/perception/arbiter
+with synthetic scan/TF, and the same workload plus production fixed-topic MCAP
+recording. It runs in private domain184, with no actuator or mission executive.
+It queries the real ROS graph, actions, services and lifecycle; CLI processes
+and any CLI-created daemon are registered in owned process groups and stopped.
+RSS is a sum of child processes and counts shared pages; it excludes the probe
+source process. Host CPU/load/RAM/VRAM include background activity. No camera
+images, MoveIt or simulator overhead is represented. The single missing resource
+measurement is the combined simulator/unchanged mission/ROS/MCAP envelope and
+simulator-clock RTF. These partial values do not establish production thresholds.
+
+MCAP replay decodes CDR and checks every payload and ROS receipt timestamp
+against its recorder wall-time sidecar. Source headers and UUIDs stay intact.
+Historical replay uses the existing historical oracle adapter; historical UUIDs
+and MCAP do not exist and are not invented. Both run the unchanged oracle and
+normalizer/analyzer, retain ten-second supported-divergence context and keep
+incomplete catalog classification UNCLASSIFIED. `replay.json` hashes the results.
+
+The sprint evidence is in `docs/m1/validation/sprint_20261007/`. Foreign workload
+release alone is insufficient: production RAM/VRAM still need the full workload
+measurement; current calibration requires oracle-PASS Dev controls, unavailable
+under the frozen fail-closed grasp; nine catalog witnesses remain incomplete.
+Do not treat these replay commands or partial resource measurements as smoke
+validation, baseline authorization, or a zero-engineering runtime handoff.

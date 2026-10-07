@@ -34,6 +34,9 @@ def main():
     p=sub.add_parser('preflight');p.add_argument('--backend',choices=['gazebo','isaac'],required=True);p.add_argument('--output',type=Path,required=True)
     p=sub.add_parser('validate-smoke');p.add_argument('batch',type=Path);p.add_argument('--output',type=Path,required=True)
     p=sub.add_parser('analyze');p.add_argument('run',type=Path)
+    p=sub.add_parser('replay');p.add_argument('source',type=Path)
+    p.add_argument('--source-format',choices=['historical','mcap'],required=True)
+    p.add_argument('--output',type=Path,required=True)
     p=sub.add_parser('run');p.add_argument('--backend',choices=['gazebo','isaac'],required=True)
     p.add_argument('--seeds',choices=['dev','testA','list'],required=True);p.add_argument('--seed-list')
     p.add_argument('--repeats',type=int,required=True);p.add_argument('--campaign',type=Path)
@@ -52,6 +55,9 @@ def main():
     if args.command=='analyze':
         from analyzer import run
         run(args.run,BASE/'thresholds.json');return 0
+    if args.command=='replay':
+        from replay import run
+        print(json.dumps(run(args.source,args.output,args.source_format),indent=2));return 0
     os.environ['ROS_DOMAIN_ID']=str(args.domain)
     os.environ['ROS2CLI_NO_DAEMON']='1'
     if subprocess.check_output(['git','status','--porcelain=v1'],cwd=BASE.parent,text=True).strip():

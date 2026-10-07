@@ -1,0 +1,257 @@
+{
+  "owned": [
+    {
+      "pid": 464039,
+      "start_ticks": 10013408,
+      "pgid": 464039,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464040,
+      "start_ticks": 10013408,
+      "pgid": 464040,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464041,
+      "start_ticks": 10013408,
+      "pgid": 464041,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464144,
+      "start_ticks": 10013634,
+      "pgid": 464041,
+      "ppid": 464041,
+      "state": "R",
+      "kernel_thread": false,
+      "argv": [
+        "/opt/ros/jazzy/lib/rclcpp_components/component_container_isolated",
+        "--ros-args",
+        "--log-level",
+        "info",
+        "--ros-args",
+        "-r",
+        "__node:=nav2_container",
+        "--params-file",
+        "/tmp/launch_params_vgbnns2z",
+        "--params-file",
+        "/tmp/launch_params_g204brgj",
+        "-r",
+        "/tf:=tf",
+        "-r",
+        "/tf_static:=tf_static"
+      ],
+      "comm": "component_conta",
+      "uid": 1000,
+      "exe": "/opt/ros/jazzy/lib/rclcpp_components/component_container_isolated",
+      "robotics": true,
+      "ros_domain_id": 184,
+      "reparented_to_init": false
+    },
+    {
+      "pid": 464145,
+      "start_ticks": 10013634,
+      "pgid": 464041,
+      "ppid": 464041,
+      "state": "R",
+      "kernel_thread": false,
+      "argv": [
+        "/usr/bin/python3",
+        "/home/gautham/coco_m1_ws/install/custom_teleop/lib/custom_teleop/cmd_vel_relay",
+        "--ros-args",
+        "-r",
+        "__node:=cmd_vel_relay",
+        "--params-file",
+        "/tmp/launch_params_js8ahr9_"
+      ],
+      "comm": "cmd_vel_relay",
+      "uid": 1000,
+      "exe": "/usr/bin/python3.12",
+      "robotics": true,
+      "ros_domain_id": 184,
+      "reparented_to_init": false
+    },
+    {
+      "pid": 464506,
+      "start_ticks": 10016493,
+      "pgid": 464506,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464782,
+      "start_ticks": 10019992,
+      "pgid": 464782,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464828,
+      "start_ticks": 10020292,
+      "pgid": 464828,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464858,
+      "start_ticks": 10020539,
+      "pgid": 464858,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464898,
+      "start_ticks": 10020795,
+      "pgid": 464898,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464959,
+      "start_ticks": 10021046,
+      "pgid": 464959,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 464985,
+      "start_ticks": 10021304,
+      "pgid": 464985,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465013,
+      "start_ticks": 10021581,
+      "pgid": 465013,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465040,
+      "start_ticks": 10021854,
+      "pgid": 465040,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465056,
+      "start_ticks": 10021998,
+      "pgid": 465040,
+      "ppid": 2244,
+      "state": "S",
+      "kernel_thread": false,
+      "argv": [
+        "/usr/bin/python3",
+        "-c",
+        "from ros2cli.daemon.daemonize import main; main()",
+        "--name",
+        "ros2-daemon",
+        "--ros-domain-id",
+        "184",
+        "--rmw-implementation",
+        "rmw_cyclonedds_cpp"
+      ],
+      "comm": "python3",
+      "uid": 1000,
+      "exe": "/usr/bin/python3.12",
+      "robotics": true,
+      "ros_domain_id": 184,
+      "reparented_to_init": false
+    },
+    {
+      "pid": 465092,
+      "start_ticks": 10022145,
+      "pgid": 465092,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465110,
+      "start_ticks": 10022334,
+      "pgid": 465110,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465137,
+      "start_ticks": 10022519,
+      "pgid": 465137,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465163,
+      "start_ticks": 10022760,
+      "pgid": 465163,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465200,
+      "start_ticks": 10022960,
+      "pgid": 465200,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465236,
+      "start_ticks": 10023224,
+      "pgid": 465236,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    },
+    {
+      "pid": 465271,
+      "start_ticks": 10023492,
+      "pgid": 465271,
+      "ppid": 463878,
+      "state": "R",
+      "kernel_thread": false
+    }
+  ],
+  "survivors": [],
+  "exits": {
+    "cmd_vel_arbiter": 0,
+    "target_finder": 0,
+    "nav2": 0,
+    "recorder": 0,
+    "cli-00": 0,
+    "cli-01": 0,
+    "cli-02": 0,
+    "cli-03": 0,
+    "cli-04": 0,
+    "cli-05": 0,
+    "cli-06": 0,
+    "cli-07": 0,
+    "cli-08": 0,
+    "cli-09": 0,
+    "cli-10": 0,
+    "cli-11": 0,
+    "cli-12": 0,
+    "cli-13": 0,
+    "cli-14": 0
+  }
+}

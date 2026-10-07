@@ -73,3 +73,17 @@ def test_explicit_background_allowlist_does_not_imply_process_ownership():
     assert allowed_background(dict(comm='systemd',uid=0,argv=['/sbin/init','splash']),rules)
     assert not allowed_background(dict(comm='systemd',uid=1000,argv=['/sbin/init']),rules)
     assert not allowed_background(dict(comm='python',uid=0,argv=['python','robot.py']),rules)
+
+
+def test_domain_classification_is_observational_not_a_foreign_ros_exemption():
+    s=clean()
+    for domain,category in [(66,'FOREIGN_OTHER_DOMAIN'),(82,'SAME_DOMAIN_CONTAMINATION'),
+                            (None,'FOREIGN_UNKNOWN_DOMAIN')]:
+        s['processes']=[dict(pid=42,start_ticks=99,robotics=True,argv=['python','robot.py'],ros_domain_id=domain)]
+        verdict=qualify(s,policy(),'gazebo')
+        assert not verdict['qualified']
+        assert verdict['process_classifications'][0]['category']==category
+        assert verdict['process_classifications'][0]['orphan_status']=='NOT_ESTABLISHED'
+        owned=qualify(s,policy(),'gazebo',owned=[dict(pid=42,start_ticks=99)])
+        assert owned['qualified']
+        assert owned['process_classifications'][0]['category']=='COCO_OWNED'

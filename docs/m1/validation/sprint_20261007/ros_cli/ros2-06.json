@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "ros2",
+    "topic",
+    "info",
+    "-v",
+    "/eval/ground_truth/state",
+    "--no-daemon"
+  ],
+  "returncode": 0,
+  "stdout": "Type: std_msgs/msg/String\n\nPublisher count: 1\n\nNode name: non_sim_source\nNode namespace: /eval\nTopic type: std_msgs/msg/String\nTopic type hash: RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18\nEndpoint type: PUBLISHER\nGID: 01.10.46.8e.29.87.df.7b.b7.2c.6d.69.00.00.17.03\nQoS profile:\n  Reliability: RELIABLE\n  History (Depth): KEEP_LAST (10)\n  Durability: VOLATILE\n  Lifespan: Infinite\n  Deadline: Infinite\n  Liveliness: AUTOMATIC\n  Liveliness lease duration: Infinite\n\nSubscription count: 1\n\nNode name: trace_recorder\nNode namespace: /eval\nTopic type: std_msgs/msg/String\nTopic type hash: RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18\nEndpoint type: SUBSCRIPTION\nGID: 01.10.10.49.bf.79.71.55.ce.4a.d6.cd.00.00.35.04\nQoS profile:\n  Reliability: BEST_EFFORT\n  History (Depth): KEEP_LAST (100)\n  Durability: VOLATILE\n  Lifespan: Infinite\n  Deadline: Infinite\n  Liveliness: AUTOMATIC\n  Liveliness lease duration: Infinite\n\n",
+  "stderr": ""
+}

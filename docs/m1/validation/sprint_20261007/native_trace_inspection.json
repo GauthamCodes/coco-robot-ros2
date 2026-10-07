@@ -1,0 +1,226 @@
+{
+  "events": {
+    "ros2:rcl_init": 2,
+    "ros2:rmw_publish": 69,
+    "ros2:rcl_node_init": 2,
+    "ros2:rmw_publisher_init": 5,
+    "ros2:rcl_publisher_init": 5,
+    "ros2:rcl_service_init": 14,
+    "ros2:rclcpp_service_callback_added": 14,
+    "ros2:rclcpp_callback_register": 18,
+    "ros2:rclcpp_publish": 15,
+    "ros2:rcl_publish": 21,
+    "ros2:rmw_subscription_init": 3,
+    "ros2:rcl_subscription_init": 3,
+    "ros2:rclcpp_subscription_init": 3,
+    "ros2:rclcpp_subscription_callback_added": 3,
+    "ros2:rclcpp_executor_get_next_ready": 48,
+    "ros2:rmw_take": 68,
+    "ros2:rclcpp_executor_wait_for_work": 24,
+    "ros2:rclcpp_executor_execute": 22,
+    "ros2:rcl_take": 19,
+    "ros2:rclcpp_take": 19,
+    "ros2:callback_start": 22,
+    "ros2:callback_end": 22,
+    "ros2:rcl_timer_init": 1,
+    "ros2:rclcpp_timer_callback_added": 1,
+    "ros2:rclcpp_timer_link_node": 1
+  },
+  "callback_spans": [
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762573615305,
+      "wall_duration_ns": 21629
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762573696182,
+      "wall_duration_ns": 2390
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762573720739,
+      "wall_duration_ns": 1493
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762573739214,
+      "wall_duration_ns": 1523
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762573757451,
+      "wall_duration_ns": 1354
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762577880916,
+      "wall_duration_ns": 2687
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762578187872,
+      "wall_duration_ns": 1251
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762579123130,
+      "wall_duration_ns": 1317
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762579151019,
+      "wall_duration_ns": 897
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762579186382,
+      "wall_duration_ns": 841
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160763632,
+      "start_trace_ns": 1791391762579219439,
+      "wall_duration_ns": 882
+    },
+    {
+      "vpid": 465806,
+      "vtid": 465806,
+      "callback": 109889494566096,
+      "start_trace_ns": 1791391762580121313,
+      "wall_duration_ns": 14737
+    },
+    {
+      "vpid": 465806,
+      "vtid": 465806,
+      "callback": 109889494566096,
+      "start_trace_ns": 1791391762580163144,
+      "wall_duration_ns": 1098
+    },
+    {
+      "vpid": 465806,
+      "vtid": 465806,
+      "callback": 109889494566096,
+      "start_trace_ns": 1791391762580174665,
+      "wall_duration_ns": 699
+    },
+    {
+      "vpid": 465806,
+      "vtid": 465806,
+      "callback": 109889494566096,
+      "start_trace_ns": 1791391762580183224,
+      "wall_duration_ns": 691
+    },
+    {
+      "vpid": 465806,
+      "vtid": 465806,
+      "callback": 109889494566096,
+      "start_trace_ns": 1791391762580191805,
+      "wall_duration_ns": 674
+    },
+    {
+      "vpid": 465806,
+      "vtid": 465806,
+      "callback": 109889494668824,
+      "start_trace_ns": 1791391763580030399,
+      "wall_duration_ns": 262301
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160849200,
+      "start_trace_ns": 1791391763580554227,
+      "wall_duration_ns": 207204
+    },
+    {
+      "vpid": 465806,
+      "vtid": 465806,
+      "callback": 109889494668824,
+      "start_trace_ns": 1791391764580010503,
+      "wall_duration_ns": 146379
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160849200,
+      "start_trace_ns": 1791391764580452009,
+      "wall_duration_ns": 64026
+    },
+    {
+      "vpid": 465806,
+      "vtid": 465806,
+      "callback": 109889494668824,
+      "start_trace_ns": 1791391765580017811,
+      "wall_duration_ns": 158468
+    },
+    {
+      "vpid": 465807,
+      "vtid": 465807,
+      "callback": 95565160849200,
+      "start_trace_ns": 1791391765580434579,
+      "wall_duration_ns": 67470
+    }
+  ],
+  "unmatched_callback_starts": 0,
+  "owned_pids": [
+    465806,
+    465807
+  ],
+  "excluded_process_event_counts": {},
+  "executor_events": 94,
+  "executor_timing_verified": true,
+  "trace_hash": {
+    "sha256": "706dd354b9c782f53e298d546e1d4f4255f084eabc49c67c08a44ca679ae8c69",
+    "files": {
+      "ust/uid/1000/64-bit/channel0_0": "c43e406aa7bd5554eb3ef574e24917a2395fb1345e893094ab5b7b1b9faf3522",
+      "ust/uid/1000/64-bit/channel0_1": "7cdce1f86dbe47ce76573280d1ba273d2719aacde75ad649c9bd8a82b2e0e8f6",
+      "ust/uid/1000/64-bit/channel0_10": "ac8acfa84fb8db526870bd459fe744a46c3643325c62c52f001c800894a9375c",
+      "ust/uid/1000/64-bit/channel0_11": "8c565ca180f08e7851674a8736ac35bd5bfecf9cc441daadc527659c56bf6ca7",
+      "ust/uid/1000/64-bit/channel0_2": "1c970d72d6fabaa4a31e9b8cfe5274be27e7a5681c2f3badafe580c4c6827fad",
+      "ust/uid/1000/64-bit/channel0_3": "d1189fcdfb168cc732ba675f505c3a2c01c993bbb5a1b63ecd49e9c8bb997cb8",
+      "ust/uid/1000/64-bit/channel0_4": "6a5e18ed63bbe90d27dbae03e5cbb11efbf1556ae40ed2c2968970d43c3cafc3",
+      "ust/uid/1000/64-bit/channel0_5": "1b6ffae0501dd3587f86dc4f14bdf2eec49fabf0fa769da4059ed65cfd2909de",
+      "ust/uid/1000/64-bit/channel0_6": "59504d9e7409e70c3dd40a83055290ea94880ff3613c86356a521c0cbfdb8a96",
+      "ust/uid/1000/64-bit/channel0_7": "1a20d024abadc640c8744e04f695f62e2a4c7d45f41aa85b5ccd89e021d37dd6",
+      "ust/uid/1000/64-bit/channel0_8": "19961c49f1751110522e1efb4dc335d47c40fec405049658f6cf1cec62a4a369",
+      "ust/uid/1000/64-bit/channel0_9": "b0166efa5b6ebd16f6dcd94a2aae2f859c3d94d87800136166ba0976e24d6976",
+      "ust/uid/1000/64-bit/index/channel0_0.idx": "7e971ce8b5f5f1381cc558791fc701179eb655c897e6ae59e01188d77bd7aa52",
+      "ust/uid/1000/64-bit/index/channel0_1.idx": "7046551c253f1613c66a1de4f49c3e4c5118fde78c4c75e079b8a3c47cd5767c",
+      "ust/uid/1000/64-bit/index/channel0_10.idx": "591877aa63254bf4c3ee3dbbe13a12cadb21548648a204ab5acc9a40c5d65c46",
+      "ust/uid/1000/64-bit/index/channel0_11.idx": "2d5f86427aa401dfd0099ee8f214f0a616e4476136bce9a063a19cbbbbd5e06b",
+      "ust/uid/1000/64-bit/index/channel0_2.idx": "38a9f9010f8182eb1b2b4fed345753400e95be235f08409c9c4feb1de1666c54",
+      "ust/uid/1000/64-bit/index/channel0_3.idx": "ab7cb98521499457e2f5e17d67ee27b3d40d0afb832145f6de955751515f4488",
+      "ust/uid/1000/64-bit/index/channel0_4.idx": "1c424d95d67fa58a4e631c45e833f43e9149389be6e000d7c15308e5e91eb9ba",
+      "ust/uid/1000/64-bit/index/channel0_5.idx": "e8a24954539381212421291eb6a8968ef059d9ea863375da90422d7c9665d39c",
+      "ust/uid/1000/64-bit/index/channel0_6.idx": "795e660849c3068c97afc4fa25645e660ddce6a16f93579830a8a4683b344103",
+      "ust/uid/1000/64-bit/index/channel0_7.idx": "87ad36da47edb0fd03ebbc3a8cb40a35cf8bc8a32d8b27dbb7336c724dd199a6",
+      "ust/uid/1000/64-bit/index/channel0_8.idx": "7d147fd79b29e51229fe4c413d8348f8468661c343682234d1eb16236505064c",
+      "ust/uid/1000/64-bit/index/channel0_9.idx": "7ea36c2ea9ac4e454786ec7ea5273b7748b5c3b8b4f4b054972745a4d4e445ae",
+      "ust/uid/1000/64-bit/metadata": "94c1a23f83c4a2630b10540083cf4f47b92d43561905dc67a75e707bd53484b4"
+    },
+    "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+  },
+  "clock_domain": "LTTng trace clock nanoseconds; wall durations, not ROS/simulation time",
+  "evidence_scope": "synthetic native C++ ROS only; no qualified mission or simulator"
+}

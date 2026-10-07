@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "ros2",
+    "node",
+    "list",
+    "--no-daemon"
+  ],
+  "returncode": 0,
+  "stdout": "/amcl\n/behavior_server\n/bt_navigator\n/bt_navigator_navigate_through_poses_rclcpp_node\n/bt_navigator_navigate_to_pose_rclcpp_node\n/cmd_vel_arbiter\n/cmd_vel_relay\n/collision_monitor\n/controller_server\n/docking_server\n/eval/non_sim_source\n/eval/trace_recorder\n/global_costmap/global_costmap\n/launch_ros_464041\n/lifecycle_manager_localization\n/lifecycle_manager_navigation\n/local_costmap/local_costmap\n/map_server\n/nav2_container\n/planner_server\n/route_server\n/smoother_server\n/target_finder\n/transform_listener_impl_750770000f40\n/transform_listener_impl_750788000ee0\n/velocity_smoother\n/waypoint_follower\n",
+  "stderr": ""
+}

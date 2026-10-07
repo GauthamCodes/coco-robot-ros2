@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "ros2",
+    "lifecycle",
+    "nodes",
+    "--no-daemon"
+  ],
+  "returncode": 0,
+  "stdout": "/amcl\n/behavior_server\n/bt_navigator\n/collision_monitor\n/controller_server\n/docking_server\n/global_costmap/global_costmap\n/local_costmap/local_costmap\n/map_server\n/planner_server\n/route_server\n/smoother_server\n/velocity_smoother\n/waypoint_follower\n",
+  "stderr": ""
+}

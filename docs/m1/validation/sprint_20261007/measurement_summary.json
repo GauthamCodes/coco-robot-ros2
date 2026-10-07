@@ -1,0 +1,14 @@
+{
+  "sampling": "1Hz, three 30-second phases, 90 samples",
+  "ros_child_rss_peak_bytes": 505262080,
+  "ros_mcap_child_rss_peak_bytes": 602116096,
+  "recording_child_rss_median_increment_bytes": 96796672,
+  "cpu_percent_peak": 84.73824312333629,
+  "load1_peak": 5.83642578125,
+  "ram_available_min_bytes": 8086917120,
+  "vram_free_min_bytes": 5479858176,
+  "rtf": null,
+  "simulator_overhead": null,
+  "qualification_implication": "Partial workload only; cannot establish production RAM/VRAM limits",
+  "confounding": "Host-wide CPU/load/RAM/VRAM include uncontrolled background applications; RSS sums exclude fixture source and double-count shared pages; CPU delta is not causal recorder overhead"
+}

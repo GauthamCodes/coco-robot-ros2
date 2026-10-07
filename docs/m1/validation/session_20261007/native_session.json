@@ -1,0 +1,106 @@
+{
+  "session": "coco-m1-1001a218257845a8908fce014e763ca2",
+  "started": true,
+  "commands": [
+    {
+      "argv": [
+        "lttng",
+        "create",
+        "coco-m1-1001a218257845a8908fce014e763ca2",
+        "--output",
+        "/tmp/coco-m1-session-20261007-native-trace-owned/test_native_executor_trace_wit0/ctf"
+      ],
+      "returncode": 0,
+      "stdout": "Session coco-m1-1001a218257845a8908fce014e763ca2 created.\nTraces will be output to /tmp/coco-m1-session-20261007-native-trace-owned/test_native_executor_trace_wit0/ctf\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "lttng",
+        "enable-event",
+        "--userspace",
+        "--session",
+        "coco-m1-1001a218257845a8908fce014e763ca2",
+        "ros2:*"
+      ],
+      "returncode": 0,
+      "stdout": "ust event ros2:* created in channel channel0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "lttng",
+        "add-context",
+        "--userspace",
+        "--session",
+        "coco-m1-1001a218257845a8908fce014e763ca2",
+        "--type",
+        "vpid",
+        "--type",
+        "vtid"
+      ],
+      "returncode": 0,
+      "stdout": "ust context vpid added to all channels\nust context vtid added to all channels\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "lttng",
+        "start",
+        "coco-m1-1001a218257845a8908fce014e763ca2"
+      ],
+      "returncode": 0,
+      "stdout": "Tracing started for session coco-m1-1001a218257845a8908fce014e763ca2\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "lttng",
+        "stop",
+        "coco-m1-1001a218257845a8908fce014e763ca2"
+      ],
+      "returncode": 0,
+      "stdout": "Waiting for data availability.\nTracing stopped for session coco-m1-1001a218257845a8908fce014e763ca2\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "lttng",
+        "destroy",
+        "coco-m1-1001a218257845a8908fce014e763ca2"
+      ],
+      "returncode": 0,
+      "stdout": "Destroying session coco-m1-1001a218257845a8908fce014e763ca2..\nSession coco-m1-1001a218257845a8908fce014e763ca2 destroyed\n",
+      "stderr": ""
+    }
+  ],
+  "ctf_files": [
+    "ust/uid/1000/64-bit/channel0_9",
+    "ust/uid/1000/64-bit/channel0_8",
+    "ust/uid/1000/64-bit/channel0_11",
+    "ust/uid/1000/64-bit/channel0_1",
+    "ust/uid/1000/64-bit/channel0_6",
+    "ust/uid/1000/64-bit/channel0_3",
+    "ust/uid/1000/64-bit/channel0_10",
+    "ust/uid/1000/64-bit/channel0_5",
+    "ust/uid/1000/64-bit/channel0_4",
+    "ust/uid/1000/64-bit/channel0_0",
+    "ust/uid/1000/64-bit/channel0_7",
+    "ust/uid/1000/64-bit/metadata",
+    "ust/uid/1000/64-bit/channel0_2",
+    "ust/uid/1000/64-bit/index/channel0_9.idx",
+    "ust/uid/1000/64-bit/index/channel0_1.idx",
+    "ust/uid/1000/64-bit/index/channel0_7.idx",
+    "ust/uid/1000/64-bit/index/channel0_8.idx",
+    "ust/uid/1000/64-bit/index/channel0_4.idx",
+    "ust/uid/1000/64-bit/index/channel0_0.idx",
+    "ust/uid/1000/64-bit/index/channel0_11.idx",
+    "ust/uid/1000/64-bit/index/channel0_10.idx",
+    "ust/uid/1000/64-bit/index/channel0_3.idx",
+    "ust/uid/1000/64-bit/index/channel0_5.idx",
+    "ust/uid/1000/64-bit/index/channel0_6.idx",
+    "ust/uid/1000/64-bit/index/channel0_2.idx"
+  ],
+  "executor_timing_verified": false,
+  "note": "CTF must contain ros2 executor/callback events before timing availability is claimed"
+}

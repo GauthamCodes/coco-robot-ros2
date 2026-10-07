@@ -1,0 +1,5 @@
+{
+  "executor_timing_verified": false,
+  "error": "KeyError('vpid')",
+  "evidence_scope": "synthetic native C++ ROS nodes; no simulator, no qualified mission"
+}

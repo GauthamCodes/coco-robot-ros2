@@ -329,3 +329,22 @@ Isaac solely because full-stack RAM/VRAM requirements are null. CPU ceiling
 and resource limits were not relaxed. No simulator launched or PID killed.
 M1.1 remains incomplete pending actual resource calibration; other missing
 non-runtime evidence work continues within M1. No M2 or IDEAS additions.
+
+## 2026-10-07 — M1.5 native tracing qualification (synthetic ROS only)
+
+Checkpoint input `fd84f0b`. M1 / M1.5 advances executor timing capture using
+installed native ROS UST, even though the ros2 trace CLI is absent.
+`ros2 run tracetools status` reports tracing enabled. Owned LTTng sessions now
+add vpid/vtid context and decode CTF callback spans. Offline decoding filters
+explicit owned PIDs; foreign process events cannot be claimed as mission timing.
+Initial missing-context failure and an unfiltered probe are retained externally;
+the latter exposed concurrent foreign ROS callbacks, not owned fixture work.
+Corrected owned probe: 22 paired callback spans, 94 executor events, zero
+unmatched starts, zero excluded PID events in the final capture. One native ROS
+test passes locally; IMPLEMENTED, not qualified simulated Nav2/executive timing.
+Evidence: `m1/validation/session_20261007/native_tracing_inspection.json`,
+`native_owned_processes.json`, `native_session.json`, `tracing_*log`. Hashed raw
+CTF and logs: `/home/gautham/coco_m1_runs/native-owned-20261007`; initial captures
+remain in `tracing-probe-20261007` and `native-unfiltered-20261007` in that root.
+Every created fixture process/session was stopped; no foreign process/session
+was killed or destroyed. M1.5 qualified mission evidence remains pending.

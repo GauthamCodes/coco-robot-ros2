@@ -1,0 +1,228 @@
+{
+  "events": {
+    "ros2:rcl_init": 2,
+    "ros2:rmw_publish": 69,
+    "ros2:rcl_node_init": 2,
+    "ros2:rmw_publisher_init": 5,
+    "ros2:rcl_publisher_init": 5,
+    "ros2:rcl_service_init": 14,
+    "ros2:rclcpp_service_callback_added": 14,
+    "ros2:rclcpp_callback_register": 18,
+    "ros2:rclcpp_publish": 15,
+    "ros2:rcl_publish": 21,
+    "ros2:rmw_subscription_init": 3,
+    "ros2:rcl_subscription_init": 3,
+    "ros2:rclcpp_subscription_init": 3,
+    "ros2:rclcpp_subscription_callback_added": 3,
+    "ros2:rcl_timer_init": 1,
+    "ros2:rclcpp_timer_callback_added": 1,
+    "ros2:rclcpp_timer_link_node": 1,
+    "ros2:rclcpp_executor_get_next_ready": 48,
+    "ros2:rclcpp_executor_wait_for_work": 24,
+    "ros2:rmw_take": 67,
+    "ros2:rclcpp_executor_execute": 22,
+    "ros2:rcl_take": 19,
+    "ros2:rclcpp_take": 19,
+    "ros2:callback_start": 22,
+    "ros2:callback_end": 22
+  },
+  "callback_spans": [
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073733551906,
+      "wall_duration_ns": 11876
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073733585404,
+      "wall_duration_ns": 912
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073733594369,
+      "wall_duration_ns": 537
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073733600926,
+      "wall_duration_ns": 520
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073733607485,
+      "wall_duration_ns": 509
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073737311074,
+      "wall_duration_ns": 737
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073737527034,
+      "wall_duration_ns": 2159
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073738208176,
+      "wall_duration_ns": 792
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073738227730,
+      "wall_duration_ns": 729
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073738245373,
+      "wall_duration_ns": 629
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107943928288,
+      "start_trace_ns": 1791372073738278543,
+      "wall_duration_ns": 673
+    },
+    {
+      "vpid": 266453,
+      "vtid": 266453,
+      "callback": 111136056613600,
+      "start_trace_ns": 1791372073738972806,
+      "wall_duration_ns": 10674
+    },
+    {
+      "vpid": 266453,
+      "vtid": 266453,
+      "callback": 111136056613600,
+      "start_trace_ns": 1791372073739018296,
+      "wall_duration_ns": 1104
+    },
+    {
+      "vpid": 266453,
+      "vtid": 266453,
+      "callback": 111136056613600,
+      "start_trace_ns": 1791372073739027943,
+      "wall_duration_ns": 643
+    },
+    {
+      "vpid": 266453,
+      "vtid": 266453,
+      "callback": 111136056613600,
+      "start_trace_ns": 1791372073739035345,
+      "wall_duration_ns": 585
+    },
+    {
+      "vpid": 266453,
+      "vtid": 266453,
+      "callback": 111136056613600,
+      "start_trace_ns": 1791372073739043042,
+      "wall_duration_ns": 575
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107944027640,
+      "start_trace_ns": 1791372074733528271,
+      "wall_duration_ns": 211329
+    },
+    {
+      "vpid": 266453,
+      "vtid": 266453,
+      "callback": 111136056701200,
+      "start_trace_ns": 1791372074733808421,
+      "wall_duration_ns": 94089
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107944027640,
+      "start_trace_ns": 1791372075733576242,
+      "wall_duration_ns": 225494
+    },
+    {
+      "vpid": 266453,
+      "vtid": 266453,
+      "callback": 111136056701200,
+      "start_trace_ns": 1791372075734080609,
+      "wall_duration_ns": 98130
+    },
+    {
+      "vpid": 266452,
+      "vtid": 266452,
+      "callback": 94107944027640,
+      "start_trace_ns": 1791372076733712191,
+      "wall_duration_ns": 352019
+    },
+    {
+      "vpid": 266453,
+      "vtid": 266453,
+      "callback": 111136056701200,
+      "start_trace_ns": 1791372076734360378,
+      "wall_duration_ns": 96626
+    }
+  ],
+  "unmatched_callback_starts": 0,
+  "owned_pids": [
+    266452,
+    266453
+  ],
+  "excluded_process_event_counts": {},
+  "executor_events": 94,
+  "executor_timing_verified": true,
+  "trace_hash": {
+    "sha256": "c03cc465ea8bc4c2d0ca104b7a6d002f4418e26a69ddd9e3f924fe524eb6bd41",
+    "files": {
+      "ust/uid/1000/64-bit/channel0_0": "5bac1c9573957e9ad231815489e028d33712d6e99799ebb4a431a474bb92700d",
+      "ust/uid/1000/64-bit/channel0_1": "dcf6713d39c4c4f2fa78fb191c1b49dff9a5881712634789cd21f959faed15d4",
+      "ust/uid/1000/64-bit/channel0_10": "0496a74e6db83bae3a8052f4eeea69ddad7c6b0209402e3fddbb347546cbcdf1",
+      "ust/uid/1000/64-bit/channel0_11": "6e9562a9bb41f9a4e9abe499df000429eb9d27397a7e4d199556da7cb177050a",
+      "ust/uid/1000/64-bit/channel0_2": "df78b7d2f025a68a1ca7869028e6f04ca7a826232e27c9047539775cdfb5c889",
+      "ust/uid/1000/64-bit/channel0_3": "361560438abc9f606e1550819eaef16491ddceece7159bbfba8d13f742e08dfc",
+      "ust/uid/1000/64-bit/channel0_4": "d6a058217ab51e9b3625a36ef332c57d4ed2c45f28acc2c8315fea2282a92865",
+      "ust/uid/1000/64-bit/channel0_5": "5bbdfb0750eecfc7e5cc8051a935f7f0be3e769faab9c63aa3b90b52447c6615",
+      "ust/uid/1000/64-bit/channel0_6": "faf213b8fdd6cd9cfb651f00ee240008ec8ab08385afc959c61d299f5f31c7f4",
+      "ust/uid/1000/64-bit/channel0_7": "fcfa7f7bb85af307dfa232eb6ea852a4d2d8a0d0be9dd98c93f66e10857c6db0",
+      "ust/uid/1000/64-bit/channel0_8": "6085156b71680cc1649f5257e44988fe8690a3456b5fb856d831788a48c9673e",
+      "ust/uid/1000/64-bit/channel0_9": "de8a75ff8637eec82b16e15d775041da4bf1f8da9df030b996d47790bda8de34",
+      "ust/uid/1000/64-bit/index/channel0_0.idx": "9f7a5bda40fb41dbb991d0bd681d851b44cc4fc381aaed043e8d2194d85bdfcc",
+      "ust/uid/1000/64-bit/index/channel0_1.idx": "e1ed05c3b9a80036ef4cdd72b18c3c0dc44c530807070d9fc2bf40b3dbe22745",
+      "ust/uid/1000/64-bit/index/channel0_10.idx": "eb85cd3c41a863810a7bdca4a8915d8466d6ee7d039dae54e9653e4ab4dd5771",
+      "ust/uid/1000/64-bit/index/channel0_11.idx": "dd1d08972fecfebf95b29757f3e1fee2563249c615b5e315c579fb2c8eab1127",
+      "ust/uid/1000/64-bit/index/channel0_2.idx": "e9085db48c63054ff32bbd669565b796b31b90a84ed8f345ab4c56ecf17c1fb1",
+      "ust/uid/1000/64-bit/index/channel0_3.idx": "81b3adb71a09f271dcd4291edb4fc7a60f6cdb7efd69fa697f8c69c4eda9e91d",
+      "ust/uid/1000/64-bit/index/channel0_4.idx": "b22bbee8499254302f89f15d09c9295bf608ff975f758be66fe5546f80759c30",
+      "ust/uid/1000/64-bit/index/channel0_5.idx": "0c1d9862082f0440df428e0524c512156b394aaebcf3a8ddf7d2baf503c1e675",
+      "ust/uid/1000/64-bit/index/channel0_6.idx": "96509838d87a0ee5f67bd63135ea1ac4761b19407451f18bb60858b4305cbef5",
+      "ust/uid/1000/64-bit/index/channel0_7.idx": "88accda84cb84dd21710d4f5ae8a09f78ee3306d55983c81f8bac5f884ed26cd",
+      "ust/uid/1000/64-bit/index/channel0_8.idx": "52b38cb6a4632766d8763f40a9b321feeecd2dc94c9594597fcc8f78ac9027e2",
+      "ust/uid/1000/64-bit/index/channel0_9.idx": "b5a9ec7f83d26cf1034b74b7037fc5b13401e34ed49399763352a7272bbdb5ec",
+      "ust/uid/1000/64-bit/metadata": "78700c9f0ae122a0b75b154c9e7f69e46d13079be3595627a5dc4ec1727b8364"
+    },
+    "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+  },
+  "clock_domain": "LTTng trace clock nanoseconds; wall durations, not ROS/simulation time",
+  "evidence_scope": "synthetic native C++ ROS only; no qualified mission or simulator",
+  "external_evidence_directory": "/home/gautham/coco_m1_runs/native-owned-20261007",
+  "source_checkpoint_input": "fd84f0b; synthetic local worktree verification before checkpoint commit"
+}

@@ -3,6 +3,7 @@ import json
 import math
 from oracle import score,REST_WINDOW_SIM_S
 from graph import violations
+from command_evidence import authority
 
 
 def payload(event):
@@ -52,7 +53,36 @@ def normalized(events,manifest):
             output.append(dict(sim_s=now,mission_stage=stage,measurements=measurements,
                                invariants=ids,source_topic=topic,source_wall_s=event.get('wall_s')))
     from trace_features import derive
-    return output+derive(events,manifest,payload)
+    from trace_measurements import derive as additional
+    output+=derive(events,manifest,payload)+additional(events,manifest,payload)
+    terminal=next((e for e in events if e['topic']=='/mission/state' and state_name(payload(e)) in ('COMPLETE','ABORT')),None)
+    if terminal:
+        facts=oracle_facts(events,manifest);metrics=score(facts)['metrics']
+        if 'rest_window_sim_s' in metrics:
+            output.append(dict(sim_s=terminal['sim_s'],mission_stage=state_name(payload(terminal)),invariants=['I23'],
+                               source_topic='/eval/ground_truth/state',measurements={
+                                   'placement_rest_window_sim_s':metrics['rest_window_sim_s'],
+                                   'placement_rest_motion_m':max(metrics['rest_max_pairwise_distance_m'],metrics['rest_rotation_surface_motion_m']),
+                                   'placed_detached':True}))
+    return output
+
+
+def host_measurements(path):
+    """CSV wall durations remain wall time; simulation cache is explicit."""
+    import csv
+    output=[];previous_sim=None;advance_wall=None
+    with path.open() as stream:
+        for row in csv.DictReader(stream):
+            if not row['sim_s']:continue  # No simulator clock observed yet.
+            sim=float(row['sim_s']);wall=float(row['wall_elapsed_s'])
+            if previous_sim is None or sim>previous_sim:advance_wall=wall
+            m={'host_qualified':row['qualified']=='True','rtf':float(row['rtf']) if row['rtf'] else None}
+            output.append(dict(sim_s=sim,source_file='host_metrics.csv',source_wall_s=wall,
+                               measurements=m,invariants=['I01'],mission_stage='HOST_SAMPLE'))
+            output.append(dict(sim_s=sim,source_file='host_metrics.csv',source_wall_s=wall,invariants=['I02'],mission_stage='HOST_SAMPLE',
+                               measurements={'clock_monotonic':previous_sim is None or sim>=previous_sim,'clock_stall_wall_s':wall-advance_wall}))
+            previous_sim=sim
+    return output
 
 
 def oracle_facts(events,manifest):
@@ -85,17 +115,15 @@ def oracle_facts(events,manifest):
     covered=bool(valid and terminal and terminal['sim_s']-latest['sim_s']<=2)
     disturbance=bool(covered and start and valid[0]['sim_s']-start['sim_s']<=2
                      and all(b['sim_s']-a['sim_s']<=2 for a,b in zip(valid,valid[1:])) and len(valid)==len(states))
-    authority_violations=[]
-    for e in events:
-        if e['topic']=='/eval/graph' and start and terminal and start['wall_s']<=e['wall_s']<=terminal['wall_s']:
-            authority_violations.extend(v for v in violations(payload(e)) if v['invariant']=='I06')
-    return dict(home_xy_m=manifest['home_xy_m'],target_height_m=target_def['height'],
+    command=authority(events,payload,start,terminal,violations)
+    return dict(home_xy_m=manifest.get('home_xy_m'),target_height_m=target_def['height'],
                 target_final_xyz_m=latest['objects'][target]['xyz_m'] if latest else None,
                 robot_final_xyz_m=latest['robot']['xyz_m'] if latest else None,
                 target_rest_samples=rest,nonrequested_models=names,nonrequested_max_displacement_m=maxima,
                 terminal_truth_covered=covered,disturbance_truth_covered=disturbance,
-                arbiter_violations=authority_violations,
-                arbiter_evidence_covered=False,  # calibration/correlated command evidence not yet derived
+                arbiter_violations=command['violations'],
+                arbiter_evidence_covered=command['covered'],
+                command_authority_evidence=command,
                 episode_wall_s=terminal['wall_s']-start['wall_s'] if terminal and start else None,
                 episode_finished=terminal is not None,
                 mission_verdict=state_name(payload(terminal)) if terminal else 'UNOBSERVED')

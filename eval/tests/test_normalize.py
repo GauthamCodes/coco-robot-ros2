@@ -15,10 +15,15 @@ def test_truth_displacement_first_time_and_oracle_failure():
         events.append(event('/eval/ground_truth/state',t,dict(sim_s=t,robot={'xyz_m':[-2,0,0]},objects=objects)))
     events.append(event('/mission/state',3,'state=ABORT'))
     n=normalized(events,manifest)
-    assert n[-1]['sim_s']==3 and n[-1]['measurements']['nonrequested_displacement_m']==.01
+    breach=next(e for e in n if e['sim_s']==3 and 'nonrequested_displacement_m' in e['measurements'])
+    assert breach['measurements']['nonrequested_displacement_m']==.01
     result=score(oracle_facts(events,manifest))
     assert result['oracle_verdict']=='FAIL'
     assert result['checks']['no_arbiter_violation'] is None
+    del manifest['home_xy_m']
+    # Historical displacement traces need no inferred home definition.
+    assert normalized(events,manifest)
+    assert oracle_facts(events,manifest)['home_xy_m'] is None
 
 
 def test_source_stamps_pose_interpolation_and_lifecycle_at_goal():

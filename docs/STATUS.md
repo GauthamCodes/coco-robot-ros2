@@ -383,3 +383,35 @@ The existing `colour` field and all decision/geometry gates are unchanged.
 Six targeted candidate tests pass (`session_20261007/m14_candidates.log`),
 including input-array immutability. IMPLEMENTED; qualified simulator diagnostic
 coverage and overhead remain NOT VERIFIED. No other perception work performed.
+
+## 2026-10-07 — M1.6 raw measurements and conservative coverage
+
+Input `b3ff396`. M1 / M1.6 advances first-divergence evidence: command-source
+matching/first-emission latency, host/RTF CSV ingestion, wall-domain clock stalls,
+raw costmap decoding (including rotation/unknown cells), stamped accepted-target
+position against bracketed truth with explicit base-frame provenance, actual
+controller desired/actual joint feedback, lift/carry/detach/rest and robot tilt.
+Changing robot rotation is never silently interpolated. Older throttled costmaps
+are not presented as the server's request-time cell costs. Candidate self-model
+width is no longer mislabeled as a ground-truth projection (I16 still open).
+Published stage elapsed/budget is retained; elapsed alone cannot prove absence
+of progress. Detection class/ID cannot prove physical object identity.
+The oracle can attest command evidence only with complete matching wire/lineage
+and sampled sole-publisher coverage; missing/ambiguous evidence stays unknown.
+Analyzer coverage now tracks every rule field, not one fragment of an invariant.
+Production run-directory analysis keeps incomplete catalog cases UNCLASSIFIED,
+with a separate first-supported violation/context rather than claiming earliest
+cause. Null invariant limits remain null. Every I01–I25 pass/fail/missing fixture
+still passes. Latest evaluator suite: 169 local tests pass, including coverage,
+raw measurement, corruption and integrity-stop fixtures. IMPLEMENTED; full raw
+catalog/calibration still incomplete.
+Historical replay rechecks I19 Gazebo6 at 61.726 sim s and Isaac6 at
+62.05833656992763 sim s; earliest cause remains unverified. New normalized
+placement scoring initially exposed absent historical home metadata. Corrected
+with a missing-home regression; no home coordinates invented. Empty initial
+output files are retained alongside corrected replay JSON. Evidence:
+`m1/validation/session_20261007/eval_tests_replay_final.log`,
+`historical_*_corrected.json`. These are historical/unqualified replay, not
+current baseline results. Remaining I07/I12–I14/I16/I18/proximity/finger/progress
+measurements require additional source/association evidence and controls; not
+claimed finished. No autonomy parameters, motion/physics or retry budgets changed.

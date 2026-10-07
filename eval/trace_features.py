@@ -23,9 +23,11 @@ def at_time(states,sim):
     def xyz(x,y):return [v+fraction*(w-v) for v,w in zip(x,y)]
     objects={name:dict(value,xyz_m=xyz(value['xyz_m'],b['objects'][name]['xyz_m'])) for name,value in a['objects'].items() if name in b['objects']}
     robot=None
-    if a.get('robot') and b.get('robot'):robot=dict(a['robot'],xyz_m=xyz(a['robot']['xyz_m'],b['robot']['xyz_m']))
+    if a.get('robot') and b.get('robot'):
+        robot=dict(a['robot'],xyz_m=xyz(a['robot']['xyz_m'],b['robot']['xyz_m']))
+        if a['robot'].get('quaternion_wxyz')!=b['robot'].get('quaternion_wxyz'):robot.pop('quaternion_wxyz',None)
     # Rotation interpolation is not assumed. Only translation measurements use this packet.
-    return dict(sim_s=sim,objects=objects,robot=robot,interpolated_translation=True)
+    return dict(sim_s=sim,objects=objects,robot=robot,robot_frame=a.get('robot_frame'),interpolated_translation=True)
 
 
 def derive(events,manifest,decode):
@@ -74,7 +76,9 @@ def derive(events,manifest,decode):
                               rgb_depth_skew_sim_s=abs(stamp-depth_stamp/1e9) if depth_stamp is not None else None),['I15'])
             expected=data.get('expected_width_px')
             if expected and data.get('record_kind')!='frame':
-                append(event,dict(projected_extent_error_fraction=abs(data['width_px']/expected-1)),['I16'])
+                # This expected width uses the candidate's own depth and the
+                # configured size prior, not an independent truth projection.
+                append(event,dict(self_model_projected_extent_error_fraction=abs(data['width_px']/expected-1)),[])
         if topic.endswith('/_action/status'):
             for entry in data.get('status_list',[]):
                 uuid=bytes(entry['goal_info']['goal_id']['uuid']).hex()

@@ -11,7 +11,7 @@ def gazebo_packet(row, dimensions, attached=None):
         return {'xyz_m':[float(p.get('position', {}).get(k,0)) for k in ('x','y','z')],
                 'quaternion_wxyz':[float(p.get('orientation', {}).get(k,0)) for k in ('w','x','y','z')]}
     return {'schema_version':1, 'sim_s':float(stamp.get('sec',0))+float(stamp.get('nsec',0))*1e-9,
-            'frame':'world', 'robot':convert(poses['coco']) if 'coco' in poses else None,
+            'frame':'world', 'robot_frame':'base_footprint', 'robot':convert(poses['coco']) if 'coco' in poses else None,
             'objects':{name:dict(convert(poses[name]), dimensions_m=dim,
                                  attached=(attached or {}).get(name))
                        for name, dim in dimensions.items() if name in poses}}

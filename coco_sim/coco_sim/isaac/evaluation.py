@@ -69,6 +69,7 @@ class GroundTruth:
             schema_version=1,
             sim_s=now,
             frame='world',
+            robot_frame='base_footprint',
             robot=pose(position, quaternion, self.robot),
             objects={},
         )

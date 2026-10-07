@@ -44,6 +44,7 @@ def evaluate(invariant,measurements,thresholds):
     missing=[]
     failures=[]
     observed=0
+    observed_fields=[]
     for field,op,source in RULES[invariant]:
         value=measurements.get(field)
         limit=(measurements.get(source[1:]) if isinstance(source,str) and source.startswith('$') else
@@ -59,9 +60,10 @@ def evaluate(invariant,measurements,thresholds):
                 missing.append('invalid:'+field);continue
             passed=value<=limit if op=='le' else value>=limit
         observed+=1
+        observed_fields.append(field)
         if not passed:failures.append({'measurement':field,'value':value,'relation':op,'limit':limit})
     return {'holds':False if failures else None if missing else True,
-            'failures':failures,'missing':missing,'observed_checks':observed}
+            'failures':failures,'missing':missing,'observed_checks':observed,'observed_fields':observed_fields}
 
 
 def threshold_keys():

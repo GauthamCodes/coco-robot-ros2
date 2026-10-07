@@ -51,3 +51,17 @@ def test_calibration_rejects_held_out_and_unqualified(tmp_path):
     (tmp_path/'manifest.json').write_text(json.dumps({'seed_group':'test_a','qualified':True}))
     (tmp_path/'oracle.json').write_text(json.dumps({'oracle_verdict':'PASS'}))
     with pytest.raises(ValueError,match='Dev'):derive([tmp_path],{})
+
+
+def test_raw_incomplete_catalog_keeps_supported_breach_unclassified():
+    events=[dict(sim_s=10,mission_stage='GRASP',measurements={'nonrequested_displacement_m':.01},invariants=['I19'])]
+    result=analyze(events,{},'ABORT','FAIL',require_catalog_coverage=True)
+    assert result['first_violated_invariant']=='UNCLASSIFIED'
+    assert result['first_supported_violation']['invariant']=='I19'
+    assert not result['earliest_cause_verified'] and result['first_violation'] is None
+
+
+def test_catalog_coverage_tracks_each_rule_not_one_supported_fragment():
+    result=analyze([dict(sim_s=1,measurements={'moveit_execution_succeeded':True},invariants=['I20'])],{})
+    assert 'I20' in result['analyzer_work_items']
+    assert result['coverage']['I20']['measured_fields']==['moveit_execution_succeeded']

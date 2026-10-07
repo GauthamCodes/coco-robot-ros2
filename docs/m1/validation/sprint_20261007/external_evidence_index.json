@@ -1,6 +1,14 @@
 {
   "root": "/home/gautham/coco_m1_runs/sprint-20261007",
   "files": {
+    "blocked_smoke_validation.json": {
+      "sha256": "fe7a7f11c613a7c22878a2474972535e37b4ff930374baa9074e4cddfa456ea6",
+      "bytes": 42593
+    },
+    "blocked_smoke_validation_stdout.log": {
+      "sha256": "bdbcea5c610e3019c54b370468163645e1799751693cf6a490841a28ceb232e7",
+      "bytes": 42594
+    },
     "mcap-replay-scoped/oracle.json": {
       "sha256": "fe8b30d75d5821c04ddfe0d27a54bca89443f6c5d0db5a778c92c559f5d83aab",
       "bytes": 946
@@ -72,6 +80,22 @@
     "historical-gazebo6-scoped/manifest.json": {
       "sha256": "ef9e041db426a9b7ff3571e0ba403cc4e1ce59d3a8531d37494d99e139041b6f",
       "bytes": 2959
+    },
+    "smoke/resume_sources.json": {
+      "sha256": "f1a68e696eb3a0f7a438b23ebe5cf351607e13ea40c186e09e3558990079bfac",
+      "bytes": 115
+    },
+    "smoke/summary.json": {
+      "sha256": "8c9eee10c13bda690e4436b625bf52a68ddff4bb0605d92ec18c30a729a217cf",
+      "bytes": 2834
+    },
+    "smoke/batch.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "smoke/batch.json": {
+      "sha256": "5767886e73cc3924277c903e80efe6fe842960fa52bbe361a388d30cf68ea468",
+      "bytes": 42897
     },
     "historical-gazebo6/oracle.json": {
       "sha256": "241e9a75694036806bd3cdb9fb5369fe9070198b73695b792a55ac013ed4befc",
@@ -258,8 +282,8 @@
       "bytes": 54813
     },
     "non-sim-probe-final/env.json": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
+      "sha256": "16073ec69666c964a98b987e52fa39879d01a9bc1402874b884d266a9c362a90",
+      "bytes": 61214
     },
     "non-sim-probe-final/ros2-03.json": {
       "sha256": "3a8219cd3c1b3862b9fd0a9ababb3af4f163926e07a371545154c210264d8740",
@@ -368,6 +392,30 @@
     "historical-gazebo6-scoped/logs/normalized.jsonl": {
       "sha256": "d084a8967233df1b0f620ff494d9e2d02270d234565347b2e377a257d2e4d2d9",
       "bytes": 5346807
+    },
+    "smoke/run-0000-gazebo-5-r0-a000/oracle.json": {
+      "sha256": "bca5bdd59931560f608d27708bea14deb3729d55bb28bbed2f990ec5e7237487",
+      "bytes": 1201
+    },
+    "smoke/run-0000-gazebo-5-r0-a000/analysis.json": {
+      "sha256": "3e5928ec3f34ed677301c1a2d8f5405c44002d5130229b47ae855d8295b4a30e",
+      "bytes": 3799
+    },
+    "smoke/run-0000-gazebo-5-r0-a000/host_metrics.csv": {
+      "sha256": "d5b9259420c6f4a8a476abb8900b38d9bdf0305c086a371d104d8bd01f1e538f",
+      "bytes": 111
+    },
+    "smoke/run-0000-gazebo-5-r0-a000/env.json": {
+      "sha256": "15cda4b05417d57de3abb7cb9565ce6d0872b3da691d89803085e34457ede0cb",
+      "bytes": 61213
+    },
+    "smoke/run-0000-gazebo-5-r0-a000/manifest.json": {
+      "sha256": "9165326edcaac1da7acb83154d98184fa3be1a0d3eb0b907529326ae7341525a",
+      "bytes": 970
+    },
+    "smoke/run-0000-gazebo-5-r0-a000/logs/preflight.json": {
+      "sha256": "2e9f9ac6ece5d046300d04a5d02680bbf44078862c2cc87d0c9c77d55334ca75",
+      "bytes": 131667
     },
     "historical-gazebo6/logs/events.jsonl": {
       "sha256": "9fa0985b5fbd38a026f312a515882629f50d6f15cafc2344ef581542857b9571",

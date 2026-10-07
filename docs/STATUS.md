@@ -593,3 +593,15 @@ Raw MCAP/CTF and failed attempts remain external under
 `/home/gautham/coco_m1_runs/sprint-20261007`, with committed hash index.
 No foreign workload signaled; no Test A/reserve data opened; behavior changes
 NONE. Smoke/baseline0; M1.8 not started; no M2.
+
+### Execution sprint final runner gate
+
+Input checkpoint `d63b7df7e06e743bc4e3a1a799639d35c338ecae`. Actual registered
+smoke command exits3, preserving Gazebo5 attempt as BLOCKED; owned child list
+empty and bag empty, no simulator launched. Summary distinguishes blocked_count1
+from qualified_count0/unqualified_count0. Actual validate-smoke exits3 and
+rejects uncalibrated analyzer/resource profile and absent four qualified jobs.
+Isaac remains separately preflight-blocked; not attempted by stopped campaign.
+Evidence `m1/validation/sprint_20261007/runner_gate.json` and
+`blocked_smoke_*.json`. No integrity sentinel removed, runtime source changed,
+foreign process signaled or Test A data inspected. M1.8 remains0/140.

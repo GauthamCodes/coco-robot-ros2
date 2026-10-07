@@ -1,0 +1,15 @@
+{
+  "validated": false,
+  "reasons": [
+    "ANALYZER_CALIBRATION_INCOMPLETE",
+    "HOST_RESOURCE_PROFILE_NOT_VALIDATED",
+    "BOTH_BACKENDS_QUALIFIED_SMOKE_REQUIRED",
+    "ALL_FOUR_REGISTERED_SMOKE_JOBS_REQUIRED"
+  ],
+  "proof": [],
+  "host_policy_sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+  "thresholds_sha256": "bc83ddd1d0675c6703f2cf1aa52a851a1bea67913557598181f887a58cb18226",
+  "topics_sha256": "914aa8fbc67534e3d1799a3d18039d27920b5c46d9876d976d26429f13814578",
+  "full_evidence_path": "/home/gautham/coco_m1_runs/sprint-20261007/blocked_smoke_validation.json",
+  "full_evidence_sha256": "fe7a7f11c613a7c22878a2474972535e37b4ff930374baa9074e4cddfa456ea6"
+}

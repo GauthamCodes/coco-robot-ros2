@@ -1,0 +1,18 @@
+{
+  "command": "./eval/bin/eval campaign eval/campaigns/m1_smoke.yaml --output /home/gautham/coco_m1_runs/sprint-20261007/smoke",
+  "exit_code": 3,
+  "attempted_jobs": 1,
+  "blocked_jobs": 1,
+  "qualified_simulated_runs": 0,
+  "unqualified_simulated_runs": 0,
+  "children_launched": 0,
+  "bag_files": 0,
+  "runner_gate_verified": true,
+  "smoke_success": false,
+  "validation": [
+    "ANALYZER_CALIBRATION_INCOMPLETE",
+    "HOST_RESOURCE_PROFILE_NOT_VALIDATED",
+    "BOTH_BACKENDS_QUALIFIED_SMOKE_REQUIRED",
+    "ALL_FOUR_REGISTERED_SMOKE_JOBS_REQUIRED"
+  ]
+}

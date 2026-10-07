@@ -14,7 +14,7 @@ Final live SHA/cleanliness: `python3 eval/status.py`. No simulator launched.
 | M1.4 | Existing diagnostic instrumentation preserved; no real image/candidate runtime this sprint |
 | M1.5 | Nav2 action/services and active lifecycle verified; native UST synthetic spans verified; qualified mission timing absent |
 | M1.6 | Historical and MCAP evaluator CLI executed; pre/post-episode scope defect fixed; incomplete catalogs remain UNCLASSIFIED; 19 controls precisely accounted for |
-| M1.7 | Guarded smoke command executable; real preflight refusal to be recorded after checkpoint commit; qualified runner/teardown still unverified |
+| M1.7 | Guarded smoke command executable; actual registered smoke command exits3, with one BLOCKED preflight and no child launched; qualified runner/teardown still unverified |
 | M1.8 | Not started: determinism0/20, Dev0/60, Test A0/60 |
 
 ### Qualification
@@ -164,3 +164,19 @@ Final status: **M1 BLOCKED — ADDITIONAL ENGINEERING REQUIRED**.
 M1 is not complete and the requested runtime-ready prepared outcome was not
 achieved. Real evaluator/graph/resource results above are preserved; no generic
 external-only handoff or fabricated qualified success.
+
+## Final actual runner/validation commands
+
+Checkpoint input `d63b7df7e06e743bc4e3a1a799639d35c338ecae`. Registered smoke
+command ran, exited3, preserved one BLOCKED Gazebo5 attempt before any child
+launch. Owned process list empty, bag empty;0 qualified/0 unqualified simulated
+runs. It stopped before Isaac, which remains independently preflight-blocked.
+`validate-smoke` ran and exited3: analyzer calibration incomplete, host resource
+profile not validated, both backends/four registered jobs absent. No stale-smoke
+source rejection. Compact proofs `runner_gate.json`, `blocked_smoke_*.json` link
+full external artifacts. No sentinel removed or attempt overwritten. The exact
+smoke command above is resumable after prerequisites are legitimately met.
+
+Post-measurement environment inventory is retained externally at
+`non-sim-probe-final/env.json`: equivalent clean source shell with domain184,
+captured after the measured workload, not falsely labeled a pre-run inventory.

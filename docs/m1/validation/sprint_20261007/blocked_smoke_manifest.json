@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run_id": "run-0000-gazebo-5-r0-a000",
+  "state": "BLOCKED",
+  "qualified": false,
+  "qualification_reasons": [
+    "foreign robotics process pid=260322 start=8029900 argv=['/usr/bin/python3', '-c', 'from ros2cli.daemon.daemonize import main; main()', '--name', 'ros2-daemon', '--ros-domain-id', '66', '--rmw-implementation', 'rmw_cyclonedds_cpp']",
+    "gazebo/preflight: uncalibrated requirement min_ram_available_bytes",
+    "gazebo/preflight: uncalibrated requirement min_vram_free_bytes"
+  ],
+  "source_sha": "d63b7df7e06e743bc4e3a1a799639d35c338ecae",
+  "job": {
+    "backend": "gazebo",
+    "seed": 5,
+    "repeat": 0,
+    "seed_group": "dev"
+  },
+  "seed": 5,
+  "seed_group": "dev",
+  "requested_colour": "red",
+  "home_xy_m": [
+    -2.0,
+    0.0
+  ],
+  "owned_processes": [],
+  "storage_root": "/home/gautham/coco_m1_runs/sprint-20261007/smoke",
+  "topics_sha256": "914aa8fbc67534e3d1799a3d18039d27920b5c46d9876d976d26429f13814578"
+}

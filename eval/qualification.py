@@ -19,7 +19,10 @@ def identity(pid, proc=Path('/proc')):
 
 def robotics_process(argv, comm, exe, maps=''):
     # gz overwrites argv[0]; /proc/comm may still say ruby. Inspect both.
-    head = ' '.join(argv[:3]).lower()
+    # A shell's command string is data here, not the executable it launched.
+    # Otherwise `bash -c 'ps ... isaacsim ...'` contaminates its own preflight.
+    shell = Path(exe).name in ('bash', 'sh', 'dash', 'zsh')
+    head = ' '.join(argv[:1] if shell else argv[:3]).lower()
     return (comm.lower() in ('gz', 'gazebo', 'gzserver', 'gzclient', 'rviz2', 'ros2')
             or any(x in head for x in ('gz sim', 'gazebo', 'isaacsim', 'isaac-sim',
                                       'coco_sim.isaac.runtime', 'omni.kit'))

@@ -60,6 +60,12 @@ def test_cpu_percentage():
     assert cpu_percent({'cpu_ticks':[0]*8},{'cpu_ticks':[1,0,0,1,0,0,0,0]})==50
 
 
+def test_diagnostic_shell_text_is_not_a_simulator_but_loaded_ros_still_is():
+    argv=['bash','-lc','ps -ef | rg "gz sim|gazebo|isaacsim"']
+    assert not robotics_process(argv,'bash','/usr/bin/bash')
+    assert robotics_process(argv,'bash','/usr/bin/bash','/opt/ros/jazzy/lib/librcl.so')
+
+
 def test_explicit_background_allowlist_does_not_imply_process_ownership():
     from qualification import allowed_background
     rules=[dict(comm='systemd',uid=0,argv_prefix=['/sbin/init'])]

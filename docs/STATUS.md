@@ -5,7 +5,7 @@ implemented in part; qualified runtime/calibration and M1.8 blocked**.
 M0 independently reviewed/passed and G0 passed per Gautham. No M0 reopened.
 M1 remains incomplete; no qualified smoke or baseline and no M2 authorized.
 
-Current session start/live verified input SHA: `1bd501efb5ba444e61ae10ab5b107789f393a80a`.
+Current session start/live verified input SHA: `10ba56210429d7e56e9fc605d879643dd3dda2d4`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
 Canonical repository and Downloads Master Plans byte-identical (SHA256
 `e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d`).
@@ -312,3 +312,20 @@ See `m1/BASELINE.md` and `../eval/README.md` for exact gaps, evidence schema,
 retention, guarded commands and baseline state. This is not a validated overnight
 handoff. M1 exit criteria remain open; M2 must not start. No hypotheses newly
 confirmed/rejected, no autonomy repair or IDEAS additions.
+
+## 2026-10-07 — M1.1 fresh host audit and process classifier correction
+
+Input `10ba56210429d7e56e9fc605d879643dd3dda2d4`, expected branch, clean.
+Approved Downloads plan byte-identical. M1 / M1.1 advances dirty-host
+blocking without false simulator detection. Diagnostic shell command text is
+no longer classified as an executable; loaded ROS libraries still block.
+Root fwupd/anacron are explicitly allowed by UID/comm/argv after read-only ps
+and dpkg package ownership checks. No blanket unreadable-process exemption.
+16 targeted fixtures pass locally; IMPLEMENTED, remote CI not verified.
+Evidence: `m1/validation/session_20261007/m11_tests.log`, initial/corrected
+preflight JSON. Fresh corrected host has no foreign robotics process or DDS
+segment rejection; old foreign workloads are gone. Qualification still refuses
+Isaac solely because full-stack RAM/VRAM requirements are null. CPU ceiling
+and resource limits were not relaxed. No simulator launched or PID killed.
+M1.1 remains incomplete pending actual resource calibration; other missing
+non-runtime evidence work continues within M1. No M2 or IDEAS additions.

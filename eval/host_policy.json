@@ -375,7 +375,21 @@
       "argv_prefix": [
         "gdm-session-worker [pam/gdm-password]"
       ]
+    },
+    {
+      "comm": "fwupd",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/libexec/fwupd/fwupd"
+      ]
+    },
+    {
+      "comm": "anacron",
+      "uid": 0,
+      "argv_prefix": [
+        "/usr/sbin/anacron"
+      ]
     }
   ],
-  "allowlist_justification": "Explicit installed Ubuntu system services and browser sandbox processes, matched by UID + comm + argv prefix. Kernel threads excluded only by PF_KTHREAD flag. These are allowed background applications, not runner-owned processes. No arbitrary Python, shell, ROS, simulator, daemon or project process is auto-allowed. Unreadable unlisted userspace process remains a blocker. This guard addresses accidental workload contamination, not malicious root argv spoofing."
+  "allowlist_justification": "Explicit installed Ubuntu system services and browser sandbox processes, matched by UID + comm + argv prefix. Kernel threads excluded only by PF_KTHREAD flag. These are allowed background applications, not runner-owned processes. No arbitrary Python, shell, ROS, simulator, daemon or project process is auto-allowed. Unreadable unlisted userspace process remains a blocker. This guard addresses accidental workload contamination, not malicious root argv spoofing. 2026-10-07: fwupd and anacron added after ps UID/comm/argv inspection and dpkg-query -S confirms installed fwupd/anacron package ownership; neither is a robotics workload."
 }

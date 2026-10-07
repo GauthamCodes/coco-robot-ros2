@@ -21,6 +21,6 @@ def violations(graph,require_arbiter=True):
                     bad.append({'invariant':'GROUND_TRUTH_ISOLATION','topic':topic,'endpoint':end})
     if require_arbiter:
         publishers=graph['topics'].get('/diff_drive_controller/cmd_vel',{}).get('publishers',[])
-        if len(publishers)!=1 or publishers[0]['name']!='cmd_vel_arbiter':
+        if len(publishers)!=1 or publishers[0]['name']!='cmd_vel_arbiter' or publishers[0]['namespace']!='/':
             bad.append({'invariant':'I06','publishers':publishers})
     return bad

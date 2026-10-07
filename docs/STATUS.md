@@ -348,3 +348,28 @@ CTF and logs: `/home/gautham/coco_m1_runs/native-owned-20261007`; initial captur
 remain in `tracing-probe-20261007` and `native-unfiltered-20261007` in that root.
 Every created fixture process/session was stopped; no foreign process/session
 was killed or destroyed. M1.5 qualified mission evidence remains pending.
+
+## 2026-10-07 — M1.3 command trace lineage and clock sample timestamps
+
+Input `a26c006`. M1 / M1.3 advances enough command evidence for an independent
+oracle, without changing arbitration/command/timeout semantics. Arbiter emits
+`/diagnostics/arbiter_commands` after the existing wheel publish: actual selected
+source, input/output six-axis values, emission sequence, ROS stamp, source
+arrival ROS/steady stamps and steady ages. Missing diagnostics cannot mask a
+wheel publish. Passive evaluator correlates exact stamped wire values, contiguous
+sequences and 1 Hz endpoint inventory; missing/ambiguous evidence remains unknown.
+This new observational interface is explicitly in the fixed trace contract,
+along with existing teleop and controller trajectory/action interfaces derived
+from production configurations. Final command and diagnostic streams use reliable
+recorder subscriptions. Graph authority now requires the actual root-namespace
+arbiter. Clock cache records the clock receipt monotonic stamp for asynchronous
+RTF sampling; wall and simulation times remain separate.
+Live synthetic ROS test passes: navigation selection, teleop preemption, zero
+output after freshness expiry, sole root arbiter, exact command lineage and
+diagnostic-publisher-failure preservation. Evidence: `authority_ros_graph.json`,
+`authority_regression.log` (38 pass), `ros_tests_corrected.log` (3 pass).
+Impacted overlay packages build (2/2); colcon custom_teleop 78 tests, coco_sim
+237 tests pass, including custom lint. First colcon invocation discovered zero
+packages; corrected invocation explicitly uses this repository as base path.
+Logs are in `m1/validation/session_20261007`. IMPLEMENTED with local automated
+checks; no qualified simulator command proof or overhead measurement claimed.

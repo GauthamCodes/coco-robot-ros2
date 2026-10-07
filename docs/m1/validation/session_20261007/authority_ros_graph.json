@@ -1,0 +1,539 @@
+{
+  "qualification": "synthetic ROS only; no simulator",
+  "authority": {
+    "covered": true,
+    "violations": [],
+    "graph_covered": true,
+    "wheel_messages": 12,
+    "emission_records": 12,
+    "continuous": true,
+    "wire_matched": true,
+    "reason": null
+  },
+  "graph": {
+    "nodes": [
+      {
+        "name": "cmd_vel_arbiter",
+        "namespace": "/"
+      },
+      {
+        "name": "command_evidence_probe",
+        "namespace": "/eval"
+      }
+    ],
+    "topics": {
+      "/cmd_vel_approach": {
+        "types": [
+          "geometry_msgs/msg/TwistStamped"
+        ],
+        "subscriptions": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          }
+        ],
+        "publishers": []
+      },
+      "/cmd_vel_arbiter/status": {
+        "types": [
+          "std_msgs/msg/String"
+        ],
+        "subscriptions": [],
+        "publishers": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          }
+        ]
+      },
+      "/cmd_vel_gated": {
+        "types": [
+          "geometry_msgs/msg/TwistStamped"
+        ],
+        "subscriptions": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          }
+        ],
+        "publishers": [
+          {
+            "name": "command_evidence_probe",
+            "namespace": "/eval"
+          }
+        ]
+      },
+      "/cmd_vel_rl": {
+        "types": [
+          "geometry_msgs/msg/TwistStamped"
+        ],
+        "subscriptions": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          }
+        ],
+        "publishers": []
+      },
+      "/cmd_vel_teleop": {
+        "types": [
+          "geometry_msgs/msg/TwistStamped"
+        ],
+        "subscriptions": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          }
+        ],
+        "publishers": [
+          {
+            "name": "command_evidence_probe",
+            "namespace": "/eval"
+          }
+        ]
+      },
+      "/diagnostics/arbiter_commands": {
+        "types": [
+          "std_msgs/msg/String"
+        ],
+        "subscriptions": [
+          {
+            "name": "command_evidence_probe",
+            "namespace": "/eval"
+          }
+        ],
+        "publishers": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          }
+        ]
+      },
+      "/diff_drive_controller/cmd_vel": {
+        "types": [
+          "geometry_msgs/msg/TwistStamped"
+        ],
+        "subscriptions": [
+          {
+            "name": "command_evidence_probe",
+            "namespace": "/eval"
+          }
+        ],
+        "publishers": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          }
+        ]
+      },
+      "/mission/mode": {
+        "types": [
+          "std_msgs/msg/String"
+        ],
+        "subscriptions": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          }
+        ],
+        "publishers": [
+          {
+            "name": "command_evidence_probe",
+            "namespace": "/eval"
+          }
+        ]
+      },
+      "/parameter_events": {
+        "types": [
+          "rcl_interfaces/msg/ParameterEvent"
+        ],
+        "subscriptions": [],
+        "publishers": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          },
+          {
+            "name": "command_evidence_probe",
+            "namespace": "/eval"
+          }
+        ]
+      },
+      "/rosout": {
+        "types": [
+          "rcl_interfaces/msg/Log"
+        ],
+        "subscriptions": [],
+        "publishers": [
+          {
+            "name": "cmd_vel_arbiter",
+            "namespace": "/"
+          },
+          {
+            "name": "command_evidence_probe",
+            "namespace": "/eval"
+          }
+        ]
+      }
+    }
+  },
+  "emissions": [
+    {
+      "sequence": 1,
+      "stamp_ns": 1791371734069621719,
+      "emit_monotonic_s": 40174.208705789,
+      "mode": "nav",
+      "selected": "nav",
+      "ages_wall_s": {
+        "teleop": null,
+        "nav": 0.00014326200471259654,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": 1791371734069563434,
+      "source_arrival_monotonic_s": 40174.208562527,
+      "source_twist": [
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output_twist": [
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 2,
+      "stamp_ns": 1791371734137513291,
+      "emit_monotonic_s": 40174.276669057,
+      "mode": "nav",
+      "selected": "nav",
+      "ages_wall_s": {
+        "teleop": null,
+        "nav": 0.068106530001387,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": 1791371734069563434,
+      "source_arrival_monotonic_s": 40174.208562527,
+      "source_twist": [
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output_twist": [
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 3,
+      "stamp_ns": 1791371734199510831,
+      "emit_monotonic_s": 40174.338605247,
+      "mode": "nav",
+      "selected": "nav",
+      "ages_wall_s": {
+        "teleop": null,
+        "nav": 0.0001706830007606186,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": 1791371734199439172,
+      "source_arrival_monotonic_s": 40174.338434564,
+      "source_twist": [
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output_twist": [
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 4,
+      "stamp_ns": 1791371734287460246,
+      "emit_monotonic_s": 40174.426628663,
+      "mode": "nav",
+      "selected": "nav",
+      "ages_wall_s": {
+        "teleop": null,
+        "nav": 0.08819409900024766,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": 1791371734199439172,
+      "source_arrival_monotonic_s": 40174.338434564,
+      "source_twist": [
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output_twist": [
+        0.1,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 5,
+      "stamp_ns": 1791371734322015195,
+      "emit_monotonic_s": 40174.461152979,
+      "mode": "nav",
+      "selected": "teleop",
+      "ages_wall_s": {
+        "teleop": 0.00023150799825089052,
+        "nav": 0.12271841499750735,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": 1791371734321921120,
+      "source_arrival_monotonic_s": 40174.460921471,
+      "source_twist": [
+        -0.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output_twist": [
+        -0.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 6,
+      "stamp_ns": 1791371734387539650,
+      "emit_monotonic_s": 40174.52671328,
+      "mode": "nav",
+      "selected": "teleop",
+      "ages_wall_s": {
+        "teleop": 0.06579180900007486,
+        "nav": 0.006745687001966871,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": 1791371734321921120,
+      "source_arrival_monotonic_s": 40174.460921471,
+      "source_twist": [
+        -0.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output_twist": [
+        -0.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 7,
+      "stamp_ns": 1791371734487580303,
+      "emit_monotonic_s": 40174.626758663,
+      "mode": "nav",
+      "selected": "teleop",
+      "ages_wall_s": {
+        "teleop": 0.16583719199843472,
+        "nav": 0.10679107000032673,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": 1791371734321921120,
+      "source_arrival_monotonic_s": 40174.460921471,
+      "source_twist": [
+        -0.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output_twist": [
+        -0.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 8,
+      "stamp_ns": 1791371734587485476,
+      "emit_monotonic_s": 40174.726687256,
+      "mode": "nav",
+      "selected": "teleop",
+      "ages_wall_s": {
+        "teleop": 0.2657657849995303,
+        "nav": 0.2067196630014223,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": 1791371734321921120,
+      "source_arrival_monotonic_s": 40174.460921471,
+      "source_twist": [
+        -0.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output_twist": [
+        -0.05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 9,
+      "stamp_ns": 1791371734688553405,
+      "emit_monotonic_s": 40174.827719092,
+      "mode": "nav",
+      "selected": null,
+      "ages_wall_s": {
+        "teleop": 0.3667976209981134,
+        "nav": 0.3077514990000054,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": null,
+      "source_arrival_monotonic_s": null,
+      "source_twist": null,
+      "output_twist": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 10,
+      "stamp_ns": 1791371734787532922,
+      "emit_monotonic_s": 40174.926745275,
+      "mode": "nav",
+      "selected": null,
+      "ages_wall_s": {
+        "teleop": 0.4658238039992284,
+        "nav": 0.4067776820011204,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": null,
+      "source_arrival_monotonic_s": null,
+      "source_twist": null,
+      "output_twist": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 11,
+      "stamp_ns": 1791371734887596488,
+      "emit_monotonic_s": 40175.026799078,
+      "mode": "nav",
+      "selected": null,
+      "ages_wall_s": {
+        "teleop": 0.5658776069976739,
+        "nav": 0.5068314849995659,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": null,
+      "source_arrival_monotonic_s": null,
+      "source_twist": null,
+      "output_twist": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "sequence": 12,
+      "stamp_ns": 1791371734987543994,
+      "emit_monotonic_s": 40175.126729647,
+      "mode": "nav",
+      "selected": null,
+      "ages_wall_s": {
+        "teleop": 0.6658081760033383,
+        "nav": 0.6067620540052303,
+        "rl": null,
+        "approach": null
+      },
+      "source_timeout_wall_s": 0.3,
+      "source_arrival_sim_ns": null,
+      "source_arrival_monotonic_s": null,
+      "source_twist": null,
+      "output_twist": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "diagnostic_failure_preserves_output": true
+}

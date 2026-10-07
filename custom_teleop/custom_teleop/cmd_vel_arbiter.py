@@ -87,6 +87,7 @@ collision monitor (C2-NAV.41_RESULTS.md section 6). The chain is
     -> cmd_vel_arbiter -> /diff_drive_controller/cmd_vel
 """
 
+import json
 import time
 
 from coco_config.ros_boundary import AutonomyNode as Node
@@ -236,6 +237,8 @@ class CmdVelArbiter(Node):
 
         self._twist = {name: None for name in SOURCES}
         self._arrival = {name: None for name in SOURCES}
+        self._arrival_sim_ns = {name: None for name in SOURCES}
+        self._emission_sequence = 0
         self._last_emit = None       # monotonic time of the last publish
         self._last_forward = None    # monotonic time of the last real command
         self._active = None
@@ -250,6 +253,9 @@ class CmdVelArbiter(Node):
             TwistStamped, self.get_parameter('output_topic').value, 10)
         self._status_pub = self.create_publisher(
             String, self.get_parameter('status_topic').value, 10)
+        # Observational, after the wheel publish; never an input to selection.
+        self._evidence_pub = self.create_publisher(
+            String, '/diagnostics/arbiter_commands', 100)
 
         for name, param in (('teleop', 'teleop_topic'),
                             ('nav', 'nav_topic'),
@@ -281,10 +287,14 @@ class CmdVelArbiter(Node):
     def _on_source(self, name, msg):
         self._arrival[name] = time.monotonic()
         self._twist[name] = msg.twist
+        try:
+            self._arrival_sim_ns[name] = self.get_clock().now().nanoseconds
+        except Exception:
+            self._arrival_sim_ns[name] = None
         # Forward immediately so a preemption costs nothing but transport;
         # the watchdog only fills gaps between a slow source's messages.
         if self._select() == name:
-            self._emit(msg.twist)
+            self._emit(msg.twist, name)
 
     def _on_mode(self, msg):
         mode = normalise_mode(msg.data)
@@ -309,7 +319,7 @@ class CmdVelArbiter(Node):
     def _select(self, now=None):
         return select_source(self.mode, self._ages(now), self.source_timeout)
 
-    def _emit(self, twist):
+    def _emit(self, twist, selected=None):
         msg = TwistStamped()
         # Re-stamp: Jazzy's diff_drive_controller ages the command from
         # header.stamp and drops anything older than cmd_vel_timeout, so a
@@ -318,6 +328,36 @@ class CmdVelArbiter(Node):
         msg.twist = twist
         self._pub.publish(msg)
         self._last_emit = time.monotonic()
+        self._record_emission(msg, selected)
+
+    def _record_emission(self, msg, selected):
+        """Emit actual command lineage without recomputing the decision."""
+        try:
+            self._emission_sequence += 1
+
+            def values(twist):
+                return [getattr(vector, axis) for vector in
+                        (twist.linear, twist.angular) for axis in ('x', 'y', 'z')]
+
+            self._evidence_pub.publish(String(data=json.dumps({
+                'sequence': self._emission_sequence,
+                'stamp_ns': msg.header.stamp.sec * 10**9
+                + msg.header.stamp.nanosec,
+                'emit_monotonic_s': self._last_emit,
+                'mode': self.mode,
+                'selected': selected,
+                'ages_wall_s': self._ages(self._last_emit),
+                'source_timeout_wall_s': self.source_timeout,
+                'source_arrival_sim_ns': self._arrival_sim_ns.get(selected),
+                'source_arrival_monotonic_s': self._arrival.get(selected),
+                'source_twist': values(self._twist[selected])
+                if selected is not None else None,
+                'output_twist': values(msg.twist),
+            }, allow_nan=False)))
+        except Exception:
+            # Missing/non-finite diagnostic evidence fails closed offline.
+            # It must never mask an already published command.
+            pass
 
     def _watchdog(self):
         now = time.monotonic()
@@ -335,7 +375,7 @@ class CmdVelArbiter(Node):
             # Already forwarded on arrival; only fill a gap left by a
             # source slower than watchdog_hz.
             if self._last_emit is None or now - self._last_emit >= period:
-                self._emit(self._twist[active])
+                self._emit(self._twist[active], active)
             return
 
         # Nothing eligible. Command a definite stop for zero_hold_seconds

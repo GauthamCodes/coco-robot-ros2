@@ -2,10 +2,10 @@
 TOPICS={t:0 for t in (
     '/clock','/mission/state','/mission/search','/mission/search_region','/mission/mode',
     '/mission/target_colour','/ramp/status','/approach/status','/grasp/status',
-    '/cmd_vel_arbiter/status','/localization/health','/amcl_pose','/initialpose',
-    '/tf','/tf_static','/diff_drive_controller/odom','/imu','/joint_states',
+    '/cmd_vel_arbiter/status','/diagnostics/arbiter_commands','/localization/health','/amcl_pose','/initialpose',
+    '/tf','/tf_static','/diff_drive_controller/odom','/imu','/joint_states','/gripper_controller/joint_trajectory',
     '/cmd_vel_nav','/cmd_vel_smoothed','/cmd_vel','/cmd_vel_gated','/cmd_vel_rl',
-    '/cmd_vel_approach','/diff_drive_controller/cmd_vel','/rosout','/plan',
+    '/cmd_vel_approach','/cmd_vel_teleop','/diff_drive_controller/cmd_vel','/rosout','/plan',
     '/behavior_tree_log','/perception/status','/perception/target_pose/status',
     '/perception/target','/perception/target_pose','/perception/candidates',
     '/planner_server/transition_event','/controller_server/transition_event',
@@ -15,7 +15,8 @@ for name in ('target_red','target_green','target_blue','target_yellow'):
     for suffix in ('pose','dimensions'):
         TOPICS[f'/eval/ground_truth/objects/{name}/{suffix}']=0
     TOPICS[f'/magnet/{name}/state']=0
-for action in ('navigate_to_pose','compute_path_to_pose','follow_path','spin','execute_trajectory'):
+for action in ('navigate_to_pose','compute_path_to_pose','follow_path','spin','execute_trajectory','move_action',
+               'arm_controller/follow_joint_trajectory','gripper_controller/follow_joint_trajectory'):
     for suffix in ('status','feedback'):
         TOPICS[f'/{action}/_action/{suffix}']=0
     # Jazzy has action services, not goal/result topics. Capture service-event

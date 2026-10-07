@@ -1,0 +1,27 @@
+[build_overlay] /home/gautham/coco-isaac-21 -> /home/gautham/coco_m1_ws
+[0.339s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+[0.378s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'custom_teleop' is in: /home/gautham/coco_m1_ws/install/custom_teleop
+	'coco_sim' is in: /home/gautham/coco_m1_ws/install/coco_sim
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding coco_sim custom_teleop
+
+This may be promoted to an error in a future release of colcon-override-check.
+Starting >>> coco_sim
+Starting >>> custom_teleop
+--- stderr: coco_sim
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< coco_sim [1.37s]
+--- stderr: custom_teleop
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< custom_teleop [1.38s]
+
+Summary: 2 packages finished [1.64s]
+  2 packages had stderr output: coco_sim custom_teleop

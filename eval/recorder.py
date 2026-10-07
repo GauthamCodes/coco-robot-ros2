@@ -33,12 +33,15 @@ def main():
     publisher={t:node.create_publisher(String,t,10) for t in ('/eval/nav2/lifecycle','/eval/tf','/eval/graph','/eval/trace_health')}
     start=time.monotonic()
     latest_clock=None
+    latest_clock_wall=None
     def halt(*_):
         nonlocal stop;stop=True
     signal.signal(signal.SIGINT,halt);signal.signal(signal.SIGTERM,halt)
     def record(topic,type_name,msg):
-        nonlocal latest_clock
-        if topic=='/clock':latest_clock=msg.clock.sec+msg.clock.nanosec/1e9
+        nonlocal latest_clock,latest_clock_wall
+        if topic=='/clock':
+            latest_clock=msg.clock.sec+msg.clock.nanosec/1e9
+            latest_clock_wall=time.monotonic()
         mono=time.monotonic();interval=TOPICS[topic]
         if interval and mono-last.get(topic,-interval)<interval:return
         last[topic]=mono
@@ -52,7 +55,7 @@ def main():
         trace.flush()
     def publish(topic,value):publisher[topic].publish(String(data=json.dumps(value,allow_nan=False)))
     def discover():
-        atomic_json(run/'logs/clock_latest.json',{'sim_s':latest_clock})
+        atomic_json(run/'logs/clock_latest.json',{'sim_s':latest_clock,'clock_receive_monotonic_s':latest_clock_wall})
         for topic,types in node.get_topic_names_and_types():
             if topic not in TOPICS or topic in subscribed:continue
             if len(types)!=1:continue
@@ -61,7 +64,9 @@ def main():
             # local only for known latched topics, to capture startup metadata.
             durable=(topic in ('/tf_static','/amcl_pose') or topic.endswith('/status') and '/_action/' in topic
                      or topic.startswith('/magnet/') or 'costmap' in topic)
-            qos=QoSProfile(depth=100,reliability=ReliabilityPolicy.BEST_EFFORT,
+            reliability=(ReliabilityPolicy.RELIABLE if topic in ('/diagnostics/arbiter_commands','/diff_drive_controller/cmd_vel')
+                         else ReliabilityPolicy.BEST_EFFORT)
+            qos=QoSProfile(depth=100,reliability=reliability,
                            durability=DurabilityPolicy.TRANSIENT_LOCAL if durable else DurabilityPolicy.VOLATILE)
             subscribed[topic]=node.create_subscription(kind,topic,lambda m,t=topic,k=types[0]:record(t,k,m),qos)
         publish('/eval/trace_health',{'observed_topics':sorted(subscribed),'missing_topics':sorted(set(TOPICS)-set(subscribed))})

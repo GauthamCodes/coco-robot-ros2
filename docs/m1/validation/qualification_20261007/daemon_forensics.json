@@ -1,0 +1,128 @@
+{
+  "evidence_label": "IMPLEMENTED; read-only forensic evidence, no qualified mission",
+  "wall_epoch_ns": 1791389636278636905,
+  "head": "ceeb914923f7629b4830d58fd3b47279044b2024",
+  "subject": {
+    "pid": 260322,
+    "start_ticks": 8029900,
+    "pgid": 260297,
+    "ppid": 2244,
+    "state": "S",
+    "kernel_thread": false,
+    "exists": true,
+    "comm": "python3",
+    "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/app-org.gnome.Terminal.slice/vte-spawn-c1bc6c43-8bfb-493f-b1ae-f15833e32920.scope",
+    "cwd": "/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/lab1",
+    "exe": "/usr/bin/python3.12",
+    "root": "/",
+    "uid": [
+      "1000",
+      "1000",
+      "1000",
+      "1000"
+    ],
+    "argv": [
+      "/usr/bin/python3",
+      "-c",
+      "from ros2cli.daemon.daemonize import main; main()",
+      "--name",
+      "ros2-daemon",
+      "--ros-domain-id",
+      "66",
+      "--rmw-implementation",
+      "rmw_cyclonedds_cpp"
+    ],
+    "environment": {
+      "ROS_VERSION": "2",
+      "GZ_SIM_RESOURCE_PATH": "/opt/ros/jazzy/share",
+      "COCO_WS": "/home/gautham/coco_search_ws",
+      "ROS_PYTHON_VERSION": "3",
+      "GZ_CONFIG_PATH": "/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz",
+      "PWD": "/home/gautham/ros2_ws(personal)/src/coco-robot-ros2/.claude/worktrees/lab1",
+      "ROS_DOMAIN_ID": "66",
+      "AMENT_PREFIX_PATH": "/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy:/home/gautham/coco_search_ws/install/coco_mission:/home/gautham/coco_search_ws/install/coco_perception:/home/gautham/coco_search_ws/install/coco_moveit_config:/home/gautham/coco_search_ws/install/coco_lab_ros:/home/gautham/coco_search_ws/install/gazebo_models:/home/gautham/coco_search_ws/install/coco_web:/home/gautham/coco_search_ws/install/custom_teleop:/home/gautham/coco_search_ws/install/coco_sim:/home/gautham/coco_search_ws/install/coco_rl:/home/gautham/coco_search_ws/install/coco_lab:/home/gautham/coco_search_ws/install/coco_config:/opt/ros/jazzy",
+      "CMAKE_PREFIX_PATH": "/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy:/home/gautham/coco_search_ws/install/coco_mission:/home/gautham/coco_search_ws/install/coco_moveit_config:/home/gautham/coco_search_ws/install/gazebo_models:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor",
+      "ROS_AUTOMATIC_DISCOVERY_RANGE": "SUBNET",
+      "COLCON_PREFIX_PATH": "/home/gautham/coco_search_ws/install",
+      "PYTHONPATH": "/home/gautham/.local/lib/python3.12/site-packages:/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy/lib/python3.12/site-packages:/home/gautham/coco_search_ws/build/coco_perception:/home/gautham/coco_search_ws/install/coco_perception/lib/python3.12/site-packages:/home/gautham/coco_search_ws/build/coco_lab_ros:/home/gautham/coco_search_ws/install/coco_lab_ros/lib/python3.12/site-packages:/home/gautham/coco_search_ws/build/coco_web:/home/gautham/coco_search_ws/install/coco_web/lib/python3.12/site-packages:/home/gautham/coco_search_ws/build/custom_teleop:/home/gautham/coco_search_ws/install/custom_teleop/lib/python3.12/site-packages:/home/gautham/coco_search_ws/build/coco_sim:/home/gautham/coco_search_ws/install/coco_sim/lib/python3.12/site-packages:/home/gautham/coco_search_ws/build/coco_rl:/home/gautham/coco_search_ws/install/coco_rl/lib/python3.12/site-packages:/home/gautham/coco_search_ws/build/coco_lab:/home/gautham/coco_search_ws/install/coco_lab/lib/python3.12/site-packages:/home/gautham/coco_search_ws/build/coco_config:/home/gautham/coco_search_ws/install/coco_config/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages",
+      "DISPLAY": ":1",
+      "GZ_IP": "127.0.0.1",
+      "LD_LIBRARY_PATH": "/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy/lib:/home/gautham/coco_search_ws/moveit_prefix/root/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib",
+      "CYCLONEDDS_URI": "<CycloneDDS><Domain><General><Interfaces><NetworkInterface name=\"lo\" multicast=\"true\"/></Interfaces></General></Domain></CycloneDDS>",
+      "GZ_VERSION": "harmonic",
+      "ROS_DISTRO": "jazzy",
+      "RMW_IMPLEMENTATION": "rmw_cyclonedds_cpp"
+    }
+  },
+  "ancestry": [
+    {
+      "pid": 2244,
+      "start_ticks": 2202,
+      "pgid": 2244,
+      "ppid": 1,
+      "state": "S",
+      "kernel_thread": false,
+      "exists": true,
+      "comm": "systemd",
+      "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/init.scope",
+      "cwd": {
+        "error": "[Errno 13] Permission denied: '/proc/2244/cwd'"
+      },
+      "exe": {
+        "error": "[Errno 13] Permission denied: '/proc/2244/exe'"
+      },
+      "root": {
+        "error": "[Errno 13] Permission denied: '/proc/2244/root'"
+      },
+      "uid": [
+        "1000",
+        "1000",
+        "1000",
+        "1000"
+      ],
+      "argv": [
+        "/usr/lib/systemd/systemd",
+        "--user"
+      ],
+      "error": "[Errno 13] Permission denied: '/proc/2244/environ'"
+    },
+    {
+      "pid": 1,
+      "start_ticks": 7,
+      "pgid": 1,
+      "ppid": 0,
+      "state": "S",
+      "kernel_thread": false,
+      "exists": true,
+      "comm": "systemd",
+      "cgroup": "0::/init.scope",
+      "cwd": {
+        "error": "[Errno 13] Permission denied: '/proc/1/cwd'"
+      },
+      "exe": {
+        "error": "[Errno 13] Permission denied: '/proc/1/exe'"
+      },
+      "root": {
+        "error": "[Errno 13] Permission denied: '/proc/1/root'"
+      },
+      "uid": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "argv": [
+        "/sbin/init",
+        "splash"
+      ],
+      "error": "[Errno 13] Permission denied: '/proc/1/environ'"
+    }
+  ],
+  "session_and_group_ps": "    PID    PPID    PGID     SID USER                      STARTED     ELAPSED COMMAND\n   2244       1    2244    2244 gautham  Tue Oct  6 18:28:16 2026  1-03:15:39 /usr/lib/systemd/systemd --user\n 260322    2244  260297  260148 gautham  Wed Oct  7 16:46:13 2026    04:57:42 /usr/bin/python3 -c from ros2cli.daemon.daemonize import main; main() --name ros2-daemon --ros-domain-id 66 --rmw-implementation rmw_cyclonedds_cpp\n",
+  "interpretation": {
+    "origin": "other COCO search/lab workspace; not this M1 runner",
+    "cleanup_ownership": "not established as stale M1-owned process; daemon reparenting is not staleness proof",
+    "classification_bug": false,
+    "action": "no process signaled; owner must confirm domain-66 daemon is no longer needed"
+  }
+}

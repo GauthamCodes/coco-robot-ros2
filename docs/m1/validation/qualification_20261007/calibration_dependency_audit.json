@@ -1,0 +1,163 @@
+{
+  "source_sha256": {
+    "eval/qualification.py": "d803494722252cbf259ce17edd10d9686a0d9fa8ca347d98bea966a42a2506db",
+    "eval/host_policy.json": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "eval/thresholds.json": "bc83ddd1d0675c6703f2cf1aa52a851a1bea67913557598181f887a58cb18226",
+    "eval/calibration.py": "747b24f8a0b73724538905c2c9d6d18c111e3a80e70d8f30af64de9da6a14f9f",
+    "eval/invariants.py": "0e39e5300376b9a544f5f22c00f7afad4514fb6b277878a1003baf8497dbd102",
+    "eval/analyzer.py": "f434f1e9687d1cc3263ef617975cd26a49efd24bbfa4caa3d31c83ae7909117a",
+    "eval/topics.py": "914aa8fbc67534e3d1799a3d18039d27920b5c46d9876d976d26429f13814578",
+    "coco_moveit_config/scripts/arm_control.py": "5000fa210cf503921fa37548aae27552c863bac018bbbd212ba4d90755f03aa6",
+    "coco_moveit_config/scripts/grasp_server.py": "50c9783b17300016a1e0e08626b9e30bc9241e04b1f5c16ec37aa728849d9f36"
+  },
+  "threshold_dependencies": {
+    "accepted_target_true_error_m": [
+      {
+        "invariant": "I17",
+        "measurement": "accepted_target_true_error_m",
+        "relation": "le"
+      }
+    ],
+    "amcl_true_error_m": [
+      {
+        "invariant": "I04",
+        "measurement": "amcl_true_error_m",
+        "relation": "le"
+      }
+    ],
+    "arbiter_latency_sim_s": [
+      {
+        "invariant": "I06",
+        "measurement": "arbiter_latency_sim_s",
+        "relation": "le"
+      }
+    ],
+    "attachment_proximity_m": [
+      {
+        "invariant": "I21",
+        "measurement": "attachment_proximity_m",
+        "relation": "le"
+      }
+    ],
+    "clock_stall_wall_s": [
+      {
+        "invariant": "I02",
+        "measurement": "clock_stall_wall_s",
+        "relation": "le"
+      }
+    ],
+    "command_motion_delay_sim_s": [
+      {
+        "invariant": "I07",
+        "measurement": "command_motion_delay_sim_s",
+        "relation": "le"
+      }
+    ],
+    "costmap_age_sim_s": [
+      {
+        "invariant": "I12",
+        "measurement": "costmap_age_sim_s",
+        "relation": "le"
+      }
+    ],
+    "depth_age_sim_s": [
+      {
+        "invariant": "I15",
+        "measurement": "depth_age_sim_s",
+        "relation": "le"
+      }
+    ],
+    "goal_ack_sim_s": [
+      {
+        "invariant": "I09",
+        "measurement": "goal_ack_sim_s",
+        "relation": "le"
+      }
+    ],
+    "joint_tracking_error_rad": [
+      {
+        "invariant": "I20",
+        "measurement": "joint_tracking_error_rad",
+        "relation": "le"
+      }
+    ],
+    "max_roll_pitch_rad": [
+      {
+        "invariant": "I24",
+        "measurement": "max_roll_pitch_rad",
+        "relation": "le"
+      }
+    ],
+    "odom_true_displacement_error_m": [
+      {
+        "invariant": "I05",
+        "measurement": "odom_true_displacement_error_m",
+        "relation": "le"
+      }
+    ],
+    "plan_latency_sim_s": [
+      {
+        "invariant": "I13",
+        "measurement": "plan_latency_sim_s",
+        "relation": "le"
+      }
+    ],
+    "projected_extent_error_fraction": [
+      {
+        "invariant": "I16",
+        "measurement": "projected_extent_error_fraction",
+        "relation": "le"
+      }
+    ],
+    "retreat_clearance_m": [
+      {
+        "invariant": "I14",
+        "measurement": "retreat_clearance_m",
+        "relation": "ge"
+      }
+    ],
+    "rgb_age_sim_s": [
+      {
+        "invariant": "I15",
+        "measurement": "rgb_age_sim_s",
+        "relation": "le"
+      }
+    ],
+    "rgb_depth_skew_sim_s": [
+      {
+        "invariant": "I15",
+        "measurement": "rgb_depth_skew_sim_s",
+        "relation": "le"
+      }
+    ],
+    "rtf_floor": [
+      {
+        "invariant": "I01",
+        "measurement": "rtf",
+        "relation": "ge"
+      }
+    ],
+    "tf_age_sim_s": [
+      {
+        "invariant": "I03",
+        "measurement": "tf_age_sim_s",
+        "relation": "le"
+      }
+    ]
+  },
+  "calibration_prerequisite": "qualified oracle-PASS Dev full-run control, normalized trace and explicit justified margins (eval/calibration.py)",
+  "resource_probe": "not run: foreign workload gate unresolved; simulator launch while unqualified forbidden",
+  "hardware_incapacity": "not established",
+  "fixed_behavior": "ArmControl.target_height returns None; grasp_magnet returns False before magnet call; GraspServer inherits this implementation",
+  "remaining_witnesses": [
+    "I07 command-motion association",
+    "I12 independent world-free costmap",
+    "I13 exact plan-return source timing",
+    "I14 retreat clearance",
+    "I16 truth projection",
+    "I18 physical identity",
+    "I21 proximity",
+    "I23 finger-before-detach",
+    "I25 progress"
+  ]
+}

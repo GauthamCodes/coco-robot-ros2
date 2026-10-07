@@ -6,6 +6,17 @@
 `coco-2.1-isaac-integration`, initially clean. Downloads and canonical Master
 Plans byte-identical. Plan, campaigns, seed policy and autonomy behavior unchanged.
 
+## Latest qualification-session inspection
+
+Entry `ceeb914923f7629b4830d58fd3b47279044b2024`, clean expected branch.
+[Forensic stop report](validation/qualification_20261007/REPORT.md): domain66
+ROS daemon provenance is another COCO search/lab workspace; not stale M1-owned.
+Its owner must release it. Clean M1 environment (domain82) rejects the same
+process plus null RAM/VRAM requirements. No classification defect found, no
+signal or simulation. Load1 3.8604, RAM available9.69GB, VRAM free5.64GB; readings
+do not establish production limits. Calibration dependencies audited; no code
+changes, tests rerun, smoke or baseline. All statuses below remain partial.
+
 ## Current checkpoint status
 
 | Checkpoint | Progress this session | Still incomplete |

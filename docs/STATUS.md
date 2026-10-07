@@ -5,7 +5,8 @@ implemented in part; qualified runtime/calibration and M1.8 blocked**.
 M0 independently reviewed/passed and G0 passed per Gautham. No M0 reopened.
 M1 remains incomplete; no qualified smoke or baseline and no M2 authorized.
 
-Current session start/live verified input SHA: `10ba56210429d7e56e9fc605d879643dd3dda2d4`.
+Current qualification-session start/live verified input SHA: `ceeb914923f7629b4830d58fd3b47279044b2024`.
+Previous implementation-session start: `10ba56210429d7e56e9fc605d879643dd3dda2d4`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
 Canonical repository and Downloads Master Plans byte-identical (SHA256
 `e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d`).
@@ -474,3 +475,40 @@ inventory Gazebo verdict `preflight_checkpoint_gazebo.json`) confirms identical
 rejections with load1 **2.1513671875**, available RAM **9711841280 bytes**, GPU
 free **5649727488 bytes**. Previous teardown snapshot retained. No simulation
 retry performed; no host-capacity qualification inferred from idle readings.
+
+
+## 2026-10-07 — M1.1 forensic qualification stop, no cleanup authorized
+
+Input `ceeb914923f7629b4830d58fd3b47279044b2024`; expected branch and clean
+worktree verified; Downloads/canonical plan byte-identical. Milestone M1,
+checkpoint M1.1, advances safe process provenance before qualified batch exit.
+PID260322/start8029900 is the same UID1000 CycloneDDS domain66 daemon. CWD lab1,
+COCO_WS/ament/colcon/library/Python paths coco_search_ws, GNOME-terminal cgroup,
+parent user systemd2244. Origin is another COCO workspace; staleness/current
+cleanup ownership is unproven. Daemonization/reparenting is not orphan proof.
+Classification is correct, not an M1 bug; no signals/allowlist changes applied.
+**User stop condition1:** cannot establish safe ownership for stale M1 cleanup.
+Lab/search session owner must confirm daemon is no longer needed and release it.
+No unrelated worktree files were opened/changed. No simulator launched.
+
+Clean env -i / no startup files: Jazzy, domain82, CycloneDDS loopback, explicit
+coco_m1_ws overlay plus declared MoveIt binary underlay, Python3.12, GZ harmonic
+loopback. Both read-only preflights fail solely daemon + null RAM/VRAM. Load1
+3.8603515625/12, RAM available9690378240 bytes, GPU free5643436032 of6439305216
+bytes; no DDS segments/inventory errors or other detected robotics processes.
+Not inherited-shell contamination. Hardware incapacity remains unproven.
+
+Current source/calibration audit maps all19 null invariant threshold keys.
+Full fetch/ROS/MCAP resource envelope is missing; no probe while foreign gate
+fails. eval/calibration.py still requires qualified oracle-PASS Dev controls.
+Approved target_height=None/inherited grasp rejection verified, unchanged.
+M1.3–M1.6 raw/control witnesses remain partial; no post-stop implementation.
+No tests rerun for docs-only evidence. Sim counts0 qualified/0 unqualified/
+0 failed/0 unclassified; smoke/baseline not reached, agreement unmeasured.
+
+Evidence: `m1/validation/qualification_20261007/REPORT.md`,
+`daemon_forensics.json`, `clean_environment.json`, `host_preflight.json`,
+`calibration_dependency_audit.json`. Report provides exact owner action and
+clean-shell continuation preflight command. Owner release alone does not resolve
+calibration; keep remaining gates closed. No M2 hypotheses, IDEAS additions,
+Test A debugging, behavior/campaign/threshold changes.

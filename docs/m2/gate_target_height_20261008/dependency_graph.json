@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "source_sha": "a863e228a9ca317dddc023a618913f27f7977ea8",
+  "classification": "PREEXISTING_ROBOTICS_OBSERVATION_CAPABILITY_GAP",
+  "authorized_robotics_patch": false,
+  "first_information_loss": "No valid physical center-height field exists; at attachment near-clipping prevents fresh RGB-D acquisition",
+  "nodes": [
+    {
+      "id": "scope_decision",
+      "state": "OWNER_DECISION_REQUIRED",
+      "meaning": "Authorize prerequisite observation capability/geometry scope; not broad M2"
+    },
+    {
+      "id": "visibility",
+      "state": "NOT_ESTABLISHED_FOR_PROPOSED_MOUNT",
+      "meaning": "Same sensor must observe object/support at unchanged attachment/lift/release poses"
+    },
+    {
+      "id": "observation_patch",
+      "state": "NOT_IMPLEMENTED_NOT_AUTHORIZED",
+      "meaning": "Measured center/support producer and guarded consumer"
+    },
+    {
+      "id": "regression",
+      "state": "CURRENT_NEGATIVE_GATES_VERIFIED",
+      "meaning": "8 focused tests; new positive/negative observations and isolation still required"
+    },
+    {
+      "id": "host_inventory",
+      "state": "KNOWN_DOMAIN66_WORKLOAD_NOT_OBSERVED",
+      "meaning": "PID260322 absent; fresh preflight still required"
+    },
+    {
+      "id": "resource_bootstrap",
+      "state": "SEPARATE_POLICY_ENGINEERING_GATE",
+      "meaning": "Null production RAM/VRAM limits prevent qualified resource controls"
+    },
+    {
+      "id": "passive_witnesses",
+      "state": "SEPARATE_IMPLEMENTATION_GATE",
+      "meaning": "Nine missing raw witnesses, not fixed by height observation"
+    },
+    {
+      "id": "preflight",
+      "state": "REQUIRES_RESOURCE_LIMITS_AND_CLEAN_HOST",
+      "meaning": "Use existing eval preflight"
+    },
+    {
+      "id": "successful_controls",
+      "state": "UNAVAILABLE_CURRENT_BEHAVIOR",
+      "meaning": "Qualified oracle-PASS Dev full-run controls only"
+    },
+    {
+      "id": "resources",
+      "state": "REQUIRES_QUALIFIED_FULL_STACK",
+      "meaning": "CPU/RAM/VRAM/RTF combined simulator/ROS/recording measurements"
+    },
+    {
+      "id": "threshold_calibration",
+      "state": "REQUIRES_CONTROLS_AND_MARGINS",
+      "meaning": "19 distributions; explicit justified margins"
+    },
+    {
+      "id": "smoke",
+      "state": "NOT_RUN",
+      "meaning": "Four committed jobs; complete evidence/teardown; mission-oracle agreement"
+    },
+    {
+      "id": "smoke_validation",
+      "state": "NOT_PASS",
+      "meaning": "validate-smoke authorizes baseline only after complete gates"
+    },
+    {
+      "id": "determinism",
+      "state": "NOT_STARTED",
+      "meaning": "20 fixed campaign runs"
+    },
+    {
+      "id": "dev",
+      "state": "NOT_STARTED",
+      "meaning": "60 fixed campaign runs"
+    },
+    {
+      "id": "test_a",
+      "state": "NOT_STARTED",
+      "meaning": "60 fixed held-out runs; aggregate only"
+    }
+  ],
+  "edges": [
+    {
+      "requires": "scope_decision",
+      "enables": "visibility"
+    },
+    {
+      "requires": "visibility",
+      "enables": "observation_patch"
+    },
+    {
+      "requires": "observation_patch",
+      "enables": "regression"
+    },
+    {
+      "requires": "regression",
+      "enables": "successful_controls"
+    },
+    {
+      "requires": "host_inventory",
+      "enables": "preflight"
+    },
+    {
+      "requires": "resource_bootstrap",
+      "enables": "preflight"
+    },
+    {
+      "requires": "resources",
+      "enables": "preflight"
+    },
+    {
+      "requires": "preflight",
+      "enables": "successful_controls"
+    },
+    {
+      "requires": "successful_controls",
+      "enables": "resources"
+    },
+    {
+      "requires": "passive_witnesses",
+      "enables": "threshold_calibration"
+    },
+    {
+      "requires": "successful_controls",
+      "enables": "threshold_calibration"
+    },
+    {
+      "requires": "threshold_calibration",
+      "enables": "smoke_validation"
+    },
+    {
+      "requires": "resources",
+      "enables": "smoke_validation"
+    },
+    {
+      "requires": "preflight",
+      "enables": "smoke"
+    },
+    {
+      "requires": "smoke",
+      "enables": "smoke_validation"
+    },
+    {
+      "requires": "smoke_validation",
+      "enables": "determinism"
+    },
+    {
+      "requires": "determinism",
+      "enables": "dev"
+    },
+    {
+      "requires": "dev",
+      "enables": "test_a"
+    }
+  ],
+  "current_cycle": [
+    "resources",
+    "preflight",
+    "successful_controls",
+    "resources"
+  ],
+  "cycle_resolution": "Separate explicit resource bootstrap/control-policy decision; no weakening implemented",
+  "domain66_snapshot": {
+    "known_pid_present": false,
+    "visible_domain66_pids": [],
+    "host_qualified": false
+  },
+  "calibration_audit_source": "docs/m1/validation/sprint_20261007/calibration_dependency_audit.json",
+  "calibration_audit_sha256": "25c2562361d1330cbf607bb3478f549b7e603a574e43b0e09f2b476062af7ead",
+  "threshold_dependencies": {
+    "accepted_target_true_error_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I17",
+      "episode_type": "Perception acceptance with source pose frame + bracketed evaluator object/robot truth",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "amcl_true_error_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I04",
+      "episode_type": "Localized navigation control with AMCL and bracketed robot truth",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "arbiter_latency_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I06",
+      "episode_type": "Active motion with input/wire/arbiter diagnostics and graph lineage",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "attachment_proximity_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I21",
+      "episode_type": "Successful grasp with independently stamped gripper/object poses at attachment",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_WITNESS_MISSING"
+    },
+    "clock_stall_wall_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I02",
+      "episode_type": "Whole successful mission with continuous simulator clock and wall receipt samples",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "command_motion_delay_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I07",
+      "episode_type": "Isolated command onset and independently resolved encoder/robot motion onset",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_WITNESS_MISSING"
+    },
+    "costmap_age_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I12",
+      "episode_type": "Planner request paired with exact server-side costmap snapshot and independent world occupancy",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "depth_age_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I15",
+      "episode_type": "Perception control with accepted candidate RGB/depth source stamps",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "goal_ack_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I09",
+      "episode_type": "NavigateToPose successful control with token, UUID, status and lifecycle evidence",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "joint_tracking_error_rad": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I20",
+      "episode_type": "Successful arm motion with desired/actual FollowJointTrajectory feedback",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "max_roll_pitch_rad": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I24",
+      "episode_type": "Whole successful ramp traversal with evaluator robot orientation",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "odom_true_displacement_error_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I05",
+      "episode_type": "Successful moving control with encoder odometry + evaluator robot translation",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "plan_latency_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I13",
+      "episode_type": "Successful planning request/result service events with matching UUID + source timing",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_WITNESS_MISSING"
+    },
+    "projected_extent_error_fraction": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I16",
+      "episode_type": "Perception acceptance with true object geometry, orientation, camera intrinsics/extrinsics and mask extent",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_WITNESS_MISSING"
+    },
+    "retreat_clearance_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I14",
+      "episode_type": "Successful rejected-search retreat and handoff with robot footprint and independently timed costmap",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_WITNESS_MISSING"
+    },
+    "rgb_age_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I15",
+      "episode_type": "Perception control with accepted candidate RGB/depth source stamps",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "rgb_depth_skew_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I15",
+      "episode_type": "Perception control with accepted candidate RGB/depth source stamps",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "rtf_floor": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I01",
+      "episode_type": "Whole successful mission with simulator clock receive-monotonic stamps + 1Hz host samples",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    },
+    "tf_age_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I03",
+      "episode_type": "Whole successful mission with map/odom/base TF chain source stamps",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified controls; foreign ROS workload blocks simulation; frozen target_height=None rejects grasp before attachment",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED"
+    }
+  },
+  "raw_witness_gaps": [
+    {
+      "invariant": "I07",
+      "required_witness": "Command-to-motion association with response timestamp and motion-resolution justification",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    },
+    {
+      "invariant": "I12",
+      "required_witness": "Independent world occupancy compared to server-time costmap",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    },
+    {
+      "invariant": "I13",
+      "required_witness": "UUID-correlated server request/plan-return source times",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    },
+    {
+      "invariant": "I14",
+      "required_witness": "Retreat handoff clearance against independent obstacle/footprint geometry",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    },
+    {
+      "invariant": "I16",
+      "required_witness": "Independent true projection with camera intrinsics/extrinsics, object dimensions/orientation, observed mask",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    },
+    {
+      "invariant": "I18",
+      "required_witness": "Physical object identity association independent of requested colour/class",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    },
+    {
+      "invariant": "I21",
+      "required_witness": "Gripper/object proximity at attachment",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    },
+    {
+      "invariant": "I23",
+      "required_witness": "Measured finger opening before detach",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    },
+    {
+      "invariant": "I25",
+      "required_witness": "Stage-specific actual progress witness and last-progress timestamp",
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "implementation_complete": false
+    }
+  ],
+  "threshold_dependency_history_notice": "Copied prior sprint requirements/blocker descriptions verbatim; domain66 current observation is separately recorded, no claim it remains active",
+  "stop_rules": [
+    "No robotics implementation before owner scope approval",
+    "Visibility failure keeps physical gate unavailable",
+    "Mission/oracle disagreement stops M1 runtime",
+    "No Test A debugging or seed changes",
+    "No synthetic/unqualified controls for calibration"
+  ]
+}

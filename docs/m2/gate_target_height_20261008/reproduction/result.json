@@ -1,0 +1,409 @@
+{
+  "kind": "SYNTHETIC_DIAGNOSTIC_NOT_QUALIFIED_RUNTIME",
+  "source_sha": "a863e228a9ca317dddc023a618913f27f7977ea8",
+  "ros_domain": "187",
+  "sources": {
+    "coco_perception/coco_perception/target_pose.py": "dddba176e9227fa3ed900a23657551db99af5499c461c70d98bea2505156afed",
+    "coco_perception/coco_perception/target_finder.py": "5f78e97d39f01169869424ea7bc32dd2a7ea1fedfa4f1dda85169a660dd804d2",
+    "coco_perception/coco_perception/candidate_diagnostics.py": "27d021db3a4fcd38a633c3f4bcc319c7979d55614e30ff5fab1b27aa3e834282",
+    "custom_teleop/custom_teleop/approach_server.py": "6f8187a0118ac0a7f3a2ed2beedd364213a1435cd607c4f6c66a141917fb6d1f",
+    "coco_moveit_config/scripts/arm_control.py": "5000fa210cf503921fa37548aae27552c863bac018bbbd212ba4d90755f03aa6",
+    "coco_moveit_config/scripts/grasp_server.py": "50c9783b17300016a1e0e08626b9e30bc9241e04b1f5c16ec37aa728849d9f36",
+    "coco_config/coco_config/robot.py": "1ad2ed03d8cf8fcf846fa1b1e53d8412d8280e8347f130ba4c5b9f10d387f8d8",
+    "gazebo_models/urdf/coco_robo2.xacro": "ab59e2954576a8cc343a55619f287795ee494436e3bc686558409ebe251b1b13",
+    "coco_sim/coco_sim/isaac/model.py": "4731159bdda88f0e3337ea244195e1867d4b0f121a445e737716acdf7b28729b"
+  },
+  "fixture": {
+    "depth_samples_m": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "intrinsics": [
+      221.76500407999384,
+      221.76500407999384,
+      160.0,
+      120.0
+    ],
+    "blob_width_pixels": 8.730905672440702,
+    "blob_height_pixels": 12,
+    "visible_rows": [
+      95,
+      115
+    ]
+  },
+  "perception": [
+    {
+      "visible_row": 95.0,
+      "point": [
+        0.633,
+        0.0,
+        0.1269131840537261
+      ],
+      "grasp_point": [
+        0.633,
+        0.0,
+        0.128
+      ],
+      "validity": "VALID"
+    },
+    {
+      "visible_row": 115.0,
+      "point": [
+        0.633,
+        0.0,
+        0.08109892205080367
+      ],
+      "grasp_point": [
+        0.633,
+        0.0,
+        0.128
+      ],
+      "validity": "VALID"
+    }
+  ],
+  "candidate_diagnostics": [
+    {
+      "schema_version": 1,
+      "stamp_ns": 1000000000,
+      "depth_stamp_ns": 1000000000,
+      "frame": "camera_optical_frame",
+      "colour": "red",
+      "requested_colour": "red",
+      "detected_colour": "red",
+      "label": 1,
+      "centroid": [
+        1.6062254407192657e-20,
+        -0.057493291391462725,
+        0.5
+      ],
+      "centroid_uv": [
+        160.0,
+        94.5
+      ],
+      "extents_m": [
+        0.018037111024772613,
+        0.024801027659062336,
+        0.0
+      ],
+      "point_count": 108,
+      "mask_area_px": 108,
+      "expected_width_px": 8.730905672440702,
+      "width_px": 9,
+      "height_px": 12,
+      "depth_statistics": {
+        "finite_count": 108,
+        "valid_count": 108,
+        "median_m": 0.5,
+        "min_m": 0.5,
+        "max_m": 0.5,
+        "mad_m": 0.0
+      },
+      "range_m": 0.508,
+      "bearing_rad": 0.0,
+      "touches_image_edge": false,
+      "accepted": true,
+      "reason": "VALID",
+      "geometry_reason": "VALID",
+      "extent_kind": "visible surface in camera optical frame; not object-center or full-cylinder dimensions"
+    },
+    {
+      "schema_version": 1,
+      "stamp_ns": 1000000000,
+      "depth_stamp_ns": 1000000000,
+      "frame": "camera_optical_frame",
+      "colour": "red",
+      "requested_colour": "red",
+      "detected_colour": "red",
+      "label": 1,
+      "centroid": [
+        1.6062254407192657e-20,
+        -0.012400513829531175,
+        0.5
+      ],
+      "centroid_uv": [
+        160.0,
+        114.5
+      ],
+      "extents_m": [
+        0.018037111024772613,
+        0.02480102765906234,
+        0.0
+      ],
+      "point_count": 108,
+      "mask_area_px": 108,
+      "expected_width_px": 8.730905672440702,
+      "width_px": 9,
+      "height_px": 12,
+      "depth_statistics": {
+        "finite_count": 108,
+        "valid_count": 108,
+        "median_m": 0.5,
+        "min_m": 0.5,
+        "max_m": 0.5,
+        "mad_m": 0.0
+      },
+      "range_m": 0.508,
+      "bearing_rad": 0.0,
+      "touches_image_edge": false,
+      "accepted": true,
+      "reason": "VALID",
+      "geometry_reason": "VALID",
+      "extent_kind": "visible surface in camera optical frame; not object-center or full-cylinder dimensions"
+    }
+  ],
+  "visible_centroid_z_difference_m": 0.04581426200292242,
+  "approach": {
+    "result": "arrived",
+    "frame": "base_footprint",
+    "point": [
+      0.15333169163659582,
+      0.0,
+      0.128
+    ],
+    "production_phases_executed": true
+  },
+  "grasp": {
+    "target_height": null,
+    "fix_accepted": true,
+    "window_and_ik_accepted": true,
+    "pick_result": false,
+    "phase": "pick:magnet attach",
+    "outcome": "failed at magnet attach",
+    "lift_check": false,
+    "release_check": false,
+    "actuator_stub_calls": [
+      {
+        "call": "remove_scene_objects",
+        "args": [
+          [
+            "ground",
+            "target"
+          ]
+        ]
+      },
+      {
+        "call": "move_arm",
+        "args": [
+          "up"
+        ]
+      },
+      {
+        "call": "publish_scene",
+        "args": [
+          [
+            "ground",
+            "target"
+          ]
+        ]
+      },
+      {
+        "call": "move_gripper",
+        "args": [
+          [
+            0.5,
+            -0.5
+          ],
+          "open"
+        ]
+      },
+      {
+        "call": "move_arm",
+        "args": [
+          "hover"
+        ]
+      },
+      {
+        "call": "allow_contact",
+        "args": []
+      },
+      {
+        "call": "move_arm",
+        "args": [
+          "grasp"
+        ]
+      }
+    ]
+  },
+  "visibility": [
+    {
+      "colour": "red",
+      "grasp_axis_window_m": [
+        0.151,
+        0.1565
+      ],
+      "radius_m": 0.01,
+      "maximum_optical_forward_depth_m": 0.04150000000000001,
+      "gazebo_rgb_near_m": 0.05,
+      "gazebo_depth_near_m": 0.1,
+      "isaac_camera_near_m": 0.1,
+      "perception_min_range_m": 0.15,
+      "entire_target_inside_near_planes": true
+    },
+    {
+      "colour": "green",
+      "grasp_axis_window_m": [
+        0.151,
+        0.1565
+      ],
+      "radius_m": 0.012,
+      "maximum_optical_forward_depth_m": 0.04350000000000001,
+      "gazebo_rgb_near_m": 0.05,
+      "gazebo_depth_near_m": 0.1,
+      "isaac_camera_near_m": 0.1,
+      "perception_min_range_m": 0.15,
+      "entire_target_inside_near_planes": true
+    },
+    {
+      "colour": "blue",
+      "grasp_axis_window_m": [
+        0.151,
+        0.1565
+      ],
+      "radius_m": 0.014,
+      "maximum_optical_forward_depth_m": 0.04550000000000001,
+      "gazebo_rgb_near_m": 0.05,
+      "gazebo_depth_near_m": 0.1,
+      "isaac_camera_near_m": 0.1,
+      "perception_min_range_m": 0.15,
+      "entire_target_inside_near_planes": true
+    },
+    {
+      "colour": "yellow",
+      "grasp_axis_window_m": [
+        0.151,
+        0.1565
+      ],
+      "radius_m": 0.016,
+      "maximum_optical_forward_depth_m": 0.04749999999999999,
+      "gazebo_rgb_near_m": 0.05,
+      "gazebo_depth_near_m": 0.1,
+      "isaac_camera_near_m": 0.1,
+      "perception_min_range_m": 0.15,
+      "entire_target_inside_near_planes": true
+    }
+  ],
+  "limitations": [
+    "Synthetic synchronized geometry, not actual sensor replay",
+    "MoveGroup, upright, scene and actuator transport stubbed",
+    "No physical success, TF timing or simulator claim",
+    "Near-plane proof is for nominal upright grasp geometry"
+  ]
+}

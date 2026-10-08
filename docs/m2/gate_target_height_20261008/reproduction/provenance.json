@@ -1,0 +1,13 @@
+{
+  "timestamp_utc": "2026-10-08T05:21:48.052197+00:00",
+  "start_sha": "a863e228a9ca317dddc023a618913f27f7977ea8",
+  "branch": "coco-2.1-isaac-integration",
+  "master_plan_hashes": {
+    "/home/gautham/coco-isaac-21/docs/MASTER_PLAN.md": "e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d",
+    "/home/gautham/Downloads/COCO Master Plan \u2014 Road to v2.0.md": "e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d"
+  },
+  "master_plans_byte_identical": true,
+  "previous_pid_260322_present": false,
+  "domain66_processes_visible_to_current_user": [],
+  "limits": "Read-only /proc snapshot, not host qualification; permission-denied processes not inspected. No process terminated or environment modified."
+}

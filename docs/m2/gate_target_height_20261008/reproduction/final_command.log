@@ -1,0 +1,8 @@
+[INFO] [1791437260.820911237] [grasp_server]: grasp_server ready: /grasp/stow, /grasp/pick, /grasp/place. Needs move_group; assert /mission/mode idle while it runs so the wheels stay still.
+[INFO] [1791437260.843491919] [grasp_server]: arrived: target axis at base-x 0.1533 (window centre 0.1537), y +0.0000, creep 0.1650 of 0.1646 m
+[INFO] [1791437260.844253190] [grasp_server]: red at base-x 0.1533, y +0.0000: grasp [0.2875, 0.5451], hover [-0.083, 0.3578]
+[WARN] [1791437260.845219502] [grasp_server]: could not read the target height before the grasp — the grasp rejected
+[ERROR] [1791437260.845762431] [grasp_server]: Step 'magnet attach' failed — aborting
+[WARN] [1791437260.857835652] [grasp_server]: no target height recorded at the grasp — cannot verify lift
+[WARN] [1791437260.858229577] [grasp_server]: could not read target height — cannot verify release
+{"output": "/home/gautham/coco-isaac-21/docs/m2/gate_target_height_20261008/reproduction/result.json", "result": "failed at magnet attach", "target_height": null}

@@ -605,3 +605,34 @@ Isaac remains separately preflight-blocked; not attempted by stopped campaign.
 Evidence `m1/validation/sprint_20261007/runner_gate.json` and
 `blocked_smoke_*.json`. No integrity sentinel removed, runtime source changed,
 foreign process signaled or Test A data inspected. M1.8 remains0/140.
+
+## 2026-10-08 — Target-height prerequisite decision package
+
+Input SHA `a863e228a9ca317dddc023a618913f27f7977ea8`; expected branch, initially
+clean. Downloads/repo Master Plans byte-identical; neither modified.
+
+Root cause: pre-existing **physical observation capability gap**, deliberately
+fail-closed since M0. RGB-D acquisition exists, but candidate Z is a visible-blob
+reference, grasp Z is a command constant, and no independent center/support-height
+producer exists. Nominal accepted grasp surfaces are entirely inside the camera
+near planes on both backends (maximum optical depth41.5–47.5 mm, depth near100 mm).
+A data-only interface connection cannot supply the mandatory fresh baseline.
+
+Executable synthetic diagnostic runs production RGB-D geometry/candidate logging,
+approach phases and real GraspServer gates with actuator transport stubbed. Valid
+fix/IK accepted, then `failed at magnet attach`; no attachment or raise. Centroid
+changes45.814 mm under synthetic framing changes; cannot be physical lift proof.
+Focused existing regression tests8 passed. No simulator or qualified episode.
+
+Decision package: `m2/gate_target_height_20261008/REPORT.md`, `proposed_patch.md`,
+`dependency_graph.json`, `reproduction/`. Minimum legitimate class requires an
+owner-approved existing-sensor visibility repair plus measured object/support
+observation and guarded consumer. No mount or robotics patch implemented; explicit
+capability scope decision required before changing the M1 frozen runtime.
+
+PID260322 absent; read-only snapshot finds no accessible domain66 process
+environment. This is not host qualification. Resource-bootstrap cycle and nine
+missing evaluator raw witnesses remain independent; the package preserves all19
+calibration prerequisites. Fixing observation alone cannot promise qualified M1.
+Behavior changes **NONE**. No Master Plan/threshold/physics/seed changes, no Test A
+inspection, no M2 implementation, no M1 completion. M1.8 remains0/140.

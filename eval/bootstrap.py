@@ -120,7 +120,7 @@ def component_samples(snapshot, owned, previous):
 def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False, profile="full", fixture="acquisition"):
     if not 1 <= seconds <= 600 or not 0 <= domain <= 232:
         raise ValueError('Bootstrap requires 1..600 wall seconds and domain 0..232')
-    if profile not in ('full', 'rgbd_observation', 'rgbd_capture') or (profile != 'full' and backend != 'gazebo'):
+    if profile not in ('full', 'rgbd_observation', 'rgbd_capture', 'rgbd_manipulation') or (profile != 'full' and backend != 'gazebo'):
         raise ValueError('Sensor profile currently supports Gazebo only')
     from rgbd_fixture import FIXTURES
     if fixture not in FIXTURES:
@@ -226,7 +226,7 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False,
                     raise RuntimeError('MCAP recorder exited')
                 if runner is None:
                     if (root / 'logs/recorder_ready.json').exists():
-                        if profile in ('rgbd_observation', 'rgbd_capture'):
+                        if profile in ('rgbd_observation', 'rgbd_capture', 'rgbd_manipulation'):
                             runner = spawn('sensor_fixture', [sys.executable, str(REPO / 'eval/rgbd_fixture.py'), str(root / 'logs/sensor_fixture'), fixture, profile])
                             continue
                         runner = spawn('episode', [sys.executable, str(REPO / 'scripts/isaac_fetch.py'),

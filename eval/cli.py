@@ -36,7 +36,7 @@ def main():
     p.add_argument('--backend',choices=['gazebo','isaac'],required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--domain',type=int,default=82)
     p.add_argument('--seconds',type=int,default=120);p.add_argument('--preflight-only',action='store_true')
-    p.add_argument('--profile',choices=['full','rgbd_observation','rgbd_capture'],default='full')
+    p.add_argument('--profile',choices=['full','rgbd_observation','rgbd_capture','rgbd_manipulation'],default='full')
     p.add_argument('--fixture',choices=['acquisition','grasp_original','grasp_flank','grasp_front_flank'],default='acquisition')
     p=sub.add_parser('validate-smoke');p.add_argument('batch',type=Path);p.add_argument('--output',type=Path,required=True)
     p=sub.add_parser('analyze');p.add_argument('run',type=Path)

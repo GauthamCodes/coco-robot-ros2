@@ -779,3 +779,18 @@ original trace remains incomplete from NaN failure. Neither sensor visibility
 nor observer/system fix is claimed. Resource abort stops further launches;
 next human action is quieter host/additional background headroom or an explicitly
 reviewed engineering resource policy. Production remains fail-closed and separate.
+
+## 2026-10-09 — Lightweight RGB-D engineering profile implementation
+
+Inpute4242e551da2f432bbe3f210918422b2b0e7e6de, clean expected branch;
+Master Plan copies byte-identical. Authorized RGB-D prerequisite/M1.1 bootstrap.
+Separate `--profile rgbd_observation` uses engineering-only static zero-joint
+optical fixture with unchanged robot visual/collision/sensor geometry and exact
+backend target SDF. Fixed initial fixture placements are never autonomy inputs;
+no teleport/model-state calls. Camera extrinsic candidates are engineering-only,
+production config untouched. Gazebo + sensor bridge + robot TF + recorder only;
+Nav2/MoveIt/mission/controllers excluded. Static fixture cannot prove manipulation.
+Existing emergency limits, process safety, duration/disk guards remain unchanged.
+Added per-owned-process CPU/RSS component samples; plugins accounted with Gazebo,
+GPU component attribution unavailable rather than inferred from host totals.
+36 focused bootstrap/qualification checks pass locally. Runtime pending.

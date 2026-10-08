@@ -86,15 +86,51 @@ def owned_descendants(snapshot, owned):
                          (p['pid'], p['start_ticks']) not in known]
 
 
-def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False):
+def component_samples(snapshot, owned, previous):
+    """Observed owned-process RSS and CPU; plugins share simulator accounting."""
+    result=[]; current={}; now=time.monotonic(); hz=os.sysconf('SC_CLK_TCK')
+    identities={(p['pid'],p['start_ticks']) for p in owned}
+    for p in snapshot['processes']:
+        key=(p['pid'],p['start_ticks'])
+        if key not in identities:continue
+        path=Path('/proc')/str(p['pid'])
+        try:
+            fields=(path/'stat').read_text().rsplit(')',1)[1].split()
+            ticks=int(fields[11])+int(fields[12])
+            rss=int(next(line.split()[1] for line in (path/'status').read_text().splitlines() if line.startswith('VmRSS:')))*1024
+        except (OSError,StopIteration,ValueError):continue
+        current[key]=(ticks,now)
+        old=previous.get(key);cpu=None if old is None else 100*(ticks-old[0])/hz/(now-old[1])
+        argv=' '.join(p.get('argv',[]));component='launch_or_runtime_overhead'
+        for label, signatures in (
+            ('gazebo_including_sensor_plugins',('gz sim','gzserver')),
+            ('ros_bridge_middleware',('parameter_bridge',)),
+            ('robot_tf',('robot_state_publisher',)),
+            ('recorder',('bootstrap_recorder.py','eval/recorder.py')),
+            ('observer',('object_height_node',)),
+            ('nav2',('planner_server','controller_server','bt_navigator','amcl','map_server','nav2_container')),
+            ('moveit_manipulation',('move_group','arm_control','grasp_server')),
+            ('mission',('mission_node','mission_sequencer'))):
+            if any(signature in argv for signature in signatures):component=label;break
+        result.append(dict(pid=p['pid'],start_ticks=p['start_ticks'],component=component,
+                           rss_bytes=rss,cpu_percent_one_core=cpu))
+    return result,current
+
+
+def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False, profile="full", fixture="acquisition"):
     if not 1 <= seconds <= 600 or not 0 <= domain <= 232:
         raise ValueError('Bootstrap requires 1..600 wall seconds and domain 0..232')
+    if profile not in ('full', 'rgbd_observation') or (profile == 'rgbd_observation' and backend != 'gazebo'):
+        raise ValueError('Sensor profile currently supports Gazebo only')
+    from rgbd_fixture import FIXTURES
+    if fixture not in FIXTURES:
+        raise ValueError('Unknown engineering fixture')
     root = outside_git(output)
     root.mkdir(parents=True, exist_ok=False)
     (root / 'logs').mkdir()
     manifest = dict(schema_version=1, execution_class='NON_QUALIFYING', qualified=False,
                     m1_denominator_eligible=False, satisfies_m1_8=False, test_a=False,
-                    state='CREATED', backend=backend, seed=5, seed_group='dev',
+                    state='CREATED', profile=profile, fixture=fixture, backend=backend, seed=5, seed_group='dev',
                     requested_colour='red', home_xy_m=[-2., 0.],
                     source_sha=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=REPO, text=True).strip(),
                     domain=domain, owned_processes=[],
@@ -136,7 +172,7 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False)
         atomic_json(root / 'env.json', capture(Path.home() / 'isaac-sim/venv/bin/python'))
         children, handles, owned, samples = [], [], [], []
         storage = json.loads((REPO / 'eval/storage_policy.json').read_text())
-        started = time.monotonic(); previous = snap; last_clock = None
+        started = time.monotonic(); previous = snap; last_clock = None; process_previous = {}
         manifest['state'] = 'RUNNING_BOOTSTRAP'
         def save():
             manifest['owned_processes'] = owned
@@ -175,6 +211,8 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False)
                            vram_used_bytes=(snap['gpu']['total_bytes']-snap['gpu']['free_bytes']) if snap.get('gpu') else None,
                            disk_free_bytes=disk['free_bytes'], evidence_bytes=disk['used_bytes'],
                            sim_s=pair[0], rtf=rtf, reasons=reasons)
+                components, process_previous = component_samples(snap, owned, process_previous)
+                row['owned_components'] = components
                 samples.append(row)
                 with (root / 'host_metrics.jsonl').open('a') as stream:
                     stream.write(json.dumps(row, allow_nan=False) + '\n'); stream.flush()
@@ -188,6 +226,9 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False)
                     raise RuntimeError('MCAP recorder exited')
                 if runner is None:
                     if (root / 'logs/recorder_ready.json').exists():
+                        if profile == 'rgbd_observation':
+                            runner = spawn('sensor_fixture', [sys.executable, str(REPO / 'eval/rgbd_fixture.py'), str(root / 'logs/sensor_fixture'), fixture])
+                            continue
                         runner = spawn('episode', [sys.executable, str(REPO / 'scripts/isaac_fetch.py'),
                             str(root / 'logs/episode'), '--backend', backend, '--level', 'positions',
                             '--seed', '5', '--colour', 'red', '--domain', str(domain),

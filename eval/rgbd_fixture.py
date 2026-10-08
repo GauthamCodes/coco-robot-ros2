@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+"""Engineering-only stationary sensor fixture, never a benchmark episode.
+
+Unchanged target SDF and robot visual geometry. Initial poses are fixture setup,
+not autonomy inputs. No teleport/model-state queries. No actuators/navigation.
+"""
+import json
+import math
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+import xml.etree.ElementTree as ET
+import xacro
+
+REPO=Path(__file__).resolve().parents[1]
+sys.path[:0]=[str(REPO/'coco_sim'),str(REPO/'coco_config'),str(REPO/'scripts')]
+from coco_sim.episode import generate_episode
+from coco_sim.backends import GazeboBackend
+from process_groups import stop
+
+FIXTURES={
+    'acquisition':dict(target_x=.35,camera_xyz=[.125,0,.055],camera_rpy=[0,0,0]),
+    'grasp_original':dict(target_x=.153,camera_xyz=[.125,0,.055],camera_rpy=[0,0,0]),
+    'grasp_flank':dict(target_x=.153,camera_xyz=[.15,.30,.25],camera_rpy=None),
+}
+
+
+def build(root,name):
+    root=Path(root);root.mkdir()
+    cfg=dict(FIXTURES[name])
+    if cfg['camera_rpy'] is None:
+        delta=[cfg['target_x']-cfg['camera_xyz'][0],-cfg['camera_xyz'][1],.079-(cfg['camera_xyz'][2]+.0135)]
+        cfg['camera_rpy']=[0,-math.atan2(delta[2],math.hypot(delta[0],delta[1])),math.atan2(delta[1],delta[0])]
+    robot=ET.fromstring(xacro.process_file(str(REPO/'gazebo_models/urdf/coco_robo2.xacro')).toxml())
+    origin=robot.find("joint[@name='camera_joint']/origin")
+    origin.set('xyz',' '.join(map(str,cfg['camera_xyz'])))
+    origin.set('rpy',' '.join(map(str,cfg['camera_rpy'])))
+    # Controller/actuator and truth systems are not needed by a static optical
+    # fixture. Remove plugins only; do not edit links/meshes/collision/sensors.
+    for gazebo in robot.findall('gazebo'):
+        for plugin in list(gazebo.findall('plugin')):gazebo.remove(plugin)
+    robot_xml=ET.tostring(robot,encoding='unicode')
+    (root/'robot.urdf').write_text(robot_xml)
+    gz_xml=robot_xml.replace('package://gazebo_models/meshes/', 'file://'+str(REPO/'gazebo_models/meshes')+'/')
+    (root/'robot-gz.urdf').write_text(gz_xml)
+    converted=subprocess.check_output(['gz','sdf','-p',str(root/'robot-gz.urdf')],text=True)
+    model=ET.fromstring(converted).find('model');model.set('name','coco')
+    static=model.find('static')
+    if static is None:static=ET.SubElement(model,'static')
+    static.text='true'
+    # Freeze mechanical pose for geometry-only experiment, not physics/grasp
+    # validation. Static URDF TF is consistent with the converted zero-joint pose.
+    ET.SubElement(model,'pose').text='0 0 .0135 0 0 0'
+    world_tree=ET.parse(REPO/'gazebo_models/worlds/coco_world.world')
+    world=world_tree.getroot().find('world');world.set('name','rgbd_engineering')
+    for item in list(world.findall('model')):
+        if item.get('name')!='ground_plane':world.remove(item)
+    spec=generate_episode(seed=5,level='positions',backend='gazebo',requested_colour='red')
+    spawn=next(s for s in GazeboBackend().translate(spec).targets if s.name=='target_red')
+    target=ET.fromstring(spawn.sdf).find('model')
+    # Initial setup only; dimensions/inertia/material unchanged from backend.
+    ET.SubElement(target,'pose').text=f"{cfg['target_x']} 0 .079 0 0 0"
+    world.append(model);world.append(target)
+    world_tree.write(root/'world.sdf')
+    (root/'fixture.json').write_text(json.dumps(dict(cfg,fixture=name,
+        execution_class='NON_QUALIFYING_ENGINEERING_RUNTIME',benchmark=False,
+        robot_motion='static zero-joint optical fixture; no physical grasp claim',
+        target_sdf_source='unchanged GazeboBackend target_red body',
+        geometry_priors_provided_to_observer=False,teleport_calls=False),indent=2))
+    return robot_xml
+
+
+def main():
+    root=Path(sys.argv[1]);name=sys.argv[2];robot_xml=build(root,name)
+    import yaml
+    bridge=yaml.safe_load((REPO/'gazebo_models/config/bridge.yaml').read_text())
+    bridge=[b for b in bridge if b['ros_topic_name'] in ('/clock','/camera/image_raw','/camera/depth/image_raw','/camera/camera_info')]
+    (root/'bridge.yaml').write_text(yaml.safe_dump(bridge))
+    # ros2 launch parameter passing avoids URDF shell quoting; runner owns the
+    # whole launch group and teardown of all children through the normal helper.
+    launch=f'''from launch import LaunchDescription
+from launch.actions import ExecuteProcess
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    return LaunchDescription([
+        ExecuteProcess(cmd=['gz','sim','-r','-s','-v2',{str(root/'world.sdf')!r}]),
+        Node(package='ros_gz_bridge',executable='parameter_bridge',parameters=[{{'config_file':{str(root/'bridge.yaml')!r},'use_sim_time':True}}]),
+        Node(package='robot_state_publisher',executable='robot_state_publisher',parameters=[{{'robot_description':{robot_xml!r},'use_sim_time':True}}]),
+    ])
+'''
+    (root/'fixture.launch.py').write_text(launch)
+    env=dict(os.environ,GZ_PARTITION='coco-rgbd-'+root.parent.name)
+    child=subprocess.Popen(['ros2','launch',str(root/'fixture.launch.py')],env=env,start_new_session=True)
+    try:
+        child.wait()
+    except BaseException:
+        pass
+    finally:
+        stop('rgbd_fixture',child)
+
+if __name__=='__main__':main()

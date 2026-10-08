@@ -36,6 +36,8 @@ def main():
     p.add_argument('--backend',choices=['gazebo','isaac'],required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--domain',type=int,default=82)
     p.add_argument('--seconds',type=int,default=120);p.add_argument('--preflight-only',action='store_true')
+    p.add_argument('--profile',choices=['full','rgbd_observation'],default='full')
+    p.add_argument('--fixture',choices=['acquisition','grasp_original','grasp_flank'],default='acquisition')
     p=sub.add_parser('validate-smoke');p.add_argument('batch',type=Path);p.add_argument('--output',type=Path,required=True)
     p=sub.add_parser('analyze');p.add_argument('run',type=Path)
     p=sub.add_parser('replay');p.add_argument('source',type=Path)
@@ -49,7 +51,7 @@ def main():
     args=parser.parse_args()
     if args.command=='bootstrap':
         from bootstrap import run_bootstrap
-        return run_bootstrap(args.output,args.backend,args.domain,args.seconds,args.preflight_only)
+        return run_bootstrap(args.output,args.backend,args.domain,args.seconds,args.preflight_only,args.profile,args.fixture)
     if args.command=='preflight':
         snap=inventory();verdict=qualify(snap,load_policy(),args.backend)
         with args.output.open('x') as f:json.dump({'inventory':snap,'verdict':verdict},f,indent=2)

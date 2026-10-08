@@ -10,6 +10,19 @@ from topics import TOPICS
 from evidence import atomic_json,ros_json_data
 
 
+ENGINEERING_IMAGE_SUMMARY = False
+
+def sidecar_data(msg, type_name):
+    if ENGINEERING_IMAGE_SUMMARY and type_name == "sensor_msgs/msg/Image":
+        import hashlib
+        return dict(header=ros_json_data({"stamp": {"sec": msg.header.stamp.sec, "nanosec": msg.header.stamp.nanosec}, "frame_id": msg.header.frame_id}),
+                    height=msg.height,width=msg.width,encoding=msg.encoding,
+                    is_bigendian=msg.is_bigendian,step=msg.step,
+                    raw_image_bytes=len(msg.data),raw_image_sha256=hashlib.sha256(msg.data).hexdigest(),
+                    payload_location="full unchanged CDR in MCAP")
+    from rosidl_runtime_py.convert import message_to_ordereddict
+    return ros_json_data(message_to_ordereddict(msg))
+
 def main():
     import rclpy
     from rclpy.clock import Clock
@@ -70,7 +83,7 @@ def main():
                      or topic.startswith('/magnet/') or 'costmap' in topic)
             reliability=(ReliabilityPolicy.RELIABLE if topic in ('/diagnostics/arbiter_commands','/diff_drive_controller/cmd_vel')
                          else ReliabilityPolicy.BEST_EFFORT)
-            qos=QoSProfile(depth=100,reliability=reliability,
+            qos=QoSProfile(depth=1 if ENGINEERING_IMAGE_SUMMARY and types[0]==sensor_msgs/msg/Image else 100,reliability=reliability,
                            durability=DurabilityPolicy.TRANSIENT_LOCAL if durable else DurabilityPolicy.VOLATILE)
             subscribed[topic]=node.create_subscription(kind,topic,lambda m,t=topic,k=types[0]:record(t,k,m),qos)
         publish('/eval/trace_health',{'observed_topics':sorted(subscribed),'missing_topics':sorted(set(TOPICS)-set(subscribed))})

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Process-local engineering capture extension. Production TOPICS unchanged."""
 from topics import TOPICS
+import recorder
 from recorder import main
 
 if __name__ == '__main__':
@@ -8,4 +9,5 @@ if __name__ == '__main__':
     # One Hz capture limits engineering bag growth; source stamps retained.
     TOPICS.update({name: 1.0 for name in ('/camera/image_raw',
                   '/camera/depth/image_raw', '/camera/camera_info', '/perception/object_height')})
+    recorder.ENGINEERING_IMAGE_SUMMARY = True
     main()

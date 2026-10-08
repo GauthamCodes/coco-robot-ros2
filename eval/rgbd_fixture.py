@@ -41,6 +41,9 @@ def build(root,name):
     # fixture. Remove plugins only; do not edit links/meshes/collision/sensors.
     for gazebo in robot.findall('gazebo'):
         for plugin in list(gazebo.findall('plugin')):gazebo.remove(plugin)
+    for gazebo in robot.findall('gazebo'):
+        for sensor in list(gazebo.findall('sensor')):
+            if sensor.get('type') != 'rgbd_camera':gazebo.remove(sensor)
     robot_xml=ET.tostring(robot,encoding='unicode')
     (root/'robot.urdf').write_text(robot_xml)
     gz_xml=robot_xml.replace('package://gazebo_models/meshes/', 'file://'+str(REPO/'gazebo_models/meshes')+'/')

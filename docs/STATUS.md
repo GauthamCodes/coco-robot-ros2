@@ -794,3 +794,12 @@ Existing emergency limits, process safety, duration/disk guards remain unchanged
 Added per-owned-process CPU/RSS component samples; plugins accounted with Gazebo,
 GPU component attribution unavailable rather than inferred from host totals.
 36 focused bootstrap/qualification checks pass locally. Runtime pending.
+
+First sensor-only acquisition fixture starts and records matching-stamp RGB/depth,
+but its first render is unlit/black (no colour mask) before RAM abort. Component
+RSS at abort: Gazebo/sensors840,499,200 bytes; recorder86,376,448; bridge43,122,688;
+TF20,590,592. Host load3.04, unlike full bootstrap14.55; Nav2/MoveIt/mission absent.
+RAM minimum8,135,368,704 below unchanged reserve. Removed unneeded LiDAR/IMU
+sensor execution from the engineering composition only (geometry unchanged).
+Next variable/question: camera-only composition with settled rendering and target
+colour, now after background available RAM recovers to~9.46GB. No budget change.

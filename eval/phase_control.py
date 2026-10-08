@@ -8,6 +8,7 @@ import rclpy
 from rclpy.parameter import Parameter
 from std_msgs.msg import String
 from std_srvs.srv import Trigger
+from controller_manager_msgs.srv import ListControllers
 from coco_config.ros_boundary import AutonomyNode
 from coco_config.object_observation import validated_height
 from coco_config.observation_phase import PhaseValidator
@@ -19,6 +20,8 @@ class Control(AutonomyNode):
         self.validator=PhaseValidator("red");self.records=[]
         self.create_subscription(String,"/perception/object_height",self.observe,10)
         self.create_subscription(String,"/grasp/status",self.state,10)
+        self.controller_client=self.create_client(ListControllers,"/controller_manager/list_controllers")
+        self.controller_future=None
         self.command_clients={name:self.create_client(Trigger,"/grasp/"+name) for name in ("stow","pick","place")}
     def phase(self, name):
         now=self.get_clock().now().nanoseconds
@@ -44,7 +47,17 @@ class Control(AutonomyNode):
             rclpy.spin_once(self,timeout_sec=.05)
             if predicate():return True
         return False
+    def controllers_active(self):
+        if not self.controller_client.service_is_ready():return False
+        if self.controller_future is None:
+            self.controller_future=self.controller_client.call_async(ListControllers.Request())
+            return False
+        if not self.controller_future.done():return False
+        result=self.controller_future.result();self.controller_future=None
+        active={c.name for c in result.controller if c.state=="active"}
+        return {"arm_controller","gripper_controller","joint_state_broadcaster"}<=active
     def request(self,name):
+        if not self.wait(self.controllers_active,30):return dict(error="CONTROLLERS_NOT_ACTIVE",command=name)
         client=self.command_clients[name]
         if not self.wait(lambda:client.service_is_ready(),30):return dict(error="SERVICE_UNAVAILABLE",command=name)
         self.status={}

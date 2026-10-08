@@ -1,7 +1,7 @@
 # COCO status
 
-Updated: 2026-10-08. Milestone **bounded M2 RGB-D prerequisite**, authorized by
-Gautham before returning to M1; **visibility/runtime qualification blocked**.
+Updated: 2026-10-09. Milestone **bounded RGB-D prerequisite**, authorized by
+Gautham before returning to M1; **observer implemented; full-phase runtime/resource gate open**.
 M1.1–M1.7 infrastructure remains partial; calibration and M1.8 remain blocked.
 M0 independently reviewed/passed and G0 passed per Gautham. No M0 reopened.
 M1 remains incomplete; no qualified smoke or baseline. Unrelated M2 remains closed.
@@ -831,3 +831,36 @@ Gazebo839,200,768. Removed unnecessary heavyweight SciPy optimizer/rotation impo
 from observer execution, using bounded NumPy Huber IRLS and tested rigid-quaternion
 matrix instead; estimator thresholds/contract unchanged.42 focused tests pass.
 Next experiment specifically measures live estimator and reduced observer RSS.
+
+
+## 2026-10-09 — Final lightweight RGB-D runtime checkpoint
+
+Session start e4242e551da2f432bbe3f210918422b2b0e7e6de; clean expected branch;
+Master Plan copies byte-identical. Observer and guarded manipulation consumer
+IMPLEMENTED/TESTED,65 focused checks pass,3 affected packages build. Actual ROS
+publisher replay produces79.003mm support-relative centre from captured Gazebo
+RGB-D, then rejects stale data; CLI graph confirms no evaluator subscription.
+Capture02 completes30s with3228 target pixels and valid depth1.0 at0.216059m.
+These are NON_QUALIFYING engineering sensor/replay results, never M1 controls.
+
+Separate rgbd_capture profile excludes observer for resource-bounded capture;
+rgbd_observation includes it. Same ownership, DDS, duration, disk and emergency
+limits; production semantics unchanged. Live observer04 RAM abort8,106,254,336
+bytes vs8,229,273,600 reserve. Removing SciPy reduces observer RSS~22MB.
+Flank capture06 sees1013 target pixels with valid depth at0.346116m, no near-plane
+points, but RAM aborts at7.15s and support/gravity fit rejects. This is not a
+certified placement or evidence that remounting is impossible. Owned teardown
+survivors0; no foreign termination. No further simulator launch without adequate
+host headroom while retaining reserve. No full manipulation or Isaac result.
+
+Fresh production preflights for both backends reject only uncalibrated RAM/VRAM.
+Full-stack envelope NOT VERIFIED; calibration19 unresolved; qualified smoke0/4,
+M1.8=0/140. Root cause OPEN, not called fixed. Evidence and resumable commands:
+m2/target_observation_20261008/REPORT.md, OBSERVATION_CONTRACT.md,
+RESOURCE_PROFILE.md and validation/lightweight_20261009/. Next action: quieter
+host, then certify grasp-distance support/visibility and required manipulation
+phases before full guarded controls, Isaac and production calibration.
+
+Final guard review additionally clears association on every rejected/stale frame;
+new acquisition cannot reuse an old lift track.65 focused checks pass and updated
+actual ROS replay confirms valid output, stale rejection and association cleared.

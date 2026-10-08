@@ -29,3 +29,33 @@ independence experiment is claimed. Existing AutonomyNode rejects resolved
 `/eval`, `/world`, `/model` and privileged grasp-height subscriptions; it was not
 modified. Simulator truth remains restricted to offline evaluation. No autonomy
 ground-truth input, fixed-height fallback or alternate success source was added.
+
+## Implemented ROS contract — 2026-10-09
+
+The historical absent-contract statements above describe the previous checkpoint.
+Publisher: `object_height_node`; topic `/perception/object_height`; type
+`std_msgs/msg/String` containing strict JSON schema `coco.object_height.v1`.
+QoS: RELIABLE, VOLATILE, KEEP_LAST depth10; confirmed with actual ROS CLI.
+Consumers: ArmControl and GraspServer. Invalid updates clear usable measurement;
+missing, stale or malformed data cannot construct a manipulation height.
+
+Fields: `colour`, `track_id`, `reference_id`, `stamp_ns`, `depth_stamp_ns`,
+`source_frame`, `frame_id`, `units`, `valid`, `reason`, `center_m`,
+`support_height_m`, `center_height_above_support_m`, `uncertainty_m`,
+`transform_valid`, `observation_age_s`, `depth_sample_count`, `inlier_count`,
+`mask_pixels`, `valid_fraction`, `depth_median_m`, `depth_mad_m`, measured radius,
+axis and extents. Invalid geometry is null, never a guessed zero/height.
+
+Coordinates are metres in base_footprint, transformed from camera_optical_frame
+at the original RGB/depth source stamp. Support height is the measured support
+plane Z at centre XY; centre height above support is their difference. It is
+not global altitude. Timestamps are integer ROS nanoseconds; exact pairing and
+age in [0,0.2] s are mandatory. Consumer computes age from its own ROS clock.
+Transform validity includes finite rigid transform, proper frames and timestamp.
+Track/reference IDs are sensor association tokens, not simulator model IDs.
+Unique-colour association cannot identify two same-colour objects: reject.
+
+Actual subscriptions: RGB, depth, CameraInfo, mission target colour, /clock,
+/tf and /tf_static. No /eval/world/model input. Live graph and successful
+sensor-byte replay: `validation/lightweight_20261009/ros_replay_result.json`.
+This is NON_QUALIFYING_ENGINEERING_REPLAY, not a simulator mission or Dev control.

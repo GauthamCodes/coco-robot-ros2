@@ -1,0 +1,121 @@
+{
+  "acquisition-01": {
+    "recorder": {
+      "rss_bytes": 86376448,
+      "cpu_percent_one_core": 197.16369606225376
+    },
+    "launch_or_runtime_overhead": {
+      "rss_bytes": 68481024,
+      "cpu_percent_one_core": 10.855099242329686
+    },
+    "gazebo_including_sensor_plugins": {
+      "rss_bytes": 840499200,
+      "cpu_percent_one_core": 87.56580107523527
+    },
+    "ros_bridge_middleware": {
+      "rss_bytes": 43122688,
+      "cpu_percent_one_core": 9.83885405339722
+    },
+    "robot_tf": {
+      "rss_bytes": 20590592,
+      "cpu_percent_one_core": 2.9516562160191664
+    }
+  },
+  "acquisition-camera-only-02": {
+    "recorder": {
+      "rss_bytes": 91594752,
+      "cpu_percent_one_core": 183.71329427724845
+    },
+    "launch_or_runtime_overhead": {
+      "rss_bytes": 68489216,
+      "cpu_percent_one_core": 9.941587131121976
+    },
+    "gazebo_including_sensor_plugins": {
+      "rss_bytes": 841072640,
+      "cpu_percent_one_core": 84.10702728067824
+    },
+    "ros_bridge_middleware": {
+      "rss_bytes": 43323392,
+      "cpu_percent_one_core": 21.14510240808419
+    },
+    "robot_tf": {
+      "rss_bytes": 20586496,
+      "cpu_percent_one_core": 6.212640950216058
+    }
+  },
+  "observer-acquisition-03": {
+    "recorder": {
+      "rss_bytes": 84889600,
+      "cpu_percent_one_core": 189.19424800486473
+    },
+    "launch_or_runtime_overhead": {
+      "rss_bytes": 81661952,
+      "cpu_percent_one_core": 8.973993456703864
+    },
+    "gazebo_including_sensor_plugins": {
+      "rss_bytes": 839200768,
+      "cpu_percent_one_core": 85.50755548549604
+    },
+    "ros_bridge_middleware": {
+      "rss_bytes": 43565056,
+      "cpu_percent_one_core": 11.660121202567643
+    },
+    "observer": {
+      "rss_bytes": 204357632,
+      "cpu_percent_one_core": 65.70163403125645
+    },
+    "robot_tf": {
+      "rss_bytes": 20885504,
+      "cpu_percent_one_core": 2.9150303006419107
+    }
+  },
+  "observer-numpy-04": {
+    "recorder": {
+      "rss_bytes": 83025920,
+      "cpu_percent_one_core": 166.54264757206687
+    },
+    "launch_or_runtime_overhead": {
+      "rss_bytes": 81502208,
+      "cpu_percent_one_core": 10.981934399432129
+    },
+    "gazebo_including_sensor_plugins": {
+      "rss_bytes": 836661248,
+      "cpu_percent_one_core": 94.364474400442
+    },
+    "ros_bridge_middleware": {
+      "rss_bytes": 43368448,
+      "cpu_percent_one_core": 12.646785228925216
+    },
+    "observer": {
+      "rss_bytes": 182628352,
+      "cpu_percent_one_core": 52.227772470911326
+    },
+    "robot_tf": {
+      "rss_bytes": 20787200,
+      "cpu_percent_one_core": 2.9184888989827424
+    }
+  },
+  "grasp-flank-capture-05": {},
+  "grasp-flank-capture-06": {
+    "recorder": {
+      "rss_bytes": 90406912,
+      "cpu_percent_one_core": 180.68144492209967
+    },
+    "launch_or_runtime_overhead": {
+      "rss_bytes": 81584128,
+      "cpu_percent_one_core": 11.055432546840576
+    },
+    "gazebo_including_sensor_plugins": {
+      "rss_bytes": 839127040,
+      "cpu_percent_one_core": 86.00843736643219
+    },
+    "ros_bridge_middleware": {
+      "rss_bytes": 43368448,
+      "cpu_percent_one_core": 18.437534451803813
+    },
+    "robot_tf": {
+      "rss_bytes": 20639744,
+      "cpu_percent_one_core": 5.822379300569625
+    }
+  }
+}

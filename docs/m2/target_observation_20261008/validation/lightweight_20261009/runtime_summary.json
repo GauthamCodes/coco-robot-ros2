@@ -1,0 +1,1016 @@
+{
+  "acquisition-01": {
+    "manifest": {
+      "schema_version": 1,
+      "execution_class": "NON_QUALIFYING",
+      "qualified": false,
+      "m1_denominator_eligible": false,
+      "satisfies_m1_8": false,
+      "test_a": false,
+      "state": "ABORTED_BOOTSTRAP_RESOURCE_LIMIT",
+      "profile": "rgbd_observation",
+      "fixture": "acquisition",
+      "backend": "gazebo",
+      "seed": 5,
+      "seed_group": "dev",
+      "requested_colour": "red",
+      "home_xy_m": [
+        -2.0,
+        0.0
+      ],
+      "source_sha": "417972cdd7bf18b692635c596899a70d6067395a",
+      "domain": 82,
+      "owned_processes": [
+        {
+          "pid": 34973,
+          "start_ticks": 609727,
+          "pgid": 34973,
+          "ppid": 34884,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 35002,
+          "start_ticks": 609840,
+          "pgid": 35002,
+          "ppid": 34884,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 35006,
+          "start_ticks": 609893,
+          "pgid": 35006,
+          "ppid": 35002,
+          "state": "R",
+          "kernel_thread": false,
+          "argv": [
+            "/usr/bin/python3",
+            "/opt/ros/jazzy/bin/ros2",
+            "launch",
+            "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-01/logs/sensor_fixture/fixture.launch.py"
+          ],
+          "comm": "ros2",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 35011,
+          "start_ticks": 609964,
+          "pgid": 35006,
+          "ppid": 35006,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "gz sim -r -s -v2 /home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-01/logs/sensor_fixture/world.sdf"
+          ],
+          "comm": "ruby",
+          "uid": 1000,
+          "exe": "/usr/bin/ruby3.2",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 35012,
+          "start_ticks": 609964,
+          "pgid": 35006,
+          "ppid": 35006,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_xw5smp6m"
+          ],
+          "comm": "parameter_bridg",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 35013,
+          "start_ticks": 609964,
+          "pgid": 35006,
+          "ppid": 35006,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_n8lnfi0n"
+          ],
+          "comm": "robot_state_pub",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        }
+      ],
+      "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+      "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+      "reasons": [
+        "min_ram_available_bytes: observed 8135368704, required 8229273600"
+      ],
+      "bag_hash": {
+        "sha256": "3f2063656ee35cec8e9048136d0dabece07ec0bb3c500e75558695a1d25f93a8",
+        "files": {
+          "bag_0.mcap": "30db29ca9e4998b040608710ad54b2839cc5033dfa2accc1cd9da5147f8e12df",
+          "metadata.yaml": "173c942abf8d689c0b4aea773dd858d7429de4f8bf46446f42ece7f854575da3"
+        },
+        "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+      },
+      "wall_time_s": 9.143266586999744
+    },
+    "resources": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 8,
+      "extrema": {
+        "cpu_percent": {
+          "min": 20.22090059473237,
+          "max": 43.38358458961474
+        },
+        "load1": {
+          "min": 2.96044921875,
+          "max": 3.0439453125
+        },
+        "ram_used_bytes": {
+          "min": 7573348352,
+          "max": 8323178496
+        },
+        "ram_available_bytes": {
+          "min": 8135368704,
+          "max": 8885198848
+        },
+        "vram_used_bytes": {
+          "min": 866123776,
+          "max": 1098907648
+        },
+        "vram_free_bytes": {
+          "min": 5340397568,
+          "max": 5573181440
+        },
+        "evidence_bytes": {
+          "min": 202080,
+          "max": 1770273
+        },
+        "disk_free_bytes": {
+          "min": 15758270464,
+          "max": 15760216064
+        }
+      },
+      "full_stack_envelope_verified": false
+    }
+  },
+  "acquisition-camera-only-02": {
+    "manifest": {
+      "schema_version": 1,
+      "execution_class": "NON_QUALIFYING",
+      "qualified": false,
+      "m1_denominator_eligible": false,
+      "satisfies_m1_8": false,
+      "test_a": false,
+      "state": "BOOTSTRAP_WALL_BUDGET_REACHED",
+      "profile": "rgbd_observation",
+      "fixture": "acquisition",
+      "backend": "gazebo",
+      "seed": 5,
+      "seed_group": "dev",
+      "requested_colour": "red",
+      "home_xy_m": [
+        -2.0,
+        0.0
+      ],
+      "source_sha": "a80f484d042dfd84538bc6a308c45be720ab2339",
+      "domain": 82,
+      "owned_processes": [
+        {
+          "pid": 35521,
+          "start_ticks": 621766,
+          "pgid": 35521,
+          "ppid": 35439,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 35550,
+          "start_ticks": 621882,
+          "pgid": 35550,
+          "ppid": 35439,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 35554,
+          "start_ticks": 621933,
+          "pgid": 35554,
+          "ppid": 35550,
+          "state": "R",
+          "kernel_thread": false,
+          "argv": [
+            "/usr/bin/python3",
+            "/opt/ros/jazzy/bin/ros2",
+            "launch",
+            "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/logs/sensor_fixture/fixture.launch.py"
+          ],
+          "comm": "ros2",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 35559,
+          "start_ticks": 622004,
+          "pgid": 35554,
+          "ppid": 35554,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "gz sim -r -s -v2 /home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/logs/sensor_fixture/world.sdf"
+          ],
+          "comm": "ruby",
+          "uid": 1000,
+          "exe": "/usr/bin/ruby3.2",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 35560,
+          "start_ticks": 622004,
+          "pgid": 35554,
+          "ppid": 35554,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_3a75dj6s"
+          ],
+          "comm": "parameter_bridg",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 35561,
+          "start_ticks": 622004,
+          "pgid": 35554,
+          "ppid": 35554,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_xfsmsj1e"
+          ],
+          "comm": "robot_state_pub",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        }
+      ],
+      "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+      "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+      "bag_hash": {
+        "sha256": "7023f6c4efcafbd64d813ace4ef4dcc8e156d192660272c6475eed7fce7ce5d6",
+        "files": {
+          "bag_0.mcap": "4b5a0143f62f2c8fe14a556b8d8447b5cf905f5920b8e7778d9a201086c0d26e",
+          "metadata.yaml": "1d1a860f15e93015f02b5ed559a4cb6436dcf2e603f0684e2733df9db5864da9"
+        },
+        "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+      },
+      "wall_time_s": 33.030555940999875
+    },
+    "resources": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 31,
+      "extrema": {
+        "cpu_percent": {
+          "min": 17.130801687763707,
+          "max": 39.768019884009945
+        },
+        "load1": {
+          "min": 1.671875,
+          "max": 2.6591796875
+        },
+        "ram_used_bytes": {
+          "min": 6983331840,
+          "max": 7819931648
+        },
+        "ram_available_bytes": {
+          "min": 8638615552,
+          "max": 9475215360
+        },
+        "vram_used_bytes": {
+          "min": 751828992,
+          "max": 1030750208
+        },
+        "vram_free_bytes": {
+          "min": 5408555008,
+          "max": 5687476224
+        },
+        "rtf": {
+          "min": 0.7270423758360464,
+          "max": 1.2963387804700823
+        },
+        "evidence_bytes": {
+          "min": 199482,
+          "max": 68964556
+        },
+        "disk_free_bytes": {
+          "min": 15672094720,
+          "max": 15727435776
+        }
+      },
+      "full_stack_envelope_verified": false
+    }
+  },
+  "observer-acquisition-03": {
+    "manifest": {
+      "schema_version": 1,
+      "execution_class": "NON_QUALIFYING",
+      "qualified": false,
+      "m1_denominator_eligible": false,
+      "satisfies_m1_8": false,
+      "test_a": false,
+      "state": "ABORTED_BOOTSTRAP_RESOURCE_LIMIT",
+      "profile": "rgbd_observation",
+      "fixture": "acquisition",
+      "backend": "gazebo",
+      "seed": 5,
+      "seed_group": "dev",
+      "requested_colour": "red",
+      "home_xy_m": [
+        -2.0,
+        0.0
+      ],
+      "source_sha": "182b1a5f8a6ea5d64038dc22715d6a59013baa84",
+      "domain": 82,
+      "owned_processes": [
+        {
+          "pid": 37741,
+          "start_ticks": 672168,
+          "pgid": 37741,
+          "ppid": 37639,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 37770,
+          "start_ticks": 672284,
+          "pgid": 37770,
+          "ppid": 37639,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 37774,
+          "start_ticks": 672335,
+          "pgid": 37774,
+          "ppid": 37770,
+          "state": "R",
+          "kernel_thread": false,
+          "argv": [
+            "/usr/bin/python3",
+            "/opt/ros/jazzy/bin/ros2",
+            "launch",
+            "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-acquisition-03/logs/sensor_fixture/fixture.launch.py"
+          ],
+          "comm": "ros2",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 37779,
+          "start_ticks": 672406,
+          "pgid": 37774,
+          "ppid": 37774,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "python3",
+            "/home/gautham/coco-isaac-21/eval/rgbd_probe.py",
+            "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-acquisition-03/logs/sensor_fixture"
+          ],
+          "comm": "python3",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": false
+        },
+        {
+          "pid": 37780,
+          "start_ticks": 672407,
+          "pgid": 37774,
+          "ppid": 37774,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "gz sim -r -s -v2 /home/gautham/coco_m1_runs/rgbd-light-20261009/observer-acquisition-03/logs/sensor_fixture/world.sdf"
+          ],
+          "comm": "ruby",
+          "uid": 1000,
+          "exe": "/usr/bin/ruby3.2",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 37781,
+          "start_ticks": 672407,
+          "pgid": 37774,
+          "ppid": 37774,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_nabm5l69"
+          ],
+          "comm": "parameter_bridg",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 37782,
+          "start_ticks": 672407,
+          "pgid": 37774,
+          "ppid": 37774,
+          "state": "R",
+          "kernel_thread": false,
+          "argv": [
+            "/usr/bin/python3",
+            "/home/gautham/coco_m1_ws/install/coco_perception/lib/coco_perception/object_height_node",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_4ic9a7mn"
+          ],
+          "comm": "object_height_n",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 37783,
+          "start_ticks": 672407,
+          "pgid": 37774,
+          "ppid": 37774,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_a1a57s6e"
+          ],
+          "comm": "robot_state_pub",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        }
+      ],
+      "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+      "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+      "reasons": [
+        "min_ram_available_bytes: observed 8119701504, required 8229273600"
+      ],
+      "bag_hash": {
+        "sha256": "ef944558ef1c2b5fb4207101e539aee751d53702478c3b3e77036466f919c55e",
+        "files": {
+          "bag_0.mcap": "5a83d02ff0f008a835e90f876e806c03fb182cc2c7bf8c614a29796921904b8e",
+          "metadata.yaml": "a6ee79a7d5dd1725e5df877ce0e5de191629427bf0ce4eff84cb084610f846ae"
+        },
+        "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+      },
+      "wall_time_s": 9.300608849999662
+    },
+    "resources": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 8,
+      "extrema": {
+        "cpu_percent": {
+          "min": 16.524701873935264,
+          "max": 42.52100840336135
+        },
+        "load1": {
+          "min": 1.6513671875,
+          "max": 1.70849609375
+        },
+        "ram_used_bytes": {
+          "min": 7481085952,
+          "max": 8338845696
+        },
+        "ram_available_bytes": {
+          "min": 8119701504,
+          "max": 8977461248
+        },
+        "vram_used_bytes": {
+          "min": 865075200,
+          "max": 1085276160
+        },
+        "vram_free_bytes": {
+          "min": 5354029056,
+          "max": 5574230016
+        },
+        "evidence_bytes": {
+          "min": 202313,
+          "max": 1774588
+        },
+        "disk_free_bytes": {
+          "min": 15523000320,
+          "max": 15524687872
+        }
+      },
+      "full_stack_envelope_verified": false
+    }
+  },
+  "observer-numpy-04": {
+    "manifest": {
+      "schema_version": 1,
+      "execution_class": "NON_QUALIFYING",
+      "qualified": false,
+      "m1_denominator_eligible": false,
+      "satisfies_m1_8": false,
+      "test_a": false,
+      "state": "ABORTED_BOOTSTRAP_RESOURCE_LIMIT",
+      "profile": "rgbd_observation",
+      "fixture": "acquisition",
+      "backend": "gazebo",
+      "seed": 5,
+      "seed_group": "dev",
+      "requested_colour": "red",
+      "home_xy_m": [
+        -2.0,
+        0.0
+      ],
+      "source_sha": "b952c31cf7fb742c25ec5f42a89e22ed6d254cc3",
+      "domain": 82,
+      "owned_processes": [
+        {
+          "pid": 38320,
+          "start_ticks": 680690,
+          "pgid": 38320,
+          "ppid": 38078,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 38355,
+          "start_ticks": 680803,
+          "pgid": 38355,
+          "ppid": 38078,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 38359,
+          "start_ticks": 680855,
+          "pgid": 38359,
+          "ppid": 38355,
+          "state": "R",
+          "kernel_thread": false,
+          "argv": [
+            "/usr/bin/python3",
+            "/opt/ros/jazzy/bin/ros2",
+            "launch",
+            "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-numpy-04/logs/sensor_fixture/fixture.launch.py"
+          ],
+          "comm": "ros2",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 38365,
+          "start_ticks": 680924,
+          "pgid": 38359,
+          "ppid": 38359,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "python3",
+            "/home/gautham/coco-isaac-21/eval/rgbd_probe.py",
+            "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-numpy-04/logs/sensor_fixture"
+          ],
+          "comm": "python3",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": false
+        },
+        {
+          "pid": 38366,
+          "start_ticks": 680924,
+          "pgid": 38359,
+          "ppid": 38359,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "gz sim -r -s -v2 /home/gautham/coco_m1_runs/rgbd-light-20261009/observer-numpy-04/logs/sensor_fixture/world.sdf"
+          ],
+          "comm": "ruby",
+          "uid": 1000,
+          "exe": "/usr/bin/ruby3.2",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 38367,
+          "start_ticks": 680925,
+          "pgid": 38359,
+          "ppid": 38359,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_blcet3xh"
+          ],
+          "comm": "parameter_bridg",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 38368,
+          "start_ticks": 680925,
+          "pgid": 38359,
+          "ppid": 38359,
+          "state": "R",
+          "kernel_thread": false,
+          "argv": [
+            "/usr/bin/python3",
+            "/home/gautham/coco_m1_ws/install/coco_perception/lib/coco_perception/object_height_node",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_1_bx96b1"
+          ],
+          "comm": "object_height_n",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 38369,
+          "start_ticks": 680925,
+          "pgid": 38359,
+          "ppid": 38359,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_8pj9f8d8"
+          ],
+          "comm": "robot_state_pub",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        }
+      ],
+      "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+      "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+      "reasons": [
+        "min_ram_available_bytes: observed 8106254336, required 8229273600"
+      ],
+      "bag_hash": {
+        "sha256": "053e5a191ee8f58acf39848818c421d0a9849d1253533daeaa0eca57526a3238",
+        "files": {
+          "bag_0.mcap": "dc37d979f5315e7b35654b8323efac6bbba4e58fd042ce75bfb92e4d7f7f1ef2",
+          "metadata.yaml": "f0f90f69ec06d8434a13e4b5c1c982a77b3a269caf259fe4e792de7e72542888"
+        },
+        "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+      },
+      "wall_time_s": 9.225583183999333
+    },
+    "resources": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 8,
+      "extrema": {
+        "cpu_percent": {
+          "min": 15.883859948761748,
+          "max": 39.264828738512946
+        },
+        "load1": {
+          "min": 2.2744140625,
+          "max": 2.298828125
+        },
+        "ram_used_bytes": {
+          "min": 7477841920,
+          "max": 8352292864
+        },
+        "ram_available_bytes": {
+          "min": 8106254336,
+          "max": 8980705280
+        },
+        "vram_used_bytes": {
+          "min": 897581056,
+          "max": 1134559232
+        },
+        "vram_free_bytes": {
+          "min": 5304745984,
+          "max": 5541724160
+        },
+        "evidence_bytes": {
+          "min": 203622,
+          "max": 1774466
+        },
+        "disk_free_bytes": {
+          "min": 15519096832,
+          "max": 15520755712
+        }
+      },
+      "full_stack_envelope_verified": false
+    }
+  },
+  "grasp-flank-capture-05": {
+    "manifest": {
+      "schema_version": 1,
+      "execution_class": "NON_QUALIFYING",
+      "qualified": false,
+      "m1_denominator_eligible": false,
+      "satisfies_m1_8": false,
+      "test_a": false,
+      "state": "BLOCKED_BOOTSTRAP",
+      "profile": "rgbd_capture",
+      "fixture": "grasp_flank",
+      "backend": "gazebo",
+      "seed": 5,
+      "seed_group": "dev",
+      "requested_colour": "red",
+      "home_xy_m": [
+        -2.0,
+        0.0
+      ],
+      "source_sha": "9245dd8c187cd1fc0dc6484167873e8891328adc",
+      "domain": 82,
+      "owned_processes": [],
+      "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+      "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+      "reasons": [
+        "/proc/39360: [Errno 13] Permission denied: '/proc/39360/exe'",
+        "/proc/39361: [Errno 13] Permission denied: '/proc/39361/exe'",
+        "/proc/39362: [Errno 13] Permission denied: '/proc/39362/exe'",
+        "/proc/39363: [Errno 13] Permission denied: '/proc/39363/exe'"
+      ]
+    },
+    "resources": null
+  },
+  "grasp-flank-capture-06": {
+    "manifest": {
+      "schema_version": 1,
+      "execution_class": "NON_QUALIFYING",
+      "qualified": false,
+      "m1_denominator_eligible": false,
+      "satisfies_m1_8": false,
+      "test_a": false,
+      "state": "ABORTED_BOOTSTRAP_RESOURCE_LIMIT",
+      "profile": "rgbd_capture",
+      "fixture": "grasp_flank",
+      "backend": "gazebo",
+      "seed": 5,
+      "seed_group": "dev",
+      "requested_colour": "red",
+      "home_xy_m": [
+        -2.0,
+        0.0
+      ],
+      "source_sha": "9245dd8c187cd1fc0dc6484167873e8891328adc",
+      "domain": 82,
+      "owned_processes": [
+        {
+          "pid": 39566,
+          "start_ticks": 707284,
+          "pgid": 39566,
+          "ppid": 39487,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 39617,
+          "start_ticks": 707398,
+          "pgid": 39617,
+          "ppid": 39487,
+          "state": "R",
+          "kernel_thread": false
+        },
+        {
+          "pid": 39628,
+          "start_ticks": 707449,
+          "pgid": 39628,
+          "ppid": 39617,
+          "state": "R",
+          "kernel_thread": false,
+          "argv": [
+            "/usr/bin/python3",
+            "/opt/ros/jazzy/bin/ros2",
+            "launch",
+            "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-06/logs/sensor_fixture/fixture.launch.py"
+          ],
+          "comm": "ros2",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 39634,
+          "start_ticks": 707523,
+          "pgid": 39628,
+          "ppid": 39628,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "python3",
+            "/home/gautham/coco-isaac-21/eval/rgbd_probe.py",
+            "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-06/logs/sensor_fixture"
+          ],
+          "comm": "python3",
+          "uid": 1000,
+          "exe": "/usr/bin/python3.12",
+          "robotics": false
+        },
+        {
+          "pid": 39635,
+          "start_ticks": 707523,
+          "pgid": 39628,
+          "ppid": 39628,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "gz sim -r -s -v2 /home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-06/logs/sensor_fixture/world.sdf"
+          ],
+          "comm": "ruby",
+          "uid": 1000,
+          "exe": "/usr/bin/ruby3.2",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 39636,
+          "start_ticks": 707523,
+          "pgid": 39628,
+          "ppid": 39628,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_8k6u1c8s"
+          ],
+          "comm": "parameter_bridg",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        },
+        {
+          "pid": 39637,
+          "start_ticks": 707523,
+          "pgid": 39628,
+          "ppid": 39628,
+          "state": "S",
+          "kernel_thread": false,
+          "argv": [
+            "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+            "--ros-args",
+            "--params-file",
+            "/tmp/launch_params_dvppu8qq"
+          ],
+          "comm": "robot_state_pub",
+          "uid": 1000,
+          "exe": "/opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher",
+          "robotics": true,
+          "ros_domain_id": 82,
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "reparented_to_init": false
+        }
+      ],
+      "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+      "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+      "reasons": [
+        "min_ram_available_bytes: observed 8228495360, required 8229273600"
+      ],
+      "bag_hash": {
+        "sha256": "8b1ab75a7640d89155aa01accba193e757ca7c445298c7af3138c7b1a7f3718c",
+        "files": {
+          "bag_0.mcap": "a9b0e0ebd3d7463f6a576e291591b89666b8d0b78d56d4f07b9b9b1fdd1d3ece",
+          "metadata.yaml": "fcafba3253cdde19cf4b31f24db8381fa3fbe4bff2fb46be0058354db530fbae"
+        },
+        "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+      },
+      "wall_time_s": 10.252164575999814
+    },
+    "resources": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 9,
+      "extrema": {
+        "cpu_percent": {
+          "min": 14.065040650406502,
+          "max": 30.501274426508076
+        },
+        "load1": {
+          "min": 2.06689453125,
+          "max": 2.07275390625
+        },
+        "ram_used_bytes": {
+          "min": 7253741568,
+          "max": 8230051840
+        },
+        "ram_available_bytes": {
+          "min": 8228495360,
+          "max": 9204805632
+        },
+        "vram_used_bytes": {
+          "min": 810549248,
+          "max": 1031798784
+        },
+        "vram_free_bytes": {
+          "min": 5407506432,
+          "max": 5628755968
+        },
+        "evidence_bytes": {
+          "min": 202305,
+          "max": 4881396
+        },
+        "disk_free_bytes": {
+          "min": 15510974464,
+          "max": 15515795456
+        }
+      },
+      "full_stack_envelope_verified": false
+    }
+  }
+}

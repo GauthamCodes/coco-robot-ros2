@@ -1,0 +1,122 @@
+{
+  "execution_class": "NON_QUALIFYING_ENGINEERING_REPLAY",
+  "simulator": false,
+  "source": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-02-inspection",
+  "original_sensor_timestamps": true,
+  "outputs": [
+    {
+      "schema": "coco.object_height.v1",
+      "stamp_ns": 20924000000,
+      "depth_stamp_ns": 20924000000,
+      "source_frame": "camera_optical_frame",
+      "frame_id": "base_footprint",
+      "colour": "red",
+      "track_id": "red:sensor-track-1",
+      "reference_id": "observed-support-1",
+      "valid": true,
+      "reason": "VALID",
+      "center_m": [
+        0.3499821414987468,
+        0.0005028667980287869,
+        0.0660119333047545
+      ],
+      "support_height_m": -0.012991105463502049,
+      "center_height_above_support_m": 0.07900303876825654,
+      "uncertainty_m": 0.0025317979749985204,
+      "units": "m",
+      "transform_valid": true,
+      "observation_age_s": 0.0,
+      "depth_sample_count": 3228,
+      "inlier_count": 1296,
+      "mask_pixels": 3228,
+      "valid_fraction": 1.0,
+      "depth_median_m": 0.21605880558490753,
+      "depth_mad_m": 0.00091552734375,
+      "measured_radius_m": 0.0099480252600698,
+      "measured_axis_extent_m": 0.15451569762827488,
+      "measured_upright_extent_m": 0.15794026763465052,
+      "measured_axis": [
+        5.731125772067543e-05,
+        -6.3025552912848726e-06,
+        0.9999999983378488
+      ],
+      "support_plane": [
+        0.0022620985494260564,
+        1.6743204028085712e-09,
+        -0.013782799558953349
+      ],
+      "geometry_model": "complete measured cylinder"
+    },
+    {
+      "schema": "coco.object_height.v1",
+      "stamp_ns": 20924000000,
+      "depth_stamp_ns": 0,
+      "source_frame": "",
+      "frame_id": "base_footprint",
+      "colour": "red",
+      "track_id": "",
+      "reference_id": "",
+      "valid": false,
+      "reason": "STALE_OR_UNAVAILABLE",
+      "center_m": null,
+      "support_height_m": null,
+      "center_height_above_support_m": null,
+      "uncertainty_m": null,
+      "units": "m",
+      "transform_valid": false,
+      "observation_age_s": null
+    }
+  ],
+  "ros_graph": [
+    {
+      "argv": [
+        "ros2",
+        "node",
+        "list",
+        "--no-daemon"
+      ],
+      "returncode": 0,
+      "stdout": "/object_height_node\n/recorded_rgbd_replay\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ros2",
+        "node",
+        "info",
+        "/object_height_node",
+        "--no-daemon"
+      ],
+      "returncode": 0,
+      "stdout": "/object_height_node\n  Subscribers:\n    /camera/camera_info: sensor_msgs/msg/CameraInfo\n    /camera/depth/image_raw: sensor_msgs/msg/Image\n    /camera/image_raw: sensor_msgs/msg/Image\n    /clock: rosgraph_msgs/msg/Clock\n    /mission/target_colour: std_msgs/msg/String\n    /tf: tf2_msgs/msg/TFMessage\n    /tf_static: tf2_msgs/msg/TFMessage\n  Publishers:\n    /parameter_events: rcl_interfaces/msg/ParameterEvent\n    /perception/object_height: std_msgs/msg/String\n    /rosout: rcl_interfaces/msg/Log\n  Service Servers:\n    /object_height_node/describe_parameters: rcl_interfaces/srv/DescribeParameters\n    /object_height_node/get_parameter_types: rcl_interfaces/srv/GetParameterTypes\n    /object_height_node/get_parameters: rcl_interfaces/srv/GetParameters\n    /object_height_node/get_type_description: type_description_interfaces/srv/GetTypeDescription\n    /object_height_node/list_parameters: rcl_interfaces/srv/ListParameters\n    /object_height_node/set_parameters: rcl_interfaces/srv/SetParameters\n    /object_height_node/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically\n  Service Clients:\n\n  Action Servers:\n\n  Action Clients:\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ros2",
+        "topic",
+        "list",
+        "--no-daemon"
+      ],
+      "returncode": 0,
+      "stdout": "/camera/camera_info\n/camera/depth/image_raw\n/camera/image_raw\n/clock\n/mission/target_colour\n/parameter_events\n/perception/object_height\n/rosout\n/tf\n/tf_static\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ros2",
+        "topic",
+        "info",
+        "-v",
+        "/perception/object_height",
+        "--no-daemon"
+      ],
+      "returncode": 0,
+      "stdout": "Type: std_msgs/msg/String\n\nPublisher count: 1\n\nNode name: object_height_node\nNode namespace: /\nTopic type: std_msgs/msg/String\nTopic type hash: RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18\nEndpoint type: PUBLISHER\nGID: 01.10.97.f2.fb.b1.33.67.4f.42.29.07.00.00.18.03\nQoS profile:\n  Reliability: RELIABLE\n  History (Depth): KEEP_LAST (10)\n  Durability: VOLATILE\n  Lifespan: Infinite\n  Deadline: Infinite\n  Liveliness: AUTOMATIC\n  Liveliness lease duration: Infinite\n\nSubscription count: 1\n\nNode name: recorded_rgbd_replay\nNode namespace: /\nTopic type: std_msgs/msg/String\nTopic type hash: RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18\nEndpoint type: SUBSCRIPTION\nGID: 01.10.97.f2.fb.b1.33.67.4f.42.29.07.00.00.2e.04\nQoS profile:\n  Reliability: RELIABLE\n  History (Depth): KEEP_LAST (10)\n  Durability: VOLATILE\n  Lifespan: Infinite\n  Deadline: Infinite\n  Liveliness: AUTOMATIC\n  Liveliness lease duration: Infinite\n\n",
+      "stderr": ""
+    }
+  ],
+  "association_cleared": true,
+  "valid_count": 1,
+  "stale_rejection": true
+}

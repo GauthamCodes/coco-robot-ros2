@@ -1,0 +1,152 @@
+[
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-01/manifest.json",
+    "bytes": 3885,
+    "sha256": "f815114d99d82fffa9c382f9eeda49af00db533cd080450c46956dc5b53b998d"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-01/host_metrics.jsonl",
+    "bytes": 7308,
+    "sha256": "91caa8172a7a129c88b1e74357f4ee2b17c43670cc7c9e713dbb14f5d0942bd6"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-01/resource_summary.json",
+    "bytes": 886,
+    "sha256": "6fea08673801b29ca0ad3892e3709e3037cac9e2cf57eea138dc016c34ae4dcf"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-01/logs/teardown.json",
+    "bytes": 129153,
+    "sha256": "7105410eb2b851f1c0e3434edd9f30ba158bcd454aa00086560698c21bb80823"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-01/bag/metadata.yaml",
+    "bytes": 2477,
+    "sha256": "173c942abf8d689c0b4aea773dd858d7429de4f8bf46446f42ece7f854575da3"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/manifest.json",
+    "bytes": 3815,
+    "sha256": "1809dbef15bc3972f286fc92ffa5eb668f79de9a7b9842f16ace401753020c89"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/host_metrics.jsonl",
+    "bytes": 35405,
+    "sha256": "3857eb1fe2fe98f70aa11571f3543fcfb86ca7578f0d2e06617618d76cd34384"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/resource_summary.json",
+    "bytes": 970,
+    "sha256": "4622c44f12d082dd868791e0e33f2dffe8d97cd99d2ab648e895efd778d85e17"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/logs/teardown.json",
+    "bytes": 127868,
+    "sha256": "b88e636b251147ca2faecd4cb9c6720f8cc87fe7d637c72f8ddf4c11f0cfa6dc"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/bag/metadata.yaml",
+    "bytes": 2491,
+    "sha256": "1d1a860f15e93015f02b5ed559a4cb6436dcf2e603f0684e2733df9db5864da9"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-acquisition-03/manifest.json",
+    "bytes": 5014,
+    "sha256": "90ac5fb33beaf204eda4002abbffe9acf131fdf9fbe1c616e22e5bba4edb679a"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-acquisition-03/host_metrics.jsonl",
+    "bytes": 8361,
+    "sha256": "3d39a8a77a52d6985f905e78670c75e3c6a2c1dd5bc189709d83bde8d09e7e37"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-acquisition-03/resource_summary.json",
+    "bytes": 887,
+    "sha256": "05ed71cb7b01dc8d0a8b89885a85a88f4b1b4062def5b02e081513ffbe286b24"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-acquisition-03/logs/teardown.json",
+    "bytes": 130703,
+    "sha256": "ee2e25c78a6804bb44a40e409eb0e736c5f2deb34a33b2d3b655b1a1b220ccff"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-acquisition-03/bag/metadata.yaml",
+    "bytes": 2707,
+    "sha256": "a6ee79a7d5dd1725e5df877ce0e5de191629427bf0ce4eff84cb084610f846ae"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-numpy-04/manifest.json",
+    "bytes": 4996,
+    "sha256": "887f9780616f8a94cdd2c98160435e3dd676dfa65a2f152a17ee102c70c641ca"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-numpy-04/host_metrics.jsonl",
+    "bytes": 8345,
+    "sha256": "dc5645e26136fec1cc2a085b1af7040da5783088525430aa305e2884a2edb940"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-numpy-04/resource_summary.json",
+    "bytes": 886,
+    "sha256": "31030d36dd35551883e903e104f0a9b4ec547af20d1cff1c1c4881e588f47e1a"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-numpy-04/logs/teardown.json",
+    "bytes": 129381,
+    "sha256": "aa038f027397db3ad32d6c661e5996242e3cb4d216567a26ca014a8e3af54b73"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/observer-numpy-04/bag/metadata.yaml",
+    "bytes": 2707,
+    "sha256": "f0f90f69ec06d8434a13e4b5c1c982a77b3a269caf259fe4e792de7e72542888"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-05/manifest.json",
+    "bytes": 938,
+    "sha256": "c25b7385081378962bfe242b817c0a19314144c900f954134683c1029992239f"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-06/manifest.json",
+    "bytes": 4358,
+    "sha256": "e53f94b179cf6da1cdd88490417e039be1523fa36ed78ca5be793ba72822d56a"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-06/host_metrics.jsonl",
+    "bytes": 9201,
+    "sha256": "ae9807d6537799c31431a2f33992655a02f14c16e3717f733ee6fff98fce2cd3"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-06/resource_summary.json",
+    "bytes": 889,
+    "sha256": "fefa5de9cbc41315b05f276148c3c328cbffe41a0ea4e75c1236f60802bf56cb"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-06/logs/teardown.json",
+    "bytes": 130699,
+    "sha256": "d57ffbc3a9fc4b3a7f29538163039281e889455bdd2ec93aa72148160bc1f142"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-capture-06/bag/metadata.yaml",
+    "bytes": 2479,
+    "sha256": "fcafba3253cdde19cf4b31f24db8381fa3fbe4bff2fb46be0058354db530fbae"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/ros-replay-02/result.json",
+    "bytes": 5377,
+    "sha256": "91ac733760da94fe3747c71aa80388ee508cbde687a418339a88f11f281e7b98"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/build-final.log",
+    "bytes": 1353,
+    "sha256": "288fce4d54a67a21eb73295bc4c54215768bc1d6de2e183d1bc84c420392f968"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-02-final-measurements.json",
+    "bytes": 29159,
+    "sha256": "d2e392eeb2ce80b8cd548bdd65388496d9e4a9b3dfc931df8440810a1549b184"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/grasp-flank-06-measurements.json",
+    "bytes": 986,
+    "sha256": "e16c11885b9a9cc7ee1fca2fd81f29b1795802adc7f14b4b25577934fa812fc3"
+  }
+]

@@ -179,3 +179,80 @@ Evidence root: `docs/m2/target_observation_20261008/`.
 Raw evidence: `/home/gautham/coco_m1_runs/target-observation-20261008/`.
 `validation/external_evidence.json` records exact file hashes. Failed/negative
 and intermediate probe results remain retained outside Git.
+
+## 2026-10-09 lightweight implementation and runtime checkpoint
+
+Session input `e4242e551da2f432bbe3f210918422b2b0e7e6de`, expected branch,
+clean entry; canonical Master Plan copies remain byte-identical.
+Earlier absent-implementation statements above are historical.
+
+IMPLEMENTED/TESTED: separate lightweight bootstrap capture/observation profiles,
+physical RGB-D observer, shared validity contract, guarded baseline/lift/release
+consumer, and focused deterministic regressions.65 focused checks pass;3 affected
+ROS packages build. Exact algorithm/contract: DESIGN.md and OBSERVATION_CONTRACT.md.
+No production policy, benchmark, seed, safety comparator or sensor geometry asset
+was changed. Camera candidates apply only to generated engineering fixtures.
+
+RUNTIME VERIFIED in engineering fixture: capture02 completed30 s with24 actual
+RGB/depth/CameraInfo frames and TF. Settled red mask3228 pixels, depth validity1.0,
+median depth0.2160588m, clear of near plane.22 source-coherent settled frames
+produce centre above measured support0.079003039m, uncertainty estimate0.002531798m.
+Measured upright extent0.157940268m. POST-RUN evaluator-only comparison to fixture
+SDF centre0.079m yields~0.003mm error in this static sample, not a general accuracy
+claim. Object dimensions/height/scene pose are absent from estimator inputs.
+One startup frame has no mask; one frame has unsynchronized RGB/depth and rejects.
+
+Actual ROS publisher replay of captured bytes produces one valid observation,
+then rejects stale data after clock advancement. CLI node/topic/QoS checks pass;
+no evaluator input subscription. Replay retains captured timestamps/intrinsics/TF,
+not invented successful sensor geometry. It is not a live manipulation result.
+
+Live Gazebo+observer runs03/04 abort under unchanged RAM reserve. Capture-only
+flank06 also aborts, but records target mask1013 pixels, valid fraction1.0,
+median0.3461162m, no near-plane points, with optical source/TF. Observer rejects
+this candidate's support/gravity fit (`GRAVITY_REFERENCE_UNAVAILABLE`); it is not
+certified for grasp/lift/release. No claim that existing-sensor remount is impossible.
+Resource breakdown and exact extrema are in RESOURCE_PROFILE.md and validation.
+All executed runs preserve raw MCAP and complete owned teardown.
+
+Hard continuation gate: current host headroom crosses the existing emergency RAM
+reserve even for sensor-only capture. No further full-stack or Isaac launch is
+safe to justify at this checkpoint. Need additional available host RAM without
+changing safety reserves or killing ambiguous processes. Both fresh production
+preflights reject only null RAM/VRAM requirements. Full-stack envelope NOT VERIFIED;
+19 calibration dependencies remain, qualified smoke0/4, M1.8=0/140.
+
+### Resumable commands
+
+Use the existing owned overlay/environment (`COCO_WS=/home/gautham/coco_m1_ws`,
+`COCO_MOVEIT_PREFIX=/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy`,
+`source setup_env.sh`). Choose a new external output directory for every run.
+
+```sh
+./eval/bin/eval bootstrap --backend gazebo --profile rgbd_capture \
+  --fixture grasp_flank --domain 82 --seconds 30 --output <new-external-directory>
+./eval/bin/eval bootstrap --backend gazebo --profile rgbd_observation \
+  --fixture acquisition --domain 82 --seconds 30 --output <new-external-directory>
+python3 docs/m2/target_observation_20261009/replay_object_height.py \
+  <decoded-sensor-directory> <new-measurements.json>
+ROS_DOMAIN_ID=188 python3 docs/m2/target_observation_20261009/ros_replay_object_height.py \
+  /home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-02-inspection <new-replay-output>
+```
+
+Next engineering question: obtain an approved-mount grasp-distance view with a
+valid measured support reference, then validate visibility throughout real
+attachment/lift/release. Acquisition visibility alone does not certify that.
+Only after that may complete guarded controls, Isaac, full-stack resource
+calibration and original production qualification advance. Do not use fixture
+runs or replay as qualified Dev/Test A controls or M1 denominators.
+
+Evidence: `validation/lightweight_20261009/` contains source hashes, actual ROS
+graph, measurement outputs, production verdicts, component peaks and65-test log.
+Raw simulator MCAP remains external at
+`/home/gautham/coco_m1_runs/rgbd-light-20261009/`; hashes/manifests are committed.
+Root cause classification remains OPEN: observation capability implemented,
+required manipulation-phase system result NOT VERIFIED.
+
+Final review: rejected/stale frames clear association before reacquisition.
+Updated actual ROS replay verifies valid measurement, stale rejection and cleared
+association; focused suite65 passed in2.93s. Perception package rebuilt successfully.

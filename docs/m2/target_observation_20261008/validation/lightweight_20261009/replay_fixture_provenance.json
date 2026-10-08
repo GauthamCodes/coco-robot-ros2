@@ -1,0 +1,13 @@
+{
+  "source_run": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02",
+  "source_decoded": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-02-inspection",
+  "frame_index": 20,
+  "fixture": "coco_perception/test/data/real_rgbd_target.npz",
+  "sha256": "02107c9c7f32606c007e5106bcb4e708b4017a50bb0cbf2b3489871d2549ea5d",
+  "rgb": "actual decoded simulator RGB",
+  "depth": "actual decoded 32FC1 metres",
+  "intrinsics": "actual CameraInfo",
+  "transform": "composed actual recorded TF static chain",
+  "scene_height_only_post_run_comparison_m": 0.079,
+  "known_height_estimator_argument": false
+}

@@ -1,0 +1,40 @@
+[
+  {
+    "schema": "coco.object_height.v1",
+    "stamp_ns": 4000000,
+    "depth_stamp_ns": 4000000,
+    "source_frame": "",
+    "frame_id": "base_footprint",
+    "colour": "red",
+    "track_id": "",
+    "reference_id": "",
+    "valid": false,
+    "reason": "NO_TARGET_OR_SPARSE",
+    "center_m": null,
+    "support_height_m": null,
+    "center_height_above_support_m": null,
+    "uncertainty_m": null,
+    "units": "m",
+    "transform_valid": false,
+    "observation_age_s": null
+  },
+  {
+    "schema": "coco.object_height.v1",
+    "stamp_ns": 1058000000,
+    "depth_stamp_ns": 1058000000,
+    "source_frame": "",
+    "frame_id": "base_footprint",
+    "colour": "red",
+    "track_id": "",
+    "reference_id": "",
+    "valid": false,
+    "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+    "center_m": null,
+    "support_height_m": null,
+    "center_height_above_support_m": null,
+    "uncertainty_m": null,
+    "units": "m",
+    "transform_valid": false,
+    "observation_age_s": null
+  }
+]

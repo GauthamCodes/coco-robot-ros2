@@ -266,3 +266,21 @@ Replay uses identical encoding for decoded CDR and retains strict payload equali
 changing a tagged unknown to zero fails integrity validation. The fix prevents a
 raw NaN from crashing strict JSON recording. It does not repair previously
 incomplete bags/sidecars, qualify a run, or change autonomy or oracle semantics.
+
+### Lightweight RGB-D engineering fixtures
+
+`eval bootstrap --backend gazebo --profile rgbd_capture --fixture acquisition`
+launches only the existing camera, Gazebo, four-topic bridge, static robot TF and
+recorder. `--profile rgbd_observation` additionally launches the physical observer.
+Bound with `--seconds 30 --domain 82 --output <new-external-directory>`.
+Fixtures `acquisition`, `grasp_original` and `grasp_flank` are static optical
+experiments, not benchmark or physical manipulation controls. Candidate camera
+extrinsics apply only to generated fixture assets. Isaac lightweight profile is
+not implemented; unsupported backend/profile combinations refuse execution.
+
+Every run remains NON_QUALIFYING with M1 denominator eligibility false and the
+same bootstrap emergency resource/ownership/DDS/disk protections. A sensor window
+ending at its wall budget is not an episode success. See
+`docs/m2/target_observation_20261008/REPORT.md` for real-data results, explicit
+remaining gates and recorded-frame ROS observer replay commands. Engineering
+resources cannot establish full-stack production limits.

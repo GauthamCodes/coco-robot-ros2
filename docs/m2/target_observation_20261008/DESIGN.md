@@ -92,3 +92,36 @@ Final preflights also detect a newly active foreign Gazebo process (PID111827,
 domain115) and unreadable PID60465 metadata. Isaac reports the additional
 opposite-backend conflict. These new external blockers are preserved separately
 from the clean-at-entry process inventory and the independent policy cycle.
+
+## 2026-10-09 implementation checkpoint (supersedes absent-code statements above)
+
+IMPLEMENTED and TESTED: `coco_perception/object_height.py` estimates a complete
+measured cylinder from target-associated RGB-D samples. It deprojects through
+CameraInfo and image-time TF into base_footprint; fits a support plane with bounded
+NumPy Huber IRLS, a PCA cylinder axis and measured cross-section; reconstructs
+centre and support-relative height. No known target radius/height or scene pose
+is an estimator argument. A fit does not imply visibility during manipulation.
+
+Depth gates reuse 0.15–2 m sensor/acquisition limits and six-point minimum.
+Majority depth and untruncated endpoints are required. Depth outlier rejection
+uses median/MAD and projected pixel resolution. Work is bounded to 2,048 samples
+and ten IRLS iterations. Timestamp freshness uses the existing 0.2 s convention;
+exact RGB/depth pairing avoids an unmeasured motion/skew assumption. Geometry
+uncertainty combines pixel footprint, measured residuals and endpoint sampling.
+The 5 mm rejection budget is one quarter of the existing 20 mm release tolerance,
+not a measured production accuracy calibration. Ambiguous gravity/support,
+occluded ends, changing target/support association and invalid TF fail closed.
+
+`object_height_node.py` reuses colour_mask, requires one associated component,
+publishes explicit invalid updates, and retains source timestamps. Shared
+`coco_config/object_observation.py` validates the contract again at manipulation.
+The consumer captures a valid measured baseline before attachment; later lift
+requires a newer same-track/support sample and subtracts both uncertainty bounds
+before applying the unchanged 30 mm rise gate. Release uses the unchanged 20 mm
+tolerance with uncertainty included. There is no None-to-height fallback.
+
+Runtime boundary: the engineering acquisition fixture produced usable real RGB-D;
+the actual ROS publisher accepted its recorded frame and rejected stale replay.
+Live Gazebo+observer startup aborted at the unchanged RAM reserve. Flank target
+visibility exists in a partial capture but its support fit is rejected. No
+production remount or full grasp/lift/release visibility is certified.

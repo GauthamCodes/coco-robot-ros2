@@ -49,7 +49,7 @@ for argv in (['ros2','node','list','--no-daemon'],['ros2','node','info','/object
  q=subprocess.run(argv,capture_output=True,text=True,timeout=5);graph.append(dict(argv=argv,returncode=q.returncode,stdout=q.stdout,stderr=q.stderr))
 c=Clock();new=f['rgb_stamp_ns']+300_000_000;c.clock.sec=new//10**9;c.clock.nanosec=new%10**9;clock.publish(c)
 for _ in range(40):executor.spin_once(timeout_sec=.02)
-result=dict(execution_class='NON_QUALIFYING_ENGINEERING_REPLAY',simulator=False,source=str(a.inspection),original_sensor_timestamps=True,outputs=outputs,ros_graph=graph,valid_count=sum(o['valid'] for o in outputs),stale_rejection=any(o['reason']=='STALE_OR_UNAVAILABLE' and o['stamp_ns']==f['rgb_stamp_ns'] for o in outputs))
+result=dict(execution_class='NON_QUALIFYING_ENGINEERING_REPLAY',simulator=False,source=str(a.inspection),original_sensor_timestamps=True,outputs=outputs,ros_graph=graph,association_cleared=observer.previous is None,valid_count=sum(o['valid'] for o in outputs),stale_rejection=any(o['reason']=='STALE_OR_UNAVAILABLE' and o['stamp_ns']==f['rgb_stamp_ns'] for o in outputs))
 (a.output/'result.json').write_text(json.dumps(result,indent=2,allow_nan=False));print(json.dumps({k:v for k,v in result.items() if k not in ('outputs','ros_graph')}))
 executor.shutdown();observer.destroy_node();source.destroy_node();rclpy.shutdown()
-assert result['valid_count']>0 and result['stale_rejection'],result
+assert result['valid_count']>0 and result['stale_rejection'] and result['association_cleared'],result

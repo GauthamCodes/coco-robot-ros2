@@ -70,3 +70,16 @@ def test_transform_is_orthonormal_and_invalid_quaternion_rejected():
     m=transform_matrix([1,2,3],[0,0,0,1])
     assert np.allclose(m,np.array([[1,0,0,1],[0,1,0,2],[0,0,1,3],[0,0,0,1]]))
     with pytest.raises(ValueError):transform_matrix([0,0,0],[0,0,0,0])
+
+
+def test_stale_publisher_invalidates_association_before_reacquisition():
+    from types import SimpleNamespace
+    from coco_perception.object_height_node import ObjectHeightNode
+    published=[]
+    fake=SimpleNamespace(last_stamp=1_000_000_000,colour='red',previous={'track_id':'old'},
+        get_clock=lambda:SimpleNamespace(now=lambda:SimpleNamespace(nanoseconds=1_300_000_000)),
+        _publish=published.append)
+    ObjectHeightNode._freshness(fake)
+    assert fake.previous is None
+    assert published[-1]['reason']=='STALE_OR_UNAVAILABLE'
+    assert not published[-1]['valid']

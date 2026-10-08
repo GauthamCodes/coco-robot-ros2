@@ -47,6 +47,7 @@ class ObjectHeightNode(AutonomyNode):
     def _freshness(self):
         now=self.get_clock().now().nanoseconds
         if not self.last_stamp or (now-self.last_stamp)/1e9>MAX_AGE_S:
+            self.previous=None
             self._publish(invalid('STALE_OR_UNAVAILABLE',stamp_ns=self.last_stamp,colour=self.colour))
 
     def _try(self,source_stamp):
@@ -54,7 +55,9 @@ class ObjectHeightNode(AutonomyNode):
         if source_stamp not in self.images or source_stamp not in self.depths:return
         self.last_stamp=source_stamp
         rgb=self.images[source_stamp];depth=self.depths[source_stamp]
-        def reject(reason):self._publish(invalid(reason,stamp_ns=source_stamp,depth_stamp_ns=stamp(depth),colour=self.colour))
+        def reject(reason):
+            self.previous=None
+            self._publish(invalid(reason,stamp_ns=source_stamp,depth_stamp_ns=stamp(depth),colour=self.colour))
         if self.info is None or self.info.header.frame_id!=rgb.header.frame_id:return reject('CAMERA_INFO_UNAVAILABLE')
         if self.info.width!=rgb.width or self.info.height!=rgb.height:return reject('CAMERA_INFO_MISMATCH')
         try:

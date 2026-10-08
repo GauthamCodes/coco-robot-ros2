@@ -10,9 +10,8 @@ from cv_bridge import CvBridge
 from sensor_msgs.msg import Image,CameraInfo
 from std_msgs.msg import String
 from tf2_ros import Buffer,TransformListener
-from scipy.spatial.transform import Rotation
 from coco_config.ros_boundary import AutonomyNode
-from .object_height import invalid,estimate_object_height,MAX_AGE_S
+from .object_height import invalid,estimate_object_height,MAX_AGE_S,transform_matrix
 from .target_finder import colour_mask,MIN_BLOB_PX
 
 
@@ -71,7 +70,7 @@ class ObjectHeightNode(AutonomyNode):
             tf_stamp=tf.header.stamp.sec*10**9+tf.header.stamp.nanosec
             if tf_stamp and abs(source_stamp-tf_stamp)/1e9>MAX_AGE_S:return reject('TF_STALE')
             q=tf.transform.rotation;t=tf.transform.translation
-            matrix=np.eye(4);matrix[:3,:3]=Rotation.from_quat([q.x,q.y,q.z,q.w]).as_matrix();matrix[:3,3]=[t.x,t.y,t.z]
+            matrix=transform_matrix([t.x,t.y,t.z],[q.x,q.y,q.z,q.w])
             if self.previous is None:self.track+=1;self.reference+=1
             o=estimate_object_height(labels==candidates[0],values,np.array(self.info.k).reshape(3,3),matrix,
                 stamp_ns=source_stamp,depth_stamp_ns=stamp(depth),now_ns=self.get_clock().now().nanoseconds,
@@ -100,7 +99,9 @@ class ObjectHeightNode(AutonomyNode):
 def main(args=None):
     rclpy.init(args=args);node=ObjectHeightNode()
     try:rclpy.spin(node)
-    except KeyboardInterrupt:pass
-    finally:node.destroy_node();rclpy.shutdown()
+    except (KeyboardInterrupt,rclpy.executors.ExternalShutdownException):pass
+    finally:
+        if rclpy.ok():
+            node.destroy_node();rclpy.shutdown()
 
 if __name__=='__main__':main()

@@ -63,3 +63,10 @@ def test_consumer_rechecks_frame_identity_age_and_geometry():
         changed=dict(o);changed[key]=value
         assert guarded_height(changed,now_ns=a['now_ns'],colour='red') is None
     assert guarded_height(o,now_ns=a['now_ns']+300_000_000,colour='red') is None
+
+
+def test_transform_is_orthonormal_and_invalid_quaternion_rejected():
+    from coco_perception.object_height import transform_matrix
+    m=transform_matrix([1,2,3],[0,0,0,1])
+    assert np.allclose(m,np.array([[1,0,0,1],[0,1,0,2],[0,0,1,3],[0,0,0,1]]))
+    with pytest.raises(ValueError):transform_matrix([0,0,0],[0,0,0,0])

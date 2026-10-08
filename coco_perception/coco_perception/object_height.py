@@ -70,10 +70,20 @@ def estimate_object_height(mask,depth,k,transform,*,stamp_ns,depth_stamp_ns,now_
     support &= ~mask & np.isfinite(depth) & (depth>=.15)&(depth<=2.)
     ground=cloud(depth,k,transform,support)
     if len(ground)<MIN_POINTS:return reject('SUPPORT_UNAVAILABLE')
-    from scipy.optimize import least_squares
     ground=ground[::max(1,math.ceil(len(ground)/MAX_POINTS))]
-    plane=least_squares(lambda abc:ground[:,2]-np.column_stack((ground[:,:2],np.ones(len(ground))))@abc,
-                        [0,0,float(np.median(ground[:,2]))],loss='soft_l1',f_scale=pixel).x
+    design=np.column_stack((ground[:,:2],np.ones(len(ground))))
+    if np.linalg.matrix_rank(design)<3:return reject('SUPPORT_UNOBSERVABLE')
+    plane=np.linalg.lstsq(design,ground[:,2],rcond=None)[0]
+    # Bounded Huber IRLS; f-scale is measured pixel quantization, not a
+    # guessed physical threshold. No heavyweight optimizer runtime needed.
+    for _ in range(10):
+        residual=ground[:,2]-design@plane
+        weights=np.minimum(1.,pixel/np.maximum(np.abs(residual),np.finfo(float).eps))
+        weighted=np.sqrt(weights)
+        update=np.linalg.lstsq(design*weighted[:,None],ground[:,2]*weighted,rcond=None)[0]
+        if np.linalg.norm(update-plane)<np.finfo(float).eps*100:
+            plane=update;break
+        plane=update
     plane_residual=np.abs(ground[:,2]-np.column_stack((ground[:,:2],np.ones(len(ground))))@plane)
     plane_error=float(np.quantile(plane_residual,.95))
     for row in (min(v)-1,max(v)+1):
@@ -125,3 +135,16 @@ def estimate_object_height(mask,depth,k,transform,*,stamp_ns,depth_stamp_ns,now_
         support_plane=plane.tolist(),geometry_model='complete measured cylinder')
     return result
 
+
+
+def transform_matrix(translation,quaternion):
+    """REP-103 rigid transform, quaternion XYZW, no simulator frame inputs."""
+    x,y,z,w=quaternion
+    if not all(math.isfinite(v) for v in (*translation,x,y,z,w)) or not math.isclose(x*x+y*y+z*z+w*w,1.,abs_tol=1e-6):
+        raise ValueError('Invalid transform quaternion')
+    matrix=np.eye(4)
+    matrix[:3,:3]=[[1-2*(y*y+z*z),2*(x*y-z*w),2*(x*z+y*w)],
+                  [2*(x*y+z*w),1-2*(x*x+z*z),2*(y*z-x*w)],
+                  [2*(x*z-y*w),2*(y*z+x*w),1-2*(x*x+y*y)]]
+    matrix[:3,3]=translation
+    return matrix

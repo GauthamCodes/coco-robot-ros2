@@ -824,3 +824,10 @@ Invalid, stale, ambiguous, occluded and changed reference fail closed. No fallba
 known object-height input, simulator truth or production extrinsic change.
 41 focused local perception/manipulation tests pass;3 affected packages build.
 Live observer and mandatory grasp/lift/release visibility still pending.
+
+First live observer fixture hits unchanged RAM reserve during startup, before
+settled visibility. Measured observer RSS204,357,632 bytes versus recorder84,889,600,
+Gazebo839,200,768. Removed unnecessary heavyweight SciPy optimizer/rotation imports
+from observer execution, using bounded NumPy Huber IRLS and tested rigid-quaternion
+matrix instead; estimator thresholds/contract unchanged.42 focused tests pass.
+Next experiment specifically measures live estimator and reduced observer RSS.

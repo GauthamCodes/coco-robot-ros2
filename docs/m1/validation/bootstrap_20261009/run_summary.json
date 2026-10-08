@@ -1,0 +1,53 @@
+{
+  "source_sha": "f85c8184458ca436949bf374794c65bfba8b39a9",
+  "execution_class": "NON_QUALIFYING",
+  "state": "ABORTED_BOOTSTRAP_RESOURCE_LIMIT",
+  "qualified": false,
+  "m1_denominator_eligible": false,
+  "reasons": [
+    "max_load1: observed 14.54638671875, required 12",
+    "min_ram_available_bytes: observed 8010498048, required 8229273600"
+  ],
+  "wall_time_s": 27.278593910999916,
+  "bag_hash": {
+    "sha256": "148457aad00f72d7da6f56c1417f3a7afc7bfa3df21e840d042d1173ac300eeb",
+    "files": {
+      "bag_0.mcap": "0e4627312580448a2ec1997b8208a21bfa647e03c81283bfa24784f858fad93d",
+      "metadata.yaml": "3c691da4dcdd0a56d1e8cca6a02f404d51c412f2068464dfbe973d1f81345910"
+    },
+    "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+  },
+  "owned_identity_count": 50,
+  "teardown_survivors": [],
+  "teardown_errors": [],
+  "bootstrap_preflight": {
+    "gazebo": "SAFE_BOOTSTRAP_PREFLIGHT_ONLY",
+    "isaac": "SAFE_BOOTSTRAP_PREFLIGHT_ONLY"
+  },
+  "production_preflight_after": {
+    "gazebo": {
+      "qualified": false,
+      "reasons": [
+        "gazebo/preflight: uncalibrated requirement min_ram_available_bytes",
+        "gazebo/preflight: uncalibrated requirement min_vram_free_bytes"
+      ],
+      "backend": "gazebo",
+      "phase": "preflight",
+      "evaluation_domain": 82,
+      "process_classifications": []
+    },
+    "isaac": {
+      "qualified": false,
+      "reasons": [
+        "isaac/preflight: uncalibrated requirement min_ram_available_bytes",
+        "isaac/preflight: uncalibrated requirement min_vram_free_bytes"
+      ],
+      "backend": "isaac",
+      "phase": "preflight",
+      "evaluation_domain": 82,
+      "process_classifications": []
+    }
+  },
+  "runtime_fix_verified": false,
+  "full_stack_resource_envelope": false
+}

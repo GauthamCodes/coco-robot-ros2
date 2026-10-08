@@ -1,0 +1,41 @@
+{
+  "qualified": false,
+  "execution_class": "NON_QUALIFYING",
+  "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+  "sample_count": 8,
+  "extrema": {
+    "cpu_percent": {
+      "min": 13.087248322147648,
+      "max": 99.91503823279524
+    },
+    "load1": {
+      "min": 6.14990234375,
+      "max": 14.54638671875
+    },
+    "ram_used_bytes": {
+      "min": 7698272256,
+      "max": 8448049152
+    },
+    "ram_available_bytes": {
+      "min": 8010498048,
+      "max": 8760274944
+    },
+    "vram_used_bytes": {
+      "min": 866123776,
+      "max": 953155584
+    },
+    "vram_free_bytes": {
+      "min": 5486149632,
+      "max": 5573181440
+    },
+    "evidence_bytes": {
+      "min": 200916,
+      "max": 1648701
+    },
+    "disk_free_bytes": {
+      "min": 15874551808,
+      "max": 15881072640
+    }
+  },
+  "full_stack_envelope_verified": false
+}

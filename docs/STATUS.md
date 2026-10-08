@@ -769,3 +769,13 @@ exception.41 focused local tests pass;1 simulator-free real ROS/CDR/MCAP test
 passes, including corrupted zero-substitution rejection. Runtime fix not rerun.
 Fresh post-teardown production preflights reject only null RAM/VRAM, no process
 or DDS errors.19 calibration dependencies remain; smoke0/4, M1.8=0/140.
+
+Committed runtime evidence/decoded sensor previews:
+`m1/validation/bootstrap_20261009/REPORT.md`, `run_summary.json`,
+`startup_resource_summary.json`, `safety_envelope.json`, `external_evidence.json`,
+`m2/target_observation_20261009/REPORT.md`, `sensor_inspection.json`,
+`inspect_sensor_bag.py` and PNG previews. Actual raw capture is startup-only;
+original trace remains incomplete from NaN failure. Neither sensor visibility
+nor observer/system fix is claimed. Resource abort stops further launches;
+next human action is quieter host/additional background headroom or an explicitly
+reviewed engineering resource policy. Production remains fail-closed and separate.

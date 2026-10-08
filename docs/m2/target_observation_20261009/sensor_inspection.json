@@ -1,0 +1,307 @@
+{
+  "execution_class": "NON_QUALIFYING",
+  "qualified": false,
+  "topic_counts": {
+    "/eval/graph": 15,
+    "/eval/tf": 15,
+    "/eval/trace_health": 15,
+    "/rosout": 278,
+    "/tf_static": 1,
+    "/bt_navigator/transition_event": 4,
+    "/clock": 16,
+    "/eval/nav2/lifecycle": 10,
+    "/cmd_vel_arbiter/status": 6,
+    "/controller_server/transition_event": 1,
+    "/mission/mode": 1,
+    "/mission/state": 1,
+    "/mission/target_colour": 1,
+    "/diagnostics/mission_callbacks": 2,
+    "/planner_server/transition_event": 2,
+    "/imu": 14,
+    "/camera/camera_info": 4,
+    "/camera/depth/image_raw": 3,
+    "/camera/image_raw": 3,
+    "/tf": 10,
+    "/diff_drive_controller/odom": 10,
+    "/joint_states": 1
+  },
+  "frames": [
+    {
+      "rgb_stamp_ns": 6000000,
+      "depth_stamp_ns": 6000000,
+      "skew_ns": 0,
+      "pairing_valid": true,
+      "frame": "camera_optical_frame",
+      "depth_frame": "camera_optical_frame",
+      "camera_info": {
+        "stamp_ns": 6000000,
+        "frame": "camera_optical_frame",
+        "width": 320,
+        "height": 240,
+        "k": [
+          221.76500407999384,
+          0.0,
+          160.0,
+          0.0,
+          221.76500407999382,
+          120.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "finite_depth_fraction": 0.6919010416666667,
+      "sensor_valid_depth_fraction": 0.6919010416666667,
+      "colour_regions": {
+        "red": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "green": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "blue": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "yellow": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        }
+      },
+      "required_phase": "STARTUP_ONLY; manipulation phases not reached",
+      "geometry_reason": "NO_ASSOCIATED_TARGET_GEOMETRY"
+    },
+    {
+      "rgb_stamp_ns": 66000000,
+      "depth_stamp_ns": 6000000,
+      "skew_ns": 60000000,
+      "pairing_valid": true,
+      "frame": "camera_optical_frame",
+      "depth_frame": "camera_optical_frame",
+      "camera_info": {
+        "stamp_ns": 66000000,
+        "frame": "camera_optical_frame",
+        "width": 320,
+        "height": 240,
+        "k": [
+          221.76500407999384,
+          0.0,
+          160.0,
+          0.0,
+          221.76500407999382,
+          120.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "finite_depth_fraction": 0.6919010416666667,
+      "sensor_valid_depth_fraction": 0.6919010416666667,
+      "colour_regions": {
+        "red": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "green": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "blue": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "yellow": {
+          "mask_pixels": 2,
+          "bbox_xyxy_px": [
+            150,
+            93,
+            150,
+            94
+          ],
+          "accepted_depth_points": 0,
+          "valid_fraction": 0.0,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        }
+      },
+      "required_phase": "STARTUP_ONLY; manipulation phases not reached",
+      "geometry_reason": "NO_ASSOCIATED_TARGET_GEOMETRY"
+    },
+    {
+      "rgb_stamp_ns": 660000000,
+      "depth_stamp_ns": 200000000,
+      "skew_ns": 460000000,
+      "pairing_valid": false,
+      "frame": "camera_optical_frame",
+      "depth_frame": "camera_optical_frame",
+      "camera_info": {
+        "stamp_ns": 794000000,
+        "frame": "camera_optical_frame",
+        "width": 320,
+        "height": 240,
+        "k": [
+          221.76500407999384,
+          0.0,
+          160.0,
+          0.0,
+          221.76500407999382,
+          120.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "finite_depth_fraction": 0.7174869791666667,
+      "sensor_valid_depth_fraction": 0.6201432291666666,
+      "colour_regions": {
+        "red": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "green": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "blue": {
+          "mask_pixels": 0,
+          "bbox_xyxy_px": null,
+          "accepted_depth_points": 0,
+          "valid_fraction": null,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        },
+        "yellow": {
+          "mask_pixels": 1,
+          "bbox_xyxy_px": [
+            150,
+            91,
+            150,
+            91
+          ],
+          "accepted_depth_points": 0,
+          "valid_fraction": 0.0,
+          "median_depth_m": null,
+          "near_plane_points": 0,
+          "below_acquisition_min_points": 0,
+          "physical_identity_verified": false,
+          "physical_geometry_available": false
+        }
+      },
+      "required_phase": "STARTUP_ONLY; manipulation phases not reached",
+      "geometry_reason": "NO_ASSOCIATED_TARGET_GEOMETRY"
+    }
+  ],
+  "nonfinite_message_fields": [
+    {
+      "topic": "/joint_states",
+      "receipt_ns": 1832000000,
+      "fields": [
+        {
+          "path": "/effort/0",
+          "value": "nan"
+        },
+        {
+          "path": "/effort/1",
+          "value": "nan"
+        },
+        {
+          "path": "/effort/2",
+          "value": "nan"
+        },
+        {
+          "path": "/effort/3",
+          "value": "nan"
+        },
+        {
+          "path": "/effort/4",
+          "value": "nan"
+        },
+        {
+          "path": "/effort/5",
+          "value": "nan"
+        },
+        {
+          "path": "/effort/6",
+          "value": "nan"
+        },
+        {
+          "path": "/effort/7",
+          "value": "nan"
+        }
+      ]
+    }
+  ],
+  "ground_truth_inputs_used": false,
+  "limitation": "Startup-only aborted run; colour masks do not certify physical identity or mandatory phase visibility"
+}

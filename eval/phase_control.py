@@ -35,7 +35,8 @@ class Control(AutonomyNode):
         if self.validator.phase:
             self.records.append(self.validator.record(self.observation,self.get_clock().now().nanoseconds))
     def state(self,msg):
-        self.status=dict(item.split("=",1) for item in msg.data.split() if "=" in item)
+        import re
+        self.status={key:value.strip() for key,value in re.findall(r"(\w+)=(.*?)(?= \w+=|$)",msg.data)}
         stage=self.status.get("phase","")
         if stage.startswith("pick:"):
             if stage in ("pick:raise","pick:confirm","pick:carry"):self.phase("lift")
@@ -55,7 +56,7 @@ class Control(AutonomyNode):
         if not self.controller_future.done():return False
         result=self.controller_future.result();self.controller_future=None
         active={c.name for c in result.controller if c.state=="active"}
-        return {"arm_controller","gripper_controller","joint_state_broadcaster"}<=active
+        return {"arm_controller","gripper_controller","joint_state_broadcaster","diff_drive_controller"}<=active
     def request(self,name):
         if not self.wait(self.controllers_active,30):return dict(error="CONTROLLERS_NOT_ACTIVE",command=name)
         client=self.command_clients[name]

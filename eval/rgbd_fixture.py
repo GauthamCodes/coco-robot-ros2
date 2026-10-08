@@ -102,7 +102,8 @@ def main():
             .planning_pipelines(pipelines=["ompl"]).to_moveit_configs()).to_dict()
         extra="\n".join([
             f"Node(package='controller_manager',executable='spawner',arguments=[{controller!r},'--controller-manager-timeout','120']),"
-            for controller in ("joint_state_broadcaster","arm_controller","gripper_controller")])
+            for controller in ("joint_state_broadcaster","diff_drive_controller","arm_controller","gripper_controller")])
+        extra+="Node(package='custom_teleop',executable='cmd_vel_arbiter',parameters=[{'use_sim_time':True}]),"
         extra+=f"Node(package='moveit_ros_move_group',executable='move_group',parameters=[{config!r},{{'use_sim_time':True}}]),"
         extra+="Node(package='gazebo_models',executable='magnet_release.py',arguments=['--models','target_red']),"
         extra+="Node(package='coco_perception',executable='target_finder',parameters=[{'use_sim_time':True,'target_colour':'red'}]),"

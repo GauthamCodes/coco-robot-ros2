@@ -17,6 +17,11 @@ class Control(AutonomyNode):
     def __init__(self, root):
         super().__init__("observation_phase_control",parameter_overrides=[Parameter("use_sim_time",value=True)])
         self.root=root;self.status={};self.observation=None;self.events=[]
+        self.mode="idle";self.approach_status={}
+        self.mode_pub=self.create_publisher(String,"/mission/mode",10)
+        self.create_timer(.2,lambda:self.mode_pub.publish(String(data=self.mode)))
+        self.create_subscription(String,"/approach/status",self.approach_state,10)
+        self.approach_client=self.create_client(Trigger,"/approach/run")
         self.validator=PhaseValidator("red");self.records=[]
         self.create_subscription(String,"/perception/object_height",self.observe,10)
         self.create_subscription(String,"/grasp/status",self.state,10)
@@ -48,6 +53,22 @@ class Control(AutonomyNode):
             rclpy.spin_once(self,timeout_sec=.05)
             if predicate():return True
         return False
+    def approach_state(self,msg):
+        import re
+        self.approach_status={key:value.strip() for key,value in re.findall(r"(\w+)=(.*?)(?= \w+=|$)",msg.data)}
+    def approach(self):
+        if not self.wait(lambda:self.approach_client.service_is_ready(),30):return dict(error="APPROACH_SERVICE_UNAVAILABLE")
+        self.phase("approach");self.mode="approach"
+        self.mode_pub.publish(String(data=self.mode));self.approach_status={}
+        future=self.approach_client.call_async(Trigger.Request())
+        try:
+            if not self.wait(future.done,5):return dict(error="APPROACH_REPLY_TIMEOUT")
+            response=future.result()
+            if not response.success:return dict(error="APPROACH_REJECTED",message=response.message)
+            complete=self.wait(lambda:self.approach_status.get("phase")=="idle" and self.approach_status.get("outcome") not in (None,"--"),100)
+            return dict(command="approach",completed=complete,status=self.approach_status)
+        finally:
+            self.mode="idle";self.mode_pub.publish(String(data=self.mode))
     def controllers_active(self):
         if not self.controller_client.service_is_ready():return False
         if self.controller_future is None:
@@ -79,9 +100,11 @@ if __name__=="__main__":
             def enough():
                 return sum(r["contract_valid"] for r in node.records if r["phase"]=="baseline")>=5
             if node.wait(enough,20):
-                node.phase("approach");result=node.request("pick");results.append(result)
-                if result.get("status",{}).get("outcome")=="held":
-                    node.phase("release");results.append(node.request("place"))
+                result=node.approach();results.append(result)
+                if result.get("status",{}).get("outcome")=="arrived":
+                    result=node.request("pick");results.append(result)
+                    if result.get("status",{}).get("outcome")=="held":
+                        node.phase("release");results.append(node.request("place"))
             else:results.append(dict(error="BASELINE_NOT_CERTIFIED"))
     finally:
         (root/"control_result.json").write_text(json.dumps(dict(execution_class="NON_QUALIFYING",ground_truth_inputs=False,results=results,phase_events=node.events,records=node.records),indent=2,allow_nan=False))

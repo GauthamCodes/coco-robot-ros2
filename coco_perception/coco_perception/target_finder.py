@@ -407,6 +407,8 @@ class TargetFinder(Node):
         self.intrinsics = camera_intrinsics()
         self.have_info = False
         self.bridge = CvBridge()
+        from tf2_ros import Buffer,TransformListener
+        self.camera_tf=Buffer();self.camera_listener=TransformListener(self.camera_tf,self)
         self._depth = {}           # stamp_ns -> depth image
         self._status = format_status(sel=self.selected, found=0)
 
@@ -512,7 +514,19 @@ class TargetFinder(Node):
 
         seen = [colour for colour in TARGET_COLOURS
                 if blob_stats(colour_mask(hsv, colour))[0]]
-        found = self._locate(hsv, depth, self.selected)
+        found = None
+        try:
+            from rclpy.time import Time
+            from .object_height import transform_matrix
+            tf=self.camera_tf.lookup_transform("base_footprint",msg.header.frame_id,Time(nanoseconds=stamp_ns))
+            source_tf_ns=tf.header.stamp.sec*10**9+tf.header.stamp.nanosec
+            if source_tf_ns and abs(stamp_ns-source_tf_ns)>200_000_000:raise ValueError("TF_STALE")
+            q=tf.transform.rotation;t=tf.transform.translation
+            transform=transform_matrix([t.x,t.y,t.z],[q.x,q.y,q.z,q.w])
+            found = self._locate(hsv, depth, self.selected, transform=transform)
+        except Exception:
+            # Unavailable image-time geometry cannot use configured extrinsics.
+            pass
 
         if found is None:
             # `seen` IS the wrong-lane signal: arriving one lane over
@@ -537,7 +551,7 @@ class TargetFinder(Node):
              'VALID' if found else 'NOT_SELECTED', key)
 
     # ── the actual measurement ───────────────────────────────────────────
-    def _locate(self, hsv, depth, colour):
+    def _locate(self, hsv, depth, colour, transform=None):
         """Best blob of `colour` as (blob, range, point), or None."""
         target = target_by_colour(colour)
         if target is None or depth is None:
@@ -560,7 +574,9 @@ class TargetFinder(Node):
             if not plausible_blob(width, target.diameter, rng, fx,
                                   self.width_tolerance):
                 continue
-            point = optical_to_base(*deproject(u, v, rng, fx, fy, cx, cy))
+            optical=deproject(u,v,rng,fx,fy,cx,cy)
+            point=(optical_to_base(*optical) if transform is None else
+                   tuple(transform[:3,:3]@np.asarray(optical)+transform[:3,3]))
             return blob, rng, point
         return None
 

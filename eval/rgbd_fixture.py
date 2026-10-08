@@ -107,7 +107,8 @@ def main():
         extra+=f"Node(package='moveit_ros_move_group',executable='move_group',parameters=[{config!r},{{'use_sim_time':True}}]),"
         extra+="Node(package='gazebo_models',executable='magnet_release.py',arguments=['--models','target_red']),"
         extra+="Node(package='coco_perception',executable='target_finder',parameters=[{'use_sim_time':True,'target_colour':'red'}]),"
-        extra+="Node(package='coco_moveit_config',executable='grasp_server.py',parameters=[{'use_sim_time':True,'target_colour':'red','simulator':'gazebo','approach_topic':'/perception/target'}]),"
+        extra+="Node(package='custom_teleop',executable='approach_server',parameters=[{'use_sim_time':True,'target_colour':'red'}]),"
+        extra+="Node(package='coco_moveit_config',executable='grasp_server.py',parameters=[{'use_sim_time':True,'target_colour':'red','simulator':'gazebo'}]),"
         driver_definition=f"phase_process=ExecuteProcess(cmd=['python3',{str(REPO/'eval/phase_control.py')!r},{str(root)!r}])"
         extra+="phase_process,RegisterEventHandler(OnProcessExit(target_action=phase_process,on_exit=[EmitEvent(event=Shutdown(reason='phase control finished'))])),"
     launch=f'''from launch import LaunchDescription

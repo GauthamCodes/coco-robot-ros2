@@ -83,3 +83,20 @@ def test_stale_publisher_invalidates_association_before_reacquisition():
     assert fake.previous is None
     assert published[-1]['reason']=='STALE_OR_UNAVAILABLE'
     assert not published[-1]['valid']
+
+def test_target_position_uses_explicit_image_time_transform():
+    from types import SimpleNamespace
+    from coco_perception.target_finder import TargetFinder
+    a=fixture();k=a["k"]
+    # Real sensor pixels, identical colour/size/range gates; only source TF differs.
+    import cv2
+    f=np.load(Path(__file__).parent/"data/real_rgbd_target.npz")
+    hsv=cv2.cvtColor(f["rgb"],cv2.COLOR_BGR2HSV)
+    fake=SimpleNamespace(intrinsics=(k[0,0],k[1,1],k[0,2],k[1,2]),
+                         min_range=.15,max_range=2.,width_tolerance=.5)
+    transform=np.eye(4)
+    first=TargetFinder._locate(fake,hsv,a["depth"],"red",transform=transform)
+    transform[:3,3]=[.4,.3,.25]
+    second=TargetFinder._locate(fake,hsv,a["depth"],"red",transform=transform)
+    assert first is not None and second is not None
+    assert np.allclose(np.asarray(second[2])-first[2],[.4,.3,.25])

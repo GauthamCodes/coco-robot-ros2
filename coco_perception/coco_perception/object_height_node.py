@@ -40,7 +40,7 @@ class ObjectHeightNode(AutonomyNode):
     def _info(self,msg):self.info=msg
     def _cache(self,cache,msg):
         cache[stamp(msg)]=msg
-        while len(cache)>5:cache.popitem(last=False)
+        while len(cache)>2:cache.popitem(last=False)
         self._try(stamp(msg))
     def _depth(self,msg):self._cache(self.depths,msg)
     def _image(self,msg):self._cache(self.images,msg)
@@ -54,7 +54,10 @@ class ObjectHeightNode(AutonomyNode):
         if source_stamp<=self.last_stamp:return
         if source_stamp not in self.images or source_stamp not in self.depths:return
         self.last_stamp=source_stamp
-        rgb=self.images[source_stamp];depth=self.depths[source_stamp]
+        rgb=self.images.pop(source_stamp);depth=self.depths.pop(source_stamp)
+        for cache in (self.images,self.depths):
+            for old in list(cache):
+                if old<=source_stamp:del cache[old]
         def reject(reason):
             self.previous=None
             self._publish(invalid(reason,stamp_ns=source_stamp,depth_stamp_ns=stamp(depth),colour=self.colour))

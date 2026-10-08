@@ -690,3 +690,28 @@ UID1000 ssh-agent). Neither was signalled or allowlisted. Entry inventories rema
 preserved and were clear of these rejections. Both final backend preflights still
 reject null RAM/VRAM requirements as an independent policy gate. Evidence:
 `m2/target_observation_20261008/validation/preflight-final-*.json`.
+
+## 2026-10-08 — Separate NON_QUALIFYING bootstrap implementation
+
+Input `7071727674ff7c375d05a61c831600bdca8a91ee`, expected branch and clean
+entry. Master Plan copies byte-identical; neither changed. Milestone M1,
+checkpoint M1.1 engineering bootstrap plus authorized RGB-D prerequisite;
+advances safe full-stack engineering execution without counting it as M1.
+
+Implemented separate `eval bootstrap` with explicit NON_QUALIFYING manifest,
+Dev5-only bounded execution, no production registration/validation path, unchanged
+foreign-process/DDS checks, inventory-derived conservative RAM/VRAM emergency
+reserves, original load/disk protection,1Hz monitoring, owned process sessions
+and teardown. Camera MCAP capture extends existing recorder process locally;
+production topic contract stays unchanged. Production null limits remain null.
+No autonomy/manipulation/safety semantics, benchmark or seed definitions changed.
+Focused bootstrap/qualification regressions pass locally; runtime NOT VERIFIED.
+
+Foreign Gazebo PID111827/start2051123/domain115 remains active, cwd
+`/home/gautham/ros2_ws`; unrelated to this runner. Metadata-denied PID60465 is
+read-only identified as UID1000 GNOME-keyring ssh-agent; no permission-based
+classification exemption or kill authority inferred. Stop condition7 applies
+until the owner releases the simulator and unreadable metadata is resolved.
+Bootstrap capability is safe progress; sensor visibility/observer/consumer remain
+NOT VERIFIED/NOT IMPLEMENTED and are not fabricated before the rendered gate.
+19 calibration dependencies unresolved; smoke0/4, M1.8=0/140.

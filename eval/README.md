@@ -203,3 +203,55 @@ measurement; current calibration requires oracle-PASS Dev controls, unavailable
 under the frozen fail-closed grasp; nine catalog witnesses remain incomplete.
 Do not treat these replay commands or partial resource measurements as smoke
 validation, baseline authorization, or a zero-engineering runtime handoff.
+
+## NON_QUALIFYING engineering bootstrap (2026-10-08)
+
+`eval bootstrap` is a separate bounded engineering command. It never calls
+`run_batch`, registers no campaign and writes no production validation artifact.
+Every manifest and preflight verdict has `qualified=false`,
+`execution_class=NON_QUALIFYING`, `m1_denominator_eligible=false`,
+`satisfies_m1_8=false`. It uses Dev5 only; no Test A/reserve/seed override exists.
+A successful bootstrap is never a qualified control, smoke job or M1.8 result.
+The unchanged calibration module rejects it even if the oracle reports PASS.
+
+Start from the explicit sourced overlay above and a committed clean worktree:
+
+```bash
+./eval/bin/eval bootstrap --backend gazebo --seconds 120 --domain 82 \
+  --output /home/gautham/coco_m1_runs/NEW/bootstrap-gazebo
+./eval/bin/eval bootstrap --backend isaac --seconds 120 --domain 82 \
+  --output /home/gautham/coco_m1_runs/NEW/bootstrap-isaac
+```
+
+Use `--preflight-only` for a read-only safety check. Output directories are
+exclusive: retry with a new path, preserving blocked/failed evidence. Never run
+backends concurrently. The command refuses any foreign robotics process,
+unknown process metadata, opposite backend or unowned DDS segment using the
+unchanged production process checks. It requires Jazzy, explicit loopback
+CycloneDDS/Gazebo and a sourced overlay. No foreign PID is signalled.
+
+Emergency reserves are derived from inventory: half physical RAM (or 16 times
+kernel min_free_kbytes if larger), one third physical VRAM, and load no higher
+than logical CPU count or the committed load ceiling. These conservative budgets
+reserve capacity for the OS/background applications; they are not measured
+simulator requirements. Stricter committed limits still win. Production resource
+requirements remain untouched/null. The original 1GiB run/8GiB root budgets and
+2GiB disk reserve apply. CPU, load, RAM, VRAM, disk and clock-derived RTF are
+sampled at1Hz, including recorder startup. A resource violation stops owned
+workload and records `ABORTED_BOOTSTRAP_RESOURCE_LIMIT`. Allocation spikes
+between samples cannot be prevented by a userspace watchdog; no kernel quota or
+proof of hardware suitability is claimed. Wall duration is bounded to600s.
+
+Existing MCAP recorder and unchanged episode/teardown scripts are reused.
+`bootstrap_recorder.py` extends capture only inside its own process with real
+RGB/depth/CameraInfo at1Hz; production `topics.py` stays unchanged. Existing TF,
+candidates, mission and evaluator evidence remain captured. Owned roots use new
+process sessions; observed descendants require exact parentage and PID/start
+identity. Recorder stops last; survivors/errors remain in teardown evidence.
+Oracle scoring is evaluator-only after teardown and disagreement stops further
+work. A run ending/budget expiration does not prove visibility, complete mission,
+valid height or a full-stack resource envelope. Those require inspecting actual
+sensor frames and physical outcome. No observer/consumer is enabled by bootstrap.
+
+**IMPLEMENTED; local policy/abort tests pass. Simulator lifecycle NOT VERIFIED.**
+Current foreign Gazebo/unknown-metadata blockers must clear before execution.

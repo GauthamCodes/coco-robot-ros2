@@ -5,7 +5,7 @@ from pathlib import Path
 
 from analyzer import analyze
 from backcheck import normalized as historical_facts
-from evidence import atomic_json, file_hash, bag_hash
+from evidence import atomic_json, file_hash, bag_hash, ros_json_data
 from normalize import normalized, oracle_facts, host_measurements
 from oracle import score
 from seed_policy import expand
@@ -36,7 +36,7 @@ def mcap_events(source):
     events=[];uuids=set();headers=0
     while reader.has_next():
         topic,raw,stamp=reader.read_next()
-        data=json.loads(json.dumps(message_to_ordereddict(deserialize_message(raw,types[topic]))))
+        data=ros_json_data(message_to_ordereddict(deserialize_message(raw,types[topic])))
         matches=sidecars[(topic,stamp)]
         if not matches:raise ValueError(f'MCAP receipt has no matching wall sidecar: {topic} {stamp}')
         event=matches.popleft()

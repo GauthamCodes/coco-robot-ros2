@@ -7,7 +7,7 @@ import signal
 import time
 from graph import snapshot,violations
 from topics import TOPICS
-from evidence import atomic_json
+from evidence import atomic_json,ros_json_data
 
 
 def main():
@@ -54,7 +54,7 @@ def main():
         now=node.get_clock().now().nanoseconds
         writer.write(topic,serialize_message(msg),now)
         trace.write(json.dumps({'topic':topic,'sim_s':now/1e9,'wall_s':mono-start,
-                                'wall_epoch_ns':time.time_ns(),'data':message_to_ordereddict(msg)},allow_nan=False)+'\n')
+                                'wall_epoch_ns':time.time_ns(),'data':ros_json_data(message_to_ordereddict(msg))},allow_nan=False)+'\n')
         trace.flush()
     def publish(topic,value):publisher[topic].publish(String(data=json.dumps(value,allow_nan=False)))
     def discover():

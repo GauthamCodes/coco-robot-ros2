@@ -255,3 +255,14 @@ sensor frames and physical outcome. No observer/consumer is enabled by bootstrap
 
 **IMPLEMENTED; local policy/abort tests pass. Simulator lifecycle NOT VERIFIED.**
 Current foreign Gazebo/unknown-metadata blockers must clear before execution.
+
+### Non-finite ROS fields in trace evidence
+
+Real Gazebo JointState messages can report unavailable effort as NaN. The MCAP
+writer preserves the original CDR unchanged. JSON sidecars represent unavailable
+floating values as `{"$ros_nonfinite_float":"NaN"}`, `+Infinity` or `-Infinity`
+inside the same tagged object. These are not finite measurements or substitutes.
+Replay uses identical encoding for decoded CDR and retains strict payload equality;
+changing a tagged unknown to zero fails integrity validation. The fix prevents a
+raw NaN from crashing strict JSON recording. It does not repair previously
+incomplete bags/sidecars, qualify a run, or change autonomy or oracle semantics.

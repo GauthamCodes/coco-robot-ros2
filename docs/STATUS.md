@@ -741,3 +741,31 @@ Evidence: `m1/validation/bootstrap_20261008/recheck/REPORT.md`, compact verdicts
 authority hashes and external file hashes. Owner release requested; no response
 received. Sensor deliverable not achieved; observer/consumer not implemented,
 calibration0/19, smoke0/4, M1.8=0/140. No code/safety/benchmark/ground-truth change.
+
+## 2026-10-09 — Bootstrap launches; resource abort and real capture defect
+
+Input f85c8184458ca436949bf374794c65bfba8b39a9, clean expected branch;
+Master Plan copies byte-identical. M1/M1.1 engineering bootstrap and authorized
+RGB-D prerequisite. Foreign111827/60465 are absent. Both clean-overlay bootstrap
+preflights pass; production qualification remains separate.
+
+One120s-bounded Gazebo Dev5 bootstrap launched from the unchanged commit.
+At7.01 wall seconds the watchdog records load14.5464>12 and available RAM
+8,010,498,048<8,229,273,600 bytes; run ABORTED_BOOTSTRAP_RESOURCE_LIMIT.
+Owned teardown finishes with zero survivors/errors. No repeat or Isaac launch.
+No safety/resource budgets reduced; user stop condition6 under the committed
+emergency policy prevents further simulation. No hardware-incapacity conclusion.
+
+Actual MCAP contains3 RGB,3 depth,4 CameraInfo and TF records. Startup-only
+sensor capture observed; mandatory target phases NOT VERIFIED. No red mask;
+one RGB/depth pair has460ms skew and is invalid. No observer/consumer or physical
+manipulation claim. Partial startup resources cannot calibrate production limits.
+
+Run exposes real logging bug: JointState effort NaNs crash strict JSON sidecar,
+after raw CDR is written. Fixed minimal evidence encoding with explicit nonfinite
+float tags; raw MCAP untouched, strict replay compares identical tags, unknown
+never becomes zero. This is evaluator capture repair, not a safety/qualification
+exception.41 focused local tests pass;1 simulator-free real ROS/CDR/MCAP test
+passes, including corrupted zero-substitution rejection. Runtime fix not rerun.
+Fresh post-teardown production preflights reject only null RAM/VRAM, no process
+or DDS errors.19 calibration dependencies remain; smoke0/4, M1.8=0/140.

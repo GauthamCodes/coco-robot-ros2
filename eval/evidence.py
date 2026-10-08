@@ -1,12 +1,30 @@
 """Append-only run evidence helpers and bounded bag storage."""
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import shutil
 import subprocess
 
 REPO=Path(__file__).resolve().parents[1]
+
+
+def ros_json_data(value):
+    """Lossless JSON representation of ROS non-finite floating fields.
+
+    Raw CDR remains unchanged in MCAP. Tagged values are unavailable numeric
+    measurements, never zero or a finite substitute. Replay uses the same
+    representation to preserve strict payload equality including NaN.
+    """
+    if isinstance(value, float) and not math.isfinite(value):
+        return {'$ros_nonfinite_float': 'NaN' if math.isnan(value) else
+                '+Infinity' if value > 0 else '-Infinity'}
+    if isinstance(value, dict):
+        return {key: ros_json_data(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [ros_json_data(item) for item in value]
+    return value
 
 
 def atomic_json(path,value):

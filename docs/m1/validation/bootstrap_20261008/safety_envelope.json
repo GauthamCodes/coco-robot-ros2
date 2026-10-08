@@ -1,0 +1,33 @@
+{
+  "kind": "BOOTSTRAP_EMERGENCY_RESERVE_NOT_PRODUCTION_THRESHOLD",
+  "ram_total_bytes": 16458551296,
+  "vram_total_bytes": 6439305216,
+  "kernel_min_free_kbytes": 67584,
+  "derivation": "Reserve 50% physical RAM and >=16x kernel min_free_kbytes; reserve 1/3 physical VRAM; load ceiling <= logical CPUs and committed load limit. Stricter calibrated limits take precedence. Allocation bursts between 1Hz samples are not a hard kernel quota.",
+  "limits": {
+    "gazebo": {
+      "preflight": {
+        "max_load1": 12,
+        "min_ram_available_bytes": 8229275648,
+        "min_vram_free_bytes": 2146435072
+      },
+      "runtime": {
+        "max_load1": 12,
+        "min_ram_available_bytes": 8229275648,
+        "min_vram_free_bytes": 2146435072
+      }
+    },
+    "isaac": {
+      "preflight": {
+        "max_load1": 12,
+        "min_ram_available_bytes": 8229275648,
+        "min_vram_free_bytes": 2146435072
+      },
+      "runtime": {
+        "max_load1": 12,
+        "min_ram_available_bytes": 8229275648,
+        "min_vram_free_bytes": 2146435072
+      }
+    }
+  }
+}

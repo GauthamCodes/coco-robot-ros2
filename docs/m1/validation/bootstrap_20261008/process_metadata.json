@@ -1,0 +1,27 @@
+{
+  "111827": {
+    "comm": "ruby\n",
+    "stat": "111827 (ruby) S 2519 111827 110871 0 -1 4194368 665011 0 0 0 1281848 228529 0 0 20 0 67 0 2051123 7867342848 404249 18446744073709551615 94605814648832 94605814649513 140732610057456 0 0 0 0 0 1132560127 0 0 0 17 7 0 0 0 0 0 94605814660408 94605814661136 94606158032896 140732610064255 140732610064373 140732610064373 140732610072554 0\n",
+    "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/app-org.gnome.Terminal.slice/vte-spawn-ef9f9033-6ebd-4df6-9753-c3c29d720f39.scope\n",
+    "argv": [
+      "gz sim server"
+    ],
+    "exe": "/usr/bin/ruby3.2",
+    "cwd": "/home/gautham/ros2_ws",
+    "signals_sent": false
+  },
+  "60465": {
+    "comm": "ssh-agent\n",
+    "stat": "60465 (ssh-agent) S 2545 2545 2545 0 -1 4194304 343 0 1 0 0 0 0 0 20 0 1 0 960460 8642560 1440 18446744073709551615 1 1 0 0 0 0 0 4096 16387 0 0 0 17 6 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+    "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/gnome-keyring-daemon.service\n",
+    "argv": [
+      "/usr/bin/ssh-agent",
+      "-D",
+      "-a",
+      "/run/user/1000/keyring/.ssh"
+    ],
+    "exe": "[Errno 13] Permission denied: '/proc/60465/exe'",
+    "cwd": "[Errno 13] Permission denied: '/proc/60465/cwd'",
+    "signals_sent": false
+  }
+}

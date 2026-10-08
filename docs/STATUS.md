@@ -715,3 +715,15 @@ until the owner releases the simulator and unreadable metadata is resolved.
 Bootstrap capability is safe progress; sensor visibility/observer/consumer remain
 NOT VERIFIED/NOT IMPLEMENTED and are not fabricated before the rendered gate.
 19 calibration dependencies unresolved; smoke0/4, M1.8=0/140.
+
+Actual committed bootstrap execution at `6be2dfaa98d3a0cc0618258716029e43c5cd7fc8`
+refuses both backends before any child launch. Current headroom is additionally
+below the conservative bootstrap reserve (Gazebo7,793,401,856 / Isaac7,766,237,184
+available versus8,229,275,648 bytes). This is not a production threshold, workload
+measurement or proof of hardware incapacity. Fresh original production preflights
+retain foreign/metadata/null-resource rejections.36 focused tests pass.
+Evidence and resumable commands: `m1/validation/bootstrap_20261008/REPORT.md`,
+`gate_results.json`, `safety_envelope.json`, `process_metadata.json`,
+`external_evidence.json`. Owner release/inspectable metadata and safe headroom
+are the explicit remaining execution requirements. Sensor/observer deliverable
+not achieved; no simulator/ROS/resource envelope claim, no ROOT_CAUSES fixed entry.

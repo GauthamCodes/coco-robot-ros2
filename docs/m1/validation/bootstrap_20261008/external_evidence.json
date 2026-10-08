@@ -1,0 +1,69 @@
+{
+  "files": [
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/.coco-bootstrap.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/gazebo/bootstrap_environment.json",
+      "bytes": 897,
+      "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/gazebo/logs/preflight.json",
+      "bytes": 140266,
+      "sha256": "79b8741c3cc71282f49656f2f559e53afcc994e8f2cbab38c613fe3ce75c9bef"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/gazebo/manifest.json",
+      "bytes": 830,
+      "sha256": "2cd5cd02b59229595c408f17fd1cd7c9a43e5510dde3903a9a8e3dedda954e75"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/gazebo/production_policy.json",
+      "bytes": 8487,
+      "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/gazebo/safety_envelope.json",
+      "bytes": 1076,
+      "sha256": "7e5c2c04a1dd1120c378ba452fe2b959bbc30d5c903ab205d24cb69bcdc9a23d"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/isaac/bootstrap_environment.json",
+      "bytes": 897,
+      "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/isaac/logs/preflight.json",
+      "bytes": 140342,
+      "sha256": "d29832121bd97a9e625bc13b7f0a9bd5b95f9b783f93f188501e109e06777333"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/isaac/manifest.json",
+      "bytes": 905,
+      "sha256": "55f49f44e4da0fca25b06aed79d3e6cd0ce5929d28c8ea982658f8502322f2e1"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/isaac/production_policy.json",
+      "bytes": 8487,
+      "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/isaac/safety_envelope.json",
+      "bytes": 1076,
+      "sha256": "7e5c2c04a1dd1120c378ba452fe2b959bbc30d5c903ab205d24cb69bcdc9a23d"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/production-gazebo.json",
+      "bytes": 140009,
+      "sha256": "33d1f77aa11c5a772e0f933c14bcb5d40d10f96073e7fd788dd3ad5beafe1728"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-deadlock/production-isaac.json",
+      "bytes": 138967,
+      "sha256": "d3dceeeffbcd54f5958f86e11d20cf199becc44a2aaeff0c1ea5615cf6b6c510"
+    }
+  ]
+}

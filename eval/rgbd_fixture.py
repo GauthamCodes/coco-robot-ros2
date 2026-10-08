@@ -21,6 +21,7 @@ from coco_sim.backends import GazeboBackend
 from process_groups import stop
 
 FIXTURES={
+    "grasp_front_flank":dict(target_x=.153,camera_xyz=[.40,.30,.25],camera_rpy=None),
     'acquisition':dict(target_x=.35,camera_xyz=[.125,0,.055],camera_rpy=[0,0,0]),
     'grasp_original':dict(target_x=.153,camera_xyz=[.125,0,.055],camera_rpy=[0,0,0]),
     'grasp_flank':dict(target_x=.153,camera_xyz=[.15,.30,.25],camera_rpy=None),

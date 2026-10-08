@@ -83,7 +83,7 @@ def main():
                      or topic.startswith('/magnet/') or 'costmap' in topic)
             reliability=(ReliabilityPolicy.RELIABLE if topic in ('/diagnostics/arbiter_commands','/diff_drive_controller/cmd_vel')
                          else ReliabilityPolicy.BEST_EFFORT)
-            qos=QoSProfile(depth=1 if ENGINEERING_IMAGE_SUMMARY and types[0]==sensor_msgs/msg/Image else 100,reliability=reliability,
+            qos=QoSProfile(depth=1 if ENGINEERING_IMAGE_SUMMARY and types[0]=="sensor_msgs/msg/Image" else 100,reliability=reliability,
                            durability=DurabilityPolicy.TRANSIENT_LOCAL if durable else DurabilityPolicy.VOLATILE)
             subscribed[topic]=node.create_subscription(kind,topic,lambda m,t=topic,k=types[0]:record(t,k,m),qos)
         publish('/eval/trace_health',{'observed_topics':sorted(subscribed),'missing_topics':sorted(set(TOPICS)-set(subscribed))})

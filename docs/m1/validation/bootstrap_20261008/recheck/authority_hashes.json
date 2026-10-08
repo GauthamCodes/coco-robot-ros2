@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "path": "/home/gautham/Downloads/COCO Master Plan \u2014 Road to v2.0.md",
+      "sha256": "e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d"
+    },
+    {
+      "path": "docs/MASTER_PLAN.md",
+      "sha256": "e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "sha256": "35e651da3de0eb8f0fb27b190080ee6d2b75f45b31fe027400b30052bd22a76e"
+    },
+    {
+      "path": "docs/m1/BASELINE.md",
+      "sha256": "6ea9f416b10605584db8c01c2ca1762d0a059cd7a5ad37e5a9317226536a12ce"
+    },
+    {
+      "path": "eval/README.md",
+      "sha256": "c58cb33f43e21c4dc37d68832b0bd69451e1d25ff36dfae99d783022069512d2"
+    },
+    {
+      "path": "docs/m2/gate_target_height_20261008/REPORT.md",
+      "sha256": "df1233e59268e219e71f52549fcab62f134708b9b1f5061649f35409e5618655"
+    },
+    {
+      "path": "docs/m2/gate_target_height_20261008/dependency_graph.json",
+      "sha256": "32e6602b8d138df4678327467bcd510ba58699cc8dae4f80ad741e9c21a82c3a"
+    },
+    {
+      "path": "docs/m2/gate_target_height_20261008/proposed_patch.md",
+      "sha256": "8147a1b12d8e474ad58fc60a1a9265981ad95f7b8249b9823894233db1cfa8f1"
+    },
+    {
+      "path": "docs/m2/gate_target_height_20261008/reproduction/result.json",
+      "sha256": "fcffd64ba96d5f0f5ad0a8a46e1fb384492e7f9f2f170fa8d82ba412409bb7d1"
+    },
+    {
+      "path": "docs/m2/target_observation_20261008/REPORT.md",
+      "sha256": "bf09a7f931c8e8b220a97d6420af9c28a94616146940f563578db632e0ded175"
+    },
+    {
+      "path": "docs/m2/target_observation_20261008/validation/external_evidence.json",
+      "sha256": "e24fe1f79a38aa78fa8e944064088ea6d94590457eafd905235c0bf478af036a"
+    }
+  ],
+  "master_plan_byte_equal": true
+}

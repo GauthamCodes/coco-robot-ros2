@@ -727,3 +727,17 @@ Evidence and resumable commands: `m1/validation/bootstrap_20261008/REPORT.md`,
 `external_evidence.json`. Owner release/inspectable metadata and safe headroom
 are the explicit remaining execution requirements. Sensor/observer deliverable
 not achieved; no simulator/ROS/resource envelope claim, no ROOT_CAUSES fixed entry.
+
+## 2026-10-08 — Bootstrap continuation recheck: owner gate unchanged
+
+Start76316c6d43d416f4e93d996f90c6e2c94a922c1b, clean expected branch,
+Master Plan copies byte-identical. Existing bootstrap reused; clean-overlay
+read-only preflight-only checks still refuse foreign Gazebo111827/start2051123/
+domain115 and unreadable60465 metadata. Available RAM7,361,433,600(Gazebo)/
+7,329,406,976(Isaac) below unchanged8,229,275,648 bootstrap reserve. Fresh
+original production checks retain null resources and process rejections.
+No simulator launch or foreign signal; user stop condition7 remains active.
+Evidence: `m1/validation/bootstrap_20261008/recheck/REPORT.md`, compact verdicts,
+authority hashes and external file hashes. Owner release requested; no response
+received. Sensor deliverable not achieved; observer/consumer not implemented,
+calibration0/19, smoke0/4, M1.8=0/140. No code/safety/benchmark/ground-truth change.

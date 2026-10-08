@@ -1,0 +1,185 @@
+{
+  "gazebo": {
+    "manifest": {
+      "schema_version": 1,
+      "execution_class": "NON_QUALIFYING",
+      "qualified": false,
+      "m1_denominator_eligible": false,
+      "satisfies_m1_8": false,
+      "test_a": false,
+      "state": "BLOCKED_BOOTSTRAP",
+      "backend": "gazebo",
+      "seed": 5,
+      "seed_group": "dev",
+      "requested_colour": "red",
+      "home_xy_m": [
+        -2.0,
+        0.0
+      ],
+      "source_sha": "76316c6d43d416f4e93d996f90c6e2c94a922c1b",
+      "domain": 82,
+      "owned_processes": [],
+      "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+      "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+      "reasons": [
+        "/proc/60465: [Errno 13] Permission denied: '/proc/60465/exe'",
+        "foreign robotics process pid=111827 start=2051123 argv=['gz sim server']",
+        "min_ram_available_bytes: observed 7361433600, required 8229275648"
+      ]
+    },
+    "bootstrap_verdict": {
+      "qualified": false,
+      "reasons": [
+        "/proc/60465: [Errno 13] Permission denied: '/proc/60465/exe'",
+        "foreign robotics process pid=111827 start=2051123 argv=['gz sim server']",
+        "min_ram_available_bytes: observed 7361433600, required 8229275648"
+      ],
+      "backend": "gazebo",
+      "phase": "preflight",
+      "evaluation_domain": 82,
+      "process_classifications": [
+        {
+          "pid": 111827,
+          "start_ticks": 2051123,
+          "category": "FOREIGN_SIMULATOR",
+          "ros_domain_id": 115,
+          "simulator": "gazebo",
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "orphan_status": "NOT_ESTABLISHED",
+          "allowed": false
+        }
+      ],
+      "bootstrap_safe": false,
+      "execution_class": "NON_QUALIFYING",
+      "m1_denominator_eligible": false,
+      "production_qualification": "NOT_EVALUATED_BY_BOOTSTRAP"
+    },
+    "production_verdict": {
+      "qualified": false,
+      "reasons": [
+        "/proc/60465: [Errno 13] Permission denied: '/proc/60465/exe'",
+        "foreign robotics process pid=111827 start=2051123 argv=['gz sim server']",
+        "gazebo/preflight: uncalibrated requirement min_ram_available_bytes",
+        "gazebo/preflight: uncalibrated requirement min_vram_free_bytes"
+      ],
+      "backend": "gazebo",
+      "phase": "preflight",
+      "evaluation_domain": 82,
+      "process_classifications": [
+        {
+          "pid": 111827,
+          "start_ticks": 2051123,
+          "category": "FOREIGN_SIMULATOR",
+          "ros_domain_id": 115,
+          "simulator": "gazebo",
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "orphan_status": "NOT_ESTABLISHED",
+          "allowed": false
+        }
+      ]
+    },
+    "inventory_only": {
+      "wall_epoch_ns": 1791475909815554760,
+      "ram_available_bytes": 7361433600,
+      "gpu": {
+        "uuid": "GPU-02e278e3-aef7-1483-8141-e4e3540eb1d7",
+        "total_bytes": 6439305216,
+        "free_bytes": 4564451328
+      },
+      "load1": 2.68603515625
+    }
+  },
+  "isaac": {
+    "manifest": {
+      "schema_version": 1,
+      "execution_class": "NON_QUALIFYING",
+      "qualified": false,
+      "m1_denominator_eligible": false,
+      "satisfies_m1_8": false,
+      "test_a": false,
+      "state": "BLOCKED_BOOTSTRAP",
+      "backend": "isaac",
+      "seed": 5,
+      "seed_group": "dev",
+      "requested_colour": "red",
+      "home_xy_m": [
+        -2.0,
+        0.0
+      ],
+      "source_sha": "76316c6d43d416f4e93d996f90c6e2c94a922c1b",
+      "domain": 82,
+      "owned_processes": [],
+      "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+      "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+      "reasons": [
+        "/proc/60465: [Errno 13] Permission denied: '/proc/60465/exe'",
+        "SIMULATOR_BACKEND_CONFLICT: gazebo pid=111827 while qualifying isaac",
+        "foreign robotics process pid=111827 start=2051123 argv=['gz sim server']",
+        "min_ram_available_bytes: observed 7329406976, required 8229275648"
+      ]
+    },
+    "bootstrap_verdict": {
+      "qualified": false,
+      "reasons": [
+        "/proc/60465: [Errno 13] Permission denied: '/proc/60465/exe'",
+        "SIMULATOR_BACKEND_CONFLICT: gazebo pid=111827 while qualifying isaac",
+        "foreign robotics process pid=111827 start=2051123 argv=['gz sim server']",
+        "min_ram_available_bytes: observed 7329406976, required 8229275648"
+      ],
+      "backend": "isaac",
+      "phase": "preflight",
+      "evaluation_domain": 82,
+      "process_classifications": [
+        {
+          "pid": 111827,
+          "start_ticks": 2051123,
+          "category": "FOREIGN_SIMULATOR",
+          "ros_domain_id": 115,
+          "simulator": "gazebo",
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "orphan_status": "NOT_ESTABLISHED",
+          "allowed": false
+        }
+      ],
+      "bootstrap_safe": false,
+      "execution_class": "NON_QUALIFYING",
+      "m1_denominator_eligible": false,
+      "production_qualification": "NOT_EVALUATED_BY_BOOTSTRAP"
+    },
+    "production_verdict": {
+      "qualified": false,
+      "reasons": [
+        "/proc/60465: [Errno 13] Permission denied: '/proc/60465/exe'",
+        "SIMULATOR_BACKEND_CONFLICT: gazebo pid=111827 while qualifying isaac",
+        "foreign robotics process pid=111827 start=2051123 argv=['gz sim server']",
+        "isaac/preflight: uncalibrated requirement min_ram_available_bytes",
+        "isaac/preflight: uncalibrated requirement min_vram_free_bytes"
+      ],
+      "backend": "isaac",
+      "phase": "preflight",
+      "evaluation_domain": 82,
+      "process_classifications": [
+        {
+          "pid": 111827,
+          "start_ticks": 2051123,
+          "category": "FOREIGN_SIMULATOR",
+          "ros_domain_id": 115,
+          "simulator": "gazebo",
+          "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+          "orphan_status": "NOT_ESTABLISHED",
+          "allowed": false
+        }
+      ]
+    },
+    "inventory_only": {
+      "wall_epoch_ns": 1791475910013052173,
+      "ram_available_bytes": 7329406976,
+      "gpu": {
+        "uuid": "GPU-02e278e3-aef7-1483-8141-e4e3540eb1d7",
+        "total_bytes": 6439305216,
+        "free_bytes": 4564451328
+      },
+      "load1": 2.68603515625
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "files": [
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/.coco-bootstrap.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/gazebo/bootstrap_environment.json",
+      "bytes": 897,
+      "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/gazebo/logs/preflight.json",
+      "bytes": 156496,
+      "sha256": "f616d4a6567f96d23897e26338d17760fcb8e015b818befd782c0cce4f914d7b"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/gazebo/manifest.json",
+      "bytes": 830,
+      "sha256": "cabdb567bf3b17959153f88441027677142aad4adf996ab7a97ca90c1b5769f4"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/gazebo/production_policy.json",
+      "bytes": 8487,
+      "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/gazebo/safety_envelope.json",
+      "bytes": 1076,
+      "sha256": "7e5c2c04a1dd1120c378ba452fe2b959bbc30d5c903ab205d24cb69bcdc9a23d"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/isaac/bootstrap_environment.json",
+      "bytes": 897,
+      "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/isaac/logs/preflight.json",
+      "bytes": 156571,
+      "sha256": "500b310d326fb2c11ebaa3a11e59bb5267d3f94c62f731274df028fbffa688ce"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/isaac/manifest.json",
+      "bytes": 905,
+      "sha256": "0c1a30bfa1df98a656f5754b76397df9506fa2f9c87a53094f701749e536e198"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/isaac/production_policy.json",
+      "bytes": 8487,
+      "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/isaac/safety_envelope.json",
+      "bytes": 1076,
+      "sha256": "7e5c2c04a1dd1120c378ba452fe2b959bbc30d5c903ab205d24cb69bcdc9a23d"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/production-gazebo.json",
+      "bytes": 156248,
+      "sha256": "334e13226e646ca3fd01995851208e6fc7c0457bee29fc3a3c9ddb49f76f5107"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/bootstrap-20261008-recheck/production-isaac.json",
+      "bytes": 155204,
+      "sha256": "660e18b778dbebf2a6b8e1058217a407d530341337e252926e2faae3e06be527"
+    }
+  ]
+}

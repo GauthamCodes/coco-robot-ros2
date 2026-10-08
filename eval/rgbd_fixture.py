@@ -77,6 +77,7 @@ def build(root,name):
 
 def main():
     root=Path(sys.argv[1]);name=sys.argv[2];robot_xml=build(root,name)
+    observer = "Node(package='coco_perception',executable='object_height_node',parameters=[{'use_sim_time':True,'target_colour':'red'}])," if len(sys.argv)<4 or sys.argv[3]=='rgbd_observation' else ''
     import yaml
     bridge=yaml.safe_load((REPO/'gazebo_models/config/bridge.yaml').read_text())
     bridge=[b for b in bridge if b['ros_topic_name'] in ('/clock','/camera/image_raw','/camera/depth/image_raw','/camera/camera_info')]
@@ -92,7 +93,7 @@ def generate_launch_description():
         ExecuteProcess(cmd=['python3',{str(REPO/'eval/rgbd_probe.py')!r},{str(root)!r}]),
         ExecuteProcess(cmd=['gz','sim','-r','-s','-v2',{str(root/'world.sdf')!r}]),
         Node(package='ros_gz_bridge',executable='parameter_bridge',parameters=[{{'config_file':{str(root/'bridge.yaml')!r},'use_sim_time':True}}]),
-        Node(package='coco_perception',executable='object_height_node',parameters=[{{'use_sim_time':True,'target_colour':'red'}}]),
+        {observer}
         Node(package='robot_state_publisher',executable='robot_state_publisher',parameters=[{{'robot_description':{robot_xml!r},'use_sim_time':True}}]),
     ])
 '''

@@ -80,7 +80,7 @@ def main():
             # BEST_EFFORT matches reliable and best-effort producers; transient
             # local only for known latched topics, to capture startup metadata.
             durable=(topic in ('/tf_static','/amcl_pose') or topic.endswith('/status') and '/_action/' in topic
-                     or topic.startswith('/magnet/') or 'costmap' in topic)
+                     or topic.startswith('/magnet/') and not ENGINEERING_IMAGE_SUMMARY or 'costmap' in topic)
             reliability=(ReliabilityPolicy.RELIABLE if topic in ('/diagnostics/arbiter_commands','/diff_drive_controller/cmd_vel')
                          else ReliabilityPolicy.BEST_EFFORT)
             qos=QoSProfile(depth=1 if ENGINEERING_IMAGE_SUMMARY and types[0]=="sensor_msgs/msg/Image" else 100,reliability=reliability,

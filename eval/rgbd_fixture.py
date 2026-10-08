@@ -44,6 +44,9 @@ def build(root,name,motion=False):
         for plugin in list(gazebo.findall('plugin')):
             keep=motion and ("ros2_control" in plugin.get("filename","") or plugin.findtext("child_model")=="target_red")
             if not keep:gazebo.remove(plugin)
+            elif "ros2_control" in plugin.get("filename",""):
+                from ament_index_python.packages import get_package_prefix
+                plugin.set("filename",str(Path(get_package_prefix("gz_ros2_control"))/"lib/libgz_ros2_control-system.so"))
     for gazebo in robot.findall('gazebo'):
         for sensor in list(gazebo.findall('sensor')):
             if sensor.get('type') not in (("rgbd_camera","imu") if motion else ("rgbd_camera",)):gazebo.remove(sensor)
@@ -87,7 +90,7 @@ def main():
     (root/'bridge.yaml').write_text(yaml.safe_dump(bridge))
     # ros2 launch parameter passing avoids URDF shell quoting; runner owns the
     # whole launch group and teardown of all children through the normal helper.
-    extra=""
+    extra="";driver_definition=""
     if motion:
         from moveit_configs_utils import MoveItConfigsBuilder
         config=(MoveItConfigsBuilder("coco",package_name="coco_moveit_config")
@@ -104,12 +107,16 @@ def main():
         extra+="Node(package='gazebo_models',executable='magnet_release.py',arguments=['--models','target_red']),"
         extra+="Node(package='coco_perception',executable='target_finder',parameters=[{'use_sim_time':True,'target_colour':'red'}]),"
         extra+="Node(package='coco_moveit_config',executable='grasp_server.py',parameters=[{'use_sim_time':True,'target_colour':'red','simulator':'gazebo','approach_topic':'/perception/target'}]),"
-        extra+=f"ExecuteProcess(cmd=['python3',{str(REPO/'eval/phase_control.py')!r},{str(root)!r}]),"
+        driver_definition=f"phase_process=ExecuteProcess(cmd=['python3',{str(REPO/'eval/phase_control.py')!r},{str(root)!r}])"
+        extra+="phase_process,RegisterEventHandler(OnProcessExit(target_action=phase_process,on_exit=[EmitEvent(event=Shutdown(reason='phase control finished'))])),"
     launch=f'''from launch import LaunchDescription
-from launch.actions import ExecuteProcess
+from launch.actions import ExecuteProcess,RegisterEventHandler,EmitEvent
+from launch.event_handlers import OnProcessExit
+from launch.events import Shutdown
 from launch_ros.actions import Node
 
 def generate_launch_description():
+    {driver_definition}
     return LaunchDescription([
         ExecuteProcess(cmd=['python3',{str(REPO/'eval/rgbd_probe.py')!r},{str(root)!r}]),
         ExecuteProcess(cmd=['gz','sim','-r','-s','-v2',{str(root/'world.sdf')!r}]),

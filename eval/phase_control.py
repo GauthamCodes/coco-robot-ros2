@@ -19,7 +19,7 @@ class Control(AutonomyNode):
         self.validator=PhaseValidator("red");self.records=[]
         self.create_subscription(String,"/perception/object_height",self.observe,10)
         self.create_subscription(String,"/grasp/status",self.state,10)
-        self.clients={name:self.create_client(Trigger,"/grasp/"+name) for name in ("stow","pick","place")}
+        self.command_clients={name:self.create_client(Trigger,"/grasp/"+name) for name in ("stow","pick","place")}
     def phase(self, name):
         now=self.get_clock().now().nanoseconds
         if now<=0:return
@@ -45,7 +45,7 @@ class Control(AutonomyNode):
             if predicate():return True
         return False
     def request(self,name):
-        client=self.clients[name]
+        client=self.command_clients[name]
         if not self.wait(lambda:client.service_is_ready(),30):return dict(error="SERVICE_UNAVAILABLE",command=name)
         self.status={}
         future=client.call_async(Trigger.Request())

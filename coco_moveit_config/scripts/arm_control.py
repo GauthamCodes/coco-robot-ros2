@@ -39,6 +39,7 @@ state is actuator engagement telemetry, not proof of physical retention.
 """
 
 import math
+import json
 import subprocess
 import time
 
@@ -64,6 +65,7 @@ from nav_msgs.msg import Odometry
 import rclpy
 from rclpy.action import ActionClient
 from coco_config.ros_boundary import AutonomyNode as Node
+from coco_config.object_observation import validated_height
 
 from sensor_msgs.msg import Imu, JointState
 from rclpy.qos import QoSProfile, ReliabilityPolicy
@@ -176,6 +178,9 @@ class ArmControl(Node):
         if self.simulator not in ('gazebo', 'isaac'):
             raise ValueError('simulator must be gazebo or isaac')
         self._heights = {}
+        self._height_observation = None
+        self._grasp_observation = None
+        self.create_subscription(String, '/perception/object_height', self._on_object_height, 10)
         self.spun_externally = spun_externally
         self.magnet_model = magnet_model
         # The caller's dict, not a copy: pick_place.retarget() rewrites its
@@ -337,9 +342,24 @@ class ArmControl(Node):
         """Whether the magnet is currently believed to be welded."""
         return self._holding
 
+    def _on_object_height(self, msg):
+        try:
+            observation=json.loads(msg.data)
+            previous=getattr(self,'_height_observation',None)
+            if (previous and isinstance(observation,dict) and
+                    observation.get('stamp_ns',0)<=previous.get('stamp_ns',0)):
+                self._height_observation=None
+                return
+            self._height_observation=observation
+        except (ValueError,TypeError):
+            self._height_observation=None
+
     def target_height(self):
-        """Unavailable independent object observation; never read simulator truth."""
-        return None
+        """Fresh independent RGB-D centre above observed support, metres."""
+        model=getattr(self,'magnet_model',None) or ''
+        colour=getattr(self,'colour',None) or model.removeprefix('target_')
+        return validated_height(getattr(self,'_height_observation',None),
+            now_ns=self.get_clock().now().nanoseconds,colour=colour)
 
     def grasp_magnet(self):
         """Note where the target is sitting, then weld it to the palm."""
@@ -349,6 +369,7 @@ class ArmControl(Node):
                 'could not read the target height before the grasp — the '
                 'grasp rejected')
             return False
+        self._grasp_observation=dict(self._height_observation)
         return self.magnet('attached')
 
     def check_lifted(self):
@@ -369,7 +390,17 @@ class ArmControl(Node):
             self.get_logger().warn(
                 'could not read the target height — cannot verify lift')
             return False
-        rise = now - self._grasp_z
+        observation=getattr(self,'_height_observation',None)
+        baseline=getattr(self,'_grasp_observation',None)
+        if not baseline or not observation:
+            return False
+        if (observation['stamp_ns']<=baseline['stamp_ns'] or
+                observation['track_id']!=baseline['track_id'] or
+                observation['reference_id']!=baseline['reference_id'] or
+                abs(observation['support_height_m']-baseline['support_height_m'])>
+                observation['uncertainty_m']+baseline['uncertainty_m']):
+            return False
+        rise = now - self._grasp_z - observation['uncertainty_m'] - baseline['uncertainty_m']
         if rise < LIFT_MIN_RISE:
             self.get_logger().error(
                 f'Target did not come up with the arm: z {self._grasp_z:.4f} '

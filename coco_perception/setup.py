@@ -42,6 +42,7 @@ setup(
         'console_scripts': [
             'target_finder = coco_perception.target_finder:main',
             'vision_check = coco_perception.vision_check:main',
+            'object_height_node = coco_perception.object_height_node:main',
             'target_pose_node = coco_perception.target_pose_node:main',
         ],
     },

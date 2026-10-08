@@ -250,6 +250,8 @@ class GraspServer(ArmControl):
 
     # ── inputs ───────────────────────────────────────────────────────────
     def _select(self, colour):
+        self._height_observation = None
+        self._grasp_observation = None
         self.colour = colour
         self._fix = None
         self._fix_at = None
@@ -520,7 +522,11 @@ class GraspServer(ArmControl):
                 'could not read target height — cannot verify release')
             return False
         expected = TARGET_HEIGHT / 2.0
-        if abs(height - expected) > 0.02:
+        observation=getattr(self,'_height_observation',None)
+        baseline=getattr(self,'_grasp_observation',None)
+        if not observation or not baseline or observation['track_id']!=baseline['track_id'] or observation['stamp_ns']<=baseline['stamp_ns']:
+            return False
+        if abs(height - expected) + observation['uncertainty_m'] > 0.02:
             self.get_logger().error(
                 f'Target is at z {height:.4f}, not standing on the ground '
                 f'({expected:.4f}). It is still attached to the arm, or it '

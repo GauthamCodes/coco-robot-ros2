@@ -180,3 +180,62 @@ def test_missing_or_stale_imu_cannot_be_replaced_by_planar_encoder_attitude(serv
     assert server.check_robot_pose('upright', expect_xy=None)
     server._imu_at = time.monotonic() - 3
     assert not server.check_robot_pose('stale attitude', expect_xy=None)
+
+
+def measured_height(server, height=.079):
+    from coco_config.object_observation import HEIGHT_SCHEMA
+    now=server.get_clock().now().nanoseconds
+    return dict(schema=HEIGHT_SCHEMA, valid=True, reason='VALID', units='m',
+        colour='red',stamp_ns=now,depth_stamp_ns=now,frame_id='base_footprint',
+        source_frame='camera_optical_frame',track_id='observed-red-1',reference_id='support-1',
+        center_m=[.153,0.,height],support_height_m=0.,
+        center_height_above_support_m=height,uncertainty_m=.002,transform_valid=True,
+        depth_sample_count=200,inlier_count=200,valid_fraction=1.,measured_radius_m=.01,measured_axis_extent_m=.158)
+
+
+def test_measured_observation_enables_baseline_without_privileged_input(server,monkeypatch):
+    import json
+    from std_msgs.msg import String
+    calls=[]
+    monkeypatch.setattr(server,'magnet',lambda state:calls.append(state) or True)
+    o=measured_height(server)
+    server._on_object_height(String(data=json.dumps(o)))
+    assert server.target_height()==pytest.approx(.079)
+    assert server.grasp_magnet()
+    assert calls==['attached']
+    # A later independent height needs the same measured support/association.
+    raised=measured_height(server,.12)
+    server._on_object_height(String(data=json.dumps(raised)))
+    assert server.check_lifted()
+
+
+@pytest.mark.parametrize('fault',['stale','wrong_frame','wrong_target','invalid','nan','replayed'])
+def test_observation_consumer_rejects_invalid_inputs(server,fault,monkeypatch):
+    import json
+    from std_msgs.msg import String
+    o=measured_height(server)
+    if fault=='stale':o['stamp_ns']-=1_000_000_000;o['depth_stamp_ns']=o['stamp_ns']
+    if fault=='wrong_frame':o['frame_id']='world'
+    if fault=='wrong_target':o['colour']='blue'
+    if fault=='invalid':o['valid']=False
+    if fault=='nan':o['center_height_above_support_m']=float('nan')
+    if fault=='replayed':server._height_observation=dict(o)
+    server._on_object_height(String(data=json.dumps(o)))
+    monkeypatch.setattr(server,'magnet',lambda _:pytest.fail('invalid measurement attached'))
+    assert server.target_height() is None
+    assert not server.grasp_magnet()
+
+
+def test_lift_requires_new_sample_same_track_and_uncertainty_margin(server,monkeypatch):
+    import json
+    from std_msgs.msg import String
+    monkeypatch.setattr(server,'magnet',lambda _:True)
+    o=measured_height(server)
+    server._on_object_height(String(data=json.dumps(o)));assert server.grasp_magnet()
+    assert not server.check_lifted()  # baseline reused, not lift
+    raised=measured_height(server,.111)
+    server._on_object_height(String(data=json.dumps(raised)))
+    assert not server.check_lifted()  # 32mm mean rise minus4mm uncertainty <30mm
+    raised=measured_height(server,.14);raised['track_id']='other-red'
+    server._on_object_height(String(data=json.dumps(raised)))
+    assert not server.check_lifted()

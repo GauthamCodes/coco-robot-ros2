@@ -89,8 +89,10 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     return LaunchDescription([
+        ExecuteProcess(cmd=['python3',{str(REPO/'eval/rgbd_probe.py')!r},{str(root)!r}]),
         ExecuteProcess(cmd=['gz','sim','-r','-s','-v2',{str(root/'world.sdf')!r}]),
         Node(package='ros_gz_bridge',executable='parameter_bridge',parameters=[{{'config_file':{str(root/'bridge.yaml')!r},'use_sim_time':True}}]),
+        Node(package='coco_perception',executable='object_height_node',parameters=[{{'use_sim_time':True,'target_colour':'red'}}]),
         Node(package='robot_state_publisher',executable='robot_state_publisher',parameters=[{{'robot_description':{robot_xml!r},'use_sim_time':True}}]),
     ])
 '''

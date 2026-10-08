@@ -172,5 +172,8 @@ def generate_launch_description():
                         'depth+TF pipeline. Exactly one runs — see the '
                         'module docstring.'),
 
+        Node(package='coco_perception', executable='object_height_node',
+             parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time'),
+                          'target_colour': LaunchConfiguration('target_colour')}]),
         OpaqueFunction(function=perception_node),
     ])

@@ -21,6 +21,7 @@
   <depend>cv_bridge</depend>
   <depend>python3-opencv</depend>
   <depend>python3-numpy</depend>
+  <depend>python3-scipy</depend>
   <!-- TARGETS, the camera pose and intrinsics, is_best_effort -->
   <depend>coco_config</depend>
 

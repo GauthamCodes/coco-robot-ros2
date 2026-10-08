@@ -803,3 +803,24 @@ RAM minimum8,135,368,704 below unchanged reserve. Removed unneeded LiDAR/IMU
 sensor execution from the engineering composition only (geometry unchanged).
 Next variable/question: camera-only composition with settled rendering and target
 colour, now after background available RAM recovers to~9.46GB. No budget change.
+
+## 2026-10-09 — Measured RGB-D observer and guarded consumer implemented
+
+Camera-only acquisition fixture completed30s without resource violation and
+captured24 RGB/depth frames. Settled red mask3228 pixels, valid fraction1.0,
+median depth0.216059m. Real-data replay estimates centre above measured support
+~0.0790m without object-height/dimension/scene input. This is engineering fixture
+sensor evidence, not mandatory manipulation-phase visibility or M1 measurement.
+
+Implemented bounded masked deprojection, measured support plane, measured cylinder
+axis/cross-section/radius/end extent, centre/support uncertainty and explicit
+invalid reasons; source-time TF and exact RGB/depth pairing. Added autonomy node
+`/perception/object_height` String JSON v1 with source stamp/frame/identity/reference,
+units/age/depth statistics/validity. Common validator lives in coco_config to avoid
+an execution-dependency cycle. Consumer replaces target_height=None only for
+fresh valid sensor evidence; requires later sample/same track/support for lift,
+subtracts uncertainty and preserves existing30mm rise/20mm release criteria.
+Invalid, stale, ambiguous, occluded and changed reference fail closed. No fallback,
+known object-height input, simulator truth or production extrinsic change.
+41 focused local perception/manipulation tests pass;3 affected packages build.
+Live observer and mandatory grasp/lift/release visibility still pending.

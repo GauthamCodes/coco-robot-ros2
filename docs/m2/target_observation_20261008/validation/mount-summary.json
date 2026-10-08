@@ -1,0 +1,47 @@
+{
+  "mount-probe": {
+    "grid_candidates": 648,
+    "frustum_candidates": 285,
+    "screened_candidates": 12,
+    "fully_unblocked_sparse_screens": 0,
+    "limitations": [
+      "Discrete placement grid, not a minimum-mount optimization proof",
+      "Frustum volumes include all colours/window extremes; mesh rays cover one blue window corner only",
+      "Sparse rays cannot certify full mask/end visibility or uncertainty",
+      "No camera body clearance or trajectory swept-volume certificate",
+      "No rendered RGB-D, timing, TF delivery, sensor noise, or physical attachment evidence",
+      "Ideal rigid attachment is a fixture hypothesis, never an autonomy input"
+    ],
+    "raw_path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe.json"
+  },
+  "mount-probe-expanded": {
+    "grid_candidates": 648,
+    "frustum_candidates": 285,
+    "screened_candidates": 285,
+    "fully_unblocked_sparse_screens": 0,
+    "limitations": [
+      "Discrete placement grid, not a minimum-mount optimization proof",
+      "Frustum volumes include all colours/window extremes; mesh rays cover one blue window corner only",
+      "Sparse rays cannot certify full mask/end visibility or uncertainty",
+      "No camera body clearance or trajectory swept-volume certificate",
+      "No rendered RGB-D, timing, TF delivery, sensor noise, or physical attachment evidence",
+      "Ideal rigid attachment is a fixture hypothesis, never an autonomy input"
+    ],
+    "raw_path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe-expanded.json"
+  },
+  "mount-probe-refined": {
+    "grid_candidates": 288,
+    "frustum_candidates": 0,
+    "screened_candidates": 0,
+    "fully_unblocked_sparse_screens": 0,
+    "limitations": [
+      "Discrete placement grid, not a minimum-mount optimization proof",
+      "Frustum volumes include all colours/window extremes; mesh rays cover one blue window corner only",
+      "Sparse rays cannot certify full mask/end visibility or uncertainty",
+      "No camera body clearance or trajectory swept-volume certificate",
+      "No rendered RGB-D, timing, TF delivery, sensor noise, or physical attachment evidence",
+      "Ideal rigid attachment is a fixture hypothesis, never an autonomy input"
+    ],
+    "raw_path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe-refined.json"
+  }
+}

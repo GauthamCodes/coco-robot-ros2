@@ -1,0 +1,31 @@
+{
+  "evidence_kind": "LOCAL_NON_SIMULATOR_CHECKS_ONLY",
+  "production_observer_implemented": false,
+  "production_consumer_implemented": false,
+  "tests": [
+    {
+      "name": "existing manipulation fail-closed regressions",
+      "passed": 8,
+      "failed": 0,
+      "deselected": 10,
+      "log": "validation/fail-closed.log"
+    },
+    {
+      "name": "existing null-resource qualification rejection",
+      "passed": 1,
+      "failed": 0,
+      "deselected": 16,
+      "log": "validation/qualification-test.log"
+    },
+    {
+      "name": "new offline mesh-probe instrument checks",
+      "passed": 4,
+      "failed": 0,
+      "log": "validation/geometry-tests-optimized.log"
+    }
+  ],
+  "synthetic_reproduction": "/home/gautham/coco_m1_runs/target-observation-20261008/reproduction.json",
+  "real_sensor_replay": "NOT RUN: no validated remount sensor frames",
+  "ros_graph": "NOT RUN: no observer implemented or simulator launched",
+  "qualified_controls": 0
+}

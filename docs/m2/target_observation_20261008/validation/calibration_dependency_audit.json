@@ -1,0 +1,197 @@
+{
+  "source": "docs/m1/validation/sprint_20261007/calibration_dependency_audit.json",
+  "resolved": 0,
+  "remaining": 19,
+  "dependencies": {
+    "accepted_target_true_error_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I17",
+      "episode_type": "Perception acceptance with source pose frame + bracketed evaluator object/robot truth",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Perception acceptance with source pose frame + bracketed evaluator object/robot truth. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "amcl_true_error_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I04",
+      "episode_type": "Localized navigation control with AMCL and bracketed robot truth",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Localized navigation control with AMCL and bracketed robot truth. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "arbiter_latency_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I06",
+      "episode_type": "Active motion with input/wire/arbiter diagnostics and graph lineage",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Active motion with input/wire/arbiter diagnostics and graph lineage. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "attachment_proximity_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I21",
+      "episode_type": "Successful grasp with independently stamped gripper/object poses at attachment",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Successful grasp with independently stamped gripper/object poses at attachment. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_WITNESS_MISSING",
+      "resolved": false
+    },
+    "clock_stall_wall_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I02",
+      "episode_type": "Whole successful mission with continuous simulator clock and wall receipt samples",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Whole successful mission with continuous simulator clock and wall receipt samples. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "command_motion_delay_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I07",
+      "episode_type": "Isolated command onset and independently resolved encoder/robot motion onset",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Isolated command onset and independently resolved encoder/robot motion onset. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_WITNESS_MISSING",
+      "resolved": false
+    },
+    "costmap_age_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I12",
+      "episode_type": "Planner request paired with exact server-side costmap snapshot and independent world occupancy",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Planner request paired with exact server-side costmap snapshot and independent world occupancy. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "depth_age_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I15",
+      "episode_type": "Perception control with accepted candidate RGB/depth source stamps",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Perception control with accepted candidate RGB/depth source stamps. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "goal_ack_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I09",
+      "episode_type": "NavigateToPose successful control with token, UUID, status and lifecycle evidence",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: NavigateToPose successful control with token, UUID, status and lifecycle evidence. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "joint_tracking_error_rad": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I20",
+      "episode_type": "Successful arm motion with desired/actual FollowJointTrajectory feedback",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Successful arm motion with desired/actual FollowJointTrajectory feedback. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "max_roll_pitch_rad": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I24",
+      "episode_type": "Whole successful ramp traversal with evaluator robot orientation",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Whole successful ramp traversal with evaluator robot orientation. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "odom_true_displacement_error_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I05",
+      "episode_type": "Successful moving control with encoder odometry + evaluator robot translation",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Successful moving control with encoder odometry + evaluator robot translation. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "plan_latency_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I13",
+      "episode_type": "Successful planning request/result service events with matching UUID + source timing",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Successful planning request/result service events with matching UUID + source timing. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_WITNESS_MISSING",
+      "resolved": false
+    },
+    "projected_extent_error_fraction": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I16",
+      "episode_type": "Perception acceptance with true object geometry, orientation, camera intrinsics/extrinsics and mask extent",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Perception acceptance with true object geometry, orientation, camera intrinsics/extrinsics and mask extent. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_WITNESS_MISSING",
+      "resolved": false
+    },
+    "retreat_clearance_m": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I14",
+      "episode_type": "Successful rejected-search retreat and handoff with robot footprint and independently timed costmap",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Successful rejected-search retreat and handoff with robot footprint and independently timed costmap. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_WITNESS_MISSING",
+      "resolved": false
+    },
+    "rgb_age_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I15",
+      "episode_type": "Perception control with accepted candidate RGB/depth source stamps",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Perception control with accepted candidate RGB/depth source stamps. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "rgb_depth_skew_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I15",
+      "episode_type": "Perception control with accepted candidate RGB/depth source stamps",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Perception control with accepted candidate RGB/depth source stamps. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "rtf_floor": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I01",
+      "episode_type": "Whole successful mission with simulator clock receive-monotonic stamps + 1Hz host samples",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Whole successful mission with simulator clock receive-monotonic stamps + 1Hz host samples. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    },
+    "tf_age_sim_s": {
+      "classification": "REQUIRES QUALIFIED RUNTIME",
+      "threshold": null,
+      "invariant": "I03",
+      "episode_type": "Whole successful mission with map/odom/base TF chain source stamps",
+      "prerequisite": "Qualified oracle-PASS Dev full-run control and explicit justified margin, per unchanged eval/calibration.py",
+      "blocker": "No qualified oracle-PASS Dev control. Both 2026-10-08 preflights reject null RAM/VRAM requirements; required rendered remount validation cannot start. target_height remains None and rejects attachment. Required witness: Whole successful mission with map/odom/base TF chain source stamps. Final preflight additionally rejects foreign Gazebo PID111827/domain115 and unreadable PID60465 metadata; Isaac reports a backend conflict.",
+      "implementation_status": "RAW_DERIVATION_IMPLEMENTED",
+      "resolved": false
+    }
+  }
+}

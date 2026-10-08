@@ -1,0 +1,58 @@
+{
+  "witnesses": [
+    {
+      "invariant": "I07",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "Command-to-motion association with response timestamp and motion-resolution justification",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    },
+    {
+      "invariant": "I12",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "Independent world occupancy compared to server-time costmap",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    },
+    {
+      "invariant": "I13",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "UUID-correlated server request/plan-return source times",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    },
+    {
+      "invariant": "I14",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "Retreat handoff clearance against independent obstacle/footprint geometry",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    },
+    {
+      "invariant": "I16",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "Independent true projection with camera intrinsics/extrinsics, object dimensions/orientation, observed mask",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    },
+    {
+      "invariant": "I18",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "Physical object identity association independent of requested colour/class",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    },
+    {
+      "invariant": "I21",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "Gripper/object proximity at attachment",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    },
+    {
+      "invariant": "I23",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "Measured finger opening before detach",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    },
+    {
+      "invariant": "I25",
+      "state": "REQUIRES QUALIFIED RUNTIME",
+      "required_witness": "Stage-specific actual progress witness and last-progress timestamp",
+      "reason": "No qualified current episode supplies this witness. Prior raw-witness implementation gap remains; no new producer or association proof was established by offline geometry or fail-closed tests."
+    }
+  ]
+}

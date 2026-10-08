@@ -1,0 +1,54 @@
+{
+  "inventory": {
+    "wall_epoch_ns": 1791473079952835856,
+    "monotonic_s": 37242.993263332,
+    "cpu_ticks": [
+      3977242,
+      1075880,
+      857547,
+      37898275,
+      27438,
+      0,
+      24237,
+      0
+    ],
+    "cpu_count": 12,
+    "load1": 1.8505859375,
+    "ram_available_bytes": 7523581952,
+    "ram_total_bytes": 16458551296,
+    "gpu": {
+      "uuid": "GPU-02e278e3-aef7-1483-8141-e4e3540eb1d7",
+      "total_bytes": 6439305216,
+      "free_bytes": 4551868416
+    },
+    "dds_segments": [],
+    "errors": [
+      "/proc/60465: [Errno 13] Permission denied: '/proc/60465/exe'"
+    ]
+  },
+  "verdict": {
+    "qualified": false,
+    "reasons": [
+      "/proc/60465: [Errno 13] Permission denied: '/proc/60465/exe'",
+      "SIMULATOR_BACKEND_CONFLICT: gazebo pid=111827 while qualifying isaac",
+      "foreign robotics process pid=111827 start=2051123 argv=['gz sim server']",
+      "isaac/preflight: uncalibrated requirement min_ram_available_bytes",
+      "isaac/preflight: uncalibrated requirement min_vram_free_bytes"
+    ],
+    "backend": "isaac",
+    "phase": "preflight",
+    "evaluation_domain": 82,
+    "process_classifications": [
+      {
+        "pid": 111827,
+        "start_ticks": 2051123,
+        "category": "FOREIGN_SIMULATOR",
+        "ros_domain_id": 115,
+        "simulator": "gazebo",
+        "domain_evidence": "DECLARED_METADATA_ONLY; runtime ROS contexts may override",
+        "orphan_status": "NOT_ESTABLISHED",
+        "allowed": false
+      }
+    ]
+  }
+}

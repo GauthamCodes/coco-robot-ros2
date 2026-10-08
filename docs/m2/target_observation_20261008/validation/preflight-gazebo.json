@@ -1,0 +1,38 @@
+{
+  "inventory": {
+    "wall_epoch_ns": 1791441950303361560,
+    "monotonic_s": 6113.343789402,
+    "cpu_ticks": [
+      367719,
+      163381,
+      98341,
+      6605830,
+      7046,
+      0,
+      2483,
+      0
+    ],
+    "cpu_count": 12,
+    "load1": 2.50732421875,
+    "ram_available_bytes": 9364389888,
+    "ram_total_bytes": 16458551296,
+    "gpu": {
+      "uuid": "GPU-02e278e3-aef7-1483-8141-e4e3540eb1d7",
+      "total_bytes": 6439305216,
+      "free_bytes": 5662310400
+    },
+    "dds_segments": [],
+    "errors": []
+  },
+  "verdict": {
+    "qualified": false,
+    "reasons": [
+      "gazebo/preflight: uncalibrated requirement min_ram_available_bytes",
+      "gazebo/preflight: uncalibrated requirement min_vram_free_bytes"
+    ],
+    "backend": "gazebo",
+    "phase": "preflight",
+    "evaluation_domain": 82,
+    "process_classifications": []
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "ROS_DISTRO": "jazzy",
+  "ROS_DOMAIN_ID": "82",
+  "RMW_IMPLEMENTATION": "rmw_cyclonedds_cpp",
+  "CYCLONEDDS_URI": "<CycloneDDS><Domain><General><Interfaces><NetworkInterface name=\"lo\" multicast=\"true\"/></Interfaces></General></Domain></CycloneDDS>",
+  "GZ_IP": "127.0.0.1",
+  "GZ_VERSION": "harmonic",
+  "AMENT_PREFIX_PATH": "/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy:/home/gautham/coco_m1_ws/install/coco_mission:/home/gautham/coco_m1_ws/install/coco_perception:/home/gautham/coco_m1_ws/install/coco_moveit_config:/home/gautham/coco_m1_ws/install/gazebo_models:/home/gautham/coco_m1_ws/install/coco_web:/home/gautham/coco_m1_ws/install/custom_teleop:/home/gautham/coco_m1_ws/install/coco_sim:/home/gautham/coco_m1_ws/install/coco_rl:/home/gautham/coco_m1_ws/install/coco_config:/opt/ros/jazzy",
+  "COLCON_PREFIX_PATH": "/home/gautham/coco_m1_ws/install",
+  "COCO_WS": "/home/gautham/coco_m1_ws",
+  "COCO_MOVEIT_PREFIX": "/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy",
+  "mcap_package_prefix": "/opt/ros/jazzy",
+  "registered_writers": [
+    "mcap",
+    "sqlite3"
+  ],
+  "recorder_runtime_verified": false
+}

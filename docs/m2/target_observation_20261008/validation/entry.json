@@ -1,0 +1,9 @@
+{
+  "start_sha": "e8bb85ffec8a5ed1e5a0aad89748a04ecf9aa0de",
+  "branch": "coco-2.1-isaac-integration",
+  "worktree": "/home/gautham/coco-isaac-21",
+  "entry_clean": true,
+  "master_plan_equal": true,
+  "master_plan_sha256": "e2d899d3b4f1b96a3958ace3833e32318985cc4edbcd05e12858ec91698aa03d",
+  "authority": "User 2026-10-08 explicitly authorizes bounded existing-RGB-D repair and conditional M1 re-entry; no safety/qualification override."
+}

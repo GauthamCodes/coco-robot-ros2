@@ -1,0 +1,109 @@
+{
+  "files": [
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/clean-environment.json",
+      "bytes": 1158,
+      "sha256": "47d568c266b821d436ea32b7ec47c6a370c7f40cb04917ae352ea16d7be4b310"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/fail-closed.log",
+      "bytes": 208,
+      "sha256": "d11113af1272e08d2274501f75b5ebf705091dea0cd744eef444ade9ec07125a"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/fail-closed.xml",
+      "bytes": 1346,
+      "sha256": "3f43a1ea9a2da4a3f029d32f4828c187da59bd0e61e43e7cd3263652660a945e"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/geometry-tests-optimized.log",
+      "bytes": 98,
+      "sha256": "1d8ffad0923de5090d49e3a0c4a0f4b335ba9be952f2fa07d733934811fce836"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/geometry-tests.log",
+      "bytes": 196,
+      "sha256": "1a0cbeaf81f5374aa812df3539cb3fca7f13d38610fa872f9ddf03d3efaec09a"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/geometry-tests.xml",
+      "bytes": 853,
+      "sha256": "89b6fe97784a82b12f5ee4435b301397916a673e7db6f096a5a470a917608f04"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe-expanded.json",
+      "bytes": 885644,
+      "sha256": "a6b943a470bdb7f4d67ffb998ad1759ce83798b8f23980cff3b22073b1995584"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe-expanded.log",
+      "bytes": 83,
+      "sha256": "6f90f971e75e78240618115f15f84939988339e5dc5d3d9843ea03ac00a4ff66"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe-refined.json",
+      "bytes": 964,
+      "sha256": "04c32f90f117a61d1a6b700701cb6502855f27f07a904c794111448e0376a957"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe-refined.log",
+      "bytes": 79,
+      "sha256": "3b199c72318f1f3efcf7409c97f5ec5d6d77cbf2dbc40d5d9fb739b1acb4d8d0"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe.json",
+      "bytes": 48009,
+      "sha256": "babe53ed5cff51b4fb85d08fd36684c5e86247dfff57d27f3b3eaeddb2173723"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/mount-probe.log",
+      "bytes": 82,
+      "sha256": "be8d5a9ae919a2b7d9cf5f7f4f5f05a9ad37b77b06bf14980f939a26658e1f11"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/preflight-final-gazebo.json",
+      "bytes": 142750,
+      "sha256": "6390cdc1ea8d8f6a4ab88d620bd1f594cd39a9cc7883ce3485fedc3cb0b5671b"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/preflight-final-isaac.json",
+      "bytes": 141950,
+      "sha256": "a6ca63bdcb4dda13bb5398c5d33a4cbcea8707e24175b06a7b5fd8c666776f33"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/preflight-gazebo.json",
+      "bytes": 130730,
+      "sha256": "1f80f554e2cc220a83451bed49e174ab23ea4a54c1e648c51cab2b39ef3df601"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/preflight-isaac.json",
+      "bytes": 129866,
+      "sha256": "88f4f254ae3be89c2dafef3a9fc80dcd5f21ff7d040741e02d144a883d406abf"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/qualification-test.log",
+      "bytes": 215,
+      "sha256": "19bba1b15275f62e8b7ebfd9190584fe606581ccd614d1d0db77a3589c4a175c"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/qualification-test.xml",
+      "bytes": 370,
+      "sha256": "942c53362b912ffc733898ece403b1591cfd91c1e77608d44d8f4b29f8ccfce9"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/reproduction.json",
+      "bytes": 8708,
+      "sha256": "10be7b7a576d52ebb6b738b684e609ad4cb20686c11d3ddf4961411f3e17aa31"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/reproduction.log",
+      "bytes": 876,
+      "sha256": "9dad43255772728348c0d26541f3e069bfdc196b5a6798c8ab9b8f3530d8ce95"
+    },
+    {
+      "path": "/home/gautham/coco_m1_runs/target-observation-20261008/rgbd_fixture.npz",
+      "bytes": 2127,
+      "sha256": "1984af84ae55dc9ae0116d33e2d52f8823e5941a3fec0c6916d64b62a1f18c4e"
+    }
+  ]
+}

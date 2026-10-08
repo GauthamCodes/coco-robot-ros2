@@ -1,0 +1,109 @@
+{
+  "evidence_kind": "OFFLINE_CONFIGURATION_GEOMETRY_NOT_RUNTIME",
+  "camera_mount_base_link_m": [
+    0.125,
+    0.0,
+    0.055
+  ],
+  "camera_base_footprint_m": [
+    0.125,
+    0.0,
+    0.0685
+  ],
+  "camera_rpy_rad": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "optical_frame": "camera_optical_frame",
+  "resolution_px": [
+    320,
+    240
+  ],
+  "horizontal_fov_rad": 1.25,
+  "vertical_fov_rad": 0.9919896803728256,
+  "intrinsics": [
+    221.76500407999384,
+    221.76500407999384,
+    160.0,
+    120.0
+  ],
+  "gazebo_rgb_clip_m": [
+    0.05,
+    8.0
+  ],
+  "gazebo_depth_clip_m": [
+    0.1,
+    8.0
+  ],
+  "isaac_clip_m": [
+    0.1,
+    8.0
+  ],
+  "acquisition_accepted_depth_m": [
+    0.15,
+    2.0
+  ],
+  "current_mount_bounds": [
+    {
+      "colour": "red",
+      "radius_m": 0.01,
+      "grasp_axis_window_m": [
+        0.151,
+        0.1565
+      ],
+      "max_current_forward_depth_m": 0.04150000000000001,
+      "upper_bound_distance_to_any_surface_m": 0.10066031988822607,
+      "pitch_yaw_only_cannot_reach_015m_depth": true
+    },
+    {
+      "colour": "green",
+      "radius_m": 0.012,
+      "grasp_axis_window_m": [
+        0.151,
+        0.1565
+      ],
+      "max_current_forward_depth_m": 0.04350000000000001,
+      "upper_bound_distance_to_any_surface_m": 0.10191417958262726,
+      "pitch_yaw_only_cannot_reach_015m_depth": true
+    },
+    {
+      "colour": "blue",
+      "radius_m": 0.014,
+      "grasp_axis_window_m": [
+        0.151,
+        0.1565
+      ],
+      "max_current_forward_depth_m": 0.04550000000000001,
+      "upper_bound_distance_to_any_surface_m": 0.10323032500191018,
+      "pitch_yaw_only_cannot_reach_015m_depth": true
+    },
+    {
+      "colour": "yellow",
+      "radius_m": 0.016,
+      "grasp_axis_window_m": [
+        0.151,
+        0.1565
+      ],
+      "max_current_forward_depth_m": 0.04749999999999999,
+      "upper_bound_distance_to_any_surface_m": 0.10460640515761929,
+      "pitch_yaw_only_cannot_reach_015m_depth": true
+    }
+  ],
+  "interpretation": "For any orientation, optical forward depth is at most Euclidean distance. Even the enclosing-box distance is below the unchanged 0.15 m acceptance bound. Translation is necessary; feasibility after translation is NOT established.",
+  "proposed_mount": null,
+  "rendered_visibility_proven": false,
+  "limitations": [
+    "Nominal upright target on shared support plane only",
+    "No arm/finger occlusion or swept-volume certificate",
+    "No baseline/raise/release sensor frames",
+    "Configured encoding and stamp behavior still require live verification"
+  ],
+  "source_sha256": {
+    "gazebo_models/urdf/coco_robo2.xacro": "ab59e2954576a8cc343a55619f287795ee494436e3bc686558409ebe251b1b13",
+    "coco_sim/coco_sim/isaac/model.py": "4731159bdda88f0e3337ea244195e1867d4b0f121a445e737716acdf7b28729b",
+    "coco_sim/coco_sim/isaac/runtime.py": "dff949c27f6c27e35b45c0320c6a7769e8d4025030dcb91685ee6dacd2f95593",
+    "coco_config/coco_config/robot.py": "1ad2ed03d8cf8fcf846fa1b1e53d8412d8280e8347f130ba4c5b9f10d387f8d8",
+    "coco_perception/coco_perception/target_pose_node.py": "f3d86878949ec72c23030f47d253f926e1c5ca63bb86bebf4c4bb391610d75a2"
+  }
+}

@@ -1,11 +1,13 @@
 # COCO status
 
-Updated: 2026-10-07. Milestone **M1**, checkpoints **M1.1–M1.7 infrastructure
-implemented in part; qualified runtime/calibration and M1.8 blocked**.
+Updated: 2026-10-08. Milestone **bounded M2 RGB-D prerequisite**, authorized by
+Gautham before returning to M1; **visibility/runtime qualification blocked**.
+M1.1–M1.7 infrastructure remains partial; calibration and M1.8 remain blocked.
 M0 independently reviewed/passed and G0 passed per Gautham. No M0 reopened.
-M1 remains incomplete; no qualified smoke or baseline and no M2 authorized.
+M1 remains incomplete; no qualified smoke or baseline. Unrelated M2 remains closed.
 
-Current execution-sprint verified input SHA: `551d532090b25438dda83d58fd9431f186a616e2`.
+Current bounded-observation session input SHA: `e8bb85ffec8a5ed1e5a0aad89748a04ecf9aa0de`.
+Previous execution-sprint input SHA: `551d532090b25438dda83d58fd9431f186a616e2`.
 Previous qualification-session input: `ceeb914923f7629b4830d58fd3b47279044b2024`.
 Previous implementation-session start: `10ba56210429d7e56e9fc605d879643dd3dda2d4`.
 Branch: `coco-2.1-isaac-integration`; worktree initially clean.
@@ -636,3 +638,55 @@ missing evaluator raw witnesses remain independent; the package preserves all19
 calibration prerequisites. Fixing observation alone cannot promise qualified M1.
 Behavior changes **NONE**. No Master Plan/threshold/physics/seed changes, no Test A
 inspection, no M2 implementation, no M1 completion. M1.8 remains0/140.
+
+## 2026-10-08 — Authorized bounded RGB-D repair, qualification gate reached
+
+Gautham's execution instruction authorizes the existing-camera visibility repair,
+measured physical observation and guarded consumer before returning to M1
+calibration/smoke/baseline. This is a bounded prerequisite exception; unrelated
+M2, Nav2, search, task geometry, new sensors and safety-gate changes remain closed.
+The Master Plan files remain byte-identical and unmodified.
+
+Input `e8bb85ffec8a5ed1e5a0aad89748a04ecf9aa0de`, expected branch, clean entry.
+Both actual clean-domain82 preflights now reject **only null RAM/VRAM requirements**.
+No foreign robotics process or DDS rejection appears. This is an unresolved
+bootstrap qualification policy, not a domain66 ownership or proven capacity issue.
+No simulator was launched and no policy value was changed.
+
+Offline geometry confirms translation is necessary: even the enclosing-box
+distance to any nominal grasp surface is at most104.61mm, below150mm acceptance,
+regardless of camera orientation. Actual URDF/CAD ray probes:648 coarse placements,
+285 passing frustum candidates, none with all sparse rays clear;288 refined flank
+placements, none passing that combined frustum screen. These finite conservative
+screens do **not** prove impossibility or select a mount. No actual RGB-D visibility,
+support-height accuracy or sensor-body/swept-volume certificate exists.
+
+Local checks:8 existing manipulation fail-closed tests,1 existing null-policy
+rejection test,4 new geometry-instrument tests pass. Fresh existing synthetic
+production-method diagnostic reproduces height=None and rejection before attach,
+with45.814mm centroid framing shift. It is not real sensor replay or runtime.
+MCAP writer installed/registered; full recording not exercised.
+
+The approved patch requires rendered visibility before consumer implementation
+and independent uncertainty validation before enabling valid observations. Those
+gates are not passed. **Production observer/consumer NOT IMPLEMENTED; minimum
+requested result not achieved.** No grasp/attachment/lift/release/oracle evidence.
+19 calibration dependencies remain unresolved with exact witness/control reasons;
+all9 passive witnesses are REQUIRES QUALIFIED RUNTIME. Smoke0/4; M1.8 remains0/140.
+No root-caused-and-fixed entry or M1 completion claim.
+
+Evidence: `m2/target_observation_20261008/REPORT.md`, `DESIGN.md`,
+`OBSERVATION_CONTRACT.md`, `regression_results.json`, `validation/`.
+Raw hashed outputs: `/home/gautham/coco_m1_runs/target-observation-20261008/`.
+Next: obtain an approved bootstrap qualification policy or independently measured
+full-stack resource envelope, then render/validate the existing-sensor remount and
+continue the authorized implementation. General continuation does not provide
+the missing resource limits. Qualified M1 work remains conditional on all gates.
+
+Final same-session preflight adds new external blockers: foreign Gazebo
+PID111827/start2051123, declared domain115, cwd `/home/gautham/ros2_ws`; Isaac
+reports opposite-backend conflict. PID60465 metadata is unreadable (ps identifies
+UID1000 ssh-agent). Neither was signalled or allowlisted. Entry inventories remain
+preserved and were clear of these rejections. Both final backend preflights still
+reject null RAM/VRAM requirements as an independent policy gate. Evidence:
+`m2/target_observation_20261008/validation/preflight-final-*.json`.

@@ -1,0 +1,15 @@
+{
+  "status": "PROPOSED_NOT_APPLIED_REQUIRES_OWNER_APPROVAL",
+  "file": "eval/host_policy.json",
+  "field": "background_process_allowlist",
+  "append_rule": {
+    "comm": "(udev-worker)",
+    "uid": 0,
+    "argv_prefix": [
+      "(udev-worker)"
+    ]
+  },
+  "reason": "Current root udev-worker metadata is unreadable; parent systemd-udevd is already allowlisted.",
+  "constraints": "No RAM/VRAM/load/DDS/robotics ownership/simulator conflict changes.",
+  "rule_tests": "exact signature accepted; wrong UID and wrong argv rejected"
+}

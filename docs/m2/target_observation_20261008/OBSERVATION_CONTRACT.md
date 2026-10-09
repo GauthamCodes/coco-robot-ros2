@@ -59,3 +59,13 @@ Actual subscriptions: RGB, depth, CameraInfo, mission target colour, /clock,
 /tf and /tf_static. No /eval/world/model input. Live graph and successful
 sensor-byte replay: `validation/lightweight_20261009/ros_replay_result.json`.
 This is NON_QUALIFYING_ENGINEERING_REPLAY, not a simulator mission or Dev control.
+
+### Phase epochs and measured release reference — current implementation
+
+`ArmControl.begin_observation_phase` clears the live cache and records the ROS
+transition epoch. A consumer-valid sample must be strictly newer than that epoch.
+GraspServer applies this at acquisition, grasp approach, raise, release descent
+and post-detach retreat. Historical measured baseline is retained for comparison,
+never returned as live height. Release uses that measured baseline and both
+uncertainties within the unchanged20mm gate. No nominal height substitutes for
+measurement. These final refinements are TESTED; full-phase runtime remains open.

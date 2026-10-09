@@ -1,0 +1,615 @@
+{
+  "execution_class": "NON_QUALIFYING",
+  "ground_truth_input": false,
+  "phase_events": [
+    {
+      "phase": "baseline",
+      "stamp_ns": 4602000000
+    },
+    {
+      "phase": "approach",
+      "stamp_ns": 4940000000
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "samples": 1,
+      "valid_samples": 0,
+      "statistics": {},
+      "status": "OBSERVED"
+    },
+    "approach": {
+      "samples": 10,
+      "valid_samples": 0,
+      "statistics": {},
+      "status": "OBSERVED"
+    },
+    "lift": {
+      "samples": 0,
+      "valid_samples": 0,
+      "statistics": {},
+      "status": "NOT_REACHED"
+    },
+    "release": {
+      "samples": 0,
+      "valid_samples": 0,
+      "statistics": {},
+      "status": "NOT_REACHED"
+    }
+  },
+  "records": [
+    {
+      "phase": null,
+      "phase_started_ns": 0,
+      "checked_at_ns": 718000000,
+      "contract_valid": false,
+      "rejection_reason": "TARGET_ABSENT_OR_AMBIGUOUS",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 4000000,
+        "depth_stamp_ns": 4000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "TARGET_ABSENT_OR_AMBIGUOUS",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 0.714
+    },
+    {
+      "phase": null,
+      "phase_started_ns": 0,
+      "checked_at_ns": 1236000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 66000000,
+        "depth_stamp_ns": 66000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 1.17
+    },
+    {
+      "phase": null,
+      "phase_started_ns": 0,
+      "checked_at_ns": 2420000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 134000000,
+        "depth_stamp_ns": 134000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 2.286
+    },
+    {
+      "phase": null,
+      "phase_started_ns": 0,
+      "checked_at_ns": 3520000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 200000000,
+        "depth_stamp_ns": 200000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 3.32
+    },
+    {
+      "phase": "baseline",
+      "phase_started_ns": 4602000000,
+      "checked_at_ns": 4632000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 266000000,
+        "depth_stamp_ns": 266000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 4.366
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 5754000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 332000000,
+        "depth_stamp_ns": 332000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 5.422
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 6894000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 1124000000,
+        "depth_stamp_ns": 1124000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 5.77
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 8018000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 2312000000,
+        "depth_stamp_ns": 2312000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 5.706
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 9162000000,
+      "contract_valid": false,
+      "rejection_reason": "CONSUMER_REJECTED",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 3566000000,
+        "depth_stamp_ns": 3566000000,
+        "source_frame": "camera_optical_frame",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "red:sensor-track-42",
+        "reference_id": "observed-support-42",
+        "valid": true,
+        "reason": "VALID",
+        "center_m": [
+          0.1518728550481367,
+          -0.00011069976967956132,
+          0.08100829479081455
+        ],
+        "support_height_m": 0.0009474928076364525,
+        "center_height_above_support_m": 0.0800608019831781,
+        "uncertainty_m": 0.004175667359628237,
+        "units": "m",
+        "transform_valid": true,
+        "observation_age_s": 0.014,
+        "depth_sample_count": 783,
+        "inlier_count": 783,
+        "mask_pixels": 783,
+        "valid_fraction": 1.0,
+        "depth_median_m": 0.4196200668811798,
+        "depth_mad_m": 0.01725873351097107,
+        "measured_radius_m": 0.009089277093714345,
+        "measured_axis_extent_m": 0.1556671825177034,
+        "measured_upright_extent_m": 0.15753885606653745,
+        "measured_axis": [
+          -0.00010398020872773876,
+          -0.007853585662599171,
+          0.9999691547144625
+        ],
+        "support_plane": [
+          -0.0011626673124575824,
+          -0.0014196439740666628,
+          0.0011239132575895734
+        ],
+        "geometry_model": "complete measured cylinder"
+      },
+      "source_age_s": 5.596
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 10384000000,
+      "contract_valid": false,
+      "rejection_reason": "CONSUMER_REJECTED",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 4688000000,
+        "depth_stamp_ns": 4688000000,
+        "source_frame": "camera_optical_frame",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "red:sensor-track-42",
+        "reference_id": "observed-support-42",
+        "valid": true,
+        "reason": "VALID",
+        "center_m": [
+          0.15179857289180124,
+          -0.00010983215155463958,
+          0.08100221556838333
+        ],
+        "support_height_m": 0.0009439016771528599,
+        "center_height_above_support_m": 0.08005831389123047,
+        "uncertainty_m": 0.004129827022840715,
+        "units": "m",
+        "transform_valid": true,
+        "observation_age_s": 0.036,
+        "depth_sample_count": 782,
+        "inlier_count": 782,
+        "mask_pixels": 782,
+        "valid_fraction": 1.0,
+        "depth_median_m": 0.41959910094738007,
+        "depth_mad_m": 0.01745148003101349,
+        "measured_radius_m": 0.009116686966083634,
+        "measured_axis_extent_m": 0.15566941893736438,
+        "measured_upright_extent_m": 0.15753325117878247,
+        "measured_axis": [
+          -0.0033042646208404727,
+          -0.005666762859351193,
+          0.9999784845855492
+        ],
+        "support_plane": [
+          -0.0011661483988600419,
+          -0.0014164534804441062,
+          0.001120765767746539
+        ],
+        "geometry_model": "complete measured cylinder"
+      },
+      "source_age_s": 5.696
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 11542000000,
+      "contract_valid": false,
+      "rejection_reason": "CONSUMER_REJECTED",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 5678000000,
+        "depth_stamp_ns": 5678000000,
+        "source_frame": "camera_optical_frame",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "red:sensor-track-42",
+        "reference_id": "observed-support-42",
+        "valid": true,
+        "reason": "VALID",
+        "center_m": [
+          0.15179857289180124,
+          -0.00010983215155463958,
+          0.08100221556838333
+        ],
+        "support_height_m": 0.0009439016771528599,
+        "center_height_above_support_m": 0.08005831389123047,
+        "uncertainty_m": 0.004129827022840715,
+        "units": "m",
+        "transform_valid": true,
+        "observation_age_s": 0.03,
+        "depth_sample_count": 782,
+        "inlier_count": 782,
+        "mask_pixels": 782,
+        "valid_fraction": 1.0,
+        "depth_median_m": 0.41959910094738007,
+        "depth_mad_m": 0.01745148003101349,
+        "measured_radius_m": 0.009116686966083634,
+        "measured_axis_extent_m": 0.15566941893736438,
+        "measured_upright_extent_m": 0.15753325117878247,
+        "measured_axis": [
+          -0.0033042646208404727,
+          -0.005666762859351193,
+          0.9999784845855492
+        ],
+        "support_plane": [
+          -0.0011661483988600419,
+          -0.0014164534804441062,
+          0.001120765767746539
+        ],
+        "geometry_model": "complete measured cylinder"
+      },
+      "source_age_s": 5.864
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 12636000000,
+      "contract_valid": false,
+      "rejection_reason": "CONSUMER_REJECTED",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 6932000000,
+        "depth_stamp_ns": 6932000000,
+        "source_frame": "camera_optical_frame",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "red:sensor-track-42",
+        "reference_id": "observed-support-42",
+        "valid": true,
+        "reason": "VALID",
+        "center_m": [
+          0.15179857289180124,
+          -0.00010983215155463958,
+          0.08100221556838333
+        ],
+        "support_height_m": 0.0009439016771528599,
+        "center_height_above_support_m": 0.08005831389123047,
+        "uncertainty_m": 0.004129827022840715,
+        "units": "m",
+        "transform_valid": true,
+        "observation_age_s": 0.026,
+        "depth_sample_count": 782,
+        "inlier_count": 782,
+        "mask_pixels": 782,
+        "valid_fraction": 1.0,
+        "depth_median_m": 0.41959910094738007,
+        "depth_mad_m": 0.01745148003101349,
+        "measured_radius_m": 0.009116686966083634,
+        "measured_axis_extent_m": 0.15566941893736438,
+        "measured_upright_extent_m": 0.15753325117878247,
+        "measured_axis": [
+          -0.0033042646208404727,
+          -0.005666762859351193,
+          0.9999784845855492
+        ],
+        "support_plane": [
+          -0.0011661483988600419,
+          -0.0014164534804441062,
+          0.001120765767746539
+        ],
+        "geometry_model": "complete measured cylinder"
+      },
+      "source_age_s": 5.704
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 13794000000,
+      "contract_valid": false,
+      "rejection_reason": "CONSUMER_REJECTED",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 8120000000,
+        "depth_stamp_ns": 8120000000,
+        "source_frame": "camera_optical_frame",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "red:sensor-track-43",
+        "reference_id": "observed-support-43",
+        "valid": true,
+        "reason": "VALID",
+        "center_m": [
+          0.15179857289180124,
+          -0.00010983215155463958,
+          0.08100221556838333
+        ],
+        "support_height_m": 0.0009439016771528599,
+        "center_height_above_support_m": 0.08005831389123047,
+        "uncertainty_m": 0.004129827022840715,
+        "units": "m",
+        "transform_valid": true,
+        "observation_age_s": 0.034,
+        "depth_sample_count": 782,
+        "inlier_count": 782,
+        "mask_pixels": 782,
+        "valid_fraction": 1.0,
+        "depth_median_m": 0.41959910094738007,
+        "depth_mad_m": 0.01745148003101349,
+        "measured_radius_m": 0.009116686966083634,
+        "measured_axis_extent_m": 0.15566941893736438,
+        "measured_upright_extent_m": 0.15753325117878247,
+        "measured_axis": [
+          -0.0033042646208404727,
+          -0.005666762859351193,
+          0.9999784845855492
+        ],
+        "support_plane": [
+          -0.0011661483988600419,
+          -0.0014164534804441062,
+          0.001120765767746539
+        ],
+        "geometry_model": "complete measured cylinder"
+      },
+      "source_age_s": 5.674
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 14908000000,
+      "contract_valid": false,
+      "rejection_reason": "CONSUMER_REJECTED",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 8912000000,
+        "depth_stamp_ns": 8912000000,
+        "source_frame": "camera_optical_frame",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "red:sensor-track-43",
+        "reference_id": "observed-support-43",
+        "valid": true,
+        "reason": "VALID",
+        "center_m": [
+          0.15179857289180124,
+          -0.00010983215155463958,
+          0.08100221556838333
+        ],
+        "support_height_m": 0.0009439016771528599,
+        "center_height_above_support_m": 0.08005831389123047,
+        "uncertainty_m": 0.004129827022840715,
+        "units": "m",
+        "transform_valid": true,
+        "observation_age_s": 0.028,
+        "depth_sample_count": 782,
+        "inlier_count": 782,
+        "mask_pixels": 782,
+        "valid_fraction": 1.0,
+        "depth_median_m": 0.41959910094738007,
+        "depth_mad_m": 0.01745148003101349,
+        "measured_radius_m": 0.009116686966083634,
+        "measured_axis_extent_m": 0.15566941893736438,
+        "measured_upright_extent_m": 0.15753325117878247,
+        "measured_axis": [
+          -0.0033042646208404727,
+          -0.005666762859351193,
+          0.9999784845855492
+        ],
+        "support_plane": [
+          -0.0011661483988600419,
+          -0.0014164534804441062,
+          0.001120765767746539
+        ],
+        "geometry_model": "complete measured cylinder"
+      },
+      "source_age_s": 5.996
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4940000000,
+      "checked_at_ns": 15684000000,
+      "contract_valid": false,
+      "rejection_reason": "CONSUMER_REJECTED",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 15248000000,
+        "depth_stamp_ns": 15248000000,
+        "source_frame": "camera_optical_frame",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "red:sensor-track-43",
+        "reference_id": "observed-support-43",
+        "valid": true,
+        "reason": "VALID",
+        "center_m": [
+          0.15178205603415604,
+          -4.153923569619341e-05,
+          0.08061338549601907
+        ],
+        "support_height_m": 0.00065888275960308,
+        "center_height_above_support_m": 0.079954502736416,
+        "uncertainty_m": 0.00400497158403478,
+        "units": "m",
+        "transform_valid": true,
+        "observation_age_s": 0.024,
+        "depth_sample_count": 782,
+        "inlier_count": 782,
+        "mask_pixels": 782,
+        "valid_fraction": 1.0,
+        "depth_median_m": 0.4199449121952057,
+        "depth_mad_m": 0.017717614769935608,
+        "measured_radius_m": 0.009031844526938585,
+        "measured_axis_extent_m": 0.1558783481328539,
+        "measured_upright_extent_m": 0.15787148443572865,
+        "measured_axis": [
+          -0.0016331683802403639,
+          -0.0037180155292403927,
+          0.9999917545267893
+        ],
+        "support_plane": [
+          -0.002346900938812866,
+          -0.001417067948056855,
+          0.001015041345485096
+        ],
+        "geometry_model": "complete measured cylinder"
+      },
+      "source_age_s": 0.436
+    }
+  ]
+}

@@ -284,3 +284,26 @@ ending at its wall budget is not an episode success. See
 `docs/m2/target_observation_20261008/REPORT.md` for real-data results, explicit
 remaining gates and recorded-frame ROS observer replay commands. Engineering
 resources cannot establish full-stack production limits.
+
+### Real manipulation-phase engineering profile (non-qualifying)
+
+`--profile rgbd_manipulation --fixture grasp_front_flank --seconds 180` adds only
+existing controllers/encoder odometry/IMU, arbiter, approach, MoveIt, grasp server,
+target finder and sensor-only phase control to the RGB-D profile. It uses normal
+stow→approach→guarded pick→place services and automatically continues only on their
+actual completion outcomes. No Nav2/search/mission stack, truth input or teleport.
+The candidate mount applies to generated engineering assets only; no production
+camera asset or benchmark definition changes. Capture/observation profiles remain
+static optical tools. All profiles retain unchanged bootstrap safety/ownership
+checks and are excluded from M1 denominators. Exact nodes/QoS/plugins/resources,
+source phase events, recorded results and remaining gates are documented in
+`docs/m2/target_observation_20261008/PHASE_VALIDATION.md` and RESOURCE_PROFILE.md.
+
+Engineering recorder image sidecars now contain metadata and raw-byte SHA256;
+full-resolution original image CDR remains in MCAP. Production sidecar encoding
+and fixed TOPICS remain unchanged. Generic production payload-equality replay is
+not an image-summary verifier; read raw engineering MCAP for pixel evidence.
+Phase control streams records durably to `phase_observations.jsonl`, and
+`observation_phase_export.py EVENTS PHASE_EVENTS OUTPUT` exports explicit phase
+validity/repeatability. Source-geometry statistics do not certify consumer receipt
+freshness; missing phases remain NOT_REACHED. No engineering oracle PASS exists.

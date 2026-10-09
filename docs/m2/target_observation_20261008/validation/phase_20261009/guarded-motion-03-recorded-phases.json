@@ -1,0 +1,204 @@
+{
+  "execution_class": "NON_QUALIFYING",
+  "ground_truth_input": false,
+  "phase_events": [
+    {
+      "phase": "baseline",
+      "stamp_ns": 4000000000
+    },
+    {
+      "phase": "approach",
+      "stamp_ns": 4318000000
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "samples": 1,
+      "valid_samples": 0,
+      "statistics": {},
+      "status": "OBSERVED"
+    },
+    "approach": {
+      "samples": 2,
+      "valid_samples": 0,
+      "statistics": {},
+      "status": "OBSERVED"
+    },
+    "lift": {
+      "samples": 0,
+      "valid_samples": 0,
+      "statistics": {},
+      "status": "NOT_REACHED"
+    },
+    "release": {
+      "samples": 0,
+      "valid_samples": 0,
+      "statistics": {},
+      "status": "NOT_REACHED"
+    }
+  },
+  "records": [
+    {
+      "phase": null,
+      "phase_started_ns": 0,
+      "checked_at_ns": 702000000,
+      "contract_valid": false,
+      "rejection_reason": "TARGET_ABSENT_OR_AMBIGUOUS",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 4000000,
+        "depth_stamp_ns": 4000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "TARGET_ABSENT_OR_AMBIGUOUS",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 0.698
+    },
+    {
+      "phase": null,
+      "phase_started_ns": 0,
+      "checked_at_ns": 2186000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 134000000,
+        "depth_stamp_ns": 134000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 2.052
+    },
+    {
+      "phase": null,
+      "phase_started_ns": 0,
+      "checked_at_ns": 3188000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 464000000,
+        "depth_stamp_ns": 464000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 2.724
+    },
+    {
+      "phase": "baseline",
+      "phase_started_ns": 4000000000,
+      "checked_at_ns": 4248000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 1124000000,
+        "depth_stamp_ns": 1124000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 3.124
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4318000000,
+      "checked_at_ns": 5236000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 1652000000,
+        "depth_stamp_ns": 1652000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 3.584
+    },
+    {
+      "phase": "approach",
+      "phase_started_ns": 4318000000,
+      "checked_at_ns": 6738000000,
+      "contract_valid": false,
+      "rejection_reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+      "observation": {
+        "schema": "coco.object_height.v1",
+        "stamp_ns": 1784000000,
+        "depth_stamp_ns": 1784000000,
+        "source_frame": "",
+        "frame_id": "base_footprint",
+        "colour": "red",
+        "track_id": "",
+        "reference_id": "",
+        "valid": false,
+        "reason": "GRAVITY_REFERENCE_UNAVAILABLE",
+        "center_m": null,
+        "support_height_m": null,
+        "center_height_above_support_m": null,
+        "uncertainty_m": null,
+        "units": "m",
+        "transform_valid": false,
+        "observation_age_s": null
+      },
+      "source_age_s": 4.954
+    }
+  ]
+}

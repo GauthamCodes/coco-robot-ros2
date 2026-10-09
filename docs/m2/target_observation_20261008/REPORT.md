@@ -256,3 +256,21 @@ required manipulation-phase system result NOT VERIFIED.
 Final review: rejected/stale frames clear association before reacquisition.
 Updated actual ROS replay verifies valid measurement, stale rejection and cleared
 association; focused suite65 passed in2.93s. Perception package rebuilt successfully.
+
+## Phase execution continuation — 2026-10-09
+
+Input1376250fe91adc07f2404530e1e048fbfc52ab24, expected clean branch; Master Plan
+copies byte-identical. See PHASE_VALIDATION.md and validation/phase_20261009/.
+Real stow, sensor-valid baseline/approach and a normal guarded grasp motion with
+`Magnet attached` are now observed in NON_QUALIFYING engineering execution.
+Physical attachment still needs independent lift proof; lift/release/oracle PASS
+are NOT VERIFIED. No system-level root-cause closure, Isaac launch, full-stack
+resource envelope or M1 reopening is claimed.
+
+124 focused checks passed before the interrupted grasp; final transition and
+measured-release regressions increase the focused set to126. Affected perception,
+config and manipulation packages built. Final consumer phase refinements are
+runtime pending. Production policies/campaigns/safety constants remain unchanged.
+Root-owned udev-worker metadata repeatedly prevents continuous unchanged-gate
+execution. Exact diagnostic and a NOT_APPLIED owner-review proposal are retained.
+No safety reserve, background policy or unknown-process handling was relaxed.

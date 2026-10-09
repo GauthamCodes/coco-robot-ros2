@@ -5,7 +5,8 @@ import cv2
 import numpy as np
 import rclpy
 from rclpy.time import Time
-from rclpy.qos import qos_profile_sensor_data
+from rclpy.qos import QoSProfile,ReliabilityPolicy
+SENSOR_QOS=QoSProfile(depth=1,reliability=ReliabilityPolicy.BEST_EFFORT)
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image,CameraInfo
 from std_msgs.msg import String
@@ -26,9 +27,9 @@ class ObjectHeightNode(AutonomyNode):
         self.tf=Buffer();self.listener=TransformListener(self.tf,self)
         self.track=0;self.previous=None;self.reference=0;self.last_stamp=0
         self.pub=self.create_publisher(String,'/perception/object_height',10)
-        self.create_subscription(CameraInfo,'/camera/camera_info',self._info,qos_profile_sensor_data)
-        self.create_subscription(Image,'/camera/depth/image_raw',self._depth,qos_profile_sensor_data)
-        self.create_subscription(Image,'/camera/image_raw',self._image,qos_profile_sensor_data)
+        self.create_subscription(CameraInfo,'/camera/camera_info',self._info,SENSOR_QOS)
+        self.create_subscription(Image,'/camera/depth/image_raw',self._depth,SENSOR_QOS)
+        self.create_subscription(Image,'/camera/image_raw',self._image,SENSOR_QOS)
         self.create_subscription(String,'/mission/target_colour',self._colour,10)
         self.create_timer(.1,self._freshness)
 

@@ -1,0 +1,1218 @@
+{
+  "acquisition-01": {
+    "state": "BOOTSTRAP_WALL_BUDGET_REACHED",
+    "reasons": [],
+    "source_sha": "a5fc161833756c682566485f85cd6ed906cc8443",
+    "profile": "rgbd_observation",
+    "fixture": "acquisition",
+    "bag_hash": {
+      "sha256": "1fdb64156316396beeaa291bc689481f793ce63aa32d30dedacabc10492143c9",
+      "files": {
+        "bag_0.mcap": "19d4eff074676d15baa6debb6caabfd9d7826a1b2d550a1d02950e2139dd3a90",
+        "metadata.yaml": "a1b7cc395898e0062a1cb0cffee575adefdfd65a72006ecc8b5dc18677fc2cd8"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 31,
+      "extrema": {
+        "cpu_percent": {
+          "min": 22.33676975945017,
+          "max": 84.05207485760782
+        },
+        "load1": {
+          "min": 2.6005859375,
+          "max": 4.3388671875
+        },
+        "ram_used_bytes": {
+          "min": 6593957888,
+          "max": 7785971712
+        },
+        "ram_available_bytes": {
+          "min": 8672575488,
+          "max": 9864589312
+        },
+        "vram_used_bytes": {
+          "min": 881852416,
+          "max": 1155530752
+        },
+        "vram_free_bytes": {
+          "min": 5283774464,
+          "max": 5557452800
+        },
+        "rtf": {
+          "min": 0.004938259765308851,
+          "max": 1.7114747093008371
+        },
+        "evidence_bytes": {
+          "min": 189419,
+          "max": 65250027
+        },
+        "disk_free_bytes": {
+          "min": 15259533312,
+          "max": 15329796096
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 145178624,
+        "peak_cpu_percent_one_core": 183.66614331547734
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 155582464,
+        "peak_cpu_percent_one_core": 164.97689897662323
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 868466688,
+        "peak_cpu_percent_one_core": 97.099510004181
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 43724800,
+        "peak_cpu_percent_one_core": 31.287619890236098
+      },
+      "observer": {
+        "peak_rss_bytes": 252649472,
+        "peak_cpu_percent_one_core": 211.85524785344268
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 20971520,
+        "peak_cpu_percent_one_core": 9.304664721212628
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "source_geometry_statistics_not_receipt_validity": {
+      "support_height_m": {
+        "n": 20,
+        "median": -0.012991105463502049,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          -0.012991105463502049,
+          -0.012991105463502049
+        ]
+      },
+      "center_height_above_support_m": {
+        "n": 20,
+        "median": 0.07900303876825654,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          0.07900303876825654,
+          0.07900303876825654
+        ]
+      },
+      "uncertainty_m": {
+        "n": 20,
+        "median": 0.0025317979749985204,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          0.0025317979749985204,
+          0.0025317979749985204
+        ]
+      },
+      "depth_median_m": {
+        "n": 20,
+        "median": 0.21605880558490753,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          0.21605880558490753,
+          0.21605880558490753
+        ]
+      },
+      "valid_fraction": {
+        "n": 20,
+        "median": 1.0,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          1.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "grasp-front-flank-01": {
+    "state": "BOOTSTRAP_WALL_BUDGET_REACHED",
+    "reasons": [],
+    "source_sha": "e524c423023c16f1b8eb3ff7a8f7ad0983fb537c",
+    "profile": "rgbd_observation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": {
+      "sha256": "ab5f303c12f4e4cc55fae93759aaf025c2d030bf6f90d70b26d279ba727b12bd",
+      "files": {
+        "bag_0.mcap": "2d50e28268fb04ebfc4e0894c0ac549f34051addb6d8e71bbb7c6c56513b4988",
+        "metadata.yaml": "463d6c93127805ada8be2c906269c74f56f48fadf9ee0c42ca61ce897330d8d9"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 31,
+      "extrema": {
+        "cpu_percent": {
+          "min": 12.671232876712324,
+          "max": 54.139072847682115
+        },
+        "load1": {
+          "min": 2.7666015625,
+          "max": 3.27783203125
+        },
+        "ram_used_bytes": {
+          "min": 6692368384,
+          "max": 7863136256
+        },
+        "ram_available_bytes": {
+          "min": 8595410944,
+          "max": 9766178816
+        },
+        "vram_used_bytes": {
+          "min": 774897664,
+          "max": 1054867456
+        },
+        "vram_free_bytes": {
+          "min": 5384437760,
+          "max": 5664407552
+        },
+        "rtf": {
+          "min": 0.005011168993675483,
+          "max": 1.2974584745326736
+        },
+        "evidence_bytes": {
+          "min": 190484,
+          "max": 68793808
+        },
+        "disk_free_bytes": {
+          "min": 15133376512,
+          "max": 15202574336
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 89948160,
+        "peak_cpu_percent_one_core": 191.34651145878263
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 154939392,
+        "peak_cpu_percent_one_core": 166.63807750185808
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 868700160,
+        "peak_cpu_percent_one_core": 94.64869481061564
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 43634688,
+        "peak_cpu_percent_one_core": 24.648097606931156
+      },
+      "observer": {
+        "peak_rss_bytes": 253603840,
+        "peak_cpu_percent_one_core": 78.8739123421797
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 21106688,
+        "peak_cpu_percent_one_core": 7.8873912342179695
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "source_geometry_statistics_not_receipt_validity": {
+      "support_height_m": {
+        "n": 23,
+        "median": -0.012543285834137252,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          -0.012543285834137252,
+          -0.012543285834137252
+        ]
+      },
+      "center_height_above_support_m": {
+        "n": 23,
+        "median": 0.07999510876485968,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          0.07999510876485968,
+          0.07999510876485968
+        ]
+      },
+      "uncertainty_m": {
+        "n": 23,
+        "median": 0.0041200028127075265,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          0.0041200028127075265,
+          0.0041200028127075265
+        ]
+      },
+      "depth_median_m": {
+        "n": 23,
+        "median": 0.4252031445503235,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          0.4252031445503235,
+          0.4252031445503235
+        ]
+      },
+      "valid_fraction": {
+        "n": 23,
+        "median": 1.0,
+        "iqr": 0.0,
+        "bootstrap_median_95_interval": [
+          1.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "grasp-original-01": {
+    "state": "BLOCKED_BOOTSTRAP",
+    "reasons": [
+      "/proc/44366: [Errno 13] Permission denied: '/proc/44366/exe'",
+      "/proc/44367: [Errno 13] Permission denied: '/proc/44367/exe'",
+      "/proc/44368: [Errno 13] Permission denied: '/proc/44368/exe'",
+      "/proc/44369: [Errno 13] Permission denied: '/proc/44369/exe'"
+    ],
+    "source_sha": "ff2838960c2a3fdf26da46c37fca33e418a0024d",
+    "profile": "rgbd_observation",
+    "fixture": "grasp_original",
+    "bag_hash": null,
+    "resource": null,
+    "components": {},
+    "teardown": {}
+  },
+  "grasp-original-02": {
+    "state": "ABORTED_BOOTSTRAP_ERROR",
+    "reasons": [
+      "RuntimeError('MCAP recorder exited')"
+    ],
+    "source_sha": "582ce41fee16bae1ba556c6dc29fc75368ca2e40",
+    "profile": "rgbd_observation",
+    "fixture": "grasp_original",
+    "bag_hash": {
+      "sha256": "4f795461b7ec3c761ee5f347f0fc8ac11d6e96e504656b7264971aceba3efb71",
+      "files": {
+        "bag_0.mcap": "f7461362fe58b96d8319c6e9e55eb0f391e071c6221c0feee12953aec5d14c6d",
+        "metadata.yaml": "eea657f07833eee4dbd98a1f2eafc173e915e684d1f792a20caeef501e71b61a"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 4,
+      "extrema": {
+        "cpu_percent": {
+          "min": 29.638752052545158,
+          "max": 38.8936170212766
+        },
+        "load1": {
+          "min": 3.73583984375,
+          "max": 3.80029296875
+        },
+        "ram_used_bytes": {
+          "min": 6731362304,
+          "max": 6833647616
+        },
+        "ram_available_bytes": {
+          "min": 9624899584,
+          "max": 9727184896
+        },
+        "vram_used_bytes": {
+          "min": 849346560,
+          "max": 883949568
+        },
+        "vram_free_bytes": {
+          "min": 5555355648,
+          "max": 5589958656
+        },
+        "evidence_bytes": {
+          "min": 193090,
+          "max": 392461
+        },
+        "disk_free_bytes": {
+          "min": 15259480064,
+          "max": 15259693056
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 76029952,
+        "peak_cpu_percent_one_core": 177.53902082012954
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 65880064,
+        "peak_cpu_percent_one_core": 9.678942236492553
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "source_geometry_statistics_not_receipt_validity": {}
+  },
+  "grasp-original-03": {
+    "state": "BOOTSTRAP_WALL_BUDGET_REACHED",
+    "reasons": [],
+    "source_sha": "6e1b19b24d5a2e2cb6111714b6882f548857af03",
+    "profile": "rgbd_observation",
+    "fixture": "grasp_original",
+    "bag_hash": {
+      "sha256": "57ebfd026380591e90d7e81d79bd5cda7140459c031ba80f5ec5a9108c32fe13",
+      "files": {
+        "bag_0.mcap": "b002797d5cfb877340855fbb670d072b779424621757d8983e8b927073e9ea9a",
+        "metadata.yaml": "b38f2c97474dc8da89bb409c939cab84a8e68716421258bebc408fa25b257fc8"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 31,
+      "extrema": {
+        "cpu_percent": {
+          "min": 14.76510067114094,
+          "max": 67.80487804878048
+        },
+        "load1": {
+          "min": 1.837890625,
+          "max": 4.96337890625
+        },
+        "ram_used_bytes": {
+          "min": 6594224128,
+          "max": 7720677376
+        },
+        "ram_available_bytes": {
+          "min": 8737869824,
+          "max": 9864323072
+        },
+        "vram_used_bytes": {
+          "min": 964689920,
+          "max": 1372585984
+        },
+        "vram_free_bytes": {
+          "min": 5066719232,
+          "max": 5474615296
+        },
+        "rtf": {
+          "min": 0.7278504072484807,
+          "max": 1.1151718155563213
+        },
+        "evidence_bytes": {
+          "min": 190480,
+          "max": 69169824
+        },
+        "disk_free_bytes": {
+          "min": 15206158336,
+          "max": 15275446272
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 88821760,
+        "peak_cpu_percent_one_core": 194.58245495007722
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 155217920,
+        "peak_cpu_percent_one_core": 76.49944750184707
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 868339712,
+        "peak_cpu_percent_one_core": 84.78757752751669
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 43683840,
+        "peak_cpu_percent_one_core": 23.91561969376518
+      },
+      "observer": {
+        "peak_rss_bytes": 239185920,
+        "peak_cpu_percent_one_core": 73.94331725011658
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 20905984,
+        "peak_cpu_percent_one_core": 7.652998302004858
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "source_geometry_statistics_not_receipt_validity": {}
+  },
+  "guarded-motion-01": {
+    "state": "ABORTED_BOOTSTRAP_ERROR",
+    "reasons": [
+      "KeyboardInterrupt()"
+    ],
+    "source_sha": "317456e06a06ce0ebce8195e9440fb190b96b071",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": {
+      "sha256": "ee2b632d9f050a3cba0028418cbaa727e69e91caa8ddc782208b0877983c05e0",
+      "files": {
+        "bag_0.mcap": "bc664b24f6fabc0ff8c4b51b79a97bd2722c81d2beef5a2d60a763e29850cd50",
+        "metadata.yaml": "fb2fb4de0826383a030097e53fe010c78da381b31d9d74c3579d6bfdfd5e968b"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 39,
+      "extrema": {
+        "cpu_percent": {
+          "min": 14.278515034436424,
+          "max": 86.30514705882352
+        },
+        "load1": {
+          "min": 2.44482421875,
+          "max": 5.1943359375
+        },
+        "ram_used_bytes": {
+          "min": 6713196544,
+          "max": 7897063424
+        },
+        "ram_available_bytes": {
+          "min": 8561483776,
+          "max": 9745350656
+        },
+        "vram_used_bytes": {
+          "min": 792723456,
+          "max": 1018167296
+        },
+        "vram_free_bytes": {
+          "min": 5421137920,
+          "max": 5646581760
+        },
+        "rtf": {
+          "min": 0.24519054299019163,
+          "max": 1.0447764527256478
+        },
+        "evidence_bytes": {
+          "min": 190490,
+          "max": 94553785
+        },
+        "disk_free_bytes": {
+          "min": 15031836672,
+          "max": 15126417408
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 100630528,
+        "peak_cpu_percent_one_core": 177.02564801302853
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 507101184,
+        "peak_cpu_percent_one_core": 543.446969081489
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 869990400,
+        "peak_cpu_percent_one_core": 118.56458931390672
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 46010368,
+        "peak_cpu_percent_one_core": 26.536800572638157
+      },
+      "observer": {
+        "peak_rss_bytes": 255852544,
+        "peak_cpu_percent_one_core": 217.61253393731477
+      },
+      "moveit_manipulation": {
+        "peak_rss_bytes": 200560640,
+        "peak_cpu_percent_one_core": 154.48794887195555
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 22278144,
+        "peak_cpu_percent_one_core": 7.784788244499847
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "source_geometry_statistics_not_receipt_validity": {}
+  },
+  "guarded-motion-02": {
+    "state": "ABORTED_BOOTSTRAP_SAFETY",
+    "reasons": [
+      "/proc/48416: [Errno 13] Permission denied: '/proc/48416/exe'"
+    ],
+    "source_sha": "27b21dc9bb4237a6f2f777ab6dcac7343f879fe5",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": {
+      "sha256": "9c106e99ba4a5cee0c6841ad63eb4cf18ce6ad0029b7e6311709431f0229e5b9",
+      "files": {
+        "bag_0.mcap": "258dbbf8df3d7584b890630d3c61dc2667dc07816415cba5a6577c313e6ce0aa",
+        "metadata.yaml": "5f5fadf75ea2e660281fb579554ec5dfaa83c705f716123b0933dc94bd60bc29"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 15,
+      "extrema": {
+        "cpu_percent": {
+          "min": 8.151260504201685,
+          "max": 84.62222222222222
+        },
+        "load1": {
+          "min": 3.19775390625,
+          "max": 3.4443359375
+        },
+        "ram_used_bytes": {
+          "min": 6718840832,
+          "max": 7877853184
+        },
+        "ram_available_bytes": {
+          "min": 8580694016,
+          "max": 9739706368
+        },
+        "vram_used_bytes": {
+          "min": 791674880,
+          "max": 950009856
+        },
+        "vram_free_bytes": {
+          "min": 5489295360,
+          "max": 5647630336
+        },
+        "rtf": {
+          "min": 0.25545652331314495,
+          "max": 0.25545652331314495
+        },
+        "evidence_bytes": {
+          "min": 189437,
+          "max": 4126043
+        },
+        "disk_free_bytes": {
+          "min": 15022465024,
+          "max": 15026667520
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 96555008,
+        "peak_cpu_percent_one_core": 183.86420829680875
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 506343424,
+        "peak_cpu_percent_one_core": 418.16617995413674
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 860295168,
+        "peak_cpu_percent_one_core": 109.55372539160727
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 44204032,
+        "peak_cpu_percent_one_core": 9.479837832713427
+      },
+      "observer": {
+        "peak_rss_bytes": 181387264,
+        "peak_cpu_percent_one_core": 102.17158553035583
+      },
+      "moveit_manipulation": {
+        "peak_rss_bytes": 221827072,
+        "peak_cpu_percent_one_core": 219.0895854671548
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 23322624,
+        "peak_cpu_percent_one_core": 11.9291546117043
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "control_results": [
+      {
+        "command": "stow",
+        "acceptance": "stowing",
+        "completed": true,
+        "status": {
+          "phase": "idle",
+          "colour": "red",
+          "x": "--",
+          "y": "--",
+          "lifted": "--",
+          "outcome": "failed"
+        }
+      }
+    ],
+    "phase_events": [],
+    "consumer_phase_counts": {
+      "baseline": {
+        "samples": 0,
+        "valid": 0
+      },
+      "approach": {
+        "samples": 0,
+        "valid": 0
+      },
+      "lift": {
+        "samples": 0,
+        "valid": 0
+      },
+      "release": {
+        "samples": 0,
+        "valid": 0
+      }
+    },
+    "source_geometry_statistics_not_receipt_validity": {}
+  },
+  "guarded-motion-03": {
+    "state": "ABORTED_BOOTSTRAP_SAFETY",
+    "reasons": [
+      "/proc/49167: [Errno 13] Permission denied: '/proc/49167/exe'"
+    ],
+    "source_sha": "91e751575b5e08608481bce0f30ef2d28398fcad",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": {
+      "sha256": "0806c56d1facffe784723302c2bcd93c3cca01fd8a692f2f79dd202e20947376",
+      "files": {
+        "bag_0.mcap": "4d63af15bcbe9b957a38e51933968093daf2911d70e5b3fb7997c0ef8784758b",
+        "metadata.yaml": "a0703d3b2ae5d0287351fea4962691687a8d1d8aa8b8027f6892efa8a9246b2f"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 17,
+      "extrema": {
+        "cpu_percent": {
+          "min": 9.358752166377815,
+          "max": 93.796992481203
+        },
+        "load1": {
+          "min": 2.45654296875,
+          "max": 4.94140625
+        },
+        "ram_used_bytes": {
+          "min": 6699462656,
+          "max": 7947210752
+        },
+        "ram_available_bytes": {
+          "min": 8511336448,
+          "max": 9759084544
+        },
+        "vram_used_bytes": {
+          "min": 791674880,
+          "max": 1012924416
+        },
+        "vram_free_bytes": {
+          "min": 5426380800,
+          "max": 5647630336
+        },
+        "rtf": {
+          "min": 0.4880544118309632,
+          "max": 0.9958408967984238
+        },
+        "evidence_bytes": {
+          "min": 189441,
+          "max": 23310915
+        },
+        "disk_free_bytes": {
+          "min": 14998134784,
+          "max": 15021608960
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 101912576,
+        "peak_cpu_percent_one_core": 183.40743025252516
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 508936192,
+        "peak_cpu_percent_one_core": 467.1070036221151
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 902017024,
+        "peak_cpu_percent_one_core": 171.40293832005074
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 46821376,
+        "peak_cpu_percent_one_core": 30.988841229290404
+      },
+      "observer": {
+        "peak_rss_bytes": 183488512,
+        "peak_cpu_percent_one_core": 103.05478257370405
+      },
+      "moveit_manipulation": {
+        "peak_rss_bytes": 218279936,
+        "peak_cpu_percent_one_core": 188.18699426502477
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 23425024,
+        "peak_cpu_percent_one_core": 10.063909622946497
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "control_results": [
+      {
+        "command": "stow",
+        "acceptance": "stowing",
+        "completed": true,
+        "status": {
+          "phase": "idle",
+          "colour": "red",
+          "x": "--",
+          "y": "--",
+          "lifted": "--",
+          "outcome": "done"
+        }
+      },
+      {
+        "command": "pick",
+        "acceptance": "pick started; watch /grasp/status",
+        "completed": true,
+        "status": {
+          "phase": "idle",
+          "colour": "red",
+          "x": "--",
+          "y": "--",
+          "lifted": "--",
+          "outcome": "robot"
+        }
+      }
+    ],
+    "phase_events": [
+      {
+        "phase": "baseline",
+        "stamp_ns": 4000000000
+      },
+      {
+        "phase": "approach",
+        "stamp_ns": 4318000000
+      }
+    ],
+    "consumer_phase_counts": {
+      "baseline": {
+        "samples": 5,
+        "valid": 5
+      },
+      "approach": {
+        "samples": 31,
+        "valid": 31
+      },
+      "lift": {
+        "samples": 0,
+        "valid": 0
+      },
+      "release": {
+        "samples": 0,
+        "valid": 0
+      }
+    },
+    "recorded_phase_summary": {
+      "baseline": {
+        "samples": 1,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "OBSERVED"
+      },
+      "approach": {
+        "samples": 2,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "OBSERVED"
+      },
+      "lift": {
+        "samples": 0,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "NOT_REACHED"
+      },
+      "release": {
+        "samples": 0,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "NOT_REACHED"
+      }
+    },
+    "source_geometry_statistics_not_receipt_validity": {}
+  },
+  "guarded-motion-04": {
+    "state": "BLOCKED_BOOTSTRAP",
+    "reasons": [
+      "/proc/49286: [Errno 13] Permission denied: '/proc/49286/exe'",
+      "WORKTREE_DIRTY: commit before simulation"
+    ],
+    "source_sha": "91e751575b5e08608481bce0f30ef2d28398fcad",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": null,
+    "resource": null,
+    "components": {},
+    "teardown": {}
+  },
+  "guarded-motion-05": {
+    "state": "ABORTED_BOOTSTRAP_SAFETY",
+    "reasons": [
+      "/proc/50175: [Errno 13] Permission denied: '/proc/50175/exe'"
+    ],
+    "source_sha": "895f86c7e801b6422f06765aa844caadf932c4d6",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": {
+      "sha256": "54676e325f0352559b947d518782e667154285d77759c4351ae068ac6f68f943",
+      "files": {
+        "bag_0.mcap": "821d9584217214085916ea8b973a9f3d8a94584a5087c95da481bfb6f74038bb",
+        "metadata.yaml": "c5b74efde9b87cf4be01b00fa1933c7b67f5175d75711bf4d81429c9df9802b4"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 18,
+      "extrema": {
+        "cpu_percent": {
+          "min": 22.144725370531827,
+          "max": 99.4994994994995
+        },
+        "load1": {
+          "min": 2.2099609375,
+          "max": 3.5234375
+        },
+        "ram_used_bytes": {
+          "min": 6777737216,
+          "max": 8009977856
+        },
+        "ram_available_bytes": {
+          "min": 8448569344,
+          "max": 9680809984
+        },
+        "vram_used_bytes": {
+          "min": 850395136,
+          "max": 1084227584
+        },
+        "vram_free_bytes": {
+          "min": 5355077632,
+          "max": 5588910080
+        },
+        "rtf": {
+          "min": 0.25564711852684313,
+          "max": 0.9069034626343089
+        },
+        "evidence_bytes": {
+          "min": 190757,
+          "max": 17817646
+        },
+        "disk_free_bytes": {
+          "min": 14979100672,
+          "max": 14997135360
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 103067648,
+        "peak_cpu_percent_one_core": 188.2995825808694
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 650256384,
+        "peak_cpu_percent_one_core": 567.6920079473485
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 887304192,
+        "peak_cpu_percent_one_core": 171.71186844108166
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 47202304,
+        "peak_cpu_percent_one_core": 29.44175001489358
+      },
+      "observer": {
+        "peak_rss_bytes": 187744256,
+        "peak_cpu_percent_one_core": 95.78342520922341
+      },
+      "moveit_manipulation": {
+        "peak_rss_bytes": 218521600,
+        "peak_cpu_percent_one_core": 156.52413387848705
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 24076288,
+        "peak_cpu_percent_one_core": 14.025677579380961
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "control_results": [
+      {
+        "command": "stow",
+        "acceptance": "stowing",
+        "completed": true,
+        "status": {
+          "phase": "idle",
+          "colour": "red",
+          "x": "--",
+          "y": "--",
+          "lifted": "--",
+          "outcome": "done"
+        }
+      },
+      {
+        "command": "pick",
+        "acceptance": "pick started; watch /grasp/status",
+        "completed": true,
+        "status": {
+          "phase": "idle",
+          "colour": "red",
+          "x": "--",
+          "y": "--",
+          "lifted": "--",
+          "outcome": "no valid fresh approach fix; pick rejected"
+        }
+      }
+    ],
+    "phase_events": [
+      {
+        "phase": "baseline",
+        "stamp_ns": 4602000000
+      },
+      {
+        "phase": "approach",
+        "stamp_ns": 4930000000
+      }
+    ],
+    "consumer_phase_counts": {
+      "baseline": {
+        "samples": 6,
+        "valid": 5
+      },
+      "approach": {
+        "samples": 1,
+        "valid": 1
+      },
+      "lift": {
+        "samples": 0,
+        "valid": 0
+      },
+      "release": {
+        "samples": 0,
+        "valid": 0
+      }
+    },
+    "recorded_phase_summary": {
+      "baseline": {
+        "samples": 1,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "OBSERVED"
+      },
+      "approach": {
+        "samples": 0,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "NOT_REACHED"
+      },
+      "lift": {
+        "samples": 0,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "NOT_REACHED"
+      },
+      "release": {
+        "samples": 0,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "NOT_REACHED"
+      }
+    },
+    "source_geometry_statistics_not_receipt_validity": {}
+  },
+  "guarded-motion-06": {
+    "state": "ABORTED_BOOTSTRAP_SAFETY",
+    "reasons": [
+      "/proc/51340: [Errno 13] Permission denied: '/proc/51340/exe'"
+    ],
+    "source_sha": "ba0d11c14d80d8618db703482774687d98a60efd",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": {
+      "sha256": "2a7b421a42426d5ae400e6fb64a07188659039c504cc1b64df689410fca24b60",
+      "files": {
+        "bag_0.mcap": "d2c2a1d59c24c4c239ad280d4496bea8a2c209c911fcc49059e92d2edb270028",
+        "metadata.yaml": "8c93963ddb86f411d40a7fa482e605dc54bdf7d36b86739641c2eeb2b8970e25"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 26,
+      "extrema": {
+        "cpu_percent": {
+          "min": 13.017751479289942,
+          "max": 96.69937555753792
+        },
+        "load1": {
+          "min": 3.9150390625,
+          "max": 9.35107421875
+        },
+        "ram_used_bytes": {
+          "min": 6753095680,
+          "max": 8057618432
+        },
+        "ram_available_bytes": {
+          "min": 8400928768,
+          "max": 9705451520
+        },
+        "vram_used_bytes": {
+          "min": 813694976,
+          "max": 1034944512
+        },
+        "vram_free_bytes": {
+          "min": 5404360704,
+          "max": 5625610240
+        },
+        "rtf": {
+          "min": 0.2543590056120691,
+          "max": 0.9829388015135558
+        },
+        "evidence_bytes": {
+          "min": 190756,
+          "max": 41365244
+        },
+        "disk_free_bytes": {
+          "min": 14934593536,
+          "max": 14976090112
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 104280064,
+        "peak_cpu_percent_one_core": 170.0395080332073
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 708440064,
+        "peak_cpu_percent_one_core": 625.4045498962963
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 890712064,
+        "peak_cpu_percent_one_core": 182.34958445570055
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 47538176,
+        "peak_cpu_percent_one_core": 31.757511899588298
+      },
+      "observer": {
+        "peak_rss_bytes": 258150400,
+        "peak_cpu_percent_one_core": 119.71732810754725
+      },
+      "moveit_manipulation": {
+        "peak_rss_bytes": 219598848,
+        "peak_cpu_percent_one_core": 159.0192456220958
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 23642112,
+        "peak_cpu_percent_one_core": 11.46937863170137
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "recorded_phase_summary": {
+      "baseline": {
+        "samples": 1,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "OBSERVED"
+      },
+      "approach": {
+        "samples": 10,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "OBSERVED"
+      },
+      "lift": {
+        "samples": 0,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "NOT_REACHED"
+      },
+      "release": {
+        "samples": 0,
+        "valid_samples": 0,
+        "statistics": {},
+        "status": "NOT_REACHED"
+      }
+    },
+    "source_geometry_statistics_not_receipt_validity": {
+      "support_height_m": {
+        "n": 7,
+        "median": 0.0009439016771528599,
+        "iqr": 0.0
+      },
+      "center_height_above_support_m": {
+        "n": 7,
+        "median": 0.08005831389123047,
+        "iqr": 0.0
+      },
+      "uncertainty_m": {
+        "n": 7,
+        "median": 0.004129827022840715,
+        "iqr": 0.0
+      },
+      "depth_median_m": {
+        "n": 7,
+        "median": 0.41959910094738007,
+        "iqr": 1.0482966899871826e-05
+      },
+      "valid_fraction": {
+        "n": 7,
+        "median": 1.0,
+        "iqr": 0.0
+      }
+    }
+  },
+  "guarded-motion-07": {
+    "state": "BLOCKED_BOOTSTRAP",
+    "reasons": [
+      "/proc/23196: [Errno 13] Permission denied: '/proc/23196/exe'"
+    ],
+    "source_sha": "6d62b69adb72ed1a573c6138268463d1218b146f",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": null,
+    "resource": null,
+    "components": {},
+    "teardown": {}
+  }
+}

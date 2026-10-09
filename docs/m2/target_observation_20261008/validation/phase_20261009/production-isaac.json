@@ -1,0 +1,11 @@
+{
+  "qualified": false,
+  "reasons": [
+    "isaac/preflight: uncalibrated requirement min_ram_available_bytes",
+    "isaac/preflight: uncalibrated requirement min_vram_free_bytes"
+  ],
+  "backend": "isaac",
+  "phase": "preflight",
+  "evaluation_domain": 82,
+  "process_classifications": []
+}

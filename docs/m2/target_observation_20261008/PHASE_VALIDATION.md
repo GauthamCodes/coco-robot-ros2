@@ -24,3 +24,74 @@ forward to x=0.40,y=0.30,z=0.25 m (base_link), retaining sensor resolution, clip
 object body and robot geometry, to expose the target/support from the front side.
 This generated-fixture candidate is not a certified production sensor placement.
 No motion/attachment/lift/release is inferred from static fixtures.
+
+## Executed phase/control evidence
+
+Entry SHA `1376250fe91adc07f2404530e1e048fbfc52ab24`; clean expected branch;
+Downloads and repository Master Plans were byte-identical.
+
+* Acquisition-01: 20 geometrically valid source observations; support-relative
+  centre median79.003038768mm, uncertainty2.531797975mm. Recorder receipt
+  freshness accepted only2 samples; this is not a live consumer success claim.
+* Grasp-original-03:23 consecutive TARGET_ABSENT_OR_AMBIGUOUS outputs at the
+  original mount/grasp distance. No near-plane mechanism inferred from absence
+  alone; original CAD range bounds and raw frames remain separate evidence.
+* Grasp-front-flank-01:23 valid source observations; measured support Z
+  -12.543285834mm in base_footprint; measured centre Z67.451822931mm;
+  centre above support79.995108765mm; uncertainty4.120002813mm;
+  depth median425.203144550mm; valid depth fraction1.0. Static repeated values
+  have IQR0 and degenerate bootstrap median intervals, recorded in
+  `validation/phase_20261009/runtime_summary.json`. This measures repeatability
+  of this static render, not independent accuracy or a calibrated noise bound.
+  Only1 recorded sample passes receipt freshness/continuous-association checks.
+* Guarded-motion-03: real existing-controller/MoveIt stow completed. Independent
+  sensor-only phase consumer accepts5/5 baseline and31/31 approach observations
+  at 24–46ms source age. Existing robot-pose guard rejects pick
+  because this composition lacked encoder odometry; no safety bypass applied.
+* Guarded-motion-06: existing encoder controller/arbiter, normal approach service,
+  corrected image-time target TF and normal guarded grasp server used. Approach
+  arrives with x0.1517m,y approximately-0.0001m; real MoveIt hover/grasp complete.
+  Log explicitly reports `Magnet attached` at wall epoch1791494007.993052925.
+  A fresh measured baseline is required by the unmodified-at-that-run grasp
+  consumer before it can issue attach. This confirms command/plugin state,
+  **not independently verified physical attachment/lift**. Watchdog aborts on
+  unreadable external PID51340 metadata before raise/release evidence exists.
+  Driver final JSON was interrupted by repeated shutdown signals; raw MCAP,
+  sidecar, source phase events and logs are preserved; no finalized driver
+  result is reconstructed. Oracle with absent terminal facts is UNSCORABLE.
+
+All raw runs are under `/home/gautham/coco_m1_runs/rgbd-phase-20261009/`.
+`validation/phase_20261009/external_evidence.json` hashes retained external files,
+including every bag; each run manifest also hashes its MCAP and metadata.
+Failed, blocked and interrupted attempts remain retained and excluded from M1.
+
+## Final consumer transition implementation (runtime pending)
+
+Acquisition/colour selection clears both live observation and old grasp context.
+Grasp approach clears live data and requires a source stamp after that transition.
+Before raise, clear live data again; the measured grasp baseline stays historical
+context only. A later same-track/support observation must prove rise with both
+uncertainties and the unchanged30mm requirement. Descent and post-detach retreat
+start new observation epochs; release confirmation requires a post-retreat sample.
+Release compares to the **measured original baseline**, with both uncertainty
+bounds and the unchanged20mm tolerance. Nominal TARGET_HEIGHT is no longer a
+release measurement reference. Planning/task dimensions and motion remain frozen.
+These refinements pass regression but postdate guarded-motion-06 and are not
+retroactively called runtime verified.
+
+Phase validator, exporter and engineering driver never subscribe to /eval or
+world/model/object truth. Runtime target_finder now uses source-time camera TF;
+its former configured extrinsics produced x approximately0.5525m for the remounted
+camera. Same pixels/segmentation/gates, correct TF, and existing approach contract
+produce the x0.1517m fix. No camera production asset was changed.
+
+## External gate
+
+Current read-only diagnostic directly caught root-owned `(udev-worker)` PID23669,
+PPid445(systemd-udevd), stateS, repeatedly unreadable `/proc/23669/exe`.
+The production background allowlist recognizes systemd-udevd, but not its worker
+signature. No live process was killed or ignored. Passwordless read-only sudo is
+unavailable. An exact background-rule proposal is preserved but NOT APPLIED;
+user approval is required by this session for any qualification-policy change.
+Until approved or metadata is inspectable, further dependent simulation is gated.
+Lift/release/Isaac/full-stack/M1 remain blocked, not disproved or completed.

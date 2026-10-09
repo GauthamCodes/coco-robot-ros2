@@ -1,0 +1,47 @@
+{
+  "run": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06",
+  "facts_provided": {},
+  "result": {
+    "definition_version": "m0-v1",
+    "oracle_verdict": "UNSCORABLE",
+    "mission_verdict": "UNOBSERVED",
+    "mission_oracle_disagreement": null,
+    "checks": {
+      "target_in_placement_zone": null,
+      "target_at_rest": null,
+      "nonrequested_undisturbed": null,
+      "robot_home": null,
+      "no_arbiter_violation": null,
+      "within_time_budget": null
+    },
+    "metrics": {},
+    "missing_evidence": [
+      {
+        "condition": "target_in_placement_zone",
+        "reason": "Missing finite target pose/dimensions or home definition"
+      },
+      {
+        "condition": "target_at_rest",
+        "reason": "Missing valid detached terminal rest samples"
+      },
+      {
+        "condition": "nonrequested_undisturbed",
+        "reason": "Missing whole-episode displacement evidence for every non-requested cylinder"
+      },
+      {
+        "condition": "robot_home",
+        "reason": "Missing finite terminal robot truth or home"
+      },
+      {
+        "condition": "no_arbiter_violation",
+        "reason": "Missing authority evidence or unresolved asynchronous observer flags"
+      },
+      {
+        "condition": "within_time_budget",
+        "reason": "Missing episode end or monotonic-wall duration"
+      }
+    ],
+    "failed_conditions": []
+  },
+  "limitation": "No terminal evaluator truth; attachment command/state does not establish physical lift or release. No fabricated terminal facts."
+}

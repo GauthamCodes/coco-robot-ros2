@@ -32,3 +32,17 @@
 
 Exact evidence: `target_observation_20261008/validation/lightweight_20261009/`;
 report, DESIGN.md, OBSERVATION_CONTRACT.md and RESOURCE_PROFILE.md in that package.
+
+### Phase execution continuation (still OPEN)
+
+Input1376250: real existing-controller stow,5/5 fresh baseline and31/31 fresh
+approach observations verified by a sensor-only phase consumer. Front-side
+existing-camera fixture yields23 repeated valid source geometries. Runtime exposed
+configured-extrinsics target_finder output inconsistent with remounted camera TF;
+source-time TF plumbing repaired with regression, segmentation/gates unchanged.
+Normal approach then yields x0.1517m, real hover/grasp and `Magnet attached`.
+External metadata safety abort interrupts before lift/release; physical attachment
+and oracle PASS remain unverified. Final phase-cache invalidation and measured
+release-reference changes are tested, not runtime closed. Never mark ROOT-CAUSED
+AND FIXED from this partial control. Exact evidence:
+`target_observation_20261008/validation/phase_20261009/` and PHASE_VALIDATION.md.

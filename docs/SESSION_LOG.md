@@ -4314,3 +4314,37 @@ To inspect the exact matrix, run:
 ```bash
 python3 docs/data/p03d_evidence.py /home/gautham/coco_p03d_runs
 ```
+
+## 2026-10-09 — RGB-D phase control and environmental gate
+
+Entry SHA1376250fe91adc07f2404530e1e048fbfc52ab24. Implemented phase validator,
+durable sensor evidence, bounded recording/image queues and duplicate-copy removal,
+image-time target TF repair, minimal existing-controller/MoveIt/arbiter/approach
+engineering control, explicit consumer phase epochs and measured release reference.
+126 focused checks pass; config/perception/manipulation packages build.
+
+Measured:23 static front-side grasp-distance source observations at79.995108765mm
+above measured support, uncertainty4.120002813mm; real phase consumer5/5 baseline
+and31/31 approach fresh24–46ms. Normal approach/grasp logs `Magnet attached`.
+Not verified: independent physical attachment, lift/release, oracle PASS, Isaac,
+full-stack resources, production qualification, M1 calibration/smoke/baseline.
+Partial arm available RAM stays above unchanged reserve; repeated unknown external
+metadata aborts. Direct diagnostic identifies root udev workers. Policy proposal
+is NOT APPLIED and requires owner approval; no unknown process ignored or killed.
+
+Evidence and exact paths: docs/m2/target_observation_20261008/PHASE_VALIDATION.md,
+validation/phase_20261009/{runtime_summary,external_evidence,process_metadata_diagnostic}.json.
+After owner resolves the unchanged metadata gate or explicitly approves the
+reviewable exact rule, commit clean source and use a NEW output directory:
+
+```bash
+export COCO_WS=/home/gautham/coco_m1_ws
+export COCO_MOVEIT_PREFIX='/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy'
+source setup_env.sh
+./eval/bin/eval bootstrap --backend gazebo --profile rgbd_manipulation \
+  --fixture grasp_front_flank --domain 82 --seconds 180 \
+  --output /home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-08
+```
+
+No next launch is authorized by documentation alone when the safety gate rejects.
+Continue real phase proof before Isaac/full-stack/qualification/M1; no unrelated M2.

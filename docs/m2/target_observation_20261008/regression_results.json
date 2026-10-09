@@ -1,16 +1,16 @@
 {
-  "evidence_label": "TESTED",
-  "focused_passed": 65,
-  "perception_manipulation_passed": 43,
-  "packages_built": [
+  "status": "PASSED",
+  "focused_tests": 126,
+  "source_input_sha": "1376250fe91adc07f2404530e1e048fbfc52ab24",
+  "test_log": "docs/m2/target_observation_20261008/validation/phase_20261009/tests.log",
+  "test_log_sha256": "b8f227827455e7fec658b689aa81ac2ded6b1c6584d597b3f5ff4c93b5ea0089",
+  "affected_packages_built": [
     "coco_config",
     "coco_perception",
     "coco_moveit_config"
   ],
-  "real_ros_replay_valid_count": 1,
-  "stale_rejected": true,
-  "qualified_runs": 0,
-  "full_manipulation_runtime_verified": false,
-  "log": "validation/lightweight_20261009/tests-combined.log",
-  "stale_association_cleared": true
+  "runtime": "Partial baseline/approach/guarded attach-state; full manipulation NOT VERIFIED",
+  "safety_semantics_changes": false,
+  "qualification_policy_changed": false,
+  "ground_truth_autonomy_inputs": false
 }

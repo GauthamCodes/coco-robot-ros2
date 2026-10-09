@@ -1,0 +1,1058 @@
+{
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/.coco-bootstrap.lock": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/bag/bag_0.mcap": {
+    "sha256": "19d4eff074676d15baa6debb6caabfd9d7826a1b2d550a1d02950e2139dd3a90",
+    "bytes": 12826726
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/bag/metadata.yaml": {
+    "sha256": "a1b7cc395898e0062a1cb0cffee575adefdfd65a72006ecc8b5dc18677fc2cd8",
+    "bytes": 2721
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/env.json": {
+    "sha256": "75c4eaea31e3855b492e0358cd0d3e6d6684655f21b6812fe26d726a63842654",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/host_metrics.jsonl": {
+    "sha256": "b4da3fc7478b27bab514e55ac349fd5dc0733dd7ecdafa22ef598e54bdedd0e4",
+    "bytes": 42758
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/clock_latest.json": {
+    "sha256": "2aac8a703ad7ff97f274f1946f1c3c545d5fb8e49e11af52a149592104d8543c",
+    "bytes": 128
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/events.jsonl": {
+    "sha256": "db4a02c2fd12713d12d61e721c58d980b13871e8c09240db28122504cebc0559",
+    "bytes": 56451025
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/graph_latest.json": {
+    "sha256": "7e0745fe184ffeeb0d1c16f364377fc1327f43142c2f9095da561b8fd3b46887",
+    "bytes": 6083
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/inventory_latest.json": {
+    "sha256": "1ce710160663f45d6bd34f0f8706af4b4dad145c3359f2531b64630e8f745002",
+    "bytes": 116791
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/preflight.json": {
+    "sha256": "c1c93845ee88c09e349e8d0c2402e1f5129768c699f0ec420f61ad50a8ab6d03",
+    "bytes": 116940
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/recorder.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/recorder_end.json": {
+    "sha256": "165c6d72a2d69e4ee010c4b9f4210f74f41e9a5c6bae196c50e22d20cf029768",
+    "bytes": 264
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/recorder_ready.json": {
+    "sha256": "231c521363e851279b22705c4eae0cf282573f3532136679895b0fc99d839ec0",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "5d5e7f66a9f80ccfbbc650aa25bac4ba3bcbf53a62a68eb8e4430ea423dfa635",
+    "bytes": 17134
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "41be45ed1aa6b41c24cc191433811aa87b9813b108027c81ee923ddb5c5ffee5",
+    "bytes": 650
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture/fixture.json": {
+    "sha256": "fd78f6848531cdf2f4b4ccb37040cc262d3c64aed8d48216f17cb99109dfc37d",
+    "bytes": 447
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "730339fd45e014692a85c57697c12b97bdf8089b762de45924d959a962f81a75",
+    "bytes": 16736
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "a6e21399823670f4761d8f1d541f06d7ee0ca9e071d054b89696c976f3ac6ab0",
+    "bytes": 15987
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture/robot.urdf": {
+    "sha256": "43af71fbf1deca263ad6ad26282f728c19a42cf568f5df7deeb0a2dd2239aa76",
+    "bytes": 15737
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture/ros_cli_graph.json": {
+    "sha256": "1ad714c38daaca1857899616aea28aae215f58b3cfdff743c2a0d978650f4a6a",
+    "bytes": 3206
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture/world.sdf": {
+    "sha256": "99b64b0857ccea224ed9b9f680d27d9f638350e3d124462c66479f8df49a3d35",
+    "bytes": 29266
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/sensor_fixture.log": {
+    "sha256": "d455afc5493458d3e303ecfe18adf109eb505e4c1621e6ad355a2229386df522",
+    "bytes": 3185
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/logs/teardown.json": {
+    "sha256": "e5ee06a83c65c3554bf55d77ff4613cf0ff6c3bc5463be377823b8a813956b76",
+    "bytes": 119105
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/manifest.json": {
+    "sha256": "1d6a0f1a63778c88aff78ebccdb2b6c93e0386ed4d34e9de93729ac0cc184b4b",
+    "bytes": 7153
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/phase_events.json": {
+    "sha256": "bf74154d54cc5813d39702a7704f8bda136b37d1e45c7eb967ae19b60e6c6dc7",
+    "bytes": 36
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/resource_summary.json": {
+    "sha256": "cad082c449ade15a5bfbc79a7967014d37ac89bc4862157a372b500e19f78e3d",
+    "bytes": 974
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/bag/bag_0.mcap": {
+    "sha256": "2d50e28268fb04ebfc4e0894c0ac549f34051addb6d8e71bbb7c6c56513b4988",
+    "bytes": 13578640
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/bag/metadata.yaml": {
+    "sha256": "463d6c93127805ada8be2c906269c74f56f48fadf9ee0c42ca61ce897330d8d9",
+    "bytes": 2722
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/env.json": {
+    "sha256": "e6a6cdaf0d1d9135e6cfe6132a11f8f31f5a277a53a2abcaf580501d9aeb7e79",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/host_metrics.jsonl": {
+    "sha256": "e9e3e7dbb23115fbf872e82951fa49206edf10e4ee6726999c2820587445b6ff",
+    "bytes": 42091
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/clock_latest.json": {
+    "sha256": "eac9f0a1b18b59428e360fcea0e41304a1acdc34a7874b89bb3cd63356dd5763",
+    "bytes": 128
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/events.jsonl": {
+    "sha256": "b86501549c355ffed2f443a4fcc5c7bf8091d8b7b8c9d262c6ce7cd9c923e73e",
+    "bytes": 60635295
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/graph_latest.json": {
+    "sha256": "6d8d5319905129ebd44b41c9a9fb42943784cc383f171f0a62b60f0cb2c98240",
+    "bytes": 6083
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/inventory_latest.json": {
+    "sha256": "58755208fe3dd1c88f27f9754aca7f6dea1cde335e9c63fbf3c08fe80eef313b",
+    "bytes": 116592
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/preflight.json": {
+    "sha256": "321899e617523da89b93e87dc544031c42fa5017ded5a7c522d0e1d4637ba26a",
+    "bytes": 117999
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/recorder.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/recorder_end.json": {
+    "sha256": "165c6d72a2d69e4ee010c4b9f4210f74f41e9a5c6bae196c50e22d20cf029768",
+    "bytes": 264
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/recorder_ready.json": {
+    "sha256": "55754d05e2c3368c5387982f28eac6fdcbdb3fce0a7724c7598c71cbfd475c1f",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "0d79f82701a9d1599e6e5ebb3dee473bbdc8142ed5770b4dc06eca783379dd11",
+    "bytes": 17191
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "41be45ed1aa6b41c24cc191433811aa87b9813b108027c81ee923ddb5c5ffee5",
+    "bytes": 650
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture/fixture.json": {
+    "sha256": "542e8b4bc7547636c942a70580a1c06d923a26ef41c8f385de1dd8c013c324e2",
+    "bytes": 487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "ea8017c278272067b919b68b63c1140b10c21476c713781d5e5d82a90c5bcf2d",
+    "bytes": 16787
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "ffb6b2a9b38e7c5523c940021e7657bb0622fb5e81ca2dddf7b5c093110ed12a",
+    "bytes": 16020
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture/robot.urdf": {
+    "sha256": "b09f6457b3d45b836350056963b1942a7d05b5a6bc3ff04e52c928b1f55f72d8",
+    "bytes": 15770
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture/ros_cli_graph.json": {
+    "sha256": "f4ba5a7e258d27de950b97cf726697bb38ee3fd448e69d2ca7937a23586c57f7",
+    "bytes": 3206
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture/world.sdf": {
+    "sha256": "32be62e5902da15166a08050a73ebaa652636a5892737b53d3ada2029c02e039",
+    "bytes": 29507
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/sensor_fixture.log": {
+    "sha256": "5653f19dd71c4ecad7191c6d4620109d98cadbbb00857e4805321a83c2bd6b11",
+    "bytes": 3113
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/logs/teardown.json": {
+    "sha256": "23dca5d13f4dd4915ce90e9d97ed23ca6ec36b88fb8b69470c338ea454e99fe6",
+    "bytes": 118873
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/manifest.json": {
+    "sha256": "df822b45c886f6af3c4223435281d9b97f546331ac35f24371377ac8a0b0f39c",
+    "bytes": 7177
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/phase_events.json": {
+    "sha256": "3e078191ef2c0a2cd652f74b861c7cdb77c085bee80a5adfd1302bab8c00cc68",
+    "bytes": 54
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/resource_summary.json": {
+    "sha256": "92e087eead86b0eca397c84ec2c25f5e0fffe1604d663d576e97ded7e4be111e",
+    "bytes": 977
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-front-flank-01/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-01/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-01/logs/preflight.json": {
+    "sha256": "3da1868b27e8316da4be3b6ed7a590ad1f221c6ea86684c664647ea9a6d0cb6e",
+    "bytes": 121176
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-01/manifest.json": {
+    "sha256": "4346bbb7a4704dd0065856d01e2c6e49623942aa804a0bad0378e39a83515b07",
+    "bytes": 945
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-01/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-01/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/bag/bag_0.mcap": {
+    "sha256": "f7461362fe58b96d8319c6e9e55eb0f391e071c6221c0feee12953aec5d14c6d",
+    "bytes": 1253
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/bag/metadata.yaml": {
+    "sha256": "eea657f07833eee4dbd98a1f2eafc173e915e684d1f792a20caeef501e71b61a",
+    "bytes": 513
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/env.json": {
+    "sha256": "4b73a795130df69b71570faf0b39fd40c653915bc790ce816ae5882dfd4d8874",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/host_metrics.jsonl": {
+    "sha256": "96ded72c44fda02790e0845270bb72933419ba2009667669d168389a9a0b2d32",
+    "bytes": 2322
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/clock_latest.json": {
+    "sha256": "569733a4b1ad2f2eed2de6d696a4e1c3068100b59d143955686d8a356353d428",
+    "bytes": 113
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/events.jsonl": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/inventory_latest.json": {
+    "sha256": "dcadbf94cd5aeb1f35604d070c96fc1685fd811f46a61fde9bef74695d48bf2a",
+    "bytes": 115383
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/preflight.json": {
+    "sha256": "7a878bda8f16eef94a45a3a1d200feb1f7ca07aebfcd932d7b239f03130da1b2",
+    "bytes": 120608
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/recorder.log": {
+    "sha256": "5d4af72436f13764461e3d9e8a04628230d8a16ef6be7391fd42fde43b677c93",
+    "bytes": 1662
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/recorder_end.json": {
+    "sha256": "e4b78ca7c4037afb2591c26ece64e86eedf7a3db0b5af418dd5403799447003c",
+    "bytes": 39
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/recorder_ready.json": {
+    "sha256": "9941abf64c31c5edd17893f43c115a0dc24d874d954e9f7630a495f59dc7696e",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "c66eb6f4bac74013729d514e810ace1ba61e2d0e0442d171559c0a0d63f46307",
+    "bytes": 17146
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "41be45ed1aa6b41c24cc191433811aa87b9813b108027c81ee923ddb5c5ffee5",
+    "bytes": 650
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/sensor_fixture/fixture.json": {
+    "sha256": "6c41af63ce36493bf4ccd40f682f9dce76eb4a962bcce616ca1a074a24c2f7cf",
+    "bytes": 451
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "cd02cd08425a7c459aae1e4b9eef88c770d6555baa9658167086efa054115e9e",
+    "bytes": 16745
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "a6e21399823670f4761d8f1d541f06d7ee0ca9e071d054b89696c976f3ac6ab0",
+    "bytes": 15987
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/sensor_fixture/robot.urdf": {
+    "sha256": "43af71fbf1deca263ad6ad26282f728c19a42cf568f5df7deeb0a2dd2239aa76",
+    "bytes": 15737
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/sensor_fixture/world.sdf": {
+    "sha256": "ed13b3a0da17532320ccb5a84276b16ffa3f32c1a0ff63764b1dd50b049a2a4f",
+    "bytes": 29267
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/sensor_fixture.log": {
+    "sha256": "b2dfeeda0118f9ae8b4efd89283ea71912b17d5f4e48526f3f63b3e6d5da6e15",
+    "bytes": 4476
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/logs/teardown.json": {
+    "sha256": "0b42ff8b9441665eb6937642aa02d1655f34c21ec6f097dd4ab2e1af1b1342d5",
+    "bytes": 120161
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/manifest.json": {
+    "sha256": "847534a70ab73eae50ef1781b4dee8bc071f318f49435eef378026ac0f1620bd",
+    "bytes": 2057
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/resource_summary.json": {
+    "sha256": "95f6e06b16f57073b21fb4da840c9ce64ac1472c59b3147d20ffeeb5140a469f",
+    "bytes": 885
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-02/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/bag/bag_0.mcap": {
+    "sha256": "b002797d5cfb877340855fbb670d072b779424621757d8983e8b927073e9ea9a",
+    "bytes": 13300082
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/bag/metadata.yaml": {
+    "sha256": "b38f2c97474dc8da89bb409c939cab84a8e68716421258bebc408fa25b257fc8",
+    "bytes": 2722
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/env.json": {
+    "sha256": "54d5b512c691400bccb79baa36a0b935d7e47563f39c003383ce0b99143ca790",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/host_metrics.jsonl": {
+    "sha256": "d5bc40a5d3c4faf96dda732b5b3b54e0e69eac2b48c52b9f0047a229124f1ace",
+    "bytes": 42159
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/clock_latest.json": {
+    "sha256": "c6cbd7ce93093bd8da69e25922d753069b6272bb4fa6a5155c6f002ec4188e64",
+    "bytes": 128
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/events.jsonl": {
+    "sha256": "84f990277caba32afe26b380128a87b6f4a87093177596414ac639ec0b5709c4",
+    "bytes": 58531564
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/graph_latest.json": {
+    "sha256": "7e0745fe184ffeeb0d1c16f364377fc1327f43142c2f9095da561b8fd3b46887",
+    "bytes": 6083
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/inventory_latest.json": {
+    "sha256": "2f20c1389fdcba9b6a225f785602270e0d942660c7134461f3d2896ddef5825b",
+    "bytes": 116572
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/preflight.json": {
+    "sha256": "ed63f2768f5e52a3c40c211e38b61bd5008236df2d783af23c606c240b9910e6",
+    "bytes": 117998
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/recorder.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/recorder_end.json": {
+    "sha256": "165c6d72a2d69e4ee010c4b9f4210f74f41e9a5c6bae196c50e22d20cf029768",
+    "bytes": 264
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/recorder_ready.json": {
+    "sha256": "101b9543762912891e3b93e69d3cc458312175669b6964b287d099d35c8393d9",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "44116ae5c9371bbd766646912896b1519013b6a49c3808cb7cf2fb801195d748",
+    "bytes": 17146
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "41be45ed1aa6b41c24cc191433811aa87b9813b108027c81ee923ddb5c5ffee5",
+    "bytes": 650
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture/fixture.json": {
+    "sha256": "6c41af63ce36493bf4ccd40f682f9dce76eb4a962bcce616ca1a074a24c2f7cf",
+    "bytes": 451
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "1b23e172e644ef276c89d3e1909693c9fc9a39dfd765a6bee10647eb848e6994",
+    "bytes": 16745
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "a6e21399823670f4761d8f1d541f06d7ee0ca9e071d054b89696c976f3ac6ab0",
+    "bytes": 15987
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture/robot.urdf": {
+    "sha256": "43af71fbf1deca263ad6ad26282f728c19a42cf568f5df7deeb0a2dd2239aa76",
+    "bytes": 15737
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture/ros_cli_graph.json": {
+    "sha256": "d832ee2ef0744fb94774f04cf9512a453826b80207e1a1bb040a3e11204ae002",
+    "bytes": 3206
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture/world.sdf": {
+    "sha256": "ed13b3a0da17532320ccb5a84276b16ffa3f32c1a0ff63764b1dd50b049a2a4f",
+    "bytes": 29267
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/sensor_fixture.log": {
+    "sha256": "1ebd569b233211acf439aa7e0d1eea5478288bd10d2cd46fffb6cfad5e24643b",
+    "bytes": 3384
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/logs/teardown.json": {
+    "sha256": "21339b96d32946684478034ceaf56de472283c0fa05479949d627ff23b5b51bf",
+    "bytes": 118868
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/manifest.json": {
+    "sha256": "82bc865f8b7a8da310eee3b5a70766c018de811fecc54ae71d76796ce53a8777",
+    "bytes": 7164
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/phase_events.json": {
+    "sha256": "3e078191ef2c0a2cd652f74b861c7cdb77c085bee80a5adfd1302bab8c00cc68",
+    "bytes": 54
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/resource_summary.json": {
+    "sha256": "1466daead4595f457eb035d338afdf269c547b8b3e49dcdad4d0a041cdd9ff80",
+    "bytes": 972
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/grasp-original-03/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/bag/bag_0.mcap": {
+    "sha256": "bc664b24f6fabc0ff8c4b51b79a97bd2722c81d2beef5a2d60a763e29850cd50",
+    "bytes": 18676973
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/bag/metadata.yaml": {
+    "sha256": "fb2fb4de0826383a030097e53fe010c78da381b31d9d74c3579d6bfdfd5e968b",
+    "bytes": 3845
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/env.json": {
+    "sha256": "b54f0689ab2ddcdb57ef44d3ce9c5232252b0f620be085b3d7ccee0617e02025",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/host_metrics.jsonl": {
+    "sha256": "8aaf9445c63b51b3b96dc8144b9ca48c4c114bb0b7633bbccce8e16e5c09a10a",
+    "bytes": 83958
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/clock_latest.json": {
+    "sha256": "475325e651f15bf1ebdddc42b1df9d196f91a6166575d8f9d5c19dd3fdb9d384",
+    "bytes": 128
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/events.jsonl": {
+    "sha256": "67365e38a90408cdae5a8d10a70ab00686645a3b8b400af2650f38b3da7e0bca",
+    "bytes": 79824268
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/graph_latest.json": {
+    "sha256": "483640b0a01bc50a2241e3f35913afdfe6f11cf222e6ca3d06b9d30bcdd60dbc",
+    "bytes": 17711
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/inventory_latest.json": {
+    "sha256": "0948bf6a122c64a3cc8c21db861b7440065d3ee73ca5bb1ec9722afdae92857b",
+    "bytes": 119629
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/preflight.json": {
+    "sha256": "98801b37cbf07c326b66f637c097c7035846fe9f5cb63f64607ef986dc6e784c",
+    "bytes": 118004
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/recorder.log": {
+    "sha256": "33f7162ab8feaa8877b1682956a99426c66e10bb13d42c54a306a837eb00163d",
+    "bytes": 217
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/recorder_end.json": {
+    "sha256": "5768c80c39c933de4fa0c108354d1574218fe067153de06003facf4686147d68",
+    "bytes": 379
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/recorder_ready.json": {
+    "sha256": "b52b72f140b3dd256b1b11605a780653d7514e15fa8a6af7dc033ebf99518232",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "64d4e684b4df68f5c65698de013e9e623c0e1a2dee484b60732cf3f5f6abbc3e",
+    "bytes": 46250
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "dba3a00a2a42ae748fc1cc6f33690f198721902528cdf94da6d91e899d61530b",
+    "bytes": 1314
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture/fixture.json": {
+    "sha256": "bd44bf074cd520ba9fe579e10f1847c5d3b2ec6c2d6c20672eebbea3fb0051ff",
+    "bytes": 458
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "6c805ff09a9a6d6ff1de01c10c300b5396fbf7c121243a34225c0782f0c7bdc3",
+    "bytes": 44543
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "0483993aeefc0424e7a30e13a88f7852e5c8ce5538167ba35a652b991f8d35fb",
+    "bytes": 16823
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture/robot.urdf": {
+    "sha256": "8965ef66253d3f90070b358f40f36fa7c1fb13c17a26fc5fe629546586b50cd9",
+    "bytes": 16573
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture/ros_cli_graph.json": {
+    "sha256": "8925f8479ceb95c252cd155db1c06334aa042bfaac961511525d9a79530a4014",
+    "bytes": 4345
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture/world.sdf": {
+    "sha256": "46f687182c61e7264677f084ce16b058f9c108f7d3e71302546da2c3fea9c5c7",
+    "bytes": 30484
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/sensor_fixture.log": {
+    "sha256": "659267153906d758769c21807b679ae7f334ddc81096b32579098032c56c2d34",
+    "bytes": 18096
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/logs/teardown.json": {
+    "sha256": "4b89cb8b7c84e27c9d829ab57a5d437f674126b2761f7d0fec6c0ca9ec175ae4",
+    "bytes": 117823
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/manifest.json": {
+    "sha256": "cade0806ae230a07ea4aee02dc9b6548af187db046f3a079027cfd1432c551ef",
+    "bytes": 12338
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/resource_summary.json": {
+    "sha256": "83ef60b1ffc6dadd5343b4f76592aff697d4b9a7b379c16c8c47d4d161280bd3",
+    "bytes": 975
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-01/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/bag/bag_0.mcap": {
+    "sha256": "258dbbf8df3d7584b890630d3c61dc2667dc07816415cba5a6577c313e6ce0aa",
+    "bytes": 841165
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/bag/metadata.yaml": {
+    "sha256": "5f5fadf75ea2e660281fb579554ec5dfaa83c705f716123b0933dc94bd60bc29",
+    "bytes": 4556
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/env.json": {
+    "sha256": "17ff310b7f29620188d62d58a9212b251cd33d58a351a11b3cb070f880fba431",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/host_metrics.jsonl": {
+    "sha256": "4990888f8fbfa1a11e7b18ca33f63d35676eb1e7395527ebd5f07cd531371f44",
+    "bytes": 21921
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/clock_latest.json": {
+    "sha256": "c33e55ffb719c252eb1e805af2bd5600a5eaf198e83fcf98882e13d62f9e3b47",
+    "bytes": 124
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/events.jsonl": {
+    "sha256": "f9ac442842dc673c782ddbd1b9dc166b3a89a09ad1ee27032996ba1607ef1789",
+    "bytes": 2803846
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/graph_latest.json": {
+    "sha256": "3ce46d25ff450bde5f1ff2c7e31060fec6c7860847b6ee0980173bfd5ebd4065",
+    "bytes": 14205
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/inventory_latest.json": {
+    "sha256": "be280f4c7dcab41e1130e07b5d53c6c361d9cd5cf04616446fd8d387cd7fe0ee",
+    "bytes": 114106
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/preflight.json": {
+    "sha256": "36b98a2b56b4d5b56e4b30540ee04b8145ff2f03d2cb978c1be58a18d21cb34d",
+    "bytes": 116951
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/recorder.log": {
+    "sha256": "df74ef362550bfdb956cfc66c15f8f9cd052bac3e33e229cea9a1680c32b5bc7",
+    "bytes": 425
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/recorder_end.json": {
+    "sha256": "2da339c4028744d0d4643f7bc985645f6ea2a36e32c75ece4250762128773b1a",
+    "bytes": 483
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/recorder_ready.json": {
+    "sha256": "be0995c8550e90812925a657b56030838cd28375fd9b16422a85a2a064abfc38",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "8bb12a41159d836a148faff883868c29e0b48c5fabb352d6ddefb91c2d201210",
+    "bytes": 46749
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "dba3a00a2a42ae748fc1cc6f33690f198721902528cdf94da6d91e899d61530b",
+    "bytes": 1314
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture/control_result.json": {
+    "sha256": "087651b82fa442a0f7e6d7e5db1bdad501b7e09b02890ed82f13ecf00ed6ac42",
+    "bytes": 391
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture/fixture.json": {
+    "sha256": "bd44bf074cd520ba9fe579e10f1847c5d3b2ec6c2d6c20672eebbea3fb0051ff",
+    "bytes": 458
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "9e4b5890b79139d75f7e22e31e3bda93c9e23f469fbbe6ead0f1a9bb00edfd4a",
+    "bytes": 44873
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "af7be7e8483ed7189abde12376b5560130fb0b7f824c09ca201b176426b13b22",
+    "bytes": 16848
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture/robot.urdf": {
+    "sha256": "e266fc5801a193037e1d4dfd31252337a02abf6979c1714959584cb7419f523e",
+    "bytes": 16598
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture/world.sdf": {
+    "sha256": "13c8cf834e25ce8a198175bda9fa3ba34362b3b776b376d81ed2ac80e1de9ee5",
+    "bytes": 30509
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/sensor_fixture.log": {
+    "sha256": "5a58442fca2415400299543ff491febb0422232ec91a718e25c22080d45a952b",
+    "bytes": 36813
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/logs/teardown.json": {
+    "sha256": "976aef05b63b0ab6df943ae0130928ca4da4cf73de6d6fbea7873bf864ea242d",
+    "bytes": 117822
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/manifest.json": {
+    "sha256": "e24129389413656ed6c553f9266f9878f067ea130ef2083fe27b89d41b3d64aa",
+    "bytes": 10122
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/resource_summary.json": {
+    "sha256": "055cbfc5a7b5bd185e4369979035edaf5031fb532c53d0df4a3bb27897b2564c",
+    "bytes": 973
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-02/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/bag/bag_0.mcap": {
+    "sha256": "4d63af15bcbe9b957a38e51933968093daf2911d70e5b3fb7997c0ef8784758b",
+    "bytes": 4461318
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/bag/metadata.yaml": {
+    "sha256": "a0703d3b2ae5d0287351fea4962691687a8d1d8aa8b8027f6892efa8a9246b2f",
+    "bytes": 5576
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/env.json": {
+    "sha256": "fbcde560bb6b5a707811611e21f1afd620014aff065b7c9f02e2b044664cf250",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/host_metrics.jsonl": {
+    "sha256": "1f0309041d5f56153960c6eb32cf6e946b9d6a084dc6e3b6dc6910e42a460a56",
+    "bytes": 31947
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/clock_latest.json": {
+    "sha256": "f053b471c1852cb3b2706448e52dcf66c43e3d165cc2e40e0014c8046bbeca5d",
+    "bytes": 139
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/events.jsonl": {
+    "sha256": "a8fdad7aaddf8b552f0369b1462dacbbcea48e4ce3df44fdd89af214ee19cead",
+    "bytes": 18450508
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/graph_latest.json": {
+    "sha256": "0fe30c0d23ab5bc362ca530b3068eb9a9efe8f7048c761978f54bb8995616341",
+    "bytes": 14333
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/inventory_latest.json": {
+    "sha256": "7f3a07c68d4acc85c4af360ecc8cb5dba62702fce221fd9de0919ebe8df71758",
+    "bytes": 115936
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/preflight.json": {
+    "sha256": "3411ac8e1158ba09c6d92b71b3ad60af6ef10597518fa135adeea7b9cb41fbd9",
+    "bytes": 116955
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/recorder.log": {
+    "sha256": "8c0691d0cc46e34499af5b8b98ab0a43d66a52ccc00b6ff25c046ea0e284953d",
+    "bytes": 917
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/recorder_end.json": {
+    "sha256": "ae74cab77d0c55e54813cff5d402fc9693e6527da5f488564f35dfb72a243ed0",
+    "bytes": 641
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/recorder_ready.json": {
+    "sha256": "09e0fd7caccea2bc8736c5fb5003f928d509b4115e44588d2722ee86cf321d7b",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "7d0fb07550f357dbc1d13b4b9f1225ca5c6b52f334b6b67edd9ed0e659c3724a",
+    "bytes": 46749
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "dba3a00a2a42ae748fc1cc6f33690f198721902528cdf94da6d91e899d61530b",
+    "bytes": 1314
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/control_result.json": {
+    "sha256": "e4aec02a91516bd84e9fe7645910d55cb2320e13ba73842f1cdb20cc49149278",
+    "bytes": 61497
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/fixture.json": {
+    "sha256": "bd44bf074cd520ba9fe579e10f1847c5d3b2ec6c2d6c20672eebbea3fb0051ff",
+    "bytes": 458
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "df435f769124f5da654f51a838bb1026df8cb07a34f0c63925258358be3f6c17",
+    "bytes": 44873
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/phase_events.json": {
+    "sha256": "6da7dc62ae91429bf4271d7106e79e4d02fa947b0c65e4b0901ca25c56edbb5a",
+    "bytes": 124
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "af7be7e8483ed7189abde12376b5560130fb0b7f824c09ca201b176426b13b22",
+    "bytes": 16848
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/robot.urdf": {
+    "sha256": "e266fc5801a193037e1d4dfd31252337a02abf6979c1714959584cb7419f523e",
+    "bytes": 16598
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture/world.sdf": {
+    "sha256": "13c8cf834e25ce8a198175bda9fa3ba34362b3b776b376d81ed2ac80e1de9ee5",
+    "bytes": 30509
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/sensor_fixture.log": {
+    "sha256": "76b24bc1d3bde441aeb964a3270f5ac01a5131c7552bd3f5809b6f54d3917497",
+    "bytes": 39204
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/logs/teardown.json": {
+    "sha256": "2b4e6f4397cebd8c5091408449a194211f02c979e360204c9a7f1fb411ad90a4",
+    "bytes": 117820
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/manifest.json": {
+    "sha256": "51c98dd6ac47e231c9113ab50f9cec1651fd74aa99c2f693b6e002abf9dee096",
+    "bytes": 10666
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/resource_summary.json": {
+    "sha256": "23be31418d5de675e1de4b8a754bfa5577fd9b498b1f0a5c27c57ef65f1e473c",
+    "bytes": 969
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-03/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-04/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-04/logs/preflight.json": {
+    "sha256": "c278836ff49e492077aaab2ae7dacf4c4a84d6a4670d2423e3534d5e7fadfdae",
+    "bytes": 117104
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-04/manifest.json": {
+    "sha256": "67f192ac031543b0ca34607473deeac62aba18cf8385586f03a5ccecf6626fa0",
+    "bytes": 793
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-04/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-04/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/bag/bag_0.mcap": {
+    "sha256": "821d9584217214085916ea8b973a9f3d8a94584a5087c95da481bfb6f74038bb",
+    "bytes": 3703349
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/bag/metadata.yaml": {
+    "sha256": "c5b74efde9b87cf4be01b00fa1933c7b67f5175d75711bf4d81429c9df9802b4",
+    "bytes": 6041
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/env.json": {
+    "sha256": "79ac1a4ffe009a46146d2e022d58b102c208a185db6a74b80eb1c9ab8a2b8c3b",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/host_metrics.jsonl": {
+    "sha256": "acd6ad451e73718790336fb96da13961391e788e8592b01d14c9097dda6b1b4e",
+    "bytes": 37352
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/clock_latest.json": {
+    "sha256": "a695c0b270790d20f8bc50076cb5b2c66e74df91b0c61c1beaa4f610ec174f04",
+    "bytes": 126
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/events.jsonl": {
+    "sha256": "18a4228389b08b2420b4e2045db77bef9175c7218becc1900870ffb0b788915c",
+    "bytes": 14745159
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/graph_latest.json": {
+    "sha256": "f47eb7a668b1db0bff993d1ec93c939d77aeb878e1c55e1c16aea6910c18bbf6",
+    "bytes": 16030
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/inventory_latest.json": {
+    "sha256": "7018b8c6ca259882cdac916ea663b2cfd321bc323c19bffeef30b16469bcc5b9",
+    "bytes": 117861
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/preflight.json": {
+    "sha256": "cc8fecb6d64b753375c8ebba8c7a0246161f738013430577d42cb4ebaa0cbf96",
+    "bytes": 118271
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/recorder.log": {
+    "sha256": "b09215c573146192fd046d046cf83a16423853f726aece6b9084ee996a2df0cc",
+    "bytes": 917
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/recorder_end.json": {
+    "sha256": "1ad5dfddf37fd5516742b17d87df8a877b2a4ab3265473cd89fd009c73166a85",
+    "bytes": 707
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/recorder_ready.json": {
+    "sha256": "16dc4368ea1c895350f7bb2254f61d043a4f03261e851dce943b2ae046f48296",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "98b213e6e5cce0ef3311d03d322d8f57b2bde5511c457899c5a2e812754bf3a7",
+    "bytes": 46951
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "dba3a00a2a42ae748fc1cc6f33690f198721902528cdf94da6d91e899d61530b",
+    "bytes": 1314
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/control_result.json": {
+    "sha256": "bfc50375029cb33aa0e35ec340cb91dbe42b0a3e1bec3fc7bbf27169f1c16d14",
+    "bytes": 12676
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/fixture.json": {
+    "sha256": "bd44bf074cd520ba9fe579e10f1847c5d3b2ec6c2d6c20672eebbea3fb0051ff",
+    "bytes": 458
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "2fc68b293cc59565181f4644d87594626e3ed07ae01f53b6fbfe5b0c21862fa7",
+    "bytes": 45097
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/phase_events.json": {
+    "sha256": "64871231e91861412d25844648b6a5ec12a02e73d373d18ee3d02e4f0c9b0784",
+    "bytes": 124
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "af7be7e8483ed7189abde12376b5560130fb0b7f824c09ca201b176426b13b22",
+    "bytes": 16848
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/robot.urdf": {
+    "sha256": "e266fc5801a193037e1d4dfd31252337a02abf6979c1714959584cb7419f523e",
+    "bytes": 16598
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture/world.sdf": {
+    "sha256": "13c8cf834e25ce8a198175bda9fa3ba34362b3b776b376d81ed2ac80e1de9ee5",
+    "bytes": 30509
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/sensor_fixture.log": {
+    "sha256": "03554b2891778e2095f64ccf53a92d010df163ccf3d83ffc5d2b213ba6cc6778",
+    "bytes": 43068
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/logs/teardown.json": {
+    "sha256": "41453378da303cccbf7abf3b1431cd6f91d54544a8249e0457c703366d212bdd",
+    "bytes": 117819
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/manifest.json": {
+    "sha256": "2767cc9a411c748465ed6d02e7e561adfeaa2eacf6fdf15c1c69bf5befeac4db",
+    "bytes": 11933
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/resource_summary.json": {
+    "sha256": "ef4131f943186def8d6108c1f2e6712e38a6007ae2ec6a70dcfe7af407af55ee",
+    "bytes": 970
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-05/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/bag/bag_0.mcap": {
+    "sha256": "d2c2a1d59c24c4c239ad280d4496bea8a2c209c911fcc49059e92d2edb270028",
+    "bytes": 8997909
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/bag/metadata.yaml": {
+    "sha256": "8c93963ddb86f411d40a7fa482e605dc54bdf7d36b86739641c2eeb2b8970e25",
+    "bytes": 7465
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/env.json": {
+    "sha256": "a605781a6e07873d9a2b99bb5008d7aeb94514f40af0652e958de533e59c78a3",
+    "bytes": 61213
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/host_metrics.jsonl": {
+    "sha256": "d6e7e00a3f52fb7306c62a36b342425b530cb15eea1bfd0870148bdfb4c0b60c",
+    "bytes": 59175
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/clock_latest.json": {
+    "sha256": "77335a8880d6d07f45dfefb26f3bddf604ff4bfe26df3194fa8267ba3db31bb3",
+    "bytes": 128
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/events.jsonl": {
+    "sha256": "69f67d68fc3b6c0c72bb62a1d313c9c62360567d220a6141a6e3856162c20c1c",
+    "bytes": 37645107
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/graph_latest.json": {
+    "sha256": "c3111fba16af6b36ef524cc3de7101f41010be4dfd099cc7cdc33f0356df0cbd",
+    "bytes": 18780
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/inventory_latest.json": {
+    "sha256": "58aed378c69da97a69cfc6259a60e957267927a95699a2235fbe198f46c408cd",
+    "bytes": 119728
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/preflight.json": {
+    "sha256": "3ee0bb4913e80b990697de1621d5a6b0bc84c4af1967b547a856be0124e9c36a",
+    "bytes": 118270
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/recorder.log": {
+    "sha256": "3a33c2a892d83a7819266e266c1633258d706243e5d9c145e38fe1b586790849",
+    "bytes": 917
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/recorder_end.json": {
+    "sha256": "f4b12340d8925e58f3bea1ce17a7059a39871b9c6b7e202bd8bc1af6672b3894",
+    "bytes": 896
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/recorder_ready.json": {
+    "sha256": "82561b21f86d331c68c42e2d227402fd506e2bfa2a0eba3b7e04ee0ed00215f0",
+    "bytes": 40
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc": {
+    "sha256": "1532f64b7df6b7275a51af3e336cf3d2d1914262fd37c0ffaeef4383c106fbcf",
+    "bytes": 47027
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/bridge.yaml": {
+    "sha256": "dba3a00a2a42ae748fc1cc6f33690f198721902528cdf94da6d91e899d61530b",
+    "bytes": 1314
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/fixture.json": {
+    "sha256": "bd44bf074cd520ba9fe579e10f1847c5d3b2ec6c2d6c20672eebbea3fb0051ff",
+    "bytes": 458
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/fixture.launch.py": {
+    "sha256": "67b0eff0505de6c7ef8d610590bca279eb35255296fcd34136f77991b1af91c3",
+    "bytes": 45175
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/phase_events.json": {
+    "sha256": "9b86f140fe73141e3fd4ce9469387a714a45ebc1120dc5fc999513f88f3531f5",
+    "bytes": 124
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/robot-gz.urdf": {
+    "sha256": "af7be7e8483ed7189abde12376b5560130fb0b7f824c09ca201b176426b13b22",
+    "bytes": 16848
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/robot.urdf": {
+    "sha256": "e266fc5801a193037e1d4dfd31252337a02abf6979c1714959584cb7419f523e",
+    "bytes": 16598
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/ros_cli_graph.json": {
+    "sha256": "cd41757e0c42a3d391e7583b5c38835960bb8cac66b26d2556862cda44295cb7",
+    "bytes": 5838
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/world.sdf": {
+    "sha256": "13c8cf834e25ce8a198175bda9fa3ba34362b3b776b376d81ed2ac80e1de9ee5",
+    "bytes": 30509
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture.log": {
+    "sha256": "421081f55e2cc5b02c733999d1e03ad24108243ac3c4331061ca5ed6c15da524",
+    "bytes": 58605
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/teardown.json": {
+    "sha256": "8e673b0b8912ab26c57fab1b171f1b4adaaed93dbe21258a0f718ab1d44f4f7c",
+    "bytes": 116507
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/manifest.json": {
+    "sha256": "2fe4b44b7cbcb31657c6cb985ab2981f1d9ba7171a02ccba4813a490857f0b6f",
+    "bytes": 14292
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/resource_summary.json": {
+    "sha256": "9f9a3c045f02eebb9affa2359d461886707d4ea7553bfb8df37e96cc71afdc6a",
+    "bytes": 974
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/safety_envelope.json": {
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-07/bootstrap_environment.json": {
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618",
+    "bytes": 897
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-07/logs/preflight.json": {
+    "sha256": "bbdf1fdafb335bc1ebecc51687bc5633f100de4f22566201a50dd471743946d9",
+    "bytes": 128702
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-07/manifest.json": {
+    "sha256": "e028b2a7caa1d448f7762038bc4b137a04a9206d67c8866312f9e134ab1dbcb5",
+    "bytes": 745
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-07/production_policy.json": {
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f",
+    "bytes": 8487
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-07/safety_envelope.json": {
+    "sha256": "7e5c2c04a1dd1120c378ba452fe2b959bbc30d5c903ab205d24cb69bcdc9a23d",
+    "bytes": 1076
+  },
+  "/home/gautham/coco_m1_runs/rgbd-phase-20261009/process_metadata_diagnostic.json": {
+    "sha256": "13e493ab488ff4a8c09258f724e79cc9c97c869dec6e714c3d2b447fc882644a",
+    "bytes": 4970
+  }
+}

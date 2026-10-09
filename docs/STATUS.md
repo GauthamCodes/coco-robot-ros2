@@ -864,3 +864,28 @@ phases before full guarded controls, Isaac and production calibration.
 Final guard review additionally clears association on every rejected/stale frame;
 new acquisition cannot reuse an old lift track.65 focused checks pass and updated
 actual ROS replay confirms valid output, stale rejection and association cleared.
+
+## 2026-10-09 — RGB-D manipulation-phase execution continuation
+
+Entry1376250fe91adc07f2404530e1e048fbfc52ab24; expected clean branch; Master Plans
+byte-equal. Sensor-only phase validator/export, bounded image retention/recording,
+source-time target TF and minimal real guarded arm profile implemented/tested.
+Front-side existing-camera fixture gives23 repeated valid source observations;
+real phase consumer accepts5/5 baseline and31/31 approach frames. Normal control
+reaches measured approach x0.1517m, real hover/grasp and `Magnet attached`.
+Physical attachment/lift/release/oracle PASS remain NOT VERIFIED because unchanged
+watchdog aborts on unreadable external process metadata. Current direct diagnostic
+identifies root systemd-udevd workers; exact allowlist proposal NOT APPLIED pending
+explicit owner approval, or readable root process metadata. No policy changed.
+
+Final consumer explicitly invalidates live samples across motion transitions and
+uses measured baseline for release, with both uncertainties. These refinements
+postdate the interrupted grasp and await runtime.126 focused tests pass;3 affected
+packages build. Partial arm minimum available RAM8,400,928,768 versus unchanged
+8,229,273,600 reserve; no full-stack envelope or hardware-capacity conclusion.
+No production qualification, calibration dependency or campaign denominator opened:
+calibration0/19, smoke0/4, M1.8=0/140. Root cause stays OPEN; no unrelated M2.
+Evidence: `m2/target_observation_20261008/validation/phase_20261009/`,
+PHASE_VALIDATION.md, RESOURCE_PROFILE.md, regression_results.json. Raw external
+runs `/home/gautham/coco_m1_runs/rgbd-phase-20261009/` are hashed/retained;
+owned teardown has no survivors. Safety semantics and ground-truth boundary unchanged.

@@ -23,6 +23,7 @@ class Control(AutonomyNode):
         self.create_subscription(String,"/approach/status",self.approach_state,10)
         self.approach_client=self.create_client(Trigger,"/approach/run")
         self.validator=PhaseValidator("red");self.records=[]
+        self.stream=(root/"phase_observations.jsonl").open("x")
         self.create_subscription(String,"/perception/object_height",self.observe,10)
         self.create_subscription(String,"/grasp/status",self.state,10)
         self.controller_client=self.create_client(ListControllers,"/controller_manager/list_controllers")
@@ -38,7 +39,9 @@ class Control(AutonomyNode):
     def observe(self,msg):
         self.observation=json.loads(msg.data)
         if self.validator.phase:
-            self.records.append(self.validator.record(self.observation,self.get_clock().now().nanoseconds))
+            record=self.validator.record(self.observation,self.get_clock().now().nanoseconds)
+            self.records.append(record)
+            self.stream.write(json.dumps(record,allow_nan=False)+"\n");self.stream.flush()
     def state(self,msg):
         import re
         self.status={key:value.strip() for key,value in re.findall(r"(\w+)=(.*?)(?= \w+=|$)",msg.data)}
@@ -107,5 +110,7 @@ if __name__=="__main__":
                         node.phase("release");results.append(node.request("place"))
             else:results.append(dict(error="BASELINE_NOT_CERTIFIED"))
     finally:
-        (root/"control_result.json").write_text(json.dumps(dict(execution_class="NON_QUALIFYING",ground_truth_inputs=False,results=results,phase_events=node.events,records=node.records),indent=2,allow_nan=False))
-        node.destroy_node();rclpy.shutdown()
+        (root/"control_result.json").write_text(json.dumps(dict(execution_class="NON_QUALIFYING",ground_truth_inputs=False,results=results,phase_events=node.events,records_path="phase_observations.jsonl",sample_count=len(node.records)),indent=2,allow_nan=False))
+        node.stream.close()
+        node.destroy_node()
+        if rclpy.ok():rclpy.shutdown()

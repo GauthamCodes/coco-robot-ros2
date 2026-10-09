@@ -100,9 +100,7 @@ def main():
             .joint_limits(file_path="config/joint_limits.yaml")
             .trajectory_execution(file_path="config/moveit_controllers.yaml")
             .planning_pipelines(pipelines=["ompl"]).to_moveit_configs()).to_dict()
-        extra="\n".join([
-            f"Node(package='controller_manager',executable='spawner',arguments=[{controller!r},'--controller-manager-timeout','120']),"
-            for controller in ("joint_state_broadcaster","diff_drive_controller","arm_controller","gripper_controller")])
+        extra="Node(package='controller_manager',executable='spawner',arguments=['joint_state_broadcaster','diff_drive_controller','arm_controller','gripper_controller','--controller-manager-timeout','120']),"
         extra+="Node(package='custom_teleop',executable='cmd_vel_arbiter',parameters=[{'use_sim_time':True}]),"
         extra+=f"Node(package='moveit_ros_move_group',executable='move_group',parameters=[{config!r},{{'use_sim_time':True}}]),"
         extra+="Node(package='gazebo_models',executable='magnet_release.py',arguments=['--models','target_red']),"
@@ -130,12 +128,9 @@ def generate_launch_description():
 '''
     (root/'fixture.launch.py').write_text(launch)
     env=dict(os.environ,GZ_PARTITION='coco-rgbd-'+root.parent.name)
-    child=subprocess.Popen(['ros2','launch',str(root/'fixture.launch.py')],env=env,start_new_session=True)
-    try:
-        child.wait()
-    except BaseException:
-        pass
-    finally:
-        stop('rgbd_fixture',child)
+    # The outer bootstrap already owns this PID/start identity and its process
+    # group. Exec releases the now-unused builder interpreter instead of keeping
+    # it resident alongside a second launch interpreter.
+    os.execvpe('ros2',['ros2','launch',str(root/'fixture.launch.py')],env)
 
 if __name__=='__main__':main()

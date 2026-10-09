@@ -1214,5 +1214,211 @@
     "resource": null,
     "components": {},
     "teardown": {}
+  },
+  "guarded-motion-08": {
+    "state": "ABORTED_BOOTSTRAP_RESOURCE_LIMIT",
+    "reasons": [
+      "min_ram_available_bytes: observed 8191639552, required 8229275648"
+    ],
+    "source_sha": "7659bf1c754f37a19079bb8a48f628582f9ea4b9",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": {
+      "sha256": "2148234abe2ede36c73b51532ca0f7e9250f8fdcf76cae6e57e1703eecd5f155",
+      "files": {
+        "bag_0.mcap": "95fae27ed4126841a5c77fba9e37134337a7a266075fc7b18ebcc5f0cec71226",
+        "metadata.yaml": "724b90f8208d064204aad3ebeec423a61bbdda316225b8fb199fbfc2855dc6ad"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 8,
+      "extrema": {
+        "cpu_percent": {
+          "min": 20.62289562289562,
+          "max": 98.41402337228715
+        },
+        "load1": {
+          "min": 2.28125,
+          "max": 2.30615234375
+        },
+        "ram_used_bytes": {
+          "min": 7554945024,
+          "max": 8266911744
+        },
+        "ram_available_bytes": {
+          "min": 8191639552,
+          "max": 8903606272
+        },
+        "vram_used_bytes": {
+          "min": 824180736,
+          "max": 836763648
+        },
+        "vram_free_bytes": {
+          "min": 5602541568,
+          "max": 5615124480
+        },
+        "evidence_bytes": {
+          "min": 200464,
+          "max": 689961
+        },
+        "disk_free_bytes": {
+          "min": 13183717376,
+          "max": 13184454656
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 88190976,
+        "peak_cpu_percent_one_core": 181.65523023381857
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 724594688,
+        "peak_cpu_percent_one_core": 666.9813189430049
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 178487296,
+        "peak_cpu_percent_one_core": 143.93635827934472
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 43499520,
+        "peak_cpu_percent_one_core": 11.70214294954022
+      },
+      "observer": {
+        "peak_rss_bytes": 173834240,
+        "peak_cpu_percent_one_core": 104.14907225090796
+      },
+      "moveit_manipulation": {
+        "peak_rss_bytes": 201318400,
+        "peak_cpu_percent_one_core": 178.2622744322145
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 23044096,
+        "peak_cpu_percent_one_core": 9.361714359632176
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "control_results": [],
+    "phase_events": [],
+    "consumer_phase_counts": {
+      "baseline": {
+        "samples": 0,
+        "valid": 0
+      },
+      "approach": {
+        "samples": 0,
+        "valid": 0
+      },
+      "lift": {
+        "samples": 0,
+        "valid": 0
+      },
+      "release": {
+        "samples": 0,
+        "valid": 0
+      }
+    },
+    "source_geometry_statistics_not_receipt_validity": {}
+  },
+  "guarded-motion-09": {
+    "state": "ABORTED_BOOTSTRAP_RESOURCE_LIMIT",
+    "reasons": [
+      "min_ram_available_bytes: observed 8120913920, required 8229275648"
+    ],
+    "source_sha": "33ca3cb960e583ed9da06604ca4bfa05bfc5aac7",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "bag_hash": {
+      "sha256": "6e0464356188c7b620a69012b4cb02e143ba89d175c09c75ffae43a06c516eea",
+      "files": {
+        "bag_0.mcap": "18e243d1eddc5b39986f1728f1b21534a1b822709c5a9f1cbbb8e709259be6ca",
+        "metadata.yaml": "ec804f2219eadea1a4c1a751e7b79c31a5e001f36c0f00505595387db8176db8"
+      },
+      "algorithm": "sha256(sorted relative-path:file-digest JSON)"
+    },
+    "resource": {
+      "qualified": false,
+      "execution_class": "NON_QUALIFYING",
+      "sampling": "1 Hz host-wide; GPU/RAM include background usage; RTF clock receipt deltas",
+      "sample_count": 6,
+      "extrema": {
+        "cpu_percent": {
+          "min": 53.83290267011197,
+          "max": 98.25511432009627
+        },
+        "load1": {
+          "min": 6.29638671875,
+          "max": 7.07373046875
+        },
+        "ram_used_bytes": {
+          "min": 7915532288,
+          "max": 8337637376
+        },
+        "ram_available_bytes": {
+          "min": 8120913920,
+          "max": 8543019008
+        },
+        "vram_used_bytes": {
+          "min": 829423616,
+          "max": 839909376
+        },
+        "vram_free_bytes": {
+          "min": 5599395840,
+          "max": 5609881600
+        },
+        "evidence_bytes": {
+          "min": 209426,
+          "max": 581159
+        },
+        "disk_free_bytes": {
+          "min": 13174353920,
+          "max": 13174886400
+        }
+      },
+      "full_stack_envelope_verified": false
+    },
+    "components": {
+      "recorder": {
+        "peak_rss_bytes": 86532096,
+        "peak_cpu_percent_one_core": 177.03959809278413
+      },
+      "launch_or_runtime_overhead": {
+        "peak_rss_bytes": 388009984,
+        "peak_cpu_percent_one_core": 82.73910419352616
+      },
+      "gazebo_including_sensor_plugins": {
+        "peak_rss_bytes": 169979904,
+        "peak_cpu_percent_one_core": 0
+      },
+      "ros_bridge_middleware": {
+        "peak_rss_bytes": 42385408,
+        "peak_cpu_percent_one_core": 0
+      },
+      "observer": {
+        "peak_rss_bytes": 147341312,
+        "peak_cpu_percent_one_core": 0
+      },
+      "moveit_manipulation": {
+        "peak_rss_bytes": 193036288,
+        "peak_cpu_percent_one_core": 0
+      },
+      "robot_tf": {
+        "peak_rss_bytes": 21852160,
+        "peak_cpu_percent_one_core": 0
+      }
+    },
+    "teardown": {
+      "survivors": [],
+      "errors": []
+    },
+    "source_geometry_statistics_not_receipt_validity": {}
   }
 }

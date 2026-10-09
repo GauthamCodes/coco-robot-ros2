@@ -889,3 +889,11 @@ Evidence: `m2/target_observation_20261008/validation/phase_20261009/`,
 PHASE_VALIDATION.md, RESOURCE_PROFILE.md, regression_results.json. Raw external
 runs `/home/gautham/coco_m1_runs/rgbd-phase-20261009/` are hashed/retained;
 owned teardown has no survivors. Safety semantics and ground-truth boundary unchanged.
+
+Final continuation: guarded-motion-08 and09 abort during minimal real-control
+startup under unchanged RAM reserve, including after one-spawner/exec optimization.
+Latest available8,120,913,920 versus8,229,275,648 required; current post-teardown
+idle8,640,970,752. User resource stop condition5; all owned teardowns clean.
+Final consumer changes remain runtime pending. Udev proposal not applied and
+cannot alone fix RAM. Owner-controlled additional headroom required before new
+unchanged-gate engineering execution; no Isaac/full-stack/M1 launch or root closure.

@@ -95,3 +95,27 @@ unavailable. An exact background-rule proposal is preserved but NOT APPLIED;
 user approval is required by this session for any qualification-policy change.
 Until approved or metadata is inspectable, further dependent simulation is gated.
 Lift/release/Isaac/full-stack/M1 remain blocked, not disproved or completed.
+
+## Final resource stop after consumer/queue repair
+
+Guarded-motion-08 (source7659bf1) passes preflight but aborts during startup at
+available RAM8,191,639,552 below the unchanged capacity-derived8,229,275,648-byte
+reserve. No motion or phase records reached; finalized control reports zero samples.
+A new evidence-backed optimization replaces four simultaneous Python controller
+spawners with one installed multi-name spawner, and execs the generated launch
+instead of retaining a duplicate fixture-builder interpreter. All required
+controllers and the active-controller-before-command guard remain intact.
+126 focused checks pass after this optimization.
+
+Guarded-motion-09 (source33ca3cb) still aborts during startup at RAM8,120,913,920,
+108,361,728 bytes below8,229,275,648. Both attempts preserve MCAP and finalize
+owned teardown with zero survivors/errors. No final consumer lift/release runtime
+claim. Current post-teardown idle available RAM8,640,970,752 leaves only411,695,104
+bytes above reserve before the required simulator/control/evidence workload.
+This is user stop condition5 for the required engineering phase experiment;
+recurring unreadable root metadata is a second environmental gate. No further
+simulation is safe under current headroom. No hardware-incapacity conclusion:
+additional owner-controlled background headroom may suffice. Do not kill foreign
+processes or lower reserve. The udev proposal remains NOT APPLIED; approval alone
+would not resolve this resource stop. Next run must use a new output (guarded-motion-10)
+and fresh unchanged preflight after host resources recover.

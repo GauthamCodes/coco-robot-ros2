@@ -4348,3 +4348,11 @@ source setup_env.sh
 
 No next launch is authorized by documentation alone when the safety gate rejects.
 Continue real phase proof before Isaac/full-stack/qualification/M1; no unrelated M2.
+
+Final continuation correction: output08 was executed and aborted for RAM;
+output09 tests one multi-controller spawner and exec-based builder release, also
+aborts before motion (8,120,913,920 available <8,229,275,648).126 focused checks
+pass; owned survivors0. Current idle RAM8,640,970,752. Stop condition5 reached;
+no further launch until safe background headroom returns. Use a NEW output
+`/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-10` after fresh gate,
+not the now-retained08 directory. Udev proposal remains unapplied, no policy changed.

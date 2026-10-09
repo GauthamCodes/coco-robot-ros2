@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Engineering-only stationary sensor fixture, never a benchmark episode.
+"""Engineering-only RGB-D fixture with optional existing-controller arm motion.
 
 Unchanged target SDF and robot visual geometry. Initial poses are fixture setup,
-not autonomy inputs. No teleport/model-state queries. No actuators/navigation.
+not autonomy inputs. No teleport/model-state queries. No navigation stack.
 """
 import json
 import math
@@ -59,8 +59,8 @@ def build(root,name,motion=False):
     static=model.find('static')
     if static is None:static=ET.SubElement(model,'static')
     static.text="false" if motion else "true"
-    # Freeze mechanical pose for geometry-only experiment, not physics/grasp
-    # validation. Static URDF TF is consistent with the converted zero-joint pose.
+    # Optical-only profiles freeze the zero-joint pose; the motion profile
+    # keeps the original dynamic body and receives controller joint-state TF.
     ET.SubElement(model,'pose').text='0 0 .0135 0 0 0'
     world_tree=ET.parse(REPO/'gazebo_models/worlds/coco_world.world')
     world=world_tree.getroot().find('world');world.set('name','rgbd_engineering')

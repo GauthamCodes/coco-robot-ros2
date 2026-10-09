@@ -46,3 +46,8 @@ and oracle PASS remain unverified. Final phase-cache invalidation and measured
 release-reference changes are tested, not runtime closed. Never mark ROOT-CAUSED
 AND FIXED from this partial control. Exact evidence:
 `target_observation_20261008/validation/phase_20261009/` and PHASE_VALIDATION.md.
+
+Final motion-08/09 resource aborts prevent final phase-consumer runtime; minimal
+startup still violates unchanged RAM reserve after duplicate-loader/builder costs
+are removed. Stop condition5, plus recurring unreadable root process metadata.
+No system-level ROOT-CAUSED AND FIXED entry; qualification/M1 remain unopened.

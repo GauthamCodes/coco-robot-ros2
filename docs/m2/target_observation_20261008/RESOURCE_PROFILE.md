@@ -128,3 +128,22 @@ identity in bootstrap manifests. Driver completion shuts down its fixture launch
 bootstrap stops recorder last and checks survivors. Every finalized executed
 attempt has zero owned survivors. All profiles are NON_QUALIFYING, denominator
 false; a static fixture never establishes lift/release or a production limit.
+
+### Final changed-host startup attempts
+
+Final terminal continuation observes RAM total16,458,551,296, so the same50%
+capacity formula yields8,229,275,648 bytes (prior snapshots total16,458,547,200
+and reserve8,229,273,600). This4096-byte capacity variation is not a policy edit.
+Motion-08 aborts at8,191,639,552 available. Motion-09, after consolidating four
+controller-loader interpreters into one and replacing the retained fixture
+builder with exec, aborts at8,120,913,920. Background host RAM differs; no causal
+peak reduction is claimed from these unpaired runs. Raw process samples preserve
+which essential nodes were resident at each startup abort. Startup had not yet
+bounded settled rendering/phase motion, so these are lower-bound attempts only.
+
+Post-teardown current idle available8,640,970,752 is only411,695,104 above reserve.
+The required engineering control profile is unsafe under this headroom. All owned
+teardowns have zero survivors; foreign/background workloads were not terminated.
+A quieter host is needed before a new guarded run; no particular larger machine
+or production RAM limit is justified by these incomplete measurements. Full-stack
+component deltas and steady-state CPU/RAM/VRAM/RTF remain NOT MEASURED.

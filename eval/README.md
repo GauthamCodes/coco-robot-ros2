@@ -307,3 +307,25 @@ Phase control streams records durably to `phase_observations.jsonl`, and
 `observation_phase_export.py EVENTS PHASE_EVENTS OUTPUT` exports explicit phase
 validity/repeatability. Source-geometry statistics do not certify consumer receipt
 freshness; missing phases remain NOT_REACHED. No engineering oracle PASS exists.
+
+### Offline manipulation diagnostics and resource attribution
+
+`eval replay` now adds `manipulation.json` after the unchanged oracle and analyzer.
+It supports original image-array sidecars and engineering image-hash sidecars,
+checking decoded raw MCAP against both. Replay is always NON_QUALIFYING.
+For existing sidecar-only run directories:
+
+```bash
+python3 eval/manipulation.py /path/to/dev-run /path/to/new-manipulation.json
+python3 eval/resource_attribution.py /path/to/capture /path/to/observer /path/to/arm --output /path/to/new-comparison.json
+```
+
+The sidecar-only command does not certify bag integrity; use `eval replay` for
+that. Missing calibrated rigidity/sample-gap limits remain explicitly null.
+Physical motion is independent of plugin state; the existing success oracle
+remains authoritative. Exact-time world-base plus recorded palm TF reconstruction
+never substitutes latest/stale TF. Missing exact-time chains remain unverified.
+Engineering `rgbd_manipulation` additionally records request/observation checkpoints,
+magnet command topics and evaluator-only truth. Source truth never feeds the phase
+driver. Ownership, teardown, qualification and emergency reserves are unchanged.
+PSS and memory pressure are sampled where readable; historical RSS is not PSS.

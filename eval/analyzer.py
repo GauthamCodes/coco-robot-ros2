@@ -57,7 +57,11 @@ def run(directory,threshold_file):
     events=[json.loads(line) for line in (directory/'logs/normalized.jsonl').read_text().splitlines() if line.strip()]
     oracle=json.loads((directory/'oracle.json').read_text())
     result=analyze(events,json.loads(Path(threshold_file).read_text())['thresholds'],oracle.get('mission_verdict'),oracle.get('oracle_verdict'),require_catalog_coverage=True)
-    atomic_json(directory/'analysis.json',result);return result
+    atomic_json(directory/'analysis.json',result)
+    from manipulation import verify
+    raw=[json.loads(line) for line in (directory/'logs/events.jsonl').read_text().splitlines()] if (directory/'logs/events.jsonl').exists() else []
+    atomic_json(directory/'manipulation.json',verify(raw,manifest,oracle,events,json.loads(Path(threshold_file).read_text())['thresholds']))
+    return result
 
 
 def main():

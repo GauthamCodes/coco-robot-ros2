@@ -897,3 +897,29 @@ idle8,640,970,752. User resource stop condition5; all owned teardowns clean.
 Final consumer changes remain runtime pending. Udev proposal not applied and
 cannot alone fix RAM. Owner-controlled additional headroom required before new
 unchanged-gate engineering execution; no Isaac/full-stack/M1 launch or root closure.
+
+## 2026-10-09 — Offline manipulation verification checkpoint
+
+Input `2f751ca0efb26e0285e19e1c6dda81d3caf39893`; correct branch, clean entry,
+Master Plans byte-identical. Authorized bounded M2 observation/verifier work.
+Implemented evaluator-only phase diagnostics using existing oracle/I20–I23,
+exact-time recorded-TF palm reconstruction, deterministic synthetic regressions,
+MCAP replay output and engineering capture checkpoints/truth adapter. Existing
+oracle, invariant thresholds, production policies and autonomy are unchanged.
+Uncalibrated relative-motion/sampling limits stay null, not invented production
+criteria. Missing evidence remains UNVERIFIED/UNSCORABLE.
+
+Found and repaired actual recorder callback bypass of existing image-summary
+helper: full CDR retained, engineering sidecars now use hashes; legacy and summary
+MCAP replay both validated. Added owned PID/start-identity PSS/private/swap-PSS,
+memory PSI and historical attribution tool. RSS is not physical allocation;
+historical PSS cannot be reconstructed. No further speculative optimization.
+
+Local focused tests221 pass; ROS/CDR/MCAP4 pass; config/perception/manipulation
+build3/3. Real guarded-motion-06 replay1730 records validates exact sidecars:
+plugin report present, independent attachment/lift/release unverified, oracle
+UNSCORABLE. Historical Gazebo6 replay12326 records preserves ABORT/FAIL and I19
+at61.726s; neither replay is a new/qualified episode. Detailed evidence under
+`m2/target_observation_20261008/validation/verification_20261009/`.
+Root cause OPEN; host gate still to be rechecked. M1 calibration0/19, smoke0/4,
+M1.8=0/140 unchanged. Safety semantics and ground-truth autonomy inputs NONE.

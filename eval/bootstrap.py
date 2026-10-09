@@ -112,8 +112,9 @@ def component_samples(snapshot, owned, previous):
             ('moveit_manipulation',('move_group','arm_control','grasp_server')),
             ('mission',('mission_node','mission_sequencer'))):
             if any(signature in argv for signature in signatures):component=label;break
+        from resource_attribution import process_memory
         result.append(dict(pid=p['pid'],start_ticks=p['start_ticks'],component=component,
-                           rss_bytes=rss,cpu_percent_one_core=cpu))
+                           rss_bytes=rss,cpu_percent_one_core=cpu, **process_memory(p['pid'],p['start_ticks'])))
     return result,current
 
 
@@ -213,6 +214,10 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False,
                            sim_s=pair[0], rtf=rtf, reasons=reasons)
                 components, process_previous = component_samples(snap, owned, process_previous)
                 row['owned_components'] = components
+                from resource_attribution import pressure
+                row['memory_pressure'] = pressure()
+                row['queue_usage'] = 'DDS occupancy unavailable; configured engineering image/observation depth=1'
+                row['clock_receive_monotonic_s'] = pair[1]
                 samples.append(row)
                 with (root / 'host_metrics.jsonl').open('a') as stream:
                     stream.write(json.dumps(row, allow_nan=False) + '\n'); stream.flush()
@@ -271,16 +276,31 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False,
                 sample_count=len(samples), extrema={k:dict(min=min(v), max=max(v))
                     for k in metrics if (v := [s[k] for s in samples if s[k] is not None])},
                 full_stack_envelope_verified=False))
+            # Post-run evaluator only; engineering fixture has a separate truth manifest.
+            fixture_manifest = root / 'logs/sensor_fixture/truth_manifest.json'
+            if fixture_manifest.exists():
+                manifest['targets'] = json.loads(fixture_manifest.read_text())['targets']
+                # Generated fixture starts at origin, unlike the benchmark home.
+                manifest['home_xy_m'] = [0., 0.]
             # Post-run evaluator only; missing evidence remains unknown.
-            if (root / 'logs/episode/manifest.json').exists():
+            if (root / 'logs/episode/manifest.json').exists() or fixture_manifest.exists():
                 try:
                     from batch import read_events
                     from normalize import oracle_facts
                     from oracle import score
-                    episode = json.loads((root / 'logs/episode/manifest.json').read_text())
-                    manifest['targets'] = episode['targets']
+                    if (root / 'logs/episode/manifest.json').exists():
+                        episode = json.loads((root / 'logs/episode/manifest.json').read_text())
+                        manifest['targets'] = episode['targets']
                     result = score(oracle_facts(read_events(root), manifest))
                     atomic_json(root / 'oracle.json', result)
+                    from normalize import normalized
+                    from analyzer import analyze
+                    from manipulation import verify
+                    events = read_events(root)
+                    trace = normalized(events, manifest)
+                    thresholds = json.loads((REPO/'eval/thresholds.json').read_text())['thresholds']
+                    atomic_json(root/'analysis.json', analyze(trace,thresholds,result['mission_verdict'],result['oracle_verdict'],require_catalog_coverage=True))
+                    atomic_json(root/'manipulation.json', verify(events,manifest,result,trace,thresholds))
                     if result.get('mission_oracle_disagreement') is True:
                         manifest['state'] = 'STOP_ORACLE_DISAGREEMENT'
                 except Exception as exc:

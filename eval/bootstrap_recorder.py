@@ -9,5 +9,8 @@ if __name__ == '__main__':
     # One Hz capture limits engineering bag growth; source stamps retained.
     TOPICS.update({name: 1.0 for name in ('/camera/image_raw',
                   '/camera/depth/image_raw', '/camera/camera_info', '/perception/object_height')})
+    TOPICS['/diagnostics/manipulation_checkpoints'] = 0
+    for suffix in ('attach','detach'):
+        TOPICS['/magnet/target_red/'+suffix] = 0
     recorder.ENGINEERING_IMAGE_SUMMARY = True
     main()

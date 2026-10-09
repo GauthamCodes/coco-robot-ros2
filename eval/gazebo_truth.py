@@ -16,6 +16,7 @@ def main():
     from std_msgs.msg import String
     parser=argparse.ArgumentParser()
     parser.add_argument('manifest',type=Path)
+    parser.add_argument('--world',default='coco_world')
     args=parser.parse_args()
     manifest=json.loads(args.manifest.read_text())
     dimensions={t['model']:[t['diameter'],t['diameter'],t['height']] for t in manifest['targets']}
@@ -27,7 +28,7 @@ def main():
         from rclpy.qos import QoSProfile,DurabilityPolicy
         subscriptions.append(node.create_subscription(String,f'/magnet/{name}/state',state,
                              QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL)))
-    child=subprocess.Popen(['gz','topic','--json-output','-e','-t','/world/coco_world/pose/info'],
+    child=subprocess.Popen(['gz','topic','--json-output','-e','-t',f'/world/{args.world}/pose/info'],
                            stdout=subprocess.PIPE,text=True)
     packets=queue.Queue(maxsize=1); stop=threading.Event()
     def read():

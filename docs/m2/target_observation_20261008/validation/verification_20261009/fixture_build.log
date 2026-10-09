@@ -1,0 +1,4 @@
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="coco"]/link[@name="base_footprint"]/sensor[@name="camera"]/gz_frame_id:/home/gautham/coco_m1_runs/manipulation-verification-20261009/generated-motion-fixture/robot-gz.urdf:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="coco"]/link[@name="base_footprint"]/sensor[@name="imu"]/gz_frame_id:/home/gautham/coco_m1_runs/manipulation-verification-20261009/generated-motion-fixture/robot-gz.urdf:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+{"targets": [{"model": "target_red", "diameter": 0.02, "height": 0.158}]}
+Generated only. No simulator launched.

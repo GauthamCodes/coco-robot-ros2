@@ -67,7 +67,7 @@ def main():
         now=node.get_clock().now().nanoseconds
         writer.write(topic,serialize_message(msg),now)
         trace.write(json.dumps({'topic':topic,'sim_s':now/1e9,'wall_s':mono-start,
-                                'wall_epoch_ns':time.time_ns(),'data':ros_json_data(message_to_ordereddict(msg))},allow_nan=False)+'\n')
+                                'wall_epoch_ns':time.time_ns(),'data':sidecar_data(msg,type_name)},allow_nan=False)+'\n')
         trace.flush()
     def publish(topic,value):publisher[topic].publish(String(data=json.dumps(value,allow_nan=False)))
     def discover():

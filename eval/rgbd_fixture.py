@@ -73,6 +73,7 @@ def build(root,name,motion=False):
     ET.SubElement(target,'pose').text=f"{cfg['target_x']} 0 .079 0 0 0"
     world.append(model);world.append(target)
     world_tree.write(root/'world.sdf')
+    (root/'truth_manifest.json').write_text(json.dumps(dict(targets=[dict(model='target_red',diameter=2*float(target.find('.//collision/geometry/cylinder/radius').text),height=float(target.find('.//collision/geometry/cylinder/length').text))])))
     (root/'fixture.json').write_text(json.dumps(dict(cfg,fixture=name,
         execution_class='NON_QUALIFYING_ENGINEERING_RUNTIME',benchmark=False,
         robot_motion="real controller/MoveIt motion" if motion else "static zero-joint optical fixture; no physical grasp claim",
@@ -100,7 +101,8 @@ def main():
             .joint_limits(file_path="config/joint_limits.yaml")
             .trajectory_execution(file_path="config/moveit_controllers.yaml")
             .planning_pipelines(pipelines=["ompl"]).to_moveit_configs()).to_dict()
-        extra="Node(package='controller_manager',executable='spawner',arguments=['joint_state_broadcaster','diff_drive_controller','arm_controller','gripper_controller','--controller-manager-timeout','120']),"
+        extra=f"ExecuteProcess(cmd=['python3',{str(REPO/'eval/gazebo_truth.py')!r},{str(root/'truth_manifest.json')!r},'--world','rgbd_engineering']),"
+        extra+="Node(package='controller_manager',executable='spawner',arguments=['joint_state_broadcaster','diff_drive_controller','arm_controller','gripper_controller','--controller-manager-timeout','120']),"
         extra+="Node(package='custom_teleop',executable='cmd_vel_arbiter',parameters=[{'use_sim_time':True}]),"
         extra+=f"Node(package='moveit_ros_move_group',executable='move_group',parameters=[{config!r},{{'use_sim_time':True}}]),"
         extra+="Node(package='gazebo_models',executable='magnet_release.py',arguments=['--models','target_red']),"

@@ -51,3 +51,27 @@ Final motion-08/09 resource aborts prevent final phase-consumer runtime; minimal
 startup still violates unchanged RAM reserve after duplicate-loader/builder costs
 are removed. Stop condition5, plus recurring unreadable root process metadata.
 No system-level ROOT-CAUSED AND FIXED entry; qualification/M1 remain unopened.
+
+### Manipulation verifier continuation — OPEN
+
+- Hypothesis: command/plugin evidence cannot establish physical object following;
+  absent evaluator truth in the partial-arm composition prevents independent
+  attachment/lift/release claims.
+- Discriminator: synthetic traces retain identical command/plugin reports but
+  vary only world target motion; report remains PASS while physical attachment
+  changes from PASS to FAIL. Missing truth/TF/calibration stays unknown.
+- Evidence: real guarded-motion-06 MCAP decodes1730 matching records, including
+  attached report but no evaluator target truth. Historical replay preserves
+  existing oracle FAIL and supported I19; no retrospective physical PASS.
+- Rejected alternatives: mission verdict, changed camera centroid, or plugin
+  `attached` as independent physical evidence; invented numeric calibration;
+  repeating resource-limited simulation without changed headroom.
+- Fix: offline diagnostic extension of existing oracle/analyzer/replay; exact-time
+  recorded TF and independent world object evidence; engineering truth capture
+  and explicit checkpoints. Recorder's unused summary helper is now called from
+  the actual callback, with raw CDR integrity preserved and ROS replay regression.
+- Regression:221 focused and4 ROS tests pass; three dependency packages build.
+- Rerun: two existing real/historical traces replayed, not qualified episodes.
+  New simulation depends on unchanged preflight and workload headroom.
+- Result: implementation/local regression evidence only. System closure remains
+  OPEN; no physical attachment/lift/release or oracle PASS demonstrated.

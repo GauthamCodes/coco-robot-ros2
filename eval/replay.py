@@ -26,7 +26,8 @@ def mcap_events(source):
     from rosidl_runtime_py.utilities import get_message
     from rosidl_runtime_py.convert import message_to_ordereddict
     sidecars=defaultdict(deque)
-    for line in (source/'logs/events.jsonl').read_text().splitlines():
+    with (source/'logs/events.jsonl').open() as stream:
+      for line in stream:
         event=json.loads(line)
         sidecars[(event['topic'],round(event['sim_s']*1e9))].append(event)
     reader=rosbag2_py.SequentialReader()
@@ -36,10 +37,20 @@ def mcap_events(source):
     events=[];uuids=set();headers=0
     while reader.has_next():
         topic,raw,stamp=reader.read_next()
-        data=ros_json_data(message_to_ordereddict(deserialize_message(raw,types[topic])))
+        msg=deserialize_message(raw,types[topic])
+        data=None
         matches=sidecars[(topic,stamp)]
         if not matches:raise ValueError(f'MCAP receipt has no matching wall sidecar: {topic} {stamp}')
         event=matches.popleft()
+        if isinstance(event['data'],dict) and event['data'].get('payload_location')=='full unchanged CDR in MCAP':
+            from recorder import sidecar_data
+            import recorder
+            old=recorder.ENGINEERING_IMAGE_SUMMARY
+            try:
+                recorder.ENGINEERING_IMAGE_SUMMARY=True
+                data=sidecar_data(msg,'sensor_msgs/msg/Image')
+            finally:recorder.ENGINEERING_IMAGE_SUMMARY=old
+        else:data=ros_json_data(message_to_ordereddict(msg))
         if data!=event['data']:raise ValueError('MCAP/decoded sidecar payload mismatch')
         if 'header' in data:headers+=1
         for status in data.get('status_list',[]):
@@ -64,11 +75,19 @@ def run(source,output,kind):
                             timestamp_reconstruction='Saved source simulation stamps; historical observations wall stamps only',
                             limitation='Historical trace has no MCAP or action UUIDs; absent fields remain unknown')
     else:
-        events,reconstruction=mcap_events(source)
-        facts=oracle_facts(events,manifest)
+        try:
+            events,reconstruction=mcap_events(source)
+        except (ValueError,RuntimeError,OSError) as exc:
+            from manipulation import verify
+            failure=verify([],manifest,{'oracle_verdict':'UNSCORABLE'},integrity_errors=[f'MCAP integrity failure: {exc}'])
+            atomic_json(output/'manipulation.json',failure)
+            atomic_json(output/'replay.json',dict(qualified=False,state='INCOMPLETE_EVIDENCE',error=str(exc),manipulation_result='UNSCORABLE'))
+            raise
+        facts=oracle_facts(events,manifest) if manifest.get('targets') else {}
+        if not manifest.get('targets'):reconstruction['limitation']='Legacy engineering manifest has no target definitions; oracle facts unavailable'
         hashes['bag']=bag_hash(source/'bag')
         hashes['logs/events.jsonl']=file_hash(source/'logs/events.jsonl')
-    manifest=dict(manifest,qualified=False,evidence_label='HISTORICAL_REPLAY' if kind=='historical' else 'SYNTHETIC_MCAP_REPLAY',
+    manifest=dict(manifest,qualified=False,evidence_label='HISTORICAL_REPLAY' if kind=='historical' else 'NON_QUALIFYING_MCAP_REPLAY',
                   replay_source=str(source),replay_source_hashes=hashes)
     result=score(facts)
     trace=normalized(events,manifest)
@@ -87,5 +106,10 @@ def run(source,output,kind):
                  first_supported_violation=analysis['first_supported_violation'],
                  catalog_measurements_complete=analysis['catalog_measurements_complete'],
                  analysis_sha256=file_hash(output/'analysis.json'),oracle_sha256=file_hash(output/'oracle.json'))
+    from manipulation import verify
+    verification=verify(events,manifest,result,trace,thresholds)
+    atomic_json(output/'manipulation.json',verification)
+    summary['manipulation_result']=verification['result']
+    summary['manipulation_sha256']=file_hash(output/'manipulation.json')
     atomic_json(output/'replay.json',summary)
     return summary

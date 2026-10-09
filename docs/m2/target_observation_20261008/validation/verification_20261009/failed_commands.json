@@ -1,0 +1,8 @@
+[
+  {
+    "command": "python3 eval/resource_attribution.py .../rgbd-light-20261009/acquisition-02 ...",
+    "exit_code": 1,
+    "reason": "Incorrect historical directory name; actual acquisition-camera-only-02; empty first output retained",
+    "corrected_output": "resource_comparison_v2.json"
+  }
+]

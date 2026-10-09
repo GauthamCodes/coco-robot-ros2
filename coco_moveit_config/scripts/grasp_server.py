@@ -250,7 +250,7 @@ class GraspServer(ArmControl):
 
     # ── inputs ───────────────────────────────────────────────────────────
     def _select(self, colour):
-        self._height_observation = None
+        self.begin_observation_phase('acquisition')
         self._grasp_observation = None
         self.colour = colour
         self._fix = None
@@ -449,6 +449,8 @@ class GraspServer(ArmControl):
         ]
         for label, step in steps:
             self.phase = f'pick:{label}'
+            if label in ('grasp approach','raise'):
+                self.begin_observation_phase('approach' if label=='grasp approach' else 'lift')
             if not step():
                 self.outcome = f'failed at {label}'
                 self.get_logger().error(f"Step '{label}' failed — aborting")
@@ -499,6 +501,8 @@ class GraspServer(ArmControl):
         ]
         for label, step in steps:
             self.phase = f'place:{label}'
+            if label in ('descend to place','retreat'):
+                self.begin_observation_phase('release_descent' if label=='descend to place' else 'post_release')
             if not step():
                 self.outcome = f'failed at {label}'
                 self.get_logger().error(f"Step '{label}' failed — aborting")
@@ -521,15 +525,15 @@ class GraspServer(ArmControl):
             self.get_logger().warn(
                 'could not read target height — cannot verify release')
             return False
-        expected = TARGET_HEIGHT / 2.0
         observation=getattr(self,'_height_observation',None)
         baseline=getattr(self,'_grasp_observation',None)
         if not observation or not baseline or observation['track_id']!=baseline['track_id'] or observation['stamp_ns']<=baseline['stamp_ns']:
             return False
-        if abs(height - expected) + observation['uncertainty_m'] > 0.02:
+        expected=baseline['center_height_above_support_m']
+        if abs(height - expected) + observation['uncertainty_m'] + baseline['uncertainty_m'] > 0.02:
             self.get_logger().error(
                 f'Target is at z {height:.4f}, not standing on the ground '
-                f'({expected:.4f}). It is still attached to the arm, or it '
+                f'(measured baseline {expected:.4f}). It is still attached to the arm, or it '
                 f'fell over on release.')
             return False
         self.get_logger().info(

@@ -354,12 +354,22 @@ class ArmControl(Node):
         except (ValueError,TypeError):
             self._height_observation=None
 
+    def begin_observation_phase(self, phase):
+        """Invalidate live data at a control transition; retain baseline as context."""
+        self._observation_phase = phase
+        self._observation_not_before_ns = self.get_clock().now().nanoseconds
+        self._height_observation = None
+
     def target_height(self):
         """Fresh independent RGB-D centre above observed support, metres."""
         model=getattr(self,'magnet_model',None) or ''
         colour=getattr(self,'colour',None) or model.removeprefix('target_')
-        return validated_height(getattr(self,'_height_observation',None),
+        observation=getattr(self,'_height_observation',None)
+        height=validated_height(observation,
             now_ns=self.get_clock().now().nanoseconds,colour=colour)
+        if height is None:return None
+        if observation['stamp_ns']<=getattr(self,'_observation_not_before_ns',0):return None
+        return height
 
     def grasp_magnet(self):
         """Note where the target is sitting, then weld it to the palm."""

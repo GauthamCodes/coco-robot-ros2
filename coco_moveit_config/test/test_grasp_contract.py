@@ -239,3 +239,37 @@ def test_lift_requires_new_sample_same_track_and_uncertainty_margin(server,monke
     raised=measured_height(server,.14);raised['track_id']='other-red'
     server._on_object_height(String(data=json.dumps(raised)))
     assert not server.check_lifted()
+
+
+def test_phase_transition_clears_live_height_but_keeps_historical_baseline(server,monkeypatch):
+    import json
+    from std_msgs.msg import String
+    monkeypatch.setattr(server,'magnet',lambda _:True)
+    o=measured_height(server)
+    server._on_object_height(String(data=json.dumps(o)))
+    assert server.grasp_magnet()
+    server.begin_observation_phase('lift')
+    assert server.target_height() is None
+    assert server._grasp_observation==o
+    server._on_object_height(String(data=json.dumps(o)))
+    assert server.target_height() is None
+    raised=measured_height(server,.12)
+    server._on_object_height(String(data=json.dumps(raised)))
+    assert server.check_lifted()
+
+
+def test_release_compares_to_measured_baseline_with_both_uncertainties(server,monkeypatch):
+    import json
+    from std_msgs.msg import String
+    monkeypatch.setattr(server,'magnet',lambda _:True)
+    baseline=measured_height(server,.11)
+    server._on_object_height(String(data=json.dumps(baseline)))
+    assert server.grasp_magnet()
+    server.begin_observation_phase('post_release')
+    assert not server.check_released()
+    returned=measured_height(server,.11)
+    server._on_object_height(String(data=json.dumps(returned)))
+    assert server.check_released()
+    borderline=measured_height(server,.128)
+    server._on_object_height(String(data=json.dumps(borderline)))
+    assert not server.check_released()  # 18mm difference + 4mm sensing budget >20mm

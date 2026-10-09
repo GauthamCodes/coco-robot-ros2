@@ -47,7 +47,7 @@ class Control(AutonomyNode):
         self.status={key:value.strip() for key,value in re.findall(r"(\w+)=(.*?)(?= \w+=|$)",msg.data)}
         stage=self.status.get("phase","")
         if stage.startswith("pick:"):
-            if stage in ("pick:raise","pick:confirm","pick:carry"):self.phase("lift")
+            if stage in ("pick:close gripper","pick:release the scene object","pick:raise","pick:confirm lift","pick:carry"):self.phase("lift")
             else:self.phase("approach")
         if stage.startswith("place:"):self.phase("release")
     def wait(self, predicate, seconds):

@@ -5,8 +5,8 @@ from normalize import normalized, oracle_facts, payload
 from oracle import score
 
 
-def evaluate_recording(events,manifest,thresholds,facts=None,extra_trace=()):
-    errors=[]
+def evaluate_recording(events,manifest,thresholds,facts=None,extra_trace=(),integrity_errors=()):
+    errors=list(integrity_errors)
     if facts is None:
         try:
             boundaries={}

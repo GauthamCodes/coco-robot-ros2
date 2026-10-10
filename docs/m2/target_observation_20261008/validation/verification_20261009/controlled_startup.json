@@ -1,0 +1,49 @@
+{
+  "execution_class": "NON_QUALIFYING",
+  "manifest": {
+    "schema_version": 1,
+    "execution_class": "NON_QUALIFYING",
+    "qualified": false,
+    "m1_denominator_eligible": false,
+    "satisfies_m1_8": false,
+    "test_a": false,
+    "state": "ABORTED_BOOTSTRAP_SAFETY",
+    "profile": "rgbd_manipulation",
+    "fixture": "grasp_front_flank",
+    "backend": "gazebo",
+    "seed": 5,
+    "seed_group": "dev",
+    "requested_colour": "red",
+    "home_xy_m": [
+      -2.0,
+      0.0
+    ],
+    "source_sha": "9b5e1a9ba7c29879cb9c0f41666b97f5083e7ad1",
+    "domain": 82,
+    "owned_processes": [
+      {
+        "pid": 96166,
+        "start_ticks": 1892950,
+        "pgid": 96166,
+        "ppid": 96127,
+        "state": "R",
+        "kernel_thread": false,
+        "spawn_observed_wall_epoch_ns": 1791621760517108782,
+        "spawn_observed_monotonic_s": 18723.877065485
+      }
+    ],
+    "purpose": "Engineering RGB-D visibility / fail-closed control diagnostic",
+    "ground_truth_use": "Evaluator-only post-run validation; never autonomy input",
+    "reasons": [
+      "/proc/96143: [Errno 13] Permission denied: '/proc/96143/exe'"
+    ],
+    "wall_time_s": 0.15860904399960418
+  },
+  "teardown": {
+    "survivors": [],
+    "errors": []
+  },
+  "simulator_launched": false,
+  "capture_started": false,
+  "foreign_processes_signalled": 0
+}

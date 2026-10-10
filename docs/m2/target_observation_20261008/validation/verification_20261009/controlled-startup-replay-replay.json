@@ -1,0 +1,6 @@
+{
+  "qualified": false,
+  "state": "INCOMPLETE_EVIDENCE",
+  "error": "[Errno 2] No such file or directory: '/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/logs/events.jsonl'",
+  "manipulation_result": "UNSCORABLE"
+}

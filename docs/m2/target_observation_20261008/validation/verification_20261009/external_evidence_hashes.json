@@ -1,0 +1,647 @@
+[
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/.coco-bootstrap.lock",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/bootstrap_environment.json",
+    "bytes": 897,
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/env.json",
+    "bytes": 60840,
+    "sha256": "65688a92f51beb3f1392759db9baea328861c70b93988209b6af24c828e2b3a0"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/host_metrics.jsonl",
+    "bytes": 952,
+    "sha256": "44b5f7351870654776894de2901cd5f335eeaf04e78eefd0e5ccdb9a331ec03e"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/logs/inventory_latest.json",
+    "bytes": 111483,
+    "sha256": "20e186360bc19f19f1fe370cd087aa3c10d4e7cc30889e841fcb65baf8a0e027"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/logs/preflight.json",
+    "bytes": 117647,
+    "sha256": "1fac5ac0861f34f3eec01edc40fcad65534ebd89473cd4afb82338f0fd1ca88c"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/logs/recorder.log",
+    "bytes": 783,
+    "sha256": "76ac39120f5d8e86121598c1000ed50cbb6f1999c5430433082d806cf82757e2"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/logs/teardown.json",
+    "bytes": 117276,
+    "sha256": "b3d4cc117be177be152a7ed686b2c820cdda65ed3a0104c98fc2465b4150a282"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/manifest.json",
+    "bytes": 1058,
+    "sha256": "8e6cf9c0b7e3b8df86ec19976f37b07b5deabb4b0ef81a633f7723dd56c3b964"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/manipulation.json",
+    "bytes": 13509,
+    "sha256": "1cae43ea9020abc2a041b4178a1b64d15bd67fcaa917423f23d5a9508f42b271"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/production_policy.json",
+    "bytes": 8487,
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/resource_summary.json",
+    "bytes": 885,
+    "sha256": "27f0e14c552b608cd7edfe0c9f76bd8152e3e7801aac61ede8304f68ba6e4d07"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01/safety_envelope.json",
+    "bytes": 1076,
+    "sha256": "0c9f301a6dd513ddbfc7a2a204f38b647b03888e8500f582c424f2b96058cc6a"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01-replay/analysis.json",
+    "bytes": 3798,
+    "sha256": "1c27a658140c9eb79f8e27e56cfc3f5b11c0a632a6a829100b4b484394588170"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01-replay/manifest.json",
+    "bytes": 2003,
+    "sha256": "ca21ea0911938dd47de8d8791e31dcc221ca6dbb481717a636861f912b0e38bd"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01-replay/manipulation.json",
+    "bytes": 14995,
+    "sha256": "c8dc51827d037ad0c6f40254b455930227f5aa08f4801430ec72f9621718d856"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01-replay/oracle.json",
+    "bytes": 1201,
+    "sha256": "bca5bdd59931560f608d27708bea14deb3729d55bb28bbed2f990ec5e7237487"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01-replay/replay.json",
+    "bytes": 261,
+    "sha256": "48e2701fd2b837e3e1f2331ba625726ee16a4bd1666ca9311f5b0b4e2daed6ec"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01-replay.log",
+    "bytes": 1096,
+    "sha256": "772f09811b26a169eeafe159db9862c9f744ef486b040c38f0f7695205e079d7"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/final-host-20261010.json",
+    "bytes": 113793,
+    "sha256": "246d0a37dbe22f17b02d0b3c8ab67eecaaa631b026c0175e670d2b30c10136db"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/generated-motion-fixture/fixture.json",
+    "bytes": 458,
+    "sha256": "bd44bf074cd520ba9fe579e10f1847c5d3b2ec6c2d6c20672eebbea3fb0051ff"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/generated-motion-fixture/robot-gz.urdf",
+    "bytes": 16848,
+    "sha256": "af7be7e8483ed7189abde12376b5560130fb0b7f824c09ca201b176426b13b22"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/generated-motion-fixture/robot.urdf",
+    "bytes": 16598,
+    "sha256": "e266fc5801a193037e1d4dfd31252337a02abf6979c1714959584cb7419f523e"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/generated-motion-fixture/truth_manifest.json",
+    "bytes": 73,
+    "sha256": "a502d7f93aa35e8aeef04d3ee08a504d3282a9f717b481371a02a8da95146061"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/generated-motion-fixture/world.sdf",
+    "bytes": 30509,
+    "sha256": "13c8cf834e25ce8a198175bda9fa3ba34362b3b776b376d81ed2ac80e1de9ee5"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay/analysis.json",
+    "bytes": 3798,
+    "sha256": "1c27a658140c9eb79f8e27e56cfc3f5b11c0a632a6a829100b4b484394588170"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay/logs/events.jsonl",
+    "bytes": 37645107,
+    "sha256": "69f67d68fc3b6c0c72bb62a1d313c9c62360567d220a6141a6e3856162c20c1c"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay/logs/normalized.jsonl",
+    "bytes": 135096,
+    "sha256": "e345e938d3ce43e52f2900f907b9dfaaccdfc8e5a9bb9284ad1dc6f5bc1af547"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay/logs/oracle_facts.json",
+    "bytes": 3,
+    "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay/manifest.json",
+    "bytes": 15593,
+    "sha256": "bb2bde300665af3c09411f8f374d848d66e178d36e1a1fdf9eb07020815b05e0"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay/manipulation.json",
+    "bytes": 10071,
+    "sha256": "283ff08a50a08a7dde14c36e89067c60934db083748e6c4047cf4e12636980ff"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay/oracle.json",
+    "bytes": 1201,
+    "sha256": "bca5bdd59931560f608d27708bea14deb3729d55bb28bbed2f990ec5e7237487"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay/replay.json",
+    "bytes": 1327,
+    "sha256": "83f8d70eefd6583b93a7a79e35e2a88198f99841f1e03430dddd76772607b449"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-final/analysis.json",
+    "bytes": 3798,
+    "sha256": "1c27a658140c9eb79f8e27e56cfc3f5b11c0a632a6a829100b4b484394588170"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-final/logs/events.jsonl",
+    "bytes": 37793239,
+    "sha256": "5c6e0edf48529d507fdd0a11ac7a83c96f889d9f19d8aa497ddfdc476787c2ab"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-final/logs/normalized.jsonl",
+    "bytes": 135096,
+    "sha256": "e345e938d3ce43e52f2900f907b9dfaaccdfc8e5a9bb9284ad1dc6f5bc1af547"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-final/logs/oracle_facts.json",
+    "bytes": 3,
+    "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-final/manifest.json",
+    "bytes": 15593,
+    "sha256": "bb2bde300665af3c09411f8f374d848d66e178d36e1a1fdf9eb07020815b05e0"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-final/manipulation.json",
+    "bytes": 15732,
+    "sha256": "1b7f49afb4a8ce26e3e9260c1c77a3c7f6a866594892ff5518028337517e00c9"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-final/oracle.json",
+    "bytes": 1201,
+    "sha256": "bca5bdd59931560f608d27708bea14deb3729d55bb28bbed2f990ec5e7237487"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-final/replay.json",
+    "bytes": 1327,
+    "sha256": "94aac93b5c492e64cce4e56ec46d111a405b8894a822fde8e874798e7b63b34b"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-v2/analysis.json",
+    "bytes": 3798,
+    "sha256": "1c27a658140c9eb79f8e27e56cfc3f5b11c0a632a6a829100b4b484394588170"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-v2/logs/events.jsonl",
+    "bytes": 37793239,
+    "sha256": "5c6e0edf48529d507fdd0a11ac7a83c96f889d9f19d8aa497ddfdc476787c2ab"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-v2/logs/normalized.jsonl",
+    "bytes": 135096,
+    "sha256": "e345e938d3ce43e52f2900f907b9dfaaccdfc8e5a9bb9284ad1dc6f5bc1af547"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-v2/logs/oracle_facts.json",
+    "bytes": 3,
+    "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-v2/manifest.json",
+    "bytes": 15593,
+    "sha256": "bb2bde300665af3c09411f8f374d848d66e178d36e1a1fdf9eb07020815b05e0"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-v2/manipulation.json",
+    "bytes": 14284,
+    "sha256": "526885906659c861f8866f0d0dbf6b473a50b894dcac25b9964e6a4da63b77e1"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-v2/oracle.json",
+    "bytes": 1201,
+    "sha256": "bca5bdd59931560f608d27708bea14deb3729d55bb28bbed2f990ec5e7237487"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/guarded-motion-06-replay-v2/replay.json",
+    "bytes": 1327,
+    "sha256": "951196f4e9ec7aab9655422d3c7ccc41a7382ec3cdca70064deed7a315185729"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6/analysis.json",
+    "bytes": 2987039,
+    "sha256": "ce2fba9ebec5e1a186ce69fc0ee505cc7b1fc7abe7bbca54178b87f1d2cac6de"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6/logs/events.jsonl",
+    "bytes": 17397987,
+    "sha256": "9fa0985b5fbd38a026f312a515882629f50d6f15cafc2344ef581542857b9571"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6/logs/normalized.jsonl",
+    "bytes": 5346807,
+    "sha256": "d084a8967233df1b0f620ff494d9e2d02270d234565347b2e377a257d2e4d2d9"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6/logs/oracle_facts.json",
+    "bytes": 48963,
+    "sha256": "8a5605349d2bb4e5c9530da95a5477f8c96d9e016b49fb5ca585a093100a3601"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6/manifest.json",
+    "bytes": 2959,
+    "sha256": "ef9e041db426a9b7ff3571e0ba403cc4e1ce59d3a8531d37494d99e139041b6f"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6/manipulation.json",
+    "bytes": 9165,
+    "sha256": "25e95e33ec4836638c5205f20663d660a86a6d7977e9d44299631330efa2c715"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6/oracle.json",
+    "bytes": 979,
+    "sha256": "241e9a75694036806bd3cdb9fb5369fe9070198b73695b792a55ac013ed4befc"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6/replay.json",
+    "bytes": 1237,
+    "sha256": "bf8a1a099950abf18c98b6721e2a96e507e71478489119c0d5f9fa1a47ea7f59"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6-final/analysis.json",
+    "bytes": 2987039,
+    "sha256": "ce2fba9ebec5e1a186ce69fc0ee505cc7b1fc7abe7bbca54178b87f1d2cac6de"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6-final/logs/events.jsonl",
+    "bytes": 17397987,
+    "sha256": "9fa0985b5fbd38a026f312a515882629f50d6f15cafc2344ef581542857b9571"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6-final/logs/normalized.jsonl",
+    "bytes": 5346807,
+    "sha256": "d084a8967233df1b0f620ff494d9e2d02270d234565347b2e377a257d2e4d2d9"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6-final/logs/oracle_facts.json",
+    "bytes": 48963,
+    "sha256": "8a5605349d2bb4e5c9530da95a5477f8c96d9e016b49fb5ca585a093100a3601"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6-final/manifest.json",
+    "bytes": 2959,
+    "sha256": "ef9e041db426a9b7ff3571e0ba403cc4e1ce59d3a8531d37494d99e139041b6f"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6-final/manipulation.json",
+    "bytes": 14085,
+    "sha256": "d788c1e5132b140ea6e07e0434f59d8780979e08f3d7dd7ab618b471a19d1c49"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6-final/oracle.json",
+    "bytes": 979,
+    "sha256": "241e9a75694036806bd3cdb9fb5369fe9070198b73695b792a55ac013ed4befc"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/historical-gazebo6-final/replay.json",
+    "bytes": 1237,
+    "sha256": "1af433a70ee493cce5ac48b78a66c02e8c0ccf65db606086a83e7ad141a98f35"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-final-gazebo-20261010/bootstrap_environment.json",
+    "bytes": 897,
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-final-gazebo-20261010/logs/preflight.json",
+    "bytes": 114374,
+    "sha256": "e66b1f59c78c8a7f17f311b4fe277da6a0b3544b79ee736c777192f4d204d805"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-final-gazebo-20261010/manifest.json",
+    "bytes": 687,
+    "sha256": "7fa322a2300db34fc0ddd81e02daca1d63b916cf2ca1b9b18fee8f64cedd9a0a"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-final-gazebo-20261010/production_policy.json",
+    "bytes": 8487,
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-final-gazebo-20261010/safety_envelope.json",
+    "bytes": 1076,
+    "sha256": "0c9f301a6dd513ddbfc7a2a204f38b647b03888e8500f582c424f2b96058cc6a"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-final-gazebo-20261010.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-gazebo/bootstrap_environment.json",
+    "bytes": 897,
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-gazebo/logs/preflight.json",
+    "bytes": 132127,
+    "sha256": "3fe929b870a3653ccf5241487fe1cf553e7dd83b726f310d1ae8cbd78b9a396c"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-gazebo/manifest.json",
+    "bytes": 750,
+    "sha256": "393f9d69916731e3e0dfbab5367ac44b0487b71c105f6e909179045e406d3235"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-gazebo/production_policy.json",
+    "bytes": 8487,
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-gazebo/safety_envelope.json",
+    "bytes": 1076,
+    "sha256": "7e5c2c04a1dd1120c378ba452fe2b959bbc30d5c903ab205d24cb69bcdc9a23d"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/production-isaac.json",
+    "bytes": 133306,
+    "sha256": "e51d357d9c8edc8f9f366ad61655df5a570d2c0b031d6203fbbf0815bcca40b3"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/production-isaac.log",
+    "bytes": 362,
+    "sha256": "94e298361a17230c66ba0a8ef83d59a41084737f3a9da3acd894393b3e1a7a52"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/host_metrics.jsonl",
+    "bytes": 35405,
+    "sha256": "3857eb1fe2fe98f70aa11571f3543fcfb86ca7578f0d2e06617618d76cd34384"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02/manifest.json",
+    "bytes": 3815,
+    "sha256": "1809dbef15bc3972f286fc92ffa5eb668f79de9a7b9842f16ace401753020c89"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/host_metrics.jsonl",
+    "bytes": 42758,
+    "sha256": "b4da3fc7478b27bab514e55ac349fd5dc0733dd7ecdafa22ef598e54bdedd0e4"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01/manifest.json",
+    "bytes": 7153,
+    "sha256": "1d6a0f1a63778c88aff78ebccdb2b6c93e0386ed4d34e9de93729ac0cc184b4b"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/bag/bag_0.mcap",
+    "bytes": 8997909,
+    "sha256": "d2c2a1d59c24c4c239ad280d4496bea8a2c209c911fcc49059e92d2edb270028"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/bag/metadata.yaml",
+    "bytes": 7465,
+    "sha256": "8c93963ddb86f411d40a7fa482e605dc54bdf7d36b86739641c2eeb2b8970e25"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/bootstrap_environment.json",
+    "bytes": 897,
+    "sha256": "55b64136887c75890b29c18411c960204b3223c2a4ca12adcd9afdcb20369618"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/env.json",
+    "bytes": 61213,
+    "sha256": "a605781a6e07873d9a2b99bb5008d7aeb94514f40af0652e958de533e59c78a3"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/host_metrics.jsonl",
+    "bytes": 59175,
+    "sha256": "d6e7e00a3f52fb7306c62a36b342425b530cb15eea1bfd0870148bdfb4c0b60c"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/clock_latest.json",
+    "bytes": 128,
+    "sha256": "77335a8880d6d07f45dfefb26f3bddf604ff4bfe26df3194fa8267ba3db31bb3"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/events.jsonl",
+    "bytes": 37645107,
+    "sha256": "69f67d68fc3b6c0c72bb62a1d313c9c62360567d220a6141a6e3856162c20c1c"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/graph_latest.json",
+    "bytes": 18780,
+    "sha256": "c3111fba16af6b36ef524cc3de7101f41010be4dfd099cc7cdc33f0356df0cbd"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/inventory_latest.json",
+    "bytes": 119728,
+    "sha256": "58aed378c69da97a69cfc6259a60e957267927a95699a2235fbe198f46c408cd"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/preflight.json",
+    "bytes": 118270,
+    "sha256": "3ee0bb4913e80b990697de1621d5a6b0bc84c4af1967b547a856be0124e9c36a"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/recorder.log",
+    "bytes": 917,
+    "sha256": "3a33c2a892d83a7819266e266c1633258d706243e5d9c145e38fe1b586790849"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/recorder_end.json",
+    "bytes": 896,
+    "sha256": "f4b12340d8925e58f3bea1ce17a7059a39871b9c6b7e202bd8bc1af6672b3894"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/recorder_ready.json",
+    "bytes": 40,
+    "sha256": "82561b21f86d331c68c42e2d227402fd506e2bfa2a0eba3b7e04ee0ed00215f0"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/__pycache__/fixture.launch.cpython-312.pyc",
+    "bytes": 47027,
+    "sha256": "1532f64b7df6b7275a51af3e336cf3d2d1914262fd37c0ffaeef4383c106fbcf"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/bridge.yaml",
+    "bytes": 1314,
+    "sha256": "dba3a00a2a42ae748fc1cc6f33690f198721902528cdf94da6d91e899d61530b"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/fixture.json",
+    "bytes": 458,
+    "sha256": "bd44bf074cd520ba9fe579e10f1847c5d3b2ec6c2d6c20672eebbea3fb0051ff"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/fixture.launch.py",
+    "bytes": 45175,
+    "sha256": "67b0eff0505de6c7ef8d610590bca279eb35255296fcd34136f77991b1af91c3"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/phase_events.json",
+    "bytes": 124,
+    "sha256": "9b86f140fe73141e3fd4ce9469387a714a45ebc1120dc5fc999513f88f3531f5"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/robot-gz.urdf",
+    "bytes": 16848,
+    "sha256": "af7be7e8483ed7189abde12376b5560130fb0b7f824c09ca201b176426b13b22"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/robot.urdf",
+    "bytes": 16598,
+    "sha256": "e266fc5801a193037e1d4dfd31252337a02abf6979c1714959584cb7419f523e"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/ros_cli_graph.json",
+    "bytes": 5838,
+    "sha256": "cd41757e0c42a3d391e7583b5c38835960bb8cac66b26d2556862cda44295cb7"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture/world.sdf",
+    "bytes": 30509,
+    "sha256": "13c8cf834e25ce8a198175bda9fa3ba34362b3b776b376d81ed2ac80e1de9ee5"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/sensor_fixture.log",
+    "bytes": 58605,
+    "sha256": "421081f55e2cc5b02c733999d1e03ad24108243ac3c4331061ca5ed6c15da524"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/logs/teardown.json",
+    "bytes": 116507,
+    "sha256": "8e673b0b8912ab26c57fab1b171f1b4adaaed93dbe21258a0f718ab1d44f4f7c"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/manifest.json",
+    "bytes": 14292,
+    "sha256": "2fe4b44b7cbcb31657c6cb985ab2981f1d9ba7171a02ccba4813a490857f0b6f"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/production_policy.json",
+    "bytes": 8487,
+    "sha256": "d6b87a6b03f50b2c96714577a7f0f3e482b5e027eb768d5767bd37dee2920a7f"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/resource_summary.json",
+    "bytes": 974,
+    "sha256": "9f9a3c045f02eebb9affa2359d461886707d4ea7553bfb8df37e96cc71afdc6a"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06/safety_envelope.json",
+    "bytes": 1076,
+    "sha256": "4b7224aba66ac10aae9108aa35b27ba140313a04fa3046c1c07918046e7ff15b"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-09/host_metrics.jsonl",
+    "bytes": 5419,
+    "sha256": "ab0052305a376e4742f38e8f3c943be3098d33674b59ab30e521ec4ddd2fe013"
+  },
+  {
+    "path": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-09/manifest.json",
+    "bytes": 9651,
+    "sha256": "29bf665473bbe277b300fbe7f2223aee55ebbf4d872daf11e63daadc168b8a8a"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/command_graph.json",
+    "bytes": 472,
+    "sha256": "f36f69cc1f121c45371d347ff9388ab4250aa21eeee77159be945b0c2424f91a"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/exits.json",
+    "bytes": 67,
+    "sha256": "aa3ba27501fc8003c65660f4f854f3c12a31f88a3a15217b66111203681cebda"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/gazebo.log.gz",
+    "bytes": 5771,
+    "sha256": "1bdeb83c32d38ce138e98223fe7c864d13d0449ca7ef3a0931df05c3ad126a49"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/manifest.json",
+    "bytes": 1267,
+    "sha256": "a7d913832c9577152dfa0c6ea6119de67db4d89ac7ae08c1113e44ef0c300ec7"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/measurements.json",
+    "bytes": 7152,
+    "sha256": "ece74c30a6cd964eb8a069bc80056ce60583e3a74742b7549239dec83590a4b3"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/meta.json",
+    "bytes": 29730,
+    "sha256": "a221e1e03125590253ecfa35e449a31edf25bf8bac7fb7a9196d2d4eb41d414d"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/mission.log.gz",
+    "bytes": 14663,
+    "sha256": "c7f21ade216c7fcc508e37cdaaad73e8ac05e0da9f1ac4c4c9b945f7a39a50cd"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/observations.jsonl.gz",
+    "bytes": 3008677,
+    "sha256": "ecf4f361f26163fe17995a374cd9456a04e986dc9d938b514f3ef5bd05e41936"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/observer.log.gz",
+    "bytes": 2074,
+    "sha256": "34120eb97177822eb00e26d9dbfbc297af28912f088b79cfad5b2182364e7811"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/physical.jsonl.gz",
+    "bytes": 1510566,
+    "sha256": "2e1865edb749c14762689845bd658e6dbc9b0982d8c85dc269072949249240c6"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/physical.log.gz",
+    "bytes": 33,
+    "sha256": "eeb094fff8b25221558f46054754d69fe4c6b257b42cfd9af38294b51120d701"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/result.json",
+    "bytes": 5516,
+    "sha256": "1d915135cf78d7f0ddf06f72cddaeccf558a25607e8dfa50da31c9e792ccbb24"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/robot_inputs.json",
+    "bytes": 66,
+    "sha256": "a07bdc704079a3075cb5fb1ba349f8317813086e8fc468c582471aee63ad0db1"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/runtime_reference.json",
+    "bytes": 427,
+    "sha256": "ca1be0cb9e17877fff62908ba87402b0bd34552578e60e907ecee114d83829a9"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/source.patch.gz",
+    "bytes": 33,
+    "sha256": "e84680521359b9ff3e1c8a17d30ac92ebec60e6cafa054cca8ca97beeebb1e7d"
+  },
+  {
+    "path": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6/spawned_manifest.json",
+    "bytes": 1268,
+    "sha256": "48eebdb10d9560051281ca80614b7120d0f68a5e1d17130bf2672c688315bfd5"
+  }
+]

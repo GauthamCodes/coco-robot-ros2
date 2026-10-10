@@ -285,24 +285,26 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False,
                 # Generated fixture starts at origin, unlike the benchmark home.
                 manifest['home_xy_m'] = [0., 0.]
             # Post-run evaluator only; missing evidence remains unknown.
-            if (root / 'logs/episode/manifest.json').exists() or fixture_manifest.exists():
-                try:
-                    from batch import read_events
-                    if (root / 'logs/episode/manifest.json').exists():
-                        episode = json.loads((root / 'logs/episode/manifest.json').read_text())
-                        manifest['targets'] = episode['targets']
-                    from evaluation import evaluate_recording
-                    thresholds = json.loads((REPO/'eval/thresholds.json').read_text())['thresholds']
-                    pipeline = evaluate_recording(read_events(root),manifest,thresholds)
-                    result = pipeline['oracle']
-                    for name in ('oracle','analysis','manipulation'):
-                        atomic_json(root/(name+'.json'),pipeline[name])
-                    with (root/'logs/normalized.jsonl').open('x') as stream:
-                        for event in pipeline['trace']:stream.write(json.dumps(event,allow_nan=False)+'\n')
-                    if result.get('mission_oracle_disagreement') is True:
-                        manifest['state'] = 'STOP_ORACLE_DISAGREEMENT'
-                except Exception as exc:
-                    atomic_json(root / 'logs/oracle_error.json', dict(error=repr(exc)))
+            try:
+                from batch import read_events
+                if (root / 'logs/episode/manifest.json').exists():
+                    episode = json.loads((root / 'logs/episode/manifest.json').read_text())
+                    manifest['targets'] = episode['targets']
+                from evaluation import evaluate_recording
+                thresholds = json.loads((REPO/'eval/thresholds.json').read_text())['thresholds']
+                recorded=(root/'logs/events.jsonl').exists()
+                pipeline = evaluate_recording(read_events(root) if recorded else [],manifest,thresholds,
+                    integrity_errors=[] if recorded else ['No events.jsonl: recorder did not reach capture'])
+                result = pipeline['oracle']
+                atomic_json(root/'logs/oracle_facts.json',pipeline['facts'])
+                for name in ('oracle','analysis','manipulation'):
+                    atomic_json(root/(name+'.json'),pipeline[name])
+                with (root/'logs/normalized.jsonl').open('x') as stream:
+                    for event in pipeline['trace']:stream.write(json.dumps(event,allow_nan=False)+'\n')
+                if result.get('mission_oracle_disagreement') is True:
+                    manifest['state'] = 'STOP_ORACLE_DISAGREEMENT'
+            except Exception as exc:
+                atomic_json(root / 'logs/oracle_error.json', dict(error=repr(exc)))
             manifest['wall_time_s'] = time.monotonic()-started
             save()
         return 0 if manifest['state'] == 'BOOTSTRAP_EPISODE_ENDED' else 3

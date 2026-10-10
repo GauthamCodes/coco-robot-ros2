@@ -956,3 +956,16 @@ and unreadable process metadata. No simulator attempt/foreign signal in this
 session. Final changed-host read-only gate is recorded separately below.
 Root cause OPEN; physical attachment/lift/retention/release/final placement remain
 unverified. M1 calibration0/19, qualified smoke0/4, M1.8=0/140 unchanged.
+
+
+### Final controlled startup evidence — 2026-10-10
+
+After changed-host read-only preflight passed, one NON_QUALIFYING controlled
+attempt exited ABORTED_BOOTSTRAP_SAFETY on unreadable `/proc/96143/exe`. Only the
+recorder started; Gazebo never launched and capture never began. Owned teardown:
+zero survivors/errors; foreign signals NONE. Oracle/verifier UNSCORABLE. No retry:
+runtime available RAM margin ~1.135 GB was below the previous incomplete arm run's
+observed 1.304 GB decrease. Production Isaac RAM/VRAM calibration remains null.
+Early-abort automatic reporting regression: 56 passed. Root cause remains OPEN;
+physical attachment/lift/retention/release/placement unverified, all M1 counts
+unchanged. Full report: `docs/m2/target_observation_20261008/VERIFICATION_REPORT.md`.

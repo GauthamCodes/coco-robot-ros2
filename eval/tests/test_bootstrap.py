@@ -108,6 +108,8 @@ def test_resource_abort_stops_only_owned_child_and_retains_samples(tmp_path):
     assert manifest['qualified'] is False
     assert (tmp_path/'abort/host_metrics.jsonl').exists()
     assert json.loads((tmp_path/'abort/resource_summary.json').read_text())['sample_count']==1
+    assert json.loads((tmp_path/'abort/oracle.json').read_text())['oracle_verdict']=='UNSCORABLE'
+    assert json.loads((tmp_path/'abort/manipulation.json').read_text())['result']=='UNSCORABLE'
 
 
 def test_engineering_camera_extension_does_not_change_production_contract():

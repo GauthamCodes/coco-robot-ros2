@@ -28,3 +28,16 @@ Observed removable cost: recorder callback called full message-to-dict conversio
 Gazebo read-only preflight at commit f664282: available RAM 8,104,574,976 < unchanged reserve 8,229,275,648 (shortfall 124,700,672). Load1 0.658203125; GPU free 5,566,889,984. No simulator launched. Production Isaac preflight separately rejects uncalibrated RAM/VRAM and unreadable process metadata.
 
 Reproduce: `python3 eval/resource_attribution.py RUN1 RUN2 RUN3 RUN4 --output NEW.json`. Exact source paths and hashes are in `validation/verification_20261009/resource_comparison_final.json`.
+
+
+### Final controlled startup evidence — 2026-10-10
+
+After changed-host read-only preflight passed, one NON_QUALIFYING controlled
+attempt exited ABORTED_BOOTSTRAP_SAFETY on unreadable `/proc/96143/exe`. Only the
+recorder started; Gazebo never launched and capture never began. Owned teardown:
+zero survivors/errors; foreign signals NONE. Oracle/verifier UNSCORABLE. No retry:
+runtime available RAM margin ~1.135 GB was below the previous incomplete arm run's
+observed 1.304 GB decrease. Production Isaac RAM/VRAM calibration remains null.
+Early-abort automatic reporting regression: 56 passed. Root cause remains OPEN;
+physical attachment/lift/retention/release/placement unverified, all M1 counts
+unchanged. Full report: `docs/m2/target_observation_20261008/VERIFICATION_REPORT.md`.

@@ -1,0 +1,26 @@
+[
+  {
+    "command": "python3 -m pytest -q eval/tests/test_bootstrap.py eval/tests/test_manipulation.py",
+    "exit_code": 0,
+    "evidence": "early_abort_regression.log",
+    "result": "56 passed"
+  },
+  {
+    "command": "./eval/bin/eval bootstrap --backend gazebo --profile rgbd_manipulation --fixture grasp_front_flank --domain 82 --seconds 180 --preflight-only --output /home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-final-gazebo-20261010",
+    "exit_code": 0,
+    "evidence": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/preflight-final-gazebo-20261010/manifest.json",
+    "result": "SAFE_BOOTSTRAP_PREFLIGHT_ONLY"
+  },
+  {
+    "command": "./eval/bin/eval bootstrap --backend gazebo --profile rgbd_manipulation --fixture grasp_front_flank --seconds 180 --domain 82 --output /home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01",
+    "exit_code": 3,
+    "evidence": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01.log",
+    "result": "ABORTED_BOOTSTRAP_SAFETY before simulator launch"
+  },
+  {
+    "command": "./eval/bin/eval replay /home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01 --source-format mcap --output /home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01-replay",
+    "exit_code": 1,
+    "evidence": "/home/gautham/coco_m1_runs/manipulation-verification-20261009/controlled-gazebo-20261010-01-replay.log",
+    "result": "Expected missing capture failure; UNSCORABLE reports retained"
+  }
+]

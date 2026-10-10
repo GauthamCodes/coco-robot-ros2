@@ -182,7 +182,9 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False,
             handle = (root / 'logs' / (name + '.log')).open('x'); handles.append(handle)
             child = subprocess.Popen(argv, cwd=REPO, env=env, stdout=handle,
                                      stderr=subprocess.STDOUT, start_new_session=True)
-            children.append((name, child)); owned.append(identity(child.pid)); save()
+            children.append((name, child))
+            owned.append(dict(identity(child.pid),spawn_observed_wall_epoch_ns=time.time_ns(),spawn_observed_monotonic_s=time.monotonic()))
+            save()
             return child
         recorder = runner = truth = None
         try:
@@ -286,21 +288,17 @@ def run_bootstrap(output, backend, domain=82, seconds=120, preflight_only=False,
             if (root / 'logs/episode/manifest.json').exists() or fixture_manifest.exists():
                 try:
                     from batch import read_events
-                    from normalize import oracle_facts
-                    from oracle import score
                     if (root / 'logs/episode/manifest.json').exists():
                         episode = json.loads((root / 'logs/episode/manifest.json').read_text())
                         manifest['targets'] = episode['targets']
-                    result = score(oracle_facts(read_events(root), manifest))
-                    atomic_json(root / 'oracle.json', result)
-                    from normalize import normalized
-                    from analyzer import analyze
-                    from manipulation import verify
-                    events = read_events(root)
-                    trace = normalized(events, manifest)
+                    from evaluation import evaluate_recording
                     thresholds = json.loads((REPO/'eval/thresholds.json').read_text())['thresholds']
-                    atomic_json(root/'analysis.json', analyze(trace,thresholds,result['mission_verdict'],result['oracle_verdict'],require_catalog_coverage=True))
-                    atomic_json(root/'manipulation.json', verify(events,manifest,result,trace,thresholds))
+                    pipeline = evaluate_recording(read_events(root),manifest,thresholds)
+                    result = pipeline['oracle']
+                    for name in ('oracle','analysis','manipulation'):
+                        atomic_json(root/(name+'.json'),pipeline[name])
+                    with (root/'logs/normalized.jsonl').open('x') as stream:
+                        for event in pipeline['trace']:stream.write(json.dumps(event,allow_nan=False)+'\n')
                     if result.get('mission_oracle_disagreement') is True:
                         manifest['state'] = 'STOP_ORACLE_DISAGREEMENT'
                 except Exception as exc:

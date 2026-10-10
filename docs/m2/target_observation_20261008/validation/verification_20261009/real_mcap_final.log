@@ -1,0 +1,30 @@
+{
+  "evidence_label": "NON_QUALIFYING_MCAP_REPLAY",
+  "qualified": false,
+  "source": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06",
+  "reconstruction": {
+    "records": 1730,
+    "source_headers": 544,
+    "goal_uuids": [
+      "64e59c67f3904946834d35989690d13b",
+      "754e2f809ad8c2053c74578d93cea980",
+      "b4745805cf8048c19186409c720cedf1",
+      "c0ea30bc0fe24bebbed5cdd78c366e4d",
+      "cdbd970c75b845dcae7a03119bb0d08b",
+      "cf6369f58835f3a05d6ec5727d11d4c8",
+      "fa3fd99dd0277072daacc2849a0eba9f"
+    ],
+    "timestamp_reconstruction": "MCAP ROS receive ns; source stamps preserved in decoded payload; wall receipt from validated sidecar",
+    "limitation": "Legacy engineering manifest has no target definitions; oracle facts unavailable"
+  },
+  "oracle_verdict": "UNSCORABLE",
+  "mission_verdict": "UNOBSERVED",
+  "mission_oracle_disagreement": null,
+  "first_violated_invariant": "UNCLASSIFIED",
+  "first_supported_violation": null,
+  "catalog_measurements_complete": false,
+  "analysis_sha256": "1c27a658140c9eb79f8e27e56cfc3f5b11c0a632a6a829100b4b484394588170",
+  "oracle_sha256": "bca5bdd59931560f608d27708bea14deb3729d55bb28bbed2f990ec5e7237487",
+  "manipulation_result": "UNVERIFIED",
+  "manipulation_sha256": "526885906659c861f8866f0d0dbf6b473a50b894dcac25b9964e6a4da63b77e1"
+}

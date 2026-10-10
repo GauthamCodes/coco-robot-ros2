@@ -1,0 +1,528 @@
+{
+  "schema_version": 1,
+  "diagnostic_only": true,
+  "qualified": false,
+  "source_run": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06",
+  "phases": [
+    {
+      "phase": "baseline_observation",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "fresh phase-consumer observation with source identity"
+      ],
+      "missing_observations": [
+        "fresh phase-consumer observation with source identity"
+      ],
+      "measurements": {},
+      "invariant_results": {},
+      "reason": "Driver contract independently rechecked; actual ArmControl sample acceptance is not attested.",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "approach_observation",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "fresh phase-consumer observation with source identity"
+      ],
+      "missing_observations": [
+        "fresh phase-consumer observation with source identity"
+      ],
+      "measurements": {},
+      "invariant_results": {},
+      "reason": "Driver contract independently rechecked; actual ArmControl sample acceptance is not attested.",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "grasp_request",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "guarded pick request",
+        "magnet attach command"
+      ],
+      "missing_observations": [
+        "guarded pick request",
+        "magnet attach command"
+      ],
+      "measurements": {},
+      "invariant_results": {},
+      "reason": "Missing: guarded pick request, magnet attach command",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "plugin_attachment_report",
+      "status": "PASS",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": {
+          "earliest": 0.0,
+          "latest": 14.908
+        },
+        "receive_wall_s": {
+          "earliest": 5.634866381999018,
+          "latest": 24.14119811599994
+        },
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": {
+          "earliest": 1791493991403094132,
+          "latest": 1791494009909275072
+        },
+        "mcap_receive_ns": {
+          "earliest": 0,
+          "latest": 14908000000
+        }
+      },
+      "evidence": [
+        {
+          "file": "logs/events.jsonl",
+          "receive_sequence": 160,
+          "decoded_sequence": 160,
+          "topic": "/magnet/target_red/state",
+          "receive_ros_s": 0.0,
+          "mcap_receive_ns": 0,
+          "receive_wall_s": 5.634866381999018,
+          "receive_monotonic_s": null,
+          "receive_wall_epoch_ns": 1791493991403094132,
+          "source_stamp_ns": null,
+          "source_sim_s": null,
+          "header": null,
+          "gripper_provenance": null,
+          "gripper_tf_chain": null
+        },
+        {
+          "file": "logs/events.jsonl",
+          "receive_sequence": 509,
+          "decoded_sequence": 509,
+          "topic": "/magnet/target_red/state",
+          "receive_ros_s": 14.908,
+          "mcap_receive_ns": 14908000000,
+          "receive_wall_s": 24.14119811599994,
+          "receive_monotonic_s": null,
+          "receive_wall_epoch_ns": 1791494009909275072,
+          "source_stamp_ns": null,
+          "source_sim_s": null,
+          "header": null,
+          "gripper_provenance": null,
+          "gripper_tf_chain": null
+        }
+      ],
+      "present_evidence_topics": [
+        "/magnet/target_red/state"
+      ],
+      "measurement_units": {},
+      "required_observations": [
+        "plugin attached report"
+      ],
+      "missing_observations": [],
+      "measurements": {},
+      "invariant_results": {},
+      "reason": "Plugin report only; physical attachment evaluated separately.",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "physical_attachment",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "pre-grasp baseline",
+        "synchronized moving target/palm poses",
+        "approved rigidity tolerances"
+      ],
+      "missing_observations": [
+        "synchronized world target and gripper truth",
+        "approved relative-transform tolerances / sample-gap provenance",
+        "pre-grasp physical baseline",
+        "post-grasp motion samples"
+      ],
+      "measurements": {},
+      "invariant_results": {
+        "I21": {
+          "holds": null,
+          "failures": [],
+          "missing": [
+            "attachment_proximity_m",
+            "lift_height_m"
+          ],
+          "observed_checks": 0,
+          "observed_fields": []
+        }
+      },
+      "reason": "Target-to-palm rigidity tested independently of plugin state; proximity calibration remains separate.",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "physical_lift",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "physical baseline",
+        "world target rise >=0.03m",
+        "physical attachment"
+      ],
+      "missing_observations": [
+        "verified attachment and covered physical lift window"
+      ],
+      "measurements": {},
+      "invariant_results": {
+        "I21": {
+          "holds": null,
+          "failures": [],
+          "missing": [
+            "attachment_proximity_m",
+            "lift_height_m"
+          ],
+          "observed_checks": 0,
+          "observed_fields": []
+        }
+      },
+      "reason": "Missing: verified attachment and covered physical lift window",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "retention",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "covered moving carry until release"
+      ],
+      "missing_observations": [
+        "complete independently witnessed carry"
+      ],
+      "measurements": {},
+      "invariant_results": {
+        "I22": {
+          "holds": null,
+          "failures": [],
+          "missing": [
+            "target_attached_during_carry"
+          ],
+          "observed_checks": 0,
+          "observed_fields": []
+        }
+      },
+      "reason": "Missing: complete independently witnessed carry",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "release_request",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "guarded place request",
+        "magnet detach command"
+      ],
+      "missing_observations": [
+        "guarded place request",
+        "magnet detach command"
+      ],
+      "measurements": {},
+      "invariant_results": {},
+      "reason": "Missing: guarded place request, magnet detach command",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "physical_release",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "release request",
+        "post-release palm retreat and independent target separation"
+      ],
+      "missing_observations": [
+        "discriminating post-release motion"
+      ],
+      "measurements": {},
+      "invariant_results": {
+        "I23": {
+          "holds": null,
+          "failures": [],
+          "missing": [
+            "fingers_open_before_detach",
+            "placed_detached",
+            "placement_rest_motion_m",
+            "placement_rest_window_sim_s"
+          ],
+          "observed_checks": 0,
+          "observed_fields": []
+        }
+      },
+      "reason": "Missing: discriminating post-release motion",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    },
+    {
+      "phase": "post_release_stability",
+      "status": "UNVERIFIED",
+      "earliest_sim_s": null,
+      "latest_sim_s": null,
+      "timestamps_by_clock": {
+        "source_sim_s": null,
+        "source_stamp_ns": null,
+        "receive_ros_s": null,
+        "receive_wall_s": null,
+        "receive_monotonic_s": null,
+        "receive_wall_epoch_ns": null,
+        "mcap_receive_ns": null
+      },
+      "evidence": [],
+      "present_evidence_topics": [],
+      "measurement_units": {},
+      "required_observations": [
+        "detachment",
+        "2s terminal rest",
+        "oracle placement and orientation checks"
+      ],
+      "missing_observations": [
+        "complete detached terminal rest/placement evidence"
+      ],
+      "measurements": {},
+      "invariant_results": {
+        "I23": {
+          "holds": null,
+          "failures": [],
+          "missing": [
+            "fingers_open_before_detach",
+            "placed_detached",
+            "placement_rest_motion_m",
+            "placement_rest_window_sim_s"
+          ],
+          "observed_checks": 0,
+          "observed_fields": []
+        }
+      },
+      "reason": "Missing: complete detached terminal rest/placement evidence",
+      "limitations": [
+        "Sampled evidence only; gaps cannot establish continuous physical state."
+      ]
+    }
+  ],
+  "result": "UNVERIFIED",
+  "phase_sequence_result": "UNVERIFIED",
+  "consumer_acceptance": [],
+  "oracle": {
+    "definition_version": "m0-v1",
+    "oracle_verdict": "UNSCORABLE",
+    "mission_verdict": "UNOBSERVED",
+    "mission_oracle_disagreement": null,
+    "checks": {
+      "target_in_placement_zone": null,
+      "target_at_rest": null,
+      "nonrequested_undisturbed": null,
+      "robot_home": null,
+      "no_arbiter_violation": null,
+      "within_time_budget": null
+    },
+    "metrics": {},
+    "missing_evidence": [
+      {
+        "condition": "target_in_placement_zone",
+        "reason": "Missing finite target pose/dimensions or home definition"
+      },
+      {
+        "condition": "target_at_rest",
+        "reason": "Missing valid detached terminal rest samples"
+      },
+      {
+        "condition": "nonrequested_undisturbed",
+        "reason": "Missing whole-episode displacement evidence for every non-requested cylinder"
+      },
+      {
+        "condition": "robot_home",
+        "reason": "Missing finite terminal robot truth or home"
+      },
+      {
+        "condition": "no_arbiter_violation",
+        "reason": "Missing authority evidence or unresolved asynchronous observer flags"
+      },
+      {
+        "condition": "within_time_budget",
+        "reason": "Missing episode end or monotonic-wall duration"
+      }
+    ],
+    "failed_conditions": []
+  },
+  "limits": {
+    "relative_translation_m": null,
+    "relative_rotation_rad": null,
+    "max_truth_gap_sim_s": null,
+    "provenance": null
+  },
+  "complete_invariant_verification": false,
+  "catalog_results": {
+    "I21": {
+      "holds": null,
+      "failures": [],
+      "missing": [
+        "attachment_proximity_m",
+        "lift_height_m"
+      ],
+      "observed_checks": 0,
+      "observed_fields": []
+    },
+    "I22": {
+      "holds": null,
+      "failures": [],
+      "missing": [
+        "target_attached_during_carry"
+      ],
+      "observed_checks": 0,
+      "observed_fields": []
+    },
+    "I23": {
+      "holds": null,
+      "failures": [],
+      "missing": [
+        "fingers_open_before_detach",
+        "placed_detached",
+        "placement_rest_motion_m",
+        "placement_rest_window_sim_s"
+      ],
+      "observed_checks": 0,
+      "observed_fields": []
+    }
+  },
+  "catalog_measurements": {},
+  "finger_witnesses": [],
+  "duplicate_events": 253,
+  "input_events": 1730,
+  "invalid_truth": [],
+  "integrity_errors": [],
+  "first_unsupported_phase": "baseline_observation",
+  "unresolved_catalog": [
+    "I21",
+    "I22",
+    "I23"
+  ],
+  "result_reason": "Incomplete phase/catalog evidence or existing oracle not PASS",
+  "analyzer_manipulation_evidence": [],
+  "limitations": [
+    "No replacement mission oracle. Plugin attachment is not physical evidence.",
+    "Missing calibrated limits remain null. Engineering/replay never qualifies M1."
+  ]
+}

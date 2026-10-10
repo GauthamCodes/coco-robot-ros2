@@ -1,0 +1,36 @@
+{
+  "evidence_class": "SYNTHETIC_AND_SIMULATOR_FREE_TESTS_NOT_ROBOT_SUCCESS",
+  "suites": {
+    "final_targeted": [
+      {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "240",
+        "time": "6.304",
+        "timestamp": "2026-10-10T14:04:12.904439",
+        "hostname": "gautham-Nitro-ANV15-51"
+      }
+    ],
+    "final_ros": [
+      {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "9",
+        "time": "8.247",
+        "timestamp": "2026-10-10T14:04:19.673198",
+        "hostname": "gautham-Nitro-ANV15-51"
+      }
+    ]
+  },
+  "package_suite": {
+    "package": "coco_moveit_config",
+    "passed": 43,
+    "failed": 0,
+    "colcon_including_wrapper": 44
+  },
+  "remote_ci_run": false
+}

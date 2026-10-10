@@ -6,6 +6,7 @@ import sys
 import time
 import rclpy
 from rclpy.parameter import Parameter
+from rclpy.qos import QoSProfile, DurabilityPolicy
 from std_msgs.msg import String
 from std_srvs.srv import Trigger
 from controller_manager_msgs.srv import ListControllers
@@ -17,12 +18,13 @@ class Control(AutonomyNode):
     def __init__(self, root):
         super().__init__("observation_phase_control",parameter_overrides=[Parameter("use_sim_time",value=True)])
         self.root=root;self.status={};self.observation=None;self.events=[]
-        self.checkpoint_pub=self.create_publisher(String,"/diagnostics/manipulation_checkpoints",10)
+        self.checkpoint_pub=self.create_publisher(String,"/diagnostics/manipulation_checkpoints",QoSProfile(depth=100,durability=DurabilityPolicy.TRANSIENT_LOCAL))
         self.checkpoint_stream=(root/"manipulation_checkpoints.jsonl").open("x")
         self.mode="idle";self.approach_status={}
         self.mode_pub=self.create_publisher(String,"/mission/mode",10)
         self.create_timer(.2,lambda:self.mode_pub.publish(String(data=self.mode)))
         self.create_subscription(String,"/approach/status",self.approach_state,10)
+        self.create_subscription(String,"/magnet/target_red/state",self.magnet_report,10)
         self.approach_client=self.create_client(Trigger,"/approach/run")
         self.validator=PhaseValidator("red");self.records=[]
         self.stream=(root/"phase_observations.jsonl").open("x")
@@ -33,14 +35,15 @@ class Control(AutonomyNode):
         self.command_clients={name:self.create_client(Trigger,"/grasp/"+name) for name in ("stow","pick","place")}
     def checkpoint(self, name, **details):
         value=dict(checkpoint=name,stamp_ns=self.get_clock().now().nanoseconds,
-                   receive_monotonic_s=time.monotonic(),execution_class="NON_QUALIFYING",**details)
+                   source_monotonic_s=time.monotonic(),execution_class="NON_QUALIFYING",**details)
         self.checkpoint_stream.write(json.dumps(value,allow_nan=False)+"\n");self.checkpoint_stream.flush()
         self.checkpoint_pub.publish(String(data=json.dumps(value,allow_nan=False)))
     def observation_checkpoint(self,name):
         o=self.observation or {};now=self.get_clock().now().nanoseconds
         valid=validated_height(o,now_ns=now,colour="red") is not None
         self.checkpoint(name,observation_contract_valid=valid,observation_stamp_ns=o.get("stamp_ns"),
-                        track_id=o.get("track_id"),reference_id=o.get("reference_id"))
+                        track_id=o.get("track_id"),reference_id=o.get("reference_id"),
+                        observation=o,phase_started_ns=self.validator.started_ns)
     def phase(self, name):
         now=self.get_clock().now().nanoseconds
         if now<=0:return
@@ -54,10 +57,17 @@ class Control(AutonomyNode):
             record=self.validator.record(self.observation,self.get_clock().now().nanoseconds)
             self.records.append(record)
             self.stream.write(json.dumps(record,allow_nan=False)+"\n");self.stream.flush()
+    def magnet_report(self,msg):
+        self.checkpoint("attachment_evidence" if msg.data=="attached" else "detach_report",
+                        assertion_layer="plugin_report_only",report=msg.data)
     def state(self,msg):
         import re
         self.status={key:value.strip() for key,value in re.findall(r"(\w+)=(.*?)(?= \w+=|$)",msg.data)}
         stage=self.status.get("phase","")
+        outcome=self.status.get("outcome")
+        if outcome in ("held","placed") and outcome!=getattr(self,"_last_reported_outcome",None):
+            self.checkpoint("lift_evidence" if outcome=="held" else "release_evidence",assertion_layer="guarded_consumer_report_only",outcome=outcome)
+            self._last_reported_outcome=outcome
         if stage.startswith("pick:"):
             if stage in ("pick:close gripper","pick:release the scene object","pick:raise","pick:confirm lift","pick:carry"):self.phase("lift")
             else:self.phase("approach")
@@ -106,24 +116,36 @@ class Control(AutonomyNode):
         complete=self.wait(lambda:self.status.get("phase")=="idle" and self.status.get("outcome") not in (None,"--"),100)
         return dict(command=name,acceptance=response.message,completed=complete,status=self.status)
 
+def execute(node, results):
+    """Existing guarded sequence with passive evidence checkpoints only."""
+    node.checkpoint("control_started")
+    # Normal magnet_release node handles initial detach; no hidden API here.
+    result=node.request("stow");results.append(result)
+    if result.get("completed") and result.get("status",{}).get("outcome")=="done":
+        node.validator.reacquire("red");node.phase("baseline")
+        def enough():
+            return sum(r["contract_valid"] for r in node.records if r["phase"]=="baseline")>=5
+        if node.wait(enough,20):
+            node.observation_checkpoint("observation_acquired")
+            result=node.approach();results.append(result)
+            if result.get("status",{}).get("outcome")=="arrived":
+                node.observation_checkpoint("approach_complete")
+                result=node.request("pick");results.append(result)
+                if result.get("status",{}).get("outcome")=="held":
+                    node.phase("release");results.append(node.request("place"))
+        else:results.append(dict(error="BASELINE_NOT_CERTIFIED"))
+    # Passive recording only after the guarded controller has reported place.
+    # No additional motion or state shortcut; retain the oracle's 2s rest window.
+    settled=None
+    if results and results[-1].get("status",{}).get("outcome")=="placed":
+        end_ns=node.get_clock().now().nanoseconds+2_000_000_000
+        settled=node.wait(lambda:node.get_clock().now().nanoseconds>=end_ns,20)
+    node.checkpoint("control_finished",post_release_recording_window_complete=settled)
+
 if __name__=="__main__":
     root=Path(sys.argv[1]);rclpy.init();node=Control(root);results=[]
     try:
-        # Normal magnet_release node handles initial detach; no hidden API here.
-        result=node.request("stow");results.append(result)
-        if result.get("completed") and result.get("status",{}).get("outcome")=="done":
-            node.validator.reacquire("red");node.phase("baseline")
-            def enough():
-                return sum(r["contract_valid"] for r in node.records if r["phase"]=="baseline")>=5
-            if node.wait(enough,20):
-                node.observation_checkpoint("observation_acquired")
-                result=node.approach();results.append(result)
-                if result.get("status",{}).get("outcome")=="arrived":
-                    node.observation_checkpoint("approach_complete")
-                    result=node.request("pick");results.append(result)
-                    if result.get("status",{}).get("outcome")=="held":
-                        node.phase("release");results.append(node.request("place"))
-            else:results.append(dict(error="BASELINE_NOT_CERTIFIED"))
+        execute(node,results)
     finally:
         (root/"control_result.json").write_text(json.dumps(dict(execution_class="NON_QUALIFYING",ground_truth_inputs=False,results=results,phase_events=node.events,records_path="phase_observations.jsonl",sample_count=len(node.records)),indent=2,allow_nan=False))
         node.stream.close();node.checkpoint_stream.close()

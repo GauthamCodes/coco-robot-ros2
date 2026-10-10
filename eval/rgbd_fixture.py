@@ -101,7 +101,7 @@ def main():
             .joint_limits(file_path="config/joint_limits.yaml")
             .trajectory_execution(file_path="config/moveit_controllers.yaml")
             .planning_pipelines(pipelines=["ompl"]).to_moveit_configs()).to_dict()
-        extra=f"ExecuteProcess(cmd=['python3',{str(REPO/'eval/gazebo_truth.py')!r},{str(root/'truth_manifest.json')!r},'--world','rgbd_engineering']),"
+        extra=f"ExecuteProcess(cmd=['python3',{str(REPO/'eval/gazebo_truth.py')!r},{str(root/'truth_manifest.json')!r},'--world','rgbd_engineering','--live-magnet']),"
         extra+="Node(package='controller_manager',executable='spawner',arguments=['joint_state_broadcaster','diff_drive_controller','arm_controller','gripper_controller','--controller-manager-timeout','120']),"
         extra+="Node(package='custom_teleop',executable='cmd_vel_arbiter',parameters=[{'use_sim_time':True}]),"
         extra+=f"Node(package='moveit_ros_move_group',executable='move_group',parameters=[{config!r},{{'use_sim_time':True}}]),"

@@ -1,0 +1,38 @@
+......................F............................                      [100%]
+=================================== FAILURES ===================================
+_________ test_invalid_ground_truth_pipeline_returns_diagnostic[data3] _________
+
+data = {'frame': 'world', 'objects': [], 'sim_s': 1}
+
+    @pytest.mark.parametrize('data',[None,[],{'sim_s':'bad'}, {'sim_s':1,'frame':'world','objects':[]}])
+    def test_invalid_ground_truth_pipeline_returns_diagnostic(data):
+        from evaluation import evaluate_recording
+        e=fixture();e.append(dict(topic='/eval/ground_truth/state',sim_s=9,data=data))
+>       r=evaluate_recording(e,MANIFEST,{})
+
+eval/tests/test_manipulation.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+eval/evaluation.py:18: in evaluate_recording
+    try:trace=normalized(events,manifest)+list(extra_trace)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+events = [{'data': {'checkpoint': 'observation_acquired', 'observation_contract_valid': True, 'observation_stamp_ns': 490000000... 5990000000, 'stamp_ns': 6000000000}, 'sim_s': 6, 'topic': '/diagnostics/manipulation_checkpoints', 'wall_s': 12}, ...]
+manifest = {'requested_colour': 'red', 'seed': 5}
+
+    def normalized(events,manifest):
+        stage='UNKNOWN';output=[];initial={};start=None
+        for event in events:
+            data=payload(event);topic=event['topic'];now=event['sim_s']
+            if topic=='/mission/state':
+                stage=state_name(data) or stage
+                if stage=='LOCALIZE' and start is None:start=now
+            measurements={};ids=[]
+            if topic=='/eval/ground_truth/state' and isinstance(data,dict):
+                now=data['sim_s'];objects=data.get('objects',{})
+>               positions=[v.get('xyz_m',[]) for v in objects.values()]
+E               AttributeError: 'list' object has no attribute 'values'
+
+eval/normalize.py:34: AttributeError
+=========================== short test summary info ============================
+FAILED eval/tests/test_manipulation.py::test_invalid_ground_truth_pipeline_returns_diagnostic[data3]
+1 failed, 50 passed in 3.99s

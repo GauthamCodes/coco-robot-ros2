@@ -44,3 +44,8 @@ def test_live_engineering_image_sidecar_uses_hash_not_pixels(tmp_path):
     next(e for e in rows if e['topic']=='/camera/image_raw')['data']['raw_image_sha256']='bad'
     (tmp_path/'logs/events.jsonl').write_text(''.join(json.dumps(e)+'\n' for e in rows))
     with pytest.raises(ValueError,match='payload mismatch'):mcap_events(tmp_path)
+
+
+def test_truncated_mcap_is_rejected_before_recovery(tmp_path):
+    (tmp_path/'bag').mkdir();(tmp_path/'bag/broken.mcap').write_bytes(b'\x89MCAP0\r\n'+b'partial-record')
+    with pytest.raises(ValueError,match='Incomplete MCAP'):mcap_events(tmp_path)

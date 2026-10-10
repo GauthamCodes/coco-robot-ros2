@@ -329,3 +329,10 @@ Engineering `rgbd_manipulation` additionally records request/observation checkpo
 magnet command topics and evaluator-only truth. Source truth never feeds the phase
 driver. Ownership, teardown, qualification and emergency reserves are unchanged.
 PSS and memory pressure are sampled where readable; historical RSS is not PSS.
+
+See `docs/m2/target_observation_20261008/VERIFICATION_RUNBOOK.md` for exact
+commands and `MANIPULATION_VERIFIER.md` for the additive schema, clock domains,
+consumer-acceptance diagnostic and remaining calibration/witness limitations.
+Engineering source checkpoints can delimit oracle facts without inventing a
+mission COMPLETE; other profiles retain the original boundary logic. The passive
+post-placement capture window introduces no extra motion or qualified evidence.

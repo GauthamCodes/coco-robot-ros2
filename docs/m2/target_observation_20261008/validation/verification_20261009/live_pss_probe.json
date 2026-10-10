@@ -1,0 +1,31 @@
+{
+  "execution_class": "NON_QUALIFYING_SIMULATOR_FREE",
+  "identity": {
+    "pid": 253804,
+    "start_ticks": 5864064,
+    "pgid": 253800,
+    "ppid": 253800,
+    "state": "R",
+    "kernel_thread": false
+  },
+  "memory": {
+    "pss_bytes": 10758144,
+    "private_bytes": 7708672,
+    "swap_pss_bytes": 0,
+    "memory_error": null
+  },
+  "memory_pressure": {
+    "some": {
+      "avg10": 0.0,
+      "avg60": 0.0,
+      "avg300": 0.0,
+      "total": 897017.0
+    },
+    "full": {
+      "avg10": 0.0,
+      "avg60": 0.0,
+      "avg300": 0.0,
+      "total": 829431.0
+    }
+  }
+}

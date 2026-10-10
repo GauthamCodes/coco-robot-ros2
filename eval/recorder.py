@@ -67,7 +67,7 @@ def main():
         now=node.get_clock().now().nanoseconds
         writer.write(topic,serialize_message(msg),now)
         trace.write(json.dumps({'topic':topic,'sim_s':now/1e9,'wall_s':mono-start,
-                                'wall_epoch_ns':time.time_ns(),'data':sidecar_data(msg,type_name)},allow_nan=False)+'\n')
+                                'wall_epoch_ns':time.time_ns(),'receive_monotonic_s':mono,'data':sidecar_data(msg,type_name)},allow_nan=False)+'\n')
         trace.flush()
     def publish(topic,value):publisher[topic].publish(String(data=json.dumps(value,allow_nan=False)))
     def discover():
@@ -79,7 +79,7 @@ def main():
             kind=get_message(types[0])
             # BEST_EFFORT matches reliable and best-effort producers; transient
             # local only for known latched topics, to capture startup metadata.
-            durable=(topic in ('/tf_static','/amcl_pose') or topic.endswith('/status') and '/_action/' in topic
+            durable=(topic in ('/tf_static','/amcl_pose','/diagnostics/manipulation_checkpoints') or topic.endswith('/status') and '/_action/' in topic
                      or topic.startswith('/magnet/') and not ENGINEERING_IMAGE_SUMMARY or 'costmap' in topic)
             reliability=(ReliabilityPolicy.RELIABLE if topic in ('/diagnostics/arbiter_commands','/diff_drive_controller/cmd_vel')
                          else ReliabilityPolicy.BEST_EFFORT)

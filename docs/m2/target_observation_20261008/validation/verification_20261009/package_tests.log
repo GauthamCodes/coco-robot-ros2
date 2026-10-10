@@ -1,0 +1,5 @@
+Starting >>> coco_moveit_config
+[0.372s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/gautham/ros2_ws(personal)/moveit_prefix/root/opt/ros/jazzy' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+Finished <<< coco_moveit_config [1.62s]
+
+Summary: 1 package finished [1.86s]

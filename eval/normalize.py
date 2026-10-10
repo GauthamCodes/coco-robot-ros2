@@ -101,10 +101,10 @@ def host_measurements(path):
     return output
 
 
-def oracle_facts(events,manifest):
+def oracle_facts(events,manifest,*,start_event=None,terminal_event=None,mission_verdict=None):
     mission=[(e,payload(e)) for e in events if e['topic']=='/mission/state']
-    start=next((e for e,d in mission if state_name(d)=='LOCALIZE'),None)
-    terminal=next((e for e,d in mission if state_name(d) in ('COMPLETE','ABORT')),None)
+    start=start_event if start_event is not None else next((e for e,d in mission if state_name(d)=='LOCALIZE'),None)
+    terminal=terminal_event if terminal_event is not None else next((e for e,d in mission if state_name(d) in ('COMPLETE','ABORT')),None)
     target='target_'+manifest['requested_colour']
     names=[t['model'] for t in manifest['targets'] if t['model']!=target]
     target_def=next(t for t in manifest['targets'] if t['model']==target)
@@ -142,4 +142,4 @@ def oracle_facts(events,manifest):
                 command_authority_evidence=command,
                 episode_wall_s=terminal['wall_s']-start['wall_s'] if terminal and start else None,
                 episode_finished=terminal is not None,
-                mission_verdict=state_name(payload(terminal)) if terminal else 'UNOBSERVED')
+                mission_verdict=mission_verdict if mission_verdict is not None else state_name(payload(terminal)) if terminal else 'UNOBSERVED')

@@ -42,7 +42,7 @@ def summarize(root):
                 try:rows.append(json.loads(line))
                 except ValueError:errors.append(f'truncated sample {n+1}')
     manifest=json.loads((root/'manifest.json').read_text())
-    peaks=defaultdict(dict);lifetimes={}
+    peaks=defaultdict(dict);lifetimes={};coverage=defaultdict(lambda:dict(samples=0,complete_pss_samples=0))
     for row in rows:
         groups=defaultdict(list);seen=set()
         for p in row.get('owned_components',[]):
@@ -53,6 +53,8 @@ def summarize(root):
                 first_observed_wall_epoch_ns=row.get('wall_epoch_ns'),last_observed_wall_epoch_ns=None))
             life['last_observed_wall_epoch_ns']=row.get('wall_epoch_ns')
         for component,processes in groups.items():
+            coverage[component]['samples']+=1
+            coverage[component]['complete_pss_samples']+=int(all(isinstance(p.get('pss_bytes'),(int,float)) for p in processes))
             for field in ('rss_bytes','pss_bytes','private_bytes','cpu_percent_one_core'):
                 values=[p.get(field) for p in processes]
                 if all(isinstance(v,(int,float)) for v in values):
@@ -64,7 +66,7 @@ def summarize(root):
         extrema[field]=dict(min=min(values),max=max(values)) if values else None
     return dict(source=str(root),profile=manifest.get('profile'),state=manifest.get('state'),
                 qualified=False,sample_count=len(rows),component_peaks=dict(peaks),host_extrema=extrema,
-                process_observation_intervals=list(lifetimes.values()),errors=errors,
+                process_observation_intervals=list(lifetimes.values()),coverage=dict(coverage),errors=errors,
                 source_hashes={p.name:file_hash(p) for p in (root/'manifest.json',path) if p.exists()},
                 caveats=['RSS double-counts shared pages; PSS apportions them when readable.',
                          'Component peaks are not simultaneous; do not sum maxima.',

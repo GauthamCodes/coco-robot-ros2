@@ -1,0 +1,34 @@
+{
+  "evidence_label": "HISTORICAL_REPLAY",
+  "qualified": false,
+  "source": "/home/gautham/coco-isaac-21/docs/data/isaac_fetch/coco23/gazebo_seed6",
+  "reconstruction": {
+    "records": 12326,
+    "goal_uuids": [],
+    "timestamp_reconstruction": "Saved source simulation stamps; historical observations wall stamps only",
+    "limitation": "Historical trace has no MCAP or action UUIDs; absent fields remain unknown"
+  },
+  "oracle_verdict": "FAIL",
+  "mission_verdict": "ABORT",
+  "mission_oracle_disagreement": false,
+  "first_violated_invariant": "UNCLASSIFIED",
+  "first_supported_violation": {
+    "invariant": "I19",
+    "mission_stage": "DESCEND",
+    "sim_s": 61.726,
+    "sequence": 4039,
+    "details": [
+      {
+        "measurement": "nonrequested_displacement_m",
+        "value": 0.005170431884673925,
+        "relation": "le",
+        "limit": 0.005
+      }
+    ]
+  },
+  "catalog_measurements_complete": false,
+  "analysis_sha256": "ce2fba9ebec5e1a186ce69fc0ee505cc7b1fc7abe7bbca54178b87f1d2cac6de",
+  "oracle_sha256": "241e9a75694036806bd3cdb9fb5369fe9070198b73695b792a55ac013ed4befc",
+  "manipulation_result": "UNVERIFIED",
+  "manipulation_sha256": "d788c1e5132b140ea6e07e0434f59d8780979e08f3d7dd7ab618b471a19d1c49"
+}

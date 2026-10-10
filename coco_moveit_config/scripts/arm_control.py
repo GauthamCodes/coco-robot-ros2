@@ -180,6 +180,8 @@ class ArmControl(Node):
         self._heights = {}
         self._height_observation = None
         self._grasp_observation = None
+        self._observation_diagnostics = self.create_publisher(String, '/diagnostics/manipulation_observation_acceptance', 10)
+        self._last_observation_diagnostic = None
         self.create_subscription(String, '/perception/object_height', self._on_object_height, 10)
         self.spun_externally = spun_externally
         self.magnet_model = magnet_model
@@ -365,11 +367,28 @@ class ArmControl(Node):
         model=getattr(self,'magnet_model',None) or ''
         colour=getattr(self,'colour',None) or model.removeprefix('target_')
         observation=getattr(self,'_height_observation',None)
-        height=validated_height(observation,
-            now_ns=self.get_clock().now().nanoseconds,colour=colour)
+        now_ns=self.get_clock().now().nanoseconds
+        height=validated_height(observation,now_ns=now_ns,colour=colour)
         if height is None:return None
         if observation['stamp_ns']<=getattr(self,'_observation_not_before_ns',0):return None
+        self._record_observation_acceptance(observation,now_ns)
         return height
+
+    def _record_observation_acceptance(self, observation, now_ns):
+        """Passive witness only; a logger failure cannot alter acceptance/control."""
+        try:
+            epoch=getattr(self,'_observation_not_before_ns',0)
+            phase=getattr(self,'_observation_phase',None)
+            key=(epoch,phase,observation['stamp_ns'])
+            if key==getattr(self,'_last_observation_diagnostic',None):return
+            publisher=getattr(self,'_observation_diagnostics',None)
+            if publisher is None:return
+            publisher.publish(String(data=json.dumps(dict(
+                accepted_by='ArmControl.target_height',stamp_ns=now_ns,
+                phase=phase,phase_started_ns=epoch,observation=observation),allow_nan=False)))
+            self._last_observation_diagnostic=key
+        except Exception:
+            pass
 
     def grasp_magnet(self):
         """Note where the target is sitting, then weld it to the palm."""

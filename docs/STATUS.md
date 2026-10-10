@@ -1,12 +1,12 @@
 # COCO status
 
-Updated: 2026-10-09. Milestone **bounded RGB-D prerequisite**, authorized by
-Gautham before returning to M1; **observer implemented; full-phase runtime/resource gate open**.
+Updated: 2026-10-10. Milestone **bounded RGB-D prerequisite**, authorized by
+Gautham before returning to M1; **observer/verifier implemented; physical completion and resource gate remain open**.
 M1.1–M1.7 infrastructure remains partial; calibration and M1.8 remain blocked.
 M0 independently reviewed/passed and G0 passed per Gautham. No M0 reopened.
 M1 remains incomplete; no qualified smoke or baseline. Unrelated M2 remains closed.
 
-Current bounded-observation session input SHA: `e8bb85ffec8a5ed1e5a0aad89748a04ecf9aa0de`.
+Current bounded-observation/verifier session input SHA: `2f751ca0efb26e0285e19e1c6dda81d3caf39893`.
 Previous execution-sprint input SHA: `551d532090b25438dda83d58fd9431f186a616e2`.
 Previous qualification-session input: `ceeb914923f7629b4830d58fd3b47279044b2024`.
 Previous implementation-session start: `10ba56210429d7e56e9fc605d879643dd3dda2d4`.
@@ -923,3 +923,36 @@ at61.726s; neither replay is a new/qualified episode. Detailed evidence under
 `m2/target_observation_20261008/validation/verification_20261009/`.
 Root cause OPEN; host gate still to be rechecked. M1 calibration0/19, smoke0/4,
 M1.8=0/140 unchanged. Safety semantics and ground-truth autonomy inputs NONE.
+
+### 2026-10-10 — Verifier hardening and controlled-run closure
+
+Same session start2f751ca; first implementation checkpointf664282. Added robust
+normalization-loss reporting, clock-epoch rejection, explicit per-clock extrema,
+source/receive ordering, exact observation-contract rechecking, and catalog-wide
+I21–I23 completion. Synthetic complete physical/catalog evidence can PASS;
+missing fingers/proximity/calibration cannot. Missing world truth is UNVERIFIED;
+malformed/conflicting evidence is UNSCORABLE. Synthetic evidence is not runtime.
+
+ArmControl now emits a passive deduplicated record of the exact accepted sample;
+publication failure cannot change acceptance. No new autonomy input or motion/
+safety condition. Driver checkpoints carry source ROS/monotonic stamps and use
+retained QoS. Post-place observation lasts2 sim seconds bounded20 wall seconds,
+without added motion. Existing oracle accepts explicit engineering boundaries
+only for NON_QUALIFYING rgbd_manipulation; mission verdict remains UNOBSERVED.
+Production/Test A paths, success definition and all numeric policies unchanged.
+
+Final focused240 pass; ROS/capture/runner9 pass; manipulation package43 pytest
+cases pass (colcon44 including its test wrapper); three dependency packages built,
+manipulation rebuilt after instrumentation. Remote CI not run. All failed
+intermediate attempts retained. Final real MCAP1730 records and historical12326
+records replay successfully, with original oracle results and no qualification.
+Runbook: `m2/target_observation_20261008/VERIFICATION_RUNBOOK.md`; contract and
+resource attribution beside it. Raw/external outputs remain under
+`/home/gautham/coco_m1_runs/manipulation-verification-20261009/`.
+
+Gazebo preflight atf664282 blocked before launch: available8,104,574,976 below
+unchanged8,229,275,648 reserve. Production Isaac rejects null RAM/VRAM calibration
+and unreadable process metadata. No simulator attempt/foreign signal in this
+session. Final changed-host read-only gate is recorded separately below.
+Root cause OPEN; physical attachment/lift/retention/release/final placement remain
+unverified. M1 calibration0/19, qualified smoke0/4, M1.8=0/140 unchanged.

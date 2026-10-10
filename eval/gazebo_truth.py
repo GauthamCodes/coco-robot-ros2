@@ -17,6 +17,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('manifest',type=Path)
     parser.add_argument('--world',default='coco_world')
+    parser.add_argument('--live-magnet',action='store_true',help='Engineering volatile bridge subscription; no latched report assumed')
     args=parser.parse_args()
     manifest=json.loads(args.manifest.read_text())
     dimensions={t['model']:[t['diameter'],t['diameter'],t['height']] for t in manifest['targets']}
@@ -27,7 +28,7 @@ def main():
             attached[n]=True if msg.data=='attached' else False if msg.data=='detached' else None
         from rclpy.qos import QoSProfile,DurabilityPolicy
         subscriptions.append(node.create_subscription(String,f'/magnet/{name}/state',state,
-                             QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL)))
+                             QoSProfile(depth=1,durability=DurabilityPolicy.VOLATILE if args.live_magnet else DurabilityPolicy.TRANSIENT_LOCAL)))
     child=subprocess.Popen(['gz','topic','--json-output','-e','-t',f'/world/{args.world}/pose/info'],
                            stdout=subprocess.PIPE,text=True)
     packets=queue.Queue(maxsize=1); stop=threading.Event()

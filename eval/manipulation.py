@@ -6,6 +6,7 @@ null defaults deliberately do not invent physical tolerances/calibration.
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 
 from evidence import atomic_json, file_hash
@@ -17,6 +18,9 @@ from spatial import rotate
 PHASES = ('baseline_observation', 'approach_observation', 'grasp_request',
           'plugin_attachment_report', 'physical_attachment', 'physical_lift',
           'retention', 'release_request', 'physical_release', 'post_release_stability')
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'coco_config'))
+from coco_config.object_observation import validated_height
+
 DEFAULT_LIMITS = dict(relative_translation_m=None, relative_rotation_rad=None,
                       max_truth_gap_sim_s=None, provenance=None)
 
@@ -37,10 +41,11 @@ def angle(a, b):
 
 def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, integrity_errors=()):
     from manipulation_tf import enrich
+    malformed = any(not isinstance(e,dict) for e in events)
     events = enrich(events)
     thresholds = thresholds or {}
     limits = dict(DEFAULT_LIMITS, **(limits or {}))
-    errors = list(integrity_errors); indexed = []; seen = set(); duplicates = 0
+    errors = list(integrity_errors) + (['Malformed event record'] if malformed else []); indexed = []; seen = set(); duplicates = 0
     for sequence, event in enumerate(events):
         if not isinstance(event,dict) or not finite(event.get('sim_s')) or not isinstance(event.get('topic'),str):
             errors.append(f'event {sequence}: missing/invalid ROS receive time'); continue
@@ -53,35 +58,60 @@ def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, int
     indexed.sort(key=lambda v:(v[1]['sim_s'], v[0]))
     def ref(row):
         i,e,d = row
-        return dict(file='logs/events.jsonl', receive_sequence=i, topic=e['topic'],
-                    receive_ros_s=e['sim_s'], receive_wall_s=e.get('wall_s'),
-                    receive_monotonic_s=e.get('monotonic_s'), receive_wall_epoch_ns=e.get('wall_epoch_ns'),
+        return dict(file='logs/events.jsonl', receive_sequence=e.get('receive_sequence',i), decoded_sequence=i, topic=e['topic'],
+                    receive_ros_s=e['sim_s'], mcap_receive_ns=e.get('mcap_receive_ns'), receive_wall_s=e.get('wall_s'),
+                    receive_monotonic_s=e.get('receive_monotonic_s',e.get('monotonic_s')), receive_wall_epoch_ns=e.get('wall_epoch_ns'),
                     source_stamp_ns=d.get('stamp_ns') if isinstance(d,dict) else None,
                     source_sim_s=d.get('sim_s') if isinstance(d,dict) else None,
-                    header=d.get('header') if isinstance(d,dict) else None)
+                    header=d.get('header') if isinstance(d,dict) else None,
+                    gripper_provenance=(d.get('gripper') or {}).get('provenance') if isinstance(d,dict) and isinstance(d.get('gripper'),dict) else None,
+                    gripper_tf_chain=(d.get('gripper') or {}).get('tf_chain') if isinstance(d,dict) and isinstance(d.get('gripper'),dict) else None)
     phases = {}
     def phase(name, status='UNVERIFIED', rows=(), measurements=None, required=(), missing=(), reason='', ids=()):
         refs = [ref(r) for r in rows]
-        times = [r['source_sim_s'] if finite(r['source_sim_s']) else r['receive_ros_s'] for r in refs]
+        times = [r['source_sim_s'] for r in refs if finite(r['source_sim_s'])]
+        clocks={}
+        for clock in ('source_sim_s','source_stamp_ns','receive_ros_s','receive_wall_s','receive_monotonic_s','receive_wall_epoch_ns','mcap_receive_ns'):
+            values=[r[clock] for r in refs if finite(r[clock])]
+            clocks[clock]=dict(earliest=min(values),latest=max(values)) if values else None
+        units={k:('m' if k.endswith('_m') else 'rad' if k.endswith('_rad') else 's' if k.endswith('_s') else 'boolean' if isinstance(v,bool) else 'unspecified') for k,v in (measurements or {}).items()}
         inv = {i:evaluate(i, measurements or {}, thresholds) for i in ids}
         phases[name] = dict(phase=name, status=status, earliest_sim_s=min(times) if times else None,
-                           latest_sim_s=max(times) if times else None, evidence=refs,
+                           latest_sim_s=max(times) if times else None, timestamps_by_clock=clocks, evidence=refs,
+                           present_evidence_topics=sorted({r['topic'] for r in refs}), measurement_units=units,
                            required_observations=list(required), missing_observations=list(missing),
-                           measurements=measurements or {}, invariant_results=inv, reason=reason,
+                           measurements=measurements or {}, invariant_results=inv, reason=reason or ('Required evidence observed.' if status=='PASS' else 'Observed measurements violate the phase requirement.' if status=='FAIL' else 'Missing: '+', '.join(missing)),
                            limitations=['Sampled evidence only; gaps cannot establish continuous physical state.'])
         return phases[name]
+    clock_rows=[]
+    for row in indexed:
+        d=row[2]
+        if row[1]['topic']=='/clock' and isinstance(d,dict):
+            c=d.get('clock',{})
+            if isinstance(c,dict) and finite(c.get('sec')) and finite(c.get('nanosec')) and finite(row[1].get('wall_s')):
+                clock_rows.append((row[1]['wall_s'],c['sec']+c['nanosec']/1e9))
+    clock_rows.sort()
+    if any(b[0]>a[0] and b[1]<a[1] for a,b in zip(clock_rows,clock_rows[1:])):
+        errors.append('Simulation clock regressed across wall receipt order; epochs cannot be combined')
     checkpoints = [r for r in indexed if r[1]['topic']=='/diagnostics/manipulation_checkpoints' and isinstance(r[2],dict)]
     def marks(name): return [r for r in checkpoints if r[2].get('checkpoint')==name]
+    observation_identity=None
     for name, marker in [('baseline_observation','observation_acquired'),('approach_observation','approach_complete')]:
         rows = marks(marker)
         # These are sensor-only driver acceptance witnesses, not ArmControl acceptance.
-        valid = [r for r in rows if r[2].get('observation_contract_valid') is True
-                 and isinstance(r[2].get('observation_stamp_ns'),int) and isinstance(r[2].get('stamp_ns'),int)
-                 and 0 <= r[2]['stamp_ns']-r[2]['observation_stamp_ns'] <= 200000000]
-        phase(name, 'PASS' if valid else 'UNVERIFIED', rows,
+        valid=[]
+        for r in rows:
+            d=r[2];now=d.get('stamp_ns');o=d.get('observation');epoch=d.get('phase_started_ns')
+            if not isinstance(now,int) or not isinstance(epoch,int) or not isinstance(o,dict):continue
+            h=validated_height(o,now_ns=now,colour=manifest.get('requested_colour'))
+            identity=(o.get('track_id'),o.get('reference_id'))
+            if h is not None and o['stamp_ns']>epoch and d.get('observation_contract_valid') is True and (observation_identity is None or observation_identity==identity):
+                valid.append(r);observation_identity=identity
+        measurements={k:valid[-1][2]['observation'][k] for k in ('center_height_above_support_m','support_height_m','uncertainty_m')} if valid else {}
+        phase(name, 'PASS' if valid else 'UNVERIFIED', rows, measurements,
               required=['fresh phase-consumer observation with source identity'],
-              missing=[] if valid else ['fresh phase-consumer observation'],
-              reason='Driver acceptance only; actual ArmControl sample acceptance is not attested.')
+              missing=[] if valid else ['fresh phase-consumer observation with source identity'],
+              reason='Driver contract independently rechecked; actual ArmControl sample acceptance is not attested.')
     grasp = marks('grasp_request'); release = marks('release_request')
     if len(grasp)>1 or len(release)>1:errors.append('Multiple attempts require explicit per-attempt segmentation')
     # Raw magnet command is a separate assertion, never physical success.
@@ -99,6 +129,13 @@ def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, int
     phase('plugin_attachment_report','PASS' if reports else 'UNVERIFIED',reports,
           required=['plugin attached report'], missing=[] if reports else ['plugin attached report'],
           reason='Plugin report only; physical attachment evaluated separately.')
+    consumer_acceptance=[]
+    for row in indexed:
+        if row[1]['topic']!='/diagnostics/manipulation_observation_acceptance' or not isinstance(row[2],dict):continue
+        d=row[2];o=d.get('observation');now=d.get('stamp_ns');epoch=d.get('phase_started_ns')
+        valid=isinstance(now,int) and isinstance(epoch,int) and validated_height(o,now_ns=now,colour=manifest.get('requested_colour')) is not None
+        valid=bool(valid and o['stamp_ns']>epoch and d.get('accepted_by')=='ArmControl.target_height')
+        consumer_acceptance.append(dict(evidence=ref(row),contract_rechecked=valid,phase=d.get('phase'),observation=o))
     target = 'target_'+manifest.get('requested_colour','')
     truth=[]; invalid=[]
     for row in indexed:
@@ -107,6 +144,7 @@ def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, int
         if not isinstance(d,dict) or not finite(d.get('sim_s')) or d.get('frame')!='world':
             invalid.append(ref(row));continue
         obj=d.get('objects',{}).get(target) if isinstance(d.get('objects',{}),dict) else None; grip=d.get('gripper')
+        if obj is None:continue
         if not isinstance(obj,dict) or not xyz(obj.get('xyz_m')) or not quaternion(obj.get('quaternion_wxyz')):
             invalid.append(ref(row));continue
         if not isinstance(grip,dict) or not xyz(grip.get('xyz_m')) or not quaternion(grip.get('quaternion_wxyz')):
@@ -122,8 +160,11 @@ def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, int
     if calibrated:
         if any(abs(r[1]['sim_s']-r[2]['sim_s'])>limits['max_truth_gap_sim_s'] for r in truth):
             errors.append('Truth source/ROS receipt mismatch or stale evidence')
-    def stamp(rows): return rows[0][2].get('stamp_ns',round(rows[0][1]['sim_s']*1e9))/1e9 if rows else None
-    start=stamp(grasp); end=stamp(release)
+    def stamp(rows):
+        value=rows[0][2].get('stamp_ns') if rows else None
+        return value/1e9 if isinstance(value,int) and value>0 else None
+    start=attaches[0][1]['sim_s'] if attaches else stamp(grasp)
+    end=detaches[0][1]['sim_s'] if detaches else stamp(release)
     baseline=[r for r in truth if start is not None and r[2]['sim_s']<=start]
     carry=[r for r in truth if start is not None and r[2]['sim_s']>start and (end is None or r[2]['sim_s']<end)]
     after=[r for r in truth if end is not None and r[2]['sim_s']>=end]
@@ -142,14 +183,22 @@ def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, int
         baseline=[]
     if not baseline:missing.append('pre-grasp physical baseline')
     if len(carry)<2:missing.append('post-grasp motion samples')
-    attachment='UNVERIFIED'; m={}
+    if calibrated and len(carry)>=2 and not covered(carry):missing.append('truth sampling gap exceeds configured bound')
+    attachment='UNVERIFIED'; m=motion(carry) if len(carry)>=2 else {}
     # First motion pair establishes attachment; later drift belongs to retention.
     attach_rows=[]
     if calibrated and baseline and covered(carry):
-        attach_rows=carry[:2];m=motion(attach_rows)
+        attach_rows=carry
+        for count in range(2,len(carry)+1):
+            if motion(carry[:count])['gripper_displacement_m']>2*limits['relative_translation_m']:
+                attach_rows=carry[:count];break
+        m=motion(attach_rows)
         if m['gripper_displacement_m']>2*limits['relative_translation_m']:
             attachment='PASS' if m['relative_translation_drift_m']<=limits['relative_translation_m'] and m['relative_rotation_drift_rad']<=limits['relative_rotation_rad'] else 'FAIL'
         else:missing.append('discriminating gripper movement')
+    if baseline:
+        b=baseline[-1][2]
+        m['attachment_proximity_m']=math.dist(b['objects'][target]['xyz_m'],b['gripper']['xyz_m'])
     phase('physical_attachment',attachment,attach_rows or carry,m,
           required=['pre-grasp baseline','synchronized moving target/palm poses','approved rigidity tolerances'],missing=missing,
           reason='Target-to-palm rigidity tested independently of plugin state; proximity calibration remains separate.',ids=['I21'])
@@ -157,10 +206,10 @@ def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, int
     if baseline and carry:
         lift['lift_height_m']=max(r[2]['objects'][target]['xyz_m'][2] for r in carry)-baseline[-1][2]['objects'][target]['xyz_m'][2]
         if attachment=='PASS' and covered(carry):
-            lift_status='PASS' if lift['lift_height_m']>=.03 else 'FAIL'
+            lift_status='PASS' if lift['lift_height_m']>=.03 else 'FAIL' if end is not None else 'UNVERIFIED'
     phase('physical_lift',lift_status,baseline[-1:]+carry,lift,required=['physical baseline','world target rise >=0.03m','physical attachment'],
           missing=[] if lift_status!='UNVERIFIED' else ['verified attachment and covered physical lift window'],ids=['I21'])
-    retention='UNVERIFIED';rm={}
+    retention='UNVERIFIED';rm=motion(carry) if len(carry)>=2 else {}
     if attachment=='PASS' and len(carry)>=3 and end is not None and covered(carry):
         rm=motion(carry)
         if end-carry[-1][2]['sim_s']<=limits['max_truth_gap_sim_s']:
@@ -168,12 +217,12 @@ def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, int
             rm['target_attached_during_carry']=retention=='PASS'
     phase('retention',retention,carry,rm,required=['covered moving carry until release'],
           missing=[] if retention!='UNVERIFIED' else ['complete independently witnessed carry'],ids=['I22'])
-    released='UNVERIFIED';am={}
+    released='UNVERIFIED';am=motion(after) if len(after)>=2 else {}
     if covered(after):
         am=motion(after)
         if am['gripper_displacement_m']>2*limits['relative_translation_m']:
             released=('PASS' if am['relative_translation_drift_m']>2*limits['relative_translation_m'] and am['target_displacement_m']<=REST_POSITION_M else 'FAIL' if am['relative_translation_drift_m']<=limits['relative_translation_m'] else 'UNVERIFIED')
-            am['placed_detached']=released=='PASS'
+            if released!='UNVERIFIED':am['placed_detached']=released=='PASS'
     phase('physical_release',released,after,am,required=['release request','post-release palm retreat and independent target separation'],
           missing=[] if released!='UNVERIFIED' else ['discriminating post-release motion'],ids=['I23'])
     stability='UNVERIFIED';sm={}
@@ -189,12 +238,28 @@ def verify(events, manifest, oracle, trace=(), thresholds=None, limits=None, int
         for p in phases.values():
             p['status']='UNSCORABLE';p['limitations']+=errors
     ordered=[phases[name] for name in PHASES]
-    result='UNSCORABLE' if errors else 'FAIL' if any(p['status']=='FAIL' for p in ordered) else 'PASS' if all(p['status']=='PASS' for p in ordered) and oracle.get('oracle_verdict')=='PASS' else 'UNVERIFIED'
-    return dict(schema_version=1,diagnostic_only=True,qualified=False,phases=ordered,
-                result=result,oracle=oracle,limits=limits,
-                complete_invariant_verification=all(v['holds'] is True for p in ordered for v in p['invariant_results'].values()),duplicate_events=duplicates,
+    phase_sequence_result='UNSCORABLE' if errors else 'FAIL' if any(p['status']=='FAIL' for p in ordered) else 'PASS' if all(p['status']=='PASS' for p in ordered) and oracle.get('oracle_verdict')=='PASS' else 'UNVERIFIED'
+    # Resolve the catalog's multi-phase conjunctions together, without inventing
+    # a missing finger-opening witness from commands or plugin state.
+    catalog_measurements={**m,**(lift if lift_status!='UNVERIFIED' else {}),**rm,**am,**(sm if stability!='UNVERIFIED' else {})}
+    finger_witnesses=[e for e in trace if 'I23' in e.get('invariants',[])
+                      and finite(e.get('sim_s')) and stamp(release) is not None and end is not None
+                      and stamp(release)<=e['sim_s']<end
+                      and isinstance(e.get('measurements',{}).get('fingers_open_before_detach'),bool)]
+    if finger_witnesses:
+        catalog_measurements['fingers_open_before_detach']=all(e['measurements']['fingers_open_before_detach'] for e in finger_witnesses)
+    catalog_results={i:evaluate(i,catalog_measurements,thresholds) for i in ('I21','I22','I23')}
+    complete_invariants=all(v['holds'] is True for v in catalog_results.values())
+    result='UNVERIFIED' if phase_sequence_result=='PASS' and not complete_invariants else phase_sequence_result
+    if not errors and any(v['holds'] is False for v in catalog_results.values()):result='FAIL'
+    return dict(schema_version=1,diagnostic_only=True,qualified=False,source_run=manifest.get('replay_source'),phases=ordered,
+                result=result,phase_sequence_result=phase_sequence_result,consumer_acceptance=consumer_acceptance,oracle=oracle,limits=limits,
+                complete_invariant_verification=complete_invariants,catalog_results=catalog_results,
+                catalog_measurements=catalog_measurements,finger_witnesses=finger_witnesses,duplicate_events=duplicates,
                 input_events=len(events),invalid_truth=invalid,integrity_errors=errors,
                 first_unsupported_phase=next((p['phase'] for p in ordered if p['status']!='PASS'),None),
+                unresolved_catalog=[i for i,v in catalog_results.items() if v['holds'] is None],
+                result_reason=('Evidence integrity errors' if errors else 'Observed phase or catalog failure' if result=='FAIL' else 'All phases, manipulation catalog and existing oracle pass' if result=='PASS' else 'Incomplete phase/catalog evidence or existing oracle not PASS'),
                 analyzer_manipulation_evidence=[e for e in trace if set(e.get('invariants',[])) & {'I20','I21','I22','I23'}],
                 limitations=['No replacement mission oracle. Plugin attachment is not physical evidence.',
                              'Missing calibrated limits remain null. Engineering/replay never qualifies M1.'])
@@ -210,10 +275,14 @@ def run(directory, output, limits=None):
                 try:events.append(json.loads(line))
                 except ValueError:errors.append(f'truncated/invalid events.jsonl line {n+1}')
     else:errors.append('Missing events.jsonl')
-    oracle=json.loads((root/'oracle.json').read_text()) if (root/'oracle.json').exists() else {'oracle_verdict':'UNSCORABLE'}
+    oracle={'oracle_verdict':'UNSCORABLE'}
+    if (root/'oracle.json').exists():
+        try:oracle=json.loads((root/'oracle.json').read_text())
+        except ValueError:errors.append('Invalid oracle.json')
     trace=[]
     if (root/'logs/normalized.jsonl').exists():
-        trace=[json.loads(l) for l in (root/'logs/normalized.jsonl').read_text().splitlines()]
+        try:trace=[json.loads(l) for l in (root/'logs/normalized.jsonl').read_text().splitlines()]
+        except ValueError:errors.append('Invalid normalized.jsonl')
     thresholds=json.loads(Path(__file__).with_name('thresholds.json').read_text())['thresholds']
     result=verify(events,manifest,oracle,trace,thresholds,limits,errors)
     result['source_hashes']={str(p.relative_to(root)):file_hash(p) for p in [root/'manifest.json',path,root/'oracle.json'] if p.exists()}
@@ -223,4 +292,5 @@ def run(directory, output, limits=None):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('run',type=Path);p.add_argument('output',type=Path)
-    a=p.parse_args();run(a.run,a.output)
+    p.add_argument('--limits',type=Path,help='Explicit diagnostic limits JSON with provenance; never qualifies a run')
+    a=p.parse_args();run(a.run,a.output,json.loads(a.limits.read_text()) if a.limits else None)

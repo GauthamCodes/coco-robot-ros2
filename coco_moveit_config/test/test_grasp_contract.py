@@ -273,3 +273,23 @@ def test_release_compares_to_measured_baseline_with_both_uncertainties(server,mo
     borderline=measured_height(server,.128)
     server._on_object_height(String(data=json.dumps(borderline)))
     assert not server.check_released()  # 18mm difference + 4mm sensing budget >20mm
+
+
+def test_acceptance_diagnostic_preserves_sample_and_cannot_change_decision(server,monkeypatch):
+    import json
+    from std_msgs.msg import String
+    captured=[]
+    class Publisher:
+        def publish(self,msg):captured.append(json.loads(msg.data))
+    server._observation_diagnostics=Publisher()
+    o=measured_height(server);server._on_object_height(String(data=json.dumps(o)))
+    assert server.target_height()==pytest.approx(.079)
+    assert captured[0]['observation']==o
+    assert captured[0]['accepted_by']=='ArmControl.target_height'
+    server.target_height();assert len(captured)==1
+    class BrokenPublisher:
+        def publish(self,msg):raise RuntimeError('diagnostic unavailable')
+    server._observation_diagnostics=BrokenPublisher();server._last_observation_diagnostic=None
+    assert server.target_height()==pytest.approx(.079)
+    invalid=dict(o,valid=False);server._on_object_height(String(data=json.dumps(invalid)))
+    assert server.target_height() is None

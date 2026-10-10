@@ -75,3 +75,13 @@ No system-level ROOT-CAUSED AND FIXED entry; qualification/M1 remain unopened.
   New simulation depends on unchanged preflight and workload headroom.
 - Result: implementation/local regression evidence only. System closure remains
   OPEN; no physical attachment/lift/release or oracle PASS demonstrated.
+
+Hardening result (2026-10-10): final targeted240, ROS/runner9 and manipulation
+package43 pytest cases pass; colcon44 includes the wrapper. First malformed-truth
+AttributeError regression failure is retained and corrected. Both final replays
+pass integrity checks; guarded-motion-06 remains plugin-only evidence. Added
+passive exact-consumer-sample logging, explicit engineering episode boundaries
+and a post-place recording window; neither changes motion/safety decisions.
+No system rerun permitted at the first RAM gate. Closure remains OPEN; independent
+physical evidence, calibrated relative-motion quality limits and a finger-opening
+witness are still required. No simulator or foreign process was signalled.

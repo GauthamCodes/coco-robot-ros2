@@ -1,0 +1,796 @@
+{
+  "execution_class": "NON_QUALIFYING",
+  "runs": [
+    {
+      "source": "/home/gautham/coco_m1_runs/rgbd-light-20261009/acquisition-camera-only-02",
+      "profile": "rgbd_observation",
+      "state": "BOOTSTRAP_WALL_BUDGET_REACHED",
+      "qualified": false,
+      "sample_count": 31,
+      "component_peaks": {
+        "recorder": {
+          "rss_bytes": 91594752,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 183.71329427724845
+        },
+        "launch_or_runtime_overhead": {
+          "rss_bytes": 68489216,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 8.946367733202734
+        },
+        "gazebo_including_sensor_plugins": {
+          "rss_bytes": 841072640,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 84.10702728067824
+        },
+        "ros_bridge_middleware": {
+          "rss_bytes": 43323392,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 21.14510240808419
+        },
+        "robot_tf": {
+          "rss_bytes": 20586496,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 6.212640950216058
+        }
+      },
+      "host_extrema": {
+        "ram_available_bytes": {
+          "min": 8638615552,
+          "max": 9475215360
+        },
+        "cpu_percent": {
+          "min": 17.130801687763707,
+          "max": 39.768019884009945
+        },
+        "load1": {
+          "min": 1.671875,
+          "max": 2.6591796875
+        },
+        "vram_used_bytes": {
+          "min": 751828992,
+          "max": 1030750208
+        },
+        "rtf": {
+          "min": 0.7270423758360464,
+          "max": 1.2963387804700823
+        },
+        "evidence_bytes": {
+          "min": 199482,
+          "max": 68964556
+        }
+      },
+      "process_observation_intervals": [
+        {
+          "pid": 35521,
+          "start_ticks": 621766,
+          "first_observed_wall_epoch_ns": 1791491439889636008,
+          "last_observed_wall_epoch_ns": 1791491469066181354
+        },
+        {
+          "pid": 35550,
+          "start_ticks": 621882,
+          "first_observed_wall_epoch_ns": 1791491441037895492,
+          "last_observed_wall_epoch_ns": 1791491469066181354
+        },
+        {
+          "pid": 35554,
+          "start_ticks": 621933,
+          "first_observed_wall_epoch_ns": 1791491442043175857,
+          "last_observed_wall_epoch_ns": 1791491469066181354
+        },
+        {
+          "pid": 35559,
+          "start_ticks": 622004,
+          "first_observed_wall_epoch_ns": 1791491443049238806,
+          "last_observed_wall_epoch_ns": 1791491469066181354
+        },
+        {
+          "pid": 35560,
+          "start_ticks": 622004,
+          "first_observed_wall_epoch_ns": 1791491443049238806,
+          "last_observed_wall_epoch_ns": 1791491469066181354
+        },
+        {
+          "pid": 35561,
+          "start_ticks": 622004,
+          "first_observed_wall_epoch_ns": 1791491443049238806,
+          "last_observed_wall_epoch_ns": 1791491469066181354
+        }
+      ],
+      "coverage": {
+        "recorder": {
+          "samples": 31,
+          "complete_pss_samples": 0
+        },
+        "launch_or_runtime_overhead": {
+          "samples": 29,
+          "complete_pss_samples": 0
+        },
+        "gazebo_including_sensor_plugins": {
+          "samples": 27,
+          "complete_pss_samples": 0
+        },
+        "ros_bridge_middleware": {
+          "samples": 27,
+          "complete_pss_samples": 0
+        },
+        "robot_tf": {
+          "samples": 27,
+          "complete_pss_samples": 0
+        }
+      },
+      "errors": [],
+      "source_hashes": {
+        "manifest.json": "1809dbef15bc3972f286fc92ffa5eb668f79de9a7b9842f16ace401753020c89",
+        "host_metrics.jsonl": "3857eb1fe2fe98f70aa11571f3543fcfb86ca7578f0d2e06617618d76cd34384"
+      },
+      "caveats": [
+        "RSS double-counts shared pages; PSS apportions them when readable.",
+        "Component peaks are not simultaneous; do not sum maxima.",
+        "Host RAM/CPU/GPU include background processes; no causal cross-workload subtraction.",
+        "Process intervals are observed bounds, not exact exit times; start_ticks is kernel boot clock.",
+        "RTF is clock receipt delta, not validated settled workload RTF.",
+        "DDS queue occupancy and per-plugin/per-process GPU allocations are unavailable."
+      ]
+    },
+    {
+      "source": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/acquisition-01",
+      "profile": "rgbd_observation",
+      "state": "BOOTSTRAP_WALL_BUDGET_REACHED",
+      "qualified": false,
+      "sample_count": 31,
+      "component_peaks": {
+        "recorder": {
+          "rss_bytes": 145178624,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 183.66614331547734
+        },
+        "launch_or_runtime_overhead": {
+          "rss_bytes": 155582464,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 164.97689897662323
+        },
+        "gazebo_including_sensor_plugins": {
+          "rss_bytes": 868466688,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 97.099510004181
+        },
+        "ros_bridge_middleware": {
+          "rss_bytes": 43724800,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 31.287619890236098
+        },
+        "observer": {
+          "rss_bytes": 252649472,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 211.85524785344268
+        },
+        "robot_tf": {
+          "rss_bytes": 20971520,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 9.304664721212628
+        }
+      },
+      "host_extrema": {
+        "ram_available_bytes": {
+          "min": 8672575488,
+          "max": 9864589312
+        },
+        "cpu_percent": {
+          "min": 22.33676975945017,
+          "max": 84.05207485760782
+        },
+        "load1": {
+          "min": 2.6005859375,
+          "max": 4.3388671875
+        },
+        "vram_used_bytes": {
+          "min": 881852416,
+          "max": 1155530752
+        },
+        "rtf": {
+          "min": 0.004938259765308851,
+          "max": 1.7114747093008371
+        },
+        "evidence_bytes": {
+          "min": 189419,
+          "max": 65250027
+        }
+      },
+      "process_observation_intervals": [
+        {
+          "pid": 43790,
+          "start_ticks": 797053,
+          "first_observed_wall_epoch_ns": 1791493192790164298,
+          "last_observed_wall_epoch_ns": 1791493221995733163
+        },
+        {
+          "pid": 43818,
+          "start_ticks": 797168,
+          "first_observed_wall_epoch_ns": 1791493193900853419,
+          "last_observed_wall_epoch_ns": 1791493221995733163
+        },
+        {
+          "pid": 43823,
+          "start_ticks": 797222,
+          "first_observed_wall_epoch_ns": 1791493194900330279,
+          "last_observed_wall_epoch_ns": 1791493221995733163
+        },
+        {
+          "pid": 43842,
+          "start_ticks": 797297,
+          "first_observed_wall_epoch_ns": 1791493195968513006,
+          "last_observed_wall_epoch_ns": 1791493214013192486
+        },
+        {
+          "pid": 43843,
+          "start_ticks": 797297,
+          "first_observed_wall_epoch_ns": 1791493195968513006,
+          "last_observed_wall_epoch_ns": 1791493221995733163
+        },
+        {
+          "pid": 43844,
+          "start_ticks": 797297,
+          "first_observed_wall_epoch_ns": 1791493195968513006,
+          "last_observed_wall_epoch_ns": 1791493221995733163
+        },
+        {
+          "pid": 43845,
+          "start_ticks": 797297,
+          "first_observed_wall_epoch_ns": 1791493195968513006,
+          "last_observed_wall_epoch_ns": 1791493221995733163
+        },
+        {
+          "pid": 43846,
+          "start_ticks": 797297,
+          "first_observed_wall_epoch_ns": 1791493195968513006,
+          "last_observed_wall_epoch_ns": 1791493221995733163
+        },
+        {
+          "pid": 44011,
+          "start_ticks": 798304,
+          "first_observed_wall_epoch_ns": 1791493206024469735,
+          "last_observed_wall_epoch_ns": 1791493206966648769
+        },
+        {
+          "pid": 44039,
+          "start_ticks": 798520,
+          "first_observed_wall_epoch_ns": 1791493208022643510,
+          "last_observed_wall_epoch_ns": 1791493209050351992
+        },
+        {
+          "pid": 44067,
+          "start_ticks": 798744,
+          "first_observed_wall_epoch_ns": 1791493210087301516,
+          "last_observed_wall_epoch_ns": 1791493211991059866
+        },
+        {
+          "pid": 44103,
+          "start_ticks": 799002,
+          "first_observed_wall_epoch_ns": 1791493212958555794,
+          "last_observed_wall_epoch_ns": 1791493214013192486
+        }
+      ],
+      "coverage": {
+        "recorder": {
+          "samples": 31,
+          "complete_pss_samples": 0
+        },
+        "launch_or_runtime_overhead": {
+          "samples": 29,
+          "complete_pss_samples": 0
+        },
+        "gazebo_including_sensor_plugins": {
+          "samples": 27,
+          "complete_pss_samples": 0
+        },
+        "ros_bridge_middleware": {
+          "samples": 27,
+          "complete_pss_samples": 0
+        },
+        "observer": {
+          "samples": 27,
+          "complete_pss_samples": 0
+        },
+        "robot_tf": {
+          "samples": 27,
+          "complete_pss_samples": 0
+        }
+      },
+      "errors": [],
+      "source_hashes": {
+        "manifest.json": "1d6a0f1a63778c88aff78ebccdb2b6c93e0386ed4d34e9de93729ac0cc184b4b",
+        "host_metrics.jsonl": "b4da3fc7478b27bab514e55ac349fd5dc0733dd7ecdafa22ef598e54bdedd0e4"
+      },
+      "caveats": [
+        "RSS double-counts shared pages; PSS apportions them when readable.",
+        "Component peaks are not simultaneous; do not sum maxima.",
+        "Host RAM/CPU/GPU include background processes; no causal cross-workload subtraction.",
+        "Process intervals are observed bounds, not exact exit times; start_ticks is kernel boot clock.",
+        "RTF is clock receipt delta, not validated settled workload RTF.",
+        "DDS queue occupancy and per-plugin/per-process GPU allocations are unavailable."
+      ]
+    },
+    {
+      "source": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-06",
+      "profile": "rgbd_manipulation",
+      "state": "ABORTED_BOOTSTRAP_SAFETY",
+      "qualified": false,
+      "sample_count": 26,
+      "component_peaks": {
+        "recorder": {
+          "rss_bytes": 104280064,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 170.0395080332073
+        },
+        "launch_or_runtime_overhead": {
+          "rss_bytes": 708440064,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 625.4045498962963
+        },
+        "gazebo_including_sensor_plugins": {
+          "rss_bytes": 890712064,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 182.34958445570055
+        },
+        "ros_bridge_middleware": {
+          "rss_bytes": 47538176,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 31.757511899588298
+        },
+        "observer": {
+          "rss_bytes": 258150400,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 119.71732810754725
+        },
+        "moveit_manipulation": {
+          "rss_bytes": 219598848,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 159.0192456220958
+        },
+        "robot_tf": {
+          "rss_bytes": 23642112,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 11.46937863170137
+        }
+      },
+      "host_extrema": {
+        "ram_available_bytes": {
+          "min": 8400928768,
+          "max": 9705451520
+        },
+        "cpu_percent": {
+          "min": 13.017751479289942,
+          "max": 96.69937555753792
+        },
+        "load1": {
+          "min": 3.9150390625,
+          "max": 9.35107421875
+        },
+        "vram_used_bytes": {
+          "min": 813694976,
+          "max": 1034944512
+        },
+        "rtf": {
+          "min": 0.2543590056120691,
+          "max": 0.9829388015135558
+        },
+        "evidence_bytes": {
+          "min": 190756,
+          "max": 41365244
+        }
+      },
+      "process_observation_intervals": [
+        {
+          "pid": 50643,
+          "start_ticks": 876280,
+          "first_observed_wall_epoch_ns": 1791493985014501389,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50676,
+          "start_ticks": 876394,
+          "first_observed_wall_epoch_ns": 1791493986158072640,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50686,
+          "start_ticks": 876478,
+          "first_observed_wall_epoch_ns": 1791493987163858556,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50691,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494006308773096
+        },
+        {
+          "pid": 50692,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50693,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50694,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50695,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791493993350121421
+        },
+        {
+          "pid": 50696,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791493993350121421
+        },
+        {
+          "pid": 50697,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791493992188718282
+        },
+        {
+          "pid": 50698,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791493994324793825
+        },
+        {
+          "pid": 50699,
+          "start_ticks": 876553,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50700,
+          "start_ticks": 876554,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50701,
+          "start_ticks": 876554,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791493991180350084
+        },
+        {
+          "pid": 50702,
+          "start_ticks": 876554,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50703,
+          "start_ticks": 876555,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50704,
+          "start_ticks": 876555,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50705,
+          "start_ticks": 876555,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 50706,
+          "start_ticks": 876556,
+          "first_observed_wall_epoch_ns": 1791493988574313187,
+          "last_observed_wall_epoch_ns": 1791494009343816884
+        },
+        {
+          "pid": 51157,
+          "start_ticks": 877565,
+          "first_observed_wall_epoch_ns": 1791493998351657592,
+          "last_observed_wall_epoch_ns": 1791493999312881709
+        },
+        {
+          "pid": 51188,
+          "start_ticks": 877804,
+          "first_observed_wall_epoch_ns": 1791494001340990310,
+          "last_observed_wall_epoch_ns": 1791494002295824143
+        },
+        {
+          "pid": 51226,
+          "start_ticks": 878037,
+          "first_observed_wall_epoch_ns": 1791494003320869050,
+          "last_observed_wall_epoch_ns": 1791494004296071574
+        },
+        {
+          "pid": 51276,
+          "start_ticks": 878274,
+          "first_observed_wall_epoch_ns": 1791494005321118979,
+          "last_observed_wall_epoch_ns": 1791494006308773096
+        }
+      ],
+      "coverage": {
+        "recorder": {
+          "samples": 26,
+          "complete_pss_samples": 0
+        },
+        "launch_or_runtime_overhead": {
+          "samples": 24,
+          "complete_pss_samples": 0
+        },
+        "gazebo_including_sensor_plugins": {
+          "samples": 22,
+          "complete_pss_samples": 0
+        },
+        "ros_bridge_middleware": {
+          "samples": 22,
+          "complete_pss_samples": 0
+        },
+        "observer": {
+          "samples": 22,
+          "complete_pss_samples": 0
+        },
+        "moveit_manipulation": {
+          "samples": 22,
+          "complete_pss_samples": 0
+        },
+        "robot_tf": {
+          "samples": 22,
+          "complete_pss_samples": 0
+        }
+      },
+      "errors": [],
+      "source_hashes": {
+        "manifest.json": "2fe4b44b7cbcb31657c6cb985ab2981f1d9ba7171a02ccba4813a490857f0b6f",
+        "host_metrics.jsonl": "d6e7e00a3f52fb7306c62a36b342425b530cb15eea1bfd0870148bdfb4c0b60c"
+      },
+      "caveats": [
+        "RSS double-counts shared pages; PSS apportions them when readable.",
+        "Component peaks are not simultaneous; do not sum maxima.",
+        "Host RAM/CPU/GPU include background processes; no causal cross-workload subtraction.",
+        "Process intervals are observed bounds, not exact exit times; start_ticks is kernel boot clock.",
+        "RTF is clock receipt delta, not validated settled workload RTF.",
+        "DDS queue occupancy and per-plugin/per-process GPU allocations are unavailable."
+      ]
+    },
+    {
+      "source": "/home/gautham/coco_m1_runs/rgbd-phase-20261009/guarded-motion-09",
+      "profile": "rgbd_manipulation",
+      "state": "ABORTED_BOOTSTRAP_RESOURCE_LIMIT",
+      "qualified": false,
+      "sample_count": 6,
+      "component_peaks": {
+        "recorder": {
+          "rss_bytes": 86532096,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 177.03959809278413
+        },
+        "launch_or_runtime_overhead": {
+          "rss_bytes": 388009984,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": 82.73910419352616
+        },
+        "gazebo_including_sensor_plugins": {
+          "rss_bytes": 169979904,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": null
+        },
+        "ros_bridge_middleware": {
+          "rss_bytes": 42385408,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": null
+        },
+        "observer": {
+          "rss_bytes": 147341312,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": null
+        },
+        "moveit_manipulation": {
+          "rss_bytes": 193036288,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": null
+        },
+        "robot_tf": {
+          "rss_bytes": 21852160,
+          "pss_bytes": null,
+          "private_bytes": null,
+          "cpu_percent_one_core": null
+        }
+      },
+      "host_extrema": {
+        "ram_available_bytes": {
+          "min": 8120913920,
+          "max": 8543019008
+        },
+        "cpu_percent": {
+          "min": 53.83290267011197,
+          "max": 98.25511432009627
+        },
+        "load1": {
+          "min": 6.29638671875,
+          "max": 7.07373046875
+        },
+        "vram_used_bytes": {
+          "min": 829423616,
+          "max": 839909376
+        },
+        "rtf": null,
+        "evidence_bytes": {
+          "min": 209426,
+          "max": 581159
+        }
+      },
+      "process_observation_intervals": [
+        {
+          "pid": 27585,
+          "start_ticks": 399548,
+          "first_observed_wall_epoch_ns": 1791547955250794590,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27613,
+          "start_ticks": 399668,
+          "first_observed_wall_epoch_ns": 1791547956492576201,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27625,
+          "start_ticks": 399879,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27626,
+          "start_ticks": 399879,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27627,
+          "start_ticks": 399879,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27628,
+          "start_ticks": 399879,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27629,
+          "start_ticks": 399879,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27630,
+          "start_ticks": 399880,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27631,
+          "start_ticks": 399880,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27632,
+          "start_ticks": 399880,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27633,
+          "start_ticks": 399880,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27634,
+          "start_ticks": 399882,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27635,
+          "start_ticks": 399882,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27636,
+          "start_ticks": 399883,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        },
+        {
+          "pid": 27637,
+          "start_ticks": 399883,
+          "first_observed_wall_epoch_ns": 1791547959920264338,
+          "last_observed_wall_epoch_ns": 1791547959920264338
+        }
+      ],
+      "coverage": {
+        "recorder": {
+          "samples": 6,
+          "complete_pss_samples": 0
+        },
+        "launch_or_runtime_overhead": {
+          "samples": 4,
+          "complete_pss_samples": 0
+        },
+        "gazebo_including_sensor_plugins": {
+          "samples": 1,
+          "complete_pss_samples": 0
+        },
+        "ros_bridge_middleware": {
+          "samples": 1,
+          "complete_pss_samples": 0
+        },
+        "observer": {
+          "samples": 1,
+          "complete_pss_samples": 0
+        },
+        "moveit_manipulation": {
+          "samples": 1,
+          "complete_pss_samples": 0
+        },
+        "robot_tf": {
+          "samples": 1,
+          "complete_pss_samples": 0
+        }
+      },
+      "errors": [],
+      "source_hashes": {
+        "manifest.json": "29bf665473bbe277b300fbe7f2223aee55ebbf4d872daf11e63daadc168b8a8a",
+        "host_metrics.jsonl": "ab0052305a376e4742f38e8f3c943be3098d33674b59ab30e521ec4ddd2fe013"
+      },
+      "caveats": [
+        "RSS double-counts shared pages; PSS apportions them when readable.",
+        "Component peaks are not simultaneous; do not sum maxima.",
+        "Host RAM/CPU/GPU include background processes; no causal cross-workload subtraction.",
+        "Process intervals are observed bounds, not exact exit times; start_ticks is kernel boot clock.",
+        "RTF is clock receipt delta, not validated settled workload RTF.",
+        "DDS queue occupancy and per-plugin/per-process GPU allocations are unavailable."
+      ]
+    }
+  ]
+}

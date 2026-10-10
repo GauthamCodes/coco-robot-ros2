@@ -17,10 +17,12 @@ def multiply(a,b):
 def enrich(events, gripper_frame='m_link3'):
     static={};dynamic={}
     for e in events:
+        if not isinstance(e,dict):continue
         if e.get('topic') not in ('/tf','/tf_static'):continue
         d=payload(e)
         if not isinstance(d,dict):continue
-        for tf in d.get('transforms',[]):
+        if not isinstance(d.get('transforms'),list):continue
+        for tf in d['transforms']:
             try:
                 stamp=tf['header']['stamp'];ns=stamp['sec']*10**9+stamp['nanosec']
                 key=(tf['child_frame_id'],ns) if e['topic']=='/tf' else tf['child_frame_id']
@@ -30,6 +32,7 @@ def enrich(events, gripper_frame='m_link3'):
             except (KeyError,TypeError):continue
     output=[]
     for e in events:
+        if not isinstance(e,dict):continue
         if e.get('topic')!='/eval/ground_truth/state':output.append(e);continue
         d=deepcopy(payload(e));grip=None
         if not isinstance(d,dict):output.append(e);continue
@@ -44,6 +47,7 @@ def enrich(events, gripper_frame='m_link3'):
                     if not xyz(p) or not quaternion(r):break
                     point=[a+b for a,b in zip(rotate(r,point),p)];q=multiply(r,q)
                     refs.append(dict(child=frame,header=tf['header']));frame=tf['header']['frame_id']
+                    if not isinstance(frame,str):break
                 except (KeyError,TypeError):break
             if frame=='base_footprint':
                 grip=dict(xyz_m=[a+b for a,b in zip(rotate(robot['quaternion_wxyz'],point),robot['xyz_m'])],

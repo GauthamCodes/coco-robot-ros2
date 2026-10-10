@@ -1,0 +1,34 @@
+{
+  "definition_version": "m0-v1",
+  "oracle_verdict": "FAIL",
+  "mission_verdict": "ABORT",
+  "mission_oracle_disagreement": false,
+  "checks": {
+    "target_in_placement_zone": false,
+    "target_at_rest": true,
+    "nonrequested_undisturbed": false,
+    "robot_home": false,
+    "no_arbiter_violation": true,
+    "within_time_budget": true
+  },
+  "metrics": {
+    "placement_distance_xy_m": 6.104350643369549,
+    "floor_center_error_m": 0.6498393916704683,
+    "rest_window_sim_s": 2.0020000000000095,
+    "rest_max_pairwise_distance_m": 0.0,
+    "rest_rotation_surface_motion_m": 0.0,
+    "nonrequested_max_displacement_m": {
+      "target_yellow": 3.143886728024462,
+      "target_blue": 3.7269722728846078,
+      "target_green": 0
+    },
+    "robot_distance_home_xy_m": 6.503772639180155,
+    "episode_wall_s": 214.4425449900009
+  },
+  "missing_evidence": [],
+  "failed_conditions": [
+    "target_in_placement_zone",
+    "nonrequested_undisturbed",
+    "robot_home"
+  ]
+}
